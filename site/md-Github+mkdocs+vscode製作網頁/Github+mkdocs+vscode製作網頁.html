@@ -6607,15 +6607,15 @@ is now available!
 <h3 id="5連結github">5.連結Github<a class="headerlink" href="#5連結github" title="Permanent link"></a></h3>
 <p>使用vscode開啟子資料夾(root)，在cmd執行以下程式(請選好你要使用的環境，python不要太舊即可)：</p>
 <p>需要替換{你的儲存庫網址}<br />
+輸入<code>git remote set-url origin https://github.com/&lt;user&gt;/&lt;repo&gt;.git</code></p>
 <div class="highlight"><span class="filename">輸入至cmd</span><pre><span></span><code>git init
-git remote add origin {你的儲存庫網址}.git
-</code></pre></div></p>
-<p>輸入<code>git remote set-url origin https://github.com/&lt;user&gt;/&lt;repo&gt;.git</code><br />
-<div class="highlight"><pre><span></span><code>git remote set-url origin https://github.com/peicd100/https-peicd100.github.io.git
-git remote -v
-</code></pre></div></p>
+git remote add origin https://github.com/peicd100/peicd100.github.io.git
+</code></pre></div>
 <p>如果已經設定過，但不想要，可用以下指令<br />
-<div class="highlight"><pre><span></span><code>git remote remove origin
+<div class="highlight"><pre><span></span><code># 更換
+git remote set-url origin https://github.com/peicd100/https-peicd100.github.io.git
+# 刪除
+git remote remove origin
 </code></pre></div></p>
 <h3 id="6安裝所需庫">6.安裝所需庫<a class="headerlink" href="#6安裝所需庫" title="Permanent link"></a></h3>
 <p>執行<br />

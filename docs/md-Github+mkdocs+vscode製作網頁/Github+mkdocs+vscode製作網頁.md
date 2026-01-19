@@ -51,22 +51,23 @@
 使用vscode開啟子資料夾(root)，在cmd執行以下程式(請選好你要使用的環境，python不要太舊即可)：
 
 需要替換{你的儲存庫網址}
+輸入`git remote set-url origin https://github.com/<user>/<repo>.git`
+
 ``` title="輸入至cmd"
 git init
-git remote add origin {你的儲存庫網址}.git
+git remote add origin https://github.com/peicd100/peicd100.github.io.git
 ```
 
 
-輸入`git remote set-url origin https://github.com/<user>/<repo>.git`
-```
-git remote set-url origin https://github.com/peicd100/https-peicd100.github.io.git
-git remote -v
-```
 
 如果已經設定過，但不想要，可用以下指令
 ```
+# 更換
+git remote set-url origin https://github.com/peicd100/https-peicd100.github.io.git
+# 刪除
 git remote remove origin
 ```
+
 
 
 ### 6.安裝所需庫
