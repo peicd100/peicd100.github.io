@@ -6,11 +6,11 @@ activate mkdocs
 
 ## 每次寫完
 
+mkdocs gh-deploy
 git add .
 git commit -m "資訊"
 git branch -M main
 git push -u origin main
-mkdocs gh-deploy
 
 # 其他
 
