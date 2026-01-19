@@ -17,15 +17,18 @@
 選擇 New repository
 
 ### 3.選擇網頁名稱
-其實輸入{你的ID}就好，但我輸入了{你的ID}.github.io
+其實輸入
+```
+{你的ID}.github.io
+```
+就好
+![alt text](images/Github+mkdocs+vscode製作網頁/image-1.png)
 
-![alt text](images/Github+mkdocs+vscode製作網頁/BkgimWy4be.png)
-
-> 假設輸入的是{你的ID}，那網址就會是
+> 假設輸入的是{你的ID}.github.io，那網址就會是
 
   `https://了{你的ID}.github.io/` 
 
-> 如果不是{你的ID}，假設為「網頁」，那網址就會是
+> 如果不是{你的ID}.github.io，假設為「網頁」，那網址就會是
 
   `https://{你的ID}.github.io/{網頁}` 
 
