@@ -1,0 +1,404 @@
+site_name: 'PEICD100'  # 網站名稱
+
+# ✅ MkDocs 只要設定 site_url，就會自動生成 /sitemap.xml（MkDocs 0.13+ 內建）：
+#    你目前已經能開 https://peicd100.github.io/sitemap.xml，代表 sitemap 生成正常。
+site_url: https://peicd100.github.io/  # 網站 URL，便於生成 sitemap 和 SEO 優化
+use_directory_urls: false  # 保持目前 .html URL 風格（避免既有連結失效）；想用 /path/ 風格可改 true
+
+theme:
+  name: 'material'  # 使用 Material 主題(這邊有toc)
+  custom_dir: docs/theme  # 指定自定義主題目錄
+  logo: 'logo/logo.png'  # 設置網站的 LOGO
+  favicon: 'logo/logo.png'  # 設置瀏覽器標籤上的圖標
+  palette:
+    scheme: slate  # 使用 dracula 色彩方案，提供深色背景 slate
+    primary: deep purple  # 設置主色調為深紫色
+    accent: deep purple  # 設置輔助色調為深紫色
+  features:
+    - navigation.footer
+    - navigation.indexes
+    - navigation.instant
+    - navigation.instant.prefetch
+    - navigation.instant.progress
+    # - navigation.sections
+    - navigation.tabs  # 啟用標籤式導航
+    - navigation.top  # 當使用者向下捲動後開始再次向上捲動時，可以顯示返回頂部按鈕。
+    - navigation.tracking
+    - announce.dismiss  # 添加通知的關閉功能
+
+    # ❌ 這個不是 Material 的 features 選項，放在這裡反而容易誤會：
+    # - sitemap  # (sitemap 由 MkDocs 依 site_url 自動生成)
+
+    - toc.follow  # 目錄自動跟隨滾動
+    # - toc.integrate #啟用目錄的導覽整合後，它始終呈現為左側導覽側邊欄的一部分////////////////////////////////////////////////////////////////////////////////////////////////////////
+    - content.tabs.link  # 允許內容中的標籤鏈接
+    - search.share  # 啟用搜索結果共享功能
+    # - search.suggest  # 搜索時提供自動建議
+    - content.code.copy  # 代碼塊中顯示“複製”按鈕
+    - content.code.annotations  # 啟用代碼註解功能
+    - content.action.edit
+    - content.action.view
+    - content.tooltips
+
+# extra:
+#   blog:
+#     dir: blog
+#     author: PEICSOC
+#     author_image: logo/logo.png
+#     words_read_per_minute: 300
+#     list_length: 25
+#     extended_preview: true
+
+# extra:
+#  canonical_url: "https://pei-yan-2147.github.io"
+# extra:
+#   canonical_url: "https://pei-yan-2147.github.io"
+
+plugins:
+  # - awesome-nav
+
+  - blog:
+      blog_toc: true
+
+  - rss:
+      match_path: blog/posts/
+      date_from_meta:
+        as_creation: date
+
+  - offline #當您將網站目錄的內容作為下載分發時，內建的離線外掛程式可確保網站搜尋正常運作。只需將以下行新增至：mkdocs.yml
+
+  - tags
+
+  # ✅ 你不需要另外加 sitemap plugin（MkDocs 內建產生 sitemap.xml）
+  # - sitemap
+
+  # 中文：https://cloud-atlas.readthedocs.io/zh-cn/latest/devops/docs/mkdocs/mkdocs_chinese_search.html
+  - search:
+      # lang:
+      #   - en
+      #   - zh
+      # # separator: '[\s\-\.]+'
+      separator: '[\s\u200b\-]'
+      # pipeline:
+      #   # - stemmer
+      #   - stopWordFilter
+      #   - trimmer
+
+  # - macros  # 启用宏插件，允許自定義變量和代碼塊
+  # - mkdocs-jupyter  # 支持 Jupyter Notebook 文件轉換
+  # - minify:  # HTML 壓縮插件
+  #     minify_html: true  # 啟用 HTML 壓縮
+
+extra_css:
+  - assets/pymdownx-extras/extra-8611f6c398.css  # 自定義 CSS 文件
+
+extra_javascript:
+  - https://unpkg.com/mermaid@10.6.1/dist/mermaid.min.js  # Mermaid 圖表支持
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js  # MathJax 支持數學公式
+  - assets/pymdownx-extras/extra-loader-iLQ-keay.js  # 自定義 JavaScript 文件
+
+# Markdown 擴展設置
+markdown_extensions:
+  - pymdownx.snippets:
+      check_paths: true
+  - markdown_include.include: #include其他的.md
+      base_path: docs
+  - nl2br #硬換行
+  - pymdownx.magiclink  #網址自動加入超連結
+
+  - markdown.extensions.toc:  # 目錄擴展
+      slugify: !!python/object/apply:pymdownx.slugs.slugify {kwds: {case: lower}}  # 使用 pymdownx 進行標題的 Slug 化處理
+      permalink: ""  # 禁用永久鏈接符號
+      # toc_depth: 4   # 目錄顯示的深度
+
+  - markdown.extensions.admonition:  # 警告框擴展
+  - markdown.extensions.smarty:  # 智能引號擴展
+      smart_quotes: false  # 禁用智能引號
+
+  - pymdownx.betterem:  # BetterEm 擴展，增強的 Markdown 語法支持
+  - markdown.extensions.attr_list:  # 支持 Markdown 內的 HTML 屬性語法
+  - markdown.extensions.def_list:  # 定義列表擴展
+  - markdown.extensions.tables:  # 表格支持
+  - markdown.extensions.abbr:  # 縮寫支持
+  - markdown.extensions.footnotes:  # 支持腳註
+  - markdown.extensions.md_in_html:  # 支持 HTML 中嵌入 Markdown
+
+  - pymdownx.superfences:  # 增強的程式碼塊擴展
+      preserve_tabs: true  # 保持原始的縮排格式
+      custom_fences:  # 自定義的 fenced blocks
+        - name: diagram  # Mermaid 圖表支持
+          class: diagram
+          format: !!python/name:pymdownx.superfences.fence_code_format
+        - name: math  # 數學公式支持
+          class: arithmatex
+          format: !!python/object/apply:pymdownx.arithmatex.arithmatex_fenced_format {kwds: {mode: generic, tag: pre}}
+        - name: md-render  # Markdown 渲染支持
+          class: md-render
+          format: !!python/name:tools.pymdownx_md_render.md_sub_render
+
+  - pymdownx.highlight:  # 語法高亮擴展
+      extend_pygments_lang:  # 擴展 pygments 語言支持
+        - name: php-inline  # 支持 PHP inline 語法
+          lang: php
+          options:
+            startinline: true
+        - name: pycon3  # 支持 Python 3 REPL 語法
+          lang: pycon
+          options:
+            python3: true
+      linenums_style: pymdownx-inline  # 行號樣式設置
+
+  - pymdownx.inlinehilite:  # 行內高亮擴展
+      custom_inline:
+        - name: math  # 行內數學公式支持
+          class: arithmatex
+          format: !!python/object/apply:pymdownx.arithmatex.arithmatex_inline_format {kwds: {mode: generic}}
+
+  - pymdownx.tilde:  # Tilde 擴展，支持刪除線
+  - pymdownx.caret:  # Caret 擴展，支持插入符號
+  - pymdownx.smartsymbols:  # 支持智能符號轉換
+
+  - pymdownx.emoji:  # Emoji 擴展
+      emoji_index: !!python/name:material.extensions.emoji.twemoji  # 使用 Twemoji 作為 Emoji 索引
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg  # 將 Emoji 渲染為 SVG
+
+  - pymdownx.tasklist:  # 任務清單擴展
+      custom_checkbox: true  # 自定義復選框樣式
+
+  - pymdownx.progressbar:  # 進度條擴展
+
+  - pymdownx.arithmatex:  # Arithmatex 數學公式擴展
+      generic: true  # 通用模式
+      block_tag: 'pre'  # 渲染為 `<pre>` 標籤
+
+  - pymdownx.mark:  # 高亮標記擴展
+
+  - pymdownx.keys:  # 鍵盤按鍵樣式支持
+      separator: "+"  # 自定義鍵位分隔符號
+
+  - pymdownx.details:  # 詳情框擴展
+
+  - pymdownx.tabbed:  # 標籤頁擴展
+      alternate_style: true  # 啟用交替樣式
+
+  - pymdownx.saneheaders:  # 合理的標題擴展
+
+  - pymdownx.blocks.admonition:  # Blocks 警告框擴展
+      types:  # 自定義警告框類型
+        - new
+        - settings
+        - note
+        - abstract
+        - info
+        - tip
+        - success
+        - question
+        - warning
+        - failure
+        - danger
+        - bug
+        - example
+        - quote
+
+  - pymdownx.blocks.details:  # Blocks 詳情框擴展
+      types:  # 自定義詳情框類型
+        - name: details-new
+          class: new
+        - name: details-settings
+          class: settings
+        - name: details-note
+          class: note
+        - name: details-abstract
+          class: abstract
+        - name: details-info
+          class: info
+        - name: details-tip
+          class: tip
+        - name: details-success
+          class: success
+        - name: details-question
+          class: question
+        - name: details-warning
+          class: warning
+        - name: details-failure
+          class: failure
+        - name: details-danger
+          class: danger
+        - name: details-bug
+          class: bug
+        - name: details-example
+          class: example
+        - name: details-quote
+          class: quote
+
+  - pymdownx.blocks.html:  # 支持 HTML Block
+  - pymdownx.blocks.definition:  # 支持定義列表 Block
+
+  - pymdownx.blocks.tab:  # 支持標籤頁 Block
+      alternate_style: True  # 使用交替樣式
+      combine_header_slug: True  # 合併標題 Slug
+      slugify: !!python/object/apply:pymdownx.slugs.slugify {kwds: {case: lower}}  # 使用自定義 Slug 化方式
+
+  - tools.collapse_code:  # 支持折疊程式碼塊
+      expand_text: ''  # 展開時顯示的文本
+      collapse_text: ''  # 折疊時顯示的文本
+  # - tools.i: #中英文之間自動空格
+
+  # - encryptcontent:
+  #     title_prefix: '' #標題前面的文字文字
+  #     summary: '解鎖筆記'
+  #     placeholder: '密碼'
+  #     decryption_failure_message: '錯了'
+  #     encryption_info_message: "請輸入密碼"
+  #     input_class: 'custom-password-input'
+  #     global_password: '2147483647' #密碼
+
+nav:  # 自定義網站的導航結構
+  - '首頁':
+      - 'blog/index.md'
+
+
+  # - '首頁': index.md
+  # - 'blog': blog/index.md
+
+
+  - '演算法筆記':
+      - '首頁': 'md-演算法筆記/PEI演算法筆記.md'
+      - '競賽準備':
+          # - '待辦事項': md-演算法筆記/待辦事項.md
+          # - '絕對要記得': md-演算法筆記/絕對要記得.md
+          - '考前必看': 'md-演算法筆記/考前必看.md'
+          - '有事沒事打一次': 'md-演算法筆記/有事沒事打一次.md'
+      - '概念、語法、技巧':
+          - '複雜度': 'md-演算法筆記/複雜度.md'
+          - '經典報錯': 'md-演算法筆記/經典報錯.md'
+          - '偷懶方法': 'md-演算法筆記/偷懶方法.md'
+          - '懶人輸入法，比賽時用': 'md-演算法筆記/懶人輸入法，比賽時用.md'
+          - '常用內建函數': 'md-演算法筆記/常用內建函數.md'
+          - '指標(*、&)': 'md-演算法筆記/指標.md'
+          - 'getline搭配stringstream': 'md-演算法筆記/getline搭配stringstream.md'
+          - 'scanf & printf': 'md-演算法筆記/scanf & printf.md'
+          - '位元運算': 'md-演算法筆記/位元運算.md'
+          - '使用位元窮舉': 'md-演算法筆記/使用位元窮舉.md'
+          - 'bitset使用': 'md-演算法筆記/bitset使用.md'
+          - '排序sort': 'md-演算法筆記/排序sort.md'
+          - '定義比較規則': 'md-演算法筆記/定義比較規則.md'
+          - '排列生成permutation窮舉': 'md-演算法筆記/排列生成permutation窮舉.md'
+          - 'switch之使用': 'md-演算法筆記/switch之使用.md'
+          - 'do while使用': 'md-演算法筆記/do while使用.md'
+          - '判斷是否為數字、字母': 'md-演算法筆記/判斷是否為數字、字母.md'
+          - '大小寫轉換': 'md-演算法筆記/大小寫轉換.md'
+          - '小數點後幾位': 'md-演算法筆記/小數點後幾位.md'
+          - '輸出結尾空白': 'md-演算法筆記/輸出結尾空白.md'
+          - '前序、中序、後序': 'md-演算法筆記/前序、中序、後序.md'
+      - '數論':
+          - 'log': 'md-演算法筆記/log.md'
+          - 'Σ sigma (西格瑪)': 'md-演算法筆記/Σ sigma (西格瑪).md'
+          - '%模運算': 'md-演算法筆記/模運算.md'
+          - '元素/費馬小定理': 'md-演算法筆記/費馬小定理.md'
+          - '圈結構&約瑟夫問題': 'md-演算法筆記/圈結構&約瑟夫問題.md'
+          - '循環節與循環入口': md-演算法筆記/循環節與循環入口.md
+          - '七橋問題&一筆畫問題': 'md-演算法筆記/七橋問題&一筆畫問題.md'
+          - '質數、找質因數(埃氏篩)': 'md-演算法筆記/質數、找質因數(埃氏篩).md'
+          - '因數倍數': 'md-演算法筆記/因數倍數.md'
+          - '歐幾里得引理': 'md-演算法筆記/歐幾里得引理.md'
+          - '歐幾里得演算法；輾轉相除法；最大公因數gcd': 'md-演算法筆記/歐幾里得演算法；輾轉相除法；最大公因數gcd.md'
+          - '擴展歐幾里得演算法': 'md-演算法筆記/擴展歐幾里得演算法.md'
+          - '歐拉函數': 'md-演算法筆記/歐拉函數.md'
+          - '矩陣運算': 'md-演算法筆記/矩陣運算.md'
+          - '卡塔蘭數(Catalan Numbers)': 'md-演算法筆記/卡塔蘭數.md'
+          - '大數運算': 'md-演算法筆記/大數運算.md'
+      - '資料結構':
+          - 'STL': 'md-演算法筆記/STL.md'
+          - '字元、字串': 'md-演算法筆記/字元、字串.md'
+          - '鏈結結構': 'md-演算法筆記/鏈結結構.md'
+          - 'map': 'md-演算法筆記/map.md'
+          - '優先柱列(priority_queue)': 'md-演算法筆記/優先柱列(priority_queue).md'
+          - '線段樹': 'md-演算法筆記/線段樹.md'
+          - '字典樹 trie': 'md-演算法筆記/字典樹 trie.md'
+      - '演算法':
+          - '遞迴': 'md-演算法筆記/遞迴.md'
+          - '爆搜': 'md-演算法筆記/爆搜.md'
+          - '前綴和&差分': 'md-演算法筆記/前綴和&差分.md'
+          - '搜尋、二分搜尋、跳躍二分搜': 'md-演算法筆記/搜尋、二分搜尋、跳躍二分搜.md'
+          - '哈希表': 'md-演算法筆記/哈希表.md'
+          - '離散化': 'md-演算法筆記/離散化.md'
+          - '快速冪': 'md-演算法筆記/快速冪.md'
+          - '滑動視窗(Sliding window)(技巧)': 'md-演算法筆記/滑動視窗(Sliding window)(技巧).md'
+          - '掃瞄線演算法': 'md-演算法筆記/掃瞄線演算法.md'
+          - '貪心演算法(Greedy)': 'md-演算法筆記/貪心演算法(Greedy).md'
+          - '動態規劃(dp)': 'md-演算法筆記/動態規劃(dp).md'
+          - '圖論': 'md-演算法筆記/圖論.md'
+          - '樹論': 'md-演算法筆記/樹論.md'
+      - '刷題':
+          - 'CSEC':
+              - '首頁': 'md-演算法筆記/CSEC.md'
+              - 'CSES Problem Set': 'md-演算法筆記/CSES Problem Set.md'
+          - '北市學科能力競賽': 'md-演算法筆記/北市學科能力競賽.md'
+          - 'APCS歷屆':
+              - '編年/題庫(by YUI HUANG)': 'md-演算法筆記/編年題庫(by YUI HUANG).md'
+              - '實作一': 'md-演算法筆記/實作一.md'
+              - '實作二': 'md-演算法筆記/實作二.md'
+              - '實作三': 'md-演算法筆記/實作三.md'
+              - '實作四': 'md-演算法筆記/實作四.md'
+          - 'CPE':
+              - '首頁': 'md-演算法筆記/CPE.md'
+          - '觀念題' : md-演算法筆記\觀念題.md
+          - 'APCS 實作二｜歷屆考點拆解＋由淺入深練習題庫（C++）': md-演算法筆記\APCS 實作二｜歷屆考點拆解＋由淺入深練習題庫（C++）.md
+          #APCS 實作二｜歷屆考點拆解＋由淺入深練習題庫（C++）GPT：https://chatgpt.com/g/g-p-69524891367c8191a9be2a02cea47baf-peicd-apcs/c/69524be2-cd24-8320-b860-82393607b1ef
+      
+      
+      - '其他':
+          - 'APCS': 'md-演算法筆記/APCS.md'
+          - '使用vscode撰寫c++': 'md-演算法筆記/使用vscode撰寫c++.md'
+          - 'hackmd特殊使用': 'md-演算法筆記/hackmd特殊使用.md'
+          - '優質網站': 'md-演算法筆記/優質網站.md'
+          - '營隊': 'md-演算法筆記/營隊.md'
+          - '打字音效': 'md-演算法筆記/打字音效.md'
+          - '桌面貓咪': 'md-演算法筆記/桌面貓咪.md'
+          - '資料來源': 'md-演算法筆記/資料來源.md'
+          - '加深加廣': 'md-演算法筆記/加深加廣.md'
+          - '學習資源': 'md-演算法筆記/學習資源.md'
+
+  - '人工智慧':
+      - '前言': 'md-人工智慧/人工智慧前言.md'
+      - '機器學習(Machine Learning)': 'md-人工智慧/機器學習(Machine Learning).md'
+      - '神經網路(Neural Network)': 'md-人工智慧/神經網路(Neural Network).md'
+      - '深度學習(Deep Learning)': 'md-人工智慧/深度學習(Deep Learning).md'
+      - 'CNN(Convolutional Neural Network)': 'md-人工智慧/CNN(Convolutional Neural Network).md'
+      - 'FCN(Fully Convolutional Networks)': 'md-人工智慧/FCN(Fully Convolutional Networks).md'
+      - 'RL(Reinforcement Learning)': 'md-人工智慧/RL(Reinforcement Learning).md'
+      - 'GAN(generative adversarial networks)': 'md-人工智慧/GAN(generative adversarial networks).md'
+
+  - 'python':
+      - '首頁': 'md-python/首頁.md'
+      - '變數': 'md-python/變數.md'
+
+  
+  # - '解密 APCS': md-解密 APCSmd-python/首頁.md解密 APCS.md
+
+  - '其他':
+      - 'mkdocs筆記': 'md-mkdocs筆記/mkdocs筆記.md'
+      - 'online judge 架設': 'md-online judge架設/online judge架設.md'
+      - 'LaTeX': 'md-LaTeX/LaTeX.md'
+      - '滾球分隊': 'md-滾球分隊/滾球分隊.md'
+      # - '滾球隊成績': md-滾球隊成績/滾球隊成績.md
+      - '測試': 'md-測試/測試.md'
+      - '連結Google文件的範例': 'md-連結Google文件的範例/連結Google文件的範例.md'
+      - '成績查詢': 'md-測試/成績查詢.md'
+      - '製作網頁': 'md-Github+mkdocs+vscode製作網頁\Github+mkdocs+vscode製作網頁.md'
+
+  - '600':
+      - 'Ch4 Travel 全文集中區': 'md-多益600/4.md'
+      - 'Ch5 Dining out 全文集中區': 'md-多益600/5.md'
+      - 'Ch6 Entertainment 全文集中區': 'md-多益600/6.md'
+      - 'Ch7 Housing 全文集中區': 'md-多益600/7.md'
+
+
+      
+      - 're':
+        - '5re':
+          - '1': 'md-多益600\5re\2026_1_8.md'
+
+  # - 'blog': 
+  #   - 'blog': blog/index.md

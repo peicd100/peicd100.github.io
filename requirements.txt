@@ -1,0 +1,15 @@
+mkdocs
+mkdocs-material
+mkdocs-macros-plugin
+mkdocs-jupyter
+mkdocs-mermaid2-plugin
+mkdocs-gen-files
+mkdocs-minify-plugin
+markdown-include
+requests
+.
+mkdocs-encryptcontent-plugin
+jieba
+mkdocs-rss-plugin
+mkdocs-awesome-nav
+
