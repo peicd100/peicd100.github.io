@@ -1,5 +1,8 @@
 # PEICD100
 
+## 預覽
+
+activate mkdocs
 
 ## 每次寫完
 
@@ -9,6 +12,7 @@ git branch -M main
 git push -u origin main
 mkdocs gh-deploy
 
+# 其他
 
 ## 第一次操作
 
