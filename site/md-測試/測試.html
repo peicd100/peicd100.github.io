@@ -373,6 +373,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 本版新增：
 - Auto scroll 開關（是否自動捲動到正在讀的句子），在語音選單中設定並記住
+- 自動翻到下一頁後續讀（優先用 rel="next" / footer next link；找不到才嘗試模擬按 n；並加入「未換頁就清旗標」保護）
 其餘維持：Auto 連播、Rate/Gap、EN 全英語（en-*）、dracula 不動
 -->
 
@@ -867,8 +868,12 @@ document.addEventListener("DOMContentLoaded", function() {
   const DEFAULT_RATE = 1.0;
   const DEFAULT_GAP_MS = 400;
 
-  // ✅ 新增：Auto scroll 預設開
+  // Auto scroll 預設開
   const DEFAULT_AUTO_SCROLL = true;
+
+  // 自動翻到下一頁後續讀（用 localStorage 做跨頁續讀）
+  const LS_AUTO_RESUME = "ttsAutoResumeNextPageTs";
+  const AUTO_RESUME_TTL_MS = 5 * 60 * 1000; // 續讀旗標最長保留 5 分鐘，避免意外卡住
   /* ========================= */
 
   let currentBtn = null;
@@ -884,13 +889,11 @@ document.addEventListener("DOMContentLoaded", function() {
   const LS_RATE = "ttsRate";
   const LS_GAP  = "ttsAutoGapMs";
 
-  // ✅ 新增：Auto scroll 設定 key
   const LS_AUTO_SCROLL = "ttsAutoScroll";
 
   let ttsRate = safeGetNumberLS(LS_RATE, DEFAULT_RATE);
   let autoGapMs = safeGetNumberLS(LS_GAP, DEFAULT_GAP_MS);
 
-  // ✅ 新增：是否自動捲動
   let autoScrollEnabled = safeGetBoolLS(LS_AUTO_SCROLL, DEFAULT_AUTO_SCROLL);
 
   let globalEventsBound = false;
@@ -899,8 +902,88 @@ document.addEventListener("DOMContentLoaded", function() {
   let scheduled = false;
 
   /* =========================
-     Auto（自動朗讀）
+     Auto（自動朗讀）+ 跨頁
      ========================= */
+  function getNextPageUrl(){
+    // MkDocs/Material 常見：head 裡有 <link rel="next" href="...">
+    const link = document.querySelector('link[rel="next"]');
+    if (link && link.href) return link.href;
+
+    // 有些主題會用 a[rel="next"]
+    const aRel = document.querySelector('a[rel="next"]');
+    if (aRel && aRel.href) return aRel.href;
+
+    // Material footer next
+    const footerNext = document.querySelector('.md-footer__link--next a');
+    if (footerNext && footerNext.href) return footerNext.href;
+
+    // pagination
+    const pagNext = document.querySelector('a.md-pagination__link--next');
+    if (pagNext && pagNext.href) return pagNext.href;
+
+    return null;
+  }
+
+  function markResumeOnNextPage(){
+    safeSetLS(LS_AUTO_RESUME, String(Date.now()));
+  }
+
+  function clearResumeFlag(){
+    safeRemoveLS(LS_AUTO_RESUME);
+  }
+
+  function gotoNextPageForAuto(){
+    const url = getNextPageUrl();
+    if (url){
+      markResumeOnNextPage();
+      window.location.assign(url);
+      return true;
+    }
+
+    // 找不到 next 連結時，最後才嘗試模擬按 n（你提到使用者按 n）
+    try{
+      markResumeOnNextPage();
+      const before = location.href;
+
+      const ev = new KeyboardEvent("keydown", { key: "n", code: "KeyN", bubbles: true });
+      document.dispatchEvent(ev);
+
+      // 若 800ms 內沒有換頁，視為失敗：清旗標並停止 auto
+      setTimeout(() => {
+        if (location.href === before) {
+          clearResumeFlag();
+          stopAuto();
+        }
+      }, 800);
+
+      return true;
+    } catch (_){
+      clearResumeFlag();
+      return false;
+    }
+  }
+
+  function resumeAutoIfRequested(){
+    const ts = safeGetNumberLS(LS_AUTO_RESUME, 0);
+    if (!ts) return;
+
+    // 避免舊旗標造成誤續讀
+    if (Date.now() - ts > AUTO_RESUME_TTL_MS){
+      clearResumeFlag();
+      return;
+    }
+
+    const root = getContentRoot();
+    const firstBtn = root && root.querySelector(".tts-wrap > button.tts-btn");
+
+    // 內容/按鈕還沒 attach 好：先別清旗標，等下一次 enhance 再試
+    if (!firstBtn) return;
+
+    // 成功抓到第一句：清旗標並開始連播
+    clearResumeFlag();
+    startAutoFrom(firstBtn);
+  }
+
   let autoSelectMode = false;
   let autoRunning = false;
   let autoQueue = [];
@@ -1003,7 +1086,7 @@ document.addEventListener("DOMContentLoaded", function() {
       return;
     }
 
-    // ✅ 依設定決定是否自動捲動
+    // 依設定決定是否自動捲動
     if (autoScrollEnabled) scrollToSentence(item.btn);
 
     speakAuto(item.text, item.btn, { auto: true });
@@ -1012,14 +1095,32 @@ document.addEventListener("DOMContentLoaded", function() {
   function advanceAuto(){
     if (!autoRunning) return;
     autoIndex += 1;
+
+    // 本頁播完：嘗試前往下一頁並續讀
     if (autoIndex >= autoQueue.length){
-      stopAuto();
+      // 先結束本頁 auto 狀態（避免重入）
+      autoRunning = false;
+      autoSelectMode = false;
+      updateAutoUI();
+
+      // 若有下一頁就導頁；沒有就結束
+      const ok = gotoNextPageForAuto();
+      if (!ok){
+        clearResumeFlag();
+        stopAuto();
+      }
       return;
     }
+
     playAutoCurrent();
   }
 
-  /* ========================= */
+  /* =========================
+     localStorage helpers
+     ========================= */
+  function safeRemoveLS(key){
+    try { localStorage.removeItem(key); } catch (_) {}
+  }
 
   function safeGetLS(key){
     try { return localStorage.getItem(key) || null; } catch (_) { return null; }
@@ -1129,6 +1230,7 @@ document.addEventListener("DOMContentLoaded", function() {
     return findVoiceByKey(voiceKeyEN) || null;
   }
 
+  // ✅ 修正：stop() 乾淨且可解析
   function stop(opts) {
     const o = opts || {};
     const cancelAuto = (o.cancelAuto !== false);
@@ -1143,7 +1245,10 @@ document.addEventListener("DOMContentLoaded", function() {
       currentBtn = null;
     }
 
-    if (cancelAuto) stopAuto();
+    if (cancelAuto) {
+      clearResumeFlag();   // 使用者手動停止，就不要跨頁續讀
+      stopAuto();
+    }
   }
 
   function splitByLang(text){
@@ -1229,6 +1334,7 @@ document.addEventListener("DOMContentLoaded", function() {
       const cb = onSpeakDone;
       onSpeakDone = null;
 
+      // 收尾：只重置按鈕，不清 auto（讓 auto 邏輯決定下一步）
       stop({ cancelAuto: false });
 
       if (typeof cb === "function") cb();
@@ -1361,7 +1467,6 @@ document.addEventListener("DOMContentLoaded", function() {
     return row;
   }
 
-  // ✅ 新增：Auto scroll row
   function makeScrollRow(){
     const row = document.createElement("div");
     row.className = "tts-vp-row";
@@ -1916,6 +2021,7 @@ document.addEventListener("DOMContentLoaded", function() {
     updateAutoUI();
 
     ensureSelectionPop();
+    resumeAutoIfRequested();
   }
 
   function enhanceWithRetry(tries){
@@ -6284,37 +6390,57 @@ is now available!
   <h1>測試</h1>
 
 <style>
+/* 大標題 */
 h1 {
     display: none;
 }
+
+/* 上面選單 */
 .md-tabs {
     display: none;
 }
+
+/* 上面橫條 */
 .md-header {
     display: none;
 }
+
+
+/* 隱藏 橫幅提示區（banner）。常用來顯示公告、版本提示、cookie/通知列等（如果主題有提供）。 */
 .md-banner {
     display: none;
 }
+
+/* 隱藏 贊助/支持/捐款 相關的區塊（例如 “Sponsor”, “Support” 的小卡或區塊）。這通常是站點自訂或外掛加的 class。 */
 .sponsorship {
     display: none;
 }
+
+/* 隱藏 頁尾（footer）。通常包含版權、上一頁/下一頁、站點資訊、社群連結等。 */
 .md-footer {
     display: none;
 }
+
+/* 左右導航邊 */
 .md-ellipsis {
     display: none;
 }
+/* 右邊最上面標題 */
+.md-nav__title {
+    display: none;
+}
+
+
+
+
+/* ✅ 背景全白：強制所有主要容器白底 */
+html, body {
+  background: #fff !important;
+}
+
 </style>
 
-<!-- Full-width (full-bleed) iframe for MkDocs: paste directly into .md -->
-<div style="position:relative; left:50%; width:100vw; margin-left:-50vw; margin-right:-50vw;">
-  <iframe
-    src="https://script.google.com/macros/s/AKfycbwy813jvFd8FncgC4nUQIYGGZepCo1vKmODZgCY-cmFz6-gHpBaaLV_o7JZ7LOoY5u_/exec?embedded=true"
-    style="display:block; width:100%; height:100vh; border:0; overflow:hidden;"
-    loading="lazy"
-  ></iframe>
-</div>
+<p>全白</p>
 
 
 
