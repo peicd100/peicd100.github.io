@@ -384,7 +384,6 @@ nav:  # 自定義網站的導航結構
       - '滾球分隊': 'md-滾球分隊/滾球分隊.md'
       # - '滾球隊成績': md-滾球隊成績/滾球隊成績.md
       - '連結Google文件的範例': 'md-連結Google文件的範例/連結Google文件的範例.md'
-      - '成績查詢': 'md-測試/成績查詢.md'
       - '製作網頁': 'md-Github+mkdocs+vscode製作網頁\Github+mkdocs+vscode製作網頁.md'
       - '測試': 'md-測試/測試.md'
 
