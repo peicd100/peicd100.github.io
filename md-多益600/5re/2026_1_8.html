@@ -371,6 +371,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 本版新增：
 - Auto scroll 開關（是否自動捲動到正在讀的句子），在語音選單中設定並記住
+- 自動翻到下一頁後續讀（優先用 rel="next" / footer next link；找不到才嘗試模擬按 n；並加入「未換頁就清旗標」保護）
 其餘維持：Auto 連播、Rate/Gap、EN 全英語（en-*）、dracula 不動
 -->
 
@@ -865,8 +866,12 @@ document.addEventListener("DOMContentLoaded", function() {
   const DEFAULT_RATE = 1.0;
   const DEFAULT_GAP_MS = 400;
 
-  // ✅ 新增：Auto scroll 預設開
+  // Auto scroll 預設開
   const DEFAULT_AUTO_SCROLL = true;
+
+  // 自動翻到下一頁後續讀（用 localStorage 做跨頁續讀）
+  const LS_AUTO_RESUME = "ttsAutoResumeNextPageTs";
+  const AUTO_RESUME_TTL_MS = 5 * 60 * 1000; // 續讀旗標最長保留 5 分鐘，避免意外卡住
   /* ========================= */
 
   let currentBtn = null;
@@ -882,13 +887,11 @@ document.addEventListener("DOMContentLoaded", function() {
   const LS_RATE = "ttsRate";
   const LS_GAP  = "ttsAutoGapMs";
 
-  // ✅ 新增：Auto scroll 設定 key
   const LS_AUTO_SCROLL = "ttsAutoScroll";
 
   let ttsRate = safeGetNumberLS(LS_RATE, DEFAULT_RATE);
   let autoGapMs = safeGetNumberLS(LS_GAP, DEFAULT_GAP_MS);
 
-  // ✅ 新增：是否自動捲動
   let autoScrollEnabled = safeGetBoolLS(LS_AUTO_SCROLL, DEFAULT_AUTO_SCROLL);
 
   let globalEventsBound = false;
@@ -897,8 +900,88 @@ document.addEventListener("DOMContentLoaded", function() {
   let scheduled = false;
 
   /* =========================
-     Auto（自動朗讀）
+     Auto（自動朗讀）+ 跨頁
      ========================= */
+  function getNextPageUrl(){
+    // MkDocs/Material 常見：head 裡有 <link rel="next" href="...">
+    const link = document.querySelector('link[rel="next"]');
+    if (link && link.href) return link.href;
+
+    // 有些主題會用 a[rel="next"]
+    const aRel = document.querySelector('a[rel="next"]');
+    if (aRel && aRel.href) return aRel.href;
+
+    // Material footer next
+    const footerNext = document.querySelector('.md-footer__link--next a');
+    if (footerNext && footerNext.href) return footerNext.href;
+
+    // pagination
+    const pagNext = document.querySelector('a.md-pagination__link--next');
+    if (pagNext && pagNext.href) return pagNext.href;
+
+    return null;
+  }
+
+  function markResumeOnNextPage(){
+    safeSetLS(LS_AUTO_RESUME, String(Date.now()));
+  }
+
+  function clearResumeFlag(){
+    safeRemoveLS(LS_AUTO_RESUME);
+  }
+
+  function gotoNextPageForAuto(){
+    const url = getNextPageUrl();
+    if (url){
+      markResumeOnNextPage();
+      window.location.assign(url);
+      return true;
+    }
+
+    // 找不到 next 連結時，最後才嘗試模擬按 n（你提到使用者按 n）
+    try{
+      markResumeOnNextPage();
+      const before = location.href;
+
+      const ev = new KeyboardEvent("keydown", { key: "n", code: "KeyN", bubbles: true });
+      document.dispatchEvent(ev);
+
+      // 若 800ms 內沒有換頁，視為失敗：清旗標並停止 auto
+      setTimeout(() => {
+        if (location.href === before) {
+          clearResumeFlag();
+          stopAuto();
+        }
+      }, 800);
+
+      return true;
+    } catch (_){
+      clearResumeFlag();
+      return false;
+    }
+  }
+
+  function resumeAutoIfRequested(){
+    const ts = safeGetNumberLS(LS_AUTO_RESUME, 0);
+    if (!ts) return;
+
+    // 避免舊旗標造成誤續讀
+    if (Date.now() - ts > AUTO_RESUME_TTL_MS){
+      clearResumeFlag();
+      return;
+    }
+
+    const root = getContentRoot();
+    const firstBtn = root && root.querySelector(".tts-wrap > button.tts-btn");
+
+    // 內容/按鈕還沒 attach 好：先別清旗標，等下一次 enhance 再試
+    if (!firstBtn) return;
+
+    // 成功抓到第一句：清旗標並開始連播
+    clearResumeFlag();
+    startAutoFrom(firstBtn);
+  }
+
   let autoSelectMode = false;
   let autoRunning = false;
   let autoQueue = [];
@@ -1001,7 +1084,7 @@ document.addEventListener("DOMContentLoaded", function() {
       return;
     }
 
-    // ✅ 依設定決定是否自動捲動
+    // 依設定決定是否自動捲動
     if (autoScrollEnabled) scrollToSentence(item.btn);
 
     speakAuto(item.text, item.btn, { auto: true });
@@ -1010,14 +1093,32 @@ document.addEventListener("DOMContentLoaded", function() {
   function advanceAuto(){
     if (!autoRunning) return;
     autoIndex += 1;
+
+    // 本頁播完：嘗試前往下一頁並續讀
     if (autoIndex >= autoQueue.length){
-      stopAuto();
+      // 先結束本頁 auto 狀態（避免重入）
+      autoRunning = false;
+      autoSelectMode = false;
+      updateAutoUI();
+
+      // 若有下一頁就導頁；沒有就結束
+      const ok = gotoNextPageForAuto();
+      if (!ok){
+        clearResumeFlag();
+        stopAuto();
+      }
       return;
     }
+
     playAutoCurrent();
   }
 
-  /* ========================= */
+  /* =========================
+     localStorage helpers
+     ========================= */
+  function safeRemoveLS(key){
+    try { localStorage.removeItem(key); } catch (_) {}
+  }
 
   function safeGetLS(key){
     try { return localStorage.getItem(key) || null; } catch (_) { return null; }
@@ -1127,6 +1228,7 @@ document.addEventListener("DOMContentLoaded", function() {
     return findVoiceByKey(voiceKeyEN) || null;
   }
 
+  // ✅ 修正：stop() 乾淨且可解析
   function stop(opts) {
     const o = opts || {};
     const cancelAuto = (o.cancelAuto !== false);
@@ -1141,7 +1243,10 @@ document.addEventListener("DOMContentLoaded", function() {
       currentBtn = null;
     }
 
-    if (cancelAuto) stopAuto();
+    if (cancelAuto) {
+      clearResumeFlag();   // 使用者手動停止，就不要跨頁續讀
+      stopAuto();
+    }
   }
 
   function splitByLang(text){
@@ -1227,6 +1332,7 @@ document.addEventListener("DOMContentLoaded", function() {
       const cb = onSpeakDone;
       onSpeakDone = null;
 
+      // 收尾：只重置按鈕，不清 auto（讓 auto 邏輯決定下一步）
       stop({ cancelAuto: false });
 
       if (typeof cb === "function") cb();
@@ -1359,7 +1465,6 @@ document.addEventListener("DOMContentLoaded", function() {
     return row;
   }
 
-  // ✅ 新增：Auto scroll row
   function makeScrollRow(){
     const row = document.createElement("div");
     row.className = "tts-vp-row";
@@ -1914,6 +2019,7 @@ document.addEventListener("DOMContentLoaded", function() {
     updateAutoUI();
 
     ensureSelectionPop();
+    resumeAutoIfRequested();
   }
 
   function enhanceWithRetry(tries){
@@ -6285,137 +6391,198 @@ is now available!
 
   <h1>1</h1>
 
-<p>6<br />
-<img alt="alt text" src="images/2026_1_8/image.png" /></p>
-<p>A) A customer is reading a book near the shelf.</p>
-<p>B) The display has no books on the shelves.</p>
-<p>C) The bookstore is crowded with patrons.</p>
-<p>D) The woman is checking a label on a book cover.</p>
-<p>12</p>
-<p><img alt="alt text" src="images/2026_1_8/image-1.png" /><br />
-You just released a new movie, didn’t you?</p>
-<p>A) Yes, it came out very recently.</p>
-<p>B) The painting is on display at the museum.</p>
-<p>C) It will go up for auction this week.</p>
-<p>20</p>
-<p>When will the marathon be taking place?</p>
-<p>A) It’s being held in March.</p>
-<p>B) I’ve never run a marathon.</p>
-<p>C) It took place a year ago.</p>
-<p>27<br />
-<img alt="alt text" src="images/2026_1_8/image-2.png" /><br />
-How much of the concert proceeds are going to charity?</p>
-<p>A) The singer is proceeding backstage.</p>
-<p>B) I believe it’s about half of all proceeds.</p>
-<p>C) She donates money to charity every Christmas.</p>
-<p>59-61<br />
-Questions 59 to 61 refer to the following conversation.</p>
-<p>W: The exhibition is set to open next week. We’ve been working on it for weeks and still haven’t got everything ready.</p>
-<p>M: The only major thing to take care of is getting the displays set up.</p>
-<p>W: Yes, but finding a reliable mover who can move so many different types of art safely is proving to be difficult.</p>
-<p>M: I understand that. Pietro’s incorporation of various forms of media into one piece of art makes his works unique, but incredibly difficult to move.</p>
-<p>W: I really don’t know who we should turn to.</p>
-<p>M: Maybe try talking to Betty in Acquisitions. She’s had lots of experience with unusual pieces in exhibitions.</p>
-<p>W: That’s a great idea. I can’t believe I didn’t think of that myself. Thanks!</p>
-<p>59</p>
-<p>When will the exhibition be taking place?</p>
-<p>A) In two days</p>
-<p>B) In one week</p>
-<p>C) In two weeks</p>
-<p>D) In a few days</p>
-<p>60</p>
-<p>Why is the woman looking for a specific service?</p>
-<p>A) She doesn’t have experience moving display pieces.</p>
-<p>B) There are multiple forms of art to move.</p>
-<p>C) The last moving company has closed.</p>
-<p>D) Their current movers are having vehicle trouble.</p>
-<p>61</p>
-<p>What does the man recommend?</p>
-<p>A) That the woman moves everything herself.</p>
-<p>B) The woman should speak with a coworker.</p>
-<p>C) The woman should talk to the artist about it.</p>
-<p>D) That the woman speaks with their previous movers.</p>
-<p>80-82<br />
-Questions 80 to 82 refer to the following phone call.</p>
-<p>Hey, Frank. It’s Gary. I just heard that the Rock Forever Concert next week has been canceled.</p>
-<p>Apparently, there was a pretty bad lightning storm last week near the stadium it was being held in and the electrical system was damaged.</p>
-<p>The concert has been postponed until they can repair the wiring. I called the ticket company, and now we have two choices.</p>
-<p>We can either get full refunds on our tickets or we can hold onto them and wait until a new date for the concert is announced.</p>
-<p>If we wait, then when the concert has been rescheduled, we can get two free drinks from the drink stand. Let me know what you want to do.</p>
-<p>80</p>
-<p>What happened last week?</p>
-<p>A) The city was hit by a snowstorm.</p>
-<p>B) There was a large storm.</p>
-<p>C) There was a severe earthquake.</p>
-<p>D) An outbreak of a new virus.</p>
-<p>81</p>
-<p>Why has the concert been delayed?</p>
-<p>A) New speakers are being installed.</p>
-<p>B) The seating was damaged in the stadium.</p>
-<p>C) Lightning damaged the power grid.</p>
-<p>D) The lead singer came down with a cold.</p>
-<p>82</p>
-<p>What does the speaker mean when he says “Let me know what you want to do.”?</p>
-<p>A) His friend should call the ticket company.</p>
-<p>B) He wants his friend to make a decision.</p>
-<p>C) He is asking if his friend has some free time.</p>
-<p>D) He is curious about their plans for the night.</p>
-<p>110</p>
-<p>Critics believed that the actress should have been nominated for outstanding performance because of <sup>her</sup> role in her latest movie.</p>
-<p>A) she</p>
-<p>B) her</p>
-<p>C) herself</p>
-<p>D) hers</p>
-<p>116</p>
-<p><ins>Due to</ins> the high numbers of online subscriptions and low sales of printed media, the publication shifted to a purely digital format.</p>
-<p>A) Due to</p>
-<p>B) Ahead of</p>
-<p>C) Regardless of</p>
-<p>D) In opposition to</p>
-<p>172-175</p>
-<p>Metro Gallery to Hold Pierre Cousteau Exhibition</p>
-<p>by Marjorie Beckham</p>
-<p>The Metro Gallery, located near City Hall, is set to hold an exhibition of various works from renowned artist Pierre Cousteau.</p>
-<p>Representatives from the Metro Gallery said they are highly enthusiastic to be given the opportunity to display many of his works of art, both new and old.</p>
-<p>Originally from Rochefort-en-Terre, Mr. Cousteau began to gain acclaim with his vivid landscape paintings in the realist style.</p>
-<p>Said to be able to capture even the smallest of details, Mr. Cousteau quickly rose to prominence.</p>
-<p>His earliest works have been known to fetch upwards of twenty million dollars when put up for auction.</p>
-<p>After becoming a household name in his native France, Mr. Cousteau later moved to the United States where he began to dabble in other forms of artistic expression.</p>
-<p>His work with marble, while originally not as popular as his paintings, quickly gained fame once he began to create sculptures using abstract styling.</p>
-<p>Having recently finished an extensive renovation that replaced an aging electrical system and water drainage system,</p>
-<p>as well as overhauling its appearance, the Metro Gallery reopened to the public earlier this month.</p>
-<p>Originally constructed in the early 1900s, the Metro Gallery began to fall into disrepair in the late 1980s.</p>
-<p>A lack of high-profile artists and works, in addition to cut funding to maintain its appearance led to a decrease in patronage.</p>
-<p>However, the city government recently stepped in to provide the historic building with new funding in order to preserve the building and restore it to its former glory.</p>
-<p>Now officially recognized as a heritage site, funding for the Metro Gallery has been secured for the next thirty years,</p>
-<p>allowing it to host the works of famous artists, like Mr. Cousteau.</p>
-<p>With a restored look to carry it forward into the twenty-first century,</p>
-<p>the Metro Gallery now makes for the perfect venue for the breath-taking and awe-inspiring works of Pierre Cousteau.</p>
-<p>172</p>
-<p>What is this article mainly about?</p>
-<p>A) An art museum that is closing down.</p>
-<p>B) An exhibition being held by a gallery.</p>
-<p>C) An artist trying to regain his fame.</p>
-<p>D) A city trying to repair an old building.</p>
-<p>173</p>
-<p>What is implied about Pierre Cousteau?</p>
-<p>A) He uses multiple forms of media for his art.</p>
-<p>B) He originally gained fame for his stylistic designs.</p>
-<p>C) He is from the United States and moved to France.</p>
-<p>D) His sculptures never became popular.</p>
-<p>174</p>
-<p>According to the article, why did the gallery need to be remodeled?</p>
-<p>A) People complained about the confusing layout.</p>
-<p>B) It was damaged by a recent natural disaster.</p>
-<p>C) It was showing its age due to lack of money.</p>
-<p>D) Vandals painted the exterior of the building.</p>
-<p>175</p>
-<p>In which of the following positions marked [1], [2],[3], and [4] does the following sentence best belong?</p>
-<p>“Said to be able to capture even the smallest of details, Mr. Cousteau quickly rose to prominence.”</p>
-<p>A) [1]</p>
-<p>B) [2]</p>
-<p>C) [3]</p>
-<p>D) [4]</p>
+<p>─────────────────────────────────────────────────────────────<br />
+【第 1 頁：大腸鏡檢查報告（內視鏡）】</p>
+<p>國立臺灣大學醫學院附設醫院新竹臺大分院新竹分院　電子病歷<br />
+National Taiwan University Hsin-Chu Hospital<br />
+<span style="color:red">國立臺灣大學醫學院附設醫院新竹分院（新竹臺大分院／新竹分院）</span></p>
+<p>大腸鏡檢查過程記錄暨報告</p>
+<p>性別：男　　　　　　　　　檢查單號：T4250614630　　　　　　　　檢查日期：2025/12/30</p>
+<p>Start time:            15 時 38 分 03 秒<br />
+<span style="color:red">開始時間：</span><br />
+Reach cecum at:        15 時 38 分 41 秒<br />
+<span style="color:red">到達盲腸時間：</span><br />
+End time:              15 時 55 分 23 秒<br />
+<span style="color:red">結束時間：</span></p>
+<p>Clinical Diagnosis:<br />
+<span style="color:red">臨床診斷：</span><br />
+  DB_ClinicalDiagnosis_MEMO<br />
+  <span style="color:red">（臨床診斷備註欄／系統欄位代碼）</span></p>
+<p>Indication:<br />
+<span style="color:red">檢查適應症／原因：</span><br />
+  Bowel habitus change<br />
+  <span style="color:red">排便習慣改變</span></p>
+<p>Colon preparation agent:<br />
+<span style="color:red">腸道清腸藥物：</span><br />
+  Bowklean<br />
+  <span style="color:red">Bowklean（清腸藥名）</span></p>
+<p>Cleansing time:<br />
+<span style="color:red">清腸服用方式／時間：</span><br />
+  Split dose<br />
+  <span style="color:red">分次服用</span></p>
+<p>Cleansing Level:<br />
+<span style="color:red">清腸品質等級：</span><br />
+  Fair<br />
+  <span style="color:red">尚可</span></p>
+<p>Instrument:<br />
+<span style="color:red">使用內視鏡器械：</span><br />
+  CF-HQ290I           231<br />
+  <span style="color:red">（機型：CF-HQ290I；器械/鏡身編號：231）</span></p>
+<p>Insertion level:<br />
+<span style="color:red">插入深度／到達部位：</span><br />
+  Cecum<br />
+  <span style="color:red">盲腸</span></p>
+<p>Pre-medication:<br />
+<span style="color:red">檢查前用藥：</span><br />
+  Hyoscine butylbromide<br />
+  <span style="color:red">丁溴東莨菪鹼（解痙／抑制腸蠕動）</span></p>
+<p>Sedation:<br />
+<span style="color:red">鎮靜／麻醉用藥：</span><br />
+  Propofol<br />
+  <span style="color:red">丙泊酚</span><br />
+  Fentanyl (含Alfentanyl)<br />
+  <span style="color:red">芬太尼（含阿芬太尼）</span></p>
+<p>Accessibility:<br />
+<span style="color:red">檢查可及性／操作難易：</span><br />
+  Fair<br />
+  <span style="color:red">尚可</span></p>
+<p>Anti-platelet / Anti-coagulant agents:<br />
+<span style="color:red">抗血小板／抗凝血藥物：</span><br />
+  NIL<br />
+  <span style="color:red">無</span></p>
+<p>Colonoscopy Findings:<br />
+<span style="color:red">大腸鏡所見：</span><br />
+  The scope reached cecum. Several small outpouching pockets at A colon. One<br />
+  3mm O-IIa polyp at A colon, s/p cold snare polypectomy(A). Two 4mm O-IIa<br />
+  polyps at A colon, s/p cold snare polypectomy<em>2(B). One 8mm O-Is polyp at S<br />
+  colon, s/p cold snare polypectomy(C) and hemoclipping</em>2(MicroTech Sureclip<br />
+  11mm). Mixed hemorrhoid was found.<br />
+  <span style="color:red">鏡身到達盲腸。升結腸（A colon）可見數個小的囊袋樣外凸（疑似憩室）。</span><br />
+  <span style="color:red">升結腸見 1 顆 3mm O-IIa 型息肉，已行冷圈套切除(A)。</span><br />
+  <span style="color:red">升結腸另見 2 顆 4mm O-IIa 型息肉，已行冷圈套切除 2 顆(B)。</span><br />
+  <span style="color:red">乙狀結腸（S colon）見 1 顆 8mm O-Is 型息肉，已行冷圈套切除(C)，並施行止血夾 2 枚（MicroTech Sureclip 11mm）。</span><br />
+  <span style="color:red">並發現混合型痔瘡。</span></p>
+<p>Endoscopic diagnosis:<br />
+<span style="color:red">內視鏡診斷：</span><br />
+  Tubular adenoma, IIa, Ascending colon, 0.3cm, S/p cold snare polypectomy(A)<br />
+  <span style="color:red">管狀腺瘤（IIa 型），升結腸，0.3 公分；已行冷圈套切除(A)</span><br />
+  Tubular adenoma, IIa, Ascending colon, 0.4cm, S/p cold snare polypectomy(B)<br />
+  <span style="color:red">管狀腺瘤（IIa 型），升結腸，0.4 公分；已行冷圈套切除(B)</span><br />
+  Tubular adenoma, Is, Sigmoid colon, 0.8cm, S/p cold snare polypectomy, S/p<br />
+  hemoclipping(C)<br />
+  <span style="color:red">管狀腺瘤（Is 型），乙狀結腸，0.8 公分；已行冷圈套切除，並已止血夾處置(C)</span><br />
+  Colonic diverticulosis, Ascending colon<br />
+  <span style="color:red">結腸憩室症（升結腸）</span><br />
+  Tubular adenoma , Ascending colon  - s/p cold snare polypectomy(B)<br />
+  <span style="color:red">管狀腺瘤（升結腸）－已行冷圈套切除(B)</span></p>
+<p>Complication:<br />
+<span style="color:red">併發症：</span><br />
+  NIL<br />
+  <span style="color:red">無</span></p>
+<p>西元2022年01月03日病例委員會審核通過病歷版本 MTR08-0203-10</p>
+<p>─────────────────────────────────────────────────────────────<br />
+【第 2 頁：病理部 病理組織檢查報告（MALIGNANCY）第 &frac12; 頁】</p>
+<p>國立臺灣大學醫學院附設醫院新竹臺大分院新竹分院　電子病歷<br />
+病理部　病理組織檢查報告　　　　　　　　　　　　　　　　　　　MALIGNANCY<br />
+<span style="color:red">病理部　病理組織檢查報告　　　　　　　　　　　　　　　　　　　惡性（腫瘤）</span></p>
+<p>病歷號碼：H752598   姓名：鄭木川           出生日期：1946/6/8</p>
+<p>外科病理號碼：H2600027 v.1          身分證字號：J100156426   收件日期：2026/01/02<br />
+檢體：b                        科別：SURG（新竹）         報告日期：2026/01/06<br />
+<span style="color:red">科別：SURG（外科；新竹）</span><br />
+性別：男                        年齡：079/07</p>
+<p>組織由來：<br />
+(A)(B)A colon(C)S colon<br />
+<span style="color:red">（A）（B）升結腸；（C）乙狀結腸</span></p>
+<p>臨床診斷：<br />
+colon polyp<br />
+<span style="color:red">結腸息肉</span></p>
+<p>醫令資訊：<br />
+25004C0W(3)</p>
+<p>病理組織學診斷：<br />
+PATHOLOGICAL DIAGNOSIS:<br />
+<span style="color:red">病理學診斷：</span><br />
+1. Colon, A-colon, colonoscopic polypectomy: chronic inflammation with mild mucosal<br />
+   hyperplasia.<br />
+<span style="color:red">1. 結腸（升結腸），大腸鏡息肉切除檢體：慢性發炎合併輕度黏膜增生。</span><br />
+2. Colon, A-colon, colonoscopic polypectomy: tubular adenoma<br />
+<span style="color:red">2. 結腸（升結腸），大腸鏡息肉切除檢體：管狀腺瘤。</span><br />
+3. Colon, S-colon, colonoscopic polypectomy: intramucosal adenocarcinoma at least<br />
+   (see micro)<br />
+<span style="color:red">3. 結腸（乙狀結腸），大腸鏡息肉切除檢體：至少為黏膜內腺癌（見顯微鏡描述）。</span></p>
+<p>GROSS:<br />
+<span style="color:red">肉眼所見：</span><br />
+1. Bottle A: one tissue fragment, 0.2x0.2x0.2 cm in size.<br />
+<span style="color:red">1. A 瓶：1 塊組織，大小 0.2×0.2×0.2 公分。</span><br />
+2. Bottle B: 2 tissue fragments, up to 0.6x0.5x0.1 cm in size.<br />
+<span style="color:red">2. B 瓶：2 塊組織，最大可達 0.6×0.5×0.1 公分。</span><br />
+3. Bottle C: 3 tissue fragments, up to 0.7x0.5x0.4 cm in size.<br />
+<span style="color:red">3. C 瓶：3 塊組織，最大可達 0.7×0.5×0.4 公分。</span></p>
+<p>The entire specimen is submitted in cassettes, labeled A: A-colon, B: A-colon, C: S-colon<br />
+<span style="color:red">全部檢體皆已置入包埋盒送檢，標示為：A：升結腸；B：升結腸；C：乙狀結腸。</span></p>
+<p>MICROSCOPIC FINDINGS:<br />
+<span style="color:red">顯微鏡所見：</span><br />
+1. Bottle A:<br />
+<span style="color:red">1. A 瓶：</span><br />
+   Section shows colon mucosa with chronic inflammation and mild mucosal hyperplasia.<br />
+   <span style="color:red">切片顯示結腸黏膜有慢性發炎及輕度黏膜增生。</span><br />
+2. Bottle B:<br />
+<span style="color:red">2. B 瓶：</span><br />
+   a. Histological diagnosis: Tubular adenoma<br />
+   <span style="color:red">a. 組織學診斷：管狀腺瘤</span><br />
+   b. Histological grade: Low grade dysplasia (including mild and moderate dysplasia)<br />
+   <span style="color:red">b. 組織學分級：低度異生（包含輕度與中度異生）</span><br />
+   c. Margin status (for high grade dysplasia or carcinoma): Not applicable<br />
+   <span style="color:red">c. 切緣狀態（針對高度異生或癌）：不適用</span><br />
+   d. Lymphovascular invasion: Not applicable<br />
+   <span style="color:red">d. 淋巴血管侵犯：不適用</span></p>
+<p>收件者：郭俊蔚主治醫師<br />
+覆閱者：邱士騏主治醫師（病歷號碼：06473號）覆核此報告為惡性<br />
+確認者（報告醫師）：郭俊蔚主治醫師（病解專醫字第0431號）2026/01/06 16:30</p>
+<p>西元2020年01月13日病歷委員會修正通過電子病歷版本 WT08-15-4   文件編號  01400-4-600463 版次 07</p>
+<p>─────────────────────────────────────────────────────────────<br />
+【第 3 頁：病理部 病理組織檢查報告（MALIGNANCY）第 2/2 頁】</p>
+<p>國立臺灣大學醫學院附設醫院新竹臺大分院新竹分院　電子病歷<br />
+病理部　病理組織檢查報告　　　　　　　　　　　　　　　　　　　MALIGNANCY<br />
+<span style="color:red">病理部　病理組織檢查報告　　　　　　　　　　　　　　　　　　　惡性（腫瘤）</span></p>
+<p>病歷號碼：H752598   姓名：鄭木川           出生日期：1946/6/8</p>
+<p>外科病理號碼：H2600027 v.1          身分證字號：J100156426   收件日期：2026/01/02<br />
+檢體：b                        科別：SURG（新竹）         報告日期：2026/01/06<br />
+<span style="color:red">科別：SURG（外科；新竹）</span><br />
+性別：男                        年齡：079/07</p>
+<p>組織由來：<br />
+(A)(B)A colon(C)S colon<br />
+<span style="color:red">（A）（B）升結腸；（C）乙狀結腸</span></p>
+<p>臨床診斷：<br />
+colon polyp<br />
+<span style="color:red">結腸息肉</span></p>
+<p>醫令資訊：<br />
+25004C0W(3)</p>
+<p>e. Perineural invasion: Not applicable<br />
+<span style="color:red">e. 神經周圍侵犯：不適用</span><br />
+f. Comments: nil.<br />
+<span style="color:red">f. 備註：無。</span></p>
+<ol>
+<li>Bottle C:<br />
+<span style="color:red">3. C 瓶：</span><br />
+a. Histological diagnosis: intramucosal adenocarcinoma<br />
+<span style="color:red">a. 組織學診斷：黏膜內腺癌</span><br />
+b. Histological grade: intramucosal carcinoma<br />
+<span style="color:red">b. 組織學分級：黏膜內癌</span><br />
+c. The depth of invasion: indeterminate (no submucosal part available)<br />
+<span style="color:red">c. 侵犯深度：無法判定（檢體未包含黏膜下層組織）</span><br />
+d. Margin status: indeterminate due to fragmented specimen<br />
+<span style="color:red">d. 切緣狀態：因檢體碎裂而無法判定</span><br />
+e. Lymphovascular invasion: absent.<br />
+<span style="color:red">e. 淋巴血管侵犯：未見。</span><br />
+f. Perineural invasion: absent.<br />
+<span style="color:red">f. 神經周圍侵犯：未見。</span><br />
+g. Comments: clinical correlation and further evaluation are recommended.<br />
+<span style="color:red">g. 備註：建議配合臨床狀況綜合評估，並進一步檢查／評估。</span></li>
+</ol>
+<p>收件者：郭俊蔚主治醫師<br />
+覆閱者：邱士騏主治醫師（病歷號碼：06473號）覆核此報告為惡性<br />
+確認者（報告醫師）：郭俊蔚主治醫師（病解專醫字第0431號）2026/01/06 16:30</p>
+<p>西元2020年01月13日病歷委員會修正通過電子病歷版本 WT08-15-4   文件編號  01400-4-600463 版次 07</p>
 
 
 

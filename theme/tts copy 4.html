@@ -3,7 +3,6 @@
 
 本版新增：
 - Auto scroll 開關（是否自動捲動到正在讀的句子），在語音選單中設定並記住
-- 自動翻到下一頁後續讀（優先用 rel="next" / footer next link；找不到才嘗試模擬按 n；並加入「未換頁就清旗標」保護）
 其餘維持：Auto 連播、Rate/Gap、EN 全英語（en-*）、dracula 不動
 -->
 
@@ -200,6 +199,7 @@
 /* =========================
    Auto（自動朗讀）按鈕：放在語言選擇左側
    ========================= */
+
 #tts-autoread-toggle{
   width: 28px;
   height: 28px;
@@ -498,10 +498,9 @@
   const DEFAULT_RATE = 1.0;
   const DEFAULT_GAP_MS = 400;
 
-  // Auto scroll 預設開
+  // ✅ 新增：Auto scroll 預設開
   const DEFAULT_AUTO_SCROLL = true;
-
-  // 自動翻到下一頁後續讀（用 localStorage 做跨頁續讀）
+    // ✅ 新增：自動翻到下一頁後續讀（用 localStorage 做跨頁續讀）
   const LS_AUTO_RESUME = "ttsAutoResumeNextPageTs";
   const AUTO_RESUME_TTL_MS = 5 * 60 * 1000; // 續讀旗標最長保留 5 分鐘，避免意外卡住
   /* ========================= */
@@ -519,11 +518,13 @@
   const LS_RATE = "ttsRate";
   const LS_GAP  = "ttsAutoGapMs";
 
+  // ✅ 新增：Auto scroll 設定 key
   const LS_AUTO_SCROLL = "ttsAutoScroll";
 
   let ttsRate = safeGetNumberLS(LS_RATE, DEFAULT_RATE);
   let autoGapMs = safeGetNumberLS(LS_GAP, DEFAULT_GAP_MS);
 
+  // ✅ 新增：是否自動捲動
   let autoScrollEnabled = safeGetBoolLS(LS_AUTO_SCROLL, DEFAULT_AUTO_SCROLL);
 
   let globalEventsBound = false;
@@ -532,9 +533,9 @@
   let scheduled = false;
 
   /* =========================
-     Auto（自動朗讀）+ 跨頁
+     Auto（自動朗讀）
      ========================= */
-  function getNextPageUrl(){
+    function getNextPageUrl(){
     // MkDocs/Material 常見：head 裡有 <link rel="next" href="...">
     const link = document.querySelector('link[rel="next"]');
     if (link && link.href) return link.href;
@@ -547,7 +548,7 @@
     const footerNext = document.querySelector('.md-footer__link--next a');
     if (footerNext && footerNext.href) return footerNext.href;
 
-    // pagination
+    // 偶爾 next 在 pagination button
     const pagNext = document.querySelector('a.md-pagination__link--next');
     if (pagNext && pagNext.href) return pagNext.href;
 
@@ -566,6 +567,7 @@
     const url = getNextPageUrl();
     if (url){
       markResumeOnNextPage();
+      // 直接導頁，比模擬按鍵更穩
       window.location.assign(url);
       return true;
     }
@@ -573,19 +575,9 @@
     // 找不到 next 連結時，最後才嘗試模擬按 n（你提到使用者按 n）
     try{
       markResumeOnNextPage();
-      const before = location.href;
-
       const ev = new KeyboardEvent("keydown", { key: "n", code: "KeyN", bubbles: true });
       document.dispatchEvent(ev);
-
-      // 若 800ms 內沒有換頁，視為失敗：清旗標並停止 auto
-      setTimeout(() => {
-        if (location.href === before) {
-          clearResumeFlag();
-          stopAuto();
-        }
-      }, 800);
-
+      // 無法確認是否成功導頁，保守回傳 true，讓本頁 auto 結束
       return true;
     } catch (_){
       clearResumeFlag();
@@ -716,17 +708,17 @@
       return;
     }
 
-    // 依設定決定是否自動捲動
+    // ✅ 依設定決定是否自動捲動
     if (autoScrollEnabled) scrollToSentence(item.btn);
 
     speakAuto(item.text, item.btn, { auto: true });
   }
 
-  function advanceAuto(){
+    function advanceAuto(){
     if (!autoRunning) return;
     autoIndex += 1;
 
-    // 本頁播完：嘗試前往下一頁並續讀
+    // ✅ 本頁播完：嘗試前往下一頁並續讀
     if (autoIndex >= autoQueue.length){
       // 先結束本頁 auto 狀態（避免重入）
       autoRunning = false;
@@ -745,9 +737,8 @@
     playAutoCurrent();
   }
 
-  /* =========================
-     localStorage helpers
-     ========================= */
+
+  /* ========================= */
   function safeRemoveLS(key){
     try { localStorage.removeItem(key); } catch (_) {}
   }
@@ -860,7 +851,6 @@
     return findVoiceByKey(voiceKeyEN) || null;
   }
 
-  // ✅ 修正：stop() 乾淨且可解析
   function stop(opts) {
     const o = opts || {};
     const cancelAuto = (o.cancelAuto !== false);
@@ -875,10 +865,10 @@
       currentBtn = null;
     }
 
-    if (cancelAuto) {
-      clearResumeFlag();   // 使用者手動停止，就不要跨頁續讀
+    if (cancelAuto)if (cancelAuto) {
+      clearResumeFlag();   // ✅ 使用者手動停止，就不要跨頁續讀
       stopAuto();
-    }
+    } stopAuto();
   }
 
   function splitByLang(text){
@@ -964,7 +954,6 @@
       const cb = onSpeakDone;
       onSpeakDone = null;
 
-      // 收尾：只重置按鈕，不清 auto（讓 auto 邏輯決定下一步）
       stop({ cancelAuto: false });
 
       if (typeof cb === "function") cb();
@@ -1097,6 +1086,7 @@
     return row;
   }
 
+  // ✅ 新增：Auto scroll row
   function makeScrollRow(){
     const row = document.createElement("div");
     row.className = "tts-vp-row";
@@ -1652,6 +1642,7 @@
 
     ensureSelectionPop();
     resumeAutoIfRequested();
+
   }
 
   function enhanceWithRetry(tries){
