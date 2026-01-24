@@ -8,6 +8,7 @@ mkdocs serve
 ```
 ## 每次寫完
 ```
+activate mkdocs
 mkdocs gh-deploy
 git add .
 git commit -m "PEICD100"
