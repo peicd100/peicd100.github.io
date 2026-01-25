@@ -1,0 +1,216 @@
+/* === 引用樣式(>) ============================================== */
+[data-md-color-scheme=dracula] blockquote {
+    border-left: 0.1px solid #F2BBFF !important;
+    border-right: 0.1px solid #F2BBFF !important;
+    border-top: 0.1px solid #F2BBFF !important;
+    border-bottom: 0.1px solid #F2BBFF !important;
+    padding-right: 15px; /*增加左側內邊距，讓文字遠離邊框 */
+    /* border-left: none !important; 隱藏左邊框 */
+    color: #ffffff !important; /* 設置文字顏色為淺灰色 */
+    /* 左边框为淺紫色 */
+}
+
+blockquote {
+    border-left: 0.1px solid #F2BBFF !important;
+    border-right: 0.1px solid #F2BBFF !important;
+    border-top: 0.1px solid #F2BBFF !important;
+    border-bottom: 0.1px solid #F2BBFF !important;
+    padding-right: 15px; /*增加左側內邊距，讓文字遠離邊框 */
+    /*border-left: none !important;  隱藏左邊框 */
+    color: #000000 !important; /* 設置文字顏色為淺灰色 */
+    /* 左边框为淺紫色 */
+}
+/* === 標題 ============================================== */
+
+/* [data-md-color-scheme=dracula] h2,
+[data-md-color-scheme=dracula] h3,
+[data-md-color-scheme=dracula] h4,
+[data-md-color-scheme=dracula] h5{
+    border-left: 4px solid #F2BBFF !important;
+    color: #ffffff !important; 
+    padding-left: 15px;
+}
+
+h2,
+h3,
+h4,
+h5{
+    border-left: 4px solid #F2BBFF !important;
+    color: #000000 !important;
+     padding-left: 15px;
+} */
+
+/* === 標題 ============================================== */
+
+
+
+/* 
+img[alt="alt text"] {
+    width: 80%;
+    设置宽度为70%
+    height: auto;
+    保持高度比例
+} */
+
+/* === 折叠标题 ============================================== */
+
+
+/* 隐藏折叠部分的默认图标 */
+details summary::marker, /* 隐藏旧版浏览器使用的 ::marker */
+details summary::-webkit-details-marker, /* 隐藏 WebKit 浏览器使用的图标 */
+details summary::before /* 隐藏通过伪元素添加的图标 */ {
+    display: none;
+}
+
+/* 更改折叠标题的背景颜色和文本颜色 */
+details summary {
+  border-radius: 5px !important; /* 为折叠部分添加圆角 */
+  padding: 2px !important; /* 添加内边距 */
+  font-size: 16px; /* 設定字體大小 */
+  padding-left: 8px !important; /* 設定左內距 */
+  font-weight: normal !important; /* 取消粗體 */
+}
+
+details[open] {
+  font-size: 16px; /* 設定字體大小 */
+}
+
+
+
+/* 
+
+內文使用
+/// html | div.i
+some *markdown* content
+/// 
+
+*/
+
+.i{
+    border-left: 0.1px solid #F2BBFF !important;
+    border-right: 0.1px solid #F2BBFF !important;
+    border-top: 0.1px solid #F2BBFF !important;
+    border-bottom: 0.1px solid #F2BBFF !important;
+    padding-right: 15px;
+    padding-left: 15px;
+    /* padding-top: 15px;
+    padding-bottom: 15px; */
+}
+
+/* 隱藏最下面的 from mkdocs */
+.md-footer-meta.md-typeset {
+    display: none;
+}
+
+/* 密碼輸入框 */
+.custom-password-input {
+    border: 2px solid #F2BBFF;
+    background-color: transparent;  /* 設置背景為透明 */
+    padding: 10px;
+    font-size: 16px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+
+/* 字體：中標楷 */
+/* @font-face {
+    font-family: "CustomChinese";
+    src: local("標楷體"), local("DFKai-SB");
+    unicode-range: U+4E00-9FFF, U+3000-303F, U+FF00-FFEF; 
+}
+body {
+    font-family: "Roboto Mono", "CustomChinese", sans-serif;
+}
+ */
+
+
+
+
+/* 全局英文字體：Roboto Mono */
+body {
+    font-family: "Roboto Mono";
+}
+
+/* 用 flex 讓 header 裡的元素橫向排列 */
+/* 隱藏 h1 的圖示 */
+.md-typeset h1 .headerlink {
+    display: none;
+}
+
+/* .md-typeset h1, */
+.md-typeset h2,
+.md-typeset h3,
+.md-typeset h4,
+.md-typeset h5,
+.md-typeset h6 {
+    display: flex;
+    flex-direction: row; 
+    /* align-items: flex-end;  */
+    
+    align-items: top; /* 直接對齊文字與圖示 */
+}
+
+/* 調整圖示外觀與位置 */
+.md-typeset .headerlink {
+    padding-left: 0 !important;
+    margin-left: 0 !important;
+    order: -1; /* 🔥 確保圖示排在最前面！ */
+    width: 1em;  /* 讓圖示與文字大小一致 */
+    height: 1em; /* 讓圖示與文字大小一致 */
+    background-color: var(--md-primary-fg-color);
+    background-size: 1em; /* 配合文字大小調整背景圖片 */
+    -webkit-mask-size: 1em; /* 配合文字大小調整mask */
+    mask-size: 1em; /* 配合文字大小調整mask */
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-image: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g transform="skewX(-10)"><path d="M4 6h16v2H4zM4 16h16v2H4zM7 4h2v16H7zM15 4h2v16h-2z" stroke="black" stroke-width="0.5"/></g></svg>');
+    mask-image: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g transform="skewX(-10)"><path d="M4 6h16v2H4zM4 16h16v2H4zM7 4h2v16H7zM15 4h2v16h-2z" stroke="black" stroke-width="0.5"/></g></svg>');
+    visibility: visible;
+    opacity: 1 !important;
+    transition: none !important;
+    flex-shrink: 0;
+    /* transform: translateY(-0.1em); 🔧 向下偏移來對齊漢字底部 */
+}
+
+/* hover */
+.md-typeset .headerlink:hover {
+    background-color: var(--md-accent-fg-color);
+}
+
+/* 被點擊後變白 */
+.md-typeset [id]:target .headerlink {
+    background-color: #F2BBFF;
+}
+
+
+.md-typeset h2 .headerlink {
+    transform: translateY(0.3em); /* 調整 h5 標題的圖示位置 */
+}
+
+.md-typeset h3 .headerlink {
+    transform: translateY(0.3em); /* 調整 h5 標題的圖示位置 */
+}
+
+.md-typeset h4 .headerlink {
+    transform: translateY(0.31em); /* 調整 h5 標題的圖示位置 */
+}
+
+.md-typeset h5 .headerlink {
+    transform: translateY(0.35em); /* 調整 h5 標題的圖示位置 */
+}
+
+.md-typeset h6 .headerlink {
+    transform: translateY(0.35em); /* 調整 h5 標題的圖示位置 */
+}
+
+
+/* 博客 - index.md */
+/* 博客 - index.md */
+/* 博客 - index.md */
+.md-post--excerpt {
+    padding: 3px 10px; /* 內部空間調大 */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* 陰影效果 */
+    border-radius: 12px; /* 可選，給元素圓角 */
+    /* background-color: white; 背景顏色，確保陰影效果清晰可見 */
+}
