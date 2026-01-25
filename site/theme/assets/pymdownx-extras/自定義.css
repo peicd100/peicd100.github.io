@@ -111,7 +111,9 @@ some *markdown* content
     width: 100%;
     box-sizing: border-box;
 }
-
+.md-status{
+    display: none;
+}
 
 /* 字體：中標楷 */
 /* @font-face {
