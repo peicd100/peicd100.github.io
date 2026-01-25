@@ -15,7 +15,7 @@ h1 { display: none; }
 聯絡我：x10640305@gmail.com
 
 <!-- 跳轉到 blog -->
-<head>
+<!-- <head>
     <meta http-equiv="refresh" content="0; url=/blog/index.html">
     <title>Redirecting...</title>
-</head>
+</head> -->

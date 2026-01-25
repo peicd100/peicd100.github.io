@@ -254,12 +254,12 @@ markdown_extensions:
   #     global_password: '2147483647' #密碼
 
 nav:  # 自定義網站的導航結構
-  - '首頁':
-      - 'blog/index.md'
+  # - '首頁':
+  #     - 'blog/index.md'
 
+  - 'blog': blog/index.md
 
-  # - '首頁': index.md
-  # - 'blog': blog/index.md
+  - '首頁': index.md
 
 
   - '演算法筆記':
