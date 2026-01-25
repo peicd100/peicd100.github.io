@@ -22,12 +22,12 @@ git push -u origin main
 ```
 conda create -n mkdocs python=3.13 -y
 activate mkdocs
+conda install pip -y 
+pip install -r requirements.txt
 git init
 git commit -m "first commit"
 git branch -M main
 git remote add origin https://github.com/peicd100/peicd100.github.io.git
-conda install pip -y 
-pip install -r requirements.txt
 git push -u origin main
 mkdocs gh-deploy
 
