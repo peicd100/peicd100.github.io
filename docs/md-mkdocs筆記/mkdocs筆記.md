@@ -1365,6 +1365,15 @@ def bubble_sort(items):
 ```
 
 
+## 設定密碼
+
+```txt
+---
+password: 'password'
+---
+```
+
+
 ## vscode貼上圖片
 
 

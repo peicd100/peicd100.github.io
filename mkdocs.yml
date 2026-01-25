@@ -84,6 +84,15 @@ plugins:
       #   - stopWordFilter
       #   - trimmer
 
+  - encryptcontent:
+      title_prefix: '' #標題前面的文字文字
+      summary: '解鎖筆記'
+      placeholder: '密碼'
+      decryption_failure_message: '錯了'
+      encryption_info_message: "請輸入密碼"
+      input_class: 'custom-password-input'
+      # global_password: '2147483647'               #密碼全域
+
   # - macros  # 启用宏插件，允許自定義變量和代碼塊
   # - mkdocs-jupyter  # 支持 Jupyter Notebook 文件轉換
   # - minify:  # HTML 壓縮插件
@@ -244,22 +253,12 @@ markdown_extensions:
       collapse_text: ''  # 折疊時顯示的文本
   # - tools.i: #中英文之間自動空格
 
-  # - encryptcontent:
-  #     title_prefix: '' #標題前面的文字文字
-  #     summary: '解鎖筆記'
-  #     placeholder: '密碼'
-  #     decryption_failure_message: '錯了'
-  #     encryption_info_message: "請輸入密碼"
-  #     input_class: 'custom-password-input'
-  #     global_password: '2147483647' #密碼
-
 nav:  # 自定義網站的導航結構
-  # - '首頁':
-  #     - 'blog/index.md'
+  - '首頁':
+      - 'blog/index.md'
 
-  - 'blog': blog/index.md
-
-  - '首頁': index.md
+  # - 'blog': blog/index.md
+  # - '首頁': index.md
 
 
   - '演算法筆記':
@@ -386,6 +385,8 @@ nav:  # 自定義網站的導航結構
       - '連結Google文件的範例': 'md-連結Google文件的範例/連結Google文件的範例.md'
       - '製作網頁': 'md-Github+mkdocs+vscode製作網頁\Github+mkdocs+vscode製作網頁.md'
       - '測試': 'md-測試/測試.md'
+      - '密碼測試': 'md-測試/密碼測試.md'
+
 
   - '600':
       - 'Ch4 Travel 全文集中區': 'md-多益600/4.md'
