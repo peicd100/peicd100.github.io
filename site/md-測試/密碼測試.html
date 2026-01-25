@@ -2512,6 +2512,8 @@ is now available!
           
             
               
+                
+              
               <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
@@ -6746,6 +6748,13 @@ is now available!
     
   </span>
   
+    
+  
+  
+    <span class="md-status md-status--encrypted"></span>
+  
+
+  
   
 
           <span class="md-nav__icon md-icon"></span>
@@ -6763,6 +6772,13 @@ is now available!
 
     
   </span>
+  
+    
+  
+  
+    <span class="md-status md-status--encrypted"></span>
+  
+
   
   
 
@@ -7014,7 +7030,9 @@ is now available!
             
             
               
-              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" hidden>
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
                     
@@ -7075,49 +7093,39 @@ is now available!
                 
   
                   
+  
 
 
 
-<!-- ---
-password: '88888888'
-# search:
-#   exclude: true  # 這會讓此頁面不被 mkdocs 的搜尋引擎索引
-encryption_info_message: '密碼 88888888' # 密碼提示
 
+<div id="mkdocs-encrypted-content" style="display:none">Zs1qi2wR3Menv1C1rM53Zg==;+ZbKv59p2xfK/1u/r4a/O7O959OJ4OBbiurDkmAKCn1qx8SirAazPpE2FjeFtnL50xAUjcF042dL6rHKVLq6WArNqYtDSZ0XDSCOtKz4dVSc/qbiojALBr5e1qDh7PH3zDwa64ThduNIRSmEzLKin3+fBHnVirt5GBFE7NsiiIx/f5qjvPGJ2TjZcHtTJWBDUsz0B6ULL+r0TR8xcHIP8mh/KfcjlmdrZHRM8Mij3li56ic9W/wiNTmulzmPYKmpqF0apZiQKeg92Hi7BGncROWsbRNPGJu+62lCaP2LKnQMWjidvrff+kewdsqQ9H+H+jtvr5cEWJ9BUAQxOLg1Fof/vco6dCsDwxMZRaBt/EmG97UniimxC/fRZWT01tVT7HE03vvrD9a+4bTLzn9GgE+3abukkdFno2wQ1m8jdJFPyRtGj2W7Mk0W+1UGVsXq+OTV9+SyfolB1x4BxwsVPGyfEMJy0jV+E2/DuK/bIwDA8tRUlpKm49yp6v1Pk1qmTk/U9bJLMzbO28kOcC8xuiz7tsOVHCZu+jmaztzYwsLnMw0Gwo/zh91BmNPs2uqVXZy2uemAHMcp+7ijyNn1lHjs0sM06qrhm9BYyPTalF4Wiy1Q6PZJYPRi5KbjQaP3loM6Mxe9bJxKoE7cs4SPsBbozW8SZG/YKtXkEBDCLELTOVhxwUw7BY64B2lK1dWid5+8S5wZLz6K4hUPbZrIN4lJacVvMcv4EQbGqO60Lcg1TzxFZNsPsEsDSfHhx3X2qejxQ5UQRJTjjvXdtHNMzOgh/swVm76O4jN+YUjqHiXpVVWisKZlRIdRnSeTWJaD+tIIjUoANWcFbRUwSW09dMKgjIUcPEFRquhiBUeTOfc=</div>
+<div id="mkdocs-decrypted-content" style="display:none">
+    <form id="mkdocs-decrypt-form" class="md-content__inner md-typeset">
+        <h1>解鎖筆記</h1>
+        <p>密碼 88888888</p>
+        <input class="custom-password-input" type="password" id="mkdocs-content-password" placeholder="密碼">
+        <button class="md-button md-button--primary" id="mkdocs-decrypt-button">解鎖</button>
+        <p id="mkdocs-decrypt-msg"></p>
+    </form>
+</div>
 
-hide:        #隱藏右邊目錄，防止內容被偷看
-  - toc
+<script type="text/javascript">
+var encryptcontent_id = "encryptcontent_1";
+var encryptcontent_path = "md-%E6%B8%AC%E8%A9%A6/%E5%AF%86%E7%A2%BC%E6%B8%AC%E8%A9%A6.html";
+var decryption_failure_message = "\u932f\u4e86";
+var encryptcontent_keystore = ["FtrTkqlu69VXUZbyWeAAyA==;lu8YSoIBTQW4AlBNLHjJl/cDR4CZv9wD9L8o9wm0X6SImEvmBeIifowHPhWsNzqKohfuVVysBR1LKhCthTfiCirUAjsmuyQf9uhh5hoPZkr+8YDFiL6BbuV8//4Uhr8/;IvAGjvg4rx++rSZ+bYnJkg=="];
+var encryptcontent_obfuscate = 0;
 
---- -->
-
-<h1 id="密碼測試">密碼測試<a class="headerlink" href="#密碼測試" title="Permanent link"></a></h1>
-<p>被你猜到密碼了</p>
-<h2 id="h2">h2<a class="headerlink" href="#h2" title="Permanent link"></a></h2>
-<p>h2132<br />
-464564132</p>
-<h3 id="h3">h3<a class="headerlink" href="#h3" title="Permanent link"></a></h3>
-<p>465456<br />
-4466545<br />
-123132<br />
-121321<br />
-123123<br />
-1313<br />
-1546464<br />
-5645645646sfddfsfs<br />
-12313232131312<br />
-13123<br />
-121313<br />
-1312131<br />
-1231<br />
-231333333333333<br />
-21321321<br />
-13123<br />
-121312<br />
-12313<br />
-131<br />
-1254646<br />
-454556665665<br />
-412313</p>
+const encryptcontent_event = new Event("encryptcontent_event");
+var encryptcontent_done = false;
+</script>
+<script type="module">
+if (!window.hasOwnProperty("init_decryptor")) {
+    import("../assets/javascripts/decrypt-contents.js");
+} else {
+    init_decryptor();
+}
+</script>
 
 
 
@@ -7125,8 +7133,13 @@ hide:        #隱藏右邊目錄，防止內容被偷看
 
 
 
+  
+  
 
 
+
+
+  
 
 
 
