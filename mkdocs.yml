@@ -89,14 +89,19 @@ plugins:
 
 
   - encryptcontent:
+      input_class: 'custom-password-input'
       title_prefix: '' #標題前面的文字文字
       summary: '解鎖筆記'
       placeholder: '密碼'
       decryption_failure_message: '錯了'
       encryption_info_message: "請輸入密碼"
-      button_text: '解鎖'
-      input_class: 'custom-password-input'
+      password_button: True       #解鎖按鈕
+      password_button_text: '解鎖' #解鎖按鈕
+      # password_button: True
+      # password_button_text: 'custom_text_button'
       # global_password: '88888888'               # 啟用全域密碼
+
+      # search_index: 'dynamically'  # 建置時加密索引；使用者解密頁面後才能搜到
 
 
 
