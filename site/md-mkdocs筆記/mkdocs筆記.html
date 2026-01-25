@@ -2136,6 +2136,8 @@ document.addEventListener("DOMContentLoaded", function() {
     
       <link rel="stylesheet" href="../assets/pymdownx-extras/extra-8611f6c398.css">
     
+      <link rel="stylesheet" href="../assets/pymdownx-extras/自定義.css">
+    
     <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -6368,6 +6370,30 @@ is now available!
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="設定密碼">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#單密碼" class="md-nav__link">
+    <span class="md-ellipsis">
+      單密碼
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#搜尋時隱藏" class="md-nav__link">
+    <span class="md-ellipsis">
+      搜尋時隱藏
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -7174,6 +7200,30 @@ is now available!
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="設定密碼">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#單密碼" class="md-nav__link">
+    <span class="md-ellipsis">
+      單密碼
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#搜尋時隱藏" class="md-nav__link">
+    <span class="md-ellipsis">
+      搜尋時隱藏
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -7213,10 +7263,10 @@ is now available!
 
 <h1 id="mkdocs筆記">mkdocs筆記<a class="headerlink" href="#mkdocs筆記" title="Permanent link"></a></h1>
 <h2 id="常用語法">常用語法<a class="headerlink" href="#常用語法" title="Permanent link"></a></h2>
-<div class="highlight"><span class="filename">嵌入</span><pre><span></span><code>&lt;iframe src=&quot;https://drive.google.com/file/d/1KLN8uow9WGAGrZwYADxiWyUsJ8w6<span class="nb">_</span>2VV/preview&quot; width=&quot;100<span class="c">%&quot; height=&quot;10px&quot;&gt;&lt;/iframe&gt;</span>
+<div class="highlight"><span class="filename">嵌入</span><pre><span></span><code>&lt;iframe src=&quot;https://drive.google.com/file/d/1oO0sJSXeb9vxLrz9AjAvrsnqDtLMqWKz/preview&quot; width=&quot;100<span class="c">%&quot; height=&quot;300px&quot;&gt;&lt;/iframe&gt;</span>
 </code></pre></div>
 <div class="result">
-<iframe src="https://drive.google.com/file/d/1KLN8uow9WGAGrZwYADxiWyUsJ8w6_2VV/preview" width="100%" height="300px"></iframe>
+<iframe src="https://drive.google.com/file/d/1oO0sJSXeb9vxLrz9AjAvrsnqDtLMqWKz/preview" width="100%" height="300px"></iframe>
 
 </div>
 <!--  -->
@@ -8288,8 +8338,25 @@ hide:
 </span><span class="hll"><span class="linenos" data-linenos="5 "></span><span class="w">                </span><span class="n">items</span><span class="p">[</span><span class="n">j</span><span class="p">],</span><span class="w"> </span><span class="n">items</span><span class="p">[</span><span class="n">j</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">items</span><span class="p">[</span><span class="n">j</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">],</span><span class="w"> </span><span class="n">items</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
 </span></code></pre></div>
 <h2 id="設定密碼">設定密碼<a class="headerlink" href="#設定密碼" title="Permanent link"></a></h2>
+<h3 id="單密碼">單密碼<a class="headerlink" href="#單密碼" title="Permanent link"></a></h3>
 <div class="highlight"><pre><span></span><code>---
-password: &#39;password&#39;
+password: &#39;88888888&#39;
+search:
+  exclude: true  # 這會讓此頁面不被 mkdocs 的搜尋引擎索引
+encryption_info_message: &#39;密碼 八個八&#39;    # 密碼提示
+
+hide:        #隱藏右邊目錄，防止內容被偷看
+  - toc
+
+
+---
+</code></pre></div>
+<h3 id="搜尋時隱藏">搜尋時隱藏<a class="headerlink" href="#搜尋時隱藏" title="Permanent link"></a></h3>
+<div class="highlight"><pre><span></span><code>---
+title: 隱藏的秘密
+password: &#39;123&#39;
+search:
+  exclude: true  # 這會讓此頁面不被 mkdocs 的搜尋引擎索引
 ---
 </code></pre></div>
 <h2 id="vscode貼上圖片">vscode貼上圖片<a class="headerlink" href="#vscode貼上圖片" title="Permanent link"></a></h2>
@@ -8464,7 +8531,7 @@ password: &#39;password&#39;
     
     
       
-      <script id="__config" type="application/json">{"base": "..", "features": ["navigation.footer", "navigation.indexes", "navigation.instant", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.tabs", "navigation.top", "navigation.tracking", "announce.dismiss", "toc.follow", "content.tabs.link", "search.share", "content.code.copy", "content.code.annotations", "content.action.edit", "content.action.view", "content.tooltips"], "search": "../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"base": "..", "features": ["navigation.footer", "navigation.indexes", "navigation.instant", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.tabs", "navigation.top", "navigation.tracking", "announce.dismiss", "content.tabs.link", "search.share", "content.code.copy", "content.code.annotations", "content.action.edit", "content.action.view", "content.tooltips"], "search": "../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
       <script src="../assets/javascripts/bundle.92b07e13.min.js"></script>
