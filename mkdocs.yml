@@ -29,7 +29,7 @@ theme:
     # ❌ 這個不是 Material 的 features 選項，放在這裡反而容易誤會：
     # - sitemap  # (sitemap 由 MkDocs 依 site_url 自動生成)
 
-    - toc.follow  # 目錄自動跟隨滾動
+    # - toc.follow  # 目錄自動跟隨滾動
     # - toc.integrate #啟用目錄的導覽整合後，它始終呈現為左側導覽側邊欄的一部分////////////////////////////////////////////////////////////////////////////////////////////////////////
     - content.tabs.link  # 允許內容中的標籤鏈接
     - search.share  # 啟用搜索結果共享功能
@@ -96,7 +96,8 @@ plugins:
       encryption_info_message: "請輸入密碼"
       button_text: '解鎖'
       input_class: 'custom-password-input'
-      encrypt_toc: true # 解鎖前隱藏右側目錄
+      encrypted_something:
+        mkdocs-encrypted-toc: [nav, class]
       # global_password: '88888888'               # 啟用全域密碼
 
 
@@ -114,6 +115,7 @@ plugins:
 
 extra_css:
   - assets/pymdownx-extras/extra-8611f6c398.css  # 自定義 CSS 文件
+  - assets/pymdownx-extras/自定義.css  # 自定義 CSS 文件
 
 extra_javascript:
   - https://unpkg.com/mermaid@10.6.1/dist/mermaid.min.js  # Mermaid 圖表支持

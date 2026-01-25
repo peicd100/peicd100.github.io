@@ -1374,13 +1374,7 @@ def bubble_sort(items):
 password: 'password'
 ---
 ```
-### 多密碼
 
-```txt
-password: 
-  - 'team_alpha'
-  - 'team_beta'
-```
 ### 搜尋時隱藏
 ```txt
 ---
