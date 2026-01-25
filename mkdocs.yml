@@ -96,8 +96,6 @@ plugins:
       encryption_info_message: "請輸入密碼"
       button_text: '解鎖'
       input_class: 'custom-password-input'
-      encrypted_something:
-        mkdocs-encrypted-toc: [nav, class]
       # global_password: '88888888'               # 啟用全域密碼
 
 
