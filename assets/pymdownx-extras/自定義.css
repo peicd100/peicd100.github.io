@@ -496,6 +496,8 @@ body {
     box-shadow: none;
 }
 
+.md-sidebar--primary .md-nav__title,
+.md-sidebar--primary .md-nav__title,
 .md-sidebar--secondary .md-nav__title {
     font-size: 0.7rem;
     letter-spacing: 0.18em;
@@ -505,6 +507,8 @@ body {
     padding: 0.3rem 0.5rem;
 }
 
+.md-sidebar--primary a.md-nav__link,
+.md-sidebar--primary label.md-nav__link,
 .md-sidebar--secondary a.md-nav__link {
     border-radius: 6px;
     padding: 0.35rem 0.8rem;
@@ -516,17 +520,14 @@ body {
     margin: 0.1rem 0;
 }
 
-.md-sidebar--primary .md-nav__link:hover {
-    background: linear-gradient(180deg, rgba(122, 211, 255, 0.22), rgba(122, 211, 255, 0.08));
-    border-color: rgba(122, 211, 255, 0.35);
-}
+.md-sidebar--primary .md-nav__link:hover,
 .md-sidebar--secondary .md-nav__link:hover {
-    background: linear-gradient(180deg, rgba(122, 211, 255, 0.22), rgba(122, 211, 255, 0.08));
     color: var(--md-accent-fg-color);
-    border-color: rgba(122, 211, 255, 0.35);
 }
 
 /* Flat futuristic active state (both sidebars) */
+.md-sidebar--primary .md-nav__item--active > .md-nav__link,
+.md-sidebar--primary .md-nav__link--active,
 .md-sidebar--secondary .md-nav__item--active > .md-nav__link,
 .md-sidebar--secondary .md-nav__link--active {
     background: linear-gradient(180deg, rgba(122, 211, 255, 0.26), rgba(122, 211, 255, 0.10));
@@ -538,20 +539,12 @@ body {
     overflow: hidden;
     border-radius: 0;
 }
+.md-sidebar--primary .md-nav__item--active > .md-nav__link::after,
+.md-sidebar--primary .md-nav__link--active::after,
 .md-sidebar--secondary .md-nav__item--active > .md-nav__link::after,
 .md-sidebar--secondary .md-nav__link--active::after {
     content: none;
     display: none;
-}
-
-/* Left sidebar: keep only blue background change */
-.md-sidebar--primary .md-nav__link {
-    padding-left: calc(0.35rem + var(--md-nav-indent, 0px));
-}
-.md-sidebar--primary .md-nav__item--active > .md-nav__link {
-    background: linear-gradient(180deg, rgba(122, 211, 255, 0.24), rgba(122, 211, 255, 0.1));
-    border-color: rgba(122, 211, 255, 0.4);
-    font-weight: 600 !important;
 }
 
 .md-sidebar--secondary .md-sidebar__scrollwrap {
@@ -568,6 +561,7 @@ body {
     box-shadow: none;
 }
 
+.md-sidebar--primary .md-nav__title,
 .md-sidebar--secondary .md-nav__title {
     padding: 0.6rem 0;
     margin-bottom: 0.4rem;
@@ -577,16 +571,24 @@ body {
     padding-left: 0.35rem;
 }
 
+.md-sidebar--primary .md-nav__link,
 .md-sidebar--secondary .md-nav__link {
     color: var(--md-default-fg-color);
     opacity: 0.9;
+}
+.md-sidebar--secondary .md-nav__link {
     padding-left: 0.35rem;
 }
+.md-sidebar--primary .md-nav__link {
+    padding-left: calc(0.35rem + var(--md-nav-indent, 0px));
+}
 
+.md-sidebar--primary .md-nav__link:hover,
 .md-sidebar--secondary .md-nav__link:hover {
     color: var(--md-accent-fg-color);
 }
 
+.md-sidebar--primary .md-nav__item--active > .md-nav__link,
 .md-sidebar--secondary .md-nav__item--active > .md-nav__link {
     color: var(--md-accent-fg-color);
     font-weight: 600;
@@ -594,11 +596,15 @@ body {
 }
 
 /* Highlight current TOC item */
+.md-sidebar--primary .md-nav__link--active,
+.md-sidebar--primary .md-nav__item--active > .md-nav__link,
 .md-sidebar--secondary .md-nav__link--active,
 .md-sidebar--secondary .md-nav__item--active > .md-nav__link {
     position: relative;
     color: var(--md-accent-fg-color);
 }
+.md-sidebar--primary .md-nav__link--active::before,
+.md-sidebar--primary .md-nav__item--active > .md-nav__link::before,
 .md-sidebar--secondary .md-nav__link--active::before,
 .md-sidebar--secondary .md-nav__item--active > .md-nav__link::before {
     content: "";
@@ -611,6 +617,10 @@ body {
     background: var(--md-accent-fg-color);
     box-shadow: 0 0 0 3px rgba(214, 183, 124, 0.18);
 }
+[data-md-color-scheme="default"] .md-sidebar--primary .md-nav__link--active::before,
+[data-md-color-scheme="light"] .md-sidebar--primary .md-nav__link--active::before,
+[data-md-color-scheme="default"] .md-sidebar--primary .md-nav__item--active > .md-nav__link::before,
+[data-md-color-scheme="light"] .md-sidebar--primary .md-nav__item--active > .md-nav__link::before,
 [data-md-color-scheme="default"] .md-sidebar--secondary .md-nav__link--active::before,
 [data-md-color-scheme="light"] .md-sidebar--secondary .md-nav__link--active::before,
 [data-md-color-scheme="default"] .md-sidebar--secondary .md-nav__item--active > .md-nav__link::before,
