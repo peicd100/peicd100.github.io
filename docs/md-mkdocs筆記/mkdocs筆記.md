@@ -1367,11 +1367,31 @@ def bubble_sort(items):
 
 ## 設定密碼
 
+
+### 單密碼
 ```txt
 ---
 password: 'password'
 ---
 ```
+### 多密碼
+
+```txt
+password: 
+  - 'team_alpha'
+  - 'team_beta'
+```
+### 搜尋時隱藏
+```txt
+---
+title: 隱藏的秘密
+password: '123'
+search:
+  exclude: true  # 這會讓此頁面不被 mkdocs 的搜尋引擎索引
+---
+```
+
+
 
 
 ## vscode貼上圖片

@@ -84,14 +84,28 @@ plugins:
       #   - stopWordFilter
       #   - trimmer
 
+
+
+
+
   - encryptcontent:
       title_prefix: '' #標題前面的文字文字
       summary: '解鎖筆記'
       placeholder: '密碼'
       decryption_failure_message: '錯了'
       encryption_info_message: "請輸入密碼"
+      button_text: '解鎖'
       input_class: 'custom-password-input'
-      # global_password: '2147483647'               #密碼全域
+      encrypt_toc: true # 解鎖前隱藏右側目錄
+      # global_password: '88888888'               # 啟用全域密碼
+
+
+
+
+
+
+
+
 
   # - macros  # 启用宏插件，允許自定義變量和代碼塊
   # - mkdocs-jupyter  # 支持 Jupyter Notebook 文件轉換
