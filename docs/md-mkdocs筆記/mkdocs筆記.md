@@ -1373,7 +1373,15 @@ def bubble_sort(items):
 ### 單密碼
 ```txt
 ---
-password: 'password'
+password: '88888888'
+search:
+  exclude: true  # 這會讓此頁面不被 mkdocs 的搜尋引擎索引
+encryption_info_message: '密碼 八個八'    # 密碼提示
+
+hide:        #隱藏右邊目錄，防止內容被偷看
+  - toc
+
+
 ---
 ```
 
