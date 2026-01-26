@@ -504,11 +504,6 @@ document.addEventListener("DOMContentLoaded", function() {
   gap: 10px;
   font-size: 1rem;
   line-height: 1.2;
-  padding: 4px 6px;
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid var(--tts-border-soft);
-  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.02);
 }
 
 /* =========================
@@ -519,8 +514,8 @@ document.addEventListener("DOMContentLoaded", function() {
   height: 32px;
   border-radius: 999px;
 
-  border: 1px solid var(--tts-border-soft) !important;
-  background: rgba(255, 255, 255, 0.04);
+  border: 0 !important;
+  background: transparent;
   color: inherit;
 
   cursor: pointer;
@@ -530,8 +525,8 @@ document.addEventListener("DOMContentLoaded", function() {
 }
 #tts-header-voice-toggle:hover{
   color: inherit !important;
-  background: rgba(214, 183, 124, 0.14) !important;
-  border-color: var(--tts-border) !important;
+  background: transparent !important;
+  border-color: transparent !important;
 }
 #tts-header-voice-toggle:focus-visible{
   outline: 2px solid var(--md-accent-fg-color, currentColor);
@@ -547,8 +542,8 @@ document.addEventListener("DOMContentLoaded", function() {
 /* 亮色模式：圈圈底色較深主題色、圖示白色 */
 [data-md-color-scheme="default"] #tts-header-voice-toggle,
 [data-md-color-scheme="light"]   #tts-header-voice-toggle{
-  background: #111 !important;
-  color: #fff !important;
+  background: transparent !important;
+  color: inherit !important;
   border-color: transparent !important;
 }
 
