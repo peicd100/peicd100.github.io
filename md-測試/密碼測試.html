@@ -504,11 +504,6 @@ document.addEventListener("DOMContentLoaded", function() {
   gap: 10px;
   font-size: 1rem;
   line-height: 1.2;
-  padding: 4px 6px;
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid var(--tts-border-soft);
-  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.02);
 }
 
 /* =========================
@@ -519,8 +514,8 @@ document.addEventListener("DOMContentLoaded", function() {
   height: 32px;
   border-radius: 999px;
 
-  border: 1px solid var(--tts-border-soft) !important;
-  background: rgba(255, 255, 255, 0.04);
+  border: 0 !important;
+  background: transparent;
   color: inherit;
 
   cursor: pointer;
@@ -530,8 +525,8 @@ document.addEventListener("DOMContentLoaded", function() {
 }
 #tts-header-voice-toggle:hover{
   color: inherit !important;
-  background: rgba(214, 183, 124, 0.14) !important;
-  border-color: var(--tts-border) !important;
+  background: transparent !important;
+  border-color: transparent !important;
 }
 #tts-header-voice-toggle:focus-visible{
   outline: 2px solid var(--md-accent-fg-color, currentColor);
@@ -547,8 +542,8 @@ document.addEventListener("DOMContentLoaded", function() {
 /* 亮色模式：圈圈底色較深主題色、圖示白色 */
 [data-md-color-scheme="default"] #tts-header-voice-toggle,
 [data-md-color-scheme="light"]   #tts-header-voice-toggle{
-  background: #111 !important;
-  color: #fff !important;
+  background: transparent !important;
+  color: inherit !important;
   border-color: transparent !important;
 }
 
@@ -7151,7 +7146,7 @@ is now available!
 
 
 
-<div id="mkdocs-encrypted-content" style="display:none">h5XhKjrbZvczEi7hdHYLKg==;UvE3SWQmKRFb25+hR9mLVyYSnPu50PBOl/XW9vjJnpe5G27vWXIfs+VM0snx8hkJT7DlshTwfx2Qyd4OQRodWiEQdKMJedUgq/PmHVDgkMdFYWQD5Be3+BeTOqUIiHLjezE92aD12a5uQJipKmqzX7MfN0F00a4/za6F8QbWXOn8ulbHq054WStuAMgJntLghnwPHBGrkmJJiJYbVLlPZhni+J+zJj3oFCJk0KzC/4nuQ1nxtLW8GM4OYZlFoG8lkvee8FRh5I5EvROWKow8TTuszZJz5LDTc/M+ubRtGkE4TGZ6qfrixEqtk7fgga8RPoyqOzookmzJkx9KB65Fu1i/3xCjdCLeyF6f6d/YpiH9JpfUdxKrXRm/aiFUr150GgfdEe3Yo3dwkDLYpnFzKKwLqkixHqwYfUqQ+Rqyv42R22UZ94E9hjN9mrFJdYqI45mR2s9HEU8r6MuBBmIvukvt/vMo+dPB5sdQ9Af8VZIz4qaPDDJJOPeei+zEtkGCYUVOdQjK9xuOj3te6f7TpyWCb2HlJMzEa4WWl27IvXM=</div>
+<div id="mkdocs-encrypted-content" style="display:none">clYKex+iQy8Ob0qFRr8LsQ==;Gl12/biz44zhTAhw1u3ExCJltHeAn85Im7w5K6zH5ABJ3E3tugJ6FfQ4VWNx/pLA8qXpdO/s/rYXWc3+3f5tM7k8uoeaUjBOagJbachgeFUJU4+Kk1UZv8UTfzgPJzVB7wWzhZoqx01Zfuekl9K/mJjIwtOcGExaRR0kozM9UpE7IHlVCaoyIS3zBXpOZgJ6Kf1lA8dlQQirindC6Js2RMaLNUJ8EXX5eMB39tn7+yoSFDuHhkdKY6kW40LgKpyb8IdOKWsPc6syDoSDXe+r/rtTSJvC3SqWjGw81JgZw9hugMgccME3jtg9Yq7HOCbYY1SBdqXcM3sWfgBdsqGrmPfMjmerGL6BlVi7W6wb6VBPM6EHAHiev5FhhBULCCvB7F219Q8CqMGpWc6vfUzKU4zUQnItZEzTKiZtzrVSxJR8d2ugBQp3YArs6BRu2sB1lm9RQnpM4cSewcSwKzK3PGIC9IP+2FUPxXNG1ThyIUEZ9Djhf5nb6EsB5o5UlB55UyNSLvUqWAfmBZjYGO7iOpmj+yAqZ7uPZjevqjrnjao=</div>
 <div id="mkdocs-decrypted-content" style="display:none">
     <form id="mkdocs-decrypt-form" class="md-content__inner md-typeset">
         <h1>解鎖筆記</h1>
@@ -7166,7 +7161,7 @@ is now available!
 var encryptcontent_id = "encryptcontent_1";
 var encryptcontent_path = "md-%E6%B8%AC%E8%A9%A6/%E5%AF%86%E7%A2%BC%E6%B8%AC%E8%A9%A6.html";
 var decryption_failure_message = "\u932f\u4e86";
-var encryptcontent_keystore = ["1qG/PSmVNHHgblVkCR9nhg==;hGoX7suSkzfaqhdMBqVenhqhGODCN/ZLcDXzkCG2AxhOERSUb1G6Qf+h067nCznW98z4/MmkWTEHw8Or8KjZa3cT/Sk3OIe2E2fO6ZcCgguhabQZjnPSQtbjmWaTUId+;IvAGjvg4rx++rSZ+bYnJkg=="];
+var encryptcontent_keystore = ["OGZKq82N+6/zmFYYHFrHpQ==;0gZX8O/8MeMKo7jDGDo30BQ1TfxWXqZpZzjTr8EmsaViofw4Sp3xFPd4n0bRd7MtVfKKtzUQAZcHbBbZkR8jof0kMKqJjjHdrbBRUDX9T5YjCxIC8Q3qdZ+ioe8UUXOM;IvAGjvg4rx++rSZ+bYnJkg=="];
 var encryptcontent_obfuscate = 0;
 
 const encryptcontent_event = new Event("encryptcontent_event");
