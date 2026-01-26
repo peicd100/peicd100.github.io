@@ -3405,10 +3405,10 @@ is now available!
 </li>
       
         <li class="md-nav__item">
-  <a href="#系統呼叫了-abort-函式-terminate-called-after-throwing-an-instance-of-stdbad_alloc-what-stdbad_allocaborted-core-dumped" class="md-nav__link">
+  <a href="#函數沒return" class="md-nav__link">
     <span class="md-ellipsis">
       
-        系統呼叫了 abort 函式！ terminate called after throwing an instance of 'std::bad_alloc' what(): std::bad_allocAborted (core dumped)
+        函數沒return
       
     </span>
   </a>
@@ -3416,10 +3416,10 @@ is now available!
 </li>
       
         <li class="md-nav__item">
-  <a href="#terminate-called-after-throwing-an-instance-of-stdbad_alloc-what-stdbad_alloc" class="md-nav__link">
+  <a href="#耗盡系統記憶體" class="md-nav__link">
     <span class="md-ellipsis">
       
-        terminate called after throwing an instance of 'std::bad_alloc' what(): std::bad_alloc
+        耗盡系統記憶體
       
     </span>
   </a>
@@ -3427,10 +3427,10 @@ is now available!
 </li>
       
         <li class="md-nav__item">
-  <a href="#no-match-for-operator" class="md-nav__link">
+  <a href="#沒有定義st的排序順序" class="md-nav__link">
     <span class="md-ellipsis">
       
-        no match for 'operator&lt;&lt;' (operand types are 'std::ostream {aka std::basic_ostream}' and '__gnu_cxx::__normal_iterator >')|
+        沒有定義st的排序順序
       
     </span>
   </a>
@@ -7141,10 +7141,10 @@ is now available!
 </li>
       
         <li class="md-nav__item">
-  <a href="#系統呼叫了-abort-函式-terminate-called-after-throwing-an-instance-of-stdbad_alloc-what-stdbad_allocaborted-core-dumped" class="md-nav__link">
+  <a href="#函數沒return" class="md-nav__link">
     <span class="md-ellipsis">
       
-        系統呼叫了 abort 函式！ terminate called after throwing an instance of 'std::bad_alloc' what(): std::bad_allocAborted (core dumped)
+        函數沒return
       
     </span>
   </a>
@@ -7152,10 +7152,10 @@ is now available!
 </li>
       
         <li class="md-nav__item">
-  <a href="#terminate-called-after-throwing-an-instance-of-stdbad_alloc-what-stdbad_alloc" class="md-nav__link">
+  <a href="#耗盡系統記憶體" class="md-nav__link">
     <span class="md-ellipsis">
       
-        terminate called after throwing an instance of 'std::bad_alloc' what(): std::bad_alloc
+        耗盡系統記憶體
       
     </span>
   </a>
@@ -7163,10 +7163,10 @@ is now available!
 </li>
       
         <li class="md-nav__item">
-  <a href="#no-match-for-operator" class="md-nav__link">
+  <a href="#沒有定義st的排序順序" class="md-nav__link">
     <span class="md-ellipsis">
       
-        no match for 'operator&lt;&lt;' (operand types are 'std::ostream {aka std::basic_ostream}' and '__gnu_cxx::__normal_iterator >')|
+        沒有定義st的排序順序
       
     </span>
   </a>
@@ -7194,7 +7194,7 @@ is now available!
 <h1 id="經典報錯">經典報錯<a class="headerlink" href="#經典報錯" title="Permanent link"></a></h1>
 <h2 id="undefined-reference-to-winmain16">undefined reference to `WinMain@16'|<a class="headerlink" href="#undefined-reference-to-winmain16" title="Permanent link"></a></h2>
 <blockquote>
-<p>main打錯字了，程式找不到main()</p>
+<p>main 打錯字了，程式找不到main()</p>
 </blockquote>
 <h2 id="記憶體區段錯誤-segmentation-fault">記憶體區段錯誤！ Segmentation fault<a class="headerlink" href="#記憶體區段錯誤-segmentation-fault" title="Permanent link"></a></h2>
 <blockquote>
@@ -7204,22 +7204,24 @@ is now available!
 <p>函數沒有 return 0;</p>
 <p>也有可能是max不夠大</p>
 </blockquote>
-<h2 id="系統呼叫了-abort-函式-terminate-called-after-throwing-an-instance-of-stdbad_alloc-what-stdbad_allocaborted-core-dumped">系統呼叫了 abort 函式！ terminate called after throwing an instance of 'std::bad_alloc'  what():  std::bad_allocAborted (core dumped)<a class="headerlink" href="#系統呼叫了-abort-函式-terminate-called-after-throwing-an-instance-of-stdbad_alloc-what-stdbad_allocaborted-core-dumped" title="Permanent link"></a></h2>
+<h2 id="函數沒return">函數沒return<a class="headerlink" href="#函數沒return" title="Permanent link"></a></h2>
 <blockquote>
-<p>函數沒turn </p>
+<p>系統呼叫了 abort 函式！ terminate called after throwing an instance of 'std::bad_alloc'  what():  std::bad_allocAborted (core dumped)</p>
 </blockquote>
-<h2 id="terminate-called-after-throwing-an-instance-of-stdbad_alloc-what-stdbad_alloc">terminate called after throwing an instance of 'std::bad_alloc' what():  std::bad_alloc<a class="headerlink" href="#terminate-called-after-throwing-an-instance-of-stdbad_alloc-what-stdbad_alloc" title="Permanent link"></a></h2>
+<h2 id="耗盡系統記憶體">耗盡系統記憶體<a class="headerlink" href="#耗盡系統記憶體" title="Permanent link"></a></h2>
 <blockquote>
+<p>terminate called after throwing an instance of 'std::bad_alloc' what():  std::bad_alloc</p>
+</blockquote>
 <p>耗盡系統記憶體並引發 std::bad_alloc 異常</p>
-</blockquote>
-<h2 id="no-match-for-operator">no match for 'operator&lt;&lt;' (operand types are 'std::ostream {aka std::basic_ostream<char>}' and '__gnu_cxx::__normal_iterator<st*, std::vector\<st> >')|<a class="headerlink" href="#no-match-for-operator" title="Permanent link"></a></h2>
+<h2 id="沒有定義st的排序順序">沒有定義st的排序順序<a class="headerlink" href="#沒有定義st的排序順序" title="Permanent link"></a></h2>
 <blockquote>
+<p>no match for 'operator&lt;&lt;' (operand types are 'std::ostream {aka std::basic_ostream<char>}' and '__gnu_cxx::__normal_iterator<st*, std::vector\<st> >')|</p>
+</blockquote>
 <p>沒有定義st的排序順序，也就是沒有寫：<br />
 <div class="highlight"><pre><span></span><code><span class="kt">bool</span><span class="w"> </span><span class="k">operator</span><span class="o">&lt;</span><span class="w"> </span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">st</span><span class="o">&amp;</span><span class="w"> </span><span class="n">other</span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">other</span><span class="p">.</span><span class="n">x</span><span class="p">;</span>
 <span class="p">}</span><span class="w">   </span>
 </code></pre></div></p>
-</blockquote>
 
 
 
