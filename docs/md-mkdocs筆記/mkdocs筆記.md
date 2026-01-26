@@ -191,7 +191,9 @@ Some content
 
 
 
-## - markdown.extensions.admonition: # 警告框
+## 警告框
+
+> - markdown.extensions.admonition: 
 
 ```tex title="指令"
 
@@ -226,7 +228,8 @@ Some content
 
 ---
 
-##   smart_quotes: false  # 禁用智能引號
+##   禁用智能引號
+> smart_quotes: false
 
 不啟用：
 
@@ -238,7 +241,9 @@ Some content
 
 ---
 
-##   - pymdownx.betterem:  # BetterEm 擴展，增強的 Markdown 語法支持
+##   BetterEm 擴展，增強的 Markdown 語法支持
+
+> - pymdownx.betterem:
 
 斜體和粗體
 
@@ -253,7 +258,9 @@ Some content
 ---
 
 
-## - markdown.extensions.attr_list:  # 支持 Markdown 內的 HTML 屬性語法
+## 支持 Markdown 內的 HTML 屬性語法
+
+>  - markdown.extensions.attr_list:
 
 透過{}來加入class
 
@@ -268,7 +275,10 @@ Some content
 
 所以可以透過在照片後面加入{width=50%}調整比例
 
-##  - markdown.extensions.def_list:  # 定義列表擴展
+## 定義列表擴展
+
+> - markdown.extensions.def_list:  
+
 
 ```tex title="指令"
 Term 1
@@ -297,7 +307,9 @@ MkDocs
 </dl>
 ///
 
-##   - markdown.extensions.tables:  # 表格支持
+## 表格支持
+
+>   - markdown.extensions.tables:  #
 
 ```tex title="指令"
 | Header 1 | Header 2 |
@@ -313,7 +325,9 @@ MkDocs
 ///
 
 
-##   - markdown.extensions.abbr:  # 縮寫支持
+## 縮寫支持
+
+> - markdown.extensions.abbr:
 
 這個擴展允許你在 Markdown 中定義縮寫，並在讀者將滑鼠懸停在縮寫上時顯示完整說明。它是一個語義化的擴展，特別適合技術文檔和長篇文章，便於解釋專業術語。
 
@@ -333,7 +347,10 @@ The HTML standard is maintained by the W3C.
 ///
 
 
-##   - markdown.extensions.footnotes:  # 支持腳註
+## 支持腳註
+
+> - markdown.extensions.footnotes:  #
+
 此擴展允許你在 Markdown 中使用腳註，使得文章中的附加說明可以用標記的方式靈活地插入，而不會打斷正文流暢性。腳註通常在學術和技術文章中使用。
 
 
@@ -355,7 +372,9 @@ The HTML standard is maintained by the W3C.
 
 
 
-##   - markdown.extensions.md_in_html:  # 支持 HTML 中嵌入 Markdown
+## 支持 HTML 中嵌入 Markdown
+
+> - markdown.extensions.md_in_html:
 
 /// failure | 好像不能用
 
@@ -381,7 +400,9 @@ The HTML standard is maintained by the W3C.
 
 
 
-##   - pymdownx.superfences:  # 增強的程式碼塊擴展
+## 增強的程式碼塊擴展
+
+>   - pymdownx.superfences: 
 
 /// details | 全部
 ```
@@ -621,7 +642,9 @@ $$
 ///
 
 
-## - pymdownx.inlinehilite:  # 行內高亮擴展
+## 行內高亮擴展
+
+>  - pymdownx.inlinehilite: 
 
 當你啟用了這個配置之後，就可以在 Markdown 中使用自定義行內數學公式格式。以下是如何使用的示例：
 
@@ -648,8 +671,10 @@ $$
 ///
 
  
-##   - pymdownx.tilde:  # Tilde 擴展，支持刪除線
+##  Tilde 擴展，支持刪除線
 
+
+>  - pymdownx.tilde: 
 
 ```tex title="指令"
 
@@ -666,8 +691,9 @@ $$
 ///
 
 
-##   - pymdownx.caret:  # Caret 擴展，支持插入符號
+## Caret 擴展，支持插入符號
 
+>  - pymdownx.caret:  # 
 
 ```tex title="指令"
 
@@ -683,7 +709,9 @@ $$
 
 
 
-##   - pymdownx.smartsymbols:  # 支持智能符號轉換
+## 支持智能符號轉換
+
+>   - pymdownx.smartsymbols: 
 
 ```tex title="指令"
 
@@ -713,7 +741,9 @@ $$
 ///
 
 
-##  - pymdownx.emoji:  # Emoji 擴展
+## Emoji 擴展
+
+>  - pymdownx.emoji: 
 
 /// details |完整代碼
 ```
@@ -807,7 +837,9 @@ $$
 ///
 
 
-##   - pymdownx.escapeall:  # EscapeAll 擴展
+## EscapeAll 擴展
+
+> - pymdownx.escapeall:  #
 
 /// failure | 好像沒啥用
 ///
@@ -821,8 +853,12 @@ $$
 ///
 
 
-##   - pymdownx.tasklist:  # 任務清單擴展
+##   任務清單擴展
+
+>  - pymdownx.tasklist:
+
       custom_checkbox: true  # 自定義復選框樣式
+
 
 /// details |完整代碼
 ```
@@ -846,8 +882,9 @@ $$
 
 ///
 
-##   - pymdownx.progressbar:  # 進度條擴展
+## 進度條擴展
 
+>   - pymdownx.progressbar:
 
 這個擴展允許你用簡單的語法定義視覺化的進度條，展示某個項目的完成進度。
 
@@ -877,8 +914,9 @@ $$
 
 
 
-##   - pymdownx.arithmatex:  # Arithmatex 數學公式擴展
+##  Arithmatex 數學公式擴展
 
+>   - pymdownx.arithmatex:
 
 這是一個用於在 MkDocs 中支持數學公式的擴展，通常與 MathJax 或 KaTeX 一起使用。此擴展允許你在 Markdown 中渲染 LaTeX 或 TeX 數學公式。
 
@@ -918,7 +956,9 @@ $$
 
 
 
-##   - pymdownx.mark:  # 高亮標記擴展
+## 高亮標記擴展
+
+>    - pymdownx.mark: 
 
 是一個用來在 Markdown 中支持高亮標記文本的擴展。它允許你使用簡單的語法來為某些部分的文本添加高亮樣式，類似於螢光筆效果，讓讀者能更容易注意到重點內容。
 
@@ -938,9 +978,9 @@ $$
 
 
 
-##   - pymdownx.striphtml:  # 移除 HTML 擴展
+## 移除 HTML 擴展
 
-
+>   - pymdownx.striphtml:
 
 /// failure | 看來沒用
 ///
@@ -959,7 +999,10 @@ $$
 
 
 
-##   - pymdownx.keys:  # 鍵盤按鍵樣式支持
+##  鍵盤按鍵樣式支持
+
+>   - pymdownx.keys:
+
 是一個擴展，用來在 Markdown 文檔中美化和格式化鍵盤按鍵的顯示。這個擴展允許將按鍵組合顯示為帶有按鍵樣式的格式，非常適合用於技術文檔中需要提及特定的鍵盤操作或快捷鍵的情況。
 
 功能與應用場景：
@@ -985,7 +1028,10 @@ $$
 
 ///
 
-##   - pymdownx.details:  # 詳情框擴展
+##    詳情框擴展
+
+
+> - pymdownx.details:  #
 
 ```tex title="指令"
 
@@ -1005,7 +1051,11 @@ $$
 
 
 
-##   - pymdownx.tabbed:  # 標籤頁擴展
+##   標籤頁擴展
+
+
+> - pymdownx.tabbed:  # 
+
 
 /// details | 全部代碼
 ```
@@ -1042,7 +1092,9 @@ $$
 ///
 
 
-##     - pymdownx.saneheaders:  # 合理的標題擴展
+##  合理的標題擴展
+
+>    - pymdownx.saneheaders:  
 
 /// failure | 看來沒用
 ///
@@ -1061,8 +1113,9 @@ $$
 ///
 
 
-## - pymdownx.blocks.admonition:  # Blocks 警告框擴展
+##  Blocks 警告框擴展
 
+> - pymdownx.blocks.admonition:  
 
 ```text title="settings"
 
@@ -1151,7 +1204,9 @@ quote
 ```
 
 
-## - pymdownx.blocks.details:  # Blocks 詳情框擴展
+##  Blocks 詳情框擴展
+
+> - pymdownx.blocks.details:  #
 
 上一個提到了很多不同的框框，我們也可以讓這些框框折疊起來
 
@@ -1188,7 +1243,9 @@ quote
 ```
 
 
-##   - pymdownx.blocks.html:  # 支持 HTML Block
+##   支持 HTML Block
+
+>  - pymdownx.blocks.html:  
 
 透過：div[style='border: 1px solid red;']來讓整個區塊使用
 
@@ -1207,7 +1264,9 @@ some *markdown* content
 
 ///
 
-##   - pymdownx.blocks.definition:  # 支持定義列表 Block
+##  支持定義列表 Block
+
+> - pymdownx.blocks.definition:  
 
 ```text title="指令"
 /// define
@@ -1230,7 +1289,11 @@ Apple
 ////
 ///
 
-##   - pymdownx.blocks.tab:  # 支持標籤頁 Block
+##  支持標籤頁 Block
+
+
+>  - pymdownx.blocks.tab: 
+
 
 /// details |  全部
 ``` 
@@ -1294,7 +1357,9 @@ Apple
 ///
 
 
-##   - tools.collapse_code:  # 支持折疊程式碼塊
+##   支持折疊程式碼塊
+
+>  - tools.collapse_code:  
 
 /// details |  全部
 ```
@@ -1357,14 +1422,26 @@ hide:
 ```
 
 ## 有行號的code方塊
-
-``` cpp linenums="1" hl_lines="3-5"  
+````
+``` cpp linenums="1" hl_lines="3-5"  title="code"
 def bubble_sort(items):
     for i in range(len(items)):
         for j in range(len(items) - 1 - i):
             if items[j] > items[j + 1]:
                 items[j], items[j + 1] = items[j + 1], items[j]
 ```
+````
+/// html | div.result
+``` cpp linenums="1" hl_lines="3-5"  title="code"
+def bubble_sort(items):
+    for i in range(len(items)):
+        for j in range(len(items) - 1 - i):
+            if items[j] > items[j + 1]:
+                items[j], items[j + 1] = items[j + 1], items[j]
+```
+
+///
+
 
 
 ## 設定密碼
