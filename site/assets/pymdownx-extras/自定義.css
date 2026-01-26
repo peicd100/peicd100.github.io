@@ -526,10 +526,6 @@ body {
     box-shadow: var(--peicd-shadow-2);
 }
 
-.md-typeset img,
-.md-typeset svg {
-    border-radius: var(--peicd-radius-sm);
-}
 
 .md-typeset ::selection {
     background: rgba(214, 183, 124, 0.35);
