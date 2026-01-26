@@ -1369,8 +1369,7 @@ def bubble_sort(items):
 
 ## 設定密碼
 
-
-### 單密碼
+在文件開頭寫上
 ```txt
 ---
 password: '88888888'
@@ -1380,8 +1379,6 @@ encryption_info_message: '密碼 八個八'    # 密碼提示
 
 hide:        #隱藏右邊目錄，防止內容被偷看
   - toc
-
-
 ---
 ```
 

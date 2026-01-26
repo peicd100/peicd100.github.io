@@ -100,8 +100,7 @@ plugins:
                   # password_button: True
                   # password_button_text: 'custom_text_button'
                   # global_password: '88888888'               # 啟用全域密碼
-
-      search_index: 'dynamically'  # 建置時加密索引；使用者解密頁面後才能搜到
+      search_index: 'dynamically'  # 建置時加密索引；使用者解密頁面後才能搜到(但好像沒有真的觸發)
 
 
 
