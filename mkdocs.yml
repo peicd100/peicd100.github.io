@@ -56,23 +56,14 @@ theme:
 
 plugins:
   # - awesome-nav
-
   - blog:
       blog_toc: true
-
   - rss:
       match_path: blog/posts/
       date_from_meta:
         as_creation: date
-
   - offline #當您將網站目錄的內容作為下載分發時，內建的離線外掛程式可確保網站搜尋正常運作。只需將以下行新增至：mkdocs.yml
-
   - tags
-
-  # ✅ 你不需要另外加 sitemap plugin（MkDocs 內建產生 sitemap.xml）
-  # - sitemap
-
-  # 中文：https://cloud-atlas.readthedocs.io/zh-cn/latest/devops/docs/mkdocs/mkdocs_chinese_search.html
   - search:
       # lang:
       #   - en
@@ -85,9 +76,6 @@ plugins:
       #   - trimmer
 
 
-
-
-
   - encryptcontent:
       input_class: 'custom-password-input'
       title_prefix: '' #標題前面的文字文字
@@ -97,9 +85,7 @@ plugins:
       encryption_info_message: "請輸入密碼"
       password_button: True       #解鎖按鈕
       password_button_text: '解鎖' #解鎖按鈕
-                  # password_button: True
-                  # password_button_text: 'custom_text_button'
-                  # global_password: '88888888'               # 啟用全域密碼
+      # global_password: '88888888'               # 啟用全域密碼
       search_index: 'dynamically'  # 建置時加密索引；使用者解密頁面後才能搜到(但好像沒有真的觸發)
 
 
