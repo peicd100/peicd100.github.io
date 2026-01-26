@@ -29,11 +29,11 @@ theme:
     # ❌ 這個不是 Material 的 features 選項，放在這裡反而容易誤會：
     # - sitemap  # (sitemap 由 MkDocs 依 site_url 自動生成)
 
-    # - toc.follow  # 目錄自動跟隨滾動
-    # - toc.integrate #啟用目錄的導覽整合後，它始終呈現為左側導覽側邊欄的一部分////////////////////////////////////////////////////////////////////////////////////////////////////////
+    - toc.follow  # 目錄自動跟隨滾動
+             # - toc.integrate #啟用目錄的導覽整合後，它始終呈現為左側導覽側邊欄的一部分////////////////////////////////////////////////////////////////////////////////////////////////////////
     - content.tabs.link  # 允許內容中的標籤鏈接
     - search.share  # 啟用搜索結果共享功能
-    # - search.suggest  # 搜索時提供自動建議
+             # - search.suggest  # 搜索時提供自動建議
     - content.code.copy  # 代碼塊中顯示“複製”按鈕
     - content.code.annotations  # 啟用代碼註解功能
     - content.action.edit
@@ -48,11 +48,6 @@ theme:
 #     words_read_per_minute: 300
 #     list_length: 25
 #     extended_preview: true
-
-# extra:
-#  canonical_url: "https://peicd100.github.io/"
-# extra:
-#   canonical_url: "https://peicd100.github.io/"
 
 plugins:
   # - awesome-nav
@@ -385,11 +380,11 @@ nav:  # 自定義網站的導航結構
       - 'online judge 架設': 'md-online judge架設/online judge架設.md'
       - 'LaTeX': 'md-LaTeX/LaTeX.md'
       - '滾球分隊': 'md-滾球分隊/滾球分隊.md'
-      # - '滾球隊成績': md-滾球隊成績/滾球隊成績.md
-      - '連結Google文件的範例': 'md-連結Google文件的範例/連結Google文件的範例.md'
+      # - '連結Google文件的範例': 'md-連結Google文件的範例/連結Google文件的範例.md'
       - '製作網頁': 'md-Github+mkdocs+vscode製作網頁\Github+mkdocs+vscode製作網頁.md'
       - '測試': 'md-測試/測試.md'
       - '密碼測試': 'md-測試/密碼測試.md'
+      - '內建完全白的背景測試': 'md-測試\完全白的背景.md'
 
 
   - '600':
