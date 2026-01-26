@@ -322,12 +322,7 @@ body {
     text-rendering: optimizeLegibility;
 }
 
-.md-container {
-    background:
-        radial-gradient(1200px 800px at 12% -20%, rgba(214, 183, 124, 0.08), transparent 60%),
-        radial-gradient(900px 600px at 95% 0%, rgba(107, 92, 170, 0.16), transparent 55%),
-        var(--md-default-bg-color);
-}
+
 
 .md-header,
 .md-tabs {
@@ -566,13 +561,13 @@ body {
 /* === Magazine feel: sidebar + cards + post list ===================== */
 .md-sidebar--primary,
 .md-sidebar--secondary {
-    background: var(--md-default-bg-color);
+    background: transparent;
 }
 
 .md-sidebar--primary .md-sidebar__scrollwrap,
 .md-sidebar--secondary .md-sidebar__scrollwrap {
     background: transparent;
-    border: 1px solid var(--peicd-border);
+    border: none;
     border-left-width: 0;
     border-right-width: 0;
     box-shadow: none;
@@ -980,4 +975,13 @@ body {
 [data-md-color-scheme="default"] .md-sidebar--secondary .md-nav__item--active>.md-nav__link,
 [data-md-color-scheme="light"] .md-sidebar--secondary .md-nav__item--active>.md-nav__link {
     color: rgba(0, 0, 0, 0.86);
+}
+
+
+/* 白色背景 */
+.md-container {
+    background:
+        radial-gradient(1200px 800px at 12% -20%, rgba(214, 183, 124, 0.08), transparent 60%),
+        radial-gradient(900px 600px at 95% 0%, rgba(107, 92, 170, 0.16), transparent 55%),
+        var(--md-default-bg-color);
 }
