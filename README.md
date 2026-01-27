@@ -61,3 +61,8 @@ git fetch origin && git switch main && git reset --hard origin/main && git clean
 git remote -v
 
 ```
+## 克隆儲存庫
+
+```
+git https://github.com/peicd100/peicd100.github.io.git
+```

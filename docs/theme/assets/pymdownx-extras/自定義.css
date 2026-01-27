@@ -1793,318 +1793,26 @@ body {
   color: var(--peicd-code-accent);
 }
 
-/* 亮色模式：同樣矩形 + 淡藍科技感，但底改白 */
-/* =========================================================
-   Blog cards（Light mode）改成「像 code block 一樣」：背光 + 四角 + 互動
-   - 只影響 default/light
-   - 不動你深色方案
-   ========================================================= */
 
-:root{
-  /* 可微調的強度（想更亮就加大） */
-  --peicd-blog-glow-1: 0 0 0.9rem rgba(122, 211, 255, 0.18);
-  --peicd-blog-glow-2: 0 0 2.6rem rgba(122, 211, 255, 0.22);
-  --peicd-blog-elev: 0 18px 46px rgba(15, 23, 42, 0.10);
-}
 
-/* 1) 淺色模式：底色中性（避免整片藍），但保留科技玻璃感 */
-[data-md-color-scheme="default"] .md-post--excerpt,
-[data-md-color-scheme="light"]   .md-post--excerpt{
-  border-radius: 0 !important;
-  border: 0 !important;
 
-  /* 中性白卡，不再用藍色 radial 染底 */
-  background:
-    linear-gradient(160deg, rgba(0,0,0,0.020), rgba(0,0,0,0.008)),
-    radial-gradient(900px 420px at 12% 0%, rgba(0,0,0,0.035), transparent 62%),
-    radial-gradient(700px 380px at 92% 105%, rgba(0,0,0,0.020), transparent 64%),
-    #ffffff !important;
-
-  /* 「像 code block 一樣」的外溢背光 + 一般陰影 */
-  box-shadow:
-    var(--peicd-blog-elev),
-    var(--peicd-blog-glow-1),
-    var(--peicd-blog-glow-2) !important;
-
-  transition: transform 180ms ease, box-shadow 180ms ease, filter 180ms ease !important;
-  will-change: transform;
-}
-
-/* 2) 四角線段：平時收斂；hover / focus-within 時才像 code block 一樣亮起 */
-[data-md-color-scheme="default"] .md-post--excerpt::before,
-[data-md-color-scheme="light"]   .md-post--excerpt::before{
-  opacity: 0.55 !important;
-  transform: scale(1) !important;
-  filter: drop-shadow(0 0 10px rgba(0,0,0,0)) !important;
-  transition: transform 180ms ease, filter 180ms ease, opacity 180ms ease !important;
-}
-
-/* 3) 掃描線/網格：淺色模式要更淡，避免髒；hover 時才稍微出現 */
-[data-md-color-scheme="default"] .md-post--excerpt::after,
-[data-md-color-scheme="light"]   .md-post--excerpt::after{
-  mix-blend-mode: multiply !important;
-  opacity: 0.10 !important;
-  transition: opacity 180ms ease, background-position 420ms ease !important;
-}
-
-/* 4) 互動：hover（滑鼠）= 浮起 + 背光加強 + 四角微放大（同 code block） */
-[data-md-color-scheme="default"] .md-post--excerpt:hover,
-[data-md-color-scheme="light"]   .md-post--excerpt:hover{
-  transform: translateY(-3px) !important;
-  filter: drop-shadow(0 0 18px rgba(122,211,255,0.10)) !important;
-  box-shadow:
-    0 26px 70px rgba(15, 23, 42, 0.12),
-    0 0 1.1rem rgba(122, 211, 255, 0.22),
-    0 0 3.0rem rgba(122, 211, 255, 0.26) !important;
-}
-
-[data-md-color-scheme="default"] .md-post--excerpt:hover::before,
-[data-md-color-scheme="light"]   .md-post--excerpt:hover::before{
-  opacity: 1 !important;
-  transform: scale(1.02) !important;
-  filter: drop-shadow(0 0 14px rgba(122, 211, 255, 0.28)) !important;
-}
-
-[data-md-color-scheme="default"] .md-post--excerpt:hover::after,
-[data-md-color-scheme="light"]   .md-post--excerpt:hover::after{
-  opacity: 0.16 !important;
-  /* hover 時讓掃描線「微移動」一點點，增加互動感 */
-  background-position: 0 6px, 10px 0, 0 0 !important;
-}
-
-/* 5) 鍵盤互動：focus-within（Tab 進卡片內連結時也要亮起） */
-[data-md-color-scheme="default"] .md-post--excerpt:focus-within,
-[data-md-color-scheme="light"]   .md-post--excerpt:focus-within{
-  transform: translateY(-2px) !important;
-  box-shadow:
-    0 24px 64px rgba(15, 23, 42, 0.12),
-    0 0 1.1rem rgba(122, 211, 255, 0.22),
-    0 0 3.0rem rgba(122, 211, 255, 0.26) !important;
-}
-
-[data-md-color-scheme="default"] .md-post--excerpt:focus-within::before,
-[data-md-color-scheme="light"]   .md-post--excerpt:focus-within::before{
-  opacity: 1 !important;
-  transform: scale(1.02) !important;
-  filter: drop-shadow(0 0 14px rgba(122, 211, 255, 0.28)) !important;
-}
-
-/* 6) 按下（active）回饋：微縮一下，像按鈕回彈 */
-[data-md-color-scheme="default"] .md-post--excerpt:active,
-[data-md-color-scheme="light"]   .md-post--excerpt:active{
-  transform: translateY(-1px) scale(0.995) !important;
-}
-
-/* 7) 文字顏色：淺色不要跟著藍走；hover 才走 code 藍 */
-[data-md-color-scheme="default"] .md-post__content h2 a,
-[data-md-color-scheme="light"]   .md-post__content h2 a{
-  color: rgba(15,23,42,0.88) !important;
-}
-[data-md-color-scheme="default"] .md-post__content h2 a:hover,
-[data-md-color-scheme="light"]   .md-post__content h2 a:hover{
-  color: var(--peicd-code-accent) !important;
-}
-
-/* 8) 降低動態偏好：減少動畫 */
-@media (prefers-reduced-motion: reduce){
-  [data-md-color-scheme="default"] .md-post--excerpt,
-  [data-md-color-scheme="light"]   .md-post--excerpt{
-    transition: none !important;
-  }
-  [data-md-color-scheme="default"] .md-post--excerpt::before,
-  [data-md-color-scheme="light"]   .md-post--excerpt::before,
-  [data-md-color-scheme="default"] .md-post--excerpt::after,
-  [data-md-color-scheme="light"]   .md-post--excerpt::after{
-    transition: none !important;
-  }
-}
 
 
 /* =========================================================
-   Blog cards（Light mode）— 更賽博：冷灰玻璃底 + 微網格 + code 風背光四角
+   Blog cards（Light mode）— Hologram Film
+   風格：干涉膜（彩虹很淡）+ 角落藍光 + 薄霧走光
    只影響 default/light
    ========================================================= */
 
 :root{
-  /* 你程式碼藍 */
-  --peicd-blog-accent: var(--peicd-code-accent, rgb(122, 211, 255));
-  --peicd-blog-glow:   rgba(122, 211, 255, 0.22);
+  --holo-accent: var(--peicd-code-accent, rgb(122,211,255));
+  --holo-glow: rgba(122,211,255,0.22);
 
-  /* 淺色賽博底：冷灰藍玻璃感（不是純白） */
-  --peicd-blog-bg:     rgba(245, 248, 255, 0.72);
-  --peicd-blog-bg-2:   rgba(232, 238, 250, 0.62);
-
-  /* 陰影（淺色） */
-  --peicd-blog-elev:   0 18px 46px rgba(15, 23, 42, 0.10);
-
-  /* 背光（像 code block） */
-  --peicd-blog-glow-1: 0 0 0.9rem rgba(122, 211, 255, 0.16);
-  --peicd-blog-glow-2: 0 0 2.8rem rgba(122, 211, 255, 0.20);
-
-  /* 內框線（玻璃邊緣） */
-  --peicd-blog-stroke: rgba(15, 23, 42, 0.10);
+  /* 面板底：不是純白 */
+  --holo-panel-a: rgba(248,250,255,0.84);
+  --holo-panel-b: rgba(238,244,255,0.70);
 }
 
-/* 1) 淺色模式卡片底：冷灰玻璃 + 很淡的「科技面板」質感 */
-[data-md-color-scheme="default"] .md-post--excerpt,
-[data-md-color-scheme="light"]   .md-post--excerpt{
-  border-radius: 0 !important;
-  border: 0 !important;
-
-  /* 冷灰玻璃：避免純白，也避免整片藍染 */
-  background:
-    linear-gradient(160deg, rgba(255,255,255,0.55), rgba(255,255,255,0.18)),
-    radial-gradient(900px 420px at 12% 0%, rgba(122,211,255,0.10), transparent 62%),
-    radial-gradient(700px 380px at 92% 105%, rgba(156,123,255,0.06), transparent 64%),
-    linear-gradient(180deg, var(--peicd-blog-bg), var(--peicd-blog-bg-2)) !important;
-
-  /* 玻璃邊緣：內側細線（像 UI 面板） */
-  box-shadow:
-    inset 0 0 0 1px rgba(255,255,255,0.55),
-    inset 0 0 0 2px rgba(15,23,42,0.05),
-    var(--peicd-blog-elev),
-    var(--peicd-blog-glow-1),
-    var(--peicd-blog-glow-2) !important;
-
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-
-  transition: transform 180ms ease, box-shadow 180ms ease, filter 180ms ease !important;
-  will-change: transform;
-}
-
-/* 2) 四角線段：預設不要太搶，hover/focus 才點亮 */
-[data-md-color-scheme="default"] .md-post--excerpt::before,
-[data-md-color-scheme="light"]   .md-post--excerpt::before{
-  opacity: 0.70 !important;
-  transform: scale(1) !important;
-  filter: drop-shadow(0 0 10px rgba(0,0,0,0)) !important;
-  transition: transform 180ms ease, filter 180ms ease, opacity 180ms ease !important;
-}
-
-/* 3) 掃描線/網格：改成更「介面 HUD」的細質感（平時很淡） */
-[data-md-color-scheme="default"] .md-post--excerpt::after,
-[data-md-color-scheme="light"]   .md-post--excerpt::after{
-  content: "" !important;
-  position: absolute;
-  inset: 0;
-  z-index: 2;
-  pointer-events: none;
-
-  background:
-    /* 細掃描線 */
-    repeating-linear-gradient(
-      180deg,
-      rgba(15,23,42,0.035) 0 1px,
-      transparent 1px 9px
-    ),
-    /* 直向細格 */
-    repeating-linear-gradient(
-      90deg,
-      rgba(122,211,255,0.05) 0 1px,
-      transparent 1px 16px
-    ),
-    /* 上緣光帶 */
-    linear-gradient(90deg,
-      rgba(122,211,255,0),
-      rgba(122,211,255,0.12),
-      rgba(122,211,255,0)
-    );
-
-  mix-blend-mode: multiply;
-  opacity: 0.16;
-  transition: opacity 180ms ease, background-position 420ms ease !important;
-}
-
-/* 4) hover：浮起、背光加強、四角微放大（同 code block） */
-[data-md-color-scheme="default"] .md-post--excerpt:hover,
-[data-md-color-scheme="light"]   .md-post--excerpt:hover{
-  transform: translateY(-3px) !important;
-  filter: drop-shadow(0 0 18px rgba(122,211,255,0.12)) !important;
-
-  box-shadow:
-    inset 0 0 0 1px rgba(255,255,255,0.62),
-    inset 0 0 0 2px rgba(15,23,42,0.06),
-    0 26px 70px rgba(15, 23, 42, 0.14),
-    0 0 1.1rem rgba(122, 211, 255, 0.22),
-    0 0 3.2rem rgba(122, 211, 255, 0.26) !important;
-}
-
-[data-md-color-scheme="default"] .md-post--excerpt:hover::before,
-[data-md-color-scheme="light"]   .md-post--excerpt:hover::before{
-  opacity: 1 !important;
-  transform: scale(1.02) !important;
-  filter: drop-shadow(0 0 14px rgba(122, 211, 255, 0.28)) !important;
-}
-
-[data-md-color-scheme="default"] .md-post--excerpt:hover::after,
-[data-md-color-scheme="light"]   .md-post--excerpt:hover::after{
-  opacity: 0.24 !important;
-  background-position: 0 6px, 12px 0, 0 0 !important;
-}
-
-/* 5) focus-within：鍵盤 Tab 也有同款高亮 */
-[data-md-color-scheme="default"] .md-post--excerpt:focus-within,
-[data-md-color-scheme="light"]   .md-post--excerpt:focus-within{
-  transform: translateY(-2px) !important;
-  box-shadow:
-    inset 0 0 0 1px rgba(255,255,255,0.62),
-    inset 0 0 0 2px rgba(15,23,42,0.06),
-    0 24px 64px rgba(15, 23, 42, 0.14),
-    0 0 1.1rem rgba(122, 211, 255, 0.22),
-    0 0 3.2rem rgba(122, 211, 255, 0.26) !important;
-}
-
-/* 6) 按下回饋 */
-[data-md-color-scheme="default"] .md-post--excerpt:active,
-[data-md-color-scheme="light"]   .md-post--excerpt:active{
-  transform: translateY(-1px) scale(0.995) !important;
-}
-
-/* 7) 文字顏色：冷灰黑，hover 才走 code 藍 */
-[data-md-color-scheme="default"] .md-post__content h2 a,
-[data-md-color-scheme="light"]   .md-post__content h2 a{
-  color: rgba(15,23,42,0.88) !important;
-}
-[data-md-color-scheme="default"] .md-post__content h2 a:hover,
-[data-md-color-scheme="light"]   .md-post__content h2 a:hover{
-  color: var(--peicd-blog-accent) !important;
-}
-
-/* 8) 降低動態偏好 */
-@media (prefers-reduced-motion: reduce){
-  [data-md-color-scheme="default"] .md-post--excerpt,
-  [data-md-color-scheme="light"]   .md-post--excerpt{
-    transition: none !important;
-  }
-  [data-md-color-scheme="default"] .md-post--excerpt::before,
-  [data-md-color-scheme="light"]   .md-post--excerpt::before,
-  [data-md-color-scheme="default"] .md-post--excerpt::after,
-  [data-md-color-scheme="light"]   .md-post--excerpt::after{
-    transition: none !important;
-  }
-}
-/* =========================================================
-   Blog cards（Light mode）— Future HUD Prism
-   風格：白色 HUD 面板 + 稜鏡邊框 + 角落切角 + 走光掃描
-   只影響 default/light
-   ========================================================= */
-
-:root{
-  /* 核心色：沿用你 code 的藍 */
-  --hud-accent: var(--peicd-code-accent, rgb(122,211,255));
-  --hud-glow: rgba(122,211,255,0.22);
-
-  /* 面板底色（不是純白，偏冷灰） */
-  --hud-bg-a: rgba(248,250,255,0.82);
-  --hud-bg-b: rgba(236,242,252,0.72);
-
-  /* 文字顏色 */
-  --hud-text: rgba(15,23,42,0.88);
-  --hud-muted: rgba(15,23,42,0.60);
-}
-
-/* 1) 卡片本體：切角面板 + 稜鏡邊 */
 [data-md-color-scheme="default"] .md-post--excerpt,
 [data-md-color-scheme="light"]   .md-post--excerpt{
   position: relative !important;
@@ -2114,171 +1822,146 @@ body {
   border: 0 !important;
   border-radius: 0 !important;
 
-  /* 切角（右上、左下） */
-  clip-path: polygon(
-    0 0,
-    calc(100% - 18px) 0,
-    100% 18px,
-    100% 100%,
-    18px 100%,
-    0 calc(100% - 18px)
-  );
-
   background:
-    /* 稜鏡細亮邊（內） */
-    linear-gradient(180deg, rgba(255,255,255,0.70), rgba(255,255,255,0.20)),
-    /* 低飽和的淡淡色溫（不藍染） */
-    radial-gradient(860px 420px at 8% 0%, rgba(122,211,255,0.10), transparent 62%),
-    radial-gradient(720px 380px at 96% 110%, rgba(156,123,255,0.06), transparent 66%),
-    /* 面板主底 */
-    linear-gradient(180deg, var(--hud-bg-a), var(--hud-bg-b)) !important;
+    /* 面板底 */
+    linear-gradient(180deg, var(--holo-panel-a), var(--holo-panel-b)) !important;
 
   box-shadow:
-    /* 玻璃內框 */
-    inset 0 0 0 1px rgba(255,255,255,0.72),
-    inset 0 0 0 2px rgba(15,23,42,0.06),
-    /* 外陰影 */
-    0 18px 44px rgba(15,23,42,0.12),
-    /* 輕背光 */
-    0 0 0.9rem rgba(122,211,255,0.12),
-    0 0 2.2rem rgba(122,211,255,0.14) !important;
-
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+    inset 0 0 0 1px rgba(255,255,255,0.86),
+    inset 0 0 0 2px rgba(15,23,42,0.08),
+    0 18px 46px rgba(15,23,42,0.12),
+    0 0 1.0rem rgba(122,211,255,0.14),
+    0 0 2.6rem rgba(122,211,255,0.16) !important;
 
   transition: transform 180ms ease, box-shadow 180ms ease, filter 180ms ease !important;
   will-change: transform;
 }
 
-/* 2) 稜鏡外框：用偽元素畫一圈「彩邊」但非常淡 */
+/* 四角線段（保留 code 邏輯） */
 [data-md-color-scheme="default"] .md-post--excerpt::before,
 [data-md-color-scheme="light"]   .md-post--excerpt::before{
   content: "" !important;
   position: absolute !important;
   inset: 0 !important;
-  z-index: 5 !important;
+  z-index: 6 !important;
   pointer-events: none !important;
 
-  /* 一圈稜鏡邊 + 角落高亮 */
-  background:
-    linear-gradient(90deg,
-      rgba(122,211,255,0.00),
-      rgba(122,211,255,0.28),
-      rgba(156,123,255,0.18),
-      rgba(122,211,255,0.28),
-      rgba(122,211,255,0.00)
-    ) top/100% 2px no-repeat,
-    linear-gradient(180deg,
-      rgba(122,211,255,0.00),
-      rgba(122,211,255,0.24),
-      rgba(122,211,255,0.00)
-    ) left/2px 100% no-repeat,
-    linear-gradient(180deg,
-      rgba(156,123,255,0.00),
-      rgba(156,123,255,0.18),
-      rgba(156,123,255,0.00)
-    ) right/2px 100% no-repeat,
-    linear-gradient(90deg,
-      rgba(122,211,255,0.00),
-      rgba(122,211,255,0.18),
-      rgba(122,211,255,0.00)
-    ) bottom/100% 2px no-repeat;
+  background-image:
+    linear-gradient(var(--holo-accent) 0 0),
+    linear-gradient(var(--holo-accent) 0 0),
+    linear-gradient(var(--holo-accent) 0 0),
+    linear-gradient(var(--holo-accent) 0 0),
+    linear-gradient(var(--holo-accent) 0 0),
+    linear-gradient(var(--holo-accent) 0 0),
+    linear-gradient(var(--holo-accent) 0 0),
+    linear-gradient(var(--holo-accent) 0 0);
 
-  opacity: 0.75 !important;
-  filter: drop-shadow(0 0 10px rgba(122,211,255,0.10)) !important;
-  transition: opacity 180ms ease, filter 180ms ease, transform 180ms ease !important;
+  background-repeat: no-repeat !important;
+  background-position:
+    left top, left top,
+    right top, right top,
+    left bottom, left bottom,
+    right bottom, right bottom !important;
+
+  background-size:
+    var(--peicd-sel-corner) var(--peicd-sel-line),
+    var(--peicd-sel-line) var(--peicd-sel-corner),
+    var(--peicd-sel-corner) var(--peicd-sel-line),
+    var(--peicd-sel-line) var(--peicd-sel-corner),
+    var(--peicd-sel-corner) var(--peicd-sel-line),
+    var(--peicd-sel-line) var(--peicd-sel-corner),
+    var(--peicd-sel-corner) var(--peicd-sel-line),
+    var(--peicd-sel-line) var(--peicd-sel-corner) !important;
+
+  opacity: 0.92 !important;
+  filter: drop-shadow(0 0 12px rgba(122,211,255,0.16)) !important;
+  transition: transform 180ms ease, filter 180ms ease, opacity 180ms ease !important;
 }
 
-/* 3) 走光掃描：斜向掃描線 + 很淡 HUD 格 */
+/* 干涉膜：彩虹非常淡（不會整張變藍），hover 會漂移 */
 [data-md-color-scheme="default"] .md-post--excerpt::after,
 [data-md-color-scheme="light"]   .md-post--excerpt::after{
   content: "" !important;
   position: absolute !important;
-  inset: -40% -20% !important;
+  inset: -40% -30% !important;
   z-index: 2 !important;
   pointer-events: none !important;
 
   background:
-    /* 斜向走光（會在 hover 移動） */
-    linear-gradient(120deg,
-      rgba(255,255,255,0.0) 0%,
-      rgba(122,211,255,0.10) 35%,
-      rgba(255,255,255,0.0) 62%
+    /* 干涉膜彩色薄霧 */
+    linear-gradient(115deg,
+      rgba(255,  0,180,0.10),
+      rgba(  0,220,255,0.10),
+      rgba(120,255,120,0.08),
+      rgba(255,220,  0,0.08),
+      rgba(160, 80,255,0.10)
     ),
-    /* HUD 細格 */
-    repeating-linear-gradient(
-      0deg,
-      rgba(15,23,42,0.030) 0 1px,
-      transparent 1px 10px
-    ),
-    repeating-linear-gradient(
-      90deg,
-      rgba(122,211,255,0.045) 0 1px,
-      transparent 1px 18px
-    );
+    /* 很淡的掃描線 */
+    repeating-linear-gradient(180deg, rgba(15,23,42,0.030) 0 1px, transparent 1px 8px);
 
-  mix-blend-mode: multiply;
+  background-size: 180% 180%, auto;
+  background-position: 0% 30%, 0 0;
+
+  mix-blend-mode: overlay;
   opacity: 0.22;
-  transform: translateX(-18%) translateY(0) rotate(0deg);
-  transition: transform 520ms ease, opacity 180ms ease !important;
+
+  transform: translateX(-10%) translateY(0);
+  transition: transform 600ms ease, opacity 180ms ease, background-position 600ms ease !important;
 }
 
-/* 4) hover：浮起 + 邊框/背光變強 + 走光掃過 */
+/* hover：浮起 + 更亮背光 + 干涉膜漂移 + 角落微放大 */
 [data-md-color-scheme="default"] .md-post--excerpt:hover,
 [data-md-color-scheme="light"]   .md-post--excerpt:hover{
   transform: translateY(-4px) !important;
   filter: drop-shadow(0 0 18px rgba(122,211,255,0.12)) !important;
 
   box-shadow:
-    inset 0 0 0 1px rgba(255,255,255,0.78),
-    inset 0 0 0 2px rgba(15,23,42,0.07),
+    inset 0 0 0 1px rgba(255,255,255,0.90),
+    inset 0 0 0 2px rgba(15,23,42,0.10),
     0 26px 70px rgba(15,23,42,0.14),
-    0 0 1.1rem rgba(122,211,255,0.18),
-    0 0 3.0rem rgba(122,211,255,0.22) !important;
+    0 0 1.2rem rgba(122,211,255,0.18),
+    0 0 3.2rem var(--holo-glow) !important;
 }
-
 [data-md-color-scheme="default"] .md-post--excerpt:hover::before,
 [data-md-color-scheme="light"]   .md-post--excerpt:hover::before{
+  transform: scale(1.02) !important;
+  filter: drop-shadow(0 0 14px rgba(122,211,255,0.20)) !important;
   opacity: 1 !important;
-  transform: scale(1.01) !important;
-  filter: drop-shadow(0 0 14px rgba(122,211,255,0.18)) !important;
 }
-
 [data-md-color-scheme="default"] .md-post--excerpt:hover::after,
 [data-md-color-scheme="light"]   .md-post--excerpt:hover::after{
   opacity: 0.30;
-  transform: translateX(18%) translateY(-2%) rotate(0deg);
+  transform: translateX(12%) translateY(-2%);
+  background-position: 100% 50%, 0 0;
 }
 
-/* 5) 文字配色：冷黑 + 強調藍 */
-[data-md-color-scheme="default"] .md-post__meta,
-[data-md-color-scheme="light"]   .md-post__meta{
-  color: var(--hud-muted) !important;
-}
-
-[data-md-color-scheme="default"] .md-post__content h2 a,
-[data-md-color-scheme="light"]   .md-post__content h2 a{
-  color: var(--hud-text) !important;
-}
-
-[data-md-color-scheme="default"] .md-post__content h2 a:hover,
-[data-md-color-scheme="light"]   .md-post__content h2 a:hover{
-  color: var(--hud-accent) !important;
-}
-
-/* 6) focus-within：鍵盤導覽也有面板高亮 */
+/* focus-within：鍵盤導覽同樣高亮 */
 [data-md-color-scheme="default"] .md-post--excerpt:focus-within,
 [data-md-color-scheme="light"]   .md-post--excerpt:focus-within{
   transform: translateY(-3px) !important;
   box-shadow:
-    inset 0 0 0 1px rgba(255,255,255,0.78),
-    inset 0 0 0 2px rgba(15,23,42,0.07),
+    inset 0 0 0 1px rgba(255,255,255,0.90),
+    inset 0 0 0 2px rgba(15,23,42,0.10),
     0 26px 70px rgba(15,23,42,0.14),
-    0 0 1.1rem rgba(122,211,255,0.18),
-    0 0 3.0rem rgba(122,211,255,0.22) !important;
+    0 0 1.2rem rgba(122,211,255,0.18),
+    0 0 3.2rem var(--holo-glow) !important;
 }
 
-/* 7) 降低動態偏好 */
+/* 文字：冷黑；標題 hover 走藍 */
+[data-md-color-scheme="default"] .md-post__meta,
+[data-md-color-scheme="light"]   .md-post__meta{
+  color: rgba(15,23,42,0.58) !important;
+}
+[data-md-color-scheme="default"] .md-post__content h2 a,
+[data-md-color-scheme="light"]   .md-post__content h2 a{
+  color: rgba(15,23,42,0.88) !important;
+}
+[data-md-color-scheme="default"] .md-post__content h2 a:hover,
+[data-md-color-scheme="light"]   .md-post__content h2 a:hover{
+  color: var(--holo-accent) !important;
+}
+
+/* 降低動態偏好 */
 @media (prefers-reduced-motion: reduce){
   [data-md-color-scheme="default"] .md-post--excerpt,
   [data-md-color-scheme="light"]   .md-post--excerpt,
