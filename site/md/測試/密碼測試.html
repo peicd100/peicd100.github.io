@@ -387,11 +387,11 @@ document.addEventListener("DOMContentLoaded", function() {
    句子 TTS：文字 + 按鈕（避免 st/nd 跑位）
    ========================= */
 :root{
-  --tts-accent: var(--md-primary-fg-color, #d6b77c);
+  --tts-accent: var(--md-primary-fg-color, #7ad3ff);
   --tts-accent-strong: var(--md-accent-fg-color, var(--tts-accent));
   --tts-surface: var(--peicd-card, rgba(22, 28, 38, 0.96));
   --tts-surface-strong: var(--peicd-surface-2, rgba(20, 25, 35, 0.98));
-  --tts-border: rgba(214, 183, 124, 0.32);
+  --tts-border: rgba(122, 211, 255, 0.32);
   --tts-border-soft: rgba(255, 255, 255, 0.08);
   --tts-muted: rgba(255, 255, 255, 0.6);
   --tts-shadow: 0 18px 40px rgba(0, 0, 0, 0.35);
@@ -440,15 +440,15 @@ document.addEventListener("DOMContentLoaded", function() {
 }
 .tts-btn:hover{
   color: var(--md-primary-fg-color);
-  background: rgba(214, 183, 124, 0.12);
+  background: rgba(122, 211, 255, 0.12);
   border-color: var(--tts-border);
   transform: translateY(-1px);
   box-shadow: 0 10px 22px rgba(0, 0, 0, 0.2);
 }
 .tts-btn[aria-pressed="true"]{
   color: var(--md-primary-fg-color);
-  background: rgba(214, 183, 124, 0.16);
-  border-color: rgba(214, 183, 124, 0.5);
+  background: rgba(122, 211, 255, 0.16);
+  border-color: rgba(122, 211, 255, 0.5);
   opacity: 0.95;
 }
 .tts-btn:focus-visible{
@@ -705,7 +705,7 @@ document.addEventListener("DOMContentLoaded", function() {
 }
 .tts-toggle-btn:hover{
   border-color: var(--tts-border);
-  background: rgba(214, 183, 124, 0.08);
+  background: rgba(122, 211, 255, 0.08);
 }
 .tts-toggle-btn:focus-visible{
   outline: 2px solid var(--md-accent-fg-color, currentColor);
@@ -745,7 +745,7 @@ document.addEventListener("DOMContentLoaded", function() {
 }
 .tts-dd-btn:hover{
   border-color: var(--tts-border);
-  background: rgba(214, 183, 124, 0.08);
+  background: rgba(122, 211, 255, 0.08);
 }
 .tts-dd-btn:focus-visible{
   outline: 2px solid var(--md-accent-fg-color, currentColor);
@@ -782,11 +782,11 @@ document.addEventListener("DOMContentLoaded", function() {
 }
 .tts-dd-item:last-child{ border-bottom: 0; }
 .tts-dd-item:hover{
-  background: rgba(214, 183, 124, 0.08);
+  background: rgba(122, 211, 255, 0.08);
 }
 .tts-dd-item.active{
-  background: rgba(214, 183, 124, 0.14);
-  outline: 1px solid rgba(214, 183, 124, 0.35);
+  background: rgba(122, 211, 255, 0.14);
+  outline: 1px solid rgba(122, 211, 255, 0.35);
 }
 
 /* dracula：更黑（暗色不動） */
@@ -7148,7 +7148,7 @@ is now available!
 
 
 
-<div id="mkdocs-encrypted-content" style="display:none">DyckUcBkai5oB09dq8RJPQ==;/WzRqopNGL9kPAY6/mX8GKt1YCe8984MWiPumgAmdQsJBfTgb/K2TpwFlvxf7z//Img3X6/RbxDPpNxqanZd/O90txpEutXTm9PNa7kiv6ZALJUpY9I/dPwRe1jpKYPiSs8c1k4FRjxquCoMf5fMjFA8TO/2veiotH2+nYsGV57NOIyYmKv1imSBWvI7bEshBpUQzrZcvJDLgsGm0u2BJRaTJl2HD29BVwGGGXVZorpLKBm8dtht/5XMdq42wwOklX519ke+FbiPFNWpxM/OFvDqEw5cEvlHzi8DMpPQq6AxMHMgFYSLR/CCiyecIQjOq3CIWF/TR1QLvHS4tvtGdS/DcxsZNSgGVed8yHQQ66VbK00PGd/RIT84WgWIPCkbzUC2TLk3JUy1y1nk2dkUYNvG9abWDwpzNjDwXGHjoc7C6I7fgKYJwnMHEwBbpzT6AYjWGKYqeWwQpwPeuiNaTEG5u3leVNs2Ngt+tHbKVw30o7asczyUh0V7pzI9fKe3vTzpaxMcqQKaiGOXt3n/G5LL/DVfBpX8J4VZdU/K//k=</div>
+<div id="mkdocs-encrypted-content" style="display:none">b6nfykN4v23WFzpEB55dNQ==;xlSXWD/CHRnUw4jummZc6+mjMuyoABCpvlSmTPskGvQHuvmt0wc4EwBoqv+Kr8Guf2ZjOuNQDeAYTq96kSnjB5eQ/rMC4Y9fyNWB5CeP9/RtctAuWAtqkNxhCoxi326kHr5l81REbYp23LH9a4+hs4MeudMDV293wA+5jrxygFb46vj8YaAPUEyAwPrtfbg2dB8vXgKrDgMwHdMkljer1uu9G/77a+cjqycP2SFDWudLeZtOA0g/Q8kgydJydKxhtZg7I330a+4rbThRgd3Ieti+UaYijhtv3yKyrcrDQ3h5sxSX7J+iCqGZIxyUJRAHeK3mi7oHGA62sC0rh28TU3X+p50lynUFv4Yx5GEdQWmRRMdST0L/d9fRKTBpFapG/2x4vMRBi2Tb0q2fe+IdGhJ2Raq9qGnJdoTu5P+2z2GdqMRG/c2UwqVIuS18xrS+JP/VO0cP/7954BWdYqOdMBKgWkdjySG3oKEaPCF/AceDYGrJ1Zv/J6In78LMM5nvi4b2v7HfcZ9bY6w2qsk16xeIquJE1EhPnHRi4wvxfEc=</div>
 <div id="mkdocs-decrypted-content" style="display:none">
     <form id="mkdocs-decrypt-form" class="md-content__inner md-typeset">
         <h1>解鎖筆記</h1>
@@ -7163,7 +7163,7 @@ is now available!
 var encryptcontent_id = "encryptcontent_1";
 var encryptcontent_path = "md/%E6%B8%AC%E8%A9%A6/%E5%AF%86%E7%A2%BC%E6%B8%AC%E8%A9%A6.html";
 var decryption_failure_message = "\u932f\u4e86";
-var encryptcontent_keystore = ["mIfaTzAMXBENB6ZVPSmB3A==;DZxnJCX3vURzZMd2h5wwItStlYUFiaKe/WNSlZNstZ3Hq/QLptMG+PLiUET8ezhwyXjakoCtYjg+a6EOX2hun/GAjda52xlEOVg7/ADj+RM4nDXUUPNV7shKB/IbHrEl;IvAGjvg4rx++rSZ+bYnJkg=="];
+var encryptcontent_keystore = ["vXtuzNzovDEDz0Uo65b2Jw==;a5LIOxe938cMK84Tb7FT68G70qgEcRjVvRo+CZdc6pOsTZogHVmncPcjjSrQFaGQG5jnnuHfH2cN5wrO1XyhT8WWfllhYJA1FVj/1iOh4z9j4tdrqa5rib3D2zt8KFoZ;IvAGjvg4rx++rSZ+bYnJkg=="];
 var encryptcontent_obfuscate = 0;
 
 const encryptcontent_event = new Event("encryptcontent_event");

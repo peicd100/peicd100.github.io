@@ -1,6 +1,6 @@
 from pathlib import Path
 
-p = Path(r"docs\theme\assets\pymdownx-extras\自定義.css")
+p = Path(r"docs\theme\tts.html")
 css = p.read_text(encoding="utf-8")
 
 repl = {
