@@ -384,7 +384,7 @@ body {
 [data-md-color-scheme="slate"] .md-clipboard,
 [data-md-color-scheme="dracula"] .md-clipboard {
     background: rgba(255, 255, 255, 0.06) !important;
-    color: var(--md-default-fg-color) !important;
+    color: var(--peicd-nav-text) !important;
     border: 1px solid rgba(255, 255, 255, 0.12) !important;
     box-shadow: none !important;
 }
@@ -980,4 +980,487 @@ body {
         radial-gradient(1200px 800px at 12% -20%, rgba(214, 183, 124, 0.08), transparent 60%),
         radial-gradient(900px 600px at 95% 0%, rgba(107, 92, 170, 0.16), transparent 55%),
         var(--md-default-bg-color);
+}
+
+/* ========================================================================== */
+/* PEICD：高科技「角落選取框」v3（僅四角、全不透明、Hover 動畫）                    */
+/* - 圖片：紫色角落 + 背光（Hover 動畫；角落大小與程式碼一致）                     */
+/* - 程式碼：藍色角落 + 背光（Hover 動畫）                                       */
+/* - 左/右側邊欄：Hover（淺） / Active（深），僅四角（無背景、無邊框、無圓角）     */
+/* ========================================================================== */
+
+:root{
+  /* 角落尺寸（兩者共用） */
+  --peicd-sel-corner: 10px;
+  --peicd-sel-line: 2px;
+
+  /* Image (purple) */
+  --peicd-img-accent: rgb(191, 149, 249);
+  --peicd-img-glow: rgba(191, 149, 249, 0.40);
+
+  /* Code (blue) */
+  --peicd-code-accent: rgb(122, 211, 255);
+  --peicd-code-glow: rgba(122, 211, 255, 0.38);
+
+  /* Sidebar corners (purple, fully opaque) */
+  --peicd-nav-hover-corner: rgb(170, 238, 255);
+  --peicd-nav-group-corner: rgb(122, 211, 255);
+  --peicd-nav-active-corner: rgb(80, 214, 255);
+
+  --peicd-nav-hover-glow: rgba(80, 214, 255, 0.18);
+  --peicd-nav-active-glow: rgba(80, 214, 255, 0.26);
+
+  /* Sidebar text (blue) */
+  --peicd-nav-text: rgb(80, 214, 255);
+}
+
+/* -------------------------------------------------------------------------- */
+/* 0) 全面關閉圓角（避免看不出角落選取框）                                        */
+/* -------------------------------------------------------------------------- */
+
+.md-sidebar--primary .md-nav__link,
+.md-sidebar--secondary .md-nav__link,
+.md-sidebar--primary .md-nav__title,
+.md-sidebar--secondary .md-nav__title,
+.md-typeset .highlight,
+.md-typeset .codehilite,
+.md-typeset .highlighttable,
+.md-typeset .highlight span.filename,
+.md-typeset img:not(.twemoji){
+  border-radius: 0 !important;
+}
+
+/* -------------------------------------------------------------------------- */
+/* 1) 程式碼：只保留四角（無背景、無四邊框），並加 Hover 動畫                        */
+/* -------------------------------------------------------------------------- */
+
+.md-typeset :is(.highlight, .codehilite, .highlighttable){
+  position: relative;
+  z-index: 0;
+  isolation: isolate;
+  margin: 0 !important;          /* 不向外留白 */
+  padding: 0 !important;
+  overflow: visible;
+  border: 2px solid rgba(122, 211, 255, 0.55) !important; /* 細邊框（程式碼） */
+  background: none !important;   /* 不加任何額外背景色 */
+
+  /* 背光與動態 */
+  box-shadow:
+    0 0 0.7rem rgba(122, 211, 255, 0.28),
+    0 0 2.2rem var(--peicd-code-glow);
+
+  transition:
+    transform 180ms ease,
+    box-shadow 180ms ease,
+    filter 180ms ease;
+  will-change: transform;
+}
+
+.md-typeset :is(.highlight, .codehilite, .highlighttable)::after{
+  transform: translateZ(0) scale(1);
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 80;
+  pointer-events: none;
+
+  background-image:
+    linear-gradient(var(--peicd-code-accent) 0 0),
+    linear-gradient(var(--peicd-code-accent) 0 0),
+    linear-gradient(var(--peicd-code-accent) 0 0),
+    linear-gradient(var(--peicd-code-accent) 0 0),
+    linear-gradient(var(--peicd-code-accent) 0 0),
+    linear-gradient(var(--peicd-code-accent) 0 0),
+    linear-gradient(var(--peicd-code-accent) 0 0),
+    linear-gradient(var(--peicd-code-accent) 0 0);
+
+  background-repeat: no-repeat;
+  background-position:
+    left top, left top,
+    right top, right top,
+    left bottom, left bottom,
+    right bottom, right bottom;
+  background-size:
+    var(--peicd-sel-corner) var(--peicd-sel-line),
+    var(--peicd-sel-line) var(--peicd-sel-corner),
+    var(--peicd-sel-corner) var(--peicd-sel-line),
+    var(--peicd-sel-line) var(--peicd-sel-corner),
+    var(--peicd-sel-corner) var(--peicd-sel-line),
+    var(--peicd-sel-line) var(--peicd-sel-corner),
+    var(--peicd-sel-corner) var(--peicd-sel-line),
+    var(--peicd-sel-line) var(--peicd-sel-corner);
+
+  opacity: 1;                    /* 四角 100% 不透明 */
+  transition: transform 180ms ease, filter 180ms ease;
+filter: drop-shadow(0 0 10px rgba(0,0,0,0));
+}
+
+.md-typeset :is(.highlight, .codehilite, .highlighttable):hover{
+  transform: translateY(-2px);
+  box-shadow:
+    0 0 1.0rem rgba(122, 211, 255, 0.34),
+    0 0 2.8rem var(--peicd-code-glow);
+}
+
+.md-typeset :is(.highlight, .codehilite, .highlighttable):hover::after{
+  transform: translateZ(0) scale(1.015);
+  filter: drop-shadow(0 0 14px var(--peicd-code-glow));
+}
+
+/* 讓角落覆蓋在標題/程式碼之上（避免標題背景吃掉角落） */
+.md-typeset :is(.highlight, .codehilite, .highlighttable) > *{
+  position: relative;
+  z-index: 0;
+}
+
+
+/* 確保角落永遠在最上層（避免 hover 動畫時被內部背景蓋住） */
+.md-typeset :is(.highlight, .codehilite, .highlighttable) :is(pre, code, table, tbody, tr, td, span.filename){
+  position: relative;
+  z-index: 0;
+}
+.md-typeset :is(.highlight, .codehilite, .highlighttable) :is(button, .md-clipboard){
+  position: relative;
+  z-index: 90;
+}
+
+/* 移除程式碼區塊內部 <pre> 預設外邊距（避免角落下方出現空隙） */
+.md-typeset :is(.highlight, .codehilite, .highlighttable) pre{
+  margin: 0 !important;
+}
+
+/* 程式碼上方標籤（例如「程式碼」）：不額外加背景或邊線 */
+.md-typeset .highlight span.filename{
+  margin: 0 !important;            /* 不向外留白（移除預設 1em 上邊距） */
+  border: 0 !important;
+  background: transparent !important;
+  color: var(--peicd-nav-text) !important;
+  letter-spacing: .06em;
+}
+
+/* -------------------------------------------------------------------------- */
+/* 2) 圖片：只保留四角（無背景、無四邊框），並加 Hover 動畫                          */
+/* -------------------------------------------------------------------------- */
+
+/* fallback：無 :has 支援時，使用 border-image 只畫四角 */
+.md-typeset img:not(.twemoji){
+  box-sizing: border-box;
+  border: 6px solid transparent;
+  border-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2264%22%20height%3D%2264%22%20viewBox%3D%220%200%2064%2064%22%3E%0A%20%20%3Cg%20fill%3D%22none%22%20stroke%3D%22rgb%28191%2C149%2C249%29%22%20stroke-opacity%3D%221%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22square%22%3E%0A%20%20%20%20%3Cpath%20d%3D%22M2%202%20H12%20M2%202%20V12%22%20%2F%3E%0A%20%20%20%20%3Cpath%20d%3D%22M62%202%20H52%20M62%202%20V12%22%20%2F%3E%0A%20%20%20%20%3Cpath%20d%3D%22M2%2062%20H12%20M2%2062%20V52%22%20%2F%3E%0A%20%20%20%20%3Cpath%20d%3D%22M62%2062%20H52%20M62%2062%20V52%22%20%2F%3E%0A%20%20%3C%2Fg%3E%0A%3C%2Fsvg%3E") 16 / 6px / 0 stretch;
+
+  box-shadow: 0 0 1.4rem var(--peicd-img-glow);
+  transition: transform 180ms ease, filter 180ms ease, box-shadow 180ms ease;
+  will-change: transform;
+}
+
+.md-typeset img:not(.twemoji):hover{
+  transform: translateY(-2px);
+  box-shadow: 0 0 2.0rem var(--peicd-img-glow);
+  filter: drop-shadow(0 0 16px var(--peicd-img-glow));
+}
+
+/* 主要方案：支援 :has 時，改用與程式碼相同的角落尺寸（確保角落大小一致） */
+@supports selector(p:has(> img)){
+  .md-typeset img:not(.twemoji){
+  border: 0 !important;
+  border-image: none !important;
+
+  /* 由父層(p/figure)負責角落、細邊框與動畫，避免 img 本身造成留白 */
+  box-shadow: none !important;
+  filter: none !important;
+  transform: none !important;
+  transition: none !important;
+
+  display: block;
+  margin: 0 !important; /* 圖片不向外留白 */
+  max-width: 100%;
+  height: auto;
+}
+
+  /* 只處理「單獨成段」的圖片，避免把含文字的段落也套上整段角落 */
+.md-typeset p:has(> img:not(.twemoji):only-child),
+.md-typeset figure:has(> img:not(.twemoji)){
+  position: relative;
+  display: table;              /* shrink-to-fit，便於水平置中 */
+  margin: 0 auto !important;   /* 圖片置中，且不向外留白 */
+  padding: 0 !important;
+
+  /* 細邊框（圖片） */
+  border: 2px solid rgba(191, 149, 249, 0.55) !important;
+
+  /* 背光與動態 */
+  box-shadow: 0 0 1.4rem var(--peicd-img-glow);
+  transition:
+    transform 180ms ease,
+    box-shadow 180ms ease,
+    filter 180ms ease;
+  will-change: transform;
+}
+
+.md-typeset p:has(> img:not(.twemoji):only-child):hover,
+.md-typeset figure:has(> img:not(.twemoji)):hover{
+  transform: translateY(-2px);
+  box-shadow: 0 0 2.0rem var(--peicd-img-glow);
+  filter: drop-shadow(0 0 16px var(--peicd-img-glow));
+}
+
+  .md-typeset p:has(> img:not(.twemoji):only-child)::after,
+  .md-typeset figure:has(> img:not(.twemoji))::after{
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+    pointer-events: none;
+
+    background-image:
+      linear-gradient(var(--peicd-img-accent) 0 0),
+      linear-gradient(var(--peicd-img-accent) 0 0),
+      linear-gradient(var(--peicd-img-accent) 0 0),
+      linear-gradient(var(--peicd-img-accent) 0 0),
+      linear-gradient(var(--peicd-img-accent) 0 0),
+      linear-gradient(var(--peicd-img-accent) 0 0),
+      linear-gradient(var(--peicd-img-accent) 0 0),
+      linear-gradient(var(--peicd-img-accent) 0 0);
+
+    background-repeat: no-repeat;
+    background-position:
+      left top, left top,
+      right top, right top,
+      left bottom, left bottom,
+      right bottom, right bottom;
+    background-size:
+      var(--peicd-sel-corner) var(--peicd-sel-line),
+      var(--peicd-sel-line) var(--peicd-sel-corner),
+      var(--peicd-sel-corner) var(--peicd-sel-line),
+      var(--peicd-sel-line) var(--peicd-sel-corner),
+      var(--peicd-sel-corner) var(--peicd-sel-line),
+      var(--peicd-sel-line) var(--peicd-sel-corner),
+      var(--peicd-sel-corner) var(--peicd-sel-line),
+      var(--peicd-sel-line) var(--peicd-sel-corner);
+
+    opacity: 1;
+    transition: transform 180ms ease, filter 180ms ease;
+    transform: scale(1);
+    filter: drop-shadow(0 0 10px rgba(0,0,0,0));
+  }
+
+  .md-typeset p:has(> img:not(.twemoji):only-child):hover::after,
+  .md-typeset figure:has(> img:not(.twemoji)):hover::after{
+    transform: translateZ(0) scale(1.015);
+  filter: drop-shadow(0 0 16px var(--peicd-img-glow));
+  }
+}
+
+/* -------------------------------------------------------------------------- */
+/* 3) 左/右側邊欄：僅四角（無背景、無四邊框、無圓角）                                */
+/* -------------------------------------------------------------------------- */
+
+.md-sidebar--primary :is(.md-nav__link, .md-nav__title),
+.md-sidebar--secondary :is(.md-nav__link, .md-nav__title){
+  box-sizing: border-box;
+  position: relative;
+  border-radius: 0 !important;
+  border: 0 !important;              /* 不要上下左右邊框 */
+  background: none !important;       /* 不要背景色 */
+  transition:
+    box-shadow 140ms ease,
+    color 140ms ease;
+}
+
+/* Hover：較淺（只有四角） */
+.md-sidebar--primary :is(.md-nav__link, .md-nav__title):hover,
+.md-sidebar--secondary :is(.md-nav__link, .md-nav__title):hover{
+  box-shadow: 0 0 0.9rem var(--peicd-nav-hover-glow) !important;
+  background:
+    linear-gradient(var(--peicd-nav-hover-corner) 0 0),
+    linear-gradient(var(--peicd-nav-hover-corner) 0 0),
+    linear-gradient(var(--peicd-nav-hover-corner) 0 0),
+    linear-gradient(var(--peicd-nav-hover-corner) 0 0),
+    linear-gradient(var(--peicd-nav-hover-corner) 0 0),
+    linear-gradient(var(--peicd-nav-hover-corner) 0 0),
+    linear-gradient(var(--peicd-nav-hover-corner) 0 0),
+    linear-gradient(var(--peicd-nav-hover-corner) 0 0) !important;
+  background-repeat: no-repeat !important;
+  background-position:
+    left top, left top,
+    right top, right top,
+    left bottom, left bottom,
+    right bottom, right bottom !important;
+  background-size:
+    var(--peicd-sel-corner) var(--peicd-sel-line),
+    var(--peicd-sel-line) var(--peicd-sel-corner),
+    var(--peicd-sel-corner) var(--peicd-sel-line),
+    var(--peicd-sel-line) var(--peicd-sel-corner),
+    var(--peicd-sel-corner) var(--peicd-sel-line),
+    var(--peicd-sel-line) var(--peicd-sel-corner),
+    var(--peicd-sel-corner) var(--peicd-sel-line),
+    var(--peicd-sel-line) var(--peicd-sel-corner) !important;
+
+  color: var(--peicd-nav-text) !important;
+}
+
+/* 父層被展開/active：中等深度（分類標題用） */
+.md-sidebar--primary .md-nav__item--active > :is(.md-nav__link, .md-nav__title):not(.md-nav__link--active),
+.md-sidebar--secondary .md-nav__item--active > :is(.md-nav__link, .md-nav__title):not(.md-nav__link--active){
+  box-shadow: 0 0 1.0rem rgba(80, 214, 255, 0.20) !important;
+  background:
+    linear-gradient(var(--peicd-nav-group-corner) 0 0),
+    linear-gradient(var(--peicd-nav-group-corner) 0 0),
+    linear-gradient(var(--peicd-nav-group-corner) 0 0),
+    linear-gradient(var(--peicd-nav-group-corner) 0 0),
+    linear-gradient(var(--peicd-nav-group-corner) 0 0),
+    linear-gradient(var(--peicd-nav-group-corner) 0 0),
+    linear-gradient(var(--peicd-nav-group-corner) 0 0),
+    linear-gradient(var(--peicd-nav-group-corner) 0 0) !important;
+  background-repeat: no-repeat !important;
+  background-position:
+    left top, left top,
+    right top, right top,
+    left bottom, left bottom,
+    right bottom, right bottom !important;
+  background-size:
+    var(--peicd-sel-corner) var(--peicd-sel-line),
+    var(--peicd-sel-line) var(--peicd-sel-corner),
+    var(--peicd-sel-corner) var(--peicd-sel-line),
+    var(--peicd-sel-line) var(--peicd-sel-corner),
+    var(--peicd-sel-corner) var(--peicd-sel-line),
+    var(--peicd-sel-line) var(--peicd-sel-corner),
+    var(--peicd-sel-corner) var(--peicd-sel-line),
+    var(--peicd-sel-line) var(--peicd-sel-corner) !important;
+
+  color: var(--peicd-nav-text) !important;
+}
+
+/* 真正 active（當前頁面/TOC 項目）：最深（只有四角） */
+.md-sidebar--primary .md-nav__link--active,
+.md-sidebar--secondary .md-nav__link--active{
+  box-shadow: 0 0 1.2rem var(--peicd-nav-active-glow) !important;
+  background:
+    linear-gradient(var(--peicd-nav-active-corner) 0 0),
+    linear-gradient(var(--peicd-nav-active-corner) 0 0),
+    linear-gradient(var(--peicd-nav-active-corner) 0 0),
+    linear-gradient(var(--peicd-nav-active-corner) 0 0),
+    linear-gradient(var(--peicd-nav-active-corner) 0 0),
+    linear-gradient(var(--peicd-nav-active-corner) 0 0),
+    linear-gradient(var(--peicd-nav-active-corner) 0 0),
+    linear-gradient(var(--peicd-nav-active-corner) 0 0) !important;
+  background-repeat: no-repeat !important;
+  background-position:
+    left top, left top,
+    right top, right top,
+    left bottom, left bottom,
+    right bottom, right bottom !important;
+  background-size:
+    var(--peicd-sel-corner) var(--peicd-sel-line),
+    var(--peicd-sel-line) var(--peicd-sel-corner),
+    var(--peicd-sel-corner) var(--peicd-sel-line),
+    var(--peicd-sel-line) var(--peicd-sel-corner),
+    var(--peicd-sel-corner) var(--peicd-sel-line),
+    var(--peicd-sel-line) var(--peicd-sel-corner),
+    var(--peicd-sel-corner) var(--peicd-sel-line),
+    var(--peicd-sel-line) var(--peicd-sel-corner) !important;
+
+  color: var(--peicd-nav-text) !important;
+  font-weight: 600;
+}
+
+/* ========================================================================== */
+/* PEICD：高科技「角落選取框」v8 修正                                           */
+/* 1) 修正 /// collapse-code（pymdownx）覆蓋程式碼框角落的層級問題               */
+/* 2) 左側導覽選取文字顏色強制為藍色（提高權重 + !important）                     */
+/* ========================================================================== */
+
+/* --- (1) collapse-code：把「選取框」提升到 wrapper 層，永遠蓋過 footer 漸層 --- */
+.md-typeset .collapse-code{
+  position: relative;
+  overflow: visible !important;
+  border: 2px solid rgba(122, 211, 255, 0.95);
+  box-shadow: 0 0 1.0rem rgba(122, 211, 255, 0.22), 0 0 2.8rem var(--peicd-code-glow);
+  transition: transform 180ms ease, box-shadow 180ms ease, filter 180ms ease;
+  will-change: transform;
+}
+
+.md-typeset .collapse-code:hover{
+  transform: translateY(-2px);
+  box-shadow:
+    0 0 1.2rem rgba(122, 211, 255, 0.28),
+    0 0 3.2rem rgba(122, 211, 255, 0.30);
+}
+
+/* 取消內層 highlight 自己的框（避免雙重框線/雙重角落），讓 wrapper 統一負責 */
+.md-typeset .collapse-code :is(div.highlight, div.codehilite, .highlighttable){
+  border: none !important;
+  box-shadow: none !important;
+  transform: none !important;
+  margin: 0 !important;
+}
+
+.md-typeset .collapse-code :is(div.highlight, div.codehilite, .highlighttable)::after{
+  content: none !important;
+}
+
+/* wrapper 的四角，z-index 放最上層，覆蓋 code-footer 漸層 */
+.md-typeset .collapse-code::after{
+  transform: translateZ(0) scale(1);
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 200;
+  pointer-events: none;
+
+  background-image:
+    linear-gradient(var(--peicd-code-accent) 0 0),
+    linear-gradient(var(--peicd-code-accent) 0 0),
+    linear-gradient(var(--peicd-code-accent) 0 0),
+    linear-gradient(var(--peicd-code-accent) 0 0),
+    linear-gradient(var(--peicd-code-accent) 0 0),
+    linear-gradient(var(--peicd-code-accent) 0 0),
+    linear-gradient(var(--peicd-code-accent) 0 0),
+    linear-gradient(var(--peicd-code-accent) 0 0);
+
+  background-repeat: no-repeat;
+  background-position:
+    left top, left top,
+    right top, right top,
+    left bottom, left bottom,
+    right bottom, right bottom !important;
+
+  background-size:
+    var(--peicd-sel-corner) var(--peicd-sel-line),
+    var(--peicd-sel-line) var(--peicd-sel-corner),
+    var(--peicd-sel-corner) var(--peicd-sel-line),
+    var(--peicd-sel-line) var(--peicd-sel-corner),
+    var(--peicd-sel-corner) var(--peicd-sel-line),
+    var(--peicd-sel-line) var(--peicd-sel-corner),
+    var(--peicd-sel-corner) var(--peicd-sel-line),
+    var(--peicd-sel-line) var(--peicd-sel-corner);
+
+  opacity: 1;
+  transition: transform 180ms ease, filter 180ms ease;
+  filter: drop-shadow(0 0 10px rgba(0,0,0,0));
+}
+
+.md-typeset .collapse-code:hover::after{
+  transform: translateZ(0) scale(1.02);
+  filter: drop-shadow(0 0 14px rgba(122, 211, 255, 0.55));
+}
+
+/* 保持 footer 功能可用，但不再壓住角落（角落在 wrapper 最上層） */
+.md-typeset .collapse-code .code-footer{
+  z-index: 50;
+}
+
+/* --- (2) 左/右側邊欄：選取/hover 文字顏色強制為藍色 --- */
+.md-sidebar--primary .md-nav__link:hover,
+.md-sidebar--primary .md-nav__link--active,
+.md-sidebar--primary .md-nav__item--active > .md-nav__link,
+.md-sidebar--secondary .md-nav__link:hover,
+.md-sidebar--secondary .md-nav__link--active,
+.md-sidebar--secondary .md-nav__item--active > .md-nav__link{
+  color: var(--peicd-nav-text) !important;
+}
+
+.md-sidebar--primary :is(.md-nav__link--active, .md-nav__item--active > .md-nav__link) :is(.md-ellipsis, span, strong),
+.md-sidebar--secondary :is(.md-nav__link--active, .md-nav__item--active > .md-nav__link) :is(.md-ellipsis, span, strong){
+  color: var(--peicd-nav-text) !important;
 }
