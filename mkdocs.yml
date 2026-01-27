@@ -98,7 +98,7 @@ plugins:
 
 extra_css:
   - assets/pymdownx-extras/extra-8611f6c398.css  # 自定義 CSS 文件
-  # - assets/pymdownx-extras/自定義.css  # 自定義 CSS 文件
+  - assets/pymdownx-extras/自定義.css  # 自定義 CSS 文件
 
 extra_javascript:
   - https://unpkg.com/mermaid@10.6.1/dist/mermaid.min.js  # Mermaid 圖表支持
