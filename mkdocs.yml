@@ -12,8 +12,8 @@ theme:
   favicon: 'logo/logo.png'  # 設置瀏覽器標籤上的圖標
   palette:
     scheme: slate  # 使用 dracula 色彩方案，提供深色背景 slate
-    primary: deep purple  # 設置主色調為深紫色
-    accent: deep purple  # 設置輔助色調為深紫色
+    primary: cyan  # 設置主色調為深紫色
+    accent: cyan  # 設置輔助色調為深紫色
   features:
     - navigation.footer
     - navigation.indexes

@@ -1,40 +1,43 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;500;600;700&display=swap");
 
-/* === 引用樣式(>) ============================================== */
+/* ==========================================================================
+   Blockquote（引用 >）樣式
+   - 分為深色主題（dracula）與一般情況（預設/亮色）
+   - 你這裡用 4 邊框線把引用框起來（而不是常見的左側粗線）
+   ========================================================================== */
+
+/* 深色主題：dracula 時的 blockquote */
 [data-md-color-scheme=dracula] blockquote {
-    border-left: 0.1px solid var(--md-primary-fg-color) !important;
-    border-right: 0.1px solid var(--md-primary-fg-color) !important;
-    border-top: 0.1px solid var(--md-primary-fg-color) !important;
-    border-bottom: 0.1px solid var(--md-primary-fg-color) !important;
-    padding-right: 15px;
-    /*增加左側內邊距，讓文字遠離邊框 */
-    /* border-left: none !important; 隱藏左邊框 */
-    color: #ffffff !important;
-    /* 設置文字顏色為淺灰色 */
-    /* 左边框为淺紫色 */
+    border-left: 0.1px solid var(--md-primary-fg-color) !important;  /* 左框線：主色 */
+    border-right: 0.1px solid var(--md-primary-fg-color) !important; /* 右框線：主色 */
+    border-top: 0.1px solid var(--md-primary-fg-color) !important;   /* 上框線：主色 */
+    border-bottom: 0.1px solid var(--md-primary-fg-color) !important;/* 下框線：主色 */
+    padding-right: 15px;                                            /* 右側內距：讓文字不要貼框 */
+    color: #ffffff !important;                                       /* 文字顏色：白 */
 }
 
+/* 一般情況（非 dracula） */
 blockquote {
     border-left: 0.1px solid var(--md-primary-fg-color) !important;
     border-right: 0.1px solid var(--md-primary-fg-color) !important;
     border-top: 0.1px solid var(--md-primary-fg-color) !important;
     border-bottom: 0.1px solid var(--md-primary-fg-color) !important;
     padding-right: 15px;
-    /*增加左側內邊距，讓文字遠離邊框 */
-    /*border-left: none !important;  隱藏左邊框 */
-    color: #000000 !important;
-    /* 設置文字顏色為淺灰色 */
-    /* 左边框为淺紫色 */
+    color: #000000 !important;                                       /* 文字顏色：黑（適用亮色背景） */
 }
 
-/* === 標題 ============================================== */
+/* ==========================================================================
+   標題樣式（原本有一段加左側色條的 h2~h5，被你註解掉）
+   - 保留原註解區塊，方便你日後切回去
+   ========================================================================== */
 
-/* [data-md-color-scheme=dracula] h2,
+/*
+[data-md-color-scheme=dracula] h2,
 [data-md-color-scheme=dracula] h3,
 [data-md-color-scheme=dracula] h4,
 [data-md-color-scheme=dracula] h5{
     border-left: 4px solid var(--md-primary-fg-color) !important;
-    color: #ffffff !important; 
+    color: #ffffff !important;
     padding-left: 15px;
 }
 
@@ -44,120 +47,114 @@ h4,
 h5{
     border-left: 4px solid var(--md-primary-fg-color) !important;
     color: #000000 !important;
-     padding-left: 15px;
-} */
+    padding-left: 15px;
+}
+*/
 
-/* === 標題 ============================================== */
+/* ==========================================================================
+   details/summary（折疊）樣式
+   - 目標：隱藏原生三角形圖示，改成你自己的視覺呈現
+   ========================================================================== */
 
-
-
-/* 
-img[alt="alt text"] {
-    width: 80%;
-    设置宽度为70%
-    height: auto;
-    保持高度比例
-} */
-
-/* === 折叠标题 ============================================== */
-
-
-/* 隐藏折叠部分的默认图标 */
-details summary::marker,
-/* 隐藏旧版浏览器使用的 ::marker */
-details summary::-webkit-details-marker,
-/* 隐藏 WebKit 浏览器使用的图标 */
-details summary::before
-
-/* 隐藏通过伪元素添加的图标 */
-    {
+/* 隱藏折疊標題預設圖示（各瀏覽器相容寫法） */
+details summary::marker,                 /* 新版瀏覽器的 marker */
+details summary::-webkit-details-marker, /* WebKit（Chrome/Safari） */
+details summary::before                  /* 若主題用 pseudo-element 加圖示，也一起關掉 */
+{
     display: none;
 }
 
-/* 更改折叠标题的背景颜色和文本颜色 */
+/* 折疊標題外觀 */
 details summary {
-    border-radius: 5px !important;
-    /* 为折叠部分添加圆角 */
-    padding: 2px !important;
-    /* 添加内边距 */
-    font-size: 16px;
-    /* 設定字體大小 */
-    padding-left: 8px !important;
-    /* 設定左內距 */
-    font-weight: normal !important;
-    /* 取消粗體 */
+    border-radius: 5px !important; /* 圓角 */
+    padding: 2px !important;       /* 內距（同時你下方又設 padding-left，這裡保留原設計） */
+    font-size: 16px;               /* 標題字體大小 */
+    padding-left: 8px !important;  /* 左內距：文字不貼邊 */
+    font-weight: normal !important;/* 取消粗體 */
 }
 
+/* 展開後內容的字級（你希望展開後也維持同大小） */
 details[open] {
     font-size: 16px;
-    /* 設定字體大小 */
 }
 
+/* ==========================================================================
+   自訂內容框 .i（你用 /// html | div.i 包住的區塊）
+   - 目標：做成帶邊框、漸層底、內陰影 glow 的卡片感
+   ========================================================================== */
 
-
-/* 
-
-內文使用
+/*
+內文使用方式（MkDocs Material 支援的語法示意）
 /// html | div.i
 some *markdown* content
-/// 
-
+///
 */
 
 .i {
-    border: 1px solid rgba(214, 183, 124, 0.35) !important;
-    background: linear-gradient(90deg, rgba(214, 183, 124, 0.12), rgba(214, 183, 124, 0));
-    box-shadow: var(--peicd-glow);
-    border-radius: var(--peicd-radius-sm);
-    padding: 10px 15px;
-    color: inherit;
+    border: 1px solid rgba(214, 183, 124, 0.35) !important; /* 外框：金色系半透明 */
+    background: linear-gradient(90deg, rgba(214, 183, 124, 0.12), rgba(214, 183, 124, 0)); /* 左到右漸層底 */
+    box-shadow: var(--peicd-glow);                          /* 內陰影 glow（在 :root 定義） */
+    border-radius: var(--peicd-radius-sm);                  /* 小圓角 */
+    padding: 10px 15px;                                     /* 內距 */
+    color: inherit;                                         /* 文字顏色沿用當前主題 */
 }
 
-/* 隱藏最下面的 from mkdocs */
+/* ==========================================================================
+   Footer（底部 from mkdocs）隱藏
+   ========================================================================== */
+
 .md-footer-meta.md-typeset {
-    display: none;
+    display: none; /* 隱藏最底部 footer meta（MkDocs Material 的版權/生成資訊區） */
 }
+
+/* ==========================================================================
+   密碼輸入 UI（自訂 class）
+   - .custom-password-input：輸入框
+   - .custom-password-button 與 input+button：按鈕
+   ========================================================================== */
 
 /* 密碼輸入框 */
 .custom-password-input {
-    border: 1px solid var(--md-primary-fg-color);
-    background-color: rgba(255, 255, 255, 0.05);
-    color: inherit;
-    padding: 12px 16px;
-    font-size: 16px;
-    width: 100%;
-    box-sizing: border-box;
-    border-radius: 8px;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    outline: none;
-    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+    border: 1px solid var(--md-primary-fg-color);           /* 外框：主色 */
+    background-color: rgba(255, 255, 255, 0.05);            /* 底色：微透明 */
+    color: inherit;                                         /* 文字色：跟主題走 */
+    padding: 12px 16px;                                     /* 內距 */
+    font-size: 16px;                                        /* 字體大小 */
+    width: 100%;                                            /* 滿寬 */
+    box-sizing: border-box;                                 /* 讓 padding 不會把寬度撐爆 */
+    border-radius: 8px;                                     /* 圓角 */
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);       /* 平滑動畫 */
+    outline: none;                                          /* 去掉瀏覽器預設外框 */
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);          /* 內陰影：更立體 */
 }
 
+/* 輸入框聚焦狀態 */
 .custom-password-input:focus {
-    border-color: var(--md-accent-fg-color);
-    background-color: rgba(255, 255, 255, 0.1);
-    box-shadow: 0 0 0 4px rgba(214, 183, 124, 0.2);
+    border-color: var(--md-accent-fg-color);                /* 外框變成 accent */
+    background-color: rgba(255, 255, 255, 0.1);             /* 底色稍亮 */
+    box-shadow: 0 0 0 4px rgba(214, 183, 124, 0.2);         /* 外光暈（與金色系一致） */
 }
 
-/* 解鎖按鈕美化 */
+/* 解鎖按鈕（兩種 selector 都保留，避免你 HTML 結構不一致） */
 .custom-password-button,
 .custom-password-input+button {
-    margin-top: 12px;
-    width: auto;
-    padding: 6px 20px;
-    background: var(--md-primary-fg-color);
-    color: var(--md-default-bg-color);
-    border: none;
-    border-radius: 50px;
-    font-size: 14px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
+    margin-top: 12px;                        /* 與輸入框間距 */
+    width: auto;                             /* 不強制滿寬 */
+    padding: 6px 20px;                       /* 內距 */
+    background: var(--md-primary-fg-color);   /* 背景：主色 */
+    color: var(--md-default-bg-color);       /* 文字色：用背景色做反差 */
+    border: none;                            /* 去邊框 */
+    border-radius: 50px;                     /* 膠囊按鈕 */
+    font-size: 14px;                         /* 字級 */
+    font-weight: 600;                        /* 稍粗 */
+    cursor: pointer;                         /* 指標手勢 */
+    transition: all 0.2s ease;               /* 動畫 */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* 陰影 */
+    text-transform: uppercase;               /* 大寫（若內容是英文） */
+    letter-spacing: 0.05em;                  /* 字距 */
 }
 
+/* hover：更亮、更浮起 */
 .custom-password-button:hover,
 .custom-password-input+button:hover {
     background: var(--md-accent-fg-color);
@@ -165,182 +162,199 @@ some *markdown* content
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
+/* active：按下回彈 */
 .custom-password-button:active,
 .custom-password-input+button:active {
     transform: translateY(0);
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
+/* ==========================================================================
+   Material 狀態列（右下角小狀態）隱藏
+   ========================================================================== */
+
 .md-status {
     display: none;
 }
 
-/* 字體：中標楷 */
-/* @font-face {
+/* ==========================================================================
+   字體設定
+   - 你原本有一段「中文用標楷體」的 @font-face，被註解掉
+   - 目前全域使用 Roboto Mono
+   ========================================================================== */
+
+/*
+@font-face {
     font-family: "CustomChinese";
     src: local("標楷體"), local("DFKai-SB");
-    unicode-range: U+4E00-9FFF, U+3000-303F, U+FF00-FFEF; 
+    unicode-range: U+4E00-9FFF, U+3000-303F, U+FF00-FFEF;
 }
 body {
     font-family: "Roboto Mono", "CustomChinese", sans-serif;
 }
- */
-
-
-
+*/
 
 /* 全局英文字體：Roboto Mono */
 body {
     font-family: "Roboto Mono", monospace;
 }
 
-/* 用 flex 讓 header 裡的元素橫向排列 */
-/* 隱藏 h1 的圖示 */
+/* ==========================================================================
+   標題錨點（headerlink）圖示樣式
+   - 隱藏 h1 的錨點
+   - h2~h6 用 flex 讓圖示排在文字前（並換成你自訂 SVG mask）
+   ========================================================================== */
+
+/* 隱藏 h1 的錨點圖示 */
 .md-typeset h1 .headerlink {
     display: none;
 }
 
-/* .md-typeset h1, */
+/* h2~h6：用 flex 讓錨點與文字水平排列 */
 .md-typeset h2,
 .md-typeset h3,
 .md-typeset h4,
 .md-typeset h5,
 .md-typeset h6 {
     display: flex;
-    flex-direction: row;
-    /* align-items: flex-end;  */
-
-    align-items: top;
-    /* 直接對齊文字與圖示 */
+    flex-direction: row; /* 水平排列 */
+    align-items: top;    /* 你原本希望圖示與文字上緣對齊（保留原意） */
 }
 
-/* 調整圖示外觀與位置 */
+/* 錨點圖示：改成你自訂的 mask SVG（並用背景色著色） */
 .md-typeset .headerlink {
-    padding-left: 0 !important;
-    margin-left: 0 !important;
-    order: -1;
-    /* 🔥 確保圖示排在最前面！ */
-    width: 1em;
-    /* 讓圖示與文字大小一致 */
-    height: 1em;
-    /* 讓圖示與文字大小一致 */
-    background-color: var(--md-primary-fg-color);
-    background-size: 1em;
-    /* 配合文字大小調整背景圖片 */
-    -webkit-mask-size: 1em;
-    /* 配合文字大小調整mask */
-    mask-size: 1em;
-    /* 配合文字大小調整mask */
-    -webkit-mask-repeat: no-repeat;
-    mask-repeat: no-repeat;
+    padding-left: 0 !important;          /* 清掉主題預設 padding */
+    margin-left: 0 !important;           /* 清掉主題預設 margin */
+    order: -1;                           /* 確保圖示排在最前面 */
+    width: 1em;                          /* 圖示寬：跟字體等寬 */
+    height: 1em;                         /* 圖示高：跟字體等高 */
+    background-color: var(--md-primary-fg-color); /* 圖示顏色：主色 */
+    background-size: 1em;                /* 背景尺寸 */
+    -webkit-mask-size: 1em;              /* mask 尺寸（WebKit） */
+    mask-size: 1em;                      /* mask 尺寸 */
+    -webkit-mask-repeat: no-repeat;      /* 不重複 */
+    mask-repeat: no-repeat;              /* 不重複 */
+
+    /* 使用 data URI 內嵌 SVG，透過 mask 來「剪出」圖形 */
     -webkit-mask-image: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g transform="skewX(-10)"><path d="M4 6h16v2H4zM4 16h16v2H4zM7 4h2v16H7zM15 4h2v16h-2z" stroke="black" stroke-width="0.5"/></g></svg>');
     mask-image: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g transform="skewX(-10)"><path d="M4 6h16v2H4zM4 16h16v2H4zM7 4h2v16H7zM15 4h2v16h-2z" stroke="black" stroke-width="0.5"/></g></svg>');
-    visibility: visible;
-    opacity: 1 !important;
-    transition: none !important;
-    flex-shrink: 0;
-    /* transform: translateY(-0.1em); 🔧 向下偏移來對齊漢字底部 */
+
+    visibility: visible;                 /* 確保可見 */
+    opacity: 1 !important;               /* 不透明 */
+    transition: none !important;         /* 不要主題預設的淡入淡出 */
+    flex-shrink: 0;                      /* 不要被壓縮 */
 }
 
-/* hover */
+/* hover：換成 accent 色 */
 .md-typeset .headerlink:hover {
     background-color: var(--md-accent-fg-color);
 }
 
-/* 被點擊後變白 */
+/* 被點擊定位（:target）後：回到主色 */
 .md-typeset [id]:target .headerlink {
     background-color: var(--md-primary-fg-color);
 }
 
+/* 不同標題層級的圖示垂直微調（讓 icon 視覺上對齊文字基線） */
+.md-typeset h2 .headerlink { transform: translateY(0.3em); }
+.md-typeset h3 .headerlink { transform: translateY(0.3em); }
+.md-typeset h4 .headerlink { transform: translateY(0.31em); }
+.md-typeset h5 .headerlink { transform: translateY(0.35em); }
+.md-typeset h6 .headerlink { transform: translateY(0.35em); }
 
-.md-typeset h2 .headerlink {
-    transform: translateY(0.3em);
-    /* 調整 h5 標題的圖示位置 */
-}
+/* ==========================================================================
+   Premium polish：全站變數與質感設定
+   - :root：定義字體、圓角、陰影、邊框與 glow
+   - slate：深色配色（你主要在用的 dark theme）
+   ========================================================================== */
 
-.md-typeset h3 .headerlink {
-    transform: translateY(0.3em);
-    /* 調整 h5 標題的圖示位置 */
-}
-
-.md-typeset h4 .headerlink {
-    transform: translateY(0.31em);
-    /* 調整 h5 標題的圖示位置 */
-}
-
-.md-typeset h5 .headerlink {
-    transform: translateY(0.35em);
-    /* 調整 h5 標題的圖示位置 */
-}
-
-.md-typeset h6 .headerlink {
-    transform: translateY(0.35em);
-    /* 調整 h5 標題的圖示位置 */
-}
-
-
-/* 博客 - index.md */
-/* 博客 - index.md */
-/* 博客 - index.md */
-
-
-/* === Premium polish ============================ */
 :root {
+    /* Material 字體變數：讓主題內部也使用同一套字體 */
     --md-text-font: "Roboto Mono";
     --md-code-font: "Roboto Mono";
+
+    /* 你自訂的「標題字體」變數（統一管理） */
     --peicd-heading-font: "Roboto Mono";
+
+    /* 圓角系統：large / medium / small */
     --peicd-radius-lg: 14px;
     --peicd-radius-md: 10px;
     --peicd-radius-sm: 8px;
+
+    /* 深色模式常用邊框色 */
     --peicd-border: rgba(255, 255, 255, 0.08);
     --peicd-border-strong: rgba(255, 255, 255, 0.14);
+
+    /* 陰影層級（卡片/導航） */
     --peicd-shadow-1: 0 10px 26px rgba(0, 0, 0, 0.3);
     --peicd-shadow-2: 0 18px 40px rgba(0, 0, 0, 0.35);
+
+    /* 內光暈：用 inset 做細緻的邊緣發光 */
     --peicd-glow: 0 0 0 1px rgba(214, 183, 124, 0.25) inset;
 }
 
+/* 深色方案 slate（MkDocs Material 常見 dark scheme 名） */
 [data-md-color-scheme="slate"] {
+    /* 全站底色 / 文字色 */
     --md-default-bg-color: #0f1116;
     --md-default-fg-color: #e9edf1;
     --md-default-fg-color--light: #cbd5df;
     --md-default-fg-color--lighter: #a3aebb;
     --md-default-fg-color--lightest: #748090;
+
+    /* code 色彩 */
     --md-code-bg-color: #131822;
     --md-code-fg-color: #e8e2d6;
+
+    /* 主色與 accent */
     --md-primary-fg-color: #d6b77c;
     --md-accent-fg-color: #f0d49a;
+
+    /* 連結色 */
     --md-typeset-a-color: #e9c98b;
+
+    /* 你自訂的 surface / 卡片底色 */
     --peicd-surface-1: #151922;
     --peicd-surface-2: #1a202b;
     --peicd-surface-3: #202838;
     --peicd-card: #161c26;
 }
 
+/* body：採用變數字體 + 微字距 + 字體渲染優化 */
 body {
     font-family: var(--md-text-font), "Roboto Mono", monospace;
     letter-spacing: 0.01em;
     text-rendering: optimizeLegibility;
 }
 
-
+/* ==========================================================================
+   Header / Tabs：半透明 + 模糊玻璃 + 下邊框
+   ========================================================================== */
 
 .md-header,
 .md-tabs {
-    background: rgba(15, 17, 22, 0.92);
-    border-bottom: 1px solid var(--peicd-border);
-    box-shadow: var(--peicd-shadow-1);
-    backdrop-filter: blur(10px);
+    background: rgba(15, 17, 22, 0.92);       /*半透明深色底*/
+    border-bottom: 1px solid var(--md-primary-fg-color); /* 細邊框 */
+    box-shadow: var(--peicd-shadow-1);        /* 陰影 */
+    backdrop-filter: blur(10px);              /* 背景模糊（玻璃感） */
 }
 
+/* ==========================================================================
+   Sidebar nav 文字 hover / active 顏色（基本版）
+   ========================================================================== */
+
 .md-nav__link {
-    transition: color 160ms ease;
+    transition: color 160ms ease; /* hover 時顏色平滑 */
 }
 
 .md-nav__link:hover,
 .md-nav__item--active>.md-nav__link {
-    color: var(--md-accent-fg-color);
+    color: var(--md-accent-fg-color); /* hover / active 變成 accent */
 }
 
+/* ==========================================================================
+   標題字體（h1~h6）
+   ========================================================================== */
 
 .md-typeset h1,
 .md-typeset h2,
@@ -353,25 +367,39 @@ body {
     letter-spacing: 0.02em;
 }
 
+/* ==========================================================================
+   連結底線：用 background-image 做「可動畫的底線」
+   ========================================================================== */
+
 .md-typeset a {
-    text-decoration: none;
-    background-image: linear-gradient(currentColor, currentColor);
-    background-size: 100% 1px;
-    background-position: 0 100%;
+    text-decoration: none; /* 取消預設底線 */
+    background-image: linear-gradient(currentColor, currentColor); /* 底線用文字顏色 */
+    background-size: 100% 1px; /* 底線厚度 1px */
+    background-position: 0 100%; /* 貼底 */
     background-repeat: no-repeat;
-    transition: color 180ms ease, background-size 180ms ease;
+    transition: color 180ms ease, background-size 180ms ease; /* hover 更厚 */
 }
 
 .md-typeset a:hover {
     color: var(--md-accent-fg-color);
-    background-size: 100% 2px;
+    background-size: 100% 2px; /* hover 底線變厚 */
 }
+
+/* ==========================================================================
+   blockquote（Material typeset 內的 blockquote 額外質感）
+   - 這會覆蓋前面更一般的 blockquote 設定（更偏你的深色設計）
+   ========================================================================== */
 
 .md-typeset blockquote {
     background: linear-gradient(90deg, rgba(214, 183, 124, 0.12), rgba(214, 183, 124, 0));
     border-color: rgba(214, 183, 124, 0.35) !important;
     box-shadow: var(--peicd-glow);
 }
+
+/* ==========================================================================
+   pre（程式碼區塊底）
+   - 注意：你在後面「Selection System v12」又把 pre 的 box-shadow 強制清掉
+   ========================================================================== */
 
 .md-typeset pre {
     background-color: var(--md-code-bg-color);
@@ -380,7 +408,13 @@ body {
     box-shadow: var(--peicd-shadow-1);
 }
 
-/* Code copy button (dark mode) */
+/* ==========================================================================
+   Code copy button（複製按鈕）外觀
+   - 深色：slate / dracula
+   - 亮色：default / light
+   ========================================================================== */
+
+/* 深色：複製按鈕 */
 [data-md-color-scheme="slate"] .md-clipboard,
 [data-md-color-scheme="dracula"] .md-clipboard {
     background: rgba(255, 255, 255, 0.06) !important;
@@ -395,6 +429,7 @@ body {
     border-color: rgba(255, 255, 255, 0.22) !important;
 }
 
+/* 亮色：複製按鈕 */
 [data-md-color-scheme="default"] .md-clipboard,
 [data-md-color-scheme="light"] .md-clipboard {
     background: rgba(0, 0, 0, 0.05) !important;
@@ -402,7 +437,7 @@ body {
     border: 1px solid rgba(0, 0, 0, 0.12) !important;
 }
 
-/* Hard override for code copy button backgrounds */
+/* 更硬的覆蓋：避免主題把背景塞回來 */
 [data-md-color-scheme="slate"] .md-clipboard,
 [data-md-color-scheme="dracula"] .md-clipboard,
 [data-md-color-scheme="slate"] .highlight .md-clipboard,
@@ -411,6 +446,7 @@ body {
     box-shadow: none !important;
 }
 
+/* 複製按鈕 pseudo-element 的背景清掉（避免多一層怪陰影） */
 [data-md-color-scheme="slate"] .md-clipboard::before,
 [data-md-color-scheme="dracula"] .md-clipboard::before,
 [data-md-color-scheme="slate"] .md-clipboard::after,
@@ -419,7 +455,7 @@ body {
     box-shadow: none !important;
 }
 
-/* Code copy container (.md-code__nav) */
+/* code copy 容器 .md-code__nav（深色） */
 [data-md-color-scheme="slate"] .md-code__nav,
 [data-md-color-scheme="dracula"] .md-code__nav {
     background: linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.02)) !important;
@@ -428,6 +464,7 @@ body {
     box-shadow: 0 6px 14px rgba(0, 0, 0, 0.2) !important;
 }
 
+/* code copy 容器 pseudo-element 清掉 */
 [data-md-color-scheme="slate"] .md-code__nav::before,
 [data-md-color-scheme="dracula"] .md-code__nav::before,
 [data-md-color-scheme="slate"] .md-code__nav::after,
@@ -437,6 +474,7 @@ body {
     box-shadow: none !important;
 }
 
+/* code copy 容器（亮色） */
 [data-md-color-scheme="default"] .md-code__nav,
 [data-md-color-scheme="light"] .md-code__nav {
     background: linear-gradient(180deg, rgba(0, 0, 0, 0.04), rgba(0, 0, 0, 0.02)) !important;
@@ -445,12 +483,13 @@ body {
     box-shadow: 0 6px 14px rgba(0, 0, 0, 0.08) !important;
 }
 
-/* Copy button polish */
+/* 複製按鈕細節：圓角 + hover 浮起 */
 .md-clipboard {
     border-radius: 6px !important;
     transition: background 160ms ease, border-color 160ms ease, transform 160ms ease, box-shadow 160ms ease;
 }
 
+/* 深色 hover */
 [data-md-color-scheme="slate"] .md-clipboard,
 [data-md-color-scheme="dracula"] .md-clipboard {
     background: rgba(255, 255, 255, 0.08) !important;
@@ -464,6 +503,7 @@ body {
     transform: translateY(-1px);
 }
 
+/* 亮色 hover */
 [data-md-color-scheme="default"] .md-clipboard,
 [data-md-color-scheme="light"] .md-clipboard {
     background: rgba(0, 0, 0, 0.06) !important;
@@ -477,16 +517,25 @@ body {
     transform: translateY(-1px);
 }
 
+/* ==========================================================================
+   code 字體與 inline code 樣式
+   ========================================================================== */
+
 .md-typeset code {
     font-family: var(--md-code-font), "Consolas", monospace;
 }
 
+/* inline code（非 pre 內的 code） */
 .md-typeset :not(pre)>code {
-    background-color: rgba(214, 183, 124, 0.12);
-    border: 1px solid rgba(214, 183, 124, 0.22);
+    background-color: rgba(214, 183, 124, 0.12); /* 淡金底 */
+    border: 1px solid rgba(214, 183, 124, 0.22); /* 淡金框 */
     border-radius: 6px;
     padding: 0.05em 0.35em;
 }
+
+/* ==========================================================================
+   admonition / details 卡片化
+   ========================================================================== */
 
 .md-typeset .admonition,
 .md-typeset details {
@@ -496,22 +545,34 @@ body {
     box-shadow: var(--peicd-shadow-1);
 }
 
+/* ==========================================================================
+   表格：外框、圓角、陰影、表頭底
+   ========================================================================== */
+
 .md-typeset table:not([class]) {
     border: 1px solid var(--peicd-border);
     border-radius: var(--peicd-radius-md);
-    overflow: hidden;
+    overflow: hidden; /* 讓圓角能裁切表格內部 */
     box-shadow: var(--peicd-shadow-1);
 }
 
 .md-typeset table:not([class]) th {
-    background: var(--peicd-surface-3);
+    background: var(--peicd-surface-3); /* 表頭底色 */
 }
+
+/* ==========================================================================
+   hr：漸層分隔線
+   ========================================================================== */
 
 .md-typeset hr {
     border: 0;
     height: 1px;
     background: linear-gradient(90deg, transparent, rgba(214, 183, 124, 0.35), transparent);
 }
+
+/* ==========================================================================
+   按鈕：膠囊 + 邊框 + glow
+   ========================================================================== */
 
 .md-button,
 .md-typeset .md-button {
@@ -520,46 +581,56 @@ body {
     box-shadow: var(--peicd-glow);
 }
 
+/* ==========================================================================
+   部落格摘要卡：陰影更強
+   ========================================================================== */
+
 .md-post--excerpt {
     background: var(--peicd-card);
     border: 1px solid var(--peicd-border);
     box-shadow: var(--peicd-shadow-2);
 }
 
+/* ==========================================================================
+   選取文字：金色底
+   ========================================================================== */
 
 .md-typeset ::selection {
     background: rgba(214, 183, 124, 0.35);
-    color: #0f1116;
+    color: #0f1116; /* 深色文字，避免金底上看不清 */
 }
 
-/* === Refined layout & micro-details ============================ */
-.md-main__inner {
-    padding-top: 1.6rem;
-}
+/* ==========================================================================
+   版面 spacing：主內容上方與底部留白
+   ========================================================================== */
 
-.md-content__inner {
-    padding-bottom: 2.8rem;
-}
+.md-main__inner { padding-top: 1.6rem; }
+.md-content__inner { padding-bottom: 2.8rem; }
 
-.md-nav__item--active>.md-nav__link {
-    font-weight: inherit;
-}
+/* active nav 不額外加粗（你後面用自己的 active 樣式處理） */
+.md-nav__item--active>.md-nav__link { font-weight: inherit; }
 
+/* nav item 行距微調 */
 .md-nav__link {
     padding-top: 0.28rem;
     padding-bottom: 0.28rem;
 }
 
+/* 表格 hover：淡金底 */
 .md-typeset table:not([class]) tbody tr:hover {
     background-color: rgba(214, 183, 124, 0.08);
 }
 
-/* === Magazine feel: sidebar + cards + post list ===================== */
+/* ==========================================================================
+   Sidebar / TOC：透明化與卡片化導航
+   ========================================================================== */
+
 .md-sidebar--primary,
 .md-sidebar--secondary {
     background: transparent;
 }
 
+/* sidebar scrollwrap：去背景、去陰影 */
 .md-sidebar--primary .md-sidebar__scrollwrap,
 .md-sidebar--secondary .md-sidebar__scrollwrap {
     background: transparent;
@@ -569,7 +640,7 @@ body {
     box-shadow: none;
 }
 
-.md-sidebar--primary .md-nav__title,
+/* sidebar title：小字、全大寫、灰色 */
 .md-sidebar--primary .md-nav__title,
 .md-sidebar--secondary .md-nav__title {
     font-size: 0.7rem;
@@ -580,6 +651,7 @@ body {
     padding: 0.3rem 0.5rem;
 }
 
+/* sidebar link：圓角、padding、hover 動畫 */
 .md-sidebar--primary a.md-nav__link,
 .md-sidebar--primary label.md-nav__link,
 .md-sidebar--secondary a.md-nav__link {
@@ -593,12 +665,13 @@ body {
     margin: 0.1rem 0;
 }
 
+/* hover：accent */
 .md-sidebar--primary .md-nav__link:hover,
 .md-sidebar--secondary .md-nav__link:hover {
     color: var(--md-accent-fg-color);
 }
 
-/* Flat futuristic active state (both sidebars) */
+/* Flat futuristic active state：你後面又用 Selection System 重寫，這裡保留 */
 .md-sidebar--primary .md-nav__item--active>.md-nav__link,
 .md-sidebar--primary .md-nav__link--active,
 .md-sidebar--secondary .md-nav__item--active>.md-nav__link,
@@ -613,6 +686,7 @@ body {
     border-radius: 0;
 }
 
+/* active 狀態 pseudo-element 清掉（避免主題預設效果） */
 .md-sidebar--primary .md-nav__item--active>.md-nav__link::after,
 .md-sidebar--primary .md-nav__link--active::after,
 .md-sidebar--secondary .md-nav__item--active>.md-nav__link::after,
@@ -621,11 +695,13 @@ body {
     display: none;
 }
 
+/* TOC（右側）加左邊細線 */
 .md-sidebar--secondary .md-sidebar__scrollwrap {
     background: transparent;
     border-left: 1px solid var(--peicd-border);
 }
 
+/* TOC 容器全透明 */
 .md-sidebar--secondary .md-sidebar__inner,
 .md-sidebar--secondary .md-nav,
 .md-sidebar--secondary .md-nav__list,
@@ -635,6 +711,7 @@ body {
     box-shadow: none;
 }
 
+/* sidebar title：底線、去背景 */
 .md-sidebar--primary .md-nav__title,
 .md-sidebar--secondary .md-nav__title {
     padding: 0.6rem 0;
@@ -645,25 +722,30 @@ body {
     padding-left: 0.35rem;
 }
 
+/* sidebar 文字色 */
 .md-sidebar--primary .md-nav__link,
 .md-sidebar--secondary .md-nav__link {
     color: var(--md-default-fg-color);
     opacity: 0.9;
 }
 
+/* TOC link 左內距 */
 .md-sidebar--secondary .md-nav__link {
     padding-left: 0.35rem;
 }
 
+/* 左側 nav link 的縮排（Material 的 indent 變數） */
 .md-sidebar--primary .md-nav__link {
     padding-left: calc(0.35rem + var(--md-nav-indent, 0px));
 }
 
+/* hover：accent */
 .md-sidebar--primary .md-nav__link:hover,
 .md-sidebar--secondary .md-nav__link:hover {
     color: var(--md-accent-fg-color);
 }
 
+/* active：accent */
 .md-sidebar--primary .md-nav__item--active>.md-nav__link,
 .md-sidebar--secondary .md-nav__item--active>.md-nav__link {
     color: var(--md-accent-fg-color);
@@ -671,7 +753,10 @@ body {
     opacity: 1;
 }
 
-/* Highlight current TOC item */
+/* ==========================================================================
+   TOC 目前項目提示點（左側小圓點）
+   ========================================================================== */
+
 .md-sidebar--primary .md-nav__link--active,
 .md-sidebar--primary .md-nav__item--active>.md-nav__link,
 .md-sidebar--secondary .md-nav__link--active,
@@ -680,6 +765,7 @@ body {
     color: var(--md-accent-fg-color);
 }
 
+/* 小圓點 */
 .md-sidebar--primary .md-nav__link--active::before,
 .md-sidebar--primary .md-nav__item--active>.md-nav__link::before,
 .md-sidebar--secondary .md-nav__link--active::before,
@@ -695,6 +781,7 @@ body {
     box-shadow: 0 0 0 3px rgba(214, 183, 124, 0.18);
 }
 
+/* 亮色模式：小圓點用深色 */
 [data-md-color-scheme="default"] .md-sidebar--primary .md-nav__link--active::before,
 [data-md-color-scheme="light"] .md-sidebar--primary .md-nav__link--active::before,
 [data-md-color-scheme="default"] .md-sidebar--primary .md-nav__item--active>.md-nav__link::before,
@@ -707,6 +794,7 @@ body {
     box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.12);
 }
 
+/* TOC title：更清爽（你後面有一大段 hard reset，這裡保留原設計） */
 .md-sidebar--secondary .md-nav__title {
     font-size: 0.7rem;
     letter-spacing: 0.16em;
@@ -723,11 +811,9 @@ body {
     position: relative;
 }
 
-.md-sidebar--secondary .md-nav__title::before {
-    display: none !important;
-}
+.md-sidebar--secondary .md-nav__title::before { display: none !important; }
 
-/* Force-clear TOC title background blocks (theme sticky header) */
+/* 強制清空 TOC title 背景區塊 */
 .md-sidebar--secondary .md-nav__title,
 .md-sidebar--secondary .md-nav--secondary>.md-nav__title,
 .md-sidebar--secondary .md-nav__title[for] {
@@ -748,7 +834,7 @@ body {
     background-color: var(--md-primary-fg-color) !important;
 }
 
-/* Hard reset TOC containers to kill leftover blocks */
+/* Hard reset TOC containers（徹底清掉殘留背景） */
 .md-sidebar--secondary .md-sidebar__inner,
 .md-sidebar--secondary .md-nav,
 .md-sidebar--secondary .md-nav__list,
@@ -765,7 +851,7 @@ body {
     position: static !important;
 }
 
-/* Sticky TOC title blocks (top of scroll) */
+/* Sticky TOC title blocks：全部清空 */
 .md-sidebar--secondary .md-nav__title[for="__toc"],
 .md-sidebar--secondary .md-nav--secondary .md-nav__title[for],
 .md-sidebar--secondary .md-nav--secondary .md-nav__title--active {
@@ -810,6 +896,10 @@ body {
     display: none !important;
 }
 
+/* ==========================================================================
+   Blog excerpt：未來感卡片背景（你做得很完整，保留並補註解）
+   ========================================================================== */
+
 .md-post--excerpt {
     position: relative;
     overflow: hidden;
@@ -824,6 +914,7 @@ body {
     transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
 }
 
+/* 卡片內的細線與光效層 */
 .md-post--excerpt::before {
     content: "";
     position: absolute;
@@ -838,6 +929,7 @@ body {
     pointer-events: none;
 }
 
+/* 右上角「折角」裝飾 */
 .md-post--excerpt::after {
     content: "";
     position: absolute;
@@ -851,12 +943,14 @@ body {
     opacity: 0.9;
 }
 
+/* hover：卡片浮起 + 更亮 */
 .md-post--excerpt:hover {
     transform: translateY(-4px);
     border-color: rgba(122, 211, 255, 0.45);
     box-shadow: 0 34px 80px rgba(0, 0, 0, 0.65);
 }
 
+/* 文章 meta：小字、全大寫 */
 .md-post__meta {
     font-size: 0.7rem;
     letter-spacing: 0.12em;
@@ -875,7 +969,7 @@ body {
     font-size: 0.7rem;
 }
 
-/* Blog cards in a grid instead of full-width rows */
+/* Blog cards：在內容區用 inline-flex 做兩欄/三欄 */
 .md-content__inner>article.md-post--excerpt {
     display: inline-flex;
     flex-direction: column;
@@ -884,18 +978,21 @@ body {
     vertical-align: top;
 }
 
+/* 超寬螢幕：三欄 */
 @media (min-width: 90em) {
     .md-content__inner>article.md-post--excerpt {
         width: calc(33.333% - 1rem);
     }
 }
 
+/* 中小螢幕：一欄 */
 @media (max-width: 70em) {
     .md-content__inner>article.md-post--excerpt {
         width: calc(100% - 1rem);
     }
 }
 
+/* 支援 :has() 的瀏覽器：改用 grid，更穩定的卡片排版 */
 @supports selector(:has(*)) {
     .md-content__inner:has(> article.md-post--excerpt) {
         display: grid;
@@ -914,6 +1011,7 @@ body {
     }
 }
 
+/* grid cards（Material 的 cards grid） */
 .md-typeset .grid.cards>* {
     background: var(--peicd-card);
     border: 1px solid var(--peicd-border);
@@ -928,6 +1026,7 @@ body {
     box-shadow: var(--peicd-shadow-2);
 }
 
+/* 亮色模式 sidebar 邊線顏色 */
 [data-md-color-scheme="default"] .md-sidebar--primary .md-sidebar__scrollwrap,
 [data-md-color-scheme="light"] .md-sidebar--primary .md-sidebar__scrollwrap {
     border-right-color: rgba(0, 0, 0, 0.08);
@@ -938,6 +1037,7 @@ body {
     border-left-color: rgba(0, 0, 0, 0.08);
 }
 
+/* 亮色模式 TOC title */
 [data-md-color-scheme="default"] .md-sidebar--secondary .md-nav__title,
 [data-md-color-scheme="light"] .md-sidebar--secondary .md-nav__title {
     color: rgba(0, 0, 0, 0.7);
@@ -951,6 +1051,7 @@ body {
     opacity: 0.28;
 }
 
+/* 亮色模式 blog excerpt 背景改成白卡片 */
 [data-md-color-scheme="default"] .md-post--excerpt,
 [data-md-color-scheme="light"] .md-post--excerpt {
     background:
@@ -961,6 +1062,7 @@ body {
     box-shadow: 0 20px 40px rgba(15, 23, 42, 0.12);
 }
 
+/* 亮色模式 TOC link 顏色 */
 [data-md-color-scheme="default"] .md-sidebar--secondary .md-nav__link,
 [data-md-color-scheme="light"] .md-sidebar--secondary .md-nav__link {
     color: rgba(0, 0, 0, 0.72);
@@ -973,8 +1075,10 @@ body {
     color: rgba(0, 0, 0, 0.86);
 }
 
+/* ==========================================================================
+   頁面背景（容器）
+   ========================================================================== */
 
-/* 白色背景 */
 .md-container {
     background:
         radial-gradient(1200px 800px at 12% -20%, rgba(214, 183, 124, 0.08), transparent 60%),
@@ -982,34 +1086,43 @@ body {
         var(--md-default-bg-color);
 }
 
-/* ========================================================================== */
-
-/* ========================================================================== */
-/* PEICD Selection System v12 Clean                                           */
-/* - Tabs：選取框縮小（不撐滿整個 tabs 高度）                                    */
-/* - Sidebar：只對「真正的連結」顯示四角（排除 .md-nav__container 與祖先 active） */
-/* - Images：即使圖片前後被 nl2br 插入 <br>（同段落）也有四角 + 背光 + hover         */
-/* - Code：四角 + 背光，並支援 /// collapse-code（外層統一負責）                  */
-/* ========================================================================== */
+/* ==========================================================================
+   PEICD Selection System v12 Clean
+   - Tabs：選取框縮小（不撐滿 tabs 高度）
+   - Sidebar：只對真正連結顯示四角（排除 .md-nav__container）
+   - Images：改成「和程式碼方塊同款」的四角線段（不同顏色）
+   - Code：四角 + 背光，並支援 /// collapse-code（外層統一負責）
+   ========================================================================== */
 
 :root {
-  /* corners */
-  --peicd-sel-corner: 10px;
-  --peicd-sel-line: 2px;
+  /* =========================
+     通用四角參數（給 code / image / nav / tabs 共用）
+     ========================= */
+  --peicd-sel-corner: 10px; /* 角落線段長度 */
+  --peicd-sel-line: 2px;    /* 角落線段粗細 */
 
+  /* tabs 專用：角落略小 */
   --peicd-tab-corner: 8px;
   --peicd-tab-line: 2px;
 
-  /* image (purple) */
-  --peicd-img-accent: rgb(191, 149, 249);
-  --peicd-img-glow: rgba(191, 149, 249, 0.38);
-  --peicd-corner-img: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2264%22%20height%3D%2264%22%20viewBox%3D%220%200%2064%2064%22%3E%0A%20%20%3Cg%20fill%3D%22none%22%20stroke%3D%22rgb%28191%2C149%2C249%29%22%20stroke-opacity%3D%221%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22square%22%3E%0A%20%20%20%20%3Cpath%20d%3D%22M2%202%20H12%20M2%202%20V12%22%20%2F%3E%0A%20%20%20%20%3Cpath%20d%3D%22M62%202%20H52%20M62%202%20V12%22%20%2F%3E%0A%20%20%20%20%3Cpath%20d%3D%22M2%2062%20H12%20M2%2062%20V52%22%20%2F%3E%0A%20%20%20%20%3Cpath%20d%3D%22M62%2062%20H52%20M62%2062%20V52%22%20%2F%3E%0A%20%20%3C%2Fg%3E%0A%3C%2Fsvg%3E");
+  /* =========================
+     Image（紫色系）
+     - img 的四角線段顏色與 glow
+     - 重要：img 不能用 ::before/::after，所以用 padding + background layers 來畫角
+     ========================= */
+  --peicd-img-accent: rgb(191, 149, 249);      /* 圖片四角線段顏色 */
+  --peicd-img-glow: rgba(191, 149, 249, 0.38); /* 圖片背光顏色（外光暈） */
+  --peicd-img-frame: 6px;                      /* 圖片外框厚度（用 padding 實作） */
 
-  /* code (blue) */
+  /* =========================
+     Code（藍色系）
+     ========================= */
   --peicd-code-accent: rgb(122, 211, 255);
   --peicd-code-glow: rgba(122, 211, 255, 0.34);
 
-  /* nav/tabs (cyan-blue) */
+  /* =========================
+     Nav/Tabs（青藍系）
+     ========================= */
   --peicd-nav-hover-corner: rgb(170, 238, 255);
   --peicd-nav-active-corner: rgb(80, 214, 255);
   --peicd-nav-hover-glow: rgba(80, 214, 255, 0.16);
@@ -1017,54 +1130,126 @@ body {
   --peicd-nav-text: rgb(80, 214, 255);
 }
 
-/* -------------------------------------------------------------------------- */
-/* A) Hard cleanup：去掉「黑灰陰影」來源                                         */
-/* -------------------------------------------------------------------------- */
+/* --------------------------------------------------------------------------
+   A) Hard cleanup：去掉「黑灰陰影」來源
+   - 你前面給 pre 上了 shadow；但 Selection System 的四角/背光自己負責，所以這裡清掉
+   -------------------------------------------------------------------------- */
 .md-typeset pre {
   box-shadow: none !important;
 }
 
-/* -------------------------------------------------------------------------- */
-/* B) Images：只針對內文常見結構（p/figure 直屬 img 或 a>img）                     */
-/*    - 這可確保 123<br><img><br>456 仍有效果                                     */
-/* -------------------------------------------------------------------------- */
+/* --------------------------------------------------------------------------
+   B) Images：四角 + 背光（改成和 code block 同款做法）
+   - 因為 img 不能用 ::before/::after，所以用 padding 當外框區，並在 background 畫四角線段
+   - 相容結構：p/figure 直屬 img，或 a > img
+   - 即使前後有 <br>，只要 img 仍是 p/figure 的直屬子元素，就會生效
+   -------------------------------------------------------------------------- */
 .md-typeset :is(p, figure) > img:not(.twemoji),
 .md-typeset :is(p, figure) > a > img:not(.twemoji) {
+  /* 基礎排版：居中、等比例 */
   display: block !important;
   max-width: 100% !important;
   height: auto !important;
   margin: 0.65rem auto !important;
 
+  /* 盒模型：用 padding 模擬「外框厚度」（img 本身無法用 pseudo-element 疊角） */
   box-sizing: border-box !important;
+  border: 0 !important;
   border-radius: 0 !important;
+  padding: var(--peicd-img-frame) !important;
 
-  border: 6px solid transparent !important;
-  border-image: var(--peicd-corner-img) 16 / 6px / 0 stretch !important;
+  /* 四角線段（8 層）：位置/尺寸完全沿用 code block 的配置邏輯 */
+  background-image:
+    linear-gradient(var(--peicd-img-accent) 0 0),
+    linear-gradient(var(--peicd-img-accent) 0 0),
+    linear-gradient(var(--peicd-img-accent) 0 0),
+    linear-gradient(var(--peicd-img-accent) 0 0),
+    linear-gradient(var(--peicd-img-accent) 0 0),
+    linear-gradient(var(--peicd-img-accent) 0 0),
+    linear-gradient(var(--peicd-img-accent) 0 0),
+    linear-gradient(var(--peicd-img-accent) 0 0),
 
-  box-shadow: 0 0 1.4rem var(--peicd-img-glow) !important;
-  transition: transform 180ms ease, filter 180ms ease, box-shadow 180ms ease !important;
+    /* 淡紫色填充底（最後一層）：讓外框區有一點質感（圖片內容本身會覆蓋它） */
+    linear-gradient(90deg, rgba(191, 149, 249, 0.10), rgba(191, 149, 249, 0));
+
+  background-repeat: no-repeat !important;
+
+  /* 8 個角落線段的位置 + 最後一層填充（0 0） */
+  background-position:
+    left top, left top,
+    right top, right top,
+    left bottom, left bottom,
+    right bottom, right bottom,
+    0 0 !important;
+
+  /* 8 個角落線段尺寸（角長/線粗） + 填充滿版（100% 100%） */
+  background-size:
+    var(--peicd-sel-corner) var(--peicd-sel-line),
+    var(--peicd-sel-line) var(--peicd-sel-corner),
+    var(--peicd-sel-corner) var(--peicd-sel-line),
+    var(--peicd-sel-line) var(--peicd-sel-corner),
+    var(--peicd-sel-corner) var(--peicd-sel-line),
+    var(--peicd-sel-line) var(--peicd-sel-corner),
+    var(--peicd-sel-corner) var(--peicd-sel-line),
+    var(--peicd-sel-line) var(--peicd-sel-corner),
+    100% 100% !important;
+
+  /* 背景對齊：以 border-box 計算角落位置（配合 padding 當外框區） */
+  background-origin: border-box !important;
+  background-clip: padding-box !important;
+
+  /* 背光：用與 code block 類似的兩層 glow（只是顏色換紫） */
+  box-shadow:
+    0 0 0.9rem rgba(191, 149, 249, 0.26),
+    0 0 2.4rem var(--peicd-img-glow) !important;
+
+  /* 動畫：hover 浮起 + glow 更亮 + 角落略放大 */
+  transition:
+    transform 180ms ease,
+    box-shadow 180ms ease,
+    filter 180ms ease,
+    background-size 180ms ease !important;
+
   will-change: transform;
 }
 
+/* hover：浮起、背光增強、角落線段「微放大」以貼近 code block 的 ::before scale 感 */
 .md-typeset :is(p, figure) > img:not(.twemoji):hover,
 .md-typeset :is(p, figure) > a > img:not(.twemoji):hover {
   transform: translateY(-2px) !important;
-  box-shadow: 0 0 2.1rem var(--peicd-img-glow) !important;
-  filter: drop-shadow(0 0 16px var(--peicd-img-glow)) !important;
+
+  box-shadow:
+    0 0 1.1rem rgba(191, 149, 249, 0.32),
+    0 0 3.0rem var(--peicd-img-glow) !important;
+
+  filter: drop-shadow(0 0 14px var(--peicd-img-glow)) !important;
+
+  /* hover 時把角長 +1px，模擬 code block 的角落 scale */
+  background-size:
+    calc(var(--peicd-sel-corner) + 1px) var(--peicd-sel-line),
+    var(--peicd-sel-line) calc(var(--peicd-sel-corner) + 1px),
+    calc(var(--peicd-sel-corner) + 1px) var(--peicd-sel-line),
+    var(--peicd-sel-line) calc(var(--peicd-sel-corner) + 1px),
+    calc(var(--peicd-sel-corner) + 1px) var(--peicd-sel-line),
+    var(--peicd-sel-line) calc(var(--peicd-sel-corner) + 1px),
+    calc(var(--peicd-sel-corner) + 1px) var(--peicd-sel-line),
+    var(--peicd-sel-line) calc(var(--peicd-sel-corner) + 1px),
+    100% 100% !important;
 }
 
-/* -------------------------------------------------------------------------- */
-/* C) Code blocks：四角 + 背光（highlight / codehilite / highlighttable）         */
-/* -------------------------------------------------------------------------- */
+/* --------------------------------------------------------------------------
+   C) Code blocks：四角 + 背光（highlight / codehilite / highlighttable）
+   -------------------------------------------------------------------------- */
 .md-typeset :is(.highlight, .codehilite, .highlighttable) {
-  position: relative !important;
-  isolation: isolate !important;
-  overflow: visible !important;
+  position: relative !important; /* 讓 ::before 能定位 */
+  isolation: isolate !important; /* 讓混合/疊層在此元素內獨立 */
+  overflow: visible !important;  /* 允許 glow 外溢 */
 
   border: 0 !important;
   border-radius: 0 !important;
   background: none !important;
 
+  /* 背光 */
   box-shadow:
     0 0 0.9rem rgba(122, 211, 255, 0.26),
     0 0 2.4rem var(--peicd-code-glow) !important;
@@ -1073,6 +1258,7 @@ body {
   will-change: transform;
 }
 
+/* 四角線段（用 ::before 疊上去，避免被 pre / footer 影響） */
 .md-typeset :is(.highlight, .codehilite, .highlighttable)::before {
   content: "" !important;
   position: absolute !important;
@@ -1080,6 +1266,7 @@ body {
   z-index: 5 !important;
   pointer-events: none !important;
 
+  /* 8 層線段：四角（每角兩段） */
   background-image:
     linear-gradient(var(--peicd-code-accent) 0 0),
     linear-gradient(var(--peicd-code-accent) 0 0),
@@ -1091,12 +1278,15 @@ body {
     linear-gradient(var(--peicd-code-accent) 0 0) !important;
 
   background-repeat: no-repeat !important;
+
+  /* 每兩個一組：左上、右上、左下、右下 */
   background-position:
     left top, left top,
     right top, right top,
     left bottom, left bottom,
     right bottom, right bottom !important;
 
+  /* 每角兩段：水平段(角長 x 線粗)、垂直段(線粗 x 角長) */
   background-size:
     var(--peicd-sel-corner) var(--peicd-sel-line),
     var(--peicd-sel-line) var(--peicd-sel-corner),
@@ -1110,9 +1300,12 @@ body {
   opacity: 1 !important;
   transform: scale(1) !important;
   transition: transform 180ms ease, filter 180ms ease !important;
+
+  /* 初始不額外加 drop-shadow（hover 再加） */
   filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0)) !important;
 }
 
+/* code hover：浮起 + 背光加強 */
 .md-typeset :is(.highlight, .codehilite, .highlighttable):hover {
   transform: translateY(-2px) !important;
   box-shadow:
@@ -1120,12 +1313,13 @@ body {
     0 0 3.0rem var(--peicd-code-glow) !important;
 }
 
+/* hover 時四角略放大 + 加 glow 的 drop-shadow */
 .md-typeset :is(.highlight, .codehilite, .highlighttable):hover::before {
   transform: scale(1.015) !important;
   filter: drop-shadow(0 0 14px var(--peicd-code-glow)) !important;
 }
 
-/* 清掉 pre 內部邊框/陰影，避免混入黑灰色 */
+/* 清掉 pre 內部邊框/陰影，避免混入其他底色 */
 .md-typeset :is(.highlight, .codehilite, .highlighttable) pre {
   margin: 0 !important;
   border: 0 !important;
@@ -1133,9 +1327,9 @@ body {
   box-shadow: none !important;
 }
 
-/* -------------------------------------------------------------------------- */
-/* D) /// collapse-code：外層負責四角 + 背光（避免 footer 漸層蓋掉角落）            */
-/* -------------------------------------------------------------------------- */
+/* --------------------------------------------------------------------------
+   D) /// collapse-code：外層負責四角 + 背光（避免 footer 漸層蓋掉角落）
+   -------------------------------------------------------------------------- */
 .md-typeset .collapse-code {
   position: relative !important;
   isolation: isolate !important;
@@ -1205,7 +1399,7 @@ body {
   filter: drop-shadow(0 0 14px rgba(122, 211, 255, 0.55)) !important;
 }
 
-/* 內層 highlight 一律去角落/去陰影，避免雙層 */
+/* 內層 highlight：全部清掉四角與陰影，避免雙層效果 */
 .md-typeset .collapse-code :is(.highlight, .codehilite, .highlighttable) {
   box-shadow: none !important;
   transform: none !important;
@@ -1216,22 +1410,17 @@ body {
   content: none !important;
 }
 
-/* .md-typeset .collapse-code .code-footer {
-  position: relative !important;
-  z-index: 10 !important;
-} */
-
-/* -------------------------------------------------------------------------- */
-/* E) Sidebar nav：只對「真正可點擊的項目」顯示四角                               */
-/*    - 排除 .md-nav__container（你手動加 class 也不會有選取框）                   */
-/*    - 排除祖先 active（.md-nav__item--active 但不是當前頁的 link）               */
-/* -------------------------------------------------------------------------- */
+/* --------------------------------------------------------------------------
+   E) Sidebar nav：只對「真正可點擊項目」顯示四角
+   - 排除 .md-nav__container
+   - 排除祖先 active（不是當前頁 link 的）
+   -------------------------------------------------------------------------- */
 .md-sidebar--primary .md-nav__link,
 .md-sidebar--secondary .md-nav__link {
-  border-radius: 0 !important;
+  border-radius: 0 !important; /* Selection System 自己畫四角，不用圓角 */
 }
 
-/* 祖先 active 一律清空（避免頂層/章節標題也亮起來） */
+/* 祖先 active 一律清空（避免章節標題也被點亮） */
 .md-sidebar--primary .md-nav__item--active > .md-nav__link:not(.md-nav__link--active),
 .md-sidebar--secondary .md-nav__item--active > .md-nav__link:not(.md-nav__link--active) {
   background: none !important;
@@ -1248,7 +1437,7 @@ body {
   content: none !important;
 }
 
-/* 明確排除 container link：不管 hover/active 都不能出現角落/背光 */
+/* container link：完全禁止任何 hover/active 效果 */
 .md-sidebar--primary .md-nav__link.md-nav__container,
 .md-sidebar--secondary .md-nav__link.md-nav__container,
 .md-sidebar--primary .md-nav__link.md-nav__container:hover,
@@ -1270,7 +1459,7 @@ body {
   content: none !important;
 }
 
-/* 真正需要效果的項目（非 container） */
+/* 真正要套四角效果的 link */
 .md-sidebar--primary .md-nav__link:not(.md-nav__container),
 .md-sidebar--secondary .md-nav__link:not(.md-nav__container) {
   position: relative !important;
@@ -1280,6 +1469,7 @@ body {
   transition: box-shadow 140ms ease, color 140ms ease !important;
 }
 
+/* hover：淡四角 + 淡背光 */
 .md-sidebar--primary .md-nav__link:not(.md-nav__container):hover,
 .md-sidebar--secondary .md-nav__link:not(.md-nav__container):hover {
   box-shadow: 0 0 0.9rem var(--peicd-nav-hover-glow) !important;
@@ -1313,7 +1503,7 @@ body {
     var(--peicd-sel-line) var(--peicd-sel-corner) !important;
 }
 
-/* 只對當前頁面（link--active）顯示深色四角 */
+/* active：深四角 + 強背光 */
 .md-sidebar--primary .md-nav__link--active:not(.md-nav__container),
 .md-sidebar--secondary .md-nav__link--active:not(.md-nav__container) {
   box-shadow: 0 0 1.1rem var(--peicd-nav-active-glow) !important;
@@ -1348,12 +1538,10 @@ body {
     var(--peicd-sel-line) var(--peicd-sel-corner) !important;
 }
 
-/* -------------------------------------------------------------------------- */
-/* F) Tabs：選取框縮小（只包住 link 本身）                                       */
-/* -------------------------------------------------------------------------- */
-.md-tabs__list {
-  align-items: center !important;
-}
+/* --------------------------------------------------------------------------
+   F) Tabs：選取框縮小（只包住 link 本身）
+   -------------------------------------------------------------------------- */
+.md-tabs__list { align-items: center !important; }
 
 .md-tabs__item {
   display: flex !important;
@@ -1376,6 +1564,7 @@ body {
   transition: box-shadow 140ms ease, color 140ms ease !important;
 }
 
+/* tabs hover：淡四角 */
 .md-tabs__link:hover {
   box-shadow: 0 0 0.8rem var(--peicd-nav-hover-glow) !important;
   color: var(--peicd-nav-text) !important;
@@ -1408,6 +1597,7 @@ body {
     var(--peicd-tab-line) var(--peicd-tab-corner) !important;
 }
 
+/* tabs active：深四角 */
 .md-tabs__item--active > .md-tabs__link {
   box-shadow: 0 0 1.0rem var(--peicd-nav-active-glow) !important;
   color: var(--peicd-nav-text) !important;
@@ -1441,7 +1631,7 @@ body {
     var(--peicd-tab-line) var(--peicd-tab-corner) !important;
 }
 
-/* 移除 Material 內建的 active indicator（避免重疊） */
+/* 移除 Material 內建 active indicator（避免重疊） */
 .md-tabs__link::after,
 .md-tabs__item--active > .md-tabs__link::after {
   content: none !important;
