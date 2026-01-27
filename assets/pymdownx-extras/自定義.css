@@ -585,11 +585,11 @@ body {
    部落格摘要卡：陰影更強
    ========================================================================== */
 
-.md-post--excerpt {
+/* .md-post--excerpt {
     background: var(--peicd-card);
     border: 1px solid var(--peicd-border);
     box-shadow: var(--peicd-shadow-2);
-}
+} */
 
 /* ==========================================================================
    選取文字：金色底
@@ -900,7 +900,7 @@ body {
    Blog excerpt：未來感卡片背景（你做得很完整，保留並補註解）
    ========================================================================== */
 
-.md-post--excerpt {
+/* .md-post--excerpt {
     position: relative;
     overflow: hidden;
     padding: 1.35rem 1.6rem;
@@ -912,10 +912,10 @@ body {
     border: 1px solid rgba(122, 211, 255, 0.28);
     box-shadow: 0 26px 60px rgba(0, 0, 0, 0.55);
     transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
-}
+} */
 
 /* 卡片內的細線與光效層 */
-.md-post--excerpt::before {
+/* .md-post--excerpt::before {
     content: "";
     position: absolute;
     inset: 0;
@@ -927,10 +927,10 @@ body {
     opacity: 0.55;
     mix-blend-mode: screen;
     pointer-events: none;
-}
+} */
 
 /* 右上角「折角」裝飾 */
-.md-post--excerpt::after {
+/* .md-post--excerpt::after {
     content: "";
     position: absolute;
     top: 10px;
@@ -941,14 +941,14 @@ body {
     border-right: 2px solid rgba(122, 211, 255, 0.4);
     border-top-right-radius: 12px;
     opacity: 0.9;
-}
+} */
 
 /* hover：卡片浮起 + 更亮 */
-.md-post--excerpt:hover {
+/* .md-post--excerpt:hover {
     transform: translateY(-4px);
     border-color: rgba(122, 211, 255, 0.45);
     box-shadow: 0 34px 80px rgba(0, 0, 0, 0.65);
-}
+} */
 
 /* 文章 meta：小字、全大寫 */
 .md-post__meta {
@@ -970,30 +970,30 @@ body {
 }
 
 /* Blog cards：在內容區用 inline-flex 做兩欄/三欄 */
-.md-content__inner>article.md-post--excerpt {
+/* .md-content__inner>article.md-post--excerpt {
     display: inline-flex;
     flex-direction: column;
     width: calc(50% - 1rem);
     margin: 0.5rem;
     vertical-align: top;
-}
+} */
 
 /* 超寬螢幕：三欄 */
-@media (min-width: 90em) {
+/* @media (min-width: 90em) {
     .md-content__inner>article.md-post--excerpt {
         width: calc(33.333% - 1rem);
     }
-}
+} */
 
 /* 中小螢幕：一欄 */
-@media (max-width: 70em) {
+/* @media (max-width: 70em) {
     .md-content__inner>article.md-post--excerpt {
         width: calc(100% - 1rem);
     }
-}
+} */
 
 /* 支援 :has() 的瀏覽器：改用 grid，更穩定的卡片排版 */
-@supports selector(:has(*)) {
+/* @supports selector(:has(*)) {
     .md-content__inner:has(> article.md-post--excerpt) {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -1009,7 +1009,7 @@ body {
     .md-content__inner:has(> article.md-post--excerpt)> :not(article.md-post--excerpt) {
         grid-column: 1 / -1;
     }
-}
+} */
 
 /* grid cards（Material 的 cards grid） */
 .md-typeset .grid.cards>* {
@@ -1052,7 +1052,7 @@ body {
 }
 
 /* 亮色模式 blog excerpt 背景改成白卡片 */
-[data-md-color-scheme="default"] .md-post--excerpt,
+/* [data-md-color-scheme="default"] .md-post--excerpt,
 [data-md-color-scheme="light"] .md-post--excerpt {
     background:
         radial-gradient(240px 140px at 85% 0%, rgba(31, 111, 255, 0.12), transparent 70%),
@@ -1060,7 +1060,7 @@ body {
         linear-gradient(160deg, #ffffff, #f7f9fd);
     border-color: rgba(31, 111, 255, 0.16);
     box-shadow: 0 20px 40px rgba(15, 23, 42, 0.12);
-}
+} */
 
 /* 亮色模式 TOC link 顏色 */
 [data-md-color-scheme="default"] .md-sidebar--secondary .md-nav__link,
@@ -1635,4 +1635,178 @@ body {
 .md-tabs__link::after,
 .md-tabs__item--active > .md-tabs__link::after {
   content: none !important;
+}
+/* ========== Blog 首頁：卡片容器改成由左到右的 grid ========== */
+@supports selector(:has(*)) {
+  .md-content__inner:has(> article.md-post--excerpt) {
+    display: grid !important;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)) !important;
+    gap: 1.2rem !important;
+    align-items: start !important;
+  }
+
+  .md-content__inner:has(> article.md-post--excerpt) > article.md-post--excerpt {
+    width: auto !important;
+    margin: 0 !important;
+  }
+
+  .md-content__inner:has(> article.md-post--excerpt) > :not(article.md-post--excerpt) {
+    grid-column: 1 / -1 !important;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+/* ==========================================================================
+   Blog cards v3：矩形賽博卡（四角線段 + 玻璃底 + 掃描線）
+   - 保持矩形：border-radius: 0
+   - 四角用你 v12 的同款 8 層 linear-gradient 畫法
+   - 顏色直接吃 code 的藍：--peicd-code-accent / --peicd-code-glow
+   ========================================================================== */
+
+.md-post--excerpt{
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+
+  border-radius: 0 !important;      /* 矩形 */
+  border: 0 !important;
+
+  padding: 1.25rem 1.4rem;
+
+  /* 深色：玻璃漸層底 + 微粒感 */
+  background:
+    linear-gradient(160deg, rgba(255,255,255,0.06), rgba(255,255,255,0.015)),
+    radial-gradient(900px 420px at 12% 0%, rgba(122,211,255,0.12), transparent 60%),
+    radial-gradient(700px 380px at 92% 105%, rgba(156,123,255,0.10), transparent 62%),
+    rgba(12, 16, 26, 0.88);
+
+  /* 外層藍光 */
+  box-shadow:
+    0 22px 56px rgba(0,0,0,0.60),
+    0 0 34px rgba(122,211,255,0.10);
+
+  transition: transform 180ms ease, box-shadow 180ms ease, filter 180ms ease;
+  will-change: transform;
+}
+
+/* 四角線段（跟 code block 同款） */
+.md-post--excerpt::before{
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  pointer-events: none;
+
+  background-image:
+    linear-gradient(var(--peicd-code-accent) 0 0),
+    linear-gradient(var(--peicd-code-accent) 0 0),
+    linear-gradient(var(--peicd-code-accent) 0 0),
+    linear-gradient(var(--peicd-code-accent) 0 0),
+    linear-gradient(var(--peicd-code-accent) 0 0),
+    linear-gradient(var(--peicd-code-accent) 0 0),
+    linear-gradient(var(--peicd-code-accent) 0 0),
+    linear-gradient(var(--peicd-code-accent) 0 0);
+
+  background-repeat: no-repeat;
+
+  background-position:
+    left top, left top,
+    right top, right top,
+    left bottom, left bottom,
+    right bottom, right bottom;
+
+  background-size:
+    var(--peicd-sel-corner) var(--peicd-sel-line),
+    var(--peicd-sel-line) var(--peicd-sel-corner),
+    var(--peicd-sel-corner) var(--peicd-sel-line),
+    var(--peicd-sel-line) var(--peicd-sel-corner),
+    var(--peicd-sel-corner) var(--peicd-sel-line),
+    var(--peicd-sel-line) var(--peicd-sel-corner),
+    var(--peicd-sel-corner) var(--peicd-sel-line),
+    var(--peicd-sel-line) var(--peicd-sel-corner);
+
+  opacity: 0.95;
+  filter: drop-shadow(0 0 10px rgba(122,211,255,0.18));
+  transition: transform 180ms ease, filter 180ms ease, opacity 180ms ease;
+}
+
+/* 掃描線 + 網格質感（不動外形，讓背景更「酷」） */
+.md-post--excerpt::after{
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+
+  background:
+    /* 掃描線 */
+    repeating-linear-gradient(
+      180deg,
+      rgba(255,255,255,0.035) 0 1px,
+      transparent 1px 7px
+    ),
+    /* 直向細格 */
+    repeating-linear-gradient(
+      90deg,
+      rgba(122,211,255,0.06) 0 1px,
+      transparent 1px 14px
+    ),
+    /* 上緣光帶 */
+    linear-gradient(90deg,
+      rgba(122,211,255,0),
+      rgba(122,211,255,0.20),
+      rgba(122,211,255,0)
+    );
+
+  mix-blend-mode: screen;
+  opacity: 0.55;
+}
+
+/* hover：浮起、藍光增強、四角微放大（像你 code block hover 的感覺） */
+.md-post--excerpt:hover{
+  transform: translateY(-3px);
+  filter: drop-shadow(0 0 18px rgba(122,211,255,0.10));
+  box-shadow:
+    0 30px 74px rgba(0,0,0,0.66),
+    0 0 46px rgba(122,211,255,0.16);
+}
+
+.md-post--excerpt:hover::before{
+  transform: scale(1.02);
+  filter: drop-shadow(0 0 14px var(--peicd-code-glow));
+  opacity: 1;
+}
+
+
+
+/* 標題 hover 走 code 藍 */
+.md-post__content h2 a:hover{
+  color: var(--peicd-code-accent);
+}
+
+/* 亮色模式：同樣矩形 + 淡藍科技感，但底改白 */
+[data-md-color-scheme="default"] .md-post--excerpt,
+[data-md-color-scheme="light"]   .md-post--excerpt{
+  background:
+    linear-gradient(160deg, rgba(0,0,0,0.02), rgba(0,0,0,0.01)),
+    radial-gradient(900px 420px at 12% 0%, rgba(31,111,255,0.10), transparent 62%),
+    radial-gradient(700px 380px at 92% 105%, rgba(91,134,255,0.08), transparent 64%),
+    #ffffff;
+
+  box-shadow: 0 18px 46px rgba(15, 23, 42, 0.12);
+}
+
+[data-md-color-scheme="default"] .md-post--excerpt::after,
+[data-md-color-scheme="light"]   .md-post--excerpt::after{
+  mix-blend-mode: multiply;
+  opacity: 0.25;
 }
