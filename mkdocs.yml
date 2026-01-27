@@ -98,7 +98,7 @@ plugins:
 
 extra_css:
   - assets/pymdownx-extras/extra-8611f6c398.css  # 自定義 CSS 文件
-  - assets/pymdownx-extras/自定義.css  # 自定義 CSS 文件
+  # - assets/pymdownx-extras/自定義.css  # 自定義 CSS 文件
 
 extra_javascript:
   - https://unpkg.com/mermaid@10.6.1/dist/mermaid.min.js  # Mermaid 圖表支持
@@ -357,6 +357,7 @@ nav:  # 自定義網站的導航結構
           - '資料來源': 'md-演算法筆記/資料來源.md'
           - '加深加廣': 'md-演算法筆記/加深加廣.md'
           - '學習資源': 'md-演算法筆記/學習資源.md'
+          - '測試': 'md-測試/測試.md'
 
   - '人工智慧':
       - '前言': 'md-人工智慧/人工智慧前言.md'
@@ -382,7 +383,7 @@ nav:  # 自定義網站的導航結構
       - '滾球分隊': 'md-滾球分隊/滾球分隊.md'
       # - '連結Google文件的範例': 'md-連結Google文件的範例/連結Google文件的範例.md'
       - '製作網頁': 'md-Github+mkdocs+vscode製作網頁\Github+mkdocs+vscode製作網頁.md'
-      - '測試': 'md-測試/測試.md'
+      # - '測試': 'md-測試/測試.md'
       - '密碼測試': 'md-測試/密碼測試.md'
       - '內建完全白的背景測試': 'md-測試\完全白的背景.md'
 
