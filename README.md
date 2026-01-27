@@ -20,6 +20,7 @@ git push -u origin main
 
 ## 第一次操作
 ```
+git clone https://github.com/peicd100/peicd100.github.io.git
 conda create -n mkdocs python=3.13 -y
 activate mkdocs
 conda install pip -y 
@@ -62,7 +63,7 @@ git remote -v
 
 ```
 ## 克隆儲存庫
-
 ```
-git https://github.com/peicd100/peicd100.github.io.git
+git clone https://github.com/peicd100/peicd100.github.io.git
+
 ```
