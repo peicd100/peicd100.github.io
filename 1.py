@@ -1,6 +1,6 @@
 from pathlib import Path
 
-p = Path("docs\theme\assets\pymdownx-extras\自定義.css")  # 改成你的實際路徑
+p = Path(r"docs\theme\assets\pymdownx-extras\自定義.css")
 css = p.read_text(encoding="utf-8")
 
 repl = {
