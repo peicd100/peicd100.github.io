@@ -421,7 +421,7 @@ body {
   /* 細邊框 */
   box-shadow: var(--peicd-shadow-1);
   /* 陰影 */
-  backdrop-filter: blur(10px);
+  /* backdrop-filter: blur(10px); */
   /* 背景模糊（玻璃感） */
 }
 
