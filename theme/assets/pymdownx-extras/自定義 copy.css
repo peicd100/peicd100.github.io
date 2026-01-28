@@ -416,6 +416,13 @@ body {
 .md-header,
 .md-tabs {
   background: rgba(15, 17, 22, 0.92);
+  /*半透明深色底*/
+  border-bottom: 1px solid var(--md-primary-fg-color);
+  /* 細邊框 */
+  box-shadow: var(--peicd-shadow-1);
+  /* 陰影 */
+  /* backdrop-filter: blur(10px); */
+  /* 背景模糊（玻璃感） */
 }
 
 /* ==========================================================================
