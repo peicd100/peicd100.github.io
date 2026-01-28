@@ -2095,7 +2095,7 @@ body {
 
 /* LaTeX 外層容器（Material 常見：arithmatex）改成 .i 同款漸層藍 */
 .md-typeset div.arithmatex {
-  background: linear-gradient(90deg, rgba(122, 211, 255, 0.5), rgba(122, 211, 255, 0)) !important;
+  background: linear-gradient(90deg, rgba(122, 211, 255, 0.295), rgba(122, 211, 255, 0)) !important;
 }
 
 /* 內層（KaTeX/MathJax）背景清掉，避免外層漸層被灰底包一圈 */
@@ -2106,4 +2106,73 @@ body {
 
 .md-typeset .arithmatex {
   background: linear-gradient(90deg, rgba(122, 211, 255, 0.5), rgba(122, 211, 255, 0)) !important;
+}
+
+/* ===== Hotfix: Mobile drawer title 可讀性（避免白字白底） ===== */
+@media (max-width: 59.999em) {
+  /* 抽屜(左側導覽)最上方那條「返回/標題列」通常是 .md-nav__title[for] */
+  .md-sidebar--primary .md-nav__title[for] {
+    background: rgb(0, 0, 0) !important;
+    color: var(--md-primary-fg-color) !important;
+
+    /* 把你自訂的透明/底線/全大寫等影響可讀性的先壓掉 */
+    /* text-transform: none !important; */
+    /* letter-spacing: normal !important; */
+    /* border: 0 !important; */
+    /* box-shadow: none !important; */
+  }
+}
+/* ===== Mobile drawer：標題文字右移（只移文字，不動 icon） ===== */
+@media (max-width: 59.999em) {
+  .md-sidebar--primary .md-nav__title[for] {
+    display: flex !important;
+    align-items: center !important;
+  }
+
+  /* Material 的標題文字通常在 .md-ellipsis */
+  .md-sidebar--primary .md-nav__title[for] .md-ellipsis {
+    margin-left: 0.55rem !important; /* 你要更右就加大 */
+  }
+
+  /* 若你的版本不是 .md-ellipsis，用 span 兜底 */
+  .md-sidebar--primary .md-nav__title[for] > span:last-child {
+    margin-left: 0.55rem !important;
+  }
+}
+/* ==========================================================================
+   LaTeX（arithmatex / KaTeX / MathJax）
+   - 需求：不要漸層
+   - 需求：文字中的（inline）latex 不要背景、不加 padding
+   ========================================================================== */
+
+/* inline：完全透明、不留底、不留框、不加 padding */
+.md-typeset span.arithmatex {
+  background: transparent !important;
+  border: 0 !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  box-shadow: none !important;
+}
+
+/* block：同樣不要背景（保留預設排版間距） */
+.md-typeset div.arithmatex,
+.md-typeset .arithmatex {
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+
+/* 內層（KaTeX/MathJax）背景清掉，避免被任何主題包灰底 */
+.md-typeset div.arithmatex > .katex-display,
+.md-typeset div.arithmatex > mjx-container[display="true"] {
+  background: transparent !important;
+}
+
+/* 若你有額外把 arithmatex 當成 inline-code 在處理，這裡也保險清掉 */
+.md-typeset .arithmatex code,
+.md-typeset .arithmatex pre {
+  background: transparent !important;
+  border: 0 !important;
+  padding: 0 !important;
+  box-shadow: none !important;
 }
