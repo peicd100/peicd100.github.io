@@ -105,8 +105,8 @@ mkdocs gh-deploy
 2. 點開![alt text](images/Github+mkdocs+vscode製作網頁/ByKo8Mu3Jg.png)
 
 3. ```
-    git config --global user.name PEI 
-    git config --global user.email peicd100@gmail.com
+    git config --global user.name PEICD100
+    git config --global user.email x10640305@gmail.com
     ```
 <!--       
 4. github 桌面板 https://desktop.github.com/download/ -> 登入 
