@@ -379,6 +379,7 @@ nav:  # 自定義網站的導航結構
       - 'mkdocs筆記': 'md/mkdocs筆記/mkdocs筆記.md'
       - 'vscode筆記': 'md/vscode筆記/vscode筆記.md'
       - 'online judge 架設': 'md/online judge架設/online judge架設.md'
+      - 'windows 虛擬機': 'md/windows 虛擬機/PEICD - windows 虛擬機.html'
       - 'LaTeX': 'md/LaTeX/LaTeX.md'
       - '滾球分隊': 'md/滾球分隊/滾球分隊.md'
       # - '連結Google文件的範例': 'md/連結Google文件的範例/連結Google文件的範例.md'
