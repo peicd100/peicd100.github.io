@@ -7187,7 +7187,23 @@ is now available!
 
 
 <h1 id="switch之使用">switch之使用<a class="headerlink" href="#switch之使用" title="Permanent link"></a></h1>
-<h2 id="switch之使用_1">switch之使用<a class="headerlink" href="#switch之使用_1" title="Permanent link"></a></h2>
+<dir class="i"><code>switch</code> 可以用的資料型態只有這些：<br />
+<br />
+1. <strong>整數型別（integral types）</strong><br />
+<br />
+* <code>char</code> / <code>signed char</code> / <code>unsigned char</code><br />
+* <code>short</code> / <code>unsigned short</code><br />
+* <code>int</code> / <code>unsigned int</code><br />
+* <code>long</code> / <code>unsigned long</code><br />
+* <code>long long</code> / <code>unsigned long long</code><br />
+* <code>bool</code><br />
+<br />
+2. <strong>列舉型別</strong><br />
+<br />
+* <code>enum</code><br />
+* <code>enum class</code><br />
+<br />
+其餘像 <code>float/double</code>、<code>string</code>、<code>class/struct</code>、<code>vector</code> 都 <strong>不能</strong> 放進 <code>switch(...)</code>。</dir><h2 id="switch之使用_1">switch之使用<a class="headerlink" href="#switch之使用_1" title="Permanent link"></a></h2>
 <div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;bits/stdc++.h&gt;</span>
 <span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span>
 <span class="cp">#define nn &quot;\n&quot;</span>
@@ -7228,11 +7244,19 @@ B
 <span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(){</span>
 <span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="p">;</span>
 <span class="w">    </span><span class="n">n</span><span class="o">=</span><span class="mi">4</span><span class="p">;</span>
-<span class="w">    </span><span class="k">switch</span><span class="w"> </span><span class="p">(</span><span class="n">n</span><span class="p">){</span>
-<span class="w">        </span><span class="k">case</span><span class="w"> </span><span class="mi">1</span><span class="p">:</span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="sc">&#39;A&#39;</span><span class="p">;</span><span class="k">break</span><span class="p">;</span>
-<span class="w">        </span><span class="k">case</span><span class="w"> </span><span class="mi">2</span><span class="p">:</span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="sc">&#39;B&#39;</span><span class="p">;</span><span class="k">break</span><span class="p">;</span>
-<span class="w">        </span><span class="k">case</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="mi">5</span><span class="p">:</span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="sc">&#39;C&#39;</span><span class="p">;</span><span class="k">break</span><span class="p">;</span>
-<span class="w">        </span><span class="k">default</span><span class="w"> </span><span class="o">:</span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="sc">&#39;D&#39;</span><span class="p">;</span><span class="k">break</span><span class="p">;</span>
+<span class="w">    </span><span class="k">switch</span><span class="w"> </span><span class="p">(</span><span class="n">n</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">case</span><span class="w"> </span><span class="mi">1</span><span class="p">:</span>
+<span class="w">            </span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="sc">&#39;A&#39;</span><span class="p">;</span>
+<span class="w">            </span><span class="k">break</span><span class="p">;</span>
+<span class="w">        </span><span class="k">case</span><span class="w"> </span><span class="mi">2</span><span class="p">:</span>
+<span class="w">            </span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="sc">&#39;B&#39;</span><span class="p">;</span>
+<span class="w">            </span><span class="k">break</span><span class="p">;</span>
+<span class="w">        </span><span class="k">case</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="mi">5</span><span class="p">:</span>
+<span class="w">            </span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="sc">&#39;C&#39;</span><span class="p">;</span>
+<span class="w">            </span><span class="k">break</span><span class="p">;</span>
+<span class="w">        </span><span class="k">default</span><span class="w"> </span><span class="o">:</span>
+<span class="w">            </span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="sc">&#39;D&#39;</span><span class="p">;</span>
+<span class="w">            </span><span class="k">break</span><span class="p">;</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div><br />

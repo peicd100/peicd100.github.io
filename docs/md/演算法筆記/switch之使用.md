@@ -1,4 +1,28 @@
 # switch之使用
+
+/// html | dir.i
+
+`switch` 可以用的資料型態只有這些：
+
+1. **整數型別（integral types）**
+
+* `char` / `signed char` / `unsigned char`
+* `short` / `unsigned short`
+* `int` / `unsigned int`
+* `long` / `unsigned long`
+* `long long` / `unsigned long long`
+* `bool`
+
+2. **列舉型別**
+
+* `enum`
+* `enum class`
+
+其餘像 `float/double`、`string`、`class/struct`、`vector` 都 **不能** 放進 `switch(...)`。
+
+///
+
+
 ## switch之使用
 ```cpp  
 #include <bits/stdc++.h>
@@ -48,11 +72,19 @@ using namespace std;
 int main(){
     int n;
     n=4;
-    switch (n){
-        case 1:cout<<'A';break;
-        case 2:cout<<'B';break;
-        case 3 ... 5:cout<<'C';break;
-        default :cout<<'D';break;
+    switch (n) {
+        case 1:
+            cout<<'A';
+            break;
+        case 2:
+            cout<<'B';
+            break;
+        case 3 ... 5:
+            cout<<'C';
+            break;
+        default :
+            cout<<'D';
+            break;
     }
 }
 
