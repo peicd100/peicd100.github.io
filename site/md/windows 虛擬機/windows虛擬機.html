@@ -7471,6 +7471,8 @@ is now available!
 <h2 id="gpt-對話">GPT 對話<a class="headerlink" href="#gpt-對話" title="Permanent link"></a></h2>
 <p><a href="PEICD%20-%20windows%20%E8%99%9B%E6%93%AC%E6%A9%9F.html">連結</a></p>
 <h2 id="配置">配置<a class="headerlink" href="#配置" title="Permanent link"></a></h2>
+<details>
+<summary>配置圖片</summary>
 <p><img alt="alt text" src="images/windows%E8%99%9B%E6%93%AC%E6%A9%9F/%E8%9E%A2%E5%B9%95%E6%93%B7%E5%8F%96%E7%95%AB%E9%9D%A2%202026-02-06%20001546-1.png" /><br />
 <img alt="alt text" src="images/windows%E8%99%9B%E6%93%AC%E6%A9%9F/%E8%9E%A2%E5%B9%95%E6%93%B7%E5%8F%96%E7%95%AB%E9%9D%A2%202026-02-06%20001549-1.png" /><br />
 <img alt="alt text" src="images/windows%E8%99%9B%E6%93%AC%E6%A9%9F/%E8%9E%A2%E5%B9%95%E6%93%B7%E5%8F%96%E7%95%AB%E9%9D%A2%202026-02-06%20001551-1.png" /><br />
@@ -7492,6 +7494,7 @@ is now available!
 <img alt="alt text" src="images/windows%E8%99%9B%E6%93%AC%E6%A9%9F/%E8%9E%A2%E5%B9%95%E6%93%B7%E5%8F%96%E7%95%AB%E9%9D%A2%202026-02-06%20001621-1.png" /><br />
 <img alt="alt text" src="images/windows%E8%99%9B%E6%93%AC%E6%A9%9F/%E8%9E%A2%E5%B9%95%E6%93%B7%E5%8F%96%E7%95%AB%E9%9D%A2%202026-02-06%20001623-1.png" /><br />
 <img alt="alt text" src="images/windows%E8%99%9B%E6%93%AC%E6%A9%9F/%E8%9E%A2%E5%B9%95%E6%93%B7%E5%8F%96%E7%95%AB%E9%9D%A2%202026-02-06%20001625-1.png" /></p>
+</details>
 <h2 id="磁碟更正路徑">磁碟更正路徑<a class="headerlink" href="#磁碟更正路徑" title="Permanent link"></a></h2>
 <p><img alt="alt text" src="images/windows%E8%99%9B%E6%93%AC%E6%A9%9F/image.png" /></p>
 <p>你這張圖裡，右鍵選單<strong>就有你要的那個</strong>：</p>
@@ -7569,19 +7572,19 @@ is now available!
 <p>[2]: <a href="https://kak.kornev-online.net/FILES/KAK%20-%20VMWare%20Workstation%20Pro%2010%20User%20Guide.pdf">https://kak.kornev-online.net/FILES/KAK%20-%20VMWare%20Workstation%20Pro%2010%20User%20Guide.pdf</a> "Using VMware Workstation - VMware<br />
   Workstation 10"</p>
 <h3 id="一鍵背景開啟">一鍵背景開啟<a class="headerlink" href="#一鍵背景開啟" title="Permanent link"></a></h3>
-<div class="highlight"><pre><span></span><code>@echo off
-setlocal
+<div class="highlight"><span class="filename">一鍵開啟.bat</span><pre><span></span><code><span class="p">@</span><span class="k">echo</span> off
+<span class="k">setlocal</span>
 
-REM 1) 改成你的 .vmx 完整路徑
-set &quot;VMX=D:\VM\Windows11-Parsec\Windows11-Parsec.vmx&quot;
+<span class="c1">REM 1) 改成你的 .vmx 完整路徑</span>
+<span class="k">set</span> <span class="s2">&quot;VMX=D:\VM\Windows11-Parsec\Windows11-Parsec.vmx&quot;</span>
 
-REM 2) vmrun 路徑（通常在這裡）
-set &quot;VMRUN=C:\Program Files (x86)\VMware\VMware Workstation\vmrun.exe&quot;
+<span class="c1">REM 2) vmrun 路徑（通常在這裡）</span>
+<span class="k">set</span> <span class="s2">&quot;VMRUN=C:\Program Files (x86)\VMware\VMware Workstation\vmrun.exe&quot;</span>
 
-REM 啟動（nogui = 不開視窗）
-&quot;%VMRUN%&quot; -T ws -vp &quot;你的密碼&quot; start &quot;%VMX%&quot; nogui
+<span class="c1">REM 啟動（nogui = 不開視窗）</span>
+<span class="s2">&quot;</span><span class="nv">%VMRUN%</span><span class="s2">&quot;</span> -T ws -vp <span class="s2">&quot;你的密碼&quot;</span> start <span class="s2">&quot;</span><span class="nv">%VMX%</span><span class="s2">&quot;</span> nogui
 
-endlocal
+<span class="k">endlocal</span>
 </code></pre></div>
 
 

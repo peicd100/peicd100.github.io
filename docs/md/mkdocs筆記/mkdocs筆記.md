@@ -1443,6 +1443,23 @@ def bubble_sort(items):
 ///
 
 
+## 摺疊區塊
+
+```
+/// details | 摺疊名稱
+
+摺疊內容
+
+///
+```
+/// html | div.result
+/// details | 摺疊名稱
+
+摺疊內容
+
+///
+///
+
 
 ## 設定密碼
 

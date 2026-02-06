@@ -6,6 +6,9 @@
 [連結](PEICD - windows 虛擬機.html)
 
 ## 配置
+
+/// details | 配置圖片
+
 ![alt text](<images/windows虛擬機/螢幕擷取畫面 2026-02-06 001546-1.png>)
 ![alt text](<images/windows虛擬機/螢幕擷取畫面 2026-02-06 001549-1.png>)
 ![alt text](<images/windows虛擬機/螢幕擷取畫面 2026-02-06 001551-1.png>)
@@ -28,6 +31,7 @@
 ![alt text](<images/windows虛擬機/螢幕擷取畫面 2026-02-06 001623-1.png>)
 ![alt text](<images/windows虛擬機/螢幕擷取畫面 2026-02-06 001625-1.png>)
 
+///
 
 ## 磁碟更正路徑
 
@@ -143,7 +147,7 @@
 ### 一鍵背景開啟
 
 
-```
+```bat title="一鍵開啟.bat"
 
 @echo off
 setlocal
