@@ -176,7 +176,19 @@ images/${documentBaseName}/
     "cmake.showConfigureWithDebuggerNotification": false,
     "files.autoSave": "afterDelay",
     "git.enableSmartCommit": true,
-    "editor.fontFamily": "Roboto Mono, Consolas, 'Courier New', monospace"
+    "editor.fontFamily": "Roboto Mono, Consolas, 'Courier New', monospace",
+    "files.autoSave": "afterDelay",
+    "security.allowedUNCHosts": [
+        "vmware-host"
+    ],
+    //在寫 C++ 時 VS Code 會把你剛剛自動插入在空白行上的縮排空白視為「可修剪的自動空白」，當游標離開那一行（你按第二次 Enter 就離開了）就把它刪掉。
+    //以下是關閉他的方法
+    "[cpp]": {
+        "editor.trimAutoWhitespace": false
+    },
+    "[c]": {
+        "editor.trimAutoWhitespace": false
+    }
 }
 ```
 
@@ -312,11 +324,12 @@ https://sourceforge.net/projects/mingw/files/
 
 
 ![alt text](../images/使用vscode撰寫c++/S1SZ06oF0.png)
+
 2. 選擇以type排序
 
 
 ![alt text](../images/使用vscode撰寫c++/ryA1ApotC.png)
-----
+
 
 /// details | 使用chroombook
 
@@ -355,4 +368,18 @@ sudo apt install code # or code-insiders
 
 
 ///
+
+## 關閉自動修剪空白
+
+在寫C++時VS Code 會把你剛剛自動插入在空白行上的縮排空白視為「可修剪的自動空白」，當游標離開那一行（你按第二次 Enter 就離開了）就把它刪掉。
+以下是關閉他的方法
+
+```json title="settings.json"
+"[cpp]": {
+    "editor.trimAutoWhitespace": false
+},
+"[c]": {
+    "editor.trimAutoWhitespace": false
+}
+```
 

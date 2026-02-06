@@ -6820,10 +6820,10 @@ is now available!
 </li>
       
         <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
+  <a href="#關閉自動修剪空白" class="md-nav__link">
     <span class="md-ellipsis">
       
-        
+        關閉自動修剪空白
       
     </span>
   </a>
@@ -7438,10 +7438,10 @@ is now available!
 </li>
       
         <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
+  <a href="#關閉自動修剪空白" class="md-nav__link">
     <span class="md-ellipsis">
       
-        
+        關閉自動修剪空白
       
     </span>
   </a>
@@ -7623,8 +7623,20 @@ is now available!
 <span class="linenos" data-linenos="114 "></span><span class="w">    </span><span class="nt">&quot;cmake.showConfigureWithDebuggerNotification&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
 <span class="linenos" data-linenos="115 "></span><span class="w">    </span><span class="nt">&quot;files.autoSave&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;afterDelay&quot;</span><span class="p">,</span>
 <span class="linenos" data-linenos="116 "></span><span class="w">    </span><span class="nt">&quot;git.enableSmartCommit&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
-<span class="linenos" data-linenos="117 "></span><span class="w">    </span><span class="nt">&quot;editor.fontFamily&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Roboto Mono, Consolas, &#39;Courier New&#39;, monospace&quot;</span>
-<span class="linenos" data-linenos="118 "></span><span class="p">}</span>
+<span class="linenos" data-linenos="117 "></span><span class="w">    </span><span class="nt">&quot;editor.fontFamily&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Roboto Mono, Consolas, &#39;Courier New&#39;, monospace&quot;</span><span class="p">,</span>
+<span class="linenos" data-linenos="118 "></span><span class="w">    </span><span class="nt">&quot;files.autoSave&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;afterDelay&quot;</span><span class="p">,</span>
+<span class="linenos" data-linenos="119 "></span><span class="w">    </span><span class="nt">&quot;security.allowedUNCHosts&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="linenos" data-linenos="120 "></span><span class="w">        </span><span class="s2">&quot;vmware-host&quot;</span>
+<span class="linenos" data-linenos="121 "></span><span class="w">    </span><span class="p">],</span>
+<span class="linenos" data-linenos="122 "></span><span class="w">    </span><span class="c1">//在寫 C++ 時 VS Code 會把你剛剛自動插入在空白行上的縮排空白視為「可修剪的自動空白」，當游標離開那一行（你按第二次 Enter 就離開了）就把它刪掉。</span>
+<span class="linenos" data-linenos="123 "></span><span class="w">    </span><span class="c1">//以下是關閉他的方法</span>
+<span class="linenos" data-linenos="124 "></span><span class="w">    </span><span class="nt">&quot;[cpp]&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="125 "></span><span class="w">        </span><span class="nt">&quot;editor.trimAutoWhitespace&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span>
+<span class="linenos" data-linenos="126 "></span><span class="w">    </span><span class="p">},</span>
+<span class="linenos" data-linenos="127 "></span><span class="w">    </span><span class="nt">&quot;[c]&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="128 "></span><span class="w">        </span><span class="nt">&quot;editor.trimAutoWhitespace&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span>
+<span class="linenos" data-linenos="129 "></span><span class="w">    </span><span class="p">}</span>
+<span class="linenos" data-linenos="130 "></span><span class="p">}</span>
 </code></pre></div>
 <div class="code-footer"><label class="expand" for="__collapse0" tabindex="0" title="expand"></label><label class="collapse" for="__collapse0" tabindex="0" title="collapse"></label></div>
 </div>
@@ -7702,9 +7714,11 @@ is now available!
 <ol>
 <li>找到設定</li>
 </ol>
-<p><img alt="alt text" src="../images/%E4%BD%BF%E7%94%A8vscode%E6%92%B0%E5%AF%ABc%2B%2B/S1SZ06oF0.png" /><br />
-2. 選擇以type排序</p>
-<h2 id="_1"><img alt="alt text" src="../images/%E4%BD%BF%E7%94%A8vscode%E6%92%B0%E5%AF%ABc%2B%2B/ryA1ApotC.png" /><a class="headerlink" href="#_1" title="Permanent link"></a></h2>
+<p><img alt="alt text" src="../images/%E4%BD%BF%E7%94%A8vscode%E6%92%B0%E5%AF%ABc%2B%2B/S1SZ06oF0.png" /></p>
+<ol>
+<li>選擇以type排序</li>
+</ol>
+<p><img alt="alt text" src="../images/%E4%BD%BF%E7%94%A8vscode%E6%92%B0%E5%AF%ABc%2B%2B/ryA1ApotC.png" /></p>
 <details>
 <summary>使用chroombook</summary>
 <p>codeblocks-----</p>
@@ -7728,6 +7742,16 @@ is now available!
 <span class="n">sudo</span><span class="w"> </span><span class="n">apt</span><span class="w"> </span><span class="n">install</span><span class="w"> </span><span class="n">code</span><span class="w"> </span><span class="err">#</span><span class="w"> </span><span class="k">or</span><span class="w"> </span><span class="n">code</span><span class="o">-</span><span class="n">insiders</span>
 </code></pre></div></p>
 </details>
+<h2 id="關閉自動修剪空白">關閉自動修剪空白<a class="headerlink" href="#關閉自動修剪空白" title="Permanent link"></a></h2>
+<p>在寫C++時VS Code 會把你剛剛自動插入在空白行上的縮排空白視為「可修剪的自動空白」，當游標離開那一行（你按第二次 Enter 就離開了）就把它刪掉。<br />
+以下是關閉他的方法</p>
+<div class="highlight"><span class="filename">settings.json</span><pre><span></span><code><span class="nt">&quot;[cpp]&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;editor.trimAutoWhitespace&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span>
+<span class="p">},</span>
+<span class="nt">&quot;[c]&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;editor.trimAutoWhitespace&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span>
+<span class="p">}</span>
+</code></pre></div>
 
 
 
