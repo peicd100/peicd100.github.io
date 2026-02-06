@@ -137,3 +137,27 @@
 [1]: https://knowledge.broadcom.com/external/article/309842/understanding-networking-types-in-hosted.html?utm_source=chatgpt.com "Understanding networking types in hosted products"
 [2]: https://kak.kornev-online.net/FILES/KAK%20-%20VMWare%20Workstation%20Pro%2010%20User%20Guide.pdf "Using VMware Workstation - VMware
   Workstation 10"
+
+
+
+### 一鍵背景開啟
+
+
+```
+
+@echo off
+setlocal
+
+REM 1) 改成你的 .vmx 完整路徑
+set "VMX=D:\VM\Windows11-Parsec\Windows11-Parsec.vmx"
+
+REM 2) vmrun 路徑（通常在這裡）
+set "VMRUN=C:\Program Files (x86)\VMware\VMware Workstation\vmrun.exe"
+
+REM 啟動（nogui = 不開視窗）
+"%VMRUN%" -T ws -vp "你的密碼" start "%VMX%" nogui
+
+endlocal
+
+
+```

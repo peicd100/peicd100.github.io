@@ -6870,6 +6870,17 @@ is now available!
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#一鍵背景開啟" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        一鍵背景開啟
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -7421,6 +7432,17 @@ is now available!
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#一鍵背景開啟" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        一鍵背景開啟
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -7546,6 +7568,21 @@ is now available!
 <p>如果你告訴我：你是否需要「從外面主動連進 VM」（例如遠端桌面/服務/被同網段朋友連），我可以直接依你的用途給你最合適的選擇與該勾的細項（例如是否需要 port forwarding、是否要第二張網卡）。</p>
 <p>[2]: <a href="https://kak.kornev-online.net/FILES/KAK%20-%20VMWare%20Workstation%20Pro%2010%20User%20Guide.pdf">https://kak.kornev-online.net/FILES/KAK%20-%20VMWare%20Workstation%20Pro%2010%20User%20Guide.pdf</a> "Using VMware Workstation - VMware<br />
   Workstation 10"</p>
+<h3 id="一鍵背景開啟">一鍵背景開啟<a class="headerlink" href="#一鍵背景開啟" title="Permanent link"></a></h3>
+<div class="highlight"><pre><span></span><code>@echo off
+setlocal
+
+REM 1) 改成你的 .vmx 完整路徑
+set &quot;VMX=D:\VM\Windows11-Parsec\Windows11-Parsec.vmx&quot;
+
+REM 2) vmrun 路徑（通常在這裡）
+set &quot;VMRUN=C:\Program Files (x86)\VMware\VMware Workstation\vmrun.exe&quot;
+
+REM 啟動（nogui = 不開視窗）
+&quot;%VMRUN%&quot; -T ws -vp &quot;你的密碼&quot; start &quot;%VMX%&quot; nogui
+
+endlocal
+</code></pre></div>
 
 
 
