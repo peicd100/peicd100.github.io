@@ -34,6 +34,18 @@ git push -u origin main
 mkdocs gh-deploy
 
 ```
+## 只安裝環境
+
+```
+conda create -n mkdocs python=3.13 -y
+activate mkdocs
+conda install pip -y 
+pip install -r requirements.txt
+conda install git
+
+```
+
+
 ## 初始化
 ```
 git init
