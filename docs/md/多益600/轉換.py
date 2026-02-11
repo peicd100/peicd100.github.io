@@ -24,6 +24,11 @@ DEFAULT_THEME_COLOR = "#72e3fd"
 OUTPUT_SAMPLE_RATE = 44100
 OUTPUT_CHANNELS = 2
 OUTPUT_BITRATE = "128k"
+VIDEO_WIDTH = 1280
+VIDEO_HEIGHT = 720
+VIDEO_FPS = 30
+VIDEO_FONT_SIZE = 220
+VIDEO_FONT_COLOR = "white"
 PREFERRED_DEFAULT_VOICES = (
     "en-US-AriaNeural",
     "en-US-JennyNeural",
@@ -142,6 +147,66 @@ def detect_mp3_encoder(ffmpeg_bin: Path) -> str:
     raise ConversionError("ffmpeg 找不到可用 MP3 編碼器（libmp3lame/mp3/mp3_mf）。")
 
 
+def detect_aac_encoder(ffmpeg_bin: Path) -> str:
+    cmd = [str(ffmpeg_bin), "-hide_banner", "-encoders"]
+    proc = subprocess.run(
+        cmd,
+        capture_output=True,
+        text=True,
+        encoding="utf-8",
+        errors="replace",
+    )
+    if proc.returncode != 0:
+        raise ConversionError("無法讀取 ffmpeg encoder 清單。")
+
+    available: set[str] = set()
+    for line in proc.stdout.splitlines():
+        line = line.strip()
+        if not line or line.startswith("------"):
+            continue
+        parts = line.split()
+        if len(parts) < 2:
+            continue
+        flags, name = parts[0], parts[1]
+        if re.fullmatch(r"[A-Z\.]{6}", flags):
+            available.add(name)
+
+    for encoder in ("aac", "libfdk_aac"):
+        if encoder in available:
+            return encoder
+    raise ConversionError("ffmpeg 找不到可用 AAC 編碼器（aac/libfdk_aac）。")
+
+
+def detect_h264_encoder(ffmpeg_bin: Path) -> str:
+    cmd = [str(ffmpeg_bin), "-hide_banner", "-encoders"]
+    proc = subprocess.run(
+        cmd,
+        capture_output=True,
+        text=True,
+        encoding="utf-8",
+        errors="replace",
+    )
+    if proc.returncode != 0:
+        raise ConversionError("無法讀取 ffmpeg encoder 清單。")
+
+    available: set[str] = set()
+    for line in proc.stdout.splitlines():
+        line = line.strip()
+        if not line or line.startswith("------"):
+            continue
+        parts = line.split()
+        if len(parts) < 2:
+            continue
+        flags, name = parts[0], parts[1]
+        if re.fullmatch(r"[A-Z\.]{6}", flags):
+            available.add(name)
+
+    for encoder in ("libx264", "h264_mf", "mpeg4"):
+        if encoder in available:
+            return encoder
+    raise ConversionError("ffmpeg 找不到可用視訊編碼器（libx264/h264_mf/mpeg4）。")
+
+
 def create_silence_mp3(ffmpeg_bin: Path, mp3_encoder: str, duration_sec: float, out_path: Path) -> None:
     cmd = [
         str(ffmpeg_bin),
@@ -175,7 +240,7 @@ def write_concat_list(input_files: Iterable[Path], list_file: Path) -> None:
     list_file.write_text("\n".join(lines), encoding="utf-8")
 
 
-def concat_mp3(
+def concat_audio_mp3(
     ffmpeg_bin: Path,
     mp3_encoder: str,
     input_files: list[Path],
@@ -205,6 +270,87 @@ def concat_mp3(
         str(out_path),
     ]
     run_checked(cmd, cwd=list_file.parent)
+
+
+def find_drawtext_font() -> Path | None:
+    candidates = [
+        Path(r"C:\Windows\Fonts\msjh.ttc"),
+        Path(r"C:\Windows\Fonts\msyh.ttc"),
+        Path(r"C:\Windows\Fonts\simsun.ttc"),
+        Path(r"C:\Windows\Fonts\arial.ttf"),
+    ]
+    for candidate in candidates:
+        if candidate.exists():
+            return candidate
+    return None
+
+
+def escape_drawtext_text(text: str) -> str:
+    escaped = text
+    escaped = escaped.replace("\\", r"\\")
+    escaped = escaped.replace(":", r"\:")
+    escaped = escaped.replace("'", r"\'")
+    escaped = escaped.replace("%", r"\%")
+    return escaped
+
+
+def build_drawtext_filter(label_text: str, fontfile: Path | None) -> str:
+    parts: list[str] = []
+    if fontfile is not None:
+        font_expr = fontfile.as_posix().replace(":", r"\:").replace("'", r"\'")
+        parts.append(f"fontfile='{font_expr}'")
+    parts.extend(
+        [
+            f"text='{escape_drawtext_text(label_text)}'",
+            f"fontcolor={VIDEO_FONT_COLOR}",
+            f"fontsize={VIDEO_FONT_SIZE}",
+            "x=(w-text_w)/2",
+            "y=(h-text_h)/2",
+        ]
+    )
+    return "drawtext=" + ":".join(parts)
+
+
+def create_labeled_video_mp4(
+    ffmpeg_bin: Path,
+    h264_encoder: str,
+    aac_encoder: str,
+    audio_file: Path,
+    label_text: str,
+    out_path: Path,
+    fontfile: Path | None,
+) -> None:
+    video_input = f"color=c=black:s={VIDEO_WIDTH}x{VIDEO_HEIGHT}:r={VIDEO_FPS}"
+    drawtext_filter = build_drawtext_filter(label_text, fontfile)
+    cmd = [
+        str(ffmpeg_bin),
+        "-y",
+        "-f",
+        "lavfi",
+        "-i",
+        video_input,
+        "-i",
+        str(audio_file),
+        "-vf",
+        drawtext_filter,
+        "-c:v",
+        h264_encoder,
+        "-pix_fmt",
+        "yuv420p",
+        "-c:a",
+        aac_encoder,
+        "-ar",
+        str(OUTPUT_SAMPLE_RATE),
+        "-ac",
+        str(OUTPUT_CHANNELS),
+        "-b:a",
+        OUTPUT_BITRATE,
+        "-shortest",
+        "-movflags",
+        "+faststart",
+        str(out_path),
+    ]
+    run_checked(cmd)
 
 
 def with_gap(items: list[Path], gap_file: Path | None) -> list[Path]:
@@ -253,6 +399,74 @@ async def fetch_voice_choices() -> list[tuple[str, str]]:
     return choices
 
 
+async def convert_markdown_file(
+    md_path: Path,
+    tmp_root: Path,
+    output_dir: Path,
+    voice: str,
+    rate: str,
+    gap_file: Path | None,
+    ffmpeg_bin: Path,
+    mp3_encoder: str,
+    h264_encoder: str,
+    aac_encoder: str,
+    drawtext_font: Path | None,
+    progress: Callable[[str], None],
+) -> tuple[Path | None, Path | None, list[str]]:
+    warnings: list[str] = []
+    sentences = extract_tts_sentences(md_path)
+    if not sentences:
+        warning = f"{md_path.name} 沒有 tts 句子，已略過。"
+        warnings.append(warning)
+        progress(f"警告：{warning}")
+        return None, None, warnings
+
+    progress(f"處理 {md_path.name}（{len(sentences)} 句）")
+    part_dir = tmp_root / md_path.stem
+    part_dir.mkdir(parents=True, exist_ok=True)
+    sentence_audio_files: list[Path] = []
+
+    for idx, sentence in enumerate(sentences, start=1):
+        segment = part_dir / f"{idx:04d}.mp3"
+        try:
+            await synthesize_sentence(
+                text=sentence,
+                voice=voice,
+                rate=rate,
+                out_path=segment,
+                retries=1,
+            )
+        except Exception as exc:
+            raise ConversionError(
+                f"{md_path.name} 第 {idx} 句轉換失敗：{exc}"
+            ) from exc
+
+        sentence_audio_files.append(segment)
+        if idx % 20 == 0 or idx == len(sentences):
+            progress(f"{md_path.name} 進度 {idx}/{len(sentences)}")
+
+    concat_inputs = with_gap(sentence_audio_files, gap_file)
+    audio_file = part_dir / f"{md_path.stem}_audio.mp3"
+    audio_concat_list_file = part_dir / "concat_audio.txt"
+    await asyncio.to_thread(
+        concat_audio_mp3, ffmpeg_bin, mp3_encoder, concat_inputs, audio_file, audio_concat_list_file
+    )
+
+    output_file = output_dir / f"{md_path.stem}.mp4"
+    await asyncio.to_thread(
+        create_labeled_video_mp4,
+        ffmpeg_bin,
+        h264_encoder,
+        aac_encoder,
+        audio_file,
+        md_path.stem,
+        output_file,
+        drawtext_font,
+    )
+    progress(f"完成 {output_file.name}")
+    return output_file, audio_file, warnings
+
+
 def pick_default_voice(choices: list[tuple[str, str]]) -> str:
     if not choices:
         raise ConversionError("取得 voice 清單失敗。")
@@ -274,6 +488,9 @@ async def convert_workspace(
     progress = progress or (lambda _: None)
     ffmpeg_bin = locate_binary("ffmpeg")
     mp3_encoder = detect_mp3_encoder(ffmpeg_bin)
+    aac_encoder = detect_aac_encoder(ffmpeg_bin)
+    h264_encoder = detect_h264_encoder(ffmpeg_bin)
+    drawtext_font = find_drawtext_font()
     markdown_files = scan_numeric_markdown_files(workspace_root)
     if not markdown_files:
         raise ConversionError("找不到任何 <數字>.md 檔案。")
@@ -285,62 +502,89 @@ async def convert_workspace(
     generated_files: list[Path] = []
     rate = to_edge_rate(options.rate_percent)
 
-    progress(f"ffmpeg MP3 編碼器：{mp3_encoder}")
-    progress(f"已找到 {len(markdown_files)} 個 .md，開始轉換。")
+    progress(f"ffmpeg MP3 編碼器：{mp3_encoder}（句間靜音）")
+    progress(f"ffmpeg AAC 編碼器：{aac_encoder}（MP4 輸出）")
+    progress(f"ffmpeg 視訊編碼器：{h264_encoder}")
+    if drawtext_font is not None:
+        progress(f"drawtext 字型：{drawtext_font.name}")
+    else:
+        progress("drawtext 字型：使用 ffmpeg 預設字型")
+    progress(f"已找到 {len(markdown_files)} 個 .md，開始同時轉換。")
     with tempfile.TemporaryDirectory(prefix="tts_tmp_", dir=str(output_dir)) as tmpdir:
         tmp_root = Path(tmpdir)
         gap_file: Path | None = None
         if options.gap_seconds > 0:
             gap_file = tmp_root / "gap.mp3"
             progress(f"建立靜音片段：{options.gap_seconds:.2f} 秒")
-            create_silence_mp3(ffmpeg_bin, mp3_encoder, options.gap_seconds, gap_file)
+            await asyncio.to_thread(
+                create_silence_mp3, ffmpeg_bin, mp3_encoder, options.gap_seconds, gap_file
+            )
 
-        for md_path in markdown_files:
-            sentences = extract_tts_sentences(md_path)
-            if not sentences:
-                warning = f"{md_path.name} 沒有 tts 句子，已略過。"
-                warnings.append(warning)
-                progress(f"警告：{warning}")
-                continue
+        semaphore = asyncio.Semaphore(max(1, len(markdown_files)))
 
-            progress(f"處理 {md_path.name}（{len(sentences)} 句）")
-            part_dir = tmp_root / md_path.stem
-            part_dir.mkdir(parents=True, exist_ok=True)
-            sentence_audio_files: list[Path] = []
+        async def run_one(index: int, md_path: Path) -> tuple[int, Path | None, Path | None, list[str]]:
+            async with semaphore:
+                output_file, audio_file, local_warnings = await convert_markdown_file(
+                    md_path=md_path,
+                    tmp_root=tmp_root,
+                    output_dir=output_dir,
+                    voice=options.voice,
+                    rate=rate,
+                    gap_file=gap_file,
+                    ffmpeg_bin=ffmpeg_bin,
+                    mp3_encoder=mp3_encoder,
+                    h264_encoder=h264_encoder,
+                    aac_encoder=aac_encoder,
+                    drawtext_font=drawtext_font,
+                    progress=progress,
+                )
+                return index, output_file, audio_file, local_warnings
 
-            for idx, sentence in enumerate(sentences, start=1):
-                segment = part_dir / f"{idx:04d}.mp3"
-                try:
-                    await synthesize_sentence(
-                        text=sentence,
-                        voice=options.voice,
-                        rate=rate,
-                        out_path=segment,
-                        retries=1,
-                    )
-                except Exception as exc:
-                    raise ConversionError(
-                        f"{md_path.name} 第 {idx} 句轉換失敗：{exc}"
-                    ) from exc
-                sentence_audio_files.append(segment)
-                if idx % 20 == 0 or idx == len(sentences):
-                    progress(f"{md_path.name} 進度 {idx}/{len(sentences)}")
+        tasks = [run_one(i, md_path) for i, md_path in enumerate(markdown_files)]
+        results = await asyncio.gather(*tasks, return_exceptions=True)
 
-            concat_inputs = with_gap(sentence_audio_files, gap_file)
-            output_file = output_dir / f"{md_path.stem}.mp3"
-            concat_list_file = part_dir / "concat.txt"
-            concat_mp3(ffmpeg_bin, mp3_encoder, concat_inputs, output_file, concat_list_file)
-            generated_files.append(output_file)
-            progress(f"完成 {output_file.name}")
+        ordered_outputs: dict[int, Path] = {}
+        ordered_audios: dict[int, Path] = {}
+        for result in results:
+            if isinstance(result, Exception):
+                raise result
+            idx, out_file, audio_file, local_warnings = result
+            warnings.extend(local_warnings)
+            if out_file is not None:
+                ordered_outputs[idx] = out_file
+            if audio_file is not None:
+                ordered_audios[idx] = audio_file
 
-        if not generated_files:
+        generated_files = [ordered_outputs[i] for i in sorted(ordered_outputs.keys())]
+        generated_audio_files = [ordered_audios[i] for i in sorted(ordered_audios.keys())]
+
+        if not generated_files or not generated_audio_files:
             raise ConversionError("沒有任何檔案完成轉換，請檢查 .md 內容。")
 
-        all_audio_inputs = with_gap(generated_files, gap_file)
-        all_concat_list_file = tmp_root / "concat_all.txt"
-        full_output = output_dir / "全.mp3"
-        concat_mp3(ffmpeg_bin, mp3_encoder, all_audio_inputs, full_output, all_concat_list_file)
-        progress("完成 全.mp3")
+        all_audio_inputs = with_gap(generated_audio_files, gap_file)
+        all_audio_concat_list_file = tmp_root / "concat_all_audio.txt"
+        full_audio_file = tmp_root / "full_audio.mp3"
+        await asyncio.to_thread(
+            concat_audio_mp3,
+            ffmpeg_bin,
+            mp3_encoder,
+            all_audio_inputs,
+            full_audio_file,
+            all_audio_concat_list_file,
+        )
+
+        full_output = output_dir / "全.mp4"
+        await asyncio.to_thread(
+            create_labeled_video_mp4,
+            ffmpeg_bin,
+            h264_encoder,
+            aac_encoder,
+            full_audio_file,
+            "全",
+            full_output,
+            drawtext_font,
+        )
+        progress("完成 全.mp4")
 
     return generated_files, full_output, warnings
 
@@ -426,7 +670,7 @@ def run_gui(workspace_root: Path) -> int:
         def _build_ui(self) -> None:
             main_layout = QVBoxLayout(self)
 
-            title = QLabel("批次產生複習音檔（<數字>.md → <數字>.mp3 + 全.mp3）")
+            title = QLabel("批次產生複習音檔（<數字>.md → <數字>.mp4 + 全.mp4）")
             main_layout.addWidget(title)
 
             form = QFormLayout()

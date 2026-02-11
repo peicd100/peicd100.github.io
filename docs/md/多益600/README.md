@@ -1,7 +1,7 @@
-# 多益600
+﻿# 多益600
 
 ## 專案用途
-把 `docs\md\多益600` 內所有 `<數字>.md` 的 `<span class="tts">` 文字批次轉成複習 MP3，並額外輸出合併檔 `全.mp3`。
+把 `docs\md\多益600` 內所有 `<數字>.md` 的 `<span class="tts">` 文字批次轉成複習 MP4，並額外輸出合併檔 `全.mp4`。每支影片畫面為黑底，中央顯示檔名文字（如 `4`、`5`、`全`）。
 
 ## 專案名稱與環境
 - workspace: `多益600`
@@ -102,3 +102,4 @@ git remote -v
 ```bat
 git clone https://github.com/peicd100/mkdocs.git
 ```
+

@@ -1,50 +1,49 @@
 [2026-02-11] 需求摘要
-1. 在 docs\md\多益600 新增 轉換.py。
-2. 需提供 GUI 設定：語速、每句間隔時間、聲音樣式，並有「轉換」按鈕。
-3. 按「轉換」後批次處理所有 <數字>.md（目前 4~8）。
-4. 只抽取每行 <span class="tts"> 後方文字，逐句轉語音。
-5. 每個 md 輸出同數字 mp3，最後另外輸出 全.mp3。
-6. 音檔存到 docs\md\多益600\產生複習音檔。
-7. 使用 workspace root = docs\md\多益600，ENV_NAME = mkdocs。
-8. 需測試並實際執行到成功轉換。
+1. 在 `docs\md\多益600` 新增 `轉換.py`。
+2. 提供 GUI 設定：語速、每句間隔時間、聲音樣式，並有「轉換」按鈕。
+3. 掃描同層所有 `<數字>.md`，僅抽取每行 `<span class="tts">` 後方文字。
+4. 目前需求為同時轉換多個檔案，輸出同檔名 `.mp4`，另外產生 `全.mp4`。
+5. 所有 `.mp4` 影片畫面需為黑底，中央顯示檔名文字。
+5. 使用 workspace root=`docs\md\多益600`，ENV_NAME=`mkdocs`。
 
 [2026-02-11] 實作決策
-1. GUI 框架：PySide6，主題色使用 #72e3fd。
-2. TTS 引擎：edge-tts（免 API key）。
-3. 音訊串接：ffmpeg concat，句間與檔間停頓同設定 gap。
-4. 增加 CLI 模式：--run-once --voice --rate --gap（方便自動測試）。
-5. 錯誤處理：
-   - 無數字 md 直接失敗提示。
-   - 無 tts 句子的 md 記 warning 並略過。
-   - 單句失敗重試 1 次，仍失敗則中止。
+1. GUI 使用 PySide6，主題色 `#72e3fd`。
+2. TTS 使用 edge-tts（免 API key）。
+3. 多檔同時轉換：以 asyncio + semaphore 同時啟動全部數字 md。
+4. 單句先存暫存 mp3，句間靜音由 ffmpeg 產生，最後 concat 輸出 mp4（AAC）。
+5. 產出檔名：
+   - `4.mp4`、`5.mp4`、`6.mp4`、`7.mp4`、`8.mp4`
+   - `全.mp4`
+6. 錯誤處理：
+   - 無數字 md 直接失敗。
+   - 無 tts 句子的 md 記 warning 後略過。
+   - 單句失敗重試 1 次，仍失敗則整批中止。
 
 [2026-02-11] 安裝與調整
-1. conda install -n mkdocs -y -c conda-forge ffmpeg pyside6
-2. python -m pip install edge-tts  （使用 mkdocs env 的 python）
-3. ffmpeg 編碼器相容性修正：
-   - 自動偵測 MP3 encoder（libmp3lame / mp3_mf / mp3）。
-   - 針對 mp3_mf 採 44100Hz + stereo + 128k，避免產出無效 mp3。
-4. concat 清單改為相對路徑 + 指定 cwd，避免 UNC 路徑讀取問題。
+1. `conda install -n mkdocs -y -c conda-forge ffmpeg pyside6`
+2. `C:\Users\x1064\.conda\envs\mkdocs\python.exe -m pip install edge-tts`
+3. ffmpeg 編碼器處理：
+   - 句間靜音使用 MP3 encoder（本機實測 `mp3_mf`）。
+   - 最終 mp4 使用 AAC encoder（本機實測 `aac`）。
+4. 解決過去 UNC/concat 問題：concat 清單改為相對路徑並指定 cwd。
+5. 影片畫面使用 ffmpeg `color + drawtext`，黑底 + 置中檔名文字。
 
 [2026-02-11] 驗證命令
-1. 語法檢查
-   C:\Users\x1064\.conda\envs\mkdocs\python.exe -m py_compile docs\md\多益600\轉換.py
-2. 列出聲音
-   C:\Users\x1064\.conda\envs\mkdocs\python.exe docs\md\多益600\轉換.py --workspace docs\md\多益600 --list-voices
-3. CLI 實轉
-   C:\Users\x1064\.conda\envs\mkdocs\python.exe docs\md\多益600\轉換.py --workspace docs\md\多益600 --run-once --rate 0 --gap 0.4
-4. 輸出檔驗證
-   - 檔案存在：4.mp3, 5.mp3, 6.mp3, 7.mp3, 8.mp3, 全.mp3
-   - ffprobe duration > 0
-5. GUI 啟動 smoke test（offscreen）
-   - 進程可啟動並持續執行（5 秒內未崩潰）
+1. 語法檢查  
+   `C:\Users\x1064\.conda\envs\mkdocs\python.exe -m py_compile docs\md\多益600\轉換.py`
+2. CLI 實轉（同時轉換）  
+   `C:\Users\x1064\.conda\envs\mkdocs\python.exe docs\md\多益600\轉換.py --workspace docs\md\多益600 --run-once --rate 0 --gap 0.4`
+3. ffprobe 驗證  
+   `C:\Users\x1064\.conda\envs\mkdocs\Library\bin\ffprobe.exe -v error -show_entries format=duration -of csv=p=0 <檔案>`
+4. GUI smoke test（offscreen）  
+   啟動 3 秒內未崩潰，確認 GUI 可開啟。
 
 [2026-02-11] 最終結果
-1. CLI 轉換成功，已產生：
-   - docs\md\多益600\產生複習音檔\4.mp3
-   - docs\md\多益600\產生複習音檔\5.mp3
-   - docs\md\多益600\產生複習音檔\6.mp3
-   - docs\md\多益600\產生複習音檔\7.mp3
-   - docs\md\多益600\產生複習音檔\8.mp3
-   - docs\md\多益600\產生複習音檔\全.mp3
-2. ffprobe 驗證全部檔案可讀且時長 > 0。
+1. 轉換成功，已產生：
+   - `docs\md\多益600\產生複習音檔\4.mp4`
+   - `docs\md\多益600\產生複習音檔\5.mp4`
+   - `docs\md\多益600\產生複習音檔\6.mp4`
+   - `docs\md\多益600\產生複習音檔\7.mp4`
+   - `docs\md\多益600\產生複習音檔\8.mp4`
+   - `docs\md\多益600\產生複習音檔\全.mp4`
+2. ffprobe 驗證以上檔案可讀且時長 > 0。
