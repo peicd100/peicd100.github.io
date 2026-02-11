@@ -1,0 +1,18 @@
+# Generated audio files
+產生複習音檔/*.mp3
+產生複習音檔/tts_tmp_*/
+產生複習音檔/*.txt
+
+# Python-generated files
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+
+# Virtual environments
+.venv
+
+# PyInstaller / local runtime
+user_data/
