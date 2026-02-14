@@ -1,7 +1,7 @@
 ﻿# 多益600
 
 ## 專案用途
-把 `docs\md\多益600` 內所有 `<數字>.md` 的 `<span class="tts">` 文字批次轉成複習 MP4，並額外輸出合併檔 `全.mp4`。每支影片畫面為黑底，中央顯示檔名文字（如 `4`、`5`、`全`）。
+批次產生複習檔案：把所有 `<數字>.md` 的 `<span class="tts">` 文字轉成 MP4 視頻，支持「一次」和「兩次」（每句重複兩次）兩種模式。輸出到 `產生複習檔案\一次` 或 `產生複習檔案\兩次` 資料夾，每種模式包含 `<數字>.mp4` 和 `全.mp4`。語速可調整，聲音樣式預設為 JennyNeural，包含進度條顯示。
 
 ## 專案名稱與環境
 - workspace: `多益600`
@@ -17,36 +17,45 @@ conda run -n mkdocs python -m pip install edge-tts
 ```
 
 ## 程式執行指令
+
+### 啟動 GUI（推薦）
 ```bat
 call "C:\ProgramData\anaconda3\Scripts\activate.bat" "C:\ProgramData\anaconda3"
 conda activate base
 conda activate mkdocs
-python "docs\md\多益600\轉換.py"
+python 紀錄.py
 ```
 
-CLI 一次轉換（不開 GUI）：
+### CLI 模式（不開 GUI）：
 ```bat
 call "C:\ProgramData\anaconda3\Scripts\activate.bat" "C:\ProgramData\anaconda3"
 conda activate base
 conda activate mkdocs
-python "docs\md\多益600\轉換.py" --workspace "docs\md\多益600" --run-once --rate 0 --gap 0.4
+python 紀錄.py --workspace . --run-once --rate 0 --gap 0.4 --mode both
 ```
+
+參數說明：
+- `--rate 0`：語速為 1 倍速（0%），範圍 -100~100
+- `--gap 0.4`：每句間隔 0.4 秒
+- `--mode both`：同時產生「一次」和「兩次」，或選 `once` / `twice`
+- `--voice en-US-JennyNeural`：可指定聲音（預設自動選擇 JennyNeural）
 
 ## 打包指令
-先 debug 測試版：
+
+### Debug 版（帶主控台）
 ```bat
 call "C:\ProgramData\anaconda3\Scripts\activate.bat" "C:\ProgramData\anaconda3"
 conda activate base
 conda activate mkdocs
-pyinstaller --name 多益600 --clean --noconfirm "docs\md\多益600\轉換.py"
+pyinstaller --name 紀錄 --clean --noconfirm 紀錄.py
 ```
 
-再 noconsole 版：
+### Release 版（無主控台）
 ```bat
 call "C:\ProgramData\anaconda3\Scripts\activate.bat" "C:\ProgramData\anaconda3"
 conda activate base
 conda activate mkdocs
-pyinstaller --name 多益600 --clean --noconfirm --noconsole "docs\md\多益600\轉換.py"
+pyinstaller --name 紀錄 --clean --noconfirm --noconsole 紀錄.py
 ```
 
 ## github 參考指令
