@@ -13,4 +13,7 @@ mkdocs-encryptcontent-plugin
 jieba
 mkdocs-rss-plugin
 mkdocs-awesome-nav
+edge-tts==7.2.7
+# ffmpeg executable is required by docs/md/多益600/紀錄.py
+# install via conda: conda install -n mkdocs -y -c conda-forge ffmpeg
 
