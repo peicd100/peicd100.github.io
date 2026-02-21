@@ -20,7 +20,7 @@
         <link rel="alternate" type="application/rss+xml" title="RSS feed of updated content" href="../../feed_rss_updated.xml">
       
       <link rel="icon" href="../../logo/logo.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.2">
     
     
       
@@ -2179,7 +2179,7 @@ document.addEventListener("DOMContentLoaded", function() {
         
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
-        <style>:root{--md-text-font:"Roboto";--md-code-font:"Cascadia Mono"}</style>
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
       
     
     
@@ -7106,6 +7106,34 @@ is now available!
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="程式執行指令">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#啟動-gui推薦" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        啟動 GUI（推薦）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cli-模式不開-gui" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CLI 模式（不開 GUI）：
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -7116,6 +7144,34 @@ is now available!
       
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="打包指令">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#debug-版帶主控台" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Debug 版（帶主控台）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#release-版無主控台" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Release 版（無主控台）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -7211,7 +7267,7 @@ is now available!
 
 <h1 id="多益600">多益600<a class="headerlink" href="#多益600" title="Permanent link"></a></h1>
 <h2 id="專案用途">專案用途<a class="headerlink" href="#專案用途" title="Permanent link"></a></h2>
-<p>把 <code>docs\md\多益600</code> 內所有 <code>&lt;數字&gt;.md</code> 的 <code>&lt;span class="tts"&gt;</code> 文字批次轉成複習 MP4，並額外輸出合併檔 <code>全.mp4</code>。每支影片畫面為黑底，中央顯示檔名文字（如 <code>4</code>、<code>5</code>、<code>全</code>）。</p>
+<p>批次產生複習檔案：把所有 <code>&lt;數字&gt;.md</code> 的 <code>&lt;span class="tts"&gt;</code> 文字轉成 MP4 視頻，支持「一次」和「兩次」（每句重複兩次）兩種模式。輸出到 <code>產生複習檔案\一次</code> 或 <code>產生複習檔案\兩次</code> 資料夾，每種模式包含 <code>&lt;數字&gt;.mp4</code> 和 <code>全.mp4</code>。語速可調整，聲音樣式預設為 JennyNeural，包含進度條顯示。</p>
 <h2 id="專案名稱與環境">專案名稱與環境<a class="headerlink" href="#專案名稱與環境" title="Permanent link"></a></h2>
 <ul>
 <li>workspace: <code>多益600</code></li>
@@ -7225,30 +7281,36 @@ conda install -n mkdocs -y -c conda-forge ffmpeg pyside6
 conda run -n mkdocs python -m pip install edge-tts
 </code></pre></div>
 <h2 id="程式執行指令">程式執行指令<a class="headerlink" href="#程式執行指令" title="Permanent link"></a></h2>
+<h3 id="啟動-gui推薦">啟動 GUI（推薦）<a class="headerlink" href="#啟動-gui推薦" title="Permanent link"></a></h3>
 <div class="highlight"><pre><span></span><code><span class="k">call</span> <span class="s2">&quot;C:\ProgramData\anaconda3\Scripts\activate.bat&quot;</span> <span class="s2">&quot;C:\ProgramData\anaconda3&quot;</span>
 conda activate base
 conda activate mkdocs
-python <span class="s2">&quot;docs\md\多益600\轉換.py&quot;</span>
+python 紀錄.py
 </code></pre></div>
-<p>CLI 一次轉換（不開 GUI）：<br />
+<h3 id="cli-模式不開-gui">CLI 模式（不開 GUI）：<a class="headerlink" href="#cli-模式不開-gui" title="Permanent link"></a></h3>
 <div class="highlight"><pre><span></span><code><span class="k">call</span> <span class="s2">&quot;C:\ProgramData\anaconda3\Scripts\activate.bat&quot;</span> <span class="s2">&quot;C:\ProgramData\anaconda3&quot;</span>
 conda activate base
 conda activate mkdocs
-python <span class="s2">&quot;docs\md\多益600\轉換.py&quot;</span> --workspace <span class="s2">&quot;docs\md\多益600&quot;</span> --run-once --rate 0 --gap 0.4
-</code></pre></div></p>
+python 紀錄.py --workspace . --run-once --rate 0 --gap 0.4 --mode both
+</code></pre></div>
+<p>參數說明：<br />
+- <code>--rate 0</code>：語速為 1 倍速（0%），範圍 -100~100<br />
+- <code>--gap 0.4</code>：每句間隔 0.4 秒<br />
+- <code>--mode both</code>：同時產生「一次」和「兩次」，或選 <code>once</code> / <code>twice</code><br />
+- <code>--voice en-US-JennyNeural</code>：可指定聲音（預設自動選擇 JennyNeural）</p>
 <h2 id="打包指令">打包指令<a class="headerlink" href="#打包指令" title="Permanent link"></a></h2>
-<p>先 debug 測試版：<br />
+<h3 id="debug-版帶主控台">Debug 版（帶主控台）<a class="headerlink" href="#debug-版帶主控台" title="Permanent link"></a></h3>
 <div class="highlight"><pre><span></span><code><span class="k">call</span> <span class="s2">&quot;C:\ProgramData\anaconda3\Scripts\activate.bat&quot;</span> <span class="s2">&quot;C:\ProgramData\anaconda3&quot;</span>
 conda activate base
 conda activate mkdocs
-pyinstaller --name 多益600 --clean --noconfirm <span class="s2">&quot;docs\md\多益600\轉換.py&quot;</span>
-</code></pre></div></p>
-<p>再 noconsole 版：<br />
+pyinstaller --name 紀錄 --clean --noconfirm 紀錄.py
+</code></pre></div>
+<h3 id="release-版無主控台">Release 版（無主控台）<a class="headerlink" href="#release-版無主控台" title="Permanent link"></a></h3>
 <div class="highlight"><pre><span></span><code><span class="k">call</span> <span class="s2">&quot;C:\ProgramData\anaconda3\Scripts\activate.bat&quot;</span> <span class="s2">&quot;C:\ProgramData\anaconda3&quot;</span>
 conda activate base
 conda activate mkdocs
-pyinstaller --name 多益600 --clean --noconfirm --noconsole <span class="s2">&quot;docs\md\多益600\轉換.py&quot;</span>
-</code></pre></div></p>
+pyinstaller --name 紀錄 --clean --noconfirm --noconsole 紀錄.py
+</code></pre></div>
 <h2 id="github-參考指令">github 參考指令<a class="headerlink" href="#github-參考指令" title="Permanent link"></a></h2>
 <h3 id="初始化">初始化<a class="headerlink" href="#初始化" title="Permanent link"></a></h3>
 <div class="highlight"><pre><span></span><code><span class="p">(</span>
