@@ -243,13 +243,13 @@ some *markdown* content
     unicode-range: U+4E00-9FFF, U+3000-303F, U+FF00-FFEF;
 }
 body {
-    font-family: "Roboto Mono", "CustomChinese", sans-serif;
+    font-family: "Cascadia Mono", "CustomChinese", sans-serif;
 }
 */
 
-/* 全局英文字體：Roboto Mono（基礎版 body） */
+/* 全局英文字體：Cascadia Mono（基礎版 body） */
 body {
-  font-family: "Roboto Mono", monospace;
+  font-family: "Cascadia Mono", monospace;
 }
 
 /* ==========================================================================
@@ -354,11 +354,11 @@ body {
 
 :root {
   /* Material 字體變數：讓主題內部也使用同一套字體 */
-  --md-text-font: "Roboto Mono";
-  --md-code-font: "Roboto Mono";
+  --md-text-font: "Cascadia Mono";
+  --md-code-font: "Cascadia Mono";
 
   /* 你自訂的「標題字體」變數（統一管理） */
-  --peicd-heading-font: "Roboto Mono";
+  --peicd-heading-font: "Cascadia Mono";
 
   /* 圓角系統：large / medium / small */
   --peicd-radius-lg: 14px;
@@ -406,7 +406,7 @@ body {
 
 /* body：採用變數字體 + 微字距 + 字體渲染優化（第二段 body；會覆蓋前面的 body 字體設定） */
 body {
-  font-family: var(--md-text-font), "Roboto Mono", monospace;
+  font-family: var(--md-text-font), "Cascadia Mono", monospace;
   letter-spacing: 0.01em;
   text-rendering: optimizeLegibility;
 }
@@ -452,7 +452,7 @@ body {
 .md-typeset h4,
 .md-typeset h5,
 .md-typeset h6 {
-  font-family: var(--peicd-heading-font), "Roboto Mono", monospace;
+  font-family: var(--peicd-heading-font), "Cascadia Mono", monospace;
   font-weight: 600;
   letter-spacing: 0.02em;
 }
