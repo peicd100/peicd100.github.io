@@ -42,9 +42,18 @@ ESTIMATED_VIDEO_BITRATE_BPS_GPU = 220_000
 ESTIMATED_VIDEO_BITRATE_BPS_CPU = 300_000
 ESTIMATED_CONTAINER_OVERHEAD_BYTES = 180 * 1024
 GPU_MONITOR_TIMEOUT_SECONDS = 0.35
+GPU_MONITOR_MIN_INTERVAL_SECONDS = 0.25
+GPU_MONITOR_STALE_SECONDS = 5.0
 RESOURCE_MONITOR_INTERVAL_MS = 1500
 PROGRESS_SCAN_MIN_INTERVAL_SECONDS = 0.25
+CLI_PROGRESS_REPORT_MIN_INTERVAL_SECONDS = 0.1
+CLI_PROGRESS_BAR_WIDTH = 20
+CLI_USAGE_BAR_WIDTH = 20
+CLI_SPINNER_FRAMES = ("⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏")
+TEMP_WORK_DIR_PREFIX = "tts_tmp_"
 MAX_FILE_CONCURRENCY = 6
+MAX_GPU_VIDEO_ENCODE_CONCURRENCY = 2
+MAX_CPU_VIDEO_ENCODE_CONCURRENCY = 4
 MANIFEST_FILENAME = "_convert_manifest.json"
 SENTENCE_CACHE_FILENAME = "_sentence_cache.json"
 BLOCKING_PROXY_HOSTS = {"127.0.0.1", "localhost", "::1"}
@@ -73,8 +82,14 @@ NVIDIA_SMI_CANDIDATES = (
 
 _NVIDIA_SMI_RESOLVED = False
 _NVIDIA_SMI_COMMAND: str | None = None
+_GPU_USAGE_CACHE_AT = 0.0
+_GPU_USAGE_CACHE_VALUE: float | None = None
 _PSUTIL_RESOLVED = False
 _PSUTIL_MODULE = None
+QT_NOISY_WARNING_PATTERNS = (
+    "QWindowsBackingStore::flush: BitBlt failed",
+    "QBackingStore::endPaint() called with active painter",
+)
 
 
 class ConversionError(RuntimeError):
@@ -497,41 +512,79 @@ def resolve_nvidia_smi_command() -> str | None:
 
 
 def read_gpu_usage_percent() -> float | None:
+    global _GPU_USAGE_CACHE_AT, _GPU_USAGE_CACHE_VALUE
+
+    now = time.monotonic()
+    cache_age = now - _GPU_USAGE_CACHE_AT
+    if _GPU_USAGE_CACHE_VALUE is not None and cache_age < GPU_MONITOR_MIN_INTERVAL_SECONDS:
+        return _GPU_USAGE_CACHE_VALUE
+
     nvidia_smi = resolve_nvidia_smi_command()
     if not nvidia_smi:
+        if _GPU_USAGE_CACHE_VALUE is not None and cache_age <= GPU_MONITOR_STALE_SECONDS:
+            return _GPU_USAGE_CACHE_VALUE
         return None
 
-    try:
-        proc = subprocess.run(
-            [
-                nvidia_smi,
-                "--query-gpu=utilization.gpu",
-                "--format=csv,noheader,nounits",
-            ],
-            capture_output=True,
-            text=True,
-            encoding="utf-8",
-            errors="replace",
-            timeout=GPU_MONITOR_TIMEOUT_SECONDS,
-        )
-    except (subprocess.TimeoutExpired, OSError, ValueError):
-        return None
-    if proc.returncode != 0:
+    query_fields_list = (
+        "utilization.gpu,utilization.encoder",
+        "utilization.gpu",
+    )
+    proc: subprocess.CompletedProcess[str] | None = None
+    for query_fields in query_fields_list:
+        try:
+            proc = subprocess.run(
+                [
+                    nvidia_smi,
+                    f"--query-gpu={query_fields}",
+                    "--format=csv,noheader,nounits",
+                ],
+                capture_output=True,
+                text=True,
+                encoding="utf-8",
+                errors="replace",
+                timeout=GPU_MONITOR_TIMEOUT_SECONDS,
+            )
+        except (subprocess.TimeoutExpired, OSError, ValueError):
+            proc = None
+            continue
+        if proc.returncode == 0:
+            break
+        proc = None
+
+    if proc is None:
+        if _GPU_USAGE_CACHE_VALUE is not None and cache_age <= GPU_MONITOR_STALE_SECONDS:
+            return _GPU_USAGE_CACHE_VALUE
         return None
 
-    values: list[float] = []
+    gpu_values: list[float] = []
     for line in proc.stdout.splitlines():
         text = line.strip()
         if not text:
             continue
-        try:
-            values.append(float(text))
-        except ValueError:
+        parts = [part.strip() for part in text.split(",")]
+        numeric_values: list[float] = []
+        for part in parts:
+            if not part:
+                continue
+            try:
+                numeric_values.append(float(part))
+            except ValueError:
+                continue
+        if not numeric_values:
             continue
-    if not values:
+        # NVENC 轉檔時 encoder utilization 常比 core utilization 更能反映實際負載。
+        gpu_values.append(max(numeric_values))
+
+    if not gpu_values:
+        if _GPU_USAGE_CACHE_VALUE is not None and cache_age <= GPU_MONITOR_STALE_SECONDS:
+            return _GPU_USAGE_CACHE_VALUE
         return None
-    avg = sum(values) / len(values)
-    return max(0.0, min(100.0, avg))
+    # 多 GPU 時取最高利用率的那張卡，避免平均值稀釋。
+    usage = max(gpu_values)
+    usage = max(0.0, min(100.0, usage))
+    _GPU_USAGE_CACHE_VALUE = usage
+    _GPU_USAGE_CACHE_AT = now
+    return usage
 
 
 def extract_tts_sentences(md_path: Path) -> list[str]:
@@ -578,7 +631,7 @@ def disable_blocking_proxy_env() -> list[str]:
     return removed
 
 
-def make_temp_work_dir(base_dir: Path, prefix: str = "tts_tmp_") -> Path:
+def make_temp_work_dir(base_dir: Path, prefix: str = TEMP_WORK_DIR_PREFIX) -> Path:
     for _ in range(100):
         candidate = base_dir / f"{prefix}{uuid.uuid4().hex[:10]}"
         try:
@@ -587,6 +640,43 @@ def make_temp_work_dir(base_dir: Path, prefix: str = "tts_tmp_") -> Path:
         except FileExistsError:
             continue
     raise ConversionError("無法建立暫存資料夾，請檢查目錄權限。")
+
+
+def cleanup_temp_artifacts(root_output_dir: Path) -> tuple[int, int]:
+    removed_dirs = 0
+    removed_files = 0
+
+    try:
+        candidates = list(root_output_dir.glob(f"{TEMP_WORK_DIR_PREFIX}*"))
+    except OSError:
+        candidates = []
+
+    for candidate in candidates:
+        if not candidate.is_dir():
+            continue
+        try:
+            shutil.rmtree(candidate)
+        except FileNotFoundError:
+            continue
+        except OSError:
+            shutil.rmtree(candidate, ignore_errors=True)
+        if not candidate.exists():
+            removed_dirs += 1
+
+    cache_dir = root_output_dir / "_tts_sentence_cache"
+    if cache_dir.exists():
+        try:
+            tmp_files = list(cache_dir.glob("*.tmp.mp3"))
+        except OSError:
+            tmp_files = []
+        for tmp_file in tmp_files:
+            try:
+                tmp_file.unlink(missing_ok=True)
+                removed_files += 1
+            except OSError:
+                continue
+
+    return removed_dirs, removed_files
 
 
 def is_speakable_text(text: str) -> bool:
@@ -891,6 +981,42 @@ def create_labeled_video_mp4(
     run_checked(cmd)
 
 
+async def create_labeled_video_mp4_async(
+    ffmpeg_bin: Path,
+    h264_encoder: str,
+    aac_encoder: str,
+    audio_file: Path,
+    label_text: str,
+    out_path: Path,
+    fontfile: Path | None,
+    video_encode_semaphore: asyncio.Semaphore | None = None,
+) -> None:
+    if video_encode_semaphore is None:
+        await asyncio.to_thread(
+            create_labeled_video_mp4,
+            ffmpeg_bin,
+            h264_encoder,
+            aac_encoder,
+            audio_file,
+            label_text,
+            out_path,
+            fontfile,
+        )
+        return
+
+    async with video_encode_semaphore:
+        await asyncio.to_thread(
+            create_labeled_video_mp4,
+            ffmpeg_bin,
+            h264_encoder,
+            aac_encoder,
+            audio_file,
+            label_text,
+            out_path,
+            fontfile,
+        )
+
+
 def with_gap(items: list[Path], gap_file: Path | None) -> list[Path]:
     if not items:
         return []
@@ -1035,6 +1161,8 @@ async def synthesize_sentence_audio_files(
                     retries=1,
                 )
                 sentence_audio_files.append(cached_segment)
+        except ConversionCancelled:
+            raise
         except Exception as exc:
             raise ConversionError(f"{md_path.name} sentence {idx} synthesis failed: {exc}") from exc
 
@@ -1075,6 +1203,7 @@ async def convert_markdown_file(
     repeat_sentences: bool = False,
     sentences: list[str] | None = None,
     audio_cache: SentenceAudioCache | None = None,
+    video_encode_semaphore: asyncio.Semaphore | None = None,
 ) -> tuple[Path | None, Path | None, list[str]]:
     assert_not_cancelled()
     warnings: list[str] = []
@@ -1111,6 +1240,7 @@ async def convert_markdown_file(
         h264_encoder=h264_encoder,
         aac_encoder=aac_encoder,
         drawtext_font=drawtext_font,
+        video_encode_semaphore=video_encode_semaphore,
     )
     progress(f"done {output_file.name}")
     return output_file, audio_file, warnings
@@ -1128,6 +1258,7 @@ async def build_markdown_outputs_from_segments(
     h264_encoder: str,
     aac_encoder: str,
     drawtext_font: Path | None,
+    video_encode_semaphore: asyncio.Semaphore | None = None,
 ) -> tuple[Path, Path]:
     if repeat_sentences:
         playback_files = [segment for segment in sentence_audio_files for _ in range(2)]
@@ -1150,8 +1281,7 @@ async def build_markdown_outputs_from_segments(
 
     output_stem = f"{md_path.stem}_兩次" if repeat_sentences else f"{md_path.stem}_一次"
     output_file = output_dir / f"{output_stem}.mp4"
-    await asyncio.to_thread(
-        create_labeled_video_mp4,
+    await create_labeled_video_mp4_async(
         ffmpeg_bin,
         h264_encoder,
         aac_encoder,
@@ -1159,6 +1289,7 @@ async def build_markdown_outputs_from_segments(
         output_stem,
         output_file,
         drawtext_font,
+        video_encode_semaphore=video_encode_semaphore,
     )
     return output_file, audio_file
 
@@ -1278,6 +1409,11 @@ async def convert_workspace(
 
     sentence_audio_cache = SentenceAudioCache(root_output_dir / "_tts_sentence_cache")
     assert_not_cancelled()
+    video_encode_limit = (
+        MAX_GPU_VIDEO_ENCODE_CONCURRENCY if options.use_gpu else MAX_CPU_VIDEO_ENCODE_CONCURRENCY
+    )
+    video_encode_limit = max(1, min(len(markdown_files), video_encode_limit))
+    video_encode_semaphore = asyncio.Semaphore(video_encode_limit)
 
     warnings: list[str] = []
     results: dict[str, tuple[list[Path], Path, list[str]]] = {}
@@ -1287,6 +1423,7 @@ async def convert_workspace(
     progress(f"ffmpeg MP3 編碼器：{mp3_encoder}（句間靜音）")
     progress(f"ffmpeg AAC 編碼器：{aac_encoder}（MP4 輸出）")
     progress(f"ffmpeg 視訊編碼器：{h264_encoder}")
+    progress(f"ffmpeg 視訊編碼併發上限：{video_encode_limit}")
     if drawtext_font is not None:
         progress(f"drawtext 字型：{drawtext_font.name}")
     else:
@@ -1313,6 +1450,7 @@ async def convert_workspace(
             progress=progress,
             sentence_cache=effective_sentence_cache,
             audio_cache=sentence_audio_cache,
+            video_encode_semaphore=video_encode_semaphore,
         )
         results["once"] = once_results
         results["twice"] = twice_results
@@ -1335,6 +1473,7 @@ async def convert_workspace(
             repeat_sentences=False,
             sentence_cache=effective_sentence_cache,
             audio_cache=sentence_audio_cache,
+            video_encode_semaphore=video_encode_semaphore,
         )
         results["once"] = once_results
         warnings.extend(once_results[2])
@@ -1356,6 +1495,7 @@ async def convert_workspace(
             repeat_sentences=True,
             sentence_cache=effective_sentence_cache,
             audio_cache=sentence_audio_cache,
+            video_encode_semaphore=video_encode_semaphore,
         )
         results["twice"] = twice_results
         warnings.extend(twice_results[2])
@@ -1389,6 +1529,7 @@ async def _convert_both_modes_shared_tts(
     progress: Callable[[str], None],
     sentence_cache: dict[Path, list[str]] | None = None,
     audio_cache: SentenceAudioCache | None = None,
+    video_encode_semaphore: asyncio.Semaphore | None = None,
 ) -> tuple[tuple[list[Path], Path, list[str]], tuple[list[Path], Path, list[str]]]:
     assert_not_cancelled()
     once_output_dir = root_output_dir / "一次"
@@ -1459,6 +1600,7 @@ async def _convert_both_modes_shared_tts(
                     h264_encoder=h264_encoder,
                     aac_encoder=aac_encoder,
                     drawtext_font=drawtext_font,
+                    video_encode_semaphore=video_encode_semaphore,
                 )
                 progress(f"完成 一次/{once_output_file.name}")
 
@@ -1474,6 +1616,7 @@ async def _convert_both_modes_shared_tts(
                     h264_encoder=h264_encoder,
                     aac_encoder=aac_encoder,
                     drawtext_font=drawtext_font,
+                    video_encode_semaphore=video_encode_semaphore,
                 )
                 progress(f"完成 兩次/{twice_output_file.name}")
 
@@ -1526,8 +1669,7 @@ async def _convert_both_modes_shared_tts(
             )
             full_output_name = twice_full_output_name if mode_name == "兩次" else once_full_output_name
             full_output = mode_output_dir / full_output_name
-            await asyncio.to_thread(
-                create_labeled_video_mp4,
+            await create_labeled_video_mp4_async(
                 ffmpeg_bin,
                 h264_encoder,
                 aac_encoder,
@@ -1535,6 +1677,7 @@ async def _convert_both_modes_shared_tts(
                 Path(full_output_name).stem,
                 full_output,
                 drawtext_font,
+                video_encode_semaphore=video_encode_semaphore,
             )
             progress(f"完成 {mode_name}/{full_output_name}")
             return full_output
@@ -1563,6 +1706,7 @@ async def _convert_with_mode(
     repeat_sentences: bool = False,
     sentence_cache: dict[Path, list[str]] | None = None,
     audio_cache: SentenceAudioCache | None = None,
+    video_encode_semaphore: asyncio.Semaphore | None = None,
 ) -> tuple[list[Path], Path, list[str]]:
     assert_not_cancelled()
     """轉換一種模式（一次或兩次）"""
@@ -1604,6 +1748,7 @@ async def _convert_with_mode(
                     repeat_sentences=repeat_sentences,
                     sentences=sentence_cache.get(md_path) if sentence_cache is not None else None,
                     audio_cache=audio_cache,
+                    video_encode_semaphore=video_encode_semaphore,
                 )
                 return output_file, audio_file, local_warnings
 
@@ -1642,8 +1787,7 @@ async def _convert_with_mode(
         )
 
         full_output = output_dir / full_output_name
-        await asyncio.to_thread(
-            create_labeled_video_mp4,
+        await create_labeled_video_mp4_async(
             ffmpeg_bin,
             h264_encoder,
             aac_encoder,
@@ -1651,6 +1795,7 @@ async def _convert_with_mode(
             Path(full_output_name).stem,
             full_output,
             drawtext_font,
+            video_encode_semaphore=video_encode_semaphore,
         )
         progress(f"完成 {full_output.name}")
     finally:
@@ -1667,20 +1812,326 @@ def run_once_cli(
     repeat_mode: str,
     use_gpu: bool,
 ) -> int:
+    chosen_voice = voice
     try:
-        choices = asyncio.run(fetch_voice_choices())
-        chosen_voice = voice or pick_default_voice(choices)
-        options = ConvertOptions(
-            voice=chosen_voice,
-            rate_multiplier=rate,
-            gap_seconds=max(0.0, gap),
-            repeat_mode=repeat_mode,
-            use_gpu=use_gpu,
+        if not chosen_voice:
+            choices = asyncio.run(fetch_voice_choices())
+            chosen_voice = pick_default_voice(choices)
+    except Exception as exc:
+        root_output_dir = workspace_root / DEFAULT_OUTPUT_DIR_NAME
+        if root_output_dir.exists():
+            removed_dirs, removed_files = cleanup_temp_artifacts(root_output_dir)
+            if removed_dirs > 0 or removed_files > 0:
+                print(f"執行結束已清理暫存：{removed_dirs} 個資料夾、{removed_files} 個檔案")
+        print(f"取得 voice 失敗：{exc}", file=sys.stderr)
+        return 1
+
+    options = ConvertOptions(
+        voice=str(chosen_voice),
+        rate_multiplier=rate,
+        gap_seconds=max(0.0, gap),
+        repeat_mode=repeat_mode,
+        use_gpu=use_gpu,
+    )
+    return run_conversion_with_options(workspace_root, options)
+
+
+def _format_usage_percent(value: float | None) -> str:
+    if value is None:
+        return "N/A"
+    percent = int(max(0, min(100, round(value))))
+    return f"{percent}%"
+
+
+def ensure_utf8_stdio() -> None:
+    for stream in (sys.stdout, sys.stderr):
+        reconfigure = getattr(stream, "reconfigure", None)
+        if callable(reconfigure):
+            try:
+                reconfigure(encoding="utf-8", errors="replace")
+            except Exception:
+                continue
+
+
+class CliProgressReporter:
+    def __init__(
+        self,
+        tracked_output_files: list[Path],
+        predicted_total_bytes: int,
+    ):
+        self.tracked_output_files = tracked_output_files
+        self.predicted_total_bytes = max(1, predicted_total_bytes)
+        self.run_started_at = time.time()
+        self._tracked_size_cache: dict[Path, tuple[float, int]] = {}
+        self._last_measured_at = 0.0
+        self._last_measured_total = 0
+        self._last_reported_at = 0.0
+        self._is_tty = bool(sys.stdout.isatty())
+        self._status_visible = False
+        self._status_line_count = 4
+        self._last_lines: list[str] = []
+        self._spinner_index = 0
+        self._io_lock = threading.RLock()
+        self._refresh_stop_event = threading.Event()
+        self._refresh_thread: threading.Thread | None = None
+
+    def _measure_output_bytes(self, force: bool = False) -> int:
+        now = time.monotonic()
+        if (not force) and (now - self._last_measured_at < PROGRESS_SCAN_MIN_INTERVAL_SECONDS):
+            return self._last_measured_total
+        total = 0
+        active_paths = set(self.tracked_output_files)
+        for path in self.tracked_output_files:
+            try:
+                if not path.exists():
+                    self._tracked_size_cache.pop(path, None)
+                    continue
+                stat = path.stat()
+                if self.run_started_at > 0 and stat.st_mtime + 1e-6 < self.run_started_at:
+                    self._tracked_size_cache[path] = (stat.st_mtime, 0)
+                    continue
+                cached = self._tracked_size_cache.get(path)
+                if cached is not None and abs(cached[0] - stat.st_mtime) < 1e-6:
+                    size_bytes = cached[1]
+                else:
+                    size_bytes = stat.st_size
+                    self._tracked_size_cache[path] = (stat.st_mtime, size_bytes)
+                total += size_bytes
+            except OSError:
+                continue
+        for stale_path in list(self._tracked_size_cache):
+            if stale_path not in active_paths:
+                self._tracked_size_cache.pop(stale_path, None)
+        self._last_measured_at = now
+        self._last_measured_total = total
+        return total
+
+    def emit_usage_progress(self, force: bool = False) -> None:
+        with self._io_lock:
+            now = time.monotonic()
+            if (not force) and (now - self._last_reported_at < CLI_PROGRESS_REPORT_MIN_INTERVAL_SECONDS):
+                return
+            current = self._measure_output_bytes(force=force)
+            total = max(1, self.predicted_total_bytes, current)
+            ratio = current / total
+            cpu_value = read_cpu_usage_percent()
+            gpu_value = read_gpu_usage_percent()
+            lines = self._build_status_lines(
+                ratio=ratio,
+                current_bytes=current,
+                total_bytes=total,
+                cpu_value=cpu_value,
+                gpu_value=gpu_value,
+                finished=False,
+            )
+            self._render_status(lines)
+            self._last_reported_at = now
+
+    def on_progress_message(self, message: str) -> None:
+        with self._io_lock:
+            self._clear_status_block()
+            print(message, flush=True)
+        self.emit_usage_progress(force=False)
+
+    def emit_completed(self) -> None:
+        with self._io_lock:
+            current = self._measure_output_bytes(force=True)
+            if current <= 0:
+                total = max(1, self.predicted_total_bytes)
+                current = total
+            else:
+                total = current
+            cpu_value = read_cpu_usage_percent()
+            gpu_value = read_gpu_usage_percent()
+            lines = self._build_status_lines(
+                ratio=1.0,
+                current_bytes=current,
+                total_bytes=total,
+                cpu_value=cpu_value,
+                gpu_value=gpu_value,
+                finished=True,
+            )
+            self._render_status(lines, force_newline=True)
+
+    def clear_for_summary(self) -> None:
+        with self._io_lock:
+            self._clear_status_block()
+
+    def start_auto_refresh(self) -> None:
+        if not self._is_tty:
+            return
+        if self._refresh_thread is not None and self._refresh_thread.is_alive():
+            return
+        self._refresh_stop_event.clear()
+        self._refresh_thread = threading.Thread(
+            target=self._refresh_loop,
+            name="cli-progress-refresh",
+            daemon=True,
         )
-        print(f"使用 voice: {chosen_voice}")
+        self._refresh_thread.start()
+
+    def stop_auto_refresh(self) -> None:
+        self._refresh_stop_event.set()
+        thread = self._refresh_thread
+        if thread is not None and thread.is_alive():
+            thread.join(timeout=2.0)
+        self._refresh_thread = None
+
+    def _refresh_loop(self) -> None:
+        while not self._refresh_stop_event.wait(CLI_PROGRESS_REPORT_MIN_INTERVAL_SECONDS):
+            try:
+                self.emit_usage_progress(force=True)
+            except Exception:
+                # 監控刷新失敗不影響轉換流程
+                continue
+
+    def _progress_bar(self, ratio: float) -> str:
+        clamped = max(0.0, min(1.0, ratio))
+        filled_units = CLI_PROGRESS_BAR_WIDTH * clamped
+        full_cells = int(filled_units)
+        fraction = filled_units - full_cells
+
+        chars = ["⣿"] * max(0, min(CLI_PROGRESS_BAR_WIDTH, full_cells))
+        if len(chars) < CLI_PROGRESS_BAR_WIDTH:
+            if fraction >= 0.66:
+                chars.append("⣷")
+            elif fraction >= 0.33:
+                chars.append("⣦")
+            else:
+                chars.append("⣀")
+        while len(chars) < CLI_PROGRESS_BAR_WIDTH:
+            chars.append("⣀")
+        return "".join(chars[:CLI_PROGRESS_BAR_WIDTH])
+
+    def _usage_bar(self, value: float | None) -> str:
+        if value is None:
+            return "-" * CLI_USAGE_BAR_WIDTH
+        clamped = max(0.0, min(100.0, float(value)))
+        filled = int(round(CLI_USAGE_BAR_WIDTH * (clamped / 100.0)))
+        return "#" * filled + "-" * (CLI_USAGE_BAR_WIDTH - filled)
+
+    def _spinner_line(self, finished: bool) -> str:
+        spinner = CLI_SPINNER_FRAMES[-1] if finished else CLI_SPINNER_FRAMES[
+            self._spinner_index % len(CLI_SPINNER_FRAMES)
+        ]
+        self._spinner_index += 1
+        return f"{spinner}    "
+
+    def _build_status_lines(
+        self,
+        ratio: float,
+        current_bytes: int,
+        total_bytes: int,
+        cpu_value: float | None,
+        gpu_value: float | None,
+        finished: bool,
+    ) -> list[str]:
+        percent_text = f"{int(round(max(0.0, min(1.0, ratio)) * 100))}%"
+        return [
+            f"{self._progress_bar(ratio)} {percent_text}",
+            f"[CPU ] [{self._usage_bar(cpu_value)}] {_format_usage_percent(cpu_value)}",
+            f"[GPU ] [{self._usage_bar(gpu_value)}] {_format_usage_percent(gpu_value)}",
+            self._spinner_line(finished=finished),
+        ]
+
+    def _terminal_width(self) -> int:
+        try:
+            return max(40, shutil.get_terminal_size((120, 20)).columns)
+        except Exception:
+            return 120
+
+    def _trim_line(self, text: str) -> str:
+        width = self._terminal_width()
+        if len(text) <= width:
+            return text
+        return text[: max(1, width - 1)]
+
+    def _clear_status_block(self) -> None:
+        if not self._is_tty or not self._status_visible:
+            return
+        for idx in range(self._status_line_count):
+            sys.stdout.write("\r\033[2K")
+            if idx < self._status_line_count - 1:
+                sys.stdout.write("\033[1A")
+        sys.stdout.write("\r")
+        sys.stdout.flush()
+        self._status_visible = False
+
+    def _render_status(self, lines: list[str], force_newline: bool = False) -> None:
+        safe_lines = [self._trim_line(line) for line in lines]
+        self._status_line_count = len(safe_lines)
+        if not self._is_tty:
+            print("\n".join(safe_lines), flush=True)
+            return
+
+        self._clear_status_block()
+        for idx, line in enumerate(safe_lines):
+            if idx > 0:
+                sys.stdout.write("\n")
+            sys.stdout.write("\r\033[2K")
+            sys.stdout.write(line)
+        if force_newline:
+            sys.stdout.write("\n")
+            self._status_visible = False
+        else:
+            self._status_visible = True
+        sys.stdout.flush()
+        self._last_lines = safe_lines
+
+
+def run_conversion_with_options(workspace_root: Path, options: ConvertOptions) -> int:
+    progress_reporter: CliProgressReporter | None = None
+    root_output_dir = workspace_root / DEFAULT_OUTPUT_DIR_NAME
+    root_output_dir.mkdir(parents=True, exist_ok=True)
+    pre_removed_dirs, pre_removed_files = cleanup_temp_artifacts(root_output_dir)
+    if pre_removed_dirs > 0 or pre_removed_files > 0:
+        print(f"啟動前已清理暫存：{pre_removed_dirs} 個資料夾、{pre_removed_files} 個檔案")
+    try:
+        markdown_files = scan_numeric_markdown_files(workspace_root)
+
+        sentence_cache_for_convert: dict[Path, list[str]] | None = None
+        predicted_total_bytes = 1
+        tracked_output_files: list[Path] = []
+
+        if markdown_files:
+            preview_manifest = load_manifest(root_output_dir)
+            preview_files = preview_manifest.get("files", {})
+            if not isinstance(preview_files, dict):
+                preview_files = {}
+            markdown_metadata, _, _ = build_markdown_metadata(markdown_files, preview_files)
+            sentence_cache_doc = load_sentence_cache(root_output_dir)
+            sentence_cache_for_convert, updated_sentence_cache_doc, _ = build_effective_sentence_cache(
+                markdown_files=markdown_files,
+                markdown_metadata=markdown_metadata,
+                provided_sentence_cache=None,
+                sentence_cache_doc=sentence_cache_doc,
+            )
+            save_sentence_cache(root_output_dir, updated_sentence_cache_doc)
+            predicted_total_bytes, tracked_output_files = build_size_progress_plan(
+                workspace_root=workspace_root,
+                markdown_files=markdown_files,
+                sentence_cache=sentence_cache_for_convert,
+                options=options,
+            )
+        progress_reporter = CliProgressReporter(
+            tracked_output_files=tracked_output_files,
+            predicted_total_bytes=predicted_total_bytes,
+        )
+
+        print(f"使用 voice: {options.voice}")
+        print(f"預估輸出總大小: {format_size_bytes(predicted_total_bytes)}")
+        progress_reporter.start_auto_refresh()
+
         results = asyncio.run(
-            convert_workspace(workspace_root, options, progress=lambda msg: print(msg, flush=True))
+            convert_workspace(
+                workspace_root,
+                options,
+                progress=progress_reporter.on_progress_message,
+                sentence_cache=sentence_cache_for_convert,
+            )
         )
+        progress_reporter.stop_auto_refresh()
+        progress_reporter.emit_completed()
         summary_lines = []
         for mode, (generated, full_output, _) in results.items():
             summary_lines.append(f"{mode}: {len(generated)} 個單檔 + {full_output.name}")
@@ -1691,13 +2142,248 @@ def run_once_cli(
         for warning in all_warnings:
             print(f"警告：{warning}")
         return 0
+    except KeyboardInterrupt:
+        if progress_reporter is not None:
+            progress_reporter.stop_auto_refresh()
+            progress_reporter.clear_for_summary()
+        print("使用者中斷。", file=sys.stderr)
+        return 130
     except Exception as exc:
+        if progress_reporter is not None:
+            progress_reporter.stop_auto_refresh()
+            progress_reporter.clear_for_summary()
         print(f"失敗：{exc}", file=sys.stderr)
         return 1
+    finally:
+        post_removed_dirs, post_removed_files = cleanup_temp_artifacts(root_output_dir)
+        if post_removed_dirs > 0 or post_removed_files > 0:
+            print(f"執行結束已清理暫存：{post_removed_dirs} 個資料夾、{post_removed_files} 個檔案")
+
+
+def _prompt_choice(
+    title: str,
+    options: list[tuple[str, str]],
+    default_value: str,
+) -> str:
+    option_values = [value for value, _ in options]
+    while True:
+        print(f"\n{title}")
+        for idx, (value, label) in enumerate(options, start=1):
+            default_tag = "（預設）" if value == default_value else ""
+            print(f"  {idx}. {label} [{value}] {default_tag}".rstrip())
+        raw = input(f"請輸入編號或值（Enter={default_value}）：").strip()
+        if not raw:
+            return default_value
+        if raw.isdigit():
+            index = int(raw)
+            if 1 <= index <= len(options):
+                return options[index - 1][0]
+        if raw in option_values:
+            return raw
+        print("輸入無效，請重新輸入。")
+
+
+def _prompt_float(
+    label: str,
+    default_value: float,
+    min_value: float | None = None,
+    max_value: float | None = None,
+) -> float:
+    while True:
+        raw = input(f"{label}（Enter={default_value}）：").strip()
+        if not raw:
+            return default_value
+        try:
+            value = float(raw)
+        except ValueError:
+            print("請輸入數字。")
+            continue
+        if min_value is not None and value < min_value:
+            print(f"數值必須 >= {min_value}")
+            continue
+        if max_value is not None and value > max_value:
+            print(f"數值必須 <= {max_value}")
+            continue
+        return value
+
+
+def _prompt_yes_no(label: str, default_yes: bool = True) -> bool:
+    default_hint = "Y/n" if default_yes else "y/N"
+    while True:
+        raw = input(f"{label} [{default_hint}]：").strip().lower()
+        if not raw:
+            return default_yes
+        if raw in {"y", "yes", "1", "是"}:
+            return True
+        if raw in {"n", "no", "0", "否"}:
+            return False
+        print("請輸入 y 或 n。")
+
+
+def _prompt_voice(default_voice: str, choices: list[tuple[str, str]]) -> str:
+    voice_ids = [voice_id for _, voice_id in choices]
+    preferred: list[str] = []
+    for candidate in PREFERRED_DEFAULT_VOICES:
+        if candidate in voice_ids and candidate not in preferred:
+            preferred.append(candidate)
+    for voice_id in voice_ids:
+        if voice_id.startswith(("en-US-", "en-CA-", "en-GB-")) and voice_id not in preferred:
+            preferred.append(voice_id)
+        if len(preferred) >= 12:
+            break
+    if default_voice in voice_ids and default_voice not in preferred:
+        preferred.insert(0, default_voice)
+    if not preferred:
+        preferred = [default_voice]
+
+    while True:
+        print("\n聲音選擇")
+        for idx, voice_id in enumerate(preferred, start=1):
+            default_tag = "（預設）" if voice_id == default_voice else ""
+            print(f"  {idx}. {voice_id} {default_tag}".rstrip())
+        print("  m. 手動輸入 voice id")
+        raw = input(f"請輸入編號（Enter={default_voice}）：").strip()
+        if not raw:
+            return default_voice
+        if raw.lower() == "m":
+            manual = input("請輸入完整 voice id：").strip()
+            if not manual:
+                return default_voice
+            if manual in voice_ids:
+                return manual
+            print("找不到此 voice id，可先用 --list-voices 查詢。")
+            continue
+        if raw.isdigit():
+            index = int(raw)
+            if 1 <= index <= len(preferred):
+                return preferred[index - 1]
+        if raw in voice_ids:
+            return raw
+        print("輸入無效，請重新輸入。")
+
+
+def run_interactive_cli(
+    workspace_root: Path,
+    voice: str | None,
+    rate: float,
+    gap: float,
+    repeat_mode: str,
+    use_gpu: bool,
+) -> int:
+    print("=== 互動式 CLI 設定精靈 ===")
+    print(f"workspace: {workspace_root}")
+
+    voice_choices: list[tuple[str, str]] = []
+    default_voice = voice or "en-US-JennyNeural"
+    try:
+        voice_choices = asyncio.run(fetch_voice_choices())
+        if voice:
+            available_voice_ids = {voice_id for _, voice_id in voice_choices}
+            if voice not in available_voice_ids:
+                print(f"警告：指定 voice 不在清單中，改用預設 {default_voice}")
+                default_voice = pick_default_voice(voice_choices)
+        else:
+            default_voice = pick_default_voice(voice_choices)
+        print(f"已載入 {len(voice_choices)} 個 voice。")
+    except Exception as exc:
+        print(f"警告：載入 voice 清單失敗：{exc}")
+        print(f"將使用 voice: {default_voice}")
+
+    current_mode = repeat_mode
+    current_use_gpu = use_gpu
+    current_rate = max(0.5, min(2.0, float(rate)))
+    current_gap = max(0.0, float(gap))
+    current_voice = default_voice
+
+    startup_mode = _prompt_choice(
+        "啟動方式",
+        [
+            ("all-defaults", "全部預設（直接開始，不再逐題詢問）"),
+            ("custom", "手動設定參數"),
+        ],
+        "all-defaults",
+    )
+    if startup_mode == "all-defaults":
+        print("\n=== 全部預設設定 ===")
+        print(f"voice: {current_voice}")
+        print(f"mode: {current_mode}")
+        print(f"video-device: {'gpu' if current_use_gpu else 'cpu'}")
+        print(f"rate: {current_rate}")
+        print(f"gap: {current_gap}")
+        options = ConvertOptions(
+            voice=current_voice,
+            rate_multiplier=current_rate,
+            gap_seconds=current_gap,
+            repeat_mode=current_mode,
+            use_gpu=current_use_gpu,
+        )
+        return run_conversion_with_options(workspace_root, options)
+
+    try:
+        while True:
+            mode_options = [
+                ("once", "一次"),
+                ("twice", "兩次（每句重複兩次）"),
+                ("both", "一次 + 兩次"),
+            ]
+            device_options = [
+                ("gpu", "GPU 視訊編碼"),
+                ("cpu", "CPU 視訊編碼"),
+            ]
+
+            current_mode = _prompt_choice("轉換模式", mode_options, current_mode)
+            selected_device = _prompt_choice(
+                "視訊編碼後端",
+                device_options,
+                "gpu" if current_use_gpu else "cpu",
+            )
+            current_use_gpu = selected_device == "gpu"
+            current_rate = _prompt_float("語速倍率（0.5 ~ 2.0）", current_rate, min_value=0.5, max_value=2.0)
+            current_gap = _prompt_float("每句間隔秒數（>= 0）", current_gap, min_value=0.0)
+            if voice_choices:
+                current_voice = _prompt_voice(current_voice, voice_choices)
+            else:
+                raw_voice = input(f"聲音 voice id（Enter={current_voice}）：").strip()
+                if raw_voice:
+                    current_voice = raw_voice
+
+            print("\n=== 目前設定 ===")
+            print(f"voice: {current_voice}")
+            print(f"mode: {current_mode}")
+            print(f"video-device: {'gpu' if current_use_gpu else 'cpu'}")
+            print(f"rate: {current_rate}")
+            print(f"gap: {current_gap}")
+
+            if not _prompt_yes_no("開始轉換？", default_yes=True):
+                if _prompt_yes_no("要重新設定參數嗎？", default_yes=True):
+                    continue
+                print("已取消。")
+                return 0
+
+            options = ConvertOptions(
+                voice=current_voice,
+                rate_multiplier=current_rate,
+                gap_seconds=current_gap,
+                repeat_mode=current_mode,
+                use_gpu=current_use_gpu,
+            )
+            result_code = run_conversion_with_options(workspace_root, options)
+            if result_code != 0:
+                if _prompt_yes_no("轉換失敗，是否重新設定後重試？", default_yes=True):
+                    continue
+                return result_code
+            if not _prompt_yes_no("轉換完成，是否再執行一次不同設定？", default_yes=False):
+                return result_code
+    except KeyboardInterrupt:
+        print("\n使用者中斷。", file=sys.stderr)
+        return 130
 
 
 def run_gui(workspace_root: Path) -> int:
-    from PySide6.QtCore import QObject, QThread, QTimer, Signal, Slot
+    os.environ.setdefault("QT_OPENGL", "software")
+    os.environ.setdefault("QT_QUICK_BACKEND", "software")
+
+    from PySide6.QtCore import QObject, QThread, QTimer, Qt, Signal, Slot, qInstallMessageHandler
     from PySide6.QtWidgets import (
         QApplication,
         QCheckBox,
@@ -1713,6 +2399,15 @@ def run_gui(workspace_root: Path) -> int:
         QVBoxLayout,
         QWidget,
     )
+
+    def qt_message_handler(msg_type, context, message) -> None:
+        if any(pattern in message for pattern in QT_NOISY_WARNING_PATTERNS):
+            return
+        sys.stderr.write(message + "\n")
+        sys.stderr.flush()
+
+    qInstallMessageHandler(qt_message_handler)
+    QApplication.setAttribute(Qt.ApplicationAttribute.AA_UseSoftwareOpenGL, True)
 
     class ConvertWorker(QObject):
         progress = Signal(str)
@@ -2170,7 +2865,7 @@ def build_parser() -> argparse.ArgumentParser:
         default=str(Path(__file__).resolve().parent),
         help="工作目錄（預設為本腳本所在資料夾）",
     )
-    parser.add_argument("--run-once", action="store_true", help="不開 GUI，直接執行一次轉換")
+    parser.add_argument("--run-once", action="store_true", help="不進入互動設定，直接執行一次轉換")
     parser.add_argument("--voice", default=None, help="edge-tts voice，例如 en-US-JennyNeural")
     parser.add_argument("--rate", type=float, default=1.0, help="語速倍率（0.5~2.0，預設 1.0=1倍速）")
     parser.add_argument("--gap", type=float, default=0.4, help="每句間隔秒數（>=0）")
@@ -2191,6 +2886,7 @@ def build_parser() -> argparse.ArgumentParser:
 
 
 def main() -> int:
+    ensure_utf8_stdio()
     parser = build_parser()
     args = parser.parse_args()
     workspace_root = Path(os.path.abspath(os.path.expanduser(args.workspace)))
@@ -2219,7 +2915,14 @@ def main() -> int:
             use_gpu=(args.video_device == "gpu"),
         )
 
-    return run_gui(workspace_root)
+    return run_interactive_cli(
+        workspace_root=workspace_root,
+        voice=args.voice,
+        rate=args.rate,
+        gap=args.gap,
+        repeat_mode=args.mode,
+        use_gpu=(args.video_device == "gpu"),
+    )
 
 
 if __name__ == "__main__":

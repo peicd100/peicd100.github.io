@@ -12,20 +12,31 @@
 call "C:\ProgramData\anaconda3\Scripts\activate.bat" "C:\ProgramData\anaconda3"
 conda activate base
 conda create -n mkdocs -y python=3.13
-conda install -n mkdocs -y -c conda-forge ffmpeg pyside6
+conda install -n mkdocs -y -c conda-forge ffmpeg
 conda run -n mkdocs python -m pip install edge-tts
 ```
 
 ## 程式執行指令
-### GUI（推薦）
+### CLI 互動式設定精靈（預設，推薦）
 ```bat
 call "C:\ProgramData\anaconda3\Scripts\activate.bat" "C:\ProgramData\anaconda3"
 conda activate base
 conda activate mkdocs
 python 紀錄.py
 ```
+- 啟動第一題可選 `全部預設`，選後會直接用預設值執行（不再逐題詢問）。
+- 互動式與非互動式 CLI 轉換時都會顯示：`進度百分比 + 目前/預估大小 + CPU/GPU 使用率`。
+- 底部固定狀態列每 0.1 秒刷新一次（進度條、CPU、GPU）。
+- CPU/GPU 使用率會以橫槓長度條呈現（bar + 百分比）。
+- GPU 使用率讀值改為 `max(utilization.gpu, utilization.encoder)`；多 GPU 時取最高值，避免 NVENC 轉檔時數值偏低。
+- 每次執行結束（成功或失敗）會自動清理暫存：`產生複習檔案/tts_tmp_*` 與 `_tts_sentence_cache/*.tmp.mp3`。
+- 轉換期間的監控資訊固定在終端最下方 4 行：
+  - 第 1 行：進度條（格式如 `⣿⣿⣿⣿⣿⣿⣷⣦⣀⣀⣀⣀⣀⣀⣀ 37%`）
+  - 第 2 行：CPU 使用率（橫槓條）
+  - 第 3 行：GPU 使用率（橫槓條）
+  - 第 4 行：旋轉特效（僅顯示 `⠋ ⠙ ⠹ ⠸ ⠼ ⠴ ⠦ ⠧ ⠇ ⠏` + `4` 個空格，不含其他文字）
 
-### CLI（單次執行）
+### CLI（不進入精靈，單次執行）
 ```bat
 call "C:\ProgramData\anaconda3\Scripts\activate.bat" "C:\ProgramData\anaconda3"
 conda activate base
@@ -112,29 +123,23 @@ git clone https://github.com/peicd100/mkdocs.git
 - Per-item files in the `兩次` output folder use `_兩次` suffix (example: `4_兩次.mp4`).
 - Merged file names use range format: `<min>~<max>_一次.mp4` and `<min>~<max>_兩次.mp4`.
 
-## GUI Resource Monitor
-- GUI now shows live CPU and GPU utilization bars.
-- CPU utilization uses `psutil`.
-- GPU utilization uses `nvidia-smi` (NVIDIA driver tool).
-- If a source is unavailable, that bar shows `N/A`.
-- GPU monitor now uses a short timeout and catches subprocess exceptions, reducing GUI freeze risk.
-
-## GUI Progress Bar
-- Progress now estimates total output size before conversion starts.
-- It then tracks current converted file size and computes percentage from `current_size / estimated_total_size`.
-- The bar displays `百分比 + 目前大小 / 預估總大小`.
-- Existing output files from previous runs are excluded until they are rewritten in the current run.
-- Progress size scan is throttled with a cache to avoid full rescans on every log message.
-
-## GUI Stop Button
-- GUI now provides a `強制停止` button during conversion.
-- Clicking it sends a cancellation signal and terminates active ffmpeg subprocesses to stop current conversion quickly.
-- A cancelled run shows `已強制停止轉換。` instead of a generic failure dialog.
-
 ## Performance Notes (2026-02-21)
 - Conversion concurrency is capped (`MAX_FILE_CONCURRENCY=6`) to avoid too many simultaneous jobs causing contention.
+- GPU video encoding now uses a dedicated cap (`MAX_GPU_VIDEO_ENCODE_CONCURRENCY=2`) to reduce mid-run NVENC/session failures.
 - With sentence cache + audio cache + throttled progress scan, runtime behavior is closer to linear in effective workload.
 - A manifest file (`產生複習檔案/_convert_manifest.json`) now stores `<數字>.md` 的 `size + mtime_ns + hash` 與設定簽章，先用 `size + mtime_ns` 快速命中，再決定是否重算 hash。
 - A sentence cache file (`產生複習檔案/_sentence_cache.json`) persists extracted TTS sentences per file fingerprint to avoid repeated markdown parsing.
 - When file fingerprints and options are unchanged and outputs exist, conversion is skipped and existing outputs are reused.
+
+## 使用者要求
+- 回報「程式執行到一半會自動停止」；要求實測 GPU `once` / `twice` 並修正。
+- 2026-02-21 修正：加入 GPU 視訊編碼併發上限，避免多路 NVENC 造成中途中斷。
+- 需求改為「不要 GUI，改成 CLI 啟動後先互動設定參數再執行」。
+- 互動式 CLI 第一題新增「全部預設」選項，且 CLI 需顯示 CPU/GPU 使用率與進度。
+- CLI 狀態列改為固定在最下方，並分成 3 行顯示進度/CPU/GPU。
+- CLI 狀態列更新頻率調整為每 0.1 秒刷新一次。
+- CLI 狀態列新增第 4 行旋轉特效，並將 CPU/GPU 改為橫槓條顯示使用率。
+- 進度條樣式調整為 `⣿⣿⣿⣿⣿⣿⣷⣦⣀⣀⣀⣀⣀⣀⣀ 37%`；旋轉特效行只保留字元本身加 4 個空格。
+- GPU 監控改為同時讀取 `utilization.gpu` 與 `utilization.encoder`，並加上短期快取避免高頻刷新造成抖動與誤差。
+- 每次執行前後都會掃描並刪除暫存工作目錄，避免殘留 `tts_tmp_*`。
 

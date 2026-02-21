@@ -6,6 +6,7 @@
 # Python-generated files
 __pycache__/
 *.py[oc]
+.python_history
 build/
 dist/
 wheels/
@@ -24,8 +25,14 @@ _orig.py
 
 # TTS cache
 _tts_sentence_cache/
+_tts_sentence_cache/*.tmp.mp3
 _convert_manifest.json
 _sentence_cache.json
+tts_tmp_*/
 
-# GUI monitor
+# CLI/GUI monitor
 # (no additional generated files)
+# CLI 0.1-second 4-line status (braille bar/CPU/GPU/spinner+4 spaces, cached GPU query, auto temp cleanup on exit) generates no files.
+
+# Windows / Qt crash dumps
+*.dmp
