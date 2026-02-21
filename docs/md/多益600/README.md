@@ -103,3 +103,38 @@ git remote -v
 ```bat
 git clone https://github.com/peicd100/mkdocs.git
 ```
+
+
+
+
+## Filename Rules (2026-02-21)
+- Per-item files in the `一次` output folder use `_一次` suffix (example: `4_一次.mp4`).
+- Per-item files in the `兩次` output folder use `_兩次` suffix (example: `4_兩次.mp4`).
+- Merged file names use range format: `<min>~<max>_一次.mp4` and `<min>~<max>_兩次.mp4`.
+
+## GUI Resource Monitor
+- GUI now shows live CPU and GPU utilization bars.
+- CPU utilization uses `psutil`.
+- GPU utilization uses `nvidia-smi` (NVIDIA driver tool).
+- If a source is unavailable, that bar shows `N/A`.
+- GPU monitor now uses a short timeout and catches subprocess exceptions, reducing GUI freeze risk.
+
+## GUI Progress Bar
+- Progress now estimates total output size before conversion starts.
+- It then tracks current converted file size and computes percentage from `current_size / estimated_total_size`.
+- The bar displays `百分比 + 目前大小 / 預估總大小`.
+- Existing output files from previous runs are excluded until they are rewritten in the current run.
+- Progress size scan is throttled with a cache to avoid full rescans on every log message.
+
+## GUI Stop Button
+- GUI now provides a `強制停止` button during conversion.
+- Clicking it sends a cancellation signal and terminates active ffmpeg subprocesses to stop current conversion quickly.
+- A cancelled run shows `已強制停止轉換。` instead of a generic failure dialog.
+
+## Performance Notes (2026-02-21)
+- Conversion concurrency is capped (`MAX_FILE_CONCURRENCY=6`) to avoid too many simultaneous jobs causing contention.
+- With sentence cache + audio cache + throttled progress scan, runtime behavior is closer to linear in effective workload.
+- A manifest file (`產生複習檔案/_convert_manifest.json`) now stores `<數字>.md` 的 `size + mtime_ns + hash` 與設定簽章，先用 `size + mtime_ns` 快速命中，再決定是否重算 hash。
+- A sentence cache file (`產生複習檔案/_sentence_cache.json`) persists extracted TTS sentences per file fingerprint to avoid repeated markdown parsing.
+- When file fingerprints and options are unchanged and outputs exist, conversion is skipped and existing outputs are reused.
+

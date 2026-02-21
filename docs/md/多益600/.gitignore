@@ -17,3 +17,15 @@ wheels/
 
 # PyInstaller / local runtime
 user_data/
+
+# local temp file
+_orig.py
+
+
+# TTS cache
+_tts_sentence_cache/
+_convert_manifest.json
+_sentence_cache.json
+
+# GUI monitor
+# (no additional generated files)

@@ -2,15 +2,19 @@ from __future__ import annotations
 
 import argparse
 import asyncio
+import hashlib
 import html
+import json
 import os
 import re
 import shutil
 import subprocess
 import sys
+import threading
+import time
 import traceback
 import uuid
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Callable, Iterable
 from urllib.parse import urlparse
@@ -33,6 +37,16 @@ VIDEO_HEIGHT = 720
 VIDEO_FPS = 30
 VIDEO_FONT_SIZE = 220
 VIDEO_FONT_COLOR = "white"
+ESTIMATED_CHARS_PER_SECOND = 13.0
+ESTIMATED_VIDEO_BITRATE_BPS_GPU = 220_000
+ESTIMATED_VIDEO_BITRATE_BPS_CPU = 300_000
+ESTIMATED_CONTAINER_OVERHEAD_BYTES = 180 * 1024
+GPU_MONITOR_TIMEOUT_SECONDS = 0.35
+RESOURCE_MONITOR_INTERVAL_MS = 1500
+PROGRESS_SCAN_MIN_INTERVAL_SECONDS = 0.25
+MAX_FILE_CONCURRENCY = 6
+MANIFEST_FILENAME = "_convert_manifest.json"
+SENTENCE_CACHE_FILENAME = "_sentence_cache.json"
 BLOCKING_PROXY_HOSTS = {"127.0.0.1", "localhost", "::1"}
 PROXY_ENV_KEYS = (
     "ALL_PROXY",
@@ -51,10 +65,87 @@ PREFERRED_DEFAULT_VOICES = (
     "en-US-AriaNeural",
     "en-US-GuyNeural",
 )
+NVIDIA_SMI_CANDIDATES = (
+    "nvidia-smi",
+    r"C:\Program Files\NVIDIA Corporation\NVSMI\nvidia-smi.exe",
+    r"C:\Windows\System32\nvidia-smi.exe",
+)
+
+_NVIDIA_SMI_RESOLVED = False
+_NVIDIA_SMI_COMMAND: str | None = None
+_PSUTIL_RESOLVED = False
+_PSUTIL_MODULE = None
 
 
 class ConversionError(RuntimeError):
     pass
+
+
+class ConversionCancelled(ConversionError):
+    pass
+
+
+@dataclass
+class ExecutionControl:
+    stop_event: threading.Event = field(default_factory=threading.Event)
+    lock: threading.Lock = field(default_factory=threading.Lock)
+    running_processes: set[subprocess.Popen] = field(default_factory=set)
+
+    def register_process(self, proc: subprocess.Popen) -> None:
+        with self.lock:
+            self.running_processes.add(proc)
+
+    def unregister_process(self, proc: subprocess.Popen) -> None:
+        with self.lock:
+            self.running_processes.discard(proc)
+
+    def terminate_all_processes(self) -> None:
+        with self.lock:
+            processes = list(self.running_processes)
+        for proc in processes:
+            terminate_process(proc)
+
+
+_EXECUTION_CONTEXT = threading.local()
+
+
+class execution_context:
+    def __init__(self, control: ExecutionControl | None):
+        self.control = control
+        self.previous: ExecutionControl | None = None
+
+    def __enter__(self) -> None:
+        self.previous = getattr(_EXECUTION_CONTEXT, "control", None)
+        _EXECUTION_CONTEXT.control = self.control
+        return None
+
+    def __exit__(self, exc_type, exc, tb) -> None:
+        _EXECUTION_CONTEXT.control = self.previous
+        return None
+
+
+def get_execution_control() -> ExecutionControl | None:
+    return getattr(_EXECUTION_CONTEXT, "control", None)
+
+
+def assert_not_cancelled() -> None:
+    control = get_execution_control()
+    if control is not None and control.stop_event.is_set():
+        raise ConversionCancelled("使用者已強制停止轉換。")
+
+
+def terminate_process(proc: subprocess.Popen) -> None:
+    if proc.poll() is not None:
+        return
+    try:
+        proc.terminate()
+        proc.wait(timeout=1.0)
+    except Exception:
+        try:
+            proc.kill()
+            proc.wait(timeout=1.0)
+        except Exception:
+            pass
 
 
 @dataclass
@@ -62,6 +153,7 @@ class ConvertOptions:
     voice: str
     rate_multiplier: float  # 倍率：1.0=1倍速，1.5=1.5倍速
     gap_seconds: float
+    use_gpu: bool
     repeat_mode: str  # "once" 或 "twice" 或 "both"
 
 
@@ -75,6 +167,371 @@ def scan_numeric_markdown_files(workspace_root: Path) -> list[Path]:
             files.append((int(match.group(1)), item))
     files.sort(key=lambda pair: pair[0])
     return [path for _, path in files]
+
+
+def build_range_mp4_name(markdown_files: list[Path], suffix: str = "") -> str:
+    if not markdown_files:
+        return f"0~0{suffix}.mp4"
+    min_stem = markdown_files[0].stem
+    max_stem = markdown_files[-1].stem
+    return f"{min_stem}~{max_stem}{suffix}.mp4"
+
+
+def compute_file_hash(path: Path) -> str:
+    data = path.read_bytes()
+    return hashlib.sha1(data).hexdigest()
+
+
+def read_file_stat_signature(path: Path) -> tuple[int, int]:
+    stat = path.stat()
+    size = int(stat.st_size)
+    mtime_ns = int(getattr(stat, "st_mtime_ns", int(stat.st_mtime * 1_000_000_000)))
+    return size, mtime_ns
+
+
+def _safe_int(value: object, fallback: int = -1) -> int:
+    try:
+        return int(value)
+    except (TypeError, ValueError):
+        return fallback
+
+
+def options_signature(options: ConvertOptions) -> str:
+    return "|".join(
+        [
+            options.voice,
+            f"{options.rate_multiplier:.4f}",
+            f"{options.gap_seconds:.4f}",
+            "gpu" if options.use_gpu else "cpu",
+            options.repeat_mode,
+        ]
+    )
+
+
+def load_manifest(root_output_dir: Path) -> dict:
+    path = root_output_dir / MANIFEST_FILENAME
+    if not path.exists():
+        return {"options_signature": "", "files": {}}
+    try:
+        raw = json.loads(path.read_text(encoding="utf-8"))
+    except Exception:
+        return {"options_signature": "", "files": {}}
+
+    if not isinstance(raw, dict):
+        return {"options_signature": "", "files": {}}
+
+    options_sig = raw.get("options_signature")
+    if not isinstance(options_sig, str):
+        legacy_options = raw.get("options")
+        options_sig = legacy_options if isinstance(legacy_options, str) else ""
+    files = raw.get("files")
+    if not isinstance(files, dict):
+        files = {}
+    return {"options_signature": options_sig, "files": files}
+
+
+def save_manifest(root_output_dir: Path, manifest: dict) -> None:
+    path = root_output_dir / MANIFEST_FILENAME
+    path.write_text(json.dumps(manifest, ensure_ascii=False, indent=2), encoding="utf-8")
+
+
+def load_sentence_cache(root_output_dir: Path) -> dict:
+    path = root_output_dir / SENTENCE_CACHE_FILENAME
+    if not path.exists():
+        return {"files": {}}
+    try:
+        raw = json.loads(path.read_text(encoding="utf-8"))
+    except Exception:
+        return {"files": {}}
+    if not isinstance(raw, dict):
+        return {"files": {}}
+    files = raw.get("files")
+    if not isinstance(files, dict):
+        files = {}
+    return {"files": files}
+
+
+def save_sentence_cache(root_output_dir: Path, cache_doc: dict) -> None:
+    path = root_output_dir / SENTENCE_CACHE_FILENAME
+    path.write_text(json.dumps(cache_doc, ensure_ascii=False, indent=2), encoding="utf-8")
+
+
+def build_markdown_metadata(
+    markdown_files: list[Path],
+    previous_files: dict[str, dict],
+) -> tuple[dict[Path, dict[str, int | str]], int, int]:
+    metadata: dict[Path, dict[str, int | str]] = {}
+    reused_hash_count = 0
+    recomputed_hash_count = 0
+    for md_path in markdown_files:
+        assert_not_cancelled()
+        size, mtime_ns = read_file_stat_signature(md_path)
+        previous = previous_files.get(md_path.name, {})
+        if not isinstance(previous, dict):
+            previous = {}
+        previous_hash = previous.get("hash")
+        previous_size = _safe_int(previous.get("size"))
+        previous_mtime_ns = _safe_int(previous.get("mtime_ns"))
+        if (
+            isinstance(previous_hash, str)
+            and previous_size == size
+            and previous_mtime_ns == mtime_ns
+        ):
+            md_hash = previous_hash
+            reused_hash_count += 1
+        else:
+            md_hash = compute_file_hash(md_path)
+            recomputed_hash_count += 1
+        metadata[md_path] = {
+            "name": md_path.name,
+            "size": size,
+            "mtime_ns": mtime_ns,
+            "hash": md_hash,
+        }
+    return metadata, reused_hash_count, recomputed_hash_count
+
+
+def build_effective_sentence_cache(
+    markdown_files: list[Path],
+    markdown_metadata: dict[Path, dict[str, int | str]],
+    provided_sentence_cache: dict[Path, list[str]] | None,
+    sentence_cache_doc: dict,
+) -> tuple[dict[Path, list[str]], dict, int]:
+    persisted_files = sentence_cache_doc.get("files", {})
+    if not isinstance(persisted_files, dict):
+        persisted_files = {}
+    effective_cache: dict[Path, list[str]] = {}
+    updated_files: dict[str, dict] = {}
+    reused_sentence_files = 0
+
+    for md_path in markdown_files:
+        assert_not_cancelled()
+        md_meta = markdown_metadata[md_path]
+        md_hash = str(md_meta["hash"])
+        md_size = int(md_meta["size"])
+        md_mtime_ns = int(md_meta["mtime_ns"])
+        sentences: list[str] | None = None
+
+        if provided_sentence_cache is not None:
+            provided = provided_sentence_cache.get(md_path)
+            if provided is not None:
+                sentences = [str(item) for item in provided]
+
+        if sentences is None:
+            persisted = persisted_files.get(md_path.name, {})
+            if not isinstance(persisted, dict):
+                persisted = {}
+            persisted_hash = persisted.get("hash")
+            persisted_size = _safe_int(persisted.get("size"))
+            persisted_mtime_ns = _safe_int(persisted.get("mtime_ns"))
+            persisted_sentences = persisted.get("sentences")
+            if (
+                isinstance(persisted_hash, str)
+                and persisted_hash == md_hash
+                and persisted_size == md_size
+                and persisted_mtime_ns == md_mtime_ns
+                and isinstance(persisted_sentences, list)
+            ):
+                sentences = [str(item) for item in persisted_sentences]
+                reused_sentence_files += 1
+            else:
+                sentences = extract_tts_sentences(md_path)
+
+        effective_cache[md_path] = sentences
+        updated_files[md_path.name] = {
+            "hash": md_hash,
+            "size": md_size,
+            "mtime_ns": md_mtime_ns,
+            "sentences": sentences,
+        }
+
+    return effective_cache, {"files": updated_files}, reused_sentence_files
+
+
+def format_size_bytes(size_bytes: int) -> str:
+    value = float(max(0, size_bytes))
+    units = ("B", "KB", "MB", "GB", "TB")
+    for unit in units:
+        if value < 1024.0 or unit == units[-1]:
+            if unit == "B":
+                return f"{int(value)} {unit}"
+            return f"{value:.1f} {unit}"
+        value /= 1024.0
+    return f"{int(size_bytes)} B"
+
+
+def bitrate_to_bps(bitrate: str) -> int:
+    text = bitrate.strip().lower()
+    if text.endswith("k"):
+        return int(float(text[:-1]) * 1_000)
+    if text.endswith("m"):
+        return int(float(text[:-1]) * 1_000_000)
+    return int(float(text))
+
+
+def estimate_sentence_duration_seconds(text: str, rate_multiplier: float) -> float:
+    cleaned = re.sub(r"\s+", "", text)
+    char_count = len(cleaned)
+    if char_count <= 0:
+        return 0.0
+    base_seconds = char_count / ESTIMATED_CHARS_PER_SECOND
+    speed = max(0.5, min(2.0, float(rate_multiplier)))
+    return max(0.25, base_seconds / speed)
+
+
+def estimate_mode_duration_seconds(
+    sentences: list[str],
+    rate_multiplier: float,
+    gap_seconds: float,
+    repeat_sentences: bool,
+) -> float:
+    if not sentences:
+        return 0.0
+    per_sentence_seconds = sum(
+        estimate_sentence_duration_seconds(sentence, rate_multiplier) for sentence in sentences
+    )
+    playback_count = len(sentences) * (2 if repeat_sentences else 1)
+    speech_seconds = per_sentence_seconds * (2 if repeat_sentences else 1)
+    gap_count = max(0, playback_count - 1)
+    return speech_seconds + gap_count * max(0.0, gap_seconds)
+
+
+def estimate_mp4_size_bytes(duration_seconds: float, use_gpu: bool) -> int:
+    audio_bps = bitrate_to_bps(OUTPUT_BITRATE)
+    video_bps = ESTIMATED_VIDEO_BITRATE_BPS_GPU if use_gpu else ESTIMATED_VIDEO_BITRATE_BPS_CPU
+    payload_bytes = max(0.0, duration_seconds) * (audio_bps + video_bps) / 8.0
+    return int(payload_bytes + ESTIMATED_CONTAINER_OVERHEAD_BYTES)
+
+
+def build_size_progress_plan(
+    workspace_root: Path,
+    markdown_files: list[Path],
+    sentence_cache: dict[Path, list[str]],
+    options: ConvertOptions,
+) -> tuple[int, list[Path]]:
+    root_output_dir = workspace_root / DEFAULT_OUTPUT_DIR_NAME
+    tracked_files: list[Path] = []
+    estimated_total_bytes = 0
+    selected_modes: list[tuple[str, bool, str]] = []
+
+    if options.repeat_mode in ("once", "both"):
+        selected_modes.append(("一次", False, "_一次"))
+    if options.repeat_mode in ("twice", "both"):
+        selected_modes.append(("兩次", True, "_兩次"))
+
+    for mode_name, repeat_sentences, suffix in selected_modes:
+        mode_output_dir = root_output_dir / mode_name
+        per_file_durations: list[float] = []
+        generated_count = 0
+        for md_path in markdown_files:
+            sentences = sentence_cache.get(md_path, [])
+            if not sentences:
+                continue
+            duration_seconds = estimate_mode_duration_seconds(
+                sentences=sentences,
+                rate_multiplier=options.rate_multiplier,
+                gap_seconds=options.gap_seconds,
+                repeat_sentences=repeat_sentences,
+            )
+            per_file_durations.append(duration_seconds)
+            output_path = mode_output_dir / f"{md_path.stem}{suffix}.mp4"
+            tracked_files.append(output_path)
+            estimated_total_bytes += estimate_mp4_size_bytes(
+                duration_seconds=duration_seconds,
+                use_gpu=options.use_gpu,
+            )
+            generated_count += 1
+
+        if generated_count > 0:
+            merged_name = build_range_mp4_name(markdown_files, suffix)
+            merged_path = mode_output_dir / merged_name
+            tracked_files.append(merged_path)
+            merged_seconds = sum(per_file_durations)
+            if options.gap_seconds > 0 and generated_count > 1:
+                merged_seconds += options.gap_seconds * (generated_count - 1)
+            estimated_total_bytes += estimate_mp4_size_bytes(
+                duration_seconds=merged_seconds,
+                use_gpu=options.use_gpu,
+            )
+
+    return max(1, estimated_total_bytes), tracked_files
+
+
+def read_cpu_usage_percent() -> float | None:
+    global _PSUTIL_RESOLVED, _PSUTIL_MODULE
+    if not _PSUTIL_RESOLVED:
+        _PSUTIL_RESOLVED = True
+        try:
+            import psutil  # type: ignore
+        except Exception:
+            _PSUTIL_MODULE = None
+        else:
+            _PSUTIL_MODULE = psutil
+
+    if _PSUTIL_MODULE is None:
+        return None
+    try:
+        return float(_PSUTIL_MODULE.cpu_percent(interval=None))
+    except Exception:
+        return None
+
+
+def resolve_nvidia_smi_command() -> str | None:
+    global _NVIDIA_SMI_RESOLVED, _NVIDIA_SMI_COMMAND
+    if _NVIDIA_SMI_RESOLVED:
+        return _NVIDIA_SMI_COMMAND
+
+    _NVIDIA_SMI_RESOLVED = True
+    for candidate in NVIDIA_SMI_CANDIDATES:
+        if candidate == "nvidia-smi":
+            found = shutil.which(candidate)
+            if found:
+                _NVIDIA_SMI_COMMAND = found
+                return _NVIDIA_SMI_COMMAND
+            continue
+        if Path(candidate).exists():
+            _NVIDIA_SMI_COMMAND = candidate
+            return _NVIDIA_SMI_COMMAND
+    _NVIDIA_SMI_COMMAND = None
+    return None
+
+
+def read_gpu_usage_percent() -> float | None:
+    nvidia_smi = resolve_nvidia_smi_command()
+    if not nvidia_smi:
+        return None
+
+    try:
+        proc = subprocess.run(
+            [
+                nvidia_smi,
+                "--query-gpu=utilization.gpu",
+                "--format=csv,noheader,nounits",
+            ],
+            capture_output=True,
+            text=True,
+            encoding="utf-8",
+            errors="replace",
+            timeout=GPU_MONITOR_TIMEOUT_SECONDS,
+        )
+    except (subprocess.TimeoutExpired, OSError, ValueError):
+        return None
+    if proc.returncode != 0:
+        return None
+
+    values: list[float] = []
+    for line in proc.stdout.splitlines():
+        text = line.strip()
+        if not text:
+            continue
+        try:
+            values.append(float(text))
+        except ValueError:
+            continue
+    if not values:
+        return None
+    avg = sum(values) / len(values)
+    return max(0.0, min(100.0, avg))
 
 
 def extract_tts_sentences(md_path: Path) -> list[str]:
@@ -157,20 +614,60 @@ def locate_binary(name: str) -> Path:
 
 
 def run_checked(cmd: list[str], cwd: Path | None = None) -> None:
-    proc = subprocess.run(
+    assert_not_cancelled()
+    control = get_execution_control()
+    if control is None:
+        proc = subprocess.run(
+            cmd,
+            capture_output=True,
+            text=True,
+            encoding="utf-8",
+            errors="replace",
+            cwd=str(cwd) if cwd else None,
+        )
+        if proc.returncode != 0:
+            msg = (
+                f"命令失敗（exit={proc.returncode}）:\n"
+                f"{' '.join(cmd)}\n"
+                f"stdout:\n{proc.stdout}\n"
+                f"stderr:\n{proc.stderr}"
+            )
+            raise ConversionError(msg)
+        return
+
+    proc = subprocess.Popen(
         cmd,
-        capture_output=True,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
         text=True,
         encoding="utf-8",
         errors="replace",
         cwd=str(cwd) if cwd else None,
     )
+    control.register_process(proc)
+    stdout = ""
+    stderr = ""
+    try:
+        while True:
+            if control.stop_event.is_set():
+                terminate_process(proc)
+                raise ConversionCancelled("使用者已強制停止轉換。")
+            try:
+                stdout, stderr = proc.communicate(timeout=0.2)
+                break
+            except subprocess.TimeoutExpired:
+                continue
+    finally:
+        control.unregister_process(proc)
+
     if proc.returncode != 0:
+        if control.stop_event.is_set():
+            raise ConversionCancelled("使用者已強制停止轉換。")
         msg = (
             f"命令失敗（exit={proc.returncode}）:\n"
             f"{' '.join(cmd)}\n"
-            f"stdout:\n{proc.stdout}\n"
-            f"stderr:\n{proc.stderr}"
+            f"stdout:\n{stdout}\n"
+            f"stderr:\n{stderr}"
         )
         raise ConversionError(msg)
 
@@ -230,14 +727,23 @@ def detect_aac_encoder(ffmpeg_bin: Path, available: set[str] | None = None) -> s
     )
 
 
-def detect_h264_encoder(ffmpeg_bin: Path, available: set[str] | None = None) -> str:
+def detect_h264_encoder(
+    ffmpeg_bin: Path,
+    available: set[str] | None = None,
+    use_gpu: bool = True,
+) -> str:
     available = available if available is not None else list_available_ffmpeg_encoders(ffmpeg_bin)
+    if use_gpu:
+        return _pick_encoder(
+            available,
+            ("h264_nvenc", "h264_qsv", "h264_amf"),
+            "ffmpeg could not find a GPU H.264 encoder (h264_nvenc/h264_qsv/h264_amf).",
+        )
     return _pick_encoder(
         available,
         ("libx264", "h264_mf", "mpeg4"),
-        "ffmpeg 找不到可用視訊編碼器（libx264/h264_mf/mpeg4）。",
+        "ffmpeg could not find a CPU H.264 encoder (libx264/h264_mf/mpeg4).",
     )
-
 
 def create_silence_mp3(ffmpeg_bin: Path, mp3_encoder: str, duration_sec: float, out_path: Path) -> None:
     cmd = [
@@ -407,14 +913,134 @@ async def synthesize_sentence(
 ) -> None:
     disable_blocking_proxy_env()
     for attempt in range(retries + 1):
+        assert_not_cancelled()
         try:
             communicator = edge_tts.Communicate(text=text, voice=voice, rate=rate)
             await communicator.save(str(out_path))
+            assert_not_cancelled()
             return
         except Exception:
             if attempt >= retries:
                 raise
             await asyncio.sleep(0.4)
+
+
+def sentence_audio_cache_key(text: str, voice: str, rate: str) -> str:
+    payload = f"{voice}\n{rate}\n{text}".encode("utf-8")
+    return hashlib.sha1(payload).hexdigest()
+
+
+class SentenceAudioCache:
+    def __init__(self, cache_dir: Path):
+        self.cache_dir = cache_dir
+        self.cache_dir.mkdir(parents=True, exist_ok=True)
+        self._lock = asyncio.Lock()
+        self._inflight: dict[str, asyncio.Task[Path]] = {}
+
+    @staticmethod
+    def _is_ready(path: Path) -> bool:
+        try:
+            return path.exists() and path.stat().st_size > 0
+        except OSError:
+            return False
+
+    async def get_or_create(
+        self,
+        text: str,
+        voice: str,
+        rate: str,
+        retries: int = 1,
+    ) -> Path:
+        key = sentence_audio_cache_key(text, voice, rate)
+        target = self.cache_dir / f"{key}.mp3"
+        if self._is_ready(target):
+            return target
+
+        async with self._lock:
+            task = self._inflight.get(key)
+            if task is None:
+                task = asyncio.create_task(
+                    self._create_cached_file(target, text, voice, rate, retries=retries)
+                )
+                self._inflight[key] = task
+
+        try:
+            return await task
+        finally:
+            async with self._lock:
+                if self._inflight.get(key) is task:
+                    self._inflight.pop(key, None)
+
+    async def _create_cached_file(
+        self,
+        target: Path,
+        text: str,
+        voice: str,
+        rate: str,
+        retries: int = 1,
+    ) -> Path:
+        if self._is_ready(target):
+            return target
+
+        temp_target = target.with_suffix(".tmp.mp3")
+        if temp_target.exists():
+            temp_target.unlink(missing_ok=True)
+
+        try:
+            await synthesize_sentence(
+                text=text,
+                voice=voice,
+                rate=rate,
+                out_path=temp_target,
+                retries=retries,
+            )
+            temp_target.replace(target)
+            return target
+        except Exception:
+            if temp_target.exists():
+                temp_target.unlink(missing_ok=True)
+            raise
+
+
+async def synthesize_sentence_audio_files(
+    md_path: Path,
+    source_sentences: list[str],
+    part_dir: Path,
+    voice: str,
+    rate: str,
+    progress: Callable[[str], None],
+    audio_cache: SentenceAudioCache | None = None,
+) -> list[Path]:
+    assert_not_cancelled()
+    total_sentences = len(source_sentences)
+    sentence_audio_files: list[Path] = []
+    for idx, sentence in enumerate(source_sentences, start=1):
+        assert_not_cancelled()
+        segment = part_dir / f"{idx:04d}.mp3"
+        try:
+            if audio_cache is None:
+                await synthesize_sentence(
+                    text=sentence,
+                    voice=voice,
+                    rate=rate,
+                    out_path=segment,
+                    retries=1,
+                )
+                sentence_audio_files.append(segment)
+            else:
+                cached_segment = await audio_cache.get_or_create(
+                    text=sentence,
+                    voice=voice,
+                    rate=rate,
+                    retries=1,
+                )
+                sentence_audio_files.append(cached_segment)
+        except Exception as exc:
+            raise ConversionError(f"{md_path.name} sentence {idx} synthesis failed: {exc}") from exc
+
+        if idx % 20 == 0 or idx == total_sentences:
+            progress(f"{md_path.name} progress {idx}/{total_sentences}")
+    return sentence_audio_files
 
 
 async def fetch_voice_choices() -> list[tuple[str, str]]:
@@ -448,39 +1074,30 @@ async def convert_markdown_file(
     progress: Callable[[str], None],
     repeat_sentences: bool = False,
     sentences: list[str] | None = None,
+    audio_cache: SentenceAudioCache | None = None,
 ) -> tuple[Path | None, Path | None, list[str]]:
+    assert_not_cancelled()
     warnings: list[str] = []
     source_sentences = list(sentences) if sentences is not None else extract_tts_sentences(md_path)
     if not source_sentences:
-        warning = f"{md_path.name} 沒有 tts 句子，已略過。"
+        warning = f"{md_path.name} has no tts sentences"
         warnings.append(warning)
-        progress(f"警告：{warning}")
+        progress(f"warning: {warning}")
         return None, None, warnings
 
     total_sentences = len(source_sentences)
-    progress(f"處理 {md_path.name}（{total_sentences} 句，重複：{repeat_sentences}）")
+    progress(f"start {md_path.name}: {total_sentences} sentences (repeat={repeat_sentences})")
     part_dir = tmp_root / md_path.stem
     part_dir.mkdir(parents=True, exist_ok=True)
-    sentence_audio_files: list[Path] = []
-
-    for idx, sentence in enumerate(source_sentences, start=1):
-        segment = part_dir / f"{idx:04d}.mp3"
-        try:
-            await synthesize_sentence(
-                text=sentence,
-                voice=voice,
-                rate=rate,
-                out_path=segment,
-                retries=1,
-            )
-        except Exception as exc:
-            raise ConversionError(
-                f"{md_path.name} 第 {idx} 句轉換失敗：{exc}"
-            ) from exc
-
-        sentence_audio_files.append(segment)
-        if idx % 20 == 0 or idx == total_sentences:
-            progress(f"{md_path.name} 進度 {idx}/{total_sentences}")
+    sentence_audio_files = await synthesize_sentence_audio_files(
+        md_path=md_path,
+        source_sentences=source_sentences,
+        part_dir=part_dir,
+        voice=voice,
+        rate=rate,
+        progress=progress,
+        audio_cache=audio_cache,
+    )
 
     output_file, audio_file = await build_markdown_outputs_from_segments(
         md_path=md_path,
@@ -495,7 +1112,7 @@ async def convert_markdown_file(
         aac_encoder=aac_encoder,
         drawtext_font=drawtext_font,
     )
-    progress(f"完成 {output_file.name}")
+    progress(f"done {output_file.name}")
     return output_file, audio_file, warnings
 
 
@@ -531,14 +1148,15 @@ async def build_markdown_outputs_from_segments(
         audio_concat_list_file,
     )
 
-    output_file = output_dir / f"{md_path.stem}.mp4"
+    output_stem = f"{md_path.stem}_兩次" if repeat_sentences else f"{md_path.stem}_一次"
+    output_file = output_dir / f"{output_stem}.mp4"
     await asyncio.to_thread(
         create_labeled_video_mp4,
         ffmpeg_bin,
         h264_encoder,
         aac_encoder,
         audio_file,
-        md_path.stem,
+        output_stem,
         output_file,
         drawtext_font,
     )
@@ -564,6 +1182,7 @@ async def convert_workspace(
     progress: Callable[[str], None] | None = None,
     sentence_cache: dict[Path, list[str]] | None = None,
 ) -> dict[str, tuple[list[Path], Path, list[str]]]:
+    assert_not_cancelled()
     progress = progress or (lambda _: None)
     removed_proxy_keys = disable_blocking_proxy_env()
     if removed_proxy_keys:
@@ -572,30 +1191,98 @@ async def convert_workspace(
     available_encoders = list_available_ffmpeg_encoders(ffmpeg_bin)
     mp3_encoder = detect_mp3_encoder(ffmpeg_bin, available_encoders)
     aac_encoder = detect_aac_encoder(ffmpeg_bin, available_encoders)
-    h264_encoder = detect_h264_encoder(ffmpeg_bin, available_encoders)
+    h264_encoder = detect_h264_encoder(
+        ffmpeg_bin,
+        available_encoders,
+        use_gpu=options.use_gpu,
+    )
     drawtext_font = find_drawtext_font()
     markdown_files = scan_numeric_markdown_files(workspace_root)
     if not markdown_files:
         raise ConversionError("找不到任何 <數字>.md 檔案。")
 
-    if sentence_cache is None:
-        effective_sentence_cache = {
-            md_path: extract_tts_sentences(md_path) for md_path in markdown_files
-        }
-    else:
-        effective_sentence_cache: dict[Path, list[str]] = {}
-        for md_path in markdown_files:
-            cached = sentence_cache.get(md_path)
-            if cached is None:
-                cached = extract_tts_sentences(md_path)
-            effective_sentence_cache[md_path] = list(cached)
-
     root_output_dir = workspace_root / DEFAULT_OUTPUT_DIR_NAME
     root_output_dir.mkdir(parents=True, exist_ok=True)
+    manifest = load_manifest(root_output_dir)
+    sentence_cache_doc = load_sentence_cache(root_output_dir)
+    previous_manifest_files = manifest.get("files", {})
+    if not isinstance(previous_manifest_files, dict):
+        previous_manifest_files = {}
+    markdown_metadata, reused_hash_count, recomputed_hash_count = build_markdown_metadata(
+        markdown_files,
+        previous_manifest_files,
+    )
+    if reused_hash_count > 0:
+        progress(f"hash 快取命中：{reused_hash_count} 個檔案")
+    if recomputed_hash_count > 0:
+        progress(f"hash 重算：{recomputed_hash_count} 個檔案")
+
+    current_signature = options_signature(options)
+    previous_signature = manifest.get("options_signature", "")
+    if not isinstance(previous_signature, str):
+        previous_signature = ""
+    current_file_names = {md_path.name for md_path in markdown_files}
+
+    def _outputs_exist_for_mode(mode_name: str) -> bool:
+        mode_dir = root_output_dir / mode_name
+        suffix = "_一次" if mode_name == "一次" else "_兩次"
+        for md_path in markdown_files:
+            out_path = mode_dir / f"{md_path.stem}{suffix}.mp4"
+            if not out_path.exists():
+                return False
+        merged_name = build_range_mp4_name(markdown_files, suffix)
+        return (mode_dir / merged_name).exists()
+
+    can_skip = previous_signature == current_signature
+    if can_skip and set(previous_manifest_files.keys()) != current_file_names:
+        can_skip = False
+    for md_path in markdown_files:
+        recorded = previous_manifest_files.get(md_path.name, {})
+        if not isinstance(recorded, dict):
+            recorded = {}
+        if not recorded or recorded.get("hash") != markdown_metadata[md_path]["hash"]:
+            can_skip = False
+            break
+    if can_skip:
+        if options.repeat_mode in ("once", "both") and not _outputs_exist_for_mode("一次"):
+            can_skip = False
+        if options.repeat_mode in ("twice", "both") and not _outputs_exist_for_mode("兩次"):
+            can_skip = False
+
+    if can_skip:
+        progress("偵測到內容與設定皆未變更，沿用既有輸出，跳過轉換。")
+        results: dict[str, tuple[list[Path], Path, list[str]]] = {}
+        if options.repeat_mode in ("once", "both"):
+            once_dir = root_output_dir / "一次"
+            once_files = [once_dir / f"{md.stem}_一次.mp4" for md in markdown_files]
+            once_full = once_dir / build_range_mp4_name(markdown_files, "_一次")
+            results["once"] = (once_files, once_full, [])
+        if options.repeat_mode in ("twice", "both"):
+            twice_dir = root_output_dir / "兩次"
+            twice_files = [twice_dir / f"{md.stem}_兩次.mp4" for md in markdown_files]
+            twice_full = twice_dir / build_range_mp4_name(markdown_files, "_兩次")
+            results["twice"] = (twice_files, twice_full, [])
+        return results
+
+    effective_sentence_cache, updated_sentence_cache_doc, reused_sentence_files = (
+        build_effective_sentence_cache(
+            markdown_files=markdown_files,
+            markdown_metadata=markdown_metadata,
+            provided_sentence_cache=sentence_cache,
+            sentence_cache_doc=sentence_cache_doc,
+        )
+    )
+    if reused_sentence_files > 0:
+        progress(f"句子快取命中：{reused_sentence_files} 個檔案")
+    save_sentence_cache(root_output_dir, updated_sentence_cache_doc)
+
+    sentence_audio_cache = SentenceAudioCache(root_output_dir / "_tts_sentence_cache")
+    assert_not_cancelled()
 
     warnings: list[str] = []
     results: dict[str, tuple[list[Path], Path, list[str]]] = {}
     rate = multiplier_to_edge_rate(options.rate_multiplier)
+    progress(f"video mode: {'GPU' if options.use_gpu else 'CPU'}")
 
     progress(f"ffmpeg MP3 編碼器：{mp3_encoder}（句間靜音）")
     progress(f"ffmpeg AAC 編碼器：{aac_encoder}（MP4 輸出）")
@@ -625,6 +1312,7 @@ async def convert_workspace(
             drawtext_font=drawtext_font,
             progress=progress,
             sentence_cache=effective_sentence_cache,
+            audio_cache=sentence_audio_cache,
         )
         results["once"] = once_results
         results["twice"] = twice_results
@@ -646,6 +1334,7 @@ async def convert_workspace(
             progress,
             repeat_sentences=False,
             sentence_cache=effective_sentence_cache,
+            audio_cache=sentence_audio_cache,
         )
         results["once"] = once_results
         warnings.extend(once_results[2])
@@ -666,9 +1355,24 @@ async def convert_workspace(
             progress,
             repeat_sentences=True,
             sentence_cache=effective_sentence_cache,
+            audio_cache=sentence_audio_cache,
         )
         results["twice"] = twice_results
         warnings.extend(twice_results[2])
+
+    manifest_files: dict[str, dict] = {}
+    for md_path in markdown_files:
+        md_meta = markdown_metadata[md_path]
+        manifest_files[md_path.name] = {
+            "hash": md_meta["hash"],
+            "size": md_meta["size"],
+            "mtime_ns": md_meta["mtime_ns"],
+        }
+    manifest = {
+        "options_signature": current_signature,
+        "files": manifest_files,
+    }
+    save_manifest(root_output_dir, manifest)
 
     return results
 
@@ -684,7 +1388,9 @@ async def _convert_both_modes_shared_tts(
     drawtext_font: Path | None,
     progress: Callable[[str], None],
     sentence_cache: dict[Path, list[str]] | None = None,
+    audio_cache: SentenceAudioCache | None = None,
 ) -> tuple[tuple[list[Path], Path, list[str]], tuple[list[Path], Path, list[str]]]:
+    assert_not_cancelled()
     once_output_dir = root_output_dir / "一次"
     twice_output_dir = root_output_dir / "兩次"
     once_output_dir.mkdir(parents=True, exist_ok=True)
@@ -707,12 +1413,13 @@ async def _convert_both_modes_shared_tts(
             )
 
         rate = multiplier_to_edge_rate(options.rate_multiplier)
-        semaphore = asyncio.Semaphore(max(1, len(markdown_files)))
+        semaphore = asyncio.Semaphore(max(1, min(len(markdown_files), MAX_FILE_CONCURRENCY)))
 
         async def run_one(
             md_path: Path,
         ) -> tuple[Path | None, Path | None, Path | None, Path | None, list[str]]:
             async with semaphore:
+                assert_not_cancelled()
                 local_warnings: list[str] = []
                 source_sentences = (
                     list(sentence_cache.get(md_path, []))
@@ -729,26 +1436,16 @@ async def _convert_both_modes_shared_tts(
                 progress(f"處理 {md_path.name}（{total_sentences} 句，重複：both-共用）")
                 part_dir = tmp_root / md_path.stem
                 part_dir.mkdir(parents=True, exist_ok=True)
-                sentence_audio_files: list[Path] = []
+                sentence_audio_files = await synthesize_sentence_audio_files(
+                    md_path=md_path,
+                    source_sentences=source_sentences,
+                    part_dir=part_dir,
+                    voice=options.voice,
+                    rate=rate,
+                    progress=progress,
+                    audio_cache=audio_cache,
+                )
 
-                for idx, sentence in enumerate(source_sentences, start=1):
-                    segment = part_dir / f"{idx:04d}.mp3"
-                    try:
-                        await synthesize_sentence(
-                            text=sentence,
-                            voice=options.voice,
-                            rate=rate,
-                            out_path=segment,
-                            retries=1,
-                        )
-                    except Exception as exc:
-                        raise ConversionError(
-                            f"{md_path.name} 第 {idx} 句轉換失敗：{exc}"
-                        ) from exc
-
-                    sentence_audio_files.append(segment)
-                    if idx % 20 == 0 or idx == total_sentences:
-                        progress(f"{md_path.name} 進度 {idx}/{total_sentences}")
 
                 once_output_file, once_audio_file = await build_markdown_outputs_from_segments(
                     md_path=md_path,
@@ -808,6 +1505,9 @@ async def _convert_both_modes_shared_tts(
         if not twice_generated_files or not twice_generated_audio_files:
             raise ConversionError("沒有任何檔案完成「兩次」轉換，請檢查 .md 內容。")
 
+        once_full_output_name = build_range_mp4_name(markdown_files, "_一次")
+        twice_full_output_name = build_range_mp4_name(markdown_files, "_兩次")
+
         async def build_full_output(
             mode_name: str,
             mode_output_dir: Path,
@@ -824,18 +1524,19 @@ async def _convert_both_modes_shared_tts(
                 full_audio_file,
                 all_audio_concat_list_file,
             )
-            full_output = mode_output_dir / "全.mp4"
+            full_output_name = twice_full_output_name if mode_name == "兩次" else once_full_output_name
+            full_output = mode_output_dir / full_output_name
             await asyncio.to_thread(
                 create_labeled_video_mp4,
                 ffmpeg_bin,
                 h264_encoder,
                 aac_encoder,
                 full_audio_file,
-                "全",
+                Path(full_output_name).stem,
                 full_output,
                 drawtext_font,
             )
-            progress(f"完成 {mode_name}/全.mp4")
+            progress(f"完成 {mode_name}/{full_output_name}")
             return full_output
 
         once_full_output = await build_full_output("一次", once_output_dir, once_generated_audio_files)
@@ -861,7 +1562,9 @@ async def _convert_with_mode(
     progress: Callable[[str], None],
     repeat_sentences: bool = False,
     sentence_cache: dict[Path, list[str]] | None = None,
+    audio_cache: SentenceAudioCache | None = None,
 ) -> tuple[list[Path], Path, list[str]]:
+    assert_not_cancelled()
     """轉換一種模式（一次或兩次）"""
     output_dir = root_output_dir / mode_name
     output_dir.mkdir(parents=True, exist_ok=True)
@@ -880,10 +1583,11 @@ async def _convert_with_mode(
             )
 
         rate = multiplier_to_edge_rate(options.rate_multiplier)
-        semaphore = asyncio.Semaphore(max(1, len(markdown_files)))
+        semaphore = asyncio.Semaphore(max(1, min(len(markdown_files), MAX_FILE_CONCURRENCY)))
 
         async def run_one(md_path: Path) -> tuple[Path | None, Path | None, list[str]]:
             async with semaphore:
+                assert_not_cancelled()
                 output_file, audio_file, local_warnings = await convert_markdown_file(
                     md_path=md_path,
                     tmp_root=tmp_root,
@@ -899,6 +1603,7 @@ async def _convert_with_mode(
                     progress=progress,
                     repeat_sentences=repeat_sentences,
                     sentences=sentence_cache.get(md_path) if sentence_cache is not None else None,
+                    audio_cache=audio_cache,
                 )
                 return output_file, audio_file, local_warnings
 
@@ -931,11 +1636,10 @@ async def _convert_with_mode(
             all_audio_concat_list_file,
         )
 
-        # 檔名根據模式決定
-        if mode_name == "兩次":
-            full_output_name = "全.mp4"
-        else:
-            full_output_name = "全.mp4"
+        full_output_name = build_range_mp4_name(
+            markdown_files,
+            "_兩次" if mode_name == "兩次" else "_一次",
+        )
 
         full_output = output_dir / full_output_name
         await asyncio.to_thread(
@@ -944,7 +1648,7 @@ async def _convert_with_mode(
             h264_encoder,
             aac_encoder,
             full_audio_file,
-            "全",
+            Path(full_output_name).stem,
             full_output,
             drawtext_font,
         )
@@ -961,6 +1665,7 @@ def run_once_cli(
     rate: float,
     gap: float,
     repeat_mode: str,
+    use_gpu: bool,
 ) -> int:
     try:
         choices = asyncio.run(fetch_voice_choices())
@@ -970,6 +1675,7 @@ def run_once_cli(
             rate_multiplier=rate,
             gap_seconds=max(0.0, gap),
             repeat_mode=repeat_mode,
+            use_gpu=use_gpu,
         )
         print(f"使用 voice: {chosen_voice}")
         results = asyncio.run(
@@ -991,7 +1697,7 @@ def run_once_cli(
 
 
 def run_gui(workspace_root: Path) -> int:
-    from PySide6.QtCore import QObject, QThread, Signal, Slot
+    from PySide6.QtCore import QObject, QThread, QTimer, Signal, Slot
     from PySide6.QtWidgets import (
         QApplication,
         QCheckBox,
@@ -1010,57 +1716,122 @@ def run_gui(workspace_root: Path) -> int:
 
     class ConvertWorker(QObject):
         progress = Signal(str)
-        progressUpdate = Signal(int, int)  # (current, total)
+        progressUpdate = Signal(int, int)  # (current_bytes, predicted_total_bytes)
         finished = Signal(bool, str, dict)
 
         def __init__(self, root: Path, options: ConvertOptions):
             super().__init__()
             self.root = root
             self.options = options
-            self.total_sentences = 0
-            self.completed_sentences = 0
+            self.predicted_total_bytes = 1
+            self.current_output_bytes = 0
+            self.tracked_output_files: list[Path] = []
+            self.run_started_at = 0.0
+            self._tracked_size_cache: dict[Path, tuple[float, int]] = {}
+            self._last_measured_at = 0.0
+            self._last_measured_total = 0
+            self.execution_control = ExecutionControl()
+
+        @Slot()
+        def request_stop(self) -> None:
+            self.execution_control.stop_event.set()
+            self.execution_control.terminate_all_processes()
+
+        def _measure_output_bytes(self, force: bool = False) -> int:
+            now = time.monotonic()
+            if (not force) and (now - self._last_measured_at < PROGRESS_SCAN_MIN_INTERVAL_SECONDS):
+                return self._last_measured_total
+            total = 0
+            active_paths = set(self.tracked_output_files)
+            for path in self.tracked_output_files:
+                try:
+                    if not path.exists():
+                        self._tracked_size_cache.pop(path, None)
+                        continue
+                    stat = path.stat()
+                    if self.run_started_at > 0 and stat.st_mtime + 1e-6 < self.run_started_at:
+                        # 舊檔不納入本輪進度，避免重跑時直接出現高進度
+                        self._tracked_size_cache[path] = (stat.st_mtime, 0)
+                        continue
+                    cached = self._tracked_size_cache.get(path)
+                    if cached is not None and abs(cached[0] - stat.st_mtime) < 1e-6:
+                        size_bytes = cached[1]
+                    else:
+                        size_bytes = stat.st_size
+                        self._tracked_size_cache[path] = (stat.st_mtime, size_bytes)
+                    total += size_bytes
+                except OSError:
+                    continue
+            for stale_path in list(self._tracked_size_cache):
+                if stale_path not in active_paths:
+                    self._tracked_size_cache.pop(stale_path, None)
+            self._last_measured_at = now
+            self._last_measured_total = total
+            return total
 
         @Slot()
         def run(self) -> None:
             try:
-                # 先掃描並計算總句子數
-                markdown_files = scan_numeric_markdown_files(self.root)
-                sentence_cache: dict[Path, list[str]] = {}
-                self.total_sentences = 0
-                for md_path in markdown_files:
-                    sentences = extract_tts_sentences(md_path)
-                    sentence_cache[md_path] = sentences
-                    self.total_sentences += len(sentences)
-                
-                self.completed_sentences = 0
-                self.progressUpdate.emit(self.completed_sentences, max(1, self.total_sentences))
-                
-                def progress_with_tracking(msg: str) -> None:
-                    self.progress.emit(msg)
-                    # 檢查是否有句子進度更新
-                    if " 進度 " in msg and "/" in msg:
-                        try:
-                            # 格式: "filename 進度 3/10"
-                            parts = msg.split(" 進度 ")
-                            if len(parts) == 2:
-                                progress_parts = parts[1].split("/")
-                                if len(progress_parts) == 2:
-                                    curr = int(progress_parts[0].strip())
-                                    total = int(progress_parts[1].strip())
-                                    # 計算已完成句子數（簡化方法：按檔案進度）
-                                    self.completed_sentences += 1
-                                    self.progressUpdate.emit(self.completed_sentences, max(1, self.total_sentences))
-                        except (ValueError, IndexError):
-                            pass
-                
-                results = asyncio.run(
-                    convert_workspace(
-                        self.root,
-                        self.options,
-                        progress=progress_with_tracking,
-                        sentence_cache=sentence_cache,
+                with execution_context(self.execution_control):
+                    self.run_started_at = time.time()
+                    # 先掃描並建立句子快取，供預估與轉換共用
+                    markdown_files = scan_numeric_markdown_files(self.root)
+                    root_output_dir = self.root / DEFAULT_OUTPUT_DIR_NAME
+                    root_output_dir.mkdir(parents=True, exist_ok=True)
+                    preview_manifest = load_manifest(root_output_dir)
+                    preview_files = preview_manifest.get("files", {})
+                    if not isinstance(preview_files, dict):
+                        preview_files = {}
+                    markdown_metadata, reused_hash_count, recomputed_hash_count = build_markdown_metadata(
+                        markdown_files,
+                        preview_files,
                     )
-                )
+                    sentence_cache_doc = load_sentence_cache(root_output_dir)
+                    sentence_cache, updated_sentence_cache_doc, reused_sentence_files = (
+                        build_effective_sentence_cache(
+                            markdown_files=markdown_files,
+                            markdown_metadata=markdown_metadata,
+                            provided_sentence_cache=None,
+                            sentence_cache_doc=sentence_cache_doc,
+                        )
+                    )
+                    save_sentence_cache(root_output_dir, updated_sentence_cache_doc)
+                    if reused_hash_count > 0:
+                        self.progress.emit(f"hash 快取命中：{reused_hash_count} 個檔案")
+                    if recomputed_hash_count > 0:
+                        self.progress.emit(f"hash 重算：{recomputed_hash_count} 個檔案")
+                    if reused_sentence_files > 0:
+                        self.progress.emit(f"句子快取命中：{reused_sentence_files} 個檔案")
+
+                    predicted_total_bytes, tracked_output_files = build_size_progress_plan(
+                        workspace_root=self.root,
+                        markdown_files=markdown_files,
+                        sentence_cache=sentence_cache,
+                        options=self.options,
+                    )
+                    self.predicted_total_bytes = max(1, predicted_total_bytes)
+                    self.tracked_output_files = tracked_output_files
+                    self.current_output_bytes = self._measure_output_bytes(force=True)
+                    self.progressUpdate.emit(self.current_output_bytes, self.predicted_total_bytes)
+                    self.progress.emit(
+                        f"預估輸出總大小: {format_size_bytes(self.predicted_total_bytes)}"
+                    )
+
+                    def progress_with_tracking(msg: str) -> None:
+                        self.progress.emit(msg)
+                        self.current_output_bytes = self._measure_output_bytes()
+                        if self.current_output_bytes > self.predicted_total_bytes:
+                            self.predicted_total_bytes = self.current_output_bytes
+                        self.progressUpdate.emit(self.current_output_bytes, self.predicted_total_bytes)
+
+                    results = asyncio.run(
+                        convert_workspace(
+                            self.root,
+                            self.options,
+                            progress=progress_with_tracking,
+                            sentence_cache=sentence_cache,
+                        )
+                    )
                 summary_lines = []
                 for mode, (generated, full_output, _) in results.items():
                     summary_lines.append(f"{mode}: {len(generated)} 個單檔 + {full_output.name}")
@@ -1068,8 +1839,17 @@ def run_gui(workspace_root: Path) -> int:
                 all_warnings = []
                 for _, (_, _, warns) in results.items():
                     all_warnings.extend(warns)
-                self.progressUpdate.emit(max(1, self.total_sentences), max(1, self.total_sentences))  # 完成
+                self.current_output_bytes = self._measure_output_bytes(force=True)
+                self.predicted_total_bytes = max(self.predicted_total_bytes, self.current_output_bytes, 1)
+                self.progressUpdate.emit(self.current_output_bytes, self.predicted_total_bytes)
+                self.progressUpdate.emit(self.predicted_total_bytes, self.predicted_total_bytes)  # 完成
                 self.finished.emit(True, summary, {"warnings": all_warnings, "results": results})
+            except ConversionCancelled:
+                self.finished.emit(
+                    False,
+                    "已強制停止轉換。",
+                    {"warnings": [], "results": {}, "cancelled": True},
+                )
             except Exception as exc:
                 detail = f"{exc}\n\n{traceback.format_exc()}"
                 self.finished.emit(False, detail, {})
@@ -1080,11 +1860,14 @@ def run_gui(workspace_root: Path) -> int:
             self.workspace_root = root
             self.thread: QThread | None = None
             self.worker: ConvertWorker | None = None
+            self.resource_timer: QTimer | None = None
+            self.stop_requested = False
 
             self.setWindowTitle("複習檔案產生工具")
             self.resize(880, 620)
             self._build_ui()
             self._apply_theme()
+            self._setup_resource_monitor()
             self._load_voices()
 
         def _build_ui(self) -> None:
@@ -1113,30 +1896,51 @@ def run_gui(workspace_root: Path) -> int:
             self.once_check.setChecked(True)
             self.twice_check = QCheckBox("產生「兩次」（每句重複兩次）")
             self.twice_check.setChecked(True)
+            self.use_gpu_check = QCheckBox("使用 GPU 視訊編碼")
+            self.use_gpu_check.setChecked(True)
 
             form.addRow("聲音樣式", self.voice_combo)
             form.addRow("語速（倍率）", self.rate_spin)
             form.addRow("每句間隔時間", self.gap_spin)
             form.addRow("", self.once_check)
             form.addRow("", self.twice_check)
+            form.addRow("", self.use_gpu_check)
             main_layout.addLayout(form)
 
             button_layout = QHBoxLayout()
             self.reload_button = QPushButton("重新載入聲音")
             self.convert_button = QPushButton("轉換")
+            self.stop_button = QPushButton("強制停止")
             self.convert_button.setObjectName("convertButton")
+            self.stop_button.setObjectName("stopButton")
             self.reload_button.clicked.connect(self._load_voices)
             self.convert_button.clicked.connect(self._start_convert)
+            self.stop_button.clicked.connect(self._force_stop_convert)
+            self.stop_button.setEnabled(False)
             button_layout.addWidget(self.reload_button)
             button_layout.addWidget(self.convert_button)
+            button_layout.addWidget(self.stop_button)
             button_layout.addStretch()
             main_layout.addLayout(button_layout)
 
+            resource_form = QFormLayout()
+            self.cpu_usage_bar = QProgressBar()
+            self.cpu_usage_bar.setRange(0, 100)
+            self.cpu_usage_bar.setValue(0)
+            self.cpu_usage_bar.setFormat("CPU: N/A")
+            self.gpu_usage_bar = QProgressBar()
+            self.gpu_usage_bar.setRange(0, 100)
+            self.gpu_usage_bar.setValue(0)
+            self.gpu_usage_bar.setFormat("GPU: N/A")
+            resource_form.addRow("CPU 使用率", self.cpu_usage_bar)
+            resource_form.addRow("GPU 使用率", self.gpu_usage_bar)
+            main_layout.addLayout(resource_form)
+
             # 進度條
             self.progress_bar = QProgressBar()
-            self.progress_bar.setRange(0, 100)
+            self.progress_bar.setRange(0, 1000)
             self.progress_bar.setValue(0)
-            self.progress_bar.setFormat("轉換進度: %p%")
+            self.progress_bar.setFormat("轉換進度: 0.0% (0 B / 0 B)")
             self.progress_bar.setVisible(False)
             main_layout.addWidget(self.progress_bar)
 
@@ -1172,6 +1976,12 @@ def run_gui(workspace_root: Path) -> int:
                     color: #06323a;
                     font-weight: 700;
                 }}
+                QPushButton#stopButton {{
+                    background: #fbe9e7;
+                    border: 1px solid #e57373;
+                    color: #7a1c1c;
+                    font-weight: 700;
+                }}
                 QPushButton:disabled {{
                     color: #7c8a90;
                     background: #edf2f4;
@@ -1181,6 +1991,27 @@ def run_gui(workspace_root: Path) -> int:
 
         def _append_status(self, message: str) -> None:
             self.status_box.appendPlainText(message)
+
+        def _setup_resource_monitor(self) -> None:
+            self.resource_timer = QTimer(self)
+            self.resource_timer.setInterval(RESOURCE_MONITOR_INTERVAL_MS)
+            self.resource_timer.timeout.connect(self._refresh_resource_usage)
+            self.resource_timer.start()
+            self._refresh_resource_usage()
+
+        def _set_usage_bar(self, bar: QProgressBar, name: str, value: float | None) -> None:
+            if value is None:
+                bar.setValue(0)
+                bar.setFormat(f"{name}: N/A")
+                return
+            percent = int(max(0, min(100, round(value))))
+            bar.setValue(percent)
+            bar.setFormat(f"{name}: {percent}%")
+
+        @Slot()
+        def _refresh_resource_usage(self) -> None:
+            self._set_usage_bar(self.cpu_usage_bar, "CPU", read_cpu_usage_percent())
+            self._set_usage_bar(self.gpu_usage_bar, "GPU", read_gpu_usage_percent())
 
         def _load_voices(self) -> None:
             self.reload_button.setEnabled(False)
@@ -1220,6 +2051,7 @@ def run_gui(workspace_root: Path) -> int:
                 voice=str(voice),
                 rate_multiplier=float(self.rate_spin.value()),
                 gap_seconds=float(self.gap_spin.value()),
+                use_gpu=bool(self.use_gpu_check.isChecked()),
                 repeat_mode=repeat_mode,
             )
 
@@ -1238,8 +2070,13 @@ def run_gui(workspace_root: Path) -> int:
             self.reload_button.setEnabled(False)
             self.once_check.setEnabled(False)
             self.twice_check.setEnabled(False)
+            self.use_gpu_check.setEnabled(False)
+            self.stop_button.setEnabled(True)
+            self.stop_requested = False
             self.progress_bar.setVisible(True)
+            self.progress_bar.setRange(0, 1000)
             self.progress_bar.setValue(0)
+            self.progress_bar.setFormat("轉換進度: 0.0% (0 B / 0 B)")
 
             self.thread = QThread(self)
             self.worker = ConvertWorker(self.workspace_root, options)
@@ -1253,13 +2090,34 @@ def run_gui(workspace_root: Path) -> int:
             self.thread.finished.connect(self._cleanup_thread)
             self.thread.start()
 
+        @Slot()
+        def _force_stop_convert(self) -> None:
+            if self.thread is None or self.worker is None:
+                self._append_status("目前沒有進行中的轉換。")
+                return
+            if self.stop_requested:
+                self._append_status("已送出強制停止請求，請稍候。")
+                return
+            self.stop_requested = True
+            self.stop_button.setEnabled(False)
+            self._append_status("已送出強制停止請求，正在中止目前轉換...")
+            self.worker.request_stop()
+
         @Slot(int, int)
         def _on_progress_update(self, current: int, total: int) -> None:
-            if total > 0:
-                percent = int((current / total) * 100)
-                self.progress_bar.setValue(percent)
-            else:
+            if total <= 0:
+                self.progress_bar.setRange(0, 1000)
                 self.progress_bar.setValue(0)
+                self.progress_bar.setFormat("轉換進度: 0.0% (0 B / 0 B)")
+                return
+            clamped = max(0, min(current, total))
+            ratio = clamped / total
+            scaled_value = int(ratio * 1000)
+            self.progress_bar.setRange(0, 1000)
+            self.progress_bar.setValue(scaled_value)
+            self.progress_bar.setFormat(
+                f"轉換進度: {ratio * 100:.1f}% ({format_size_bytes(clamped)} / {format_size_bytes(total)})"
+            )
 
         @Slot(bool, str, dict)
         def _on_finished(self, ok: bool, message: str, data: dict) -> None:
@@ -1267,13 +2125,18 @@ def run_gui(workspace_root: Path) -> int:
             self.reload_button.setEnabled(True)
             self.once_check.setEnabled(True)
             self.twice_check.setEnabled(True)
+            self.use_gpu_check.setEnabled(True)
+            self.stop_button.setEnabled(False)
+            self.stop_requested = False
             self.progress_bar.setVisible(False)
             self._append_status(message)
             warnings = data.get("warnings", [])
             for warning in warnings:
                 self._append_status(f"警告：{warning}")
 
-            if ok:
+            if data.get("cancelled"):
+                QMessageBox.information(self, "已停止", message)
+            elif ok:
                 if warnings:
                     QMessageBox.information(
                         self,
@@ -1291,6 +2154,8 @@ def run_gui(workspace_root: Path) -> int:
                 self.worker.deleteLater()
             self.thread = None
             self.worker = None
+            self.stop_button.setEnabled(False)
+            self.stop_requested = False
 
     app = QApplication(sys.argv)
     window = MainWindow(workspace_root)
@@ -1314,6 +2179,12 @@ def build_parser() -> argparse.ArgumentParser:
         default="both",
         choices=["once", "twice", "both"],
         help="轉換模式：once=一次，twice=兩次，both=兩者都產生",
+    )
+    parser.add_argument(
+        "--video-device",
+        default="gpu",
+        choices=["gpu", "cpu"],
+        help="視訊編碼後端：gpu 或 cpu",
     )
     parser.add_argument("--list-voices", action="store_true", help="列出可用 voice 後離開")
     return parser
@@ -1339,7 +2210,14 @@ def main() -> int:
             return 1
 
     if args.run_once:
-        return run_once_cli(workspace_root, args.voice, args.rate, args.gap, args.mode)
+        return run_once_cli(
+            workspace_root,
+            args.voice,
+            args.rate,
+            args.gap,
+            args.mode,
+            use_gpu=(args.video_device == "gpu"),
+        )
 
     return run_gui(workspace_root)
 
