@@ -1,8 +1,7 @@
-﻿# Generated review media
-產生複習音檔/*.mp4
-產生複習音檔/*.mp3
-產生複習音檔/tts_tmp_*/
-產生複習音檔/*.txt
+# Generated review media
+產生複習檔案/
+產生複習檔案backup/
+產生複習音檔/
 
 # Python-generated files
 __pycache__/
@@ -14,6 +13,7 @@ wheels/
 
 # Virtual environments
 .venv
+.venv/
 
 # PyInstaller / local runtime
 user_data/

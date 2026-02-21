@@ -8,17 +8,21 @@ import re
 import shutil
 import subprocess
 import sys
-import tempfile
 import traceback
+import uuid
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Callable, Iterable
+from urllib.parse import urlparse
 
 import edge_tts
 
 
 TTS_MARKER = '<span class="tts">'
 NUMERIC_MD_PATTERN = re.compile(r"^(\d+)\.md$")
+HTML_TAG_PATTERN = re.compile(r"<[^>]+>")
+HIGHLIGHT_MARK_PATTERN = re.compile(r"\^\^([^^]*)\^\^")
+FFMPEG_ENCODER_FLAG_PATTERN = re.compile(r"[A-Z\.]{6}")
 DEFAULT_OUTPUT_DIR_NAME = "產生複習檔案"
 DEFAULT_THEME_COLOR = "#72e3fd"
 OUTPUT_SAMPLE_RATE = 44100
@@ -29,6 +33,19 @@ VIDEO_HEIGHT = 720
 VIDEO_FPS = 30
 VIDEO_FONT_SIZE = 220
 VIDEO_FONT_COLOR = "white"
+BLOCKING_PROXY_HOSTS = {"127.0.0.1", "localhost", "::1"}
+PROXY_ENV_KEYS = (
+    "ALL_PROXY",
+    "HTTP_PROXY",
+    "HTTPS_PROXY",
+    "all_proxy",
+    "http_proxy",
+    "https_proxy",
+    "GIT_HTTP_PROXY",
+    "GIT_HTTPS_PROXY",
+    "git_http_proxy",
+    "git_https_proxy",
+)
 PREFERRED_DEFAULT_VOICES = (
     "en-US-JennyNeural",
     "en-US-AriaNeural",
@@ -67,10 +84,10 @@ def extract_tts_sentences(md_path: Path) -> list[str]:
         if TTS_MARKER not in line:
             continue
         text = line.split(TTS_MARKER, 1)[1]
-        text = re.sub(r"<[^>]+>", "", text)
+        text = HTML_TAG_PATTERN.sub("", text)
         text = html.unescape(text).strip()
-        text = re.sub(r"\^\^([^^]*)\^\^", r"\1", text)  # 移除^^符號，保留內容
-        if text:
+        text = HIGHLIGHT_MARK_PATTERN.sub(r"\1", text)  # 移除^^符號，保留內容
+        if text and is_speakable_text(text):
             sentences.append(text)
     return sentences
 
@@ -81,6 +98,43 @@ def multiplier_to_edge_rate(rate_multiplier: float) -> str:
     rate_percent = int((rate_multiplier - 1.0) * 100)
     sign = "+" if rate_percent >= 0 else ""
     return f"{sign}{rate_percent}%"
+
+
+def _is_blocking_proxy(value: str) -> bool:
+    text = value.strip()
+    if not text:
+        return False
+    parsed = urlparse(text if "://" in text else f"http://{text}")
+    host = (parsed.hostname or "").strip("[]").lower()
+    return host in BLOCKING_PROXY_HOSTS and parsed.port == 9
+
+
+def disable_blocking_proxy_env() -> list[str]:
+    removed: list[str] = []
+    blocking_found = any(_is_blocking_proxy(os.environ.get(key, "")) for key in PROXY_ENV_KEYS)
+    if not blocking_found:
+        return removed
+    for key in PROXY_ENV_KEYS:
+        if key in os.environ:
+            removed.append(key)
+            os.environ.pop(key, None)
+    return removed
+
+
+def make_temp_work_dir(base_dir: Path, prefix: str = "tts_tmp_") -> Path:
+    for _ in range(100):
+        candidate = base_dir / f"{prefix}{uuid.uuid4().hex[:10]}"
+        try:
+            candidate.mkdir(parents=False, exist_ok=False)
+            return candidate
+        except FileExistsError:
+            continue
+    raise ConversionError("無法建立暫存資料夾，請檢查目錄權限。")
+
+
+def is_speakable_text(text: str) -> bool:
+    # 僅含標點或分隔線（如 "----"）時，edge-tts 可能不回傳音訊。
+    return any(ch.isalnum() for ch in text)
 
 
 def locate_binary(name: str) -> Path:
@@ -121,7 +175,7 @@ def run_checked(cmd: list[str], cwd: Path | None = None) -> None:
         raise ConversionError(msg)
 
 
-def detect_mp3_encoder(ffmpeg_bin: Path) -> str:
+def list_available_ffmpeg_encoders(ffmpeg_bin: Path) -> set[str]:
     cmd = [str(ffmpeg_bin), "-hide_banner", "-encoders"]
     proc = subprocess.run(
         cmd,
@@ -142,73 +196,47 @@ def detect_mp3_encoder(ffmpeg_bin: Path) -> str:
         if len(parts) < 2:
             continue
         flags, name = parts[0], parts[1]
-        if re.fullmatch(r"[A-Z\.]{6}", flags):
+        if FFMPEG_ENCODER_FLAG_PATTERN.fullmatch(flags):
             available.add(name)
+    return available
 
-    for encoder in ("libmp3lame", "mp3_mf", "mp3"):
+
+def _pick_encoder(
+    available: set[str],
+    candidates: tuple[str, ...],
+    error_message: str,
+) -> str:
+    for encoder in candidates:
         if encoder in available:
             return encoder
-    raise ConversionError("ffmpeg 找不到可用 MP3 編碼器（libmp3lame/mp3/mp3_mf）。")
+    raise ConversionError(error_message)
 
 
-def detect_aac_encoder(ffmpeg_bin: Path) -> str:
-    cmd = [str(ffmpeg_bin), "-hide_banner", "-encoders"]
-    proc = subprocess.run(
-        cmd,
-        capture_output=True,
-        text=True,
-        encoding="utf-8",
-        errors="replace",
+def detect_mp3_encoder(ffmpeg_bin: Path, available: set[str] | None = None) -> str:
+    available = available if available is not None else list_available_ffmpeg_encoders(ffmpeg_bin)
+    return _pick_encoder(
+        available,
+        ("libmp3lame", "mp3_mf", "mp3"),
+        "ffmpeg 找不到可用 MP3 編碼器（libmp3lame/mp3/mp3_mf）。",
     )
-    if proc.returncode != 0:
-        raise ConversionError("無法讀取 ffmpeg encoder 清單。")
-
-    available: set[str] = set()
-    for line in proc.stdout.splitlines():
-        line = line.strip()
-        if not line or line.startswith("------"):
-            continue
-        parts = line.split()
-        if len(parts) < 2:
-            continue
-        flags, name = parts[0], parts[1]
-        if re.fullmatch(r"[A-Z\.]{6}", flags):
-            available.add(name)
-
-    for encoder in ("aac", "libfdk_aac"):
-        if encoder in available:
-            return encoder
-    raise ConversionError("ffmpeg 找不到可用 AAC 編碼器（aac/libfdk_aac）。")
 
 
-def detect_h264_encoder(ffmpeg_bin: Path) -> str:
-    cmd = [str(ffmpeg_bin), "-hide_banner", "-encoders"]
-    proc = subprocess.run(
-        cmd,
-        capture_output=True,
-        text=True,
-        encoding="utf-8",
-        errors="replace",
+def detect_aac_encoder(ffmpeg_bin: Path, available: set[str] | None = None) -> str:
+    available = available if available is not None else list_available_ffmpeg_encoders(ffmpeg_bin)
+    return _pick_encoder(
+        available,
+        ("aac", "libfdk_aac"),
+        "ffmpeg 找不到可用 AAC 編碼器（aac/libfdk_aac）。",
     )
-    if proc.returncode != 0:
-        raise ConversionError("無法讀取 ffmpeg encoder 清單。")
 
-    available: set[str] = set()
-    for line in proc.stdout.splitlines():
-        line = line.strip()
-        if not line or line.startswith("------"):
-            continue
-        parts = line.split()
-        if len(parts) < 2:
-            continue
-        flags, name = parts[0], parts[1]
-        if re.fullmatch(r"[A-Z\.]{6}", flags):
-            available.add(name)
 
-    for encoder in ("libx264", "h264_mf", "mpeg4"):
-        if encoder in available:
-            return encoder
-    raise ConversionError("ffmpeg 找不到可用視訊編碼器（libx264/h264_mf/mpeg4）。")
+def detect_h264_encoder(ffmpeg_bin: Path, available: set[str] | None = None) -> str:
+    available = available if available is not None else list_available_ffmpeg_encoders(ffmpeg_bin)
+    return _pick_encoder(
+        available,
+        ("libx264", "h264_mf", "mpeg4"),
+        "ffmpeg 找不到可用視訊編碼器（libx264/h264_mf/mpeg4）。",
+    )
 
 
 def create_silence_mp3(ffmpeg_bin: Path, mp3_encoder: str, duration_sec: float, out_path: Path) -> None:
@@ -377,6 +405,7 @@ async def synthesize_sentence(
     out_path: Path,
     retries: int = 1,
 ) -> None:
+    disable_blocking_proxy_env()
     for attempt in range(retries + 1):
         try:
             communicator = edge_tts.Communicate(text=text, voice=voice, rate=rate)
@@ -389,6 +418,7 @@ async def synthesize_sentence(
 
 
 async def fetch_voice_choices() -> list[tuple[str, str]]:
+    disable_blocking_proxy_env()
     voices = await edge_tts.list_voices()
     choices: list[tuple[str, str]] = []
     for voice in voices:
@@ -417,25 +447,23 @@ async def convert_markdown_file(
     drawtext_font: Path | None,
     progress: Callable[[str], None],
     repeat_sentences: bool = False,
+    sentences: list[str] | None = None,
 ) -> tuple[Path | None, Path | None, list[str]]:
     warnings: list[str] = []
-    sentences = extract_tts_sentences(md_path)
-    if not sentences:
+    source_sentences = list(sentences) if sentences is not None else extract_tts_sentences(md_path)
+    if not source_sentences:
         warning = f"{md_path.name} 沒有 tts 句子，已略過。"
         warnings.append(warning)
         progress(f"警告：{warning}")
         return None, None, warnings
 
-    # 如果需要重複，則每句重複兩次
-    if repeat_sentences:
-        sentences = [s for sent in sentences for s in [sent, sent]]
-
-    progress(f"處理 {md_path.name}（{len(extract_tts_sentences(md_path))} 句，重複：{repeat_sentences}）")
+    total_sentences = len(source_sentences)
+    progress(f"處理 {md_path.name}（{total_sentences} 句，重複：{repeat_sentences}）")
     part_dir = tmp_root / md_path.stem
     part_dir.mkdir(parents=True, exist_ok=True)
     sentence_audio_files: list[Path] = []
 
-    for idx, sentence in enumerate(sentences, start=1):
+    for idx, sentence in enumerate(source_sentences, start=1):
         segment = part_dir / f"{idx:04d}.mp3"
         try:
             await synthesize_sentence(
@@ -451,14 +479,56 @@ async def convert_markdown_file(
             ) from exc
 
         sentence_audio_files.append(segment)
-        if idx % 20 == 0 or idx == len(sentences):
-            progress(f"{md_path.name} 進度 {idx}/{len(sentences)}")
+        if idx % 20 == 0 or idx == total_sentences:
+            progress(f"{md_path.name} 進度 {idx}/{total_sentences}")
 
-    concat_inputs = with_gap(sentence_audio_files, gap_file)
-    audio_file = part_dir / f"{md_path.stem}_audio.mp3"
-    audio_concat_list_file = part_dir / "concat_audio.txt"
+    output_file, audio_file = await build_markdown_outputs_from_segments(
+        md_path=md_path,
+        part_dir=part_dir,
+        output_dir=output_dir,
+        sentence_audio_files=sentence_audio_files,
+        repeat_sentences=repeat_sentences,
+        gap_file=gap_file,
+        ffmpeg_bin=ffmpeg_bin,
+        mp3_encoder=mp3_encoder,
+        h264_encoder=h264_encoder,
+        aac_encoder=aac_encoder,
+        drawtext_font=drawtext_font,
+    )
+    progress(f"完成 {output_file.name}")
+    return output_file, audio_file, warnings
+
+
+async def build_markdown_outputs_from_segments(
+    md_path: Path,
+    part_dir: Path,
+    output_dir: Path,
+    sentence_audio_files: list[Path],
+    repeat_sentences: bool,
+    gap_file: Path | None,
+    ffmpeg_bin: Path,
+    mp3_encoder: str,
+    h264_encoder: str,
+    aac_encoder: str,
+    drawtext_font: Path | None,
+) -> tuple[Path, Path]:
+    if repeat_sentences:
+        playback_files = [segment for segment in sentence_audio_files for _ in range(2)]
+        audio_suffix = "twice"
+    else:
+        playback_files = sentence_audio_files
+        audio_suffix = "once"
+
+    concat_inputs = with_gap(playback_files, gap_file)
+    audio_file = part_dir / f"{md_path.stem}_{audio_suffix}_audio.mp3"
+    audio_concat_list_file = part_dir / f"concat_audio_{audio_suffix}.txt"
     await asyncio.to_thread(
-        concat_audio_mp3, ffmpeg_bin, mp3_encoder, concat_inputs, audio_file, audio_concat_list_file
+        concat_audio_mp3,
+        ffmpeg_bin,
+        mp3_encoder,
+        concat_inputs,
+        audio_file,
+        audio_concat_list_file,
     )
 
     output_file = output_dir / f"{md_path.stem}.mp4"
@@ -472,8 +542,7 @@ async def convert_markdown_file(
         output_file,
         drawtext_font,
     )
-    progress(f"完成 {output_file.name}")
-    return output_file, audio_file, warnings
+    return output_file, audio_file
 
 
 def pick_default_voice(choices: list[tuple[str, str]]) -> str:
@@ -493,16 +562,33 @@ async def convert_workspace(
     workspace_root: Path,
     options: ConvertOptions,
     progress: Callable[[str], None] | None = None,
+    sentence_cache: dict[Path, list[str]] | None = None,
 ) -> dict[str, tuple[list[Path], Path, list[str]]]:
     progress = progress or (lambda _: None)
+    removed_proxy_keys = disable_blocking_proxy_env()
+    if removed_proxy_keys:
+        progress("偵測到無效 proxy（127.0.0.1:9），已自動停用代理連線設定。")
     ffmpeg_bin = locate_binary("ffmpeg")
-    mp3_encoder = detect_mp3_encoder(ffmpeg_bin)
-    aac_encoder = detect_aac_encoder(ffmpeg_bin)
-    h264_encoder = detect_h264_encoder(ffmpeg_bin)
+    available_encoders = list_available_ffmpeg_encoders(ffmpeg_bin)
+    mp3_encoder = detect_mp3_encoder(ffmpeg_bin, available_encoders)
+    aac_encoder = detect_aac_encoder(ffmpeg_bin, available_encoders)
+    h264_encoder = detect_h264_encoder(ffmpeg_bin, available_encoders)
     drawtext_font = find_drawtext_font()
     markdown_files = scan_numeric_markdown_files(workspace_root)
     if not markdown_files:
         raise ConversionError("找不到任何 <數字>.md 檔案。")
+
+    if sentence_cache is None:
+        effective_sentence_cache = {
+            md_path: extract_tts_sentences(md_path) for md_path in markdown_files
+        }
+    else:
+        effective_sentence_cache: dict[Path, list[str]] = {}
+        for md_path in markdown_files:
+            cached = sentence_cache.get(md_path)
+            if cached is None:
+                cached = extract_tts_sentences(md_path)
+            effective_sentence_cache[md_path] = list(cached)
 
     root_output_dir = workspace_root / DEFAULT_OUTPUT_DIR_NAME
     root_output_dir.mkdir(parents=True, exist_ok=True)
@@ -525,11 +611,29 @@ async def convert_workspace(
     convert_once = options.repeat_mode in ("once", "both")
     convert_twice = options.repeat_mode in ("twice", "both")
 
-    if convert_once:
+    if convert_once and convert_twice:
+        progress("\n=== 開始「一次 + 兩次（共用 TTS）」轉換 ===")
+        progress(f"已找到 {len(markdown_files)} 個 .md，開始同時轉換（同句只合成一次）。")
+        once_results, twice_results = await _convert_both_modes_shared_tts(
+            markdown_files=markdown_files,
+            root_output_dir=root_output_dir,
+            options=options,
+            ffmpeg_bin=ffmpeg_bin,
+            mp3_encoder=mp3_encoder,
+            aac_encoder=aac_encoder,
+            h264_encoder=h264_encoder,
+            drawtext_font=drawtext_font,
+            progress=progress,
+            sentence_cache=effective_sentence_cache,
+        )
+        results["once"] = once_results
+        results["twice"] = twice_results
+        warnings.extend(once_results[2])
+        warnings.extend(twice_results[2])
+    elif convert_once:
         progress("\n=== 開始「一次」轉換 ===")
         progress(f"已找到 {len(markdown_files)} 個 .md，開始同時轉換。")
         once_results = await _convert_with_mode(
-            workspace_root,
             markdown_files,
             root_output_dir,
             "一次",
@@ -541,15 +645,15 @@ async def convert_workspace(
             drawtext_font,
             progress,
             repeat_sentences=False,
+            sentence_cache=effective_sentence_cache,
         )
         results["once"] = once_results
         warnings.extend(once_results[2])
 
-    if convert_twice:
+    elif convert_twice:
         progress("\n=== 開始「兩次」轉換 ===")
         progress(f"已找到 {len(markdown_files)} 個 .md，開始同時轉換（每句重複兩次）。")
         twice_results = await _convert_with_mode(
-            workspace_root,
             markdown_files,
             root_output_dir,
             "兩次",
@@ -561,6 +665,7 @@ async def convert_workspace(
             drawtext_font,
             progress,
             repeat_sentences=True,
+            sentence_cache=effective_sentence_cache,
         )
         results["twice"] = twice_results
         warnings.extend(twice_results[2])
@@ -568,11 +673,9 @@ async def convert_workspace(
     return results
 
 
-async def _convert_with_mode(
-    workspace_root: Path,
+async def _convert_both_modes_shared_tts(
     markdown_files: list[Path],
     root_output_dir: Path,
-    mode_name: str,
     options: ConvertOptions,
     ffmpeg_bin: Path,
     mp3_encoder: str,
@@ -580,17 +683,21 @@ async def _convert_with_mode(
     h264_encoder: str,
     drawtext_font: Path | None,
     progress: Callable[[str], None],
-    repeat_sentences: bool = False,
-) -> tuple[list[Path], Path, list[str]]:
-    """轉換一種模式（一次或兩次）"""
-    output_dir = root_output_dir / mode_name
-    output_dir.mkdir(parents=True, exist_ok=True)
+    sentence_cache: dict[Path, list[str]] | None = None,
+) -> tuple[tuple[list[Path], Path, list[str]], tuple[list[Path], Path, list[str]]]:
+    once_output_dir = root_output_dir / "一次"
+    twice_output_dir = root_output_dir / "兩次"
+    once_output_dir.mkdir(parents=True, exist_ok=True)
+    twice_output_dir.mkdir(parents=True, exist_ok=True)
 
     warnings: list[str] = []
-    generated_files: list[Path] = []
+    once_generated_files: list[Path] = []
+    twice_generated_files: list[Path] = []
+    once_generated_audio_files: list[Path] = []
+    twice_generated_audio_files: list[Path] = []
 
-    with tempfile.TemporaryDirectory(prefix="tts_tmp_", dir=str(root_output_dir)) as tmpdir:
-        tmp_root = Path(tmpdir)
+    tmp_root = make_temp_work_dir(root_output_dir)
+    try:
         gap_file: Path | None = None
         if options.gap_seconds > 0:
             gap_file = tmp_root / "gap.mp3"
@@ -602,7 +709,180 @@ async def _convert_with_mode(
         rate = multiplier_to_edge_rate(options.rate_multiplier)
         semaphore = asyncio.Semaphore(max(1, len(markdown_files)))
 
-        async def run_one(index: int, md_path: Path) -> tuple[int, Path | None, Path | None, list[str]]:
+        async def run_one(
+            md_path: Path,
+        ) -> tuple[Path | None, Path | None, Path | None, Path | None, list[str]]:
+            async with semaphore:
+                local_warnings: list[str] = []
+                source_sentences = (
+                    list(sentence_cache.get(md_path, []))
+                    if sentence_cache is not None
+                    else extract_tts_sentences(md_path)
+                )
+                if not source_sentences:
+                    warning = f"{md_path.name} 沒有 tts 句子，已略過。"
+                    local_warnings.append(warning)
+                    progress(f"警告：{warning}")
+                    return None, None, None, None, local_warnings
+
+                total_sentences = len(source_sentences)
+                progress(f"處理 {md_path.name}（{total_sentences} 句，重複：both-共用）")
+                part_dir = tmp_root / md_path.stem
+                part_dir.mkdir(parents=True, exist_ok=True)
+                sentence_audio_files: list[Path] = []
+
+                for idx, sentence in enumerate(source_sentences, start=1):
+                    segment = part_dir / f"{idx:04d}.mp3"
+                    try:
+                        await synthesize_sentence(
+                            text=sentence,
+                            voice=options.voice,
+                            rate=rate,
+                            out_path=segment,
+                            retries=1,
+                        )
+                    except Exception as exc:
+                        raise ConversionError(
+                            f"{md_path.name} 第 {idx} 句轉換失敗：{exc}"
+                        ) from exc
+
+                    sentence_audio_files.append(segment)
+                    if idx % 20 == 0 or idx == total_sentences:
+                        progress(f"{md_path.name} 進度 {idx}/{total_sentences}")
+
+                once_output_file, once_audio_file = await build_markdown_outputs_from_segments(
+                    md_path=md_path,
+                    part_dir=part_dir,
+                    output_dir=once_output_dir,
+                    sentence_audio_files=sentence_audio_files,
+                    repeat_sentences=False,
+                    gap_file=gap_file,
+                    ffmpeg_bin=ffmpeg_bin,
+                    mp3_encoder=mp3_encoder,
+                    h264_encoder=h264_encoder,
+                    aac_encoder=aac_encoder,
+                    drawtext_font=drawtext_font,
+                )
+                progress(f"完成 一次/{once_output_file.name}")
+
+                twice_output_file, twice_audio_file = await build_markdown_outputs_from_segments(
+                    md_path=md_path,
+                    part_dir=part_dir,
+                    output_dir=twice_output_dir,
+                    sentence_audio_files=sentence_audio_files,
+                    repeat_sentences=True,
+                    gap_file=gap_file,
+                    ffmpeg_bin=ffmpeg_bin,
+                    mp3_encoder=mp3_encoder,
+                    h264_encoder=h264_encoder,
+                    aac_encoder=aac_encoder,
+                    drawtext_font=drawtext_font,
+                )
+                progress(f"完成 兩次/{twice_output_file.name}")
+
+                return (
+                    once_output_file,
+                    once_audio_file,
+                    twice_output_file,
+                    twice_audio_file,
+                    local_warnings,
+                )
+
+        tasks = [run_one(md_path) for md_path in markdown_files]
+        all_results = await asyncio.gather(*tasks, return_exceptions=True)
+
+        for result in all_results:
+            if isinstance(result, Exception):
+                raise result
+            once_output_file, once_audio_file, twice_output_file, twice_audio_file, local_warnings = result
+            warnings.extend(local_warnings)
+            if once_output_file is not None and once_audio_file is not None:
+                once_generated_files.append(once_output_file)
+                once_generated_audio_files.append(once_audio_file)
+            if twice_output_file is not None and twice_audio_file is not None:
+                twice_generated_files.append(twice_output_file)
+                twice_generated_audio_files.append(twice_audio_file)
+
+        if not once_generated_files or not once_generated_audio_files:
+            raise ConversionError("沒有任何檔案完成「一次」轉換，請檢查 .md 內容。")
+        if not twice_generated_files or not twice_generated_audio_files:
+            raise ConversionError("沒有任何檔案完成「兩次」轉換，請檢查 .md 內容。")
+
+        async def build_full_output(
+            mode_name: str,
+            mode_output_dir: Path,
+            generated_audio_files: list[Path],
+        ) -> Path:
+            all_audio_inputs = with_gap(generated_audio_files, gap_file)
+            all_audio_concat_list_file = tmp_root / f"concat_all_audio_{mode_name}.txt"
+            full_audio_file = tmp_root / f"full_audio_{mode_name}.mp3"
+            await asyncio.to_thread(
+                concat_audio_mp3,
+                ffmpeg_bin,
+                mp3_encoder,
+                all_audio_inputs,
+                full_audio_file,
+                all_audio_concat_list_file,
+            )
+            full_output = mode_output_dir / "全.mp4"
+            await asyncio.to_thread(
+                create_labeled_video_mp4,
+                ffmpeg_bin,
+                h264_encoder,
+                aac_encoder,
+                full_audio_file,
+                "全",
+                full_output,
+                drawtext_font,
+            )
+            progress(f"完成 {mode_name}/全.mp4")
+            return full_output
+
+        once_full_output = await build_full_output("一次", once_output_dir, once_generated_audio_files)
+        twice_full_output = await build_full_output("兩次", twice_output_dir, twice_generated_audio_files)
+    finally:
+        shutil.rmtree(tmp_root, ignore_errors=True)
+
+    once_result = (once_generated_files, once_full_output, warnings)
+    twice_result = (twice_generated_files, twice_full_output, [])
+    return once_result, twice_result
+
+
+async def _convert_with_mode(
+    markdown_files: list[Path],
+    root_output_dir: Path,
+    mode_name: str,
+    options: ConvertOptions,
+    ffmpeg_bin: Path,
+    mp3_encoder: str,
+    aac_encoder: str,
+    h264_encoder: str,
+    drawtext_font: Path | None,
+    progress: Callable[[str], None],
+    repeat_sentences: bool = False,
+    sentence_cache: dict[Path, list[str]] | None = None,
+) -> tuple[list[Path], Path, list[str]]:
+    """轉換一種模式（一次或兩次）"""
+    output_dir = root_output_dir / mode_name
+    output_dir.mkdir(parents=True, exist_ok=True)
+
+    warnings: list[str] = []
+    generated_files: list[Path] = []
+
+    tmp_root = make_temp_work_dir(root_output_dir)
+    try:
+        gap_file: Path | None = None
+        if options.gap_seconds > 0:
+            gap_file = tmp_root / "gap.mp3"
+            progress(f"建立靜音片段：{options.gap_seconds:.2f} 秒")
+            await asyncio.to_thread(
+                create_silence_mp3, ffmpeg_bin, mp3_encoder, options.gap_seconds, gap_file
+            )
+
+        rate = multiplier_to_edge_rate(options.rate_multiplier)
+        semaphore = asyncio.Semaphore(max(1, len(markdown_files)))
+
+        async def run_one(md_path: Path) -> tuple[Path | None, Path | None, list[str]]:
             async with semaphore:
                 output_file, audio_file, local_warnings = await convert_markdown_file(
                     md_path=md_path,
@@ -618,26 +898,23 @@ async def _convert_with_mode(
                     drawtext_font=drawtext_font,
                     progress=progress,
                     repeat_sentences=repeat_sentences,
+                    sentences=sentence_cache.get(md_path) if sentence_cache is not None else None,
                 )
-                return index, output_file, audio_file, local_warnings
+                return output_file, audio_file, local_warnings
 
-        tasks = [run_one(i, md_path) for i, md_path in enumerate(markdown_files)]
+        tasks = [run_one(md_path) for md_path in markdown_files]
         results = await asyncio.gather(*tasks, return_exceptions=True)
 
-        ordered_outputs: dict[int, Path] = {}
-        ordered_audios: dict[int, Path] = {}
+        generated_audio_files: list[Path] = []
         for result in results:
             if isinstance(result, Exception):
                 raise result
-            idx, out_file, audio_file, local_warnings = result
+            out_file, audio_file, local_warnings = result
             warnings.extend(local_warnings)
             if out_file is not None:
-                ordered_outputs[idx] = out_file
+                generated_files.append(out_file)
             if audio_file is not None:
-                ordered_audios[idx] = audio_file
-
-        generated_files = [ordered_outputs[i] for i in sorted(ordered_outputs.keys())]
-        generated_audio_files = [ordered_audios[i] for i in sorted(ordered_audios.keys())]
+                generated_audio_files.append(audio_file)
 
         if not generated_files or not generated_audio_files:
             raise ConversionError("沒有任何檔案完成轉換，請檢查 .md 內容。")
@@ -672,6 +949,8 @@ async def _convert_with_mode(
             drawtext_font,
         )
         progress(f"完成 {full_output.name}")
+    finally:
+        shutil.rmtree(tmp_root, ignore_errors=True)
 
     return generated_files, full_output, warnings
 
@@ -746,16 +1025,12 @@ def run_gui(workspace_root: Path) -> int:
             try:
                 # 先掃描並計算總句子數
                 markdown_files = scan_numeric_markdown_files(self.root)
+                sentence_cache: dict[Path, list[str]] = {}
                 self.total_sentences = 0
                 for md_path in markdown_files:
                     sentences = extract_tts_sentences(md_path)
+                    sentence_cache[md_path] = sentences
                     self.total_sentences += len(sentences)
-                
-                # 根據轉換模式調整句子數
-                if self.options.repeat_mode == "twice":
-                    self.total_sentences *= 2
-                elif self.options.repeat_mode == "both":
-                    self.total_sentences *= 2
                 
                 self.completed_sentences = 0
                 self.progressUpdate.emit(self.completed_sentences, max(1, self.total_sentences))
@@ -779,7 +1054,12 @@ def run_gui(workspace_root: Path) -> int:
                             pass
                 
                 results = asyncio.run(
-                    convert_workspace(self.root, self.options, progress=progress_with_tracking)
+                    convert_workspace(
+                        self.root,
+                        self.options,
+                        progress=progress_with_tracking,
+                        sentence_cache=sentence_cache,
+                    )
                 )
                 summary_lines = []
                 for mode, (generated, full_output, _) in results.items():

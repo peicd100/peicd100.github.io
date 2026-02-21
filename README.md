@@ -30,6 +30,12 @@ conda install git
 
 ```
 
+## 安裝 cuda
+
+```
+conda install cuda -c nvidia -y
+```
+
 ## 使用 git
 ```
 git clone https://github.com/peicd100/peicd100.github.io.git
@@ -78,4 +84,10 @@ git remote -v
 ```
 git clone https://github.com/peicd100/peicd100.github.io.git
 
+```
+
+## 刪除環境
+
+```
+conda env remove -n mkdocs -y
 ```
