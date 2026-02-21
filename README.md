@@ -26,7 +26,7 @@ activate mkdocs
 conda install pip -y 
 conda install -n mkdocs -y -c conda-forge ffmpeg pyside6
 pip install -r requirements.txt
-conda install git
+conda install git -y
 
 ```
 
