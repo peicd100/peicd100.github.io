@@ -21,7 +21,7 @@ git push -u origin main
 ## 只安裝環境
 
 ```
-conda create -n mkdocs python=3.13 -y
+conda create -n mkdocs python=3.11 -y
 activate mkdocs
 conda install pip -y 
 pip install -r requirements.txt

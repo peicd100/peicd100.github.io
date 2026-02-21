@@ -1,6 +1,6 @@
-mkdocs
+mkdocs<2
 click==8.2.1
-mkdocs-material
+mkdocs-material==9.7.1
 mkdocs-macros-plugin
 mkdocs-jupyter
 mkdocs-mermaid2-plugin
