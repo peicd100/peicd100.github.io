@@ -2,28 +2,28 @@
 
 ## 基本原則
 
-1. 每次對話時，你必須先「從頭到尾完整讀完」本 AGENTS.md（workspace root/AGENTS.md）。不得依賴先前記憶或上次讀取結果；本次任務必須重新完整讀取一次。若你被要求重新閱讀：你必須回到 workspace root/AGENTS.md 重新讀取。
+1. 第一次對話時，你必須先「從頭到尾完整讀完」本 AGENTS.md（workspace root/AGENTS.md）。不得依賴先前記憶或上次讀取結果；本次任務必須重新完整讀取一次。若你被要求重新閱讀：你必須回到 workspace root/AGENTS.md 重新讀取。
 2. 若你沒有得到此檔案，就不需按照此規則。
 3. 請全程使用繁體中文
 4. 中文請使用 UTF-8
+5. 你可以對 conda 環境進行任何安裝與修改，但是不行沒有經過我同意就對系統安裝與修改。
+6. 東西盡量都安裝在 conda ，如果你有系統安裝與修改的需求，請先經過我的同意。你最後要跟我說你在哪裡安裝了什麼、修改了什麼，若無安裝也要告知。
 
 ## python 專案規則
 
 如果你和我協作 python 專案，你要遵守以下原則
 
-1. 我使用 conda 來管理 python 環境， conda 環境名稱(<ENV_NAME>)請先看REAMDME.md，如果REAMDME.md的話請問我。
-2. 你可以用終端進行任何安裝與修改，如果可以用 conda 安裝請盡量用 conda ，不行就直接安裝在系統。
-3. 如用 python 寫 GUI / 介面 / 視窗規則，請使用 PySide，主題色使用 #72e3fd。
-4. 你使用 conda 的方式可以參考
+1. 我使用 conda 來管理 python 環境， conda 環境名稱(<ENV_NAME>)請先看REAMDME.md，如果沒有 REAMDME.md 的話請問我。
+2. 如用 python 寫 GUI / 介面 / 視窗規則，請使用 PySide，主題色使用 #72e3fd。如需要語音，請使用Microsoft Edge / Azure Neural TTS，英文使用加拿大、美國、英國，英文語音預設 en-US-JennyNeural 。
+3. 你使用 conda 的方式可以參考
     ```
     call "<CONDA_BASE>\\Scripts\\activate.bat" "<CONDA_BASE>"
     conda activate base
     conda activate PEICD100
     ```
-5. 你執行 python 時應該要盡量使用 conda 來執行
-6. 你需要維護我的要求和你的解決方案成 note.txt ，以利你與我協作，若沒有此檔案請自行新增。
-7. 你每次對我的專案修改都需要維護 "README.md" 、 ".gitignore"
-8. 我請你幫我打包時，請你先打包成 debug 版測試是否可以執行，再打包成 noconsole 
+4. 你執行 python 時應該要盡量使用 conda 來執行
+5. 你每次對我的專案修改都需要維護 "README.md" 、 ".gitignore"
+6. 我請你幫我打包時，請你先打包成 debug 版測試是否可以執行，再打包成 noconsole 。
 
 ## 每次你進行修改，都要依照以下格式對 README.md 維護。
 
