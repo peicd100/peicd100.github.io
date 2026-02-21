@@ -176,7 +176,7 @@ images/${documentBaseName}/
     "cmake.showConfigureWithDebuggerNotification": false,
     "files.autoSave": "afterDelay",
     "git.enableSmartCommit": true,
-    "editor.fontFamily": "Roboto Mono, Consolas, 'Courier New', monospace",
+    "editor.fontFamily": "Cascadia Mono, Consolas, 'Courier New', monospace",
     "files.autoSave": "afterDelay",
     "security.allowedUNCHosts": [
         "vmware-host"
