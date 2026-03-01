@@ -7268,27 +7268,30 @@ is now available!
 <h2 id="圈結構">圈結構<a class="headerlink" href="#圈結構" title="Permanent link"></a></h2>
 <p><img alt="alt text" src="../images/%E5%9C%88%E7%B5%90%E6%A7%8B%26%E7%B4%84%E7%91%9F%E5%A4%AB%E5%95%8F%E9%A1%8C/image-22.png" width="50%" /></p>
 <blockquote>
-<p>原本在1號位，若要移動n步，如何知道接下來會到哪個位置<br />
-假設原本在1</p>
+<p>原本在 0 號位（0-based），若要移動 n 步，如何知道接下來會到哪個位置</p>
 </blockquote>
 <p><img alt="alt text" src="../images/%E5%9C%88%E7%B5%90%E6%A7%8B%26%E7%B4%84%E7%91%9F%E5%A4%AB%E5%95%8F%E9%A1%8C/image-23.png" /></p>
 <blockquote>
-<p>要往後10，就會到1+10=11的位置，若要讓他回到8之內<br />
-就看11一直減掉8之後剩下多少(剩下3)，變成11\%8=3，也就是到3的位置。</p>
-<p>便可以得到公式：<br />
-(原本位置+移動位置)%總位置數=現在位置</p>
+<p>總共有 8 個位置（0~7）。<br />
+若原本在 0，往後 10 步：0 + 10 = 10。<br />
+要讓它回到 0~7 的範圍，就對 8 取模：10 % 8 = 2，也就是到 2 的位置。</p>
+<p>便可以得到公式（0-based）：<br />
+(原本位置 + 移動步數) % 總位置數 = 現在位置</p>
+<p>補充：若題目用 1~N 編號（1-based），先把位置減 1 轉成 0-based 套用上式，最後再把結果加 1 轉回 1-based：<br />
+現在位置(1-based) = ((原本位置(1-based) - 1 + 移動步數) % 總位置數) + 1</p>
 </blockquote>
 <h2 id="約瑟夫問題">約瑟夫問題<a class="headerlink" href="#約瑟夫問題" title="Permanent link"></a></h2>
 <!-- 資料來源1: https://openhome.cc/zh-tw/algorithm/randomness/josephus/ -->
 <p>資料來源: <a href="https://blog.csdn.net/u011500062/article/details/72855826">https://blog.csdn.net/u011500062/article/details/72855826</a></p>
 <blockquote>
 <p>據說著名猶太歷史／數學家約瑟夫（Josephus）有過以下的故事：在羅馬人佔領喬塔帕特後，40 個猶太士兵與約瑟夫躲到一個洞中，眼見脫逃無望，一群人決定集體自殺，然而私下約瑟夫與某個傢伙並不贊成，於是約瑟夫建議自殺方式，41 個人排成圓圈，由第 1 個人開始報數，每報數到 3 的人就必須自殺，然後由下一個重新報數，直到所有人都自殺身亡為止。約瑟夫與不想自殺的那個人分別排在第 16 個與第 31 個位置，於是逃過了死亡。</p>
-<p>我們假設有8個人，每次找第三個人<br />
+<p>我們假設有 8 個人（位置用 0-based：0~7），每次報數到 M=3 的人出局（也就是每輪等價於把勝利者位置往前推 M 位；推導見下方遞推式）。<br />
 <img alt="alt text" src="../images/%E5%9C%88%E7%B5%90%E6%A7%8B%26%E7%B4%84%E7%91%9F%E5%A4%AB%E5%95%8F%E9%A1%8C/image-24.png" width="50%" /></p>
 </blockquote>
 <table>
 <thead>
 <tr>
+<th style="text-align: center;">&nbsp;&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;&nbsp;</th>
 <th style="text-align: center;">&nbsp;&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;&nbsp;</th>
 <th style="text-align: center;">&nbsp;&nbsp;&nbsp;&nbsp;2&nbsp;&nbsp;&nbsp;&nbsp;</th>
 <th style="text-align: center;">&nbsp;&nbsp;&nbsp;&nbsp;3&nbsp;&nbsp;&nbsp;&nbsp;</th>
@@ -7296,7 +7299,6 @@ is now available!
 <th style="text-align: center;">&nbsp;&nbsp;&nbsp;&nbsp;5&nbsp;&nbsp;&nbsp;&nbsp;</th>
 <th style="text-align: center;">&nbsp;&nbsp;&nbsp;&nbsp;6&nbsp;&nbsp;&nbsp;&nbsp;</th>
 <th style="text-align: center;">&nbsp;&nbsp;&nbsp;&nbsp;7&nbsp;&nbsp;&nbsp;&nbsp;</th>
-<th style="text-align: center;">&nbsp;&nbsp;&nbsp;&nbsp;8&nbsp;&nbsp;&nbsp;&nbsp;</th>
 </tr>
 </thead>
 <tbody>
@@ -7383,54 +7385,66 @@ is now available!
 </tbody>
 </table>
 <blockquote>
-<p>紅色位置為自殺位置</p>
-<p>接下來思考幾個問題：</p>
+<p>紅色位置為出局位置，位置從 0 開始計算（0-based）。<br />
+接下來思考幾個問題：</p>
 </blockquote>
 <p><strong>一、</strong> </p>
 <blockquote>
-<p>Q：當我們已知有8個人時，第3個位置會自殺，勝利者的位置為6。那下一輪3自殺之後，7個人時，勝利者的位置為多少？<br />
-1,2,<span style="border: 2px solid #ff0000;">3</span>,4,5,<span style="border: 2px solid #0011ff;">6</span>,7,8</p>
-<p>A：其實，第一輪刪掉編號為3的人後，之後的人都往前面移動了3位，勝利者也往前移動了3位，所以他的位置由6變成3。<br />
-如下：<br />
-1,2,<span style="border: 2px solid #ff0000;">3</span>,4,5,<span style="border: 2px solid #0011ff;">6</span>,7,8<br />
-4,5,<span style="border: 2px solid #0011ff;">6</span>,7,8,1,2</p>
+<p>Q：當我們已知有 8 個人時（0~7），報數到 3 的人出局，勝利者的位置為 6。那第一輪出局之後（剩 7 個人）勝利者的位置為多少？<br />
+0,1,<span style="border: 2px solid #ff0000;">2</span>,3,4,5,<span style="border: 2px solid #0011ff;">6</span>,7</p>
+<p>A：第一輪出局的是位置 2（0-based）。出局後，下一個人（原本位置 3）成為新的開頭，相當於把陣列往前移動 3 位（0,1,2 三個位置），因此勝利者位置也會往前移動 3 位。<br />
+6 往前移動 3 位，在 7 個人（0~6）的新編號下變成 3。<br />
+如下（示意）：<br />
+0,1,<span style="border: 2px solid #ff0000;">2</span>,3,4,5,<span style="border: 2px solid #0011ff;">6</span>,7<br />
+（刪掉 2，從下一位 3 開始接著報數，相當於把陣列往前移動 3 位）<br />
+3,4,5,<span style="border: 2px solid #0011ff;">6</span>,7,0,1<br />
+（新編號 0~6 對應到原編號）<br />
+0,1,2,<span style="border: 2px solid #0011ff;">3</span>,4,5,6</p>
 </blockquote>
 <p><strong>二、</strong></p>
 <blockquote>
-<p>Q：假設我們已經知道10個人且第3個位置會自殺時，勝利者的位置為9。那前一輪11個人時，勝利者的位置為多少？<br />
-1,2,3誒,5,6,7,8,9,10<br />
-?,?,?,?,?,?,?,?,<span style="border: 2px solid #0011ff;">?</span>,?</p>
-<p>A：這可以看作是上一個問題的逆過程，大家都往後移動3位，所以：<br />
-f(11,3) = f(10,3) + 3。<br />
-不過有可能數組會越界，所以最後模上當前人數的個數， <br />
-f(11,3) = (f(10,3) + 3) % 11 = ( 9 + 3 ) % 11 = 1 ，第一個位置會是勝利者<br />
-範例如下：<br />
-4, 5, 6, 7, 8, 9,10,11, <span style="border: 2px solid #0011ff;">1</span>, 2<br />
-<span style="border: 2px solid #0011ff;">1</span>, 2, <span style="border: 2px solid #ff0000;">3</span>, 4, 5, 6, 7, 8, 9,10,11</p>
+<p>Q：已知 10 個人（0~9）、報數到 3 的人出局時，勝利者的位置為 3。那 11 個人（0~10）時，勝利者的位置為多少？</p>
+<p>A：這可以看作是上一個問題的逆過程：從 10 人擴到 11 人時，勝利者位置等價於往後移動 M=3 位，然後對 11 取模。<br />
+假設 f(N,M) = 勝利位置（0-based），且 f(1,M)=0。</p>
+<p>先把 11 人的第一輪（M=3）出局畫出來：<br />
+0,1,<span style="border: 2px solid #ff0000;">2</span>,3,4,5,6,7,8,9,10<br />
+刪掉 2，從下一位 3 開始，得到 10 人的狀態（用原編號順序表示）：<br />
+3,4,5,6,7,8,9,10,0,1</p>
+<p>題目給的是「10 人時勝利位置為 3（0-based，新編號 0~9）」：<br />
+0,1,2,<span style="border: 2px solid #0011ff;">3</span>,4,5,6,7,8,9<br />
+對應回上面那條 10 人的原編號順序，就是原編號 <span style="border: 2px solid #0011ff;">6</span> 勝利。</p>
+<p>因此回推到 11 人（0-based）的勝利位置：<br />
+f(11,3) = (f(10,3) + 3) % 11 = (3 + 3) % 11 = 6<br />
+用 11 人的序列表示就是：<br />
+0,1,<span style="border: 2px solid #ff0000;">2</span>,3,4,5,<span style="border: 2px solid #0011ff;">6</span>,7,8,9,10</p>
 </blockquote>
 <p><strong>三、</strong></p>
 <blockquote>
-<p>Q：現在改為人數改為N，報數到M時，把那個人殺掉，那麼陣列是怎麼移動的？</p>
-<p>A：每殺掉一個人，下一個人成為頭，相當於把數組往前移動M位。若已知N-1個人時，勝利者的下標位置為f(N−1,M)，則N個人的時候，就是往後移動M位，(因為有可能數組越界，超過的部分會被接到頭上，所以還要模N)，即<br />
-f(N,M)=(f(N−1,M)+M)%N</p>
-<p><strong>註：</strong> 理解這個遞推式的核心在於關注勝利者的下標位置是怎麼變的。每殺掉一個人，其實就是把這個陣列向前移動了M位。然後逆過來，就可以得到這個遞推式。 因為求出來的結果是數組中的下標，最後的編號還要加1 下面給出程式碼實作：</p>
+<p>Q：現在改為人數改為 N，報數到 M 時，把那個人殺掉，那麼陣列是怎麼移動的？</p>
+<p>A：每出局一個人，下一個人成為頭，相當於把陣列往前移動 M 位。若已知 N-1 個人時，勝利者的位置為 f(N−1,M)，則 N 個人的時候，就是往後移動 M 位（因為有可能陣列越界，超過的部分會被接到頭上，所以還要模 N），即<br />
+f(N,M) = (f(N−1,M) + M) % N</p>
+<p>註：上式求出來的是 0-based 的位置。<br />
+下面給出程式碼實作（0-based 版本）：</p>
 </blockquote>
 <div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="cpf">&lt;bits/stdc++.h&gt;</span>
 <span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span>
+
 <span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(){</span>
-<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="p">,</span><span class="n">m</span><span class="p">,</span><span class="n">k</span><span class="p">;</span>
-<span class="w">    </span><span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">n</span><span class="o">&gt;&gt;</span><span class="n">m</span><span class="o">&gt;&gt;</span><span class="n">k</span><span class="p">;</span>
-<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">ans</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="c1">//原本在0位置(開頭)</span>
-<span class="w">    </span><span class="k">for</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="o">=</span><span class="n">n</span><span class="o">-</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;=</span><span class="n">n</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span><span class="c1">//增加總人數</span>
-<span class="w">        </span><span class="n">ans</span><span class="o">=</span><span class="p">(</span><span class="n">ans</span><span class="o">+</span><span class="n">m</span><span class="p">)</span><span class="o">%</span><span class="n">i</span><span class="p">;</span><span class="c1">//取模</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="n">m</span><span class="p">;</span>
+<span class="w">    </span><span class="n">cin</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">m</span><span class="p">;</span>
+
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">ans</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w">           </span><span class="c1">// f(1,m)=0</span>
+<span class="w">    </span><span class="k">for</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">n</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
+<span class="w">        </span><span class="n">ans</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">ans</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">m</span><span class="p">)</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="n">i</span><span class="p">;</span>
 <span class="w">    </span><span class="p">}</span>
-<span class="w">    </span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">ans</span><span class="o">+</span><span class="mi">1</span><span class="p">;</span><span class="c1">//從0開始變成從1開始</span>
+
+<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">ans</span><span class="p">;</span><span class="w">           </span><span class="c1">// 0-based</span>
 <span class="p">}</span>
 </code></pre></div>
 <h2 id="例題">例題<a class="headerlink" href="#例題" title="Permanent link"></a></h2>
 <h3 id="定時k彈apcs"><a href="%E5%AF%A6%E4%BD%9C%E4%B8%89.html#定時k彈">定時K彈(APCS)</a><a class="headerlink" href="#定時k彈apcs" title="Permanent link"></a></h3>
 <blockquote>
-<p>可知，當開頭為n時，n在第0個位置。</p>
+<p>可知，當開頭為 n 時，n 在第 0 個位置。</p>
 <p>一開始人數：n-k+1，最終人數：n</p>
 </blockquote>
 <div class="collapse-code"><input checked="checked" id="__collapse0" name="__collapse0" type="checkbox" /><div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="cpf">&lt;bits/stdc++.h&gt;</span>
@@ -7442,7 +7456,7 @@ f(N,M)=(f(N−1,M)+M)%N</p>
 <span class="w">    </span><span class="k">for</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="o">=</span><span class="n">n</span><span class="o">-</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;=</span><span class="n">n</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span><span class="c1">//增加總人數</span>
 <span class="w">        </span><span class="n">ans</span><span class="o">=</span><span class="p">(</span><span class="n">ans</span><span class="o">+</span><span class="n">m</span><span class="p">)</span><span class="o">%</span><span class="n">i</span><span class="p">;</span><span class="c1">//取模</span>
 <span class="w">    </span><span class="p">}</span>
-<span class="w">    </span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">ans</span><span class="o">+</span><span class="mi">1</span><span class="p">;</span><span class="c1">//從0開始變成從1開始</span>
+<span class="w">    </span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">ans</span><span class="p">;</span><span class="c1">//0-based</span>
 <span class="p">}</span>
 </code></pre></div>
 <div class="code-footer"><label class="expand" for="__collapse0" tabindex="0" title="expand"></label><label class="collapse" for="__collapse0" tabindex="0" title="collapse"></label></div>
@@ -7452,24 +7466,24 @@ f(N,M)=(f(N−1,M)+M)%N</p>
 <span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span>
 
 <span class="kt">int</span><span class="w"> </span><span class="nf">f</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">m</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">pos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w">  </span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">pos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 <span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">n</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">        </span><span class="n">pos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">pos</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">m</span><span class="p">)</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="n">i</span><span class="p">;</span>
 <span class="w">    </span><span class="p">}</span>
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">pos</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w">  </span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">pos</span><span class="p">;</span><span class="w">  </span><span class="c1">// 0-based</span>
 <span class="p">}</span>
 
 <span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="n">k</span><span class="p">;</span>
 <span class="w">    </span><span class="n">cin</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">k</span><span class="p">;</span>
-<span class="w">    </span>
+
 <span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">m</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span><span class="w"> </span><span class="n">m</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mi">30000</span><span class="p">;</span><span class="w"> </span><span class="n">m</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">f</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="n">m</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">k</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">            </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">m</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
 <span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 <span class="w">        </span><span class="p">}</span>
 <span class="w">    </span><span class="p">}</span>
-<span class="w">    </span>
+
 <span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
