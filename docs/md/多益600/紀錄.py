@@ -51,6 +51,7 @@ CLI_PROGRESS_BAR_WIDTH = 20
 CLI_USAGE_BAR_WIDTH = 20
 CLI_SPINNER_FRAMES = ("⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏")
 TEMP_WORK_DIR_PREFIX = "tts_tmp_"
+OUTPUT_DIR_KEEP_NAMES = {"一次", "兩次"}
 MAX_FILE_CONCURRENCY = 6
 MAX_GPU_VIDEO_ENCODE_CONCURRENCY = 2
 MAX_CPU_VIDEO_ENCODE_CONCURRENCY = 4
@@ -646,34 +647,34 @@ def cleanup_temp_artifacts(root_output_dir: Path) -> tuple[int, int]:
     removed_dirs = 0
     removed_files = 0
 
+    if not root_output_dir.exists():
+        return removed_dirs, removed_files
+
     try:
-        candidates = list(root_output_dir.glob(f"{TEMP_WORK_DIR_PREFIX}*"))
+        candidates = list(root_output_dir.iterdir())
     except OSError:
-        candidates = []
+        return removed_dirs, removed_files
 
     for candidate in candidates:
-        if not candidate.is_dir():
+        if candidate.name in OUTPUT_DIR_KEEP_NAMES and candidate.is_dir():
             continue
         try:
-            shutil.rmtree(candidate)
+            if candidate.is_dir():
+                shutil.rmtree(candidate)
+                if not candidate.exists():
+                    removed_dirs += 1
+            else:
+                candidate.unlink(missing_ok=True)
+                if not candidate.exists():
+                    removed_files += 1
         except FileNotFoundError:
             continue
         except OSError:
-            shutil.rmtree(candidate, ignore_errors=True)
-        if not candidate.exists():
-            removed_dirs += 1
-
-    cache_dir = root_output_dir / "_tts_sentence_cache"
-    if cache_dir.exists():
-        try:
-            tmp_files = list(cache_dir.glob("*.tmp.mp3"))
-        except OSError:
-            tmp_files = []
-        for tmp_file in tmp_files:
-            try:
-                tmp_file.unlink(missing_ok=True)
-                removed_files += 1
-            except OSError:
+            if candidate.is_dir():
+                shutil.rmtree(candidate, ignore_errors=True)
+                if not candidate.exists():
+                    removed_dirs += 1
+            else:
                 continue
 
     return removed_dirs, removed_files

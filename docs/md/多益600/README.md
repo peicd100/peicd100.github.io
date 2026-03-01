@@ -1,7 +1,7 @@
 # 多益600
 
 ## 專案用途
-批次產生複習檔案：把所有 `<數字>.md` 的 `<span class="tts">` 文字轉成 MP4 影片，支援「一次」與「兩次（每句重複兩次）」模式，輸出到 `產生複習檔案`。目前已優化為共用句子快取、`ffmpeg encoder` 單次掃描、兩次模式重用單句音檔，且在 `--mode both` 時共用同一輪 TTS（不再重複合成第二輪），並加入無效 proxy（`127.0.0.1:9`）自動停用、暫存資料夾建立在 `產生複習檔案/tts_tmp_*` 且流程結束自動刪除，以及自動略過僅標點句子（避免 `No audio was received`）。
+批次產生複習檔案：把所有 `<數字>.md` 的 `<span class="tts">` 文字轉成 MP4 影片，支援「一次」與「兩次（每句重複兩次）」模式，輸出到 `產生複習檔案`。目前已優化為共用句子快取、`ffmpeg encoder` 單次掃描、兩次模式重用單句音檔，且在 `--mode both` 時共用同一輪 TTS（不再重複合成第二輪），並加入無效 proxy（`127.0.0.1:9`）自動停用、自動略過僅標點句子（避免 `No audio was received`），以及流程結束後 `產生複習檔案/` 只保留 `一次/` 與 `兩次/`。
 
 ## 多益600、mkdocs(conda 環境名稱)
 - workspace_root_basename: `多益600`
@@ -29,7 +29,7 @@ python 紀錄.py
 - 底部固定狀態列每 0.1 秒刷新一次（進度條、CPU、GPU）。
 - CPU/GPU 使用率會以橫槓長度條呈現（bar + 百分比）。
 - GPU 使用率讀值改為 `max(utilization.gpu, utilization.encoder)`；多 GPU 時取最高值，避免 NVENC 轉檔時數值偏低。
-- 每次執行結束（成功或失敗）會自動清理暫存：`產生複習檔案/tts_tmp_*` 與 `_tts_sentence_cache/*.tmp.mp3`。
+- 每次執行結束（成功或失敗）會自動清理 `產生複習檔案/` 中除了 `一次/`、`兩次/` 之外的所有暫存項目。
 - 轉換期間的監控資訊固定在終端最下方 4 行：
   - 第 1 行：進度條（格式如 `⣿⣿⣿⣿⣿⣿⣷⣦⣀⣀⣀⣀⣀⣀⣀ 37%`）
   - 第 2 行：CPU 使用率（橫槓條）
@@ -127,8 +127,8 @@ git clone https://github.com/peicd100/mkdocs.git
 - Conversion concurrency is capped (`MAX_FILE_CONCURRENCY=6`) to avoid too many simultaneous jobs causing contention.
 - GPU video encoding now uses a dedicated cap (`MAX_GPU_VIDEO_ENCODE_CONCURRENCY=2`) to reduce mid-run NVENC/session failures.
 - With sentence cache + audio cache + throttled progress scan, runtime behavior is closer to linear in effective workload.
-- A manifest file (`產生複習檔案/_convert_manifest.json`) now stores `<數字>.md` 的 `size + mtime_ns + hash` 與設定簽章，先用 `size + mtime_ns` 快速命中，再決定是否重算 hash。
-- A sentence cache file (`產生複習檔案/_sentence_cache.json`) persists extracted TTS sentences per file fingerprint to avoid repeated markdown parsing.
+- During conversion, manifest (`_convert_manifest.json`) stores `<數字>.md` 的 `size + mtime_ns + hash` 與設定簽章，先用 `size + mtime_ns` 快速命中，再決定是否重算 hash。
+- During conversion, sentence cache (`_sentence_cache.json`) stores extracted TTS sentences per file fingerprint to avoid repeated markdown parsing.
 - When file fingerprints and options are unchanged and outputs exist, conversion is skipped and existing outputs are reused.
 
 ## 使用者要求
@@ -141,5 +141,6 @@ git clone https://github.com/peicd100/mkdocs.git
 - CLI 狀態列新增第 4 行旋轉特效，並將 CPU/GPU 改為橫槓條顯示使用率。
 - 進度條樣式調整為 `⣿⣿⣿⣿⣿⣿⣷⣦⣀⣀⣀⣀⣀⣀⣀ 37%`；旋轉特效行只保留字元本身加 4 個空格。
 - GPU 監控改為同時讀取 `utilization.gpu` 與 `utilization.encoder`，並加上短期快取避免高頻刷新造成抖動與誤差。
-- 每次執行前後都會掃描並刪除暫存工作目錄，避免殘留 `tts_tmp_*`。
+- 每次執行前後都會掃描並清理 `產生複習檔案/`，最後只保留 `一次/`、`兩次/`。
+- 新需求：`產生複習檔案/` 執行後不可殘留其他暫存檔案，只保留 `一次/` 與 `兩次/`。
 
