@@ -395,7 +395,8 @@ nav:  # 自定義網站的導航結構
       - 'Ch6 Entertainment 全文集中區': 'md/多益600/6.md'
       - 'Ch7 Housing 全文集中區': 'md/多益600/7.md'
       - 'Ch8 Purchasing 全文集中區': 'md/多益600/8.md'
-
+      
+  - '作業系統': 'md/大學/作業系統筆記.md'
 
       
       # - 're':
