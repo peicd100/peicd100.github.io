@@ -1,0 +1,30 @@
+{
+  "options_signature": "bilingual-subtitles-v1|en-US-JennyNeural|1.0000|0.4000|cpu|both",
+  "files": {
+    "4.md": {
+      "hash": "b3d34fbcd215ff52f3d8ba907bff6b7811d1835a",
+      "size": 18816,
+      "mtime_ns": 1771339371008313400
+    },
+    "5.md": {
+      "hash": "c8f81714275ac97bd0f7d0eec6ed5fcb13bf3793",
+      "size": 8880,
+      "mtime_ns": 1771339371008313400
+    },
+    "6.md": {
+      "hash": "9014a203c852aaa14a1b6bd57319474fff821725",
+      "size": 10129,
+      "mtime_ns": 1771339371008313400
+    },
+    "7.md": {
+      "hash": "eff59c0f0014ec5361b06ee25e05f213ac74b7b8",
+      "size": 8333,
+      "mtime_ns": 1771339371008313400
+    },
+    "8.md": {
+      "hash": "e7b8b435e639c52f534a6902f8aaf5bb0834b988",
+      "size": 11111,
+      "mtime_ns": 1771671405892029300
+    }
+  }
+}
