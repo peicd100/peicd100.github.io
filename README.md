@@ -93,3 +93,9 @@ git clone https://github.com/peicd100/peicd100.github.io.git
 ```
 conda env remove -n mkdocs -y
 ```
+
+
+## 虛擬機重新安裝
+```
+Y:\conda\envs\mkdocs\python.exe -m pip install --force-reinstall --no-cache-dir mkdocs
+```
