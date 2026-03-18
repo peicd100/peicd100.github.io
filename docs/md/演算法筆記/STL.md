@@ -95,6 +95,17 @@ int main(){
 
 ![alt text](images/STL/image-2.png){width=70%}
 
+priority_queue 預設是大的在前面，如何讓小的在前面？
+
+```cpp
+priority_queue<int, vector<int>, greater<int>> pq;
+pq.push(5);
+pq.push(2);
+pq.push(8);
+cout << pq.top(); //  prints = 2 (smallest element)
+```
+
+
 ### list
 
 用++和--操作

@@ -3,6 +3,8 @@
 ## 預覽
 ```
 activate mkdocs
+mkdocs serve --dirty --livereload
+
 mkdocs serve
 
 ```
