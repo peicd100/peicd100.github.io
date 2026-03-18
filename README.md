@@ -5,9 +5,9 @@
 activate mkdocs
 mkdocs serve --dirty --livereload
 
+```
 mkdocs serve
 
-```
 ## 每次寫完
 ```
 activate mkdocs
