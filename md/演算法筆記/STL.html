@@ -7974,6 +7974,13 @@ is now available!
 <p><img alt="alt text" src="images/STL/image.png" width="70%" /></p>
 <h3 id="priority_queue">priority_queue<a class="headerlink" href="#priority_queue" title="Permanent link"></a></h3>
 <p><img alt="alt text" src="images/STL/image-2.png" width="70%" /></p>
+<p>priority_queue 預設是大的在前面，如何讓小的在前面？</p>
+<div class="highlight"><pre><span></span><code><span class="n">priority_queue</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span><span class="w"> </span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">,</span><span class="w"> </span><span class="n">greater</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">pq</span><span class="p">;</span>
+<span class="n">pq</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span>
+<span class="n">pq</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<span class="n">pq</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="mi">8</span><span class="p">);</span>
+<span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">pq</span><span class="p">.</span><span class="n">top</span><span class="p">();</span><span class="w"> </span><span class="c1">//  prints = 2 (smallest element)</span>
+</code></pre></div>
 <h3 id="list">list<a class="headerlink" href="#list" title="Permanent link"></a></h3>
 <p>用++和&ndash;操作</p>
 <div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="cpf">&lt;bits/stdc++.h&gt;</span>
