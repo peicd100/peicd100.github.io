@@ -11,11 +11,11 @@ markdown.copyFiles.destination
 ```
 新增項目：
 ```cpp
-docs/**/*
+docs/md/**/*
 ```
 值：
 ```cpp
-images/${documentBaseName}/
+${documentWorkspaceFolder}/docs/images/${documentBaseName}.png
 ```
 
 結果如下圖，按下確定：
