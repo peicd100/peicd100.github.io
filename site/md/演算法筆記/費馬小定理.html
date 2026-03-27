@@ -7355,6 +7355,7 @@ a^p \equiv a \pmod{p}
 <span class="arithmatex">\(=(56\%5\times 3\%5)\%5\)</span><br />
 <span class="arithmatex">\(=(1\times 3)\%5\)</span><br />
 <span class="arithmatex">\(=3\)</span>  </p>
+<p>到底這個 3 是如何得到的，我們先留個懸念。</p>
 <h2 id="求模反元素">求模反元素<a class="headerlink" href="#求模反元素" title="Permanent link"></a></h2>
 <blockquote>
 <p>我們先試試暴力找法</p>
@@ -7401,6 +7402,15 @@ a^p \equiv a \pmod{p}
 <p>接著根據<a href="%E6%A8%A1%E9%81%8B%E7%AE%97.html#同餘性質">同餘性質</a>得到</p>
 <p><span class="arithmatex">\(a^{p-2} \equiv a^{-1}  \pmod{p}\)</span></p>
 <p>由上式子可知在<span class="arithmatex">\(\pmod{p}\)</span> 時，求 <span class="arithmatex">\(a^{p-2}\)</span> 就可以得到 <span class="arithmatex">\(a^{-1}\)</span> 也就是得到模逆元</p>
+<p>完整推導如下：</p>
+<div class="i">
+<p>根據<a href="%E6%A8%A1%E9%81%8B%E7%AE%97.html#模運算">冪次性質</a>得到：<br />
+<span class="arithmatex">\(a^p \equiv a \pmod{p}\)</span><br />
+左右拆出 <span class="arithmatex">\(a^2\)</span>：<br />
+<span class="arithmatex">\(a^{p-2} * a^2 \equiv a^{-1} * a^2  \pmod{p}\)</span><br />
+左右消掉(根據<a href="%E6%A8%A1%E9%81%8B%E7%AE%97.html#同餘性質">同餘性質</a>)<br />
+<span class="arithmatex">\(a^{p-2} \equiv a^{-1}  \pmod{p}\)</span></p>
+</div>
 <p>便可得到最後結論：</p>
 <blockquote>
 <p>費馬小定理：「若 <span class="arithmatex">\(P\)</span> 為質數，對任意正整數 <span class="arithmatex">\(a\)</span> ， <span class="arithmatex">\((a^{P-2} \% P)\)</span> 是 <span class="arithmatex">\(a\)</span> 在 <span class="arithmatex">\([1, P-1]\)</span> 區間的唯一乘法反元素。」</p>
