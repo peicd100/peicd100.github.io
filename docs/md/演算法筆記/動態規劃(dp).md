@@ -405,32 +405,33 @@ using namespace std;
 
 signed main() {
     int n;
-
     cin >> n;
 
-    vector<int> v(n);
+    vector<int> w(n);
     vector<int> dp(n);
 
     for (int i = 0; i < n; i++) {
-        cin >> v[i];
+        cin >> w[i];
     }
 
-    if (n == 1) { // 如果只有一個人
-        cout << v[0] << "\n";
+    if (n == 1) {
+        cout << w[0] << "\n";
+        return 0;
+    }
+    if (n == 2) {
+        cout << min(w[0], w[1]) << "\n";
         return 0;
     }
 
-    dp[0] = v[0];
+    dp[0] = w[0];
+    dp[1] = w[1];
+    dp[2] = w[2] + min(w[0], w[1]);
 
-    for (int i = 1; i < n; i++) {
-        dp[i] = 1e4;
-        for (int j = 1; j <= 3; j++) {
-            dp[i] = min(dp[i], dp[i - j]);
-        }
-        dp[i] += v[i];
+    for (int i = 3; i < n; i++) {
+        dp[i] = w[i] + min({dp[i - 1], dp[i - 2], dp[i - 3]});
     }
 
-    cout << min(dp[n - 1], dp[n - 2]);
+    cout << min(dp[n - 1], dp[n - 2]) << "\n";
 
     return 0;
 }
@@ -503,41 +504,52 @@ Time limit: 1 秒
     
 輸出：最小過關成本。    
     
-> 遞迴式   
-> `dp[i][j]=min(dp[i-1][0]+abs(v[i-1][0]-v[i][j]) `   
-> `dp[i-1][1]+abs(v[i-1][1]-v[i][j]));    `
->     
+> 狀態轉移
+> 
+> dp[i][0] = 到第 i 關，並且第 i 關選 a[i] 的最小成本
+> dp[i][1] = 到第 i 關，並且第 i 關選 b[i] 的最小成本
+> 
+> dp[i][0] = min(dp[i - 1][0] + abs(a[i - 1] - a[i]),dp[i - 1][1] + abs(b[i - 1] - a[i]));
+> dp[i][1] = min(dp[i - 1][0] + abs(a[i - 1] - b[i]),dp[i - 1][1] + abs(b[i - 1] - b[i])); 
 
 /// collapse-code  
 ```cpp title="code" 
 #include <bits/stdc++.h>
 using namespace std;
-#define nn "\n"
 
+#define int long long
 
-int main() {
-  int n,m;
-  cin>>n>>m;
-  //dp[i][0]為第i個得最小成本
+signed main() {
+    int n, t;
+    cin >> n >> t;
 
-  
-  int v[100000][2];
-  for(int i=0;i<n;i++){
-    for(int j=0;j<2;j++){
-      cin>>v[i][j];
+    vector<int> a(n), b(n);
+
+    for (int i = 0; i < n; i++) {
+        cin >> a[i] >> b[i];
     }
-  }
-  int dp[100000][2];
-  dp[0][0]=abs(v[0][0]-m);
-  dp[0][1]=abs(v[0][1]-m);
-  for(int i=1;i<n;i++){
-    for(int j=0;j<2;j++){
-      dp[i][j] = min( dp[i-1][0]+abs(v[i-1][0]-v[i][j]), dp[i-1][1]+abs(v[i-1][1]-v[i][j]) );
-      }
-    cout<<nn;
-  }
 
-  cout<<min(dp[n-1][0],dp[n-1][1]);
+    vector<vector<int>> dp(n, vector<int>(2));
+
+    dp[0][0] = abs(t - a[0]);
+    dp[0][1] = abs(t - b[0]);
+
+    for (int i = 1; i < n; i++) {
+        
+        dp[i][0] = min(
+            dp[i - 1][0] + abs(a[i - 1] - a[i]),
+            dp[i - 1][1] + abs(b[i - 1] - a[i])
+        );
+
+        dp[i][1] = min(
+            dp[i - 1][0] + abs(a[i - 1] - b[i]),
+            dp[i - 1][1] + abs(b[i - 1] - b[i])
+        );
+    }
+
+    cout << min(dp[n - 1][0], dp[n - 1][1]) << "\n";
+
+    return 0;
 }
 ```
 ///
