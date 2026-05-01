@@ -189,52 +189,92 @@
 
 /// collapse-code  
 ```cpp title="存dp陣列"
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
-#define nn "\n"
-#define N 100000
 
-int v[N];
-int dp[N]={0};
+#define int long long
 
-int main(){
+signed main() {
     int n;
-    cin>>n;
-    for(int i=0;i<n;i++){
-        cin>>v[i];
-    }
-    //dp[i]=min(dp[i-1],dp[i-2])
+    cin >> n;
 
-    dp[0]=v[0];
-    dp[1]=v[1];
-    for(int i=2;i<n;i++){
-        dp[i]=v[i]+min(dp[i-1],dp[i-2]);
+    vector<int> v(n + 1);
+
+    for (int i = 1; i <= n; i++) {
+        cin >> v[i];
     }
-    cout<<dp[n-1];
+
+    vector<int> dp(n + 1);
+
+    for (int i = 0; i <= n; i++) {
+        if (i <= 2)
+            dp[i] = v[i];
+        else
+            dp[i] = min(dp[i - 1], dp[i - 2]) + v[i];
+    }
+
+    cout << dp[n];
+
+    return 0;
 }
 ```
 ///
 
+/// collapse-code  
+```cpp title="偏移" 
+#include <bits/stdc++.h>
+using namespace std;
 
+#define int long long
+
+signed main() {
+    int n;
+    cin >> n;
+
+    vector<int> v(n + 1);
+
+    for (int i = 1; i <= n; i++) {
+        cin >> v[i];
+    }
+
+    for (int i = 3; i <= n; i++) {
+        v[i] += min(v[i - 1], v[i - 2]);
+    }
+
+    cout << v[n];
+
+    return 0;
+}
+
+```
+///
 
 /// collapse-code  
 ```cpp title="直接運算" 
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
-#define N 100000
-int v[N];
-int main(){
-    ios::sync_with_stdio(0),cin.tie(0);
+
+#define int long long
+
+signed main() {
     int n;
-    cin>>n;
-    cin>>v[0];
-    cin>>v[1];
-    for(int i=2;i<n;i++){
-        cin>>v[i];
-        v[i]=v[i]+min(v[i-1],v[i-2]);
+    cin >> n;
+
+    vector<int> v(n + 1);
+
+    for (int i = 1; i <= n; i++) {
+        cin >> v[i];
     }
-    cout<<v[n-1];
+
+    for (int i = 3; i <= n; i++) {
+        v[i] += min(v[i - 1], v[i - 2]);
+    }
+
+    cout << v[n];
+
+    return 0;
 }
+
 ```
 ///
     
@@ -281,22 +321,37 @@ Time limit: 1 秒
    
 /// collapse-code  
 ```cpp title="code" 
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
-#define N 100000
-int dp[N];
-int main(){
-    ios::sync_with_stdio(0),cin.tie(0);
+
+#define int long long
+
+signed main() {
     int n;
-    cin>>n;
-    //dp[i]=max(dp[i-1],dp[i-2]+dp[i])
-    cin>>dp[0];
-    cin>>dp[1];
-    for(int i=2;i<n;i++){
-        cin>>dp[i];
-        dp[i]=max(dp[i-1],dp[i-2]+dp[i]);
+
+    cin >> n;
+
+    // dp[i] = min(dp[i-2],dp[i-1]+v[i]);
+
+    vector<int> v(n);
+    vector<int> dp(n);
+
+    for (int i = 0; i < n; i++) {
+        cin >> v[i];
     }
-    cout<<dp[n-1];
+
+    dp[0] = v[0];
+
+    for (int i = 0; i < n; i++) {
+        if (i <= 1)
+            dp[i] = v[i];
+        else
+            dp[i] = max(dp[i - 1], dp[i - 2] + v[i]);
+    }
+
+    cout << dp[n - 1];
+
+    return 0;
 }
 ```
 ///
@@ -334,86 +389,112 @@ Time limit: 1 秒
 範例二說明：挑選 1+1+2+2=6。         
     
 ---    
-        
-**直接想：**        
-    
->背包問題：    
->排列，多個 → 物品內圈，順序排列    
-    
-    
-    
-> 這題比較複雜，但我們可以換個方式思考    
-> 兩個監控設備距離不能超過3，所以每3格位置一定會有一個監控設備，然後要取最小的成本    
-> 那不就和「P-6-1. 小朋友上樓梯最小成本」一樣嗎?    
-    
+
+##### 解法 1 
+
+> dp[i] = 第 i 項有裝時，前面 i 個區段的最小成本
+
+![alt text](images/動態規劃(dp)/image.png)
+
 /// collapse-code  
 ```cpp title="code" 
-#include <bits/stdc++.h>    
+#include <bits/stdc++.h>
 using namespace std;
-int dp[1000000];
-int main(){
-  ios::sync_with_stdio(0),cin.tie(0);
-  int n;
-  cin>>n;
-  cin>>dp[0];
-  cin>>dp[1];
-  cin>>dp[2];
-  dp[2]=min(dp[1],dp[0])+dp[2];
-  for(int i=3;i<n;i++){
-    cin>>dp[i];
-    dp[i]=min(min(dp[i-1],dp[i-2]),dp[i-3])+dp[i];
-  }
-  
-  if(n<=1){
-    cout<<dp[n-1];
-  }
-  else{
-    cout<<min(dp[n-1],dp[n-2]);
-  }
+
+#define int long long
+
+signed main() {
+    int n;
+
+    cin >> n;
+
+    vector<int> v(n);
+    vector<int> dp(n);
+
+    for (int i = 0; i < n; i++) {
+        cin >> v[i];
+    }
+
+    if (n == 1) { // 如果只有一個人
+        cout << v[0] << "\n";
+        return 0;
+    }
+
+    dp[0] = v[0];
+
+    for (int i = 1; i < n; i++) {
+        dp[i] = 1e4;
+        for (int j = 1; j <= 3; j++) {
+            dp[i] = min(dp[i], dp[i - j]);
+        }
+        dp[i] += v[i];
+    }
+
+    cout << min(dp[n - 1], dp[n - 2]);
+
+    return 0;
 }
 ```
 ///
 
 ---
 
+##### 解法 2
+
+> dp[i] = 讓 0 ~ i 全部被監控的最小成本
+
 算式：
-![alt text](../images/動態規劃(dp)/image-34.png)
-![alt text](../images/動態規劃(dp)/image-35.png)
+
+![alt text](<images/動態規劃(dp)/ChatGPT Image 2026年5月1日 下午02_41_41.png>)
 
 /// collapse-code  
 ```cpp title="code" 
 #include <bits/stdc++.h>
 using namespace std;
-#define N 100000
-#define MAX 100000000
-int d[N];
-int dp(int x){
-    if(x<0)return MAX;
+
+#define int long long
+
+vector<int> w;
+vector<int> d;
+
+int dp(int x) {
+    if (x < 0) return 0;
     return d[x];
 }
 
-
-int w[N];
-int main(){
+signed main() {
     int n;
-    cin>>n;
-    for(int i=0;i<n;i++){
-        cin>>w[i];
+    cin >> n;
+
+    w.resize(n);
+    d.resize(n);
+
+    for (int i = 0; i < n; i++) {
+        cin >> w[i];
     }
-    d[0]=w[0];
-    d[1]=min(w[0],w[1]);
-    for(int i=2;i<n;i++){
-        int s=min({dp(i-1),dp(i-2),dp(i-3)})+w[i];
-        int ss=min({dp(i-2),dp(i-3),dp(i-4)})+w[i-1];
-        d[i]=min(s,ss);
+
+    if (n == 1) {
+        cout << w[0] << "\n";
+        return 0;
     }
-    cout<<dp(n-1);
+
+    d[0] = w[0];
+    d[1] = min(w[0], w[1]);
+
+    for (int i = 2; i < n; i++) {
+        d[i] = min(dp(i - 2) + w[i],dp(i - 3) + w[i - 1]);
+    }
+
+    cout << d[n - 1] << "\n";
+
+    return 0;
 }
 ```
 ///
 
 #### Q-6-4. 闖關二選一
 
+https://judge.tcirc.tw/problem/d072
 
 某個遊戲要依序闖過 n 個關卡，初始的時候有一個幸運數字，每個關卡有兩個關卡數 字，你必須把自己的幸運數字調整為兩個關卡數字之一，才能通過此關卡，調整的成 本是你的幸運數字與關卡數字的差值(絕對值)。請計算出最低闖關總成本。 舉例來說，一開始的幸運數字為 1，n=2，第一關的過關數字為(5, -5)，第二關的 過關數字為(-3, -2)。要依序通過兩關，假設第一關把幸運數字調整成 5，第二關 調整為-2，則需要成本為|1–5|+|5–(-2)|=11。如果，第一關把幸運數字-5，第 二關調整為-3，則需要成本為|1–(-5)|+|(-5)–(-3)|=8。你可以看得出來，總共 有四種方式過關，其中最小成本是 8。 
 Time limit: 1 秒    
