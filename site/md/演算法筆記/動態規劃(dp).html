@@ -7839,7 +7839,34 @@ is now available!
 </code></pre></div>
 <div class="code-footer"><label class="expand icon-only" for="__collapse0" tabindex="0"><span class="collapse-code__sr-only">expand</span></label><label class="collapse icon-only" for="__collapse0" tabindex="0"><span class="collapse-code__sr-only">collapse</span></label></div>
 </div>
-<div class="collapse-code"><input checked="checked" id="__collapse1" name="__collapse1" type="checkbox" /><div class="highlight"><span class="filename">偏移</span><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;bits/stdc++.h&gt;</span>
+<!-- /// collapse-code  
+<div class="highlight"><span class="filename">偏移</span><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;bits/stdc++.h&gt;</span>
+<span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span>
+
+<span class="cp">#define int long long</span>
+
+<span class="kt">signed</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="p">;</span>
+<span class="w">    </span><span class="n">cin</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">n</span><span class="p">;</span>
+
+<span class="w">    </span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">v</span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">n</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">cin</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">v</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">3</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">n</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">v</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">min</span><span class="p">(</span><span class="n">v</span><span class="p">[</span><span class="n">i</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">],</span><span class="w"> </span><span class="n">v</span><span class="p">[</span><span class="n">i</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">2</span><span class="p">]);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">v</span><span class="p">[</span><span class="n">n</span><span class="p">];</span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+/// -->
+
+<div class="collapse-code"><input checked="checked" id="__collapse1" name="__collapse1" type="checkbox" /><div class="highlight"><span class="filename">直接運算</span><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;bits/stdc++.h&gt;</span>
 <span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span>
 
 <span class="cp">#define int long long</span>
@@ -7864,32 +7891,6 @@ is now available!
 <span class="p">}</span>
 </code></pre></div>
 <div class="code-footer"><label class="expand icon-only" for="__collapse1" tabindex="0"><span class="collapse-code__sr-only">expand</span></label><label class="collapse icon-only" for="__collapse1" tabindex="0"><span class="collapse-code__sr-only">collapse</span></label></div>
-</div>
-<div class="collapse-code"><input checked="checked" id="__collapse2" name="__collapse2" type="checkbox" /><div class="highlight"><span class="filename">直接運算</span><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;bits/stdc++.h&gt;</span>
-<span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span>
-
-<span class="cp">#define int long long</span>
-
-<span class="kt">signed</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="p">;</span>
-<span class="w">    </span><span class="n">cin</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">n</span><span class="p">;</span>
-
-<span class="w">    </span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">v</span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
-
-<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">n</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="n">cin</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">v</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
-<span class="w">    </span><span class="p">}</span>
-
-<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">3</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">n</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="n">v</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">min</span><span class="p">(</span><span class="n">v</span><span class="p">[</span><span class="n">i</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">],</span><span class="w"> </span><span class="n">v</span><span class="p">[</span><span class="n">i</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">2</span><span class="p">]);</span>
-<span class="w">    </span><span class="p">}</span>
-
-<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">v</span><span class="p">[</span><span class="n">n</span><span class="p">];</span>
-
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></div>
-<div class="code-footer"><label class="expand icon-only" for="__collapse2" tabindex="0"><span class="collapse-code__sr-only">expand</span></label><label class="collapse icon-only" for="__collapse2" tabindex="0"><span class="collapse-code__sr-only">collapse</span></label></div>
 </div>
 <h4 id="p-6-2-不連續的表演酬勞">P-6-2. 不連續的表演酬勞<a class="headerlink" href="#p-6-2-不連續的表演酬勞" title="Permanent link"></a></h4>
 <p>題目：<a href="https://judge.tcirc.tw/ShowProblem?problemid=d067">https://judge.tcirc.tw/ShowProblem?problemid=d067</a>    </p>
@@ -7921,7 +7922,7 @@ Time limit: 1 秒  <br />
 轉移式：dp[i]=max(dp[i-1],dp[i-2]+dp[i]) <br />
 邊界：第一天、第二天(dp[0]、dp[1])   </p>
 </blockquote>
-<div class="collapse-code"><input checked="checked" id="__collapse3" name="__collapse3" type="checkbox" /><div class="highlight"><span class="filename">code</span><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;bits/stdc++.h&gt;</span>
+<div class="collapse-code"><input checked="checked" id="__collapse2" name="__collapse2" type="checkbox" /><div class="highlight"><span class="filename">code</span><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;bits/stdc++.h&gt;</span>
 <span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span>
 
 <span class="cp">#define int long long</span>
@@ -7954,7 +7955,7 @@ Time limit: 1 秒  <br />
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div>
-<div class="code-footer"><label class="expand icon-only" for="__collapse3" tabindex="0"><span class="collapse-code__sr-only">expand</span></label><label class="collapse icon-only" for="__collapse3" tabindex="0"><span class="collapse-code__sr-only">collapse</span></label></div>
+<div class="code-footer"><label class="expand icon-only" for="__collapse2" tabindex="0"><span class="collapse-code__sr-only">expand</span></label><label class="collapse icon-only" for="__collapse2" tabindex="0"><span class="collapse-code__sr-only">collapse</span></label></div>
 </div>
 <h4 id="p-6-3-最小監控鄰居的成本">P-6-3. 最小監控鄰居的成本<a class="headerlink" href="#p-6-3-最小監控鄰居的成本" title="Permanent link"></a></h4>
 <p>題目：<a href="https://judge.tcirc.tw/ShowProblem?problemid=d068">https://judge.tcirc.tw/ShowProblem?problemid=d068</a>     </p>
@@ -7979,7 +7980,7 @@ Time limit: 1 秒  <br />
 <p>dp[i] = 第 i 項有裝時，前面 i 個區段的最小成本</p>
 </blockquote>
 <p><img alt="alt text" src="images/%E5%8B%95%E6%85%8B%E8%A6%8F%E5%8A%83%28dp%29/image.png" /></p>
-<div class="collapse-code"><input checked="checked" id="__collapse4" name="__collapse4" type="checkbox" /><div class="highlight"><span class="filename">code</span><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;bits/stdc++.h&gt;</span>
+<div class="collapse-code"><input checked="checked" id="__collapse3" name="__collapse3" type="checkbox" /><div class="highlight"><span class="filename">code</span><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;bits/stdc++.h&gt;</span>
 <span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span>
 
 <span class="cp">#define int long long</span>
@@ -8017,7 +8018,7 @@ Time limit: 1 秒  <br />
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div>
-<div class="code-footer"><label class="expand icon-only" for="__collapse4" tabindex="0"><span class="collapse-code__sr-only">expand</span></label><label class="collapse icon-only" for="__collapse4" tabindex="0"><span class="collapse-code__sr-only">collapse</span></label></div>
+<div class="code-footer"><label class="expand icon-only" for="__collapse3" tabindex="0"><span class="collapse-code__sr-only">expand</span></label><label class="collapse icon-only" for="__collapse3" tabindex="0"><span class="collapse-code__sr-only">collapse</span></label></div>
 </div>
 <hr />
 <h5 id="解法-2">解法 2<a class="headerlink" href="#解法-2" title="Permanent link"></a></h5>
@@ -8026,7 +8027,7 @@ Time limit: 1 秒  <br />
 </blockquote>
 <p>算式：</p>
 <p><img alt="alt text" src="images/%E5%8B%95%E6%85%8B%E8%A6%8F%E5%8A%83%28dp%29/ChatGPT%20Image%202026%E5%B9%B45%E6%9C%881%E6%97%A5%20%E4%B8%8B%E5%8D%8802_41_41.png" /></p>
-<div class="collapse-code"><input checked="checked" id="__collapse5" name="__collapse5" type="checkbox" /><div class="highlight"><span class="filename">code</span><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;bits/stdc++.h&gt;</span>
+<div class="collapse-code"><input checked="checked" id="__collapse4" name="__collapse4" type="checkbox" /><div class="highlight"><span class="filename">code</span><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;bits/stdc++.h&gt;</span>
 <span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span>
 
 <span class="cp">#define int long long</span>
@@ -8067,7 +8068,7 @@ Time limit: 1 秒  <br />
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div>
-<div class="code-footer"><label class="expand icon-only" for="__collapse5" tabindex="0"><span class="collapse-code__sr-only">expand</span></label><label class="collapse icon-only" for="__collapse5" tabindex="0"><span class="collapse-code__sr-only">collapse</span></label></div>
+<div class="code-footer"><label class="expand icon-only" for="__collapse4" tabindex="0"><span class="collapse-code__sr-only">expand</span></label><label class="collapse icon-only" for="__collapse4" tabindex="0"><span class="collapse-code__sr-only">collapse</span></label></div>
 </div>
 <h4 id="q-6-4-闖關二選一">Q-6-4. 闖關二選一<a class="headerlink" href="#q-6-4-闖關二選一" title="Permanent link"></a></h4>
 <p><a href="https://judge.tcirc.tw/problem/d072">https://judge.tcirc.tw/problem/d072</a></p>
@@ -8082,7 +8083,7 @@ dp[i][1] = 到第 i 關，並且第 i 關選 b[i] 的最小成本</p>
 <p>dp[i][0] = min(dp[i - 1][0] + abs(a[i - 1] - a[i]),dp[i - 1][1] + abs(b[i - 1] - a[i]));<br />
 dp[i][1] = min(dp[i - 1][0] + abs(a[i - 1] - b[i]),dp[i - 1][1] + abs(b[i - 1] - b[i])); </p>
 </blockquote>
-<div class="collapse-code"><input checked="checked" id="__collapse6" name="__collapse6" type="checkbox" /><div class="highlight"><span class="filename">code</span><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;bits/stdc++.h&gt;</span>
+<div class="collapse-code"><input checked="checked" id="__collapse5" name="__collapse5" type="checkbox" /><div class="highlight"><span class="filename">code</span><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;bits/stdc++.h&gt;</span>
 <span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span>
 
 <span class="cp">#define int long long</span>
@@ -8120,7 +8121,7 @@ dp[i][1] = min(dp[i - 1][0] + abs(a[i - 1] - b[i]),dp[i - 1][1] + abs(b[i - 1] -
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div>
-<div class="code-footer"><label class="expand icon-only" for="__collapse6" tabindex="0"><span class="collapse-code__sr-only">expand</span></label><label class="collapse icon-only" for="__collapse6" tabindex="0"><span class="collapse-code__sr-only">collapse</span></label></div>
+<div class="code-footer"><label class="expand icon-only" for="__collapse5" tabindex="0"><span class="collapse-code__sr-only">expand</span></label><label class="collapse icon-only" for="__collapse5" tabindex="0"><span class="collapse-code__sr-only">collapse</span></label></div>
 </div>
 <h4 id="q-6-5-二維最大子矩陣">Q-6-5. 二維最大子矩陣<a class="headerlink" href="#q-6-5-二維最大子矩陣" title="Permanent link"></a></h4>
 <h3 id="2d0d">2D0D<a class="headerlink" href="#2d0d" title="Permanent link"></a></h3>
@@ -8162,7 +8163,7 @@ dp[i][1] = min(dp[i - 1][0] + abs(a[i - 1] - b[i]),dp[i - 1][1] + abs(b[i - 1] -
 </code></pre></div>
 </details>
 <p>1.不平移</p>
-<div class="collapse-code"><input checked="checked" id="__collapse7" name="__collapse7" type="checkbox" /><div class="highlight"><span class="filename">code</span><pre><span></span><code><span class="c1">// Grid max weight monotonic path</span>
+<div class="collapse-code"><input checked="checked" id="__collapse6" name="__collapse6" type="checkbox" /><div class="highlight"><span class="filename">code</span><pre><span></span><code><span class="c1">// Grid max weight monotonic path</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;bits/stdc++.h&gt;</span>
 <span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span>
 <span class="k">typedef</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">ll</span><span class="p">;</span>
@@ -8185,10 +8186,10 @@ dp[i][1] = min(dp[i - 1][0] + abs(a[i - 1] - b[i]),dp[i - 1][1] + abs(b[i - 1] -
 <span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div>
-<div class="code-footer"><label class="expand icon-only" for="__collapse7" tabindex="0"><span class="collapse-code__sr-only">expand</span></label><label class="collapse icon-only" for="__collapse7" tabindex="0"><span class="collapse-code__sr-only">collapse</span></label></div>
+<div class="code-footer"><label class="expand icon-only" for="__collapse6" tabindex="0"><span class="collapse-code__sr-only">expand</span></label><label class="collapse icon-only" for="__collapse6" tabindex="0"><span class="collapse-code__sr-only">collapse</span></label></div>
 </div>
 <p>2.平移</p>
-<div class="collapse-code"><input checked="checked" id="__collapse8" name="__collapse8" type="checkbox" /><div class="highlight"><span class="filename">code</span><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;bits/stdc++.h&gt;</span>
+<div class="collapse-code"><input checked="checked" id="__collapse7" name="__collapse7" type="checkbox" /><div class="highlight"><span class="filename">code</span><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;bits/stdc++.h&gt;</span>
 <span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span>
 <span class="cp">#define nn &quot;\n&quot;</span>
 
@@ -8225,7 +8226,7 @@ dp[i][1] = min(dp[i - 1][0] + abs(a[i - 1] - b[i]),dp[i - 1][1] + abs(b[i - 1] -
 
 <span class="p">}</span>
 </code></pre></div>
-<div class="code-footer"><label class="expand icon-only" for="__collapse8" tabindex="0"><span class="collapse-code__sr-only">expand</span></label><label class="collapse icon-only" for="__collapse8" tabindex="0"><span class="collapse-code__sr-only">collapse</span></label></div>
+<div class="code-footer"><label class="expand icon-only" for="__collapse7" tabindex="0"><span class="collapse-code__sr-only">expand</span></label><label class="collapse icon-only" for="__collapse7" tabindex="0"><span class="collapse-code__sr-only">collapse</span></label></div>
 </div>
 <blockquote>
 <p>注意在<code>i==1 &amp;&amp; j==1</code>時要跳過，不然<code>v[i][j]</code>的值會變成<code>INT_MIN</code></p>
@@ -8247,7 +8248,7 @@ Longest Common Subsequence(LCS)是序列分析的重要問題，一個序列的�
 以”algorithm”為例，”algtm”與”lgh”都是它的子序列，但是”agl”則不是，因為      <br />
 你不可以調整位置重新排列。輸入兩序列，LCS 要找一個最長的序列，它是兩輸入序列      <br />
 的共同子序列。LCS 可以是一種作為字串相似度的定義，有很多重要的應用。        </p>
-<div class="collapse-code"><input checked="checked" id="__collapse9" name="__collapse9" type="checkbox" /><div class="highlight"><span class="filename">code</span><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;bits/stdc++.h&gt;</span>
+<div class="collapse-code"><input checked="checked" id="__collapse8" name="__collapse8" type="checkbox" /><div class="highlight"><span class="filename">code</span><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;bits/stdc++.h&gt;</span>
 <span class="cp">#define nn &quot;\n&quot;</span>
 <span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span>
 
@@ -8273,7 +8274,7 @@ Longest Common Subsequence(LCS)是序列分析的重要問題，一個序列的�
 <span class="w">    </span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">dp</span><span class="p">[</span><span class="n">n</span><span class="p">][</span><span class="n">m</span><span class="p">];</span>
 <span class="p">}</span>
 </code></pre></div>
-<div class="code-footer"><label class="expand icon-only" for="__collapse9" tabindex="0"><span class="collapse-code__sr-only">expand</span></label><label class="collapse icon-only" for="__collapse9" tabindex="0"><span class="collapse-code__sr-only">collapse</span></label></div>
+<div class="code-footer"><label class="expand icon-only" for="__collapse8" tabindex="0"><span class="collapse-code__sr-only">expand</span></label><label class="collapse icon-only" for="__collapse8" tabindex="0"><span class="collapse-code__sr-only">collapse</span></label></div>
 </div>
 <h4 id="d23197北縣賽-2-基因序列密碼問題lcs類似題">d231.97北縣賽-2-基因序列密碼問題(LCS類似題)<a class="headerlink" href="#d23197北縣賽-2-基因序列密碼問題lcs類似題" title="Permanent link"></a></h4>
 <p>基因序列是由四個鹼基A、C、G、T組合而成，例如 AGTTACGGGTTCGTAA有可能是某個基因序列。在生物學裡常見的問題是要找出兩的基因序列的最長共同子序列   </p>
@@ -8290,7 +8291,7 @@ AAAG            <br />
 GAG                   </p>
 <p>範例輸出 #1           <br />
 AG             </p>
-<div class="collapse-code"><input checked="checked" id="__collapse10" name="__collapse10" type="checkbox" /><div class="highlight"><span class="filename">直覺版本</span><pre><span></span><code><span class="cp">#include</span><span class="cpf">&lt;bits/stdc++.h&gt;</span>
+<div class="collapse-code"><input checked="checked" id="__collapse9" name="__collapse9" type="checkbox" /><div class="highlight"><span class="filename">直覺版本</span><pre><span></span><code><span class="cp">#include</span><span class="cpf">&lt;bits/stdc++.h&gt;</span>
 <span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span>
 <span class="cp">#define N 51</span>
 <span class="cp">#define nn &quot;\n&quot;</span>
@@ -8362,9 +8363,9 @@ AG             </p>
 <span class="w">    </span><span class="c1">//cout&lt;&lt;dp[ls-1][lss-1];</span>
 <span class="p">}</span>
 </code></pre></div>
-<div class="code-footer"><label class="expand icon-only" for="__collapse10" tabindex="0"><span class="collapse-code__sr-only">expand</span></label><label class="collapse icon-only" for="__collapse10" tabindex="0"><span class="collapse-code__sr-only">collapse</span></label></div>
+<div class="code-footer"><label class="expand icon-only" for="__collapse9" tabindex="0"><span class="collapse-code__sr-only">expand</span></label><label class="collapse icon-only" for="__collapse9" tabindex="0"><span class="collapse-code__sr-only">collapse</span></label></div>
 </div>
-<div class="collapse-code"><input checked="checked" id="__collapse11" name="__collapse11" type="checkbox" /><div class="highlight"><span class="filename">記憶體節省版</span><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+<div class="collapse-code"><input checked="checked" id="__collapse10" name="__collapse10" type="checkbox" /><div class="highlight"><span class="filename">記憶體節省版</span><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
 <span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span>
 <span class="w"> </span>
 <span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
@@ -8403,7 +8404,7 @@ AG             </p>
 <span class="w">    </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
-<div class="code-footer"><label class="expand icon-only" for="__collapse11" tabindex="0"><span class="collapse-code__sr-only">expand</span></label><label class="collapse icon-only" for="__collapse11" tabindex="0"><span class="collapse-code__sr-only">collapse</span></label></div>
+<div class="code-footer"><label class="expand icon-only" for="__collapse10" tabindex="0"><span class="collapse-code__sr-only">expand</span></label><label class="collapse icon-only" for="__collapse10" tabindex="0"><span class="collapse-code__sr-only">collapse</span></label></div>
 </div>
 <h4 id="d378-最小路徑">d378: 最小路徑<a class="headerlink" href="#d378-最小路徑" title="Permanent link"></a></h4>
 <p><a href="https://zerojudge.tw/ShowProblem?problemid=d378">https://zerojudge.tw/ShowProblem?problemid=d378</a>      </p>
@@ -8438,7 +8439,7 @@ Case #1 :   <br />
 8   <br />
 Case #2 :   <br />
 1     </p>
-<div class="collapse-code"><input checked="checked" id="__collapse12" name="__collapse12" type="checkbox" /><div class="highlight"><span class="filename">向外拓展邊界</span><pre><span></span><code><span class="cp">#include</span><span class="cpf">&lt;bits/stdc++.h&gt;</span>
+<div class="collapse-code"><input checked="checked" id="__collapse11" name="__collapse11" type="checkbox" /><div class="highlight"><span class="filename">向外拓展邊界</span><pre><span></span><code><span class="cp">#include</span><span class="cpf">&lt;bits/stdc++.h&gt;</span>
 <span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span>
 <span class="cp">#define N 105</span>
 <span class="cp">#define nn &quot;\n&quot;</span>
@@ -8479,9 +8480,9 @@ Case #2 :   <br />
 <span class="w">    </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
-<div class="code-footer"><label class="expand icon-only" for="__collapse12" tabindex="0"><span class="collapse-code__sr-only">expand</span></label><label class="collapse icon-only" for="__collapse12" tabindex="0"><span class="collapse-code__sr-only">collapse</span></label></div>
+<div class="code-footer"><label class="expand icon-only" for="__collapse11" tabindex="0"><span class="collapse-code__sr-only">expand</span></label><label class="collapse icon-only" for="__collapse11" tabindex="0"><span class="collapse-code__sr-only">collapse</span></label></div>
 </div>
-<div class="collapse-code"><input checked="checked" id="__collapse13" name="__collapse13" type="checkbox" /><div class="highlight"><span class="filename">斷&lt;0</span><pre><span></span><code><span class="cp">#include</span><span class="cpf">&lt;bits/stdc++.h&gt;</span>
+<div class="collapse-code"><input checked="checked" id="__collapse12" name="__collapse12" type="checkbox" /><div class="highlight"><span class="filename">斷&lt;0</span><pre><span></span><code><span class="cp">#include</span><span class="cpf">&lt;bits/stdc++.h&gt;</span>
 <span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span>
 <span class="cp">#define N 105</span>
 <span class="cp">#define nn &quot;\n&quot;</span>
@@ -8523,14 +8524,14 @@ Case #2 :   <br />
 <span class="w">    </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
-<div class="code-footer"><label class="expand icon-only" for="__collapse13" tabindex="0"><span class="collapse-code__sr-only">expand</span></label><label class="collapse icon-only" for="__collapse13" tabindex="0"><span class="collapse-code__sr-only">collapse</span></label></div>
+<div class="code-footer"><label class="expand icon-only" for="__collapse12" tabindex="0"><span class="collapse-code__sr-only">expand</span></label><label class="collapse icon-only" for="__collapse12" tabindex="0"><span class="collapse-code__sr-only">collapse</span></label></div>
 </div>
 <h4 id="p-6-9-大賣場免費大搬家">P-6-9. 大賣場免費大搬家<a class="headerlink" href="#p-6-9-大賣場免費大搬家" title="Permanent link"></a></h4>
 <blockquote>
 <p>組合：外圈<br />
 一次：倒序</p>
 </blockquote>
-<div class="collapse-code"><input checked="checked" id="__collapse14" name="__collapse14" type="checkbox" /><div class="highlight"><span class="filename">一維</span><pre><span></span><code><span class="cp">#include</span><span class="cpf">&lt;bits/stdc++.h&gt;</span>
+<div class="collapse-code"><input checked="checked" id="__collapse13" name="__collapse13" type="checkbox" /><div class="highlight"><span class="filename">一維</span><pre><span></span><code><span class="cp">#include</span><span class="cpf">&lt;bits/stdc++.h&gt;</span>
 <span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span>
 <span class="cp">#define N 111111</span>
 <span class="cp">#define nn &quot;\n&quot;</span>
@@ -8564,9 +8565,9 @@ Case #2 :   <br />
 <span class="c1">//---------------------------------------------------</span>
 <span class="p">}</span>
 </code></pre></div>
-<div class="code-footer"><label class="expand icon-only" for="__collapse14" tabindex="0"><span class="collapse-code__sr-only">expand</span></label><label class="collapse icon-only" for="__collapse14" tabindex="0"><span class="collapse-code__sr-only">collapse</span></label></div>
+<div class="code-footer"><label class="expand icon-only" for="__collapse13" tabindex="0"><span class="collapse-code__sr-only">expand</span></label><label class="collapse icon-only" for="__collapse13" tabindex="0"><span class="collapse-code__sr-only">collapse</span></label></div>
 </div>
-<div class="collapse-code"><input checked="checked" id="__collapse15" name="__collapse15" type="checkbox" /><div class="highlight"><span class="filename">二維，可順序和倒序</span><pre><span></span><code><span class="c1">// 01-knapsack, O(Wn) space</span>
+<div class="collapse-code"><input checked="checked" id="__collapse14" name="__collapse14" type="checkbox" /><div class="highlight"><span class="filename">二維，可順序和倒序</span><pre><span></span><code><span class="c1">// 01-knapsack, O(Wn) space</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;bits/stdc++.h&gt;</span>
 <span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span>
 <span class="cp">#define N 101</span>
@@ -8611,7 +8612,7 @@ Case #2 :   <br />
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div>
-<div class="code-footer"><label class="expand icon-only" for="__collapse15" tabindex="0"><span class="collapse-code__sr-only">expand</span></label><label class="collapse icon-only" for="__collapse15" tabindex="0"><span class="collapse-code__sr-only">collapse</span></label></div>
+<div class="code-footer"><label class="expand icon-only" for="__collapse14" tabindex="0"><span class="collapse-code__sr-only">expand</span></label><label class="collapse icon-only" for="__collapse14" tabindex="0"><span class="collapse-code__sr-only">collapse</span></label></div>
 </div>
 <p>過程：<br />
 <div class="highlight"><pre><span></span><code>        0       0       0       0       0       0       0       0       0       0       0
@@ -8675,7 +8676,7 @@ Case #2 :   <br />
 <p>這是加上條件的背包問題，使用二維記住不同選擇</p>
 </blockquote>
 <p><img alt="alt text" src="../images/%E5%8B%95%E6%85%8B%E8%A6%8F%E5%8A%83%28dp%29/image-37.png" /></p>
-<div class="collapse-code"><input checked="checked" id="__collapse16" name="__collapse16" type="checkbox" /><div class="highlight"><span class="filename">code</span><pre><span></span><code><span class="cp">#include</span><span class="cpf">&lt;bits/stdc++.h&gt;</span>
+<div class="collapse-code"><input checked="checked" id="__collapse15" name="__collapse15" type="checkbox" /><div class="highlight"><span class="filename">code</span><pre><span></span><code><span class="cp">#include</span><span class="cpf">&lt;bits/stdc++.h&gt;</span>
 <span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span>
 <span class="cp">#define N 50</span>
 <span class="cp">#define nn &quot;\n&quot;</span>
@@ -8715,7 +8716,7 @@ Case #2 :   <br />
 <span class="w">    </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
-<div class="code-footer"><label class="expand icon-only" for="__collapse16" tabindex="0"><span class="collapse-code__sr-only">expand</span></label><label class="collapse icon-only" for="__collapse16" tabindex="0"><span class="collapse-code__sr-only">collapse</span></label></div>
+<div class="code-footer"><label class="expand icon-only" for="__collapse15" tabindex="0"><span class="collapse-code__sr-only">expand</span></label><label class="collapse icon-only" for="__collapse15" tabindex="0"><span class="collapse-code__sr-only">collapse</span></label></div>
 </div>
 <h4 id="d887-1山脈種類chain">d887. 1.山脈種類(chain)<a class="headerlink" href="#d887-1山脈種類chain" title="Permanent link"></a></h4>
 <p><img alt="alt text" src="../images/%E5%8B%95%E6%85%8B%E8%A6%8F%E5%8A%83%28dp%29/image-38.png" /><br />
@@ -8734,7 +8735,7 @@ Case #2 :   <br />
 下降-上升&lt;2 <br />
 <img alt="alt text" src="../images/%E5%8B%95%E6%85%8B%E8%A6%8F%E5%8A%83%28dp%29/image-39.png" /></p>
 </blockquote>
-<div class="collapse-code"><input checked="checked" id="__collapse17" name="__collapse17" type="checkbox" /><div class="highlight"><span class="filename">code</span><pre><span></span><code><span class="cp">#include</span><span class="cpf">&lt;bits/stdc++.h&gt;</span>
+<div class="collapse-code"><input checked="checked" id="__collapse16" name="__collapse16" type="checkbox" /><div class="highlight"><span class="filename">code</span><pre><span></span><code><span class="cp">#include</span><span class="cpf">&lt;bits/stdc++.h&gt;</span>
 <span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span>
 <span class="cp">#define N 50</span>
 <span class="cp">#define nn &quot;\n&quot;</span>
@@ -8780,7 +8781,7 @@ Case #2 :   <br />
 <span class="w">    </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
-<div class="code-footer"><label class="expand icon-only" for="__collapse17" tabindex="0"><span class="collapse-code__sr-only">expand</span></label><label class="collapse icon-only" for="__collapse17" tabindex="0"><span class="collapse-code__sr-only">collapse</span></label></div>
+<div class="code-footer"><label class="expand icon-only" for="__collapse16" tabindex="0"><span class="collapse-code__sr-only">expand</span></label><label class="collapse icon-only" for="__collapse16" tabindex="0"><span class="collapse-code__sr-only">collapse</span></label></div>
 </div>
 <h4 id="d133-00357---let-me-count-the-ways">d133. 00357 - Let Me Count The Ways<a class="headerlink" href="#d133-00357---let-me-count-the-ways" title="Permanent link"></a></h4>
 <p><a href="https://zerojudge.tw/ShowProblem?problemid=d133">https://zerojudge.tw/ShowProblem?problemid=d133</a></p>
@@ -8790,7 +8791,7 @@ Case #2 :   <br />
 <a href="#d212-東東爬階梯">排列數就像爬樓梯一樣</a>，所以<code>dp[i]=dp[i-1]+dp[i-5]+dp[i-10]+dp[i-25]+dp[i-50]</code>  <br />
 如果要用<code>c[i]</code>的話，<code>dp[i]=dp[i]+dp[i-c[i]]</code>也就是<code>dp[i]+=dp[i-c[i]]</code>    </p>
 <p>最後將物品移至外圈即可    </p>
-<div class="collapse-code"><input checked="checked" id="__collapse18" name="__collapse18" type="checkbox" /><div class="highlight"><span class="filename">code</span><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+<div class="collapse-code"><input checked="checked" id="__collapse17" name="__collapse17" type="checkbox" /><div class="highlight"><span class="filename">code</span><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
 <span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span>
 <span class="cp">#define nn &quot;\n&quot;</span>
 <span class="cp">#define N 300000</span>
@@ -8817,11 +8818,11 @@ Case #2 :   <br />
 <span class="w">    </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
-<div class="code-footer"><label class="expand icon-only" for="__collapse18" tabindex="0"><span class="collapse-code__sr-only">expand</span></label><label class="collapse icon-only" for="__collapse18" tabindex="0"><span class="collapse-code__sr-only">collapse</span></label></div>
+<div class="code-footer"><label class="expand icon-only" for="__collapse17" tabindex="0"><span class="collapse-code__sr-only">expand</span></label><label class="collapse icon-only" for="__collapse17" tabindex="0"><span class="collapse-code__sr-only">collapse</span></label></div>
 </div>
 <h4 id="d784-一連續元素的和"><a href="https://zerojudge.tw/ShowProblem?problemid=d784">d784. 一、連續元素的和</a><a class="headerlink" href="#d784-一連續元素的和" title="Permanent link"></a></h4>
 <p><img alt="alt text" src="../images/%E5%8B%95%E6%85%8B%E8%A6%8F%E5%8A%83%28dp%29/image-40.png" /></p>
-<div class="collapse-code"><input checked="checked" id="__collapse19" name="__collapse19" type="checkbox" /><div class="highlight"><span class="filename">考慮要不要前面</span><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+<div class="collapse-code"><input checked="checked" id="__collapse18" name="__collapse18" type="checkbox" /><div class="highlight"><span class="filename">考慮要不要前面</span><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
 <span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span>
 <span class="cp">#define nn &quot;\n&quot;</span>
 <span class="cp">#define N 1000</span>
@@ -8849,9 +8850,9 @@ Case #2 :   <br />
 <span class="w">    </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
-<div class="code-footer"><label class="expand icon-only" for="__collapse19" tabindex="0"><span class="collapse-code__sr-only">expand</span></label><label class="collapse icon-only" for="__collapse19" tabindex="0"><span class="collapse-code__sr-only">collapse</span></label></div>
+<div class="code-footer"><label class="expand icon-only" for="__collapse18" tabindex="0"><span class="collapse-code__sr-only">expand</span></label><label class="collapse icon-only" for="__collapse18" tabindex="0"><span class="collapse-code__sr-only">collapse</span></label></div>
 </div>
-<div class="collapse-code"><input checked="checked" id="__collapse20" name="__collapse20" type="checkbox" /><div class="highlight"><span class="filename">考慮選、不選</span><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+<div class="collapse-code"><input checked="checked" id="__collapse19" name="__collapse19" type="checkbox" /><div class="highlight"><span class="filename">考慮選、不選</span><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
 <span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span>
 <span class="cp">#define nn &quot;\n&quot;</span>
 <span class="cp">#define N 1000</span>
@@ -8878,10 +8879,10 @@ Case #2 :   <br />
 <span class="w">    </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
-<div class="code-footer"><label class="expand icon-only" for="__collapse20" tabindex="0"><span class="collapse-code__sr-only">expand</span></label><label class="collapse icon-only" for="__collapse20" tabindex="0"><span class="collapse-code__sr-only">collapse</span></label></div>
+<div class="code-footer"><label class="expand icon-only" for="__collapse19" tabindex="0"><span class="collapse-code__sr-only">expand</span></label><label class="collapse icon-only" for="__collapse19" tabindex="0"><span class="collapse-code__sr-only">collapse</span></label></div>
 </div>
 <h4 id="d212-東東爬階梯"><a href="https://zerojudge.tw/ShowProblem?problemid=d212">d212. 東東爬階梯</a><a class="headerlink" href="#d212-東東爬階梯" title="Permanent link"></a></h4>
-<div class="collapse-code"><input checked="checked" id="__collapse21" name="__collapse21" type="checkbox" /><div class="highlight"><span class="filename">code</span><pre><span></span><code><span class="cp">#include</span><span class="cpf">&lt;bits/stdc++.h&gt;</span>
+<div class="collapse-code"><input checked="checked" id="__collapse20" name="__collapse20" type="checkbox" /><div class="highlight"><span class="filename">code</span><pre><span></span><code><span class="cp">#include</span><span class="cpf">&lt;bits/stdc++.h&gt;</span>
 <span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span>
 <span class="cp">#define N 1000</span>
 <span class="cp">#define nn &quot;\n&quot;</span>
@@ -8903,7 +8904,7 @@ Case #2 :   <br />
 <span class="w">    </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
-<div class="code-footer"><label class="expand icon-only" for="__collapse21" tabindex="0"><span class="collapse-code__sr-only">expand</span></label><label class="collapse icon-only" for="__collapse21" tabindex="0"><span class="collapse-code__sr-only">collapse</span></label></div>
+<div class="code-footer"><label class="expand icon-only" for="__collapse20" tabindex="0"><span class="collapse-code__sr-only">expand</span></label><label class="collapse icon-only" for="__collapse20" tabindex="0"><span class="collapse-code__sr-only">collapse</span></label></div>
 </div>
 <h4 id="p-6-15-一覽衆山小"><a href="https://zerojudge.cchs.chc.edu.tw/">P-6-15. 一覽衆山小</a><a class="headerlink" href="#p-6-15-一覽衆山小" title="Permanent link"></a></h4>
 <p>所謂「會當凌絕頂，一覽衆山小。」很多人都想爬到高處，為的是將群山看小，但是登高必自卑，行遠必自邇，最好是一步一步逐步往上，妄想一步登天的人往往摔的慘 重。小說與遊戲中出現的人物往往都是越晚出現越厲害，現在已知所有人物的戰力與出場順序，想要找出依照出場順序而且戰力逐步上升的人物序列，請你計算滿足這樣 要求的序列的最大可能長度。</p>
@@ -8920,7 +8921,7 @@ Case #2 :   <br />
 5 4 3 2 1      </p>
 <p>範例二輸出：    <br />
 1     </p>
-<div class="collapse-code"><input checked="checked" id="__collapse22" name="__collapse22" type="checkbox" /><div class="highlight"><span class="filename">code</span><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;bits/stdc++.h&gt;</span>
+<div class="collapse-code"><input checked="checked" id="__collapse21" name="__collapse21" type="checkbox" /><div class="highlight"><span class="filename">code</span><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;bits/stdc++.h&gt;</span>
 <span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span>
 <span class="cp">#define nn &quot;\n&quot;</span>
 
@@ -8937,7 +8938,7 @@ Case #2 :   <br />
 <span class="w">    </span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">v</span><span class="p">.</span><span class="n">size</span><span class="p">();</span>
 <span class="p">}</span>
 </code></pre></div>
-<div class="code-footer"><label class="expand icon-only" for="__collapse22" tabindex="0"><span class="collapse-code__sr-only">expand</span></label><label class="collapse icon-only" for="__collapse22" tabindex="0"><span class="collapse-code__sr-only">collapse</span></label></div>
+<div class="code-footer"><label class="expand icon-only" for="__collapse21" tabindex="0"><span class="collapse-code__sr-only">expand</span></label><label class="collapse icon-only" for="__collapse21" tabindex="0"><span class="collapse-code__sr-only">collapse</span></label></div>
 </div>
 <h4 id="d242-00481---what-goes-up">d242. 00481 - What Goes Up<a class="headerlink" href="#d242-00481---what-goes-up" title="Permanent link"></a></h4>
 <p>寫一個程式從一連串的整數序列中選出最長的嚴格遞增子序列（strictly increasing subsequence）。例如：在 1, 3, 2, 2, 4, 0 中最長的嚴格遞增子序列為 1,3, 4 或者 1, 2, 4。     </p>
@@ -8980,7 +8981,7 @@ lis：   <br />
 x：2 1 4 3 6 7 5   <br />
 y：1 1 2 2 3 4 3     </p>
 </blockquote>
-<div class="collapse-code"><input checked="checked" id="__collapse23" name="__collapse23" type="checkbox" /><div class="highlight"><span class="filename">code</span><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;bits/stdc++.h&gt;</span>
+<div class="collapse-code"><input checked="checked" id="__collapse22" name="__collapse22" type="checkbox" /><div class="highlight"><span class="filename">code</span><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;bits/stdc++.h&gt;</span>
 <span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span>
 <span class="cp">#define nn &quot;\n&quot;</span>
 <span class="cp">#define N 5000000</span>
@@ -9025,7 +9026,7 @@ y：1 1 2 2 3 4 3     </p>
 <span class="w">    </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
-<div class="code-footer"><label class="expand icon-only" for="__collapse23" tabindex="0"><span class="collapse-code__sr-only">expand</span></label><label class="collapse icon-only" for="__collapse23" tabindex="0"><span class="collapse-code__sr-only">collapse</span></label></div>
+<div class="code-footer"><label class="expand icon-only" for="__collapse22" tabindex="0"><span class="collapse-code__sr-only">expand</span></label><label class="collapse icon-only" for="__collapse22" tabindex="0"><span class="collapse-code__sr-only">collapse</span></label></div>
 </div>
 <h4 id="b840-104北二4農作物採收問題"><a href="https://zerojudge.tw/ShowProblem?problemid=b840">b840: 104北二4.農作物採收問題</a><a class="headerlink" href="#b840-104北二4農作物採收問題" title="Permanent link"></a></h4>
 <blockquote>
@@ -9041,7 +9042,7 @@ y：1 1 2 2 3 4 3     </p>
 <p>最長遞減子序列就不能用內建lower_bound <br />
 所以直接全部*-1變成負數取最長遞增子序列，最後回推為正數   </p>
 </blockquote>
-<div class="collapse-code"><input checked="checked" id="__collapse24" name="__collapse24" type="checkbox" /><div class="highlight"><span class="filename">code</span><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;bits/stdc++.h&gt;</span>
+<div class="collapse-code"><input checked="checked" id="__collapse23" name="__collapse23" type="checkbox" /><div class="highlight"><span class="filename">code</span><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;bits/stdc++.h&gt;</span>
 <span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span>
 <span class="cp">#define N 22</span>
 <span class="cp">#define nn &quot;\n&quot;</span>
@@ -9089,10 +9090,10 @@ y：1 1 2 2 3 4 3     </p>
 <span class="w">    </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
-<div class="code-footer"><label class="expand icon-only" for="__collapse24" tabindex="0"><span class="collapse-code__sr-only">expand</span></label><label class="collapse icon-only" for="__collapse24" tabindex="0"><span class="collapse-code__sr-only">collapse</span></label></div>
+<div class="code-footer"><label class="expand icon-only" for="__collapse23" tabindex="0"><span class="collapse-code__sr-only">expand</span></label><label class="collapse icon-only" for="__collapse23" tabindex="0"><span class="collapse-code__sr-only">collapse</span></label></div>
 </div>
 <h4 id="i-仁者無敵-13"><a href="https://codeforces.com/group/f0XUnFzgmg/contest/539362/problem/I">I. 仁者無敵 1.3</a><a class="headerlink" href="#i-仁者無敵-13" title="Permanent link"></a></h4>
-<div class="collapse-code"><input checked="checked" id="__collapse25" name="__collapse25" type="checkbox" /><div class="highlight"><span class="filename">貪心+DP</span><pre><span></span><code><span class="cp">#include</span><span class="cpf">&lt;bits/stdc++.h&gt;</span>
+<div class="collapse-code"><input checked="checked" id="__collapse24" name="__collapse24" type="checkbox" /><div class="highlight"><span class="filename">貪心+DP</span><pre><span></span><code><span class="cp">#include</span><span class="cpf">&lt;bits/stdc++.h&gt;</span>
 <span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span>
 <span class="cp">#define nn &quot;\n&quot;</span>
 <span class="cp">#define int long long</span>
@@ -9179,12 +9180,12 @@ y：1 1 2 2 3 4 3     </p>
 <span class="w"> </span>
 <span class="p">}</span>
 </code></pre></div>
-<div class="code-footer"><label class="expand icon-only" for="__collapse25" tabindex="0"><span class="collapse-code__sr-only">expand</span></label><label class="collapse icon-only" for="__collapse25" tabindex="0"><span class="collapse-code__sr-only">collapse</span></label></div>
+<div class="code-footer"><label class="expand icon-only" for="__collapse24" tabindex="0"><span class="collapse-code__sr-only">expand</span></label><label class="collapse icon-only" for="__collapse24" tabindex="0"><span class="collapse-code__sr-only">collapse</span></label></div>
 </div>
 <h4 id="2023永春高中校內資訊學科">2023永春高中校內資訊學科<a class="headerlink" href="#2023永春高中校內資訊學科" title="Permanent link"></a></h4>
 <iframe src="https://drive.google.com/file/d/1IMmHMDpunWUVyo3zG4w5kI41gRJ0d2t8/preview" width="100%" height="1100px" style="border:none;"></iframe>
 
-<div class="collapse-code"><input checked="checked" id="__collapse26" name="__collapse26" type="checkbox" /><div class="highlight"><span class="filename">code</span><pre><span></span><code><span class="cp">#include</span><span class="cpf">&lt;bits/stdc++.h&gt;</span>
+<div class="collapse-code"><input checked="checked" id="__collapse25" name="__collapse25" type="checkbox" /><div class="highlight"><span class="filename">code</span><pre><span></span><code><span class="cp">#include</span><span class="cpf">&lt;bits/stdc++.h&gt;</span>
 <span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span>
 <span class="cp">#define int long long</span>
 <span class="cp">#define N 1000</span>
@@ -9220,7 +9221,7 @@ y：1 1 2 2 3 4 3     </p>
 <span class="w">    </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
-<div class="code-footer"><label class="expand icon-only" for="__collapse26" tabindex="0"><span class="collapse-code__sr-only">expand</span></label><label class="collapse icon-only" for="__collapse26" tabindex="0"><span class="collapse-code__sr-only">collapse</span></label></div>
+<div class="code-footer"><label class="expand icon-only" for="__collapse25" tabindex="0"><span class="collapse-code__sr-only">expand</span></label><label class="collapse icon-only" for="__collapse25" tabindex="0"><span class="collapse-code__sr-only">collapse</span></label></div>
 </div>
 
 

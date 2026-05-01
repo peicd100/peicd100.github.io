@@ -220,7 +220,7 @@ signed main() {
 ```
 ///
 
-/// collapse-code  
+<!-- /// collapse-code  
 ```cpp title="偏移" 
 #include <bits/stdc++.h>
 using namespace std;
@@ -247,7 +247,7 @@ signed main() {
 }
 
 ```
-///
+/// -->
 
 /// collapse-code  
 ```cpp title="直接運算" 
