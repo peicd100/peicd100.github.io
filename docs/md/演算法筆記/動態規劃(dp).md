@@ -584,115 +584,54 @@ https://judge.tcirc.tw/ShowProblem?problemid=d069
 > 遞迴式
 >` dp[i][j]=max(v[i-1][j],v[i][j-1])+v[i][j];`
 
-/// details | 錯誤版本
-
-注意以下程式碼雖然可以省去邊界定義，但如果在周圍的v[i][j-1]為負數，該負數會被蓋掉，如圖  
-
-![alt text](images/動態規劃(dp)/image-36.png)
-
-
-```cpp title="code"
-#include <bits/stdc++.h>
-using namespace std;
-#define nn "\n"
-
-int v[300][300];
-//    m
-//n
-
-int main(){
-int n,m;
-cin>>n>>m;
-for(int i=1;i<=n;i++){
-    for(int j=1;j<=m;j++){
-    cin>>v[i][j];
-    v[i][j]=max(v[i-1][j],v[i][j-1])+v[i][j];
-    }
-}
-cout<<v[n][m];
-
-}
-```
-///
-
-
-1.不平移
-/// collapse-code  
-```cpp title="code"
-// Grid max weight monotonic path
-#include <bits/stdc++.h>
-using namespace std;
-typedef long long ll;
-#define N 205
-int main() {
- int m,n;
- int a[N][N]={0};
- scanf("%d%d", &m, &n);
- for (int i=0; i<m; i++) for (int j=0; j<n; j++)
- scanf("%d", &a[i][j]);
- // first row and first column
- for (int j=1; j<n; j++)
- a[0][j] += a[0][j-1];
- for (int i=1; i<m; i++)
- a[i][0] += a[i-1][0];
- // max of left and up
- for (int i=1; i<m; i++) for (int j=1; j<n; j++)
- a[i][j] += max(a[i-1][j], a[i][j-1]);
- printf("%d\n", a[m-1][n-1]);
- return 0;
-}
-```
-///
-
-2.平移
 /// collapse-code  
 ```cpp title="code"
 #include <bits/stdc++.h>
+
 using namespace std;
-#define nn "\n"
+#define int long long
 
-int v[300][300];
-//    m
-//n
+signed main() {
+    int n, m;
+    cin >> n >> m;
 
-#include <bits/stdc++.h>
-using namespace std;
-#define nn "\n"
+    vector<vector<int>> v(n + 2, vector<int>(m + 2, -(2e4))); //全部先設定最小值-2*10^4
 
-int v[300][300];
-//    m
-//n
-
-int main(){
-  int n,m;
-  cin>>n>>m;
-  for(int i=0;i<=m;i++)
-    v[i][0]=INT_MIN;
-  for(int i=0;i<=n;i++)
-    v[0][i]=INT_MIN;
-
-  for(int i=1;i<=n;i++){
-    for(int j=1;j<=m;j++){
-      cin>>v[i][j];
-      if(i==1&&j==1){
-        continue;
-      }
-      v[i][j]=max(v[i-1][j],v[i][j-1])+v[i][j];
+    for (int i = 0 + 1; i < n + 1; i++) {
+        for (int j = 0 + 1; j < m + 1; j++) {
+            cin >> v[i][j];
+        }
     }
-  }
-  cout<<v[n][m];
 
+    // for (vector<int> i : v) {
+    //     for (int j : i) {
+    //         cout << j << " ";
+    //     }
+    //     cout << "\n";
+    // }
+
+    for (int i = 0 + 1; i < n + 1; i++) {
+        for (int j = 0 + 1; j < m + 1; j++) {
+            if (i == 1 && j == 1) continue;      // 排除(1,1)
+            v[i][j] += max(v[i - 1][j], v[i][j - 1]);
+        }
+    }
+
+    // cout << "\n\n";
+
+    // for (vector<int> i : v) {
+    //     for (int j : i) {
+    //         cout << j << " ";
+    //     }
+    //     cout << "\n";
+    // }
+
+    cout << v[n][m];
+
+    return 0;
 }
 ```
 ///
-
-> 注意在`i==1 && j==1`時要跳過，不然`v[i][j]`的值會變成`INT_MIN`
-
-
-
-> 所以對於這題來說平移其實是多餘的
-
-
 
 #### P-6-7. LCS    
     
