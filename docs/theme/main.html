@@ -4,9 +4,6 @@
 {{ super() }}
 {% include "partials/libs.html" ignore missing %}
 
-
-{% include "star.html" ignore missing %}
-
 <!-- google 朗讀和翻譯 -->
 {% include "tts.html" ignore missing %}  
 
@@ -16,6 +13,16 @@
 <!-- {% include "comments.html" ignore missing %} -->
 
 
+{% endblock %}
+
+{% block footer %}
+  {{ super() }}
+  {% include "partials/scroll-bottom.html" ignore missing %}
+{% endblock %}
+
+{% block scripts %}
+  {{ super() }}
+  <script src="{{ 'assets/pymdownx-extras/scroll-bottom.js?v=20260424-3' | url }}" type="text/javascript"></script>
 {% endblock %}
 
 <!-- 贊助 -->
