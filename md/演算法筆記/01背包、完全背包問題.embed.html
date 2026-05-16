@@ -1,0 +1,704 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>0/1 背包 vs 完全背包：二維 DP 資料傳遞互動視覺化</title>
+<style>
+  :root{
+    --bg:#f6f7fb;
+    --panel:#ffffff;
+    --ink:#1f2937;
+    --muted:#6b7280;
+    --line:#d1d5db;
+    --accent:#2563eb;
+    --accent2:#7c3aed;
+    --good:#16a34a;
+    --warn:#d97706;
+    --bad:#dc2626;
+    --cell:#ffffff;
+    --cell-soft:#f9fafb;
+    --current:#fde68a;
+    --from1:#bfdbfe;
+    --from2:#ddd6fe;
+    --target:#bbf7d0;
+    --disabled:#e5e7eb;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans TC", Arial, sans-serif;
+    background:var(--bg);
+    color:var(--ink);
+    line-height:1.55;
+  }
+  header{
+    padding:22px 18px 14px;
+    max-width:1180px;
+    margin:0 auto;
+  }
+  h1{
+    margin:0 0 8px;
+    font-size:26px;
+    letter-spacing:.02em;
+  }
+  .subtitle{
+    color:var(--muted);
+    font-size:15px;
+  }
+  main{
+    max-width:1180px;
+    margin:0 auto;
+    padding:0 18px 28px;
+    display:grid;
+    gap:16px;
+  }
+  .panel{
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:16px;
+    padding:16px;
+    box-shadow:0 6px 20px rgba(15,23,42,.06);
+  }
+  .controls{
+    display:grid;
+    grid-template-columns: 1.3fr 1fr 1fr;
+    gap:12px;
+  }
+  @media (max-width:900px){
+    .controls{grid-template-columns:1fr}
+  }
+  label{
+    display:block;
+    font-weight:700;
+    font-size:14px;
+    margin-bottom:6px;
+  }
+  input, select, button{
+    font:inherit;
+  }
+  input, select{
+    width:100%;
+    border:1px solid var(--line);
+    border-radius:10px;
+    padding:9px 10px;
+    background:white;
+  }
+  .row{
+    display:flex;
+    gap:8px;
+    flex-wrap:wrap;
+    align-items:center;
+  }
+  button{
+    border:1px solid var(--line);
+    background:white;
+    color:var(--ink);
+    padding:9px 12px;
+    border-radius:10px;
+    cursor:pointer;
+    font-weight:700;
+  }
+  button.primary{
+    background:var(--accent);
+    color:white;
+    border-color:var(--accent);
+  }
+  button:hover{filter:brightness(.98)}
+  button:disabled{
+    opacity:.55;
+    cursor:not-allowed;
+  }
+  .small{
+    color:var(--muted);
+    font-size:13px;
+  }
+  .status-grid{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap:16px;
+  }
+  @media (max-width:900px){
+    .status-grid{grid-template-columns:1fr}
+  }
+  .formula{
+    background:#0f172a;
+    color:#e5e7eb;
+    border-radius:14px;
+    padding:14px;
+    overflow:auto;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+    font-size:14px;
+    min-height:112px;
+  }
+  .explain{
+    border-left:5px solid var(--accent);
+    padding:10px 12px;
+    background:#eff6ff;
+    border-radius:12px;
+    min-height:112px;
+  }
+  .explain b{color:#111827}
+  .legend{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px 14px;
+    margin-top:10px;
+    font-size:13px;
+    color:var(--muted);
+  }
+  .chip{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+  }
+  .box{
+    width:16px;height:16px;border-radius:4px;border:1px solid var(--line);
+  }
+  .b-current{background:var(--current)}
+  .b-from1{background:var(--from1)}
+  .b-from2{background:var(--from2)}
+  .b-target{background:var(--target)}
+  .table-wrap{
+    overflow:auto;
+    border:1px solid var(--line);
+    border-radius:14px;
+    background:#fff;
+  }
+  table{
+    border-collapse:separate;
+    border-spacing:0;
+    width:max-content;
+    min-width:100%;
+  }
+  th, td{
+    border-right:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+    min-width:58px;
+    height:42px;
+    text-align:center;
+    padding:5px 7px;
+    position:relative;
+    background:var(--cell);
+  }
+  th{
+    background:#f3f4f6;
+    font-weight:800;
+    position:sticky;
+    top:0;
+    z-index:2;
+  }
+  th:first-child, td:first-child{
+    position:sticky;
+    left:0;
+    z-index:3;
+    background:#f3f4f6;
+    font-weight:800;
+    min-width:92px;
+  }
+  th:first-child{z-index:4}
+  td.not-ready{
+    background:var(--disabled);
+    color:#9ca3af;
+  }
+  td.current{
+    background:var(--current);
+    outline:3px solid #f59e0b;
+    outline-offset:-3px;
+    font-weight:900;
+  }
+  td.from1{
+    background:var(--from1);
+    outline:3px solid #3b82f6;
+    outline-offset:-3px;
+    font-weight:900;
+  }
+  td.from2{
+    background:var(--from2);
+    outline:3px solid #8b5cf6;
+    outline-offset:-3px;
+    font-weight:900;
+  }
+  td.target{
+    background:var(--target);
+    outline:3px solid #22c55e;
+    outline-offset:-3px;
+    font-weight:900;
+  }
+  .item-table{
+    width:100%;
+    min-width:0;
+  }
+  .item-table th,.item-table td{
+    min-width:auto;
+    height:auto;
+    position:static;
+    padding:8px;
+  }
+  .item-table th:first-child,.item-table td:first-child{
+    position:static;
+    min-width:auto;
+  }
+  .tag{
+    display:inline-block;
+    border-radius:999px;
+    padding:2px 8px;
+    font-size:12px;
+    font-weight:800;
+    background:#e0e7ff;
+    color:#3730a3;
+  }
+  .warn{
+    background:#fff7ed;
+    border-left-color:var(--warn);
+  }
+  .good{
+    background:#f0fdf4;
+    border-left-color:var(--good);
+  }
+  details{
+    color:var(--muted);
+  }
+  summary{
+    cursor:pointer;
+    font-weight:700;
+    color:var(--ink);
+  }
+</style>
+
+<style data-peicd-markdown-embed-scroll-guard>
+  html, body {
+    overscroll-behavior: contain;
+  }
+  body {
+    overflow-x: hidden;
+  }
+</style>
+</head>
+<body>
+<header>
+  <h1>0/1 背包 vs 完全背包：二維 DP 資料如何傳遞</h1>
+  <div class="subtitle">
+    這個互動表格會一格一格計算 <code>dp[i][j]</code>，並高亮「不拿」和「拿」時資料從哪裡來。
+  </div>
+</header>
+
+<main>
+  <section class="panel controls">
+    <div>
+      <label for="mode">問題類型</label>
+      <select id="mode">
+        <option value="01">0/1 背包：每個商品最多拿一次</option>
+        <option value="complete">完全背包：同一種商品可以拿很多次</option>
+      </select>
+      <div class="small">差異只在「拿商品」時看上一列，還是看同一列。</div>
+    </div>
+    <div>
+      <label for="capacity">背包容量 W</label>
+      <input id="capacity" value="8" inputmode="numeric">
+      <div class="small">建議先用 5～12，表格比較好看。</div>
+    </div>
+    <div>
+      <label>操作</label>
+      <div class="row">
+        <button id="reset" class="primary">重新建立</button>
+        <button id="prev">上一步</button>
+        <button id="next">下一步</button>
+        <button id="play">自動播放</button>
+      </div>
+    </div>
+    <div>
+      <label for="weights">重量 w，用逗號分隔</label>
+      <input id="weights" value="3,4,2">
+    </div>
+    <div>
+      <label for="values">價值 val，用逗號分隔</label>
+      <input id="values" value="5,6,3">
+    </div>
+    <div>
+      <label>快速範例</label>
+      <div class="row">
+        <button data-example="small01">小範例</button>
+        <button data-example="tcirc">題型範例</button>
+        <button data-example="complete">完全背包明顯範例</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="status-grid">
+    <div class="panel">
+      <h2 style="margin-top:0">目前計算</h2>
+      <div id="formula" class="formula"></div>
+      <div class="legend">
+        <span class="chip"><span class="box b-current"></span>正在計算 dp[i][j]</span>
+        <span class="chip"><span class="box b-from1"></span>不拿：dp[i-1][j]</span>
+        <span class="chip"><span class="box b-from2"></span>拿：0/1 看 dp[i-1][j-w]；完全看 dp[i][j-w]</span>
+        <span class="chip"><span class="box b-target"></span>本格最後結果</span>
+      </div>
+    </div>
+    <div class="panel">
+      <h2 style="margin-top:0">白話解釋</h2>
+      <div id="explain" class="explain"></div>
+    </div>
+  </section>
+
+  <section class="panel">
+    <h2 style="margin-top:0">商品資料</h2>
+    <div id="items"></div>
+  </section>
+
+  <section class="panel">
+    <h2 style="margin-top:0">DP 表格</h2>
+    <div class="small" style="margin-bottom:8px">
+      橫軸是容量 <code>j</code>，縱軸是「只考慮前 <code>i</code> 個商品」。灰色代表還沒算到。
+    </div>
+    <div id="table" class="table-wrap"></div>
+  </section>
+
+  <section class="panel">
+    <details open>
+      <summary>核心差異整理</summary>
+      <div style="margin-top:10px">
+        <p><b>0/1 背包</b>：拿第 <code>i</code> 個商品後，不能再拿同一個，所以資料從上一列來：</p>
+        <pre>dp[i][j] = max(dp[i-1][j], dp[i-1][j-w[i]] + val[i])</pre>
+        <p><b>完全背包</b>：拿第 <code>i</code> 種商品後，還可以繼續拿同一種，所以資料從同一列來：</p>
+        <pre>dp[i][j] = max(dp[i-1][j], dp[i][j-w[i]] + val[i])</pre>
+        <p>你可以把它想成：0/1 背包是「拿一次就往下一個商品走」；完全背包是「拿了之後還站在同一種商品旁邊，可以再拿一次」。</p>
+      </div>
+    </details>
+  </section>
+</main>
+
+<script>
+(() => {
+  const modeEl = document.getElementById('mode');
+  const capEl = document.getElementById('capacity');
+  const weightsEl = document.getElementById('weights');
+  const valuesEl = document.getElementById('values');
+  const resetBtn = document.getElementById('reset');
+  const prevBtn = document.getElementById('prev');
+  const nextBtn = document.getElementById('next');
+  const playBtn = document.getElementById('play');
+  const formulaEl = document.getElementById('formula');
+  const explainEl = document.getElementById('explain');
+  const tableEl = document.getElementById('table');
+  const itemsEl = document.getElementById('items');
+
+  let state = null;
+  let timer = null;
+
+  function parseList(s){
+    return s.split(',')
+      .map(x => Number(String(x).trim()))
+      .filter(x => Number.isFinite(x) && x >= 0);
+  }
+
+  function clampInputs(){
+    const W = Math.max(0, Math.min(30, Math.floor(Number(capEl.value) || 0)));
+    capEl.value = W;
+    const w = parseList(weightsEl.value);
+    const v = parseList(valuesEl.value);
+    const n = Math.min(w.length, v.length, 8);
+    return {
+      W,
+      w: [0, ...w.slice(0,n).map(x => Math.max(1, Math.floor(x)))],
+      v: [0, ...v.slice(0,n).map(x => Math.floor(x))],
+      n
+    };
+  }
+
+  function emptyDP(n,W){
+    return Array.from({length:n+1}, () => Array.from({length:W+1}, () => null));
+  }
+
+  function build(){
+    stop();
+    const input = clampInputs();
+    const {n,W,w,v} = input;
+    const dp = emptyDP(n,W);
+    for(let j=0;j<=W;j++) dp[0][j] = 0;
+
+    state = {
+      mode: modeEl.value,
+      n,W,w,v,dp,
+      step: 0,
+      maxStep: n * (W + 1),
+      last: null,
+      history: []
+    };
+    render();
+  }
+
+  function locate(step){
+    // step = 0 means no item cell calculated yet
+    // next cell index is step + 1
+    if(step <= 0) return null;
+    const idx = step - 1;
+    const i = Math.floor(idx / (state.W + 1)) + 1;
+    const j = idx % (state.W + 1);
+    return {i,j};
+  }
+
+  function calcCell(i,j){
+    const {dp,w,v,mode} = state;
+    const noTake = dp[i-1][j];
+    let take = null;
+    let takeFrom = null;
+
+    if(j >= w[i]){
+      if(mode === '01'){
+        takeFrom = {i:i-1, j:j-w[i]};
+        take = dp[i-1][j-w[i]] + v[i];
+      }else{
+        takeFrom = {i:i, j:j-w[i]};
+        take = dp[i][j-w[i]] + v[i];
+      }
+    }
+
+    const ans = take === null ? noTake : Math.max(noTake, take);
+    return {
+      i,j,
+      noTake,
+      noTakeFrom:{i:i-1,j},
+      take,
+      takeFrom,
+      ans,
+      chosen: take !== null && take > noTake ? 'take' : 'noTake'
+    };
+  }
+
+  function stepTo(targetStep){
+    const {n,W} = state;
+    targetStep = Math.max(0, Math.min(targetStep, state.maxStep));
+
+    // rebuild deterministically
+    const input = {mode:state.mode, n:state.n, W:state.W, w:state.w, v:state.v};
+    const dp = emptyDP(input.n,input.W);
+    for(let j=0;j<=input.W;j++) dp[0][j] = 0;
+    state.dp = dp;
+    state.history = [];
+    state.last = null;
+
+    for(let s=1; s<=targetStep; s++){
+      const idx = s - 1;
+      const i = Math.floor(idx / (W + 1)) + 1;
+      const j = idx % (W + 1);
+      const result = calcCell(i,j);
+      state.dp[i][j] = result.ans;
+      state.history.push(result);
+      state.last = result;
+    }
+    state.step = targetStep;
+    render();
+  }
+
+  function next(){
+    if(state.step >= state.maxStep) return;
+    stepTo(state.step + 1);
+  }
+
+  function prev(){
+    if(state.step <= 0) return;
+    stepTo(state.step - 1);
+  }
+
+  function play(){
+    if(timer){
+      stop();
+      return;
+    }
+    playBtn.textContent = '停止播放';
+    timer = setInterval(() => {
+      if(state.step >= state.maxStep){
+        stop();
+      }else{
+        next();
+      }
+    }, 650);
+  }
+
+  function stop(){
+    if(timer){
+      clearInterval(timer);
+      timer = null;
+    }
+    if(playBtn) playBtn.textContent = '自動播放';
+  }
+
+  function renderItems(){
+    const {n,w,v} = state;
+    let html = '<table class="item-table"><thead><tr><th>商品 i</th><th>重量 w[i]</th><th>價值 val[i]</th></tr></thead><tbody>';
+    for(let i=1;i<=n;i++){
+      html += `<tr><td><span class="tag">商品 ${i}</span></td><td>${w[i]}</td><td>${v[i]}</td></tr>`;
+    }
+    html += '</tbody></table>';
+    itemsEl.innerHTML = html;
+  }
+
+  function clsFor(i,j){
+    const last = state.last;
+    let classes = [];
+    if(state.dp[i][j] === null) classes.push('not-ready');
+    if(last){
+      if(last.i === i && last.j === j) classes.push('target');
+      if(last.noTakeFrom.i === i && last.noTakeFrom.j === j) classes.push('from1');
+      if(last.takeFrom && last.takeFrom.i === i && last.takeFrom.j === j) classes.push('from2');
+    }
+    return classes.join(' ');
+  }
+
+  function renderTable(){
+    const {n,W,dp} = state;
+    let html = '<table><thead><tr><th>i \\ j</th>';
+    for(let j=0;j<=W;j++) html += `<th>${j}</th>`;
+    html += '</tr></thead><tbody>';
+    for(let i=0;i<=n;i++){
+      html += `<tr><td>${i === 0 ? '0 個商品' : '前 ' + i + ' 個'}</td>`;
+      for(let j=0;j<=W;j++){
+        const val = dp[i][j];
+        html += `<td class="${clsFor(i,j)}">${val === null ? '' : val}</td>`;
+      }
+      html += '</tr>';
+    }
+    html += '</tbody></table>';
+    tableEl.innerHTML = html;
+  }
+
+  function renderFormula(){
+    const last = state.last;
+    const modeName = state.mode === '01' ? '0/1 背包' : '完全背包';
+    if(!last){
+      formulaEl.textContent =
+`${modeName}
+狀態：dp[i][j] = 只考慮前 i 種商品，容量最多 j 的最大價值
+
+按「下一步」開始計算。`;
+      explainEl.className = 'explain';
+      explainEl.innerHTML =
+`先觀察第 0 列：<b>考慮 0 個商品時，不管容量是多少，最大價值都是 0</b>。接下來會從 <code>dp[1][0]</code> 開始一格一格填。`;
+      return;
+    }
+
+    const {i,j,noTake,take,ans,chosen} = last;
+    const wi = state.w[i];
+    const vi = state.v[i];
+
+    let takeLine, modeLine;
+    if(state.mode === '01'){
+      modeLine = `0/1 背包拿商品時：看 dp[i-1][j-w[i]]，避免同一個商品被重複拿。`;
+      takeLine = j >= wi
+        ? `拿：dp[${i-1}][${j-wi}] + val[${i}] = ${state.dp[i-1][j-wi]} + ${vi} = ${take}`
+        : `拿：容量 ${j} < 重量 ${wi}，放不下`;
+    }else{
+      modeLine = `完全背包拿商品時：看 dp[i][j-w[i]]，代表拿完後還能繼續拿同一種商品。`;
+      takeLine = j >= wi
+        ? `拿：dp[${i}][${j-wi}] + val[${i}] = ${state.dp[i][j-wi]} + ${vi} = ${take}`
+        : `拿：容量 ${j} < 重量 ${wi}，放不下`;
+    }
+
+    formulaEl.textContent =
+`${modeName}
+正在算：dp[${i}][${j}]
+商品 ${i}：重量 w[${i}] = ${wi}，價值 val[${i}] = ${vi}
+
+不拿：dp[${i-1}][${j}] = ${noTake}
+${takeLine}
+
+所以：
+dp[${i}][${j}] = ${ans}
+
+${modeLine}`;
+
+    const chosenText = chosen === 'take' ? '選「拿」比較好' : '選「不拿」比較好，或兩者一樣好';
+    const sourceText = state.mode === '01'
+      ? `因為這是 0/1 背包，所以「拿」的資料要從上一列 <code>dp[i-1][...]</code> 來，避免商品 ${i} 被拿第二次。`
+      : `因為這是完全背包，所以「拿」的資料可以從同一列 <code>dp[i][...]</code> 來，代表商品 ${i} 可以被重複拿。`;
+
+    explainEl.className = chosen === 'take' ? 'explain good' : 'explain warn';
+    explainEl.innerHTML =
+`現在固定在 <b>前 ${i} 個商品</b>、<b>容量 ${j}</b>。<br>
+先保留「不拿商品 ${i}」的答案：<code>${noTake}</code>。<br>
+再看容量是否放得下商品 ${i}，如果放得下就比較「拿」會不會更好。<br>
+本格結果是 <b>${ans}</b>，也就是${chosenText}。<br><br>
+${sourceText}`;
+  }
+
+  function render(){
+    renderItems();
+    renderTable();
+    renderFormula();
+    prevBtn.disabled = !state || state.step <= 0;
+    nextBtn.disabled = !state || state.step >= state.maxStep;
+  }
+
+  resetBtn.addEventListener('click', build);
+  nextBtn.addEventListener('click', next);
+  prevBtn.addEventListener('click', prev);
+  playBtn.addEventListener('click', play);
+  modeEl.addEventListener('change', build);
+
+  document.querySelectorAll('[data-example]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const ex = btn.dataset.example;
+      if(ex === 'small01'){
+        capEl.value = '8';
+        weightsEl.value = '3,4,2';
+        valuesEl.value = '5,6,3';
+        modeEl.value = '01';
+      }
+      if(ex === 'tcirc'){
+        capEl.value = '10';
+        weightsEl.value = '3,4,2,3,3,6,5';
+        valuesEl.value = '5,5,2,4,4,5,6';
+        modeEl.value = '01';
+      }
+      if(ex === 'complete'){
+        capEl.value = '10';
+        weightsEl.value = '3,4';
+        valuesEl.value = '5,6';
+        modeEl.value = 'complete';
+      }
+      build();
+    });
+  });
+
+  build();
+})();
+</script>
+
+<script data-peicd-markdown-embed-scroll-guard>
+(function () {
+  function scrollingElement() {
+    return document.scrollingElement || document.documentElement;
+  }
+
+  document.addEventListener("wheel", function (event) {
+    var scroller = scrollingElement();
+    if (!scroller) return;
+
+    var maxY = Math.max(0, scroller.scrollHeight - scroller.clientHeight);
+    var top = scroller.scrollTop;
+    var scrollingUpPastTop = event.deltaY < 0 && top <= 0;
+    var scrollingDownPastBottom = event.deltaY > 0 && top >= maxY - 1;
+
+    if (maxY <= 0 || scrollingUpPastTop || scrollingDownPastBottom) {
+      event.preventDefault();
+    }
+  }, { passive: false });
+
+  window.addEventListener("message", function (event) {
+    if (!event.data || event.data.type !== "peicd-markdown-embed-scroll") return;
+
+    var scroller = scrollingElement();
+    if (!scroller) return;
+
+    scroller.scrollBy({
+      left: Number(event.data.deltaX) || 0,
+      top: Number(event.data.deltaY) || 0,
+      behavior: "auto"
+    });
+  });
+})();
+</script>
+</body>
+</html>
