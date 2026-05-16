@@ -25,6 +25,18 @@ v.resize(2,0);
 ->v={2,4};
 ```
 
+### .assign()
+
+```cpp
+vector<int> v = {1, 2, 3};
+
+v.assign(5, 9);
+// v 變成：9 9 9 9 9
+```
+
+!!! danger
+    比 resize 好用，但是不能只寫 `.assign(n)`，一定要給數值，如： .`assign(n,0)`
+
 ## 重新賦值
 
 ```cpp

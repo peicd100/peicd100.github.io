@@ -7,10 +7,10 @@ plugins: []
 
 # preview-target:start
 nav:
-  - 'md/114-2/科技_計算機結構/ch 3.md'
+  - 'md/演算法筆記/動態規劃(dp).md'
 
 exclude_docs: |
   *.md
-  !/md/114-2/科技_計算機結構/ch 3.md
+  !/md/演算法筆記/動態規劃(dp).md
   !/index.md
 # preview-target:end

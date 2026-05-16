@@ -39,8 +39,10 @@
 > 1. **特殊：**     
 > [d052-11456---Trainsorting](#d052-11456---trainsorting)     
 > 7. topdown-dp：     
+> [P-6-1. 小朋友上樓梯最小成本](#p-6-1-小朋友上樓梯最小成本)
 > [I. 仁者無敵 1.3](#i-仁者無敵-13)     
 > 8. 紀錄切換點：需要紀錄中間如何走、記錄拿取的東西。     
+> [P-6-1. 小朋友上樓梯最小成本](#p-6-1-小朋友上樓梯最小成本)
 > [I. 仁者無敵 1.3](#i-仁者無敵-13)     
 
 
@@ -112,44 +114,46 @@
 >2.狀態轉移     
 >狀態轉移需要兩個意識：   
 >     
->- 子問題     
+- 子問題     
 >- 最後一步     
->     
 >要思考：在選最後一個時，前面會選到的所有位置有哪些?     
->再根據條件寫轉移式     
 >     
+再根據條件寫轉移式     
 >看到下題，將所有情況分開討論     
 >一維：[P-6-3-最小監控鄰居的成本](#p-6-3-最小監控鄰居的成本)     
->多維：[b589-超級馬拉松賽](#b589-超級馬拉松賽)     
-     
+>     
+多維：[b589-超級馬拉松賽](#b589-超級馬拉松賽)     
+>     
 >3.邊界     
 >定義`f[0]`的數值或是「無法透過轉移式計算」之數值     
->看到下題，使用向外拓展、函數兩方法     
+看到下題，使用向外拓展、函數兩方法     
 >[d378-最小路徑](#d378-最小路徑)     
-     
+>     
 >4.確定計算順序     
 >調整轉移式以確保子問題會於主問題之前解決     
->可以選擇Top-Down或是Bottom-Up或其他     
-     
-     
-      -->
+可以選擇Top-Down或是Bottom-Up或其他     
+>     
+>     
+>      -->
      
          
 ###  Top-down memoization         
->  這是一種dp方式        
->  透過陣列存取已經運算過的值，透過遞迴執行程式        
->  換句話說   
+這是一種dp方式        
+透過陣列存取已經運算過的值，透過遞迴執行程式        
+換句話說   
 >  就只是在原本的遞迴上面加入一個判斷   
 >  我們可以先陣列`v[10]={0}`全部都是0，然後遞迴的時候判斷`v[i]`是否大於0   
 >  如果大於0(已經被賦予數值)就取用`v[i]`的數值   
-    
-## 習題   
-   
+>      
 
-> 題目的分類往往有很多種，主要看目的何在而分類，這裡我們以便於理解與學習來分類。 一個 DP 如果狀態有 O(nx)而轉移式涉及 O(n y)個狀態，一般可稱為 xDyD 的 DP，例如 小朋友上樓梯是 1D0D 的，因為有 n 個要算，每次算 f(i)只涉及 2 個 f(i-1)與 f(i-2)。方格路徑的問題則是 2D0D，因為有 n 2(假設 m=n)個要算，每次只需要 2 個(左方 與上方)。當然也有一些 DP 不在這個分類中。
+
+## 習題   
+  
+
+題目的分類往往有很多種，主要看目的何在而分類，這裡我們以便於理解與學習來分類。 一個 DP 如果狀態有 O(nx)而轉移式涉及 O(n y)個狀態，一般可稱為 xDyD 的 DP，例如 小朋友上樓梯是 1D0D 的，因為有 n 個要算，每次算 f(i)只涉及 2 個 f(i-1)與 f(i-2)。方格路徑的問題則是 2D0D，因為有 n 2(假設 m=n)個要算，每次只需要 2 個(左方 與上方)。當然也有一些 DP 不在這個分類中。
 
 ### 1D0D
-
+> 
 #### P-6-1. 小朋友上樓梯最小成本
 題目：https://judge.tcirc.tw/ShowProblem?problemid=d066
 
@@ -172,20 +176,20 @@
    
    
       
-> 1.狀態   
-> 所求為「到第 n 階的最少的扣分是多少」，所以直接定義`f[i]`為到達第`i`階的成本即可   
+1.狀態   
+所求為「到第 n 階的最少的扣分是多少」，所以直接定義`f[i]`為到達第`i`階的成本即可   
    
->2.最後一項   
->我們要做的事情是「選擇他會走到的階梯」   
->他到達終點時，前一個階梯會選擇那些位置呢?   
+> 2.最後一項   
+> 我們要做的事情是「選擇他會走到的階梯」   
+他到達終點時，前一個階梯會選擇那些位置呢?   
 >他會選擇從前兩階上來或是前一階上來，所以轉移式為：   
 >`n=n+min(n-1,n-2)`  (偷懶寫法)   
-   
+>   
 >3.邊界   
 >從`n=n+min(n-1,n-2)`可知，要讓所有數字都大於0，n的條件為(n>=2)，所以n<2的都要先定義。   
    
-   
-
+>   
+>
 
 /// collapse-code  
 ```cpp title="存dp陣列"
@@ -220,34 +224,6 @@ signed main() {
 ```
 ///
 
-<!-- /// collapse-code  
-```cpp title="偏移" 
-#include <bits/stdc++.h>
-using namespace std;
-
-#define int long long
-
-signed main() {
-    int n;
-    cin >> n;
-
-    vector<int> v(n + 1);
-
-    for (int i = 1; i <= n; i++) {
-        cin >> v[i];
-    }
-
-    for (int i = 3; i <= n; i++) {
-        v[i] += min(v[i - 1], v[i - 2]);
-    }
-
-    cout << v[n];
-
-    return 0;
-}
-
-```
-/// -->
 
 /// collapse-code  
 ```cpp title="直接運算" 
@@ -277,6 +253,169 @@ signed main() {
 
 ```
 ///
+
+
+/// collapse-code  
+```cpp title="top down" 
+#include <bits/stdc++.h>
+
+using namespace std;
+
+#define int long long
+
+vector<int> v;
+
+map<int, int> mp;
+
+int dp(int x) {
+    if (x < 2) return v[x];  // 邊界
+
+    if (mp.count(x)) return mp[x];  // 如果有
+
+    return mp[x] = min(dp(x - 1), dp(x - 2)) + v[x];  // 沒有，轉移
+}
+
+signed main() {
+    // dp[i] = max(dp[i-1],dp[i-2])
+
+    int n;
+    cin >> n;
+
+    v.resize(n + 1);
+
+    for (int i = 1; i <= n; i++) {
+        cin >> v[i];
+    }
+
+    cout << dp(n);
+
+    return 0;
+}
+```
+///
+
+
+
+/// collapse-code  
+```cpp title="記錄經過的路徑 - 走過記下來" 
+#include <bits/stdc++.h>
+using namespace std;
+
+#define int long long
+
+signed main() {
+    int n;
+    cin >> n;
+
+    vector<int> v(n + 1);
+    vector<int> pre(n + 1);
+
+    for (int i = 1; i <= n; i++) {
+        cin >> v[i];
+    }
+
+    vector<int> dp(n + 1);
+
+    for (int i = 0; i <= n; i++) {
+        if (i <= 2){
+            dp[i] = v[i];
+        }
+        else{
+            
+            if(dp[i - 1]<dp[i - 2]){
+                pre[i] = i-1;
+                dp[i] = dp[i - 1]+ v[i];
+            }
+            else{
+                pre[i] = i-2;
+                dp[i] = dp[i - 2]+ v[i];
+            }
+        }
+    }
+
+    cout << dp[n]<<"\n";
+    
+    
+    vector<int>path;
+    for (int i = n; i != 0; i = pre[i]) {
+        path.push_back(i);
+    }
+    reverse(path.begin(), path.end());
+    
+    for(int i:path){  //位置
+        cout<<i<<" ";
+    }cout<<"\n";
+    
+    for(int i:path){  //內容
+        cout<<v[i]<<" ";
+    }cout<<"\n";
+
+    return 0;
+}
+```
+///
+
+
+
+/// collapse-code  
+```cpp title="記錄經過的路徑 - 回推" 
+#include <bits/stdc++.h>
+using namespace std;
+
+#define int long long
+
+signed main() {
+    int n;
+    cin >> n;
+
+    vector<int> v(n + 1);
+    vector<int> pre(n + 1);
+
+    for (int i = 1; i <= n; i++) {
+        cin >> v[i];
+    }
+
+    vector<int> dp(n + 1);
+
+    for (int i = 0; i <= n; i++) {
+        if (i <= 2){
+            dp[i] = v[i];
+        }
+        else{
+            dp[i] = min(dp[i - 1], dp[i - 2]) + v[i];
+        }
+    }
+
+    cout << dp[n]<<"\n";
+    
+    vector<int>path;
+    
+    for(int i=n;i!=0;){
+        path.push_back(i);
+        if(dp[i] - v[i] == dp[i-1]){   // dp[i]  == dp[i-1] + v[i] 左右同減 v[i]
+            i=i-1;
+        }
+        else{
+            i=i-2;
+        }
+    }
+    
+    reverse(path.begin(), path.end());
+    
+    for(int i:path){  //位置
+        cout<<i<<" ";
+    }cout<<"\n";
+    
+    for(int i:path){  //內容
+        cout<<v[i]<<" ";
+    }cout<<"\n";
+    
+
+    return 0;
+}
+```
+///
+
     
 #### P-6-2. 不連續的表演酬勞    
 題目：https://judge.tcirc.tw/ShowProblem?problemid=d067    
@@ -301,24 +440,24 @@ Time limit: 1 秒
 18    
     
     
->1.狀態    
->題目要求為：最大總酬勞    
->所以定義`f[x]`第x天累積的最大酬勞    
-    
+1.狀態    
+題目要求為：最大總酬勞    
+所以定義`f[x]`第x天累積的最大酬勞    
+>    
 >2.轉移    
 >當選到最後一天時，前n天累積的最大酬勞就是之前的酬勞加上現在的酬勞。    
->也就是說任何小於n的日子都可以選擇    
+也就是說任何小於n的日子都可以選擇    
 >但是n-i    
-    
-    
-
+>    
+>    
+>
    
-> 我們定義dp[i]為第i天可獲得的最大報酬   
-> 轉移式：dp[i]=max(dp[i-1],dp[i-2]+dp[i])   
-> 邊界：第一天、第二天(dp[0]、dp[1])   
-   
-   
-   
+我們定義dp[i]為第i天可獲得的最大報酬   
+轉移式：dp[i]=max(dp[i-1],dp[i-2]+dp[i])   
+邊界：第一天、第二天(dp[0]、dp[1])   
+>    
+>    
+>    
 /// collapse-code  
 ```cpp title="code" 
 #include <bits/stdc++.h>
@@ -392,10 +531,10 @@ Time limit: 1 秒
 
 ##### 解法 1 
 
-> dp[i] = 第 i 項有裝時，前面 i 個區段的最小成本
+dp[i] = 第 i 項有裝時，前面 i 個區段的最小成本
 
 ![alt text](images/動態規劃(dp)/image.png)
-
+> 
 /// collapse-code  
 ```cpp title="code" 
 #include <bits/stdc++.h>
@@ -442,10 +581,10 @@ signed main() {
 
 ##### 解法 2
 
-> dp[i] = 讓 0 ~ i 全部被監控的最小成本
+dp[i] = 讓 0 ~ i 全部被監控的最小成本
 
 算式：
-
+> 
 ![alt text](<images/動態規劃(dp)/ChatGPT Image 2026年5月1日 下午02_41_41.png>)
 
 /// collapse-code  
@@ -511,18 +650,18 @@ Time limit: 1 秒
     
 輸出：最小過關成本。    
     
-> 狀態轉移
-> 
-> dp[i][0] = 到第 i 關，並且第 i 關選 a[i] 的最小成本
-> dp[i][1] = 到第 i 關，並且第 i 關選 b[i] 的最小成本
-> 
+狀態轉移
+dp[i][0] = 到第 i 關，並且第 i 關選 a[i] 的最小成本
+dp[i][1] = 到第 i 關，並且第 i 關選 b[i] 的最小成本
 > dp[i][0] = min(dp[i - 1][0] + abs(a[i - 1] - a[i]),dp[i - 1][1] + abs(b[i - 1] - a[i]));
-> dp[i][1] = min(dp[i - 1][0] + abs(a[i - 1] - b[i]),dp[i - 1][1] + abs(b[i - 1] - b[i])); 
-
-/// collapse-code  
+> 
+dp[i][1] = min(dp[i - 1][0] + abs(a[i - 1] - b[i]),dp[i - 1][1] + abs(b[i - 1] - b[i])); 
+> 
+> /// collapse-code  
+> 
 ```cpp title="code" 
-#include <bits/stdc++.h>
-using namespace std;
+> #include <bits/stdc++.h>
+> using namespace std;
 
 #define int long long
 
@@ -581,13 +720,13 @@ https://judge.tcirc.tw/ShowProblem?problemid=d069
  4  7 -5  4
 
 
-> 遞迴式
->` dp[i][j]=max(v[i-1][j],v[i][j-1])+v[i][j];`
+遞迴式
+` dp[i][j]=max(v[i-1][j],v[i][j-1])+v[i][j];`
 
 /// collapse-code  
 ```cpp title="code"
-#include <bits/stdc++.h>
-
+> #include <bits/stdc++.h>
+>
 using namespace std;
 #define int long long
 
@@ -634,7 +773,9 @@ signed main() {
 ///
 
 #### P-6-7. LCS    
-    
+
+https://judge.tcirc.tw/problem/d070
+
 輸入兩字串，計算其 LCS 的長度。        
 Time limit: 1 秒        
 輸入格式：第一行與第二行個有一個字串，字串均只含小寫字母，長度不超過 500。    
@@ -659,35 +800,95 @@ Longest Common Subsequence(LCS)是序列分析的重要問題，一個序列的�
 /// collapse-code  
 ```cpp title="code"
 #include <bits/stdc++.h>
-#define nn "\n"
+
 using namespace std;
 
-int dp[600][600]={0};
-int main(){
-    string s1,s2;
-    //stringstream cin("algorithm \
-alignment");
-    cin>>s1>>s2;
-    int n=s1.size();
-    int m=s2.size();
-    for(int i=1;i<=n;i++){//6
-        for(int j=1;j<=m;j++){
-            char a=s1[i-1],b=s2[j-1];
-            if(a==b){
-                dp[i][j]=dp[i-1][j-1]+1;
-            }
-            else{
-                dp[i][j]=max(dp[i-1][j],dp[i][j-1]);
+#define int long long
+
+signed main() {
+    string s, t;
+
+    cin >> s >> t;
+
+    int n1 = s.size();
+    int n2 = t.size();
+
+    // cout << s << "\n"
+    //      << t <<"\n";
+
+    vector<vector<int>> dp(n1 + 1, vector<int>(n2 + 1));
+
+    for (int i = 1; i < n1 + 1; i++) {
+        for (int j = 1; j < n2 + 1; j++) {
+            if (s[i] == t[j]) {
+                dp[i][j] = dp[i - 1][j - 1] + 1;
+            } else {
+                dp[i][j] = max(dp[i - 1][j], dp[i][j - 1]);
             }
         }
     }
-    cout<<dp[n][m];
+
+    // for (int i = 0; i < n1+1; i++) {
+    //     for (int j = 0; j < n2+1; j++) {
+    //         cout << v[i][j] << " ";
+    //     }
+    //     cout << "\n";
+    // }
+
+    cout << dp[n1][n2];
+
+    return 0;
 }
 ```
 ///
 
+
+**`dp[i][j]` 是在問：「只看 `s` 前 `i` 個字元、`t` 前 `j` 個字元時，最長共同子序列有多長？」所以每次只需要考慮最後兩個字元 `s[i-1]` 和 `t[j-1]` 要不要被用進答案。**
+
+---
+
+如果：
+
+```cpp
+s[i - 1] == t[j - 1]
+```
+
+代表兩邊最後一個字元相同，那這個字元一定可以接在「前面兩段字串的 LCS」後面，所以：
+
+```cpp
+dp[i][j] = dp[i - 1][j - 1] + 1;
+```
+
+也就是「前面已經配好的共同子序列」再加上這個共同字元。
+
+---
+
+如果：
+
+```cpp
+s[i - 1] != t[j - 1]
+```
+
+代表最後兩個字元不可能同時放進同一個共同子序列，因此最佳答案只能來自兩種選擇：
+
+!!! danger "也就是說"
+    當 s[i-1] != t[j-1] 時，這兩個尾巴不能彼此配對；但其中一個尾巴仍然可能跟對方前面的某個字元配對，所以不能直接兩邊都丟掉。
+
+```cpp
+不要 s[i - 1]：dp[i - 1][j]
+不要 t[j - 1]：dp[i][j - 1]
+```
+
+所以取比較大的：
+
+```cpp
+dp[i][j] = max(dp[i - 1][j], dp[i][j - 1]);
+```
+
+
 #### d231.97北縣賽-2-基因序列密碼問題(LCS類似題)
 
+https://zerojudge.tw/ShowProblem?problemid=d231
 
 基因序列是由四個鹼基A、C、G、T組合而成，例如 AGTTACGGGTTCGTAA有可能是某個基因序列。在生物學裡常見的問題是要找出兩的基因序列的最長共同子序列   
 
@@ -964,10 +1165,77 @@ int main(){
 
 #### P-6-9. 大賣場免費大搬家
 
-> 組合：外圈
+https://judge.tcirc.tw/problem/d071
+
+dp[i][j] = d[i][j]是考慮前 i 項物品且重量不超過 j 的最佳解(最大可以獲得價值)
+我們分成以下情形:
+1.w[i]>j:也就是根本不可能挑選，所以第 i 項物品有沒有都一樣，d[i][j]=d[i-1][j]。
+2.第 i 項物品的重量不超過 j，但是選擇不放:跟前一個情形一樣，d[i][j]=d[i-1][j]。
+3.挑選第 i 項物品:既然已經挑選了第 i 項，那麼前 i-1 項中挑選的重量不超過(j- w[i])，因此，d[i][j]=p[i]+d[i-1][j-w[i]]。
+> 
+> 
+組合：外圈
 > 一次：倒序
+> 
+
+> !!! danger "結論"
+> 
+>     總結一句話：
+    對於每個商品，逐一考慮每個背包容量，並比較「不選它」與「選它」哪個總價值比較大。
+> 
+> 
 /// collapse-code  
-```cpp title="一維"
+```cpp title="二維，可順序和倒序"
+// 01-knapsack, O(Wn) space
+#include <bits/stdc++.h>
+using namespace std;
+#define N 101
+#define W 100005
+int d[N][W] = {0}; // max price of first i items with <= w weight
+
+int main() {
+
+//    istringstream cin("7 10 \
+    3 4 2 3 3 6 5 \
+    5 5 2 4 4 5 6");
+
+    int n, total;
+    cin >> n >> total;
+    int w[N], p[N]; // weight and price
+
+    // 輸入每個物品的重量
+    for(int i = 1; i <= n; i++)
+        cin >> w[i];
+
+    // 輸入每個物品的價值
+    for(int i = 1; i <= n; i++)
+        cin >> p[i];
+
+    // 動態規劃
+    for(int i = 1; i <= n; i++) { //物品
+        for(int j = 0 ; j <= total; j++) { //重量
+
+            if(j - w[i] < 0)  d[i][j] = d[i - 1][j];
+
+            if(j - w[i] >= 0) d[i][j] = max(d[i - 1][j - w[i]] + p[i], d[i - 1][j]);
+        }
+    }
+//    for(int i = 0; i <= n; i++) {
+//        for(int j = 0; j <= total; j++) {
+//            cout << '\t' << d[i][j] << " ";
+//        }
+//        cout << "\n";
+//    }
+
+    cout << d[n][total];
+    return 0;
+}
+```
+///
+
+
+/// collapse-code  
+```cpp title="一維，必須倒序，才不會重複拿到"
 #include<bits/stdc++.h>
 using namespace std;
 #define N 111111
@@ -1004,54 +1272,6 @@ signed main(){
 ```
 ///
 
-/// collapse-code  
-```cpp title="二維，可順序和倒序"
-// 01-knapsack, O(Wn) space
-#include <bits/stdc++.h>
-using namespace std;
-#define N 101
-#define W 100005
-int d[N][W] = {0}; // max price of first i items with <= w weight
-
-int main() {
-
-//    istringstream cin("7 10 \
-    3 4 2 3 3 6 5 \
-    5 5 2 4 4 5 6");
-
-    int n, total;
-    cin >> n >> total;
-    int w[N], p[N]; // weight and price
-
-    // 輸入每個物品的重量
-    for(int i = 1; i <= n; i++)
-        cin >> w[i];
-
-    // 輸入每個物品的價值
-    for(int i = 1; i <= n; i++)
-        cin >> p[i];
-
-    // 動態規劃
-    for(int i = 1; i <= n; i++) {
-        for(int j = 0 ; j <= total; j++) { // choose or not choose
-
-            if(j - w[i] < 0)  d[i][j] = d[i - 1][j];
-
-            if(j - w[i] >= 0) d[i][j] = max(d[i - 1][j - w[i]] + p[i], d[i - 1][j]);
-        }
-    }
-//    for(int i = 0; i <= n; i++) {
-//        for(int j = 0; j <= total; j++) {
-//            cout << '\t' << d[i][j] << " ";
-//        }
-//        cout << "\n";
-//    }
-
-    cout << d[n][total];
-    return 0;
-}
-```
-///
 過程：
 ```
         0       0       0       0       0       0       0       0       0       0       0
@@ -1065,9 +1285,17 @@ int main() {
 14
 ```
 原題是一個物品只能選一次，如果想要選多次，就把
-`if(j - w[i] >= 0) d[i][j] = max(d[i - 1][j - w[i]] + p[i], d[i - 1][j]);`
+
+if(j - w[i] >= 0) d[i][j] = max(d[ ==i - 1== ][j - w[i]] + p[i], d[i - 1][j]);
+
 改成
-`if(j - w[i] >= 0) d[i][j] = max(d[i][j - w[i]] + p[i], d[i - 1][j]);`
+
+if(j - w[i] >= 0) d[i][j] = max(d[ ==i== ][j - w[i]] + p[i], d[i - 1][j]);
+
+意思就是對於從重量小到重量大，是不是可以用第 i 個(自己這個)物品。
+
+也記就是說上面兩種是決定加上的來源是「相同重量的自己」，還是「相同重量的前一個物品」
+
 過程：
 ```
         0       0       0       0       0       0       0       0       0       0       0
@@ -1082,9 +1310,20 @@ int main() {
 ```
 一維的如果想要改成每個物品可以選多次，就改為順序，這樣就會重複選到同一商品
 
+
+
+##### 0/1背包問題、完全背包問題
+
+
+![[docs\md\演算法筆記\01背包、完全背包問題.md]]
+
+
 ### 其他例題
 
 #### b589. 超級馬拉松賽  
+
+https://zerojudge.tw/ShowProblem?problemid=b589
+
 內容   
 一個超級馬拉松比賽將開始。在遊戲中，選手每天需要跑不同的路徑。假設遊戲全部有 n 條路徑; 每個路徑得分可以是不同的。如果一名選手不能在規定時間內完成一條路徑，他該路徑得到零分;如果玩家完成了一條路徑在一個規定的時間，他得到該路徑設定的得分;如果玩家完成了一條路徑，用較短的時間，他可以得兩倍分數。
 
@@ -1122,14 +1361,14 @@ int main() {
 170     
      
 
->這是加上條件的背包問題，使用二維記住不同選擇
+這是加上條件的背包問題，使用二維記住不同選擇
 
 
 
-![alt text](../images/動態規劃(dp)/image-37.png)
+<!-- ![alt text](../images/動態規劃(dp)/image-37.png) -->
 /// collapse-code  
 ```cpp title="code"
-#include<bits/stdc++.h>
+>#include<bits/stdc++.h>
 using namespace std;
 #define N 50
 #define nn "\n"
@@ -1173,6 +1412,8 @@ int main(){
 
 #### d887. 1.山脈種類(chain)
 
+https://zerojudge.tw/ShowProblem?problemid=d887
+
 ![alt text](../images/動態規劃(dp)/image-38.png)
 輸入說明
 每行有1個數字N(2<=N<=25)
@@ -1186,15 +1427,15 @@ int main(){
 5
 14   
    
->開頭必為上，結尾必為下，討論中間即可   
->下降-上升<2   
+開頭必為上，結尾必為下，討論中間即可   
+下降-上升<2   
 ![alt text](../images/動態規劃(dp)/image-39.png)
 /// collapse-code  
 ```cpp title="code"
 #include<bits/stdc++.h>
 using namespace std;
-#define N 50
-#define nn "\n"
+>#define N 50
+>#define nn "\n"
 
 istream& ss=cin;
 //stringstream ss("3 \
@@ -1463,15 +1704,15 @@ int main() {
 8          
           
      
->假設測資為     
->7     
+假設測資為     
+7     
 2 1 4 3 6 7 5      
 過程：     
 2     
 1     
 1 4     
-1 3     
-1 3 6     
+>1 3     
+>1 3 6     
 1 3 6 7     
 1 3 5 7     
 lis：     
@@ -1531,29 +1772,29 @@ int main() {
 
 #### [b840: 104北二4.農作物採收問題](https://zerojudge.tw/ShowProblem?problemid=b840)
 
->[二維前綴和的用法](前綴和&差分.md#二維前綴和)
+[二維前綴和的用法](前綴和&差分.md#二維前綴和)
 
-> 參考：
-> [O(n4)](https://chchwy.blogspot.com/2008/11/acm108-maximum-sum-ac.html)
-> [O(n3)](https://hanting1225.blogspot.com/2015/11/uva-108-maximum-sum.html)
-> [O(n3)](https://blog.csdn.net/u010167269/article/details/51734723)
+參考：
+[O(n4)](https://chchwy.blogspot.com/2008/11/acm108-maximum-sum-ac.html)
+[O(n3)](https://hanting1225.blogspot.com/2015/11/uva-108-maximum-sum.html)
+[O(n3)](https://blog.csdn.net/u010167269/article/details/51734723)
 
-
+>
 #### [d052. 11456 - Trainsorting](https://zerojudge.tw/ShowProblem?problemid=d052)
+> 
+> 
+> 
+> [參考題解](https://yuihuang.com/zj-d052/)
 
 
-
-[參考題解](https://yuihuang.com/zj-d052/)
-
-
->最長遞減子序列就不能用內建lower_bound   
+最長遞減子序列就不能用內建lower_bound   
 所以直接全部*-1變成負數取最長遞增子序列，最後回推為正數   
 
 
 /// collapse-code  
 ```cpp title="code"
 #include <bits/stdc++.h>
-using namespace std;
+>using namespace std;
 #define N 22
 #define nn "\n"
 
