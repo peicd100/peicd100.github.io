@@ -725,8 +725,8 @@ https://judge.tcirc.tw/ShowProblem?problemid=d069
 
 /// collapse-code  
 ```cpp title="code"
-> #include <bits/stdc++.h>
->
+#include <bits/stdc++.h>
+
 using namespace std;
 #define int long long
 
