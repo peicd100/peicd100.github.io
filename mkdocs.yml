@@ -1,9 +1,9 @@
-site_name: 'PEICD100'  # 網站名稱
-
-# ✅ MkDocs 只要設定 site_url，就會自動生成 /sitemap.xml（MkDocs 0.13+ 內建）：
-#    你目前已經能開 https://peicd100.github.io/sitemap.xml，代表 sitemap 生成正常。
-site_url: https://peicd100.github.io/  # 網站 URL，便於生成 sitemap 和 SEO 優化
-use_directory_urls: false  # 保持目前 .html URL 風格（避免既有連結失效）；想用 /path/ 風格可改 true
+# ========================================================================================================================================================
+# 網站設定，需要同步的東西有：
+# 1.以下這段
+# 2.
+# 
+# ========================================================================================================================================================
 
 theme:
   name: 'material'  # 使用 Material 主題(這邊有toc)
@@ -23,14 +23,14 @@ theme:
     # - navigation.sections
     - navigation.tabs  # 啟用標籤式導航
     - navigation.top  # 當使用者向下捲動後開始再次向上捲動時，可以顯示返回頂部按鈕。
-    - navigation.tracking
+    # - navigation.tracking  # 目前網址 fragment 改由自訂 toc-fold.js 與 current 同步，避免和自訂 scrollspy 雙來源衝突
     - announce.dismiss  # 添加通知的關閉功能
 
     # ❌ 這個不是 Material 的 features 選項，放在這裡反而容易誤會：
     # - sitemap  # (sitemap 由 MkDocs 依 site_url 自動生成)
 
-    - toc.follow  # 目錄自動跟隨滾動
-             # - toc.integrate #啟用目錄的導覽整合後，它始終呈現為左側導覽側邊欄的一部分////////////////////////////////////////////////////////////////////////////////////////////////////////
+    # - toc.follow  # 右側 TOC 目前改由自訂 toc-fold.js 控制跟隨/手動滾動保護，避免與內建自動捲動衝突
+             # - toc.integrate #啟用目錄的導覽整合後，它始終呈現為左側導覽側邊欄的一部分
     - content.tabs.link  # 允許內容中的標籤鏈接
     - search.share  # 啟用搜索結果共享功能
              # - search.suggest  # 搜索時提供自動建議
@@ -81,15 +81,7 @@ plugins:
       password_button: True       #解鎖按鈕
       password_button_text: '解鎖' #解鎖按鈕
       # global_password: '88888888'               # 啟用全域密碼
-      search_index: 'dynamically'  # 建置時加密索引；使用者解密頁面後才能搜到(但好像沒有真的觸發)
-
-
-
-
-
-
-
-
+      # search_index: 'dynamically'  # 建置時加密索引；使用者解密頁面後才能搜到(但好像沒有真的觸發)
 
   # - macros  # 启用宏插件，允許自定義變量和代碼塊
   # - mkdocs-jupyter  # 支持 Jupyter Notebook 文件轉換
@@ -98,22 +90,22 @@ plugins:
 
 extra_css:
   - assets/pymdownx-extras/extra-8611f6c398.css  # 自定義 CSS 文件
-  - assets/pymdownx-extras/自定義.css?v=20260404-2  # 自定義 CSS 文件（加版本參數避免手機快取吃舊版）
+  - assets/pymdownx-extras/自定義.css?v=20260527-9  # 自定義 CSS 文件（加版本參數避免手機快取吃舊版）
 
 extra_javascript:
   - https://unpkg.com/mermaid@10.6.1/dist/mermaid.min.js  # Mermaid 圖表支持
   - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js  # MathJax 支持數學公式
-  - assets/pymdownx-extras/mermaid-config-override.js  # Mermaid flowchart 啟用 htmlLabels，支援節點內 <br>
+  - assets/pymdownx-extras/mermaid-config-override.js?v=20260523-1  # Mermaid flowchart 啟用 htmlLabels，支援節點內 <br>
   - assets/pymdownx-extras/mermaid-legacy-flowchart-compat.js?v=20260329-1  # Mermaid 舊 flowchart 語法相容：方括號節點內未加引號的括號文字自動 fallback
   - assets/pymdownx-extras/extra-loader-iLQ-keay.js  # 自定義 JavaScript 文件
-  - assets/pymdownx-extras/mermaid-render-fix.js  # 補強 Mermaid 首次載入 / instant navigation / 主題切換渲染
+  - assets/pymdownx-extras/mermaid-render-fix.js?v=20260522-1  # 補強 Mermaid 首次載入 / instant navigation / 主題切換渲染
   - assets/pymdownx-extras/mermaid-zoom.js?v=20260404-1  # Mermaid 圖卡化與放大檢視
   - assets/pymdownx-extras/toc-fold.js  # 右側 TOC 可摺疊 / 展開控制
   - assets/pymdownx-extras/image-zoom.js  # 文章圖片放大檢視 / 拖曳 / 縮放
   - assets/pymdownx-extras/markdown-embed.js?v=20260516-1  # Markdown 頁面嵌入框全螢幕控制
-  - assets/pymdownx-extras/folder-path-bar.js?v=20260320-3  # H1 上方檔案總管式路徑列（加版本參數避免手機快取吃舊版）
+  - assets/pymdownx-extras/folder-path-bar.js?v=20260524-1  # H1 上方檔案總管式路徑列（加版本參數避免手機快取吃舊版）
   - assets/pymdownx-extras/legacy-image-width.js  # 舊圖片百分比語法相容
-  - assets/pymdownx-extras/source-jump.js?v=20260518-1  # 本機選字右鍵可跳回 Markdown 原始檔位置（需 mkdocs serve）
+  - assets/pymdownx-extras/source-jump.js?v=20260523-2  # 本機選字右鍵可跳回 Markdown 原始檔位置（需 mkdocs serve）
 
 hooks:
   - tools/fence_id_cleanup_hook.py
@@ -150,6 +142,9 @@ markdown_extensions:
   - pymdownx.superfences:  # 增強的程式碼塊擴展
       preserve_tabs: true  # 保持原始的縮排格式
       custom_fences:  # 自定義的 fenced blocks
+        - name: mermaid  # Mermaid fenced code block 支援（沿用既有 diagram loader）
+          class: diagram
+          format: !!python/name:pymdownx.superfences.fence_code_format
         - name: diagram  # Mermaid 圖表支持
           class: diagram
           format: !!python/name:pymdownx.superfences.fence_code_format
@@ -267,6 +262,65 @@ markdown_extensions:
       expand_text: ''  # 展開時顯示的文本
       collapse_text: ''  # 折疊時顯示的文本
   # - tools.i: #中英文之間自動空格
+
+
+# ========================================================================================================================================================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# ======================================================
+# 網站資訊
+# ======================================================
+
+site_name: 'PEICD100'  # 網站名稱
+
+# ✅ MkDocs 只要設定 site_url，就會自動生成 /sitemap.xml（MkDocs 0.13+ 內建）：
+#    你目前已經能開 https://peicd100.github.io/sitemap.xml，代表 sitemap 生成正常。
+site_url: https://peicd100.github.io/  # 網站 URL，便於生成 sitemap 和 SEO 優化
+use_directory_urls: false  # 保持目前 .html URL 風格（避免既有連結失效）；想用 /path/ 風格可改 true
+
+# ======================================================
+# 自定義網站的導航結構
+# ======================================================
+
+
+not_in_nav: /index.md #忽略index.md，不會跳出警告
+
 
 nav:  # 自定義網站的導航結構
   - '首頁':
