@@ -1368,45 +1368,42 @@ https://zerojudge.tw/ShowProblem?problemid=b589
 <!-- ![alt text](../images/動態規劃(dp)/image-37.png) -->
 /// collapse-code  
 ```cpp title="code"
->#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
-#define N 50
-#define nn "\n"
+#define int long long
 
-istream& ss=cin;
-//stringstream ss("3 \
-90 60 10 \
-0 \
-");
-int dp[N][N];
-int d(int x,int y){
-    if(x<0 || y<0)return INT_MIN;
-    return dp[x][y];
-}
-
-int main(){
-    ios::sync_with_stdio(0);
-    cin.tie(0);
-
+signed main() {
     int n;
-    while(ss>>n && n!=0){
-        for(int i=0;i<n;i++){
-            int x;
-            cin>>x;
-            if(i==0){
-                dp[i][0]=0;
-                dp[i][1]=x;
-                dp[i][2]=x*2;
-                continue;
-            }
+    while (cin >> n && n) {
+        vector<int> v(n + 10);
+        vector<vector<int>> dp(n + 10, vector<int>(n + 10));
 
-            dp[i][0]=d(i-1,2);
-            dp[i][1]=max(d(i-1,0),d(i-1,1))+x;
-            dp[i][2]=max(d(i-1,0),d(i-1,1))+x*2;
+        for (int i = 0 + 1; i < n + 1; i++) {
+            cin >> v[i];
         }
-        cout<<max({dp[n-1][0],dp[n-1][1],dp[n-1][2]})<<nn;
+
+        for (int i = 0 + 1; i < n + 1; i++) {
+            dp[i][0] = dp[i - 1][2];
+            dp[i][1] = max(dp[i - 1][0], dp[i - 1][1]) + v[i];
+            dp[i][2] = max(dp[i - 1][0], dp[i - 1][1]) + 2 * v[i];
+        }
+
+        cout << max({dp[n][0], dp[n][1], dp[n][2]}) << "\n";
     }
+    return 0;
 }
+
+/*
+
+dp[i][0] = 第i段路徑停下
+dp[i][1] = 第i段路徑用正常速度
+dp[i][2] = 第i段路徑用兩倍速度
+
+dp[i][0] = dp[i - 1][2];
+dp[i][1] = max(dp[i - 1][0], dp[i - 1][1]) + v[i];
+dp[i][2] = max(dp[i - 1][0], dp[i - 1][1]) + 2 * v[i];
+
+*/
 ```
 ///
 
@@ -1414,7 +1411,8 @@ int main(){
 
 https://zerojudge.tw/ShowProblem?problemid=d887
 
-![alt text](../images/動態規劃(dp)/image-38.png)
+![alt text](images/動態規劃(dp)/image-2.png)
+
 輸入說明
 每行有1個數字N(2<=N<=25)
 
@@ -1427,59 +1425,122 @@ https://zerojudge.tw/ShowProblem?problemid=d887
 5
 14   
    
-開頭必為上，結尾必為下，討論中間即可   
-下降-上升<2   
-![alt text](../images/動態規劃(dp)/image-39.png)
+![alt text](images/動態規劃(dp)/image-4.png)
 /// collapse-code  
-```cpp title="code"
-#include<bits/stdc++.h>
+```cpp title="button up"
+#include <bits/stdc++.h>
 using namespace std;
->#define N 50
->#define nn "\n"
+#define int long long
 
-istream& ss=cin;
-//stringstream ss("3 \
-4 \
-");
+signed main() {
+    vector<vector<int>> dp(27, vector<int>(27));
 
+    dp[1][1] = 1; 
 
-long long dp[N][N];
-long long d(long long x,long long y){
-    if(x<0 || y<0){
-        return 0;
-    }
-    return dp[x][y];
-}
-
-int main(){
-    //ios::sync_with_stdio(0);
-    //cin.tie(0);
-
-
-    long long n;
-    while(ss>>n){
-
-
-        dp[0][0]=1;
-        for(long long i=0;i<n;i++){
-           for(long long j=0;j<n;j++){
-               if(i==0 && j==0){
-                   continue;
-               }
-               else if(i-j>=2){
-                   dp[i][j]=0;
-               }
-               else{
-                   dp[i][j]=d(i-1,j)+d(i,j-1);
-               }
-           }
+    for (int i = 1; i <= 26; i++) { //偏移
+        for (int j = 1; j <= 26; j++) {
+            if (i == 1 && j == 1) {
+                continue;
+            }
+            if (i <= j) {
+                dp[i][j] = dp[i][j - 1] + dp[i - 1][j];
+            }
         }
-        cout<<d(n-1,n-1)<<nn;
     }
-}
 
+    int n;
+    while (cin >> n) {
+        cout << dp[n + 1][n + 1] << "\n";
+    }
+
+    return 0;
+}
 ```
 ///
+
+
+/// collapse-code  
+```cpp title="top down 爆搜"
+#include <bits/stdc++.h>
+using namespace std;
+
+#define int long long
+
+vector<vector<int>> dp;
+
+int f(int x, int y) {
+    if (x < 0 || y < 0) return 0;
+
+    if (y == 0) {
+        return x == 0;
+    }
+
+    if (dp[x][y] != -1) {
+        return dp[x][y];
+    }
+
+    int go_down = f(x - 1, y - 1);
+    int go_up = f(x + 1, y - 1);
+
+    return dp[x][y] = go_down + go_up;
+}
+
+signed main() {
+    
+    int MAX_N = 25;
+
+    dp.assign(2 * MAX_N + 5, vector<int>(2 * MAX_N + 5, -1));
+
+    vector<int> ans(MAX_N + 1);
+
+    for (int n = 0; n <= MAX_N; n++) {
+        ans[n] = f(0, 2 * n);
+    }
+
+    int n;
+    while (cin >> n) {
+        cout << ans[n] << "\n";
+    }
+
+    return 0;
+}
+/* 
+
+f(x,y) = 現在高度為 x ，剩下 y 步。 
+
+*/
+```
+///
+
+
+請看：[卡塔蘭數](卡塔蘭數.md#卡塔蘭數)
+
+/// collapse-code  
+```cpp title="卡塔蘭數"
+#include <bits/stdc++.h>
+using namespace std;
+
+#define int long long
+
+signed main() {
+    vector<int> C(26);
+
+    C[0] = 1;
+
+    for (int n = 1; n <= 25; n++) {
+        C[n] = C[n - 1] * (4 * n - 2) / (n + 1);
+    }
+
+    int n;
+    while (cin >> n) {
+        cout << C[n] << "\n";
+    }
+
+    return 0;
+}
+```
+///
+
 
 #### d133. 00357 - Let Me Count The Ways
 https://zerojudge.tw/ShowProblem?problemid=d133
@@ -1495,33 +1556,34 @@ https://zerojudge.tw/ShowProblem?problemid=d133
 
 /// collapse-code  
 ```cpp title="code"
-#include <iostream>
+#include <bits/stdc++.h>
 using namespace std;
-#define nn "\n"
-#define N 300000
+#define int long long
 
-long long dp[N];
-long long v[5]={1,5,10,25,50};
-int main(){
-    dp[0]=1;
-    for(long long i=0;i<5;i++){
-        for(long long j=v[i];j<30001;j++){
-            dp[j]+=dp[j-v[i]];
+signed main() {
+    vector<int> dp(30002);
+
+    vector<int> c = {1, 5, 10, 25, 50};
+
+    dp[0] = 1;
+    for (int i = 0; i < 5; i++) {
+        for (int j = c[i]; j < 30001; j++) {
+            dp[j] += dp[j - c[i]];
         }
     }
-    long long n;
-    while(cin>>n){
-        if(dp[n]==1){
-            cout<<"There is only "<<dp[n]<<" way to produce "<<n<<" cents change. \n";
 
-        }
-        else{
-            cout<<"There are "<<dp[n]<<" ways to produce "<<n<<" cents change. \n";
-        }
+    int n;
+    while (cin >> n) {
+        if (dp[n] == 1) {
+            cout << "There is only " << dp[n] << " way to produce " << n << " cents change. \n";
 
+        } else {
+            cout << "There are " << dp[n] << " ways to produce " << n << " cents change. \n";
+        }
     }
+
+    return 0;
 }
-
 ```
 ///
 
