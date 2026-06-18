@@ -44,8 +44,6 @@
     
 
       
-        <script src="https://unpkg.com/iframe-worker/shim"></script>
-      
     
 <script src="../../assets/pymdownx-extras/material-extra-theme-2ek1P7jT.js" type="text/javascript"></script>
 <script src="../../assets/pymdownx-extras/material-extra-3rdparty-BUCF4rjN.js" type="text/javascript"></script>
@@ -1956,7 +1954,7 @@
     
       <link rel="stylesheet" href="../../assets/pymdownx-extras/extra-8611f6c398.css">
     
-      <link rel="stylesheet" href="../../assets/pymdownx-extras/自定義.css?v=20260527-9">
+      <link rel="stylesheet" href="../../assets/pymdownx-extras/自定義.css?v=20260614-2">
     
     <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
@@ -7035,244 +7033,244 @@ is now available!
   <h1>vscode筆記</h1>
 
 <h2 id="vscode貼上圖片">vscode貼上圖片<a class="headerlink" href="#vscode貼上圖片" title="Permanent link"></a></h2>
-<p>在偏好設定，如圖<br />
-<img alt="alt text" src="../images/mkdocs%E7%AD%86%E8%A8%98/image.png" /></p>
-<p>搜尋：<br />
+<p>在偏好設定，如圖<br/>
+<img alt="alt text" decoding="async" src="../images/mkdocs%E7%AD%86%E8%A8%98/image.png"/></p>
+<p>搜尋：<br/>
 <div class="highlight"><pre><span></span><code><span class="n">markdown</span><span class="p">.</span><span class="n">copyFiles</span><span class="p">.</span><span class="n">destination</span>
-</code></pre></div><br />
-新增項目：<br />
+</code></pre></div><br/>
+新增項目：<br/>
 <div class="highlight"><pre><span></span><code><span class="n">docs</span><span class="o">/</span><span class="n">md</span><span class="cm">/**/</span><span class="o">*</span>
-</code></pre></div><br />
-值：<br />
+</code></pre></div><br/>
+值：<br/>
 <div class="highlight"><pre><span></span><code><span class="n">$</span><span class="p">{</span><span class="n">documentWorkspaceFolder</span><span class="p">}</span><span class="o">/</span><span class="n">docs</span><span class="o">/</span><span class="n">images</span><span class="o">/</span><span class="n">$</span><span class="p">{</span><span class="n">documentBaseName</span><span class="p">}.</span><span class="n">png</span>
 </code></pre></div></p>
 <p>結果如下圖，按下確定：</p>
-<p><img alt="alt text" src="../images/mkdocs%E7%AD%86%E8%A8%98/image-1.png" /></p>
+<p><img alt="alt text" decoding="async" loading="lazy" src="../images/mkdocs%E7%AD%86%E8%A8%98/image-1.png"/></p>
 <h2 id="把vscode終端機預設為conda">把vscode終端機預設為conda<a class="headerlink" href="#把vscode終端機預設為conda" title="Permanent link"></a></h2>
-<p>輸入<br />
+<p>輸入<br/>
 <div class="highlight"><pre><span></span><code>&gt;Open User Settings (JSON)
-</code></pre></div><br />
-<img alt="alt text" src="images/vscode%E7%AD%86%E8%A8%98/image.png" /></p>
+</code></pre></div><br/>
+<img alt="alt text" decoding="async" loading="lazy" src="images/vscode%E7%AD%86%E8%A8%98/image.png"/></p>
 <p>點進去之後，在<code>"terminal.integrated.profiles.windows":</code>裡面新增以下</p>
-<p><div class="highlight"><pre><span></span><code>        &quot;conda&quot;: {
-            &quot;path&quot;: &quot;C:\\WINDOWS\\System32\\cmd.exe&quot;,
-            &quot;args&quot;: [
-                &quot;/K&quot;,
-                &quot;C:\\ProgramData\\anaconda3\\Scripts\\activate.bat&quot;,
-                &quot;C:\\ProgramData\\anaconda3&quot;
+<p><div class="highlight"><pre><span></span><code>        "conda": {
+            "path": "C:\\WINDOWS\\System32\\cmd.exe",
+            "args": [
+                "/K",
+                "C:\\ProgramData\\anaconda3\\Scripts\\activate.bat",
+                "C:\\ProgramData\\anaconda3"
             ]
         }
-</code></pre></div><br />
+</code></pre></div><br/>
 如果希望是直接進入某一個環境（ex. PEICD100）</p>
-<div class="highlight"><pre><span></span><code>        &quot;conda&quot;: {
-            &quot;path&quot;: &quot;C:\\Windows\\System32\\cmd.exe&quot;,
-            &quot;args&quot;: [
-                &quot;/K&quot;,
-                &quot;call C:\\ProgramData\\anaconda3\\Scripts\\activate.bat C:\\ProgramData\\anaconda3 &amp;&amp; conda activate PEICD100&quot;
+<div class="highlight"><pre><span></span><code>        "conda": {
+            "path": "C:\\Windows\\System32\\cmd.exe",
+            "args": [
+                "/K",
+                "call C:\\ProgramData\\anaconda3\\Scripts\\activate.bat C:\\ProgramData\\anaconda3 &amp;&amp; conda activate PEICD100"
             ]
         }
 </code></pre></div>
 <p>最後會變成</p>
-<div class="collapse-code"><input checked="checked" id="__collapse0" name="__collapse0" type="checkbox" /><div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="  1 "></span><span class="p">{</span>
+<div class="collapse-code"><input checked="checked" id="__collapse0" name="__collapse0" type="checkbox"/><div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="  1 "></span><span class="p">{</span>
 <span class="linenos" data-linenos="  2 "></span><span class="w">    </span><span class="c1">// 預設UTF-8</span>
-<span class="linenos" data-linenos="  3 "></span><span class="w">    </span><span class="nt">&quot;files.encoding&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;utf8&quot;</span><span class="p">,</span>
+<span class="linenos" data-linenos="  3 "></span><span class="w">    </span><span class="nt">"files.encoding"</span><span class="p">:</span><span class="w"> </span><span class="s2">"utf8"</span><span class="p">,</span>
 <span class="linenos" data-linenos="  4 "></span><span class="w">    </span><span class="c1">// 讓 Code Runner 將 C++ 執行在終端機中</span>
-<span class="linenos" data-linenos="  5 "></span><span class="w">    </span><span class="nt">&quot;code-runner.runInTerminal&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="linenos" data-linenos="  5 "></span><span class="w">    </span><span class="nt">"code-runner.runInTerminal"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
 <span class="linenos" data-linenos="  6 "></span><span class="w">    </span><span class="c1">//先儲存再執行</span>
-<span class="linenos" data-linenos="  7 "></span><span class="w">    </span><span class="nt">&quot;code-runner.saveFileBeforeRun&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="linenos" data-linenos="  7 "></span><span class="w">    </span><span class="nt">"code-runner.saveFileBeforeRun"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
 <span class="linenos" data-linenos="  8 "></span><span class="w">    </span><span class="c1">// 預設 conda 開始</span>
-<span class="linenos" data-linenos="  9 "></span><span class="w">    </span><span class="nt">&quot;terminal.integrated.profiles.windows&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos" data-linenos=" 10 "></span><span class="w">        </span><span class="nt">&quot;PowerShell&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos" data-linenos=" 11 "></span><span class="w">            </span><span class="nt">&quot;source&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;PowerShell&quot;</span><span class="p">,</span>
-<span class="linenos" data-linenos=" 12 "></span><span class="w">            </span><span class="nt">&quot;icon&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;terminal-powershell&quot;</span>
+<span class="linenos" data-linenos="  9 "></span><span class="w">    </span><span class="nt">"terminal.integrated.profiles.windows"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos=" 10 "></span><span class="w">        </span><span class="nt">"PowerShell"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos=" 11 "></span><span class="w">            </span><span class="nt">"source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PowerShell"</span><span class="p">,</span>
+<span class="linenos" data-linenos=" 12 "></span><span class="w">            </span><span class="nt">"icon"</span><span class="p">:</span><span class="w"> </span><span class="s2">"terminal-powershell"</span>
 <span class="linenos" data-linenos=" 13 "></span><span class="w">        </span><span class="p">},</span>
-<span class="linenos" data-linenos=" 14 "></span><span class="w">        </span><span class="nt">&quot;Command Prompt&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos" data-linenos=" 15 "></span><span class="w">            </span><span class="nt">&quot;path&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
-<span class="linenos" data-linenos=" 16 "></span><span class="w">                </span><span class="s2">&quot;${env:windir}\\Sysnative\\cmd.exe&quot;</span><span class="p">,</span>
-<span class="linenos" data-linenos=" 17 "></span><span class="w">                </span><span class="s2">&quot;${env:windir}\\System32\\cmd.exe&quot;</span>
+<span class="linenos" data-linenos=" 14 "></span><span class="w">        </span><span class="nt">"Command Prompt"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos=" 15 "></span><span class="w">            </span><span class="nt">"path"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="linenos" data-linenos=" 16 "></span><span class="w">                </span><span class="s2">"${env:windir}\\Sysnative\\cmd.exe"</span><span class="p">,</span>
+<span class="linenos" data-linenos=" 17 "></span><span class="w">                </span><span class="s2">"${env:windir}\\System32\\cmd.exe"</span>
 <span class="linenos" data-linenos=" 18 "></span><span class="w">            </span><span class="p">],</span>
-<span class="linenos" data-linenos=" 19 "></span><span class="w">            </span><span class="nt">&quot;args&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span>
-<span class="linenos" data-linenos=" 20 "></span><span class="w">            </span><span class="nt">&quot;icon&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;terminal-cmd&quot;</span>
+<span class="linenos" data-linenos=" 19 "></span><span class="w">            </span><span class="nt">"args"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span>
+<span class="linenos" data-linenos=" 20 "></span><span class="w">            </span><span class="nt">"icon"</span><span class="p">:</span><span class="w"> </span><span class="s2">"terminal-cmd"</span>
 <span class="linenos" data-linenos=" 21 "></span><span class="w">        </span><span class="p">},</span>
-<span class="linenos" data-linenos=" 22 "></span><span class="w">        </span><span class="nt">&quot;Git Bash&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos" data-linenos=" 23 "></span><span class="w">            </span><span class="nt">&quot;source&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Git Bash&quot;</span>
+<span class="linenos" data-linenos=" 22 "></span><span class="w">        </span><span class="nt">"Git Bash"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos=" 23 "></span><span class="w">            </span><span class="nt">"source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Git Bash"</span>
 <span class="linenos" data-linenos=" 24 "></span><span class="w">        </span><span class="p">},</span>
-<span class="hll"><span class="linenos" data-linenos=" 25 "></span><span class="w">        </span><span class="nt">&quot;conda&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-</span><span class="hll"><span class="linenos" data-linenos=" 26 "></span><span class="w">            </span><span class="nt">&quot;path&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;C:\\Windows\\System32\\cmd.exe&quot;</span><span class="p">,</span>
-</span><span class="hll"><span class="linenos" data-linenos=" 27 "></span><span class="w">            </span><span class="nt">&quot;args&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
-</span><span class="hll"><span class="linenos" data-linenos=" 28 "></span><span class="w">                </span><span class="s2">&quot;/K&quot;</span><span class="p">,</span>
-</span><span class="hll"><span class="linenos" data-linenos=" 29 "></span><span class="w">                </span><span class="s2">&quot;call C:\\ProgramData\\anaconda3\\Scripts\\activate.bat C:\\ProgramData\\anaconda3 &amp;&amp; conda activate PEICD100&quot;</span>
+<span class="hll"><span class="linenos" data-linenos=" 25 "></span><span class="w">        </span><span class="nt">"conda"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+</span><span class="hll"><span class="linenos" data-linenos=" 26 "></span><span class="w">            </span><span class="nt">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"C:\\Windows\\System32\\cmd.exe"</span><span class="p">,</span>
+</span><span class="hll"><span class="linenos" data-linenos=" 27 "></span><span class="w">            </span><span class="nt">"args"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+</span><span class="hll"><span class="linenos" data-linenos=" 28 "></span><span class="w">                </span><span class="s2">"/K"</span><span class="p">,</span>
+</span><span class="hll"><span class="linenos" data-linenos=" 29 "></span><span class="w">                </span><span class="s2">"call C:\\ProgramData\\anaconda3\\Scripts\\activate.bat C:\\ProgramData\\anaconda3 &amp;&amp; conda activate PEICD100"</span>
 </span><span class="hll"><span class="linenos" data-linenos=" 30 "></span><span class="w">            </span><span class="p">]</span>
 </span><span class="hll"><span class="linenos" data-linenos=" 31 "></span><span class="w">        </span><span class="p">}</span>
 </span><span class="linenos" data-linenos=" 32 "></span><span class="w">    </span><span class="p">},</span>
-<span class="linenos" data-linenos=" 33 "></span><span class="w">    </span><span class="nt">&quot;terminal.integrated.defaultProfile.windows&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;conda&quot;</span><span class="p">,</span>
-<span class="linenos" data-linenos=" 34 "></span><span class="w">    </span><span class="nt">&quot;terminal.integrated.enableMultiLinePasteWarning&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;always&quot;</span><span class="p">,</span>
+<span class="linenos" data-linenos=" 33 "></span><span class="w">    </span><span class="nt">"terminal.integrated.defaultProfile.windows"</span><span class="p">:</span><span class="w"> </span><span class="s2">"conda"</span><span class="p">,</span>
+<span class="linenos" data-linenos=" 34 "></span><span class="w">    </span><span class="nt">"terminal.integrated.enableMultiLinePasteWarning"</span><span class="p">:</span><span class="w"> </span><span class="s2">"always"</span><span class="p">,</span>
 <span class="linenos" data-linenos=" 35 "></span><span class="w">    </span><span class="c1">// 預設 conda 結束</span>
-<span class="linenos" data-linenos=" 36 "></span><span class="w">    </span><span class="nt">&quot;workbench.editorAssociations&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos" data-linenos=" 37 "></span><span class="w">        </span><span class="nt">&quot;*.pdf&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;pdf.view&quot;</span><span class="p">,</span>
-<span class="linenos" data-linenos=" 38 "></span><span class="w">        </span><span class="nt">&quot;*.xlsx&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;gc-excelviewer-excel-editor&quot;</span>
+<span class="linenos" data-linenos=" 36 "></span><span class="w">    </span><span class="nt">"workbench.editorAssociations"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos=" 37 "></span><span class="w">        </span><span class="nt">"*.pdf"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pdf.view"</span><span class="p">,</span>
+<span class="linenos" data-linenos=" 38 "></span><span class="w">        </span><span class="nt">"*.xlsx"</span><span class="p">:</span><span class="w"> </span><span class="s2">"gc-excelviewer-excel-editor"</span>
 <span class="linenos" data-linenos=" 39 "></span><span class="w">    </span><span class="p">},</span>
-<span class="linenos" data-linenos=" 40 "></span><span class="w">    </span><span class="nt">&quot;security.workspace.trust.untrustedFiles&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;open&quot;</span><span class="p">,</span>
-<span class="linenos" data-linenos=" 41 "></span><span class="w">    </span><span class="nt">&quot;explorer.sortOrder&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;type&quot;</span><span class="p">,</span>
-<span class="linenos" data-linenos=" 42 "></span><span class="w">    </span><span class="nt">&quot;[python]&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos" data-linenos=" 43 "></span><span class="w">        </span><span class="nt">&quot;diffEditor.ignoreTrimWhitespace&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
-<span class="linenos" data-linenos=" 44 "></span><span class="w">        </span><span class="nt">&quot;editor.defaultColorDecorators&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;never&quot;</span><span class="p">,</span>
-<span class="linenos" data-linenos=" 45 "></span><span class="w">        </span><span class="nt">&quot;editor.formatOnType&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
-<span class="linenos" data-linenos=" 46 "></span><span class="w">        </span><span class="nt">&quot;editor.wordBasedSuggestions&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;off&quot;</span>
+<span class="linenos" data-linenos=" 40 "></span><span class="w">    </span><span class="nt">"security.workspace.trust.untrustedFiles"</span><span class="p">:</span><span class="w"> </span><span class="s2">"open"</span><span class="p">,</span>
+<span class="linenos" data-linenos=" 41 "></span><span class="w">    </span><span class="nt">"explorer.sortOrder"</span><span class="p">:</span><span class="w"> </span><span class="s2">"type"</span><span class="p">,</span>
+<span class="linenos" data-linenos=" 42 "></span><span class="w">    </span><span class="nt">"[python]"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos=" 43 "></span><span class="w">        </span><span class="nt">"diffEditor.ignoreTrimWhitespace"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="linenos" data-linenos=" 44 "></span><span class="w">        </span><span class="nt">"editor.defaultColorDecorators"</span><span class="p">:</span><span class="w"> </span><span class="s2">"never"</span><span class="p">,</span>
+<span class="linenos" data-linenos=" 45 "></span><span class="w">        </span><span class="nt">"editor.formatOnType"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="linenos" data-linenos=" 46 "></span><span class="w">        </span><span class="nt">"editor.wordBasedSuggestions"</span><span class="p">:</span><span class="w"> </span><span class="s2">"off"</span>
 <span class="linenos" data-linenos=" 47 "></span><span class="w">    </span><span class="p">},</span>
-<span class="linenos" data-linenos=" 48 "></span><span class="w">    </span><span class="nt">&quot;git.openRepositoryInParentFolders&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;never&quot;</span><span class="p">,</span>
-<span class="linenos" data-linenos=" 49 "></span><span class="w">    </span><span class="nt">&quot;files.associations&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos" data-linenos=" 50 "></span><span class="w">        </span><span class="nt">&quot;*.md&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;markdown&quot;</span><span class="p">,</span>
-<span class="linenos" data-linenos=" 51 "></span><span class="w">        </span><span class="nt">&quot;*.txt&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;chatagent&quot;</span>
+<span class="linenos" data-linenos=" 48 "></span><span class="w">    </span><span class="nt">"git.openRepositoryInParentFolders"</span><span class="p">:</span><span class="w"> </span><span class="s2">"never"</span><span class="p">,</span>
+<span class="linenos" data-linenos=" 49 "></span><span class="w">    </span><span class="nt">"files.associations"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos=" 50 "></span><span class="w">        </span><span class="nt">"*.md"</span><span class="p">:</span><span class="w"> </span><span class="s2">"markdown"</span><span class="p">,</span>
+<span class="linenos" data-linenos=" 51 "></span><span class="w">        </span><span class="nt">"*.txt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"chatagent"</span>
 <span class="linenos" data-linenos=" 52 "></span><span class="w">    </span><span class="p">},</span>
-<span class="linenos" data-linenos=" 53 "></span><span class="w">    </span><span class="nt">&quot;workbench.secondarySideBar.defaultVisibility&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;hidden&quot;</span><span class="p">,</span>
-<span class="linenos" data-linenos=" 54 "></span><span class="w">    </span><span class="nt">&quot;editor.formatOnSave&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="linenos" data-linenos=" 53 "></span><span class="w">    </span><span class="nt">"workbench.secondarySideBar.defaultVisibility"</span><span class="p">:</span><span class="w"> </span><span class="s2">"hidden"</span><span class="p">,</span>
+<span class="linenos" data-linenos=" 54 "></span><span class="w">    </span><span class="nt">"editor.formatOnSave"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
 <span class="linenos" data-linenos=" 55 "></span><span class="w">    </span><span class="c1">// C++ 格式化設定</span>
-<span class="linenos" data-linenos=" 56 "></span><span class="w">    </span><span class="nt">&quot;C_Cpp.clang_format_style&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;{ BasedOnStyle: Google, IndentWidth: 4, ColumnLimit: 0 }&quot;</span><span class="p">,</span>
+<span class="linenos" data-linenos=" 56 "></span><span class="w">    </span><span class="nt">"C_Cpp.clang_format_style"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{ BasedOnStyle: Google, IndentWidth: 4, ColumnLimit: 0 }"</span><span class="p">,</span>
 <span class="linenos" data-linenos=" 57 "></span><span class="w">    </span><span class="c1">// txt 邊界換行</span>
-<span class="linenos" data-linenos=" 58 "></span><span class="w">    </span><span class="nt">&quot;[plaintext]&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos" data-linenos=" 59 "></span><span class="w">        </span><span class="nt">&quot;editor.wordWrap&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;on&quot;</span>
+<span class="linenos" data-linenos=" 58 "></span><span class="w">    </span><span class="nt">"[plaintext]"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos=" 59 "></span><span class="w">        </span><span class="nt">"editor.wordWrap"</span><span class="p">:</span><span class="w"> </span><span class="s2">"on"</span>
 <span class="linenos" data-linenos=" 60 "></span><span class="w">    </span><span class="p">},</span>
-<span class="linenos" data-linenos=" 61 "></span><span class="w">    </span><span class="nt">&quot;workbench.settings.applyToAllProfiles&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
-<span class="linenos" data-linenos=" 62 "></span><span class="w">        </span><span class="s2">&quot;markdown.copyFiles.destination&quot;</span>
+<span class="linenos" data-linenos=" 61 "></span><span class="w">    </span><span class="nt">"workbench.settings.applyToAllProfiles"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="linenos" data-linenos=" 62 "></span><span class="w">        </span><span class="s2">"markdown.copyFiles.destination"</span>
 <span class="linenos" data-linenos=" 63 "></span><span class="w">    </span><span class="p">],</span>
-<span class="linenos" data-linenos=" 64 "></span><span class="w">    </span><span class="nt">&quot;markdown.copyFiles.destination&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos" data-linenos=" 65 "></span><span class="w">        </span><span class="nt">&quot;docs/**/*&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;images/${documentBaseName}/&quot;</span>
+<span class="linenos" data-linenos=" 64 "></span><span class="w">    </span><span class="nt">"markdown.copyFiles.destination"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos=" 65 "></span><span class="w">        </span><span class="nt">"docs/**/*"</span><span class="p">:</span><span class="w"> </span><span class="s2">"images/${documentBaseName}/"</span>
 <span class="linenos" data-linenos=" 66 "></span><span class="w">    </span><span class="p">},</span>
-<span class="linenos" data-linenos=" 67 "></span><span class="w">    </span><span class="nt">&quot;xlsxViewer.md.wordWrap&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
-<span class="linenos" data-linenos=" 68 "></span><span class="w">    </span><span class="nt">&quot;xlsxViewer.md.syncScroll&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
-<span class="linenos" data-linenos=" 69 "></span><span class="w">    </span><span class="nt">&quot;xlsxViewer.md.previewPosition&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;right&quot;</span><span class="p">,</span>
-<span class="linenos" data-linenos=" 70 "></span><span class="w">    </span><span class="nt">&quot;xlsxViewer.md.stickyToolbar&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
-<span class="linenos" data-linenos=" 71 "></span><span class="w">    </span><span class="nt">&quot;documentViewer.readOnly&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
-<span class="linenos" data-linenos=" 72 "></span><span class="w">    </span><span class="nt">&quot;chatgpt.localeOverride&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;zh-TW&quot;</span><span class="p">,</span>
-<span class="linenos" data-linenos=" 73 "></span><span class="w">    </span><span class="nt">&quot;http.systemCertificatesNode&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
-<span class="linenos" data-linenos=" 74 "></span><span class="w">    </span><span class="nt">&quot;chat.tools.terminal.autoApprove&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos" data-linenos=" 75 "></span><span class="w">        </span><span class="nt">&quot;/^powershell -Command \&quot;Get-Date -Format &#39;yyyyMMdd_HHmmss&#39;\&quot;$/&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos" data-linenos=" 76 "></span><span class="w">            </span><span class="nt">&quot;approve&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
-<span class="linenos" data-linenos=" 77 "></span><span class="w">            </span><span class="nt">&quot;matchCommandLine&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
+<span class="linenos" data-linenos=" 67 "></span><span class="w">    </span><span class="nt">"xlsxViewer.md.wordWrap"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="linenos" data-linenos=" 68 "></span><span class="w">    </span><span class="nt">"xlsxViewer.md.syncScroll"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="linenos" data-linenos=" 69 "></span><span class="w">    </span><span class="nt">"xlsxViewer.md.previewPosition"</span><span class="p">:</span><span class="w"> </span><span class="s2">"right"</span><span class="p">,</span>
+<span class="linenos" data-linenos=" 70 "></span><span class="w">    </span><span class="nt">"xlsxViewer.md.stickyToolbar"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="linenos" data-linenos=" 71 "></span><span class="w">    </span><span class="nt">"documentViewer.readOnly"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="linenos" data-linenos=" 72 "></span><span class="w">    </span><span class="nt">"chatgpt.localeOverride"</span><span class="p">:</span><span class="w"> </span><span class="s2">"zh-TW"</span><span class="p">,</span>
+<span class="linenos" data-linenos=" 73 "></span><span class="w">    </span><span class="nt">"http.systemCertificatesNode"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="linenos" data-linenos=" 74 "></span><span class="w">    </span><span class="nt">"chat.tools.terminal.autoApprove"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos=" 75 "></span><span class="w">        </span><span class="nt">"/^powershell -Command \"Get-Date -Format 'yyyyMMdd_HHmmss'\"$/"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos=" 76 "></span><span class="w">            </span><span class="nt">"approve"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="linenos" data-linenos=" 77 "></span><span class="w">            </span><span class="nt">"matchCommandLine"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
 <span class="linenos" data-linenos=" 78 "></span><span class="w">        </span><span class="p">},</span>
-<span class="linenos" data-linenos=" 79 "></span><span class="w">        </span><span class="nt">&quot;/^call \&quot;C:\\\\ProgramData\\\\Anaconda3\\\\Scripts\\\\activate\\.bat\&quot; \&quot;C:\\\\ProgramData\\\\Anaconda3\&quot; ; conda env list$/&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos" data-linenos=" 80 "></span><span class="w">            </span><span class="nt">&quot;approve&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
-<span class="linenos" data-linenos=" 81 "></span><span class="w">            </span><span class="nt">&quot;matchCommandLine&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
+<span class="linenos" data-linenos=" 79 "></span><span class="w">        </span><span class="nt">"/^call \"C:\\\\ProgramData\\\\Anaconda3\\\\Scripts\\\\activate\\.bat\" \"C:\\\\ProgramData\\\\Anaconda3\" ; conda env list$/"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos=" 80 "></span><span class="w">            </span><span class="nt">"approve"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="linenos" data-linenos=" 81 "></span><span class="w">            </span><span class="nt">"matchCommandLine"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
 <span class="linenos" data-linenos=" 82 "></span><span class="w">        </span><span class="p">}</span>
 <span class="linenos" data-linenos=" 83 "></span><span class="w">    </span><span class="p">},</span>
 <span class="linenos" data-linenos=" 84 "></span><span class="w">    </span><span class="c1">// =========================</span>
 <span class="linenos" data-linenos=" 85 "></span><span class="w">    </span><span class="c1">// 封鎖所有 AI 自動在編輯器內顯示文字（ghost text / inline suggestion / hint）</span>
 <span class="linenos" data-linenos=" 86 "></span><span class="w">    </span><span class="c1">// =========================</span>
 <span class="linenos" data-linenos=" 87 "></span><span class="w">    </span><span class="c1">// VS Code 核心：關閉 inline suggest（多數 AI ghost text 都走這個）</span>
-<span class="linenos" data-linenos=" 88 "></span><span class="w">    </span><span class="nt">&quot;editor.inlineSuggest.enabled&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="linenos" data-linenos=" 88 "></span><span class="w">    </span><span class="nt">"editor.inlineSuggest.enabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
 <span class="linenos" data-linenos=" 89 "></span><span class="w">    </span><span class="c1">// VS Code 核心：關閉 hover（常見的「Press Ctrl+I...」類型提示來源之一）</span>
-<span class="linenos" data-linenos=" 90 "></span><span class="w">    </span><span class="nt">&quot;editor.hover.enabled&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;off&quot;</span><span class="p">,</span>
+<span class="linenos" data-linenos=" 90 "></span><span class="w">    </span><span class="nt">"editor.hover.enabled"</span><span class="p">:</span><span class="w"> </span><span class="s2">"off"</span><span class="p">,</span>
 <span class="linenos" data-linenos=" 91 "></span><span class="w">    </span><span class="c1">// VS Code 核心：關閉以文字為基礎的建議（避免外掛假裝是一般字詞建議）</span>
-<span class="linenos" data-linenos=" 92 "></span><span class="w">    </span><span class="nt">&quot;editor.wordBasedSuggestions&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;off&quot;</span><span class="p">,</span>
-<span class="linenos" data-linenos=" 93 "></span><span class="w">    </span><span class="nt">&quot;editor.suggest.showWords&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="linenos" data-linenos=" 92 "></span><span class="w">    </span><span class="nt">"editor.wordBasedSuggestions"</span><span class="p">:</span><span class="w"> </span><span class="s2">"off"</span><span class="p">,</span>
+<span class="linenos" data-linenos=" 93 "></span><span class="w">    </span><span class="nt">"editor.suggest.showWords"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
 <span class="linenos" data-linenos=" 94 "></span><span class="w">    </span><span class="c1">// Gemini Code Assist：關掉自動 inline suggestions / next edit prediction / inline hint</span>
-<span class="linenos" data-linenos=" 95 "></span><span class="w">    </span><span class="nt">&quot;geminicodeassist.project&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;eminent-age-hlf0d&quot;</span><span class="p">,</span>
-<span class="linenos" data-linenos=" 96 "></span><span class="w">    </span><span class="nt">&quot;geminicodeassist.inlineSuggestions.enableAuto&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
-<span class="linenos" data-linenos=" 97 "></span><span class="w">    </span><span class="nt">&quot;geminicodeassist.inlineSuggestions.nextEditPredictions&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
-<span class="linenos" data-linenos=" 98 "></span><span class="w">    </span><span class="nt">&quot;geminicodeassist.displayInlineContextHint&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
-<span class="linenos" data-linenos=" 99 "></span><span class="w">    </span><span class="nt">&quot;geminicodeassist.chat.automaticScrolling&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="linenos" data-linenos=" 95 "></span><span class="w">    </span><span class="nt">"geminicodeassist.project"</span><span class="p">:</span><span class="w"> </span><span class="s2">"eminent-age-hlf0d"</span><span class="p">,</span>
+<span class="linenos" data-linenos=" 96 "></span><span class="w">    </span><span class="nt">"geminicodeassist.inlineSuggestions.enableAuto"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="linenos" data-linenos=" 97 "></span><span class="w">    </span><span class="nt">"geminicodeassist.inlineSuggestions.nextEditPredictions"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="linenos" data-linenos=" 98 "></span><span class="w">    </span><span class="nt">"geminicodeassist.displayInlineContextHint"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="linenos" data-linenos=" 99 "></span><span class="w">    </span><span class="nt">"geminicodeassist.chat.automaticScrolling"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
 <span class="linenos" data-linenos="100 "></span><span class="w">    </span><span class="c1">// GitHub Copilot：全面關閉</span>
-<span class="linenos" data-linenos="101 "></span><span class="w">    </span><span class="nt">&quot;github.copilot.enable&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos" data-linenos="102 "></span><span class="w">        </span><span class="nt">&quot;*&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
-<span class="linenos" data-linenos="103 "></span><span class="w">        </span><span class="nt">&quot;plaintext&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
-<span class="linenos" data-linenos="104 "></span><span class="w">        </span><span class="nt">&quot;markdown&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
-<span class="linenos" data-linenos="105 "></span><span class="w">        </span><span class="nt">&quot;scminput&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span>
+<span class="linenos" data-linenos="101 "></span><span class="w">    </span><span class="nt">"github.copilot.enable"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="102 "></span><span class="w">        </span><span class="nt">"*"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="linenos" data-linenos="103 "></span><span class="w">        </span><span class="nt">"plaintext"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="linenos" data-linenos="104 "></span><span class="w">        </span><span class="nt">"markdown"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="linenos" data-linenos="105 "></span><span class="w">        </span><span class="nt">"scminput"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span>
 <span class="linenos" data-linenos="106 "></span><span class="w">    </span><span class="p">},</span>
 <span class="linenos" data-linenos="107 "></span><span class="w">    </span><span class="c1">// Codeium：全面關閉（避免在編輯器自動補全）</span>
-<span class="linenos" data-linenos="108 "></span><span class="w">    </span><span class="nt">&quot;codeium.enableConfig&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos" data-linenos="109 "></span><span class="w">        </span><span class="nt">&quot;*&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span>
+<span class="linenos" data-linenos="108 "></span><span class="w">    </span><span class="nt">"codeium.enableConfig"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="109 "></span><span class="w">        </span><span class="nt">"*"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span>
 <span class="linenos" data-linenos="110 "></span><span class="w">    </span><span class="p">},</span>
-<span class="linenos" data-linenos="111 "></span><span class="w">    </span><span class="nt">&quot;workbench.editor.empty.hint&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;hidden&quot;</span><span class="p">,</span>
-<span class="linenos" data-linenos="112 "></span><span class="w">    </span><span class="nt">&quot;git.autofetch&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
-<span class="linenos" data-linenos="113 "></span><span class="w">    </span><span class="nt">&quot;editor.largeFileOptimizations&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
-<span class="linenos" data-linenos="114 "></span><span class="w">    </span><span class="nt">&quot;cmake.showConfigureWithDebuggerNotification&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
-<span class="linenos" data-linenos="115 "></span><span class="w">    </span><span class="nt">&quot;files.autoSave&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;afterDelay&quot;</span><span class="p">,</span>
-<span class="linenos" data-linenos="116 "></span><span class="w">    </span><span class="nt">&quot;git.enableSmartCommit&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
-<span class="linenos" data-linenos="117 "></span><span class="w">    </span><span class="nt">&quot;editor.fontFamily&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Cascadia Mono, Consolas, &#39;Courier New&#39;, monospace&quot;</span><span class="p">,</span>
-<span class="linenos" data-linenos="118 "></span><span class="w">    </span><span class="nt">&quot;files.autoSave&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;afterDelay&quot;</span><span class="p">,</span>
-<span class="linenos" data-linenos="119 "></span><span class="w">    </span><span class="nt">&quot;security.allowedUNCHosts&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
-<span class="linenos" data-linenos="120 "></span><span class="w">        </span><span class="s2">&quot;vmware-host&quot;</span>
+<span class="linenos" data-linenos="111 "></span><span class="w">    </span><span class="nt">"workbench.editor.empty.hint"</span><span class="p">:</span><span class="w"> </span><span class="s2">"hidden"</span><span class="p">,</span>
+<span class="linenos" data-linenos="112 "></span><span class="w">    </span><span class="nt">"git.autofetch"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="linenos" data-linenos="113 "></span><span class="w">    </span><span class="nt">"editor.largeFileOptimizations"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="linenos" data-linenos="114 "></span><span class="w">    </span><span class="nt">"cmake.showConfigureWithDebuggerNotification"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="linenos" data-linenos="115 "></span><span class="w">    </span><span class="nt">"files.autoSave"</span><span class="p">:</span><span class="w"> </span><span class="s2">"afterDelay"</span><span class="p">,</span>
+<span class="linenos" data-linenos="116 "></span><span class="w">    </span><span class="nt">"git.enableSmartCommit"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="linenos" data-linenos="117 "></span><span class="w">    </span><span class="nt">"editor.fontFamily"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Cascadia Mono, Consolas, 'Courier New', monospace"</span><span class="p">,</span>
+<span class="linenos" data-linenos="118 "></span><span class="w">    </span><span class="nt">"files.autoSave"</span><span class="p">:</span><span class="w"> </span><span class="s2">"afterDelay"</span><span class="p">,</span>
+<span class="linenos" data-linenos="119 "></span><span class="w">    </span><span class="nt">"security.allowedUNCHosts"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="linenos" data-linenos="120 "></span><span class="w">        </span><span class="s2">"vmware-host"</span>
 <span class="linenos" data-linenos="121 "></span><span class="w">    </span><span class="p">],</span>
 <span class="linenos" data-linenos="122 "></span><span class="w">    </span><span class="c1">//在寫 C++ 時 VS Code 會把你剛剛自動插入在空白行上的縮排空白視為「可修剪的自動空白」，當游標離開那一行（你按第二次 Enter 就離開了）就把它刪掉。</span>
 <span class="linenos" data-linenos="123 "></span><span class="w">    </span><span class="c1">//以下是關閉他的方法</span>
-<span class="linenos" data-linenos="124 "></span><span class="w">    </span><span class="nt">&quot;[cpp]&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos" data-linenos="125 "></span><span class="w">        </span><span class="nt">&quot;editor.trimAutoWhitespace&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span>
+<span class="linenos" data-linenos="124 "></span><span class="w">    </span><span class="nt">"[cpp]"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="125 "></span><span class="w">        </span><span class="nt">"editor.trimAutoWhitespace"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span>
 <span class="linenos" data-linenos="126 "></span><span class="w">    </span><span class="p">},</span>
-<span class="linenos" data-linenos="127 "></span><span class="w">    </span><span class="nt">&quot;[c]&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos" data-linenos="128 "></span><span class="w">        </span><span class="nt">&quot;editor.trimAutoWhitespace&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span>
+<span class="linenos" data-linenos="127 "></span><span class="w">    </span><span class="nt">"[c]"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="128 "></span><span class="w">        </span><span class="nt">"editor.trimAutoWhitespace"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span>
 <span class="linenos" data-linenos="129 "></span><span class="w">    </span><span class="p">}</span>
 <span class="linenos" data-linenos="130 "></span><span class="p">}</span>
 </code></pre></div>
 <div class="code-footer"><label class="expand icon-only" for="__collapse0" tabindex="0"><span class="collapse-code__sr-only">expand</span></label><label class="collapse icon-only" for="__collapse0" tabindex="0"><span class="collapse-code__sr-only">collapse</span></label></div>
 </div>
-<p>這些參數可以在這裡找：<br />
-<img alt="alt text" src="images/mkdocs%E7%AD%86%E8%A8%98/image-9.png" /><br />
-<img alt="alt text" src="images/mkdocs%E7%AD%86%E8%A8%98/image-10.png" /></p>
+<p>這些參數可以在這裡找：<br/>
+<img alt="alt text" decoding="async" loading="lazy" src="images/mkdocs%E7%AD%86%E8%A8%98/image-9.png"/><br/>
+<img alt="alt text" decoding="async" loading="lazy" src="images/mkdocs%E7%AD%86%E8%A8%98/image-10.png"/></p>
 <h2 id="使用vscode撰寫c">使用vscode撰寫c++<a class="headerlink" href="#使用vscode撰寫c" title="Permanent link"></a></h2>
 <h3 id="mingw設置">mingw設置<a class="headerlink" href="#mingw設置" title="Permanent link"></a></h3>
-<p>資料來源：<br />
-1.<a href="https://ithelp.ithome.com.tw/articles/10190235">https://ithelp.ithome.com.tw/articles/10190235</a><br />
+<p>資料來源：<br/>
+1.<a href="https://ithelp.ithome.com.tw/articles/10190235">https://ithelp.ithome.com.tw/articles/10190235</a><br/>
 2.<a href="https://blog.yangjerry.tw/2021/09/24/vscode-cpp-2021-part1/">https://blog.yangjerry.tw/2021/09/24/vscode-cpp-2021-part1/</a></p>
-<p>下載網址，按綠色那個<br />
+<p>下載網址，按綠色那個<br/>
 <a href="https://sourceforge.net/projects/mingw/files/">https://sourceforge.net/projects/mingw/files/</a></p>
-<p><img alt="alt text" src="../images/%E4%BD%BF%E7%94%A8vscode%E6%92%B0%E5%AF%ABc%2B%2B/H1OjfNcp3.png" /></p>
+<p><img alt="alt text" decoding="async" loading="lazy" src="../images/%E4%BD%BF%E7%94%A8vscode%E6%92%B0%E5%AF%ABc%2B%2B/H1OjfNcp3.png"/></p>
 <p>安裝完後會跳出視窗選擇要安裝的套件，這裡選擇 base 和 g++，選好後點左上角的 Installation 選 Apply Change 開始安裝。</p>
-<p><img alt="alt text" src="../images/%E4%BD%BF%E7%94%A8vscode%E6%92%B0%E5%AF%ABc%2B%2B/Bk3kEVqan.png" /></p>
-<p>安裝完後要將 MinGW 的安裝路徑 C:\MinGW\bin (自己的位置)加入系統環境變數。<br />
+<p><img alt="alt text" decoding="async" loading="lazy" src="../images/%E4%BD%BF%E7%94%A8vscode%E6%92%B0%E5%AF%ABc%2B%2B/Bk3kEVqan.png"/></p>
+<p>安裝完後要將 MinGW 的安裝路徑 C:\MinGW\bin (自己的位置)加入系統環境變數。<br/>
 我的電腦 -&gt; 右鍵內容 -&gt; 左邊選單 進階系統設定 -&gt; 進階 環境變數。</p>
-<p><img alt="alt text" src="../images/%E4%BD%BF%E7%94%A8vscode%E6%92%B0%E5%AF%ABc%2B%2B/H1AxVVc6n.png" /></p>
+<p><img alt="alt text" decoding="async" loading="lazy" src="../images/%E4%BD%BF%E7%94%A8vscode%E6%92%B0%E5%AF%ABc%2B%2B/H1AxVVc6n.png"/></p>
 <p>完成</p>
-<hr />
+<hr/>
 <h3 id="vscode設置">vscode設置<a class="headerlink" href="#vscode設置" title="Permanent link"></a></h3>
 <p>下載這些</p>
 <p>1.偵錯/自動填字用</p>
-<p><img alt="alt text" src="../images/%E4%BD%BF%E7%94%A8vscode%E6%92%B0%E5%AF%ABc%2B%2B/ryr64N5p3.png" /></p>
+<p><img alt="alt text" decoding="async" loading="lazy" src="../images/%E4%BD%BF%E7%94%A8vscode%E6%92%B0%E5%AF%ABc%2B%2B/ryr64N5p3.png"/></p>
 <p>按下後可設定</p>
-<p><img alt="alt text" src="../images/%E4%BD%BF%E7%94%A8vscode%E6%92%B0%E5%AF%ABc%2B%2B/S1N4vV9an.png" /></p>
+<p><img alt="alt text" decoding="async" loading="lazy" src="../images/%E4%BD%BF%E7%94%A8vscode%E6%92%B0%E5%AF%ABc%2B%2B/S1N4vV9an.png"/></p>
 <p>選這些</p>
-<p><img alt="alt text" src="../images/%E4%BD%BF%E7%94%A8vscode%E6%92%B0%E5%AF%ABc%2B%2B/image.png" /></p>
-<p><img alt="alt text" src="../images/%E4%BD%BF%E7%94%A8vscode%E6%92%B0%E5%AF%ABc%2B%2B/image-1.png" /></p>
-<p><img alt="alt text" src="../images/%E4%BD%BF%E7%94%A8vscode%E6%92%B0%E5%AF%ABc%2B%2B/image-4.png" /></p>
+<p><img alt="alt text" decoding="async" loading="lazy" src="../images/%E4%BD%BF%E7%94%A8vscode%E6%92%B0%E5%AF%ABc%2B%2B/image.png"/></p>
+<p><img alt="alt text" decoding="async" loading="lazy" src="../images/%E4%BD%BF%E7%94%A8vscode%E6%92%B0%E5%AF%ABc%2B%2B/image-1.png"/></p>
+<p><img alt="alt text" decoding="async" loading="lazy" src="../images/%E4%BD%BF%E7%94%A8vscode%E6%92%B0%E5%AF%ABc%2B%2B/image-4.png"/></p>
 <h3 id="cph-對測資答案">CPH 對測資答案<a class="headerlink" href="#cph-對測資答案" title="Permanent link"></a></h3>
-<p><img alt="alt text" src="images/%E4%BD%BF%E7%94%A8vscode%E6%92%B0%E5%AF%ABc%2B%2B/image-6.png" /></p>
+<p><img alt="alt text" decoding="async" loading="lazy" src="images/%E4%BD%BF%E7%94%A8vscode%E6%92%B0%E5%AF%ABc%2B%2B/image-6.png"/></p>
 <blockquote>
 <p>以下為其他網站之資料：<a href="https://hackmd.io/@smallshawn95/vscode_write_cpp_2">https://hackmd.io/@smallshawn95/vscode_write_cpp_2</a></p>
 </blockquote>
 <h3 id="code-runner">Code Runner<a class="headerlink" href="#code-runner" title="Permanent link"></a></h3>
-<p>能夠讓執行程式更方便的延伸模組，極度推薦安裝。<br />
+<p>能夠讓執行程式更方便的延伸模組，極度推薦安裝。<br/>
 連結：<a href="https://marketplace.visualstudio.com/items?itemName=formulahendry.code-runner">https://marketplace.visualstudio.com/items?itemName=formulahendry.code-runner</a></p>
-<p><img alt="alt text" src="../images/%E4%BD%BF%E7%94%A8vscode%E6%92%B0%E5%AF%ABc%2B%2B/HkPSiTsYR.jpg" /></p>
+<p><img alt="alt text" decoding="async" loading="lazy" src="../images/%E4%BD%BF%E7%94%A8vscode%E6%92%B0%E5%AF%ABc%2B%2B/HkPSiTsYR.jpg"/></p>
 <h3 id="設置-vscode-環境">設置 Vscode 環境：<a class="headerlink" href="#設置-vscode-環境" title="Permanent link"></a></h3>
-<p>查詢框輸入 <code>&gt; Open User Settings</code>，打開 Vscode Setting Json 檔。<br />
-<img alt="alt text" src="../images/%E4%BD%BF%E7%94%A8vscode%E6%92%B0%E5%AF%ABc%2B%2B/rJZiiasF0.png" /></p>
+<p>查詢框輸入 <code>&gt; Open User Settings</code>，打開 Vscode Setting Json 檔。<br/>
+<img alt="alt text" decoding="async" loading="lazy" src="../images/%E4%BD%BF%E7%94%A8vscode%E6%92%B0%E5%AF%ABc%2B%2B/rJZiiasF0.png"/></p>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
 <span class="w">    </span><span class="c1">// 讓 Code Runner 將 C++ 執行在終端機中</span>
-<span class="w">    </span><span class="s">&quot;code-runner.runInTerminal&quot;</span><span class="o">:</span><span class="w"> </span><span class="nb">true</span><span class="p">,</span>
+<span class="w">    </span><span class="s">"code-runner.runInTerminal"</span><span class="o">:</span><span class="w"> </span><span class="nb">true</span><span class="p">,</span>
 <span class="w">    </span><span class="c1">// 預設 C++ 程式碼的編碼方式為 Big5(繁體中文標準庫)</span>
-<span class="w">    </span><span class="s">&quot;[cpp]&quot;</span><span class="o">:</span><span class="p">{</span>
-<span class="w">        </span><span class="s">&quot;files.encoding&quot;</span><span class="o">:</span><span class="w"> </span><span class="s">&quot;cp950&quot;</span>
+<span class="w">    </span><span class="s">"[cpp]"</span><span class="o">:</span><span class="p">{</span>
+<span class="w">        </span><span class="s">"files.encoding"</span><span class="o">:</span><span class="w"> </span><span class="s">"cp950"</span>
 <span class="w">    </span><span class="p">},</span>
 <span class="w">    </span><span class="c1">//先儲存再執行</span>
-<span class="w">    </span><span class="s">&quot;code-runner.saveFileBeforeRun&quot;</span><span class="o">:</span><span class="w"> </span><span class="nb">true</span>
+<span class="w">    </span><span class="s">"code-runner.saveFileBeforeRun"</span><span class="o">:</span><span class="w"> </span><span class="nb">true</span>
 <span class="p">}</span>
 </code></pre></div>
 <h3 id="執行程式">執行程式：<a class="headerlink" href="#執行程式" title="Permanent link"></a></h3>
-<p><img alt="alt text" src="../images/%E4%BD%BF%E7%94%A8vscode%E6%92%B0%E5%AF%ABc%2B%2B/BylvhTiY0.png" /></p>
+<p><img alt="alt text" decoding="async" loading="lazy" src="../images/%E4%BD%BF%E7%94%A8vscode%E6%92%B0%E5%AF%ABc%2B%2B/BylvhTiY0.png"/></p>
 <h2 id="題外話">題外話<a class="headerlink" href="#題外話" title="Permanent link"></a></h2>
 <h3 id="執行時要儲存ctrls或是選擇自動儲存">執行時要儲存：ctrl+s，或是選擇自動儲存<a class="headerlink" href="#執行時要儲存ctrls或是選擇自動儲存" title="Permanent link"></a></h3>
 <ol>
-<li><img alt="alt text" src="../images/%E4%BD%BF%E7%94%A8vscode%E6%92%B0%E5%AF%ABc%2B%2B/image-5.png" /></li>
-<li>或是確保json設定檔有加上<br />
-    <div class="highlight"><pre><span></span><code><span class="c1">//先儲存再執行</span>
-<span class="s">&quot;code-runner.saveFileBeforeRun&quot;</span><span class="o">:</span><span class="w"> </span><span class="nb">true</span>
+<li><img alt="alt text" decoding="async" loading="lazy" src="../images/%E4%BD%BF%E7%94%A8vscode%E6%92%B0%E5%AF%ABc%2B%2B/image-5.png"/></li>
+<li>或是確保json設定檔有加上<br/>
+<div class="highlight"><pre><span></span><code><span class="c1">//先儲存再執行</span>
+<span class="s">"code-runner.saveFileBeforeRun"</span><span class="o">:</span><span class="w"> </span><span class="nb">true</span>
 </code></pre></div></li>
 </ol>
 <h3 id="變更執行程式快捷鍵">變更執行程式快捷鍵<a class="headerlink" href="#變更執行程式快捷鍵" title="Permanent link"></a></h3>
 <ol>
 <li>找到快捷鍵設定</li>
 </ol>
-<p><img alt="alt text" src="../images/%E4%BD%BF%E7%94%A8vscode%E6%92%B0%E5%AF%ABc%2B%2B/HkuWyCoFC.png" /></p>
+<p><img alt="alt text" decoding="async" loading="lazy" src="../images/%E4%BD%BF%E7%94%A8vscode%E6%92%B0%E5%AF%ABc%2B%2B/HkuWyCoFC.png"/></p>
 <ol>
 <li>輸入"ctrl+alt+n"，變更為F9</li>
 </ol>
@@ -7280,11 +7278,11 @@ is now available!
 <ol>
 <li>找到設定</li>
 </ol>
-<p><img alt="alt text" src="../images/%E4%BD%BF%E7%94%A8vscode%E6%92%B0%E5%AF%ABc%2B%2B/S1SZ06oF0.png" /></p>
+<p><img alt="alt text" decoding="async" loading="lazy" src="../images/%E4%BD%BF%E7%94%A8vscode%E6%92%B0%E5%AF%ABc%2B%2B/S1SZ06oF0.png"/></p>
 <ol>
 <li>選擇以type排序</li>
 </ol>
-<p><img alt="alt text" src="../images/%E4%BD%BF%E7%94%A8vscode%E6%92%B0%E5%AF%ABc%2B%2B/ryA1ApotC.png" /></p>
+<p><img alt="alt text" decoding="async" loading="lazy" src="../images/%E4%BD%BF%E7%94%A8vscode%E6%92%B0%E5%AF%ABc%2B%2B/ryA1ApotC.png"/></p>
 <details>
 <summary>使用chroombook</summary>
 <p>codeblocks-----</p>
@@ -7296,26 +7294,26 @@ is now available!
 </code></pre></div>
 <p>vscode-----</p>
 <p>來源：<a href="https://code.visualstudio.com/docs/setup/linux">https://code.visualstudio.com/docs/setup/linux</a></p>
-<p>將下面全部執行<br />
+<p>將下面全部執行<br/>
 <div class="highlight"><pre><span></span><code><span class="n">sudo</span><span class="w"> </span><span class="n">apt</span><span class="o">-</span><span class="n">get</span><span class="w"> </span><span class="n">install</span><span class="w"> </span><span class="n">wget</span><span class="w"> </span><span class="n">gpg</span>
 <span class="n">wget</span><span class="w"> </span><span class="o">-</span><span class="n">qO</span><span class="o">-</span><span class="w"> </span><span class="n">https</span><span class="o">:</span><span class="c1">//packages.microsoft.com/keys/microsoft.asc | gpg --dearmor &gt; packages.microsoft.gpg</span>
 <span class="n">sudo</span><span class="w"> </span><span class="n">install</span><span class="w"> </span><span class="o">-</span><span class="n">D</span><span class="w"> </span><span class="o">-</span><span class="n">o</span><span class="w"> </span><span class="n">root</span><span class="w"> </span><span class="o">-</span><span class="n">g</span><span class="w"> </span><span class="n">root</span><span class="w"> </span><span class="o">-</span><span class="n">m</span><span class="w"> </span><span class="mi">644</span><span class="w"> </span><span class="n">packages</span><span class="p">.</span><span class="n">microsoft</span><span class="p">.</span><span class="n">gpg</span><span class="w"> </span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">apt</span><span class="o">/</span><span class="n">keyrings</span><span class="o">/</span><span class="n">packages</span><span class="p">.</span><span class="n">microsoft</span><span class="p">.</span><span class="n">gpg</span>
-<span class="n">sudo</span><span class="w"> </span><span class="n">sh</span><span class="w"> </span><span class="o">-</span><span class="n">c</span><span class="w"> </span><span class="err">&#39;</span><span class="n">echo</span><span class="w"> </span><span class="s">&quot;deb [arch=amd64,arm64,armhf signed-by=/etc/apt/keyrings/packages.microsoft.gpg] https://packages.microsoft.com/repos/code stable main&quot;</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">apt</span><span class="o">/</span><span class="n">sources</span><span class="p">.</span><span class="n">list</span><span class="p">.</span><span class="n">d</span><span class="o">/</span><span class="n">vscode</span><span class="p">.</span><span class="n">list</span><span class="err">&#39;</span>
+<span class="n">sudo</span><span class="w"> </span><span class="n">sh</span><span class="w"> </span><span class="o">-</span><span class="n">c</span><span class="w"> </span><span class="err">'</span><span class="n">echo</span><span class="w"> </span><span class="s">"deb [arch=amd64,arm64,armhf signed-by=/etc/apt/keyrings/packages.microsoft.gpg] https://packages.microsoft.com/repos/code stable main"</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">apt</span><span class="o">/</span><span class="n">sources</span><span class="p">.</span><span class="n">list</span><span class="p">.</span><span class="n">d</span><span class="o">/</span><span class="n">vscode</span><span class="p">.</span><span class="n">list</span><span class="err">'</span>
 <span class="n">rm</span><span class="w"> </span><span class="o">-</span><span class="n">f</span><span class="w"> </span><span class="n">packages</span><span class="p">.</span><span class="n">microsoft</span><span class="p">.</span><span class="n">gpg</span>
-</code></pre></div><br />
+</code></pre></div><br/>
 <div class="highlight"><pre><span></span><code><span class="n">sudo</span><span class="w"> </span><span class="n">apt</span><span class="w"> </span><span class="n">install</span><span class="w"> </span><span class="n">apt</span><span class="o">-</span><span class="n">transport</span><span class="o">-</span><span class="n">https</span>
 <span class="n">sudo</span><span class="w"> </span><span class="n">apt</span><span class="w"> </span><span class="n">update</span>
 <span class="n">sudo</span><span class="w"> </span><span class="n">apt</span><span class="w"> </span><span class="n">install</span><span class="w"> </span><span class="n">code</span><span class="w"> </span><span class="err">#</span><span class="w"> </span><span class="k">or</span><span class="w"> </span><span class="n">code</span><span class="o">-</span><span class="n">insiders</span>
 </code></pre></div></p>
 </details>
 <h2 id="關閉自動修剪空白">關閉自動修剪空白<a class="headerlink" href="#關閉自動修剪空白" title="Permanent link"></a></h2>
-<p>在寫C++時VS Code 會把你剛剛自動插入在空白行上的縮排空白視為「可修剪的自動空白」，當游標離開那一行（你按第二次 Enter 就離開了）就把它刪掉。<br />
+<p>在寫C++時VS Code 會把你剛剛自動插入在空白行上的縮排空白視為「可修剪的自動空白」，當游標離開那一行（你按第二次 Enter 就離開了）就把它刪掉。<br/>
 以下是關閉他的方法</p>
-<div class="highlight"><span class="filename">settings.json</span><pre><span></span><code><span class="nt">&quot;[cpp]&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nt">&quot;editor.trimAutoWhitespace&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span>
+<div class="highlight"><span class="filename">settings.json</span><pre><span></span><code><span class="nt">"[cpp]"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"editor.trimAutoWhitespace"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span>
 <span class="p">},</span>
-<span class="nt">&quot;[c]&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nt">&quot;editor.trimAutoWhitespace&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span>
+<span class="nt">"[c]"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"editor.trimAutoWhitespace"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span>
 <span class="p">}</span>
 </code></pre></div>
 
@@ -7324,6 +7322,9 @@ is now available!
 
 
 
+
+  
+  
 
 
 
@@ -7443,40 +7444,16 @@ is now available!
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.footer", "navigation.indexes", "navigation.instant", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.tabs", "navigation.top", "announce.dismiss", "content.tabs.link", "search.share", "content.code.copy", "content.code.annotations", "content.action.edit", "content.action.view", "content.tooltips"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.footer", "navigation.indexes", "navigation.instant", "navigation.instant.progress", "navigation.tabs", "navigation.top", "announce.dismiss", "content.tabs.link", "search.share", "content.code.copy", "content.code.annotations", "content.action.edit", "content.action.view", "content.tooltips"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
+  <script src="../../assets/pymdownx-extras/search-lazy-guard.js?v=20260614-1"></script>
   
       <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
       
-        <script src="https://unpkg.com/mermaid@10.6.1/dist/mermaid.min.js"></script>
-      
-        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-      
-        <script src="../../assets/pymdownx-extras/mermaid-config-override.js?v=20260523-1"></script>
-      
-        <script src="../../assets/pymdownx-extras/mermaid-legacy-flowchart-compat.js?v=20260329-1"></script>
-      
-        <script src="../../assets/pymdownx-extras/extra-loader-iLQ-keay.js"></script>
-      
-        <script src="../../assets/pymdownx-extras/mermaid-render-fix.js?v=20260522-1"></script>
-      
-        <script src="../../assets/pymdownx-extras/mermaid-zoom.js?v=20260404-1"></script>
-      
-        <script src="../../assets/pymdownx-extras/toc-fold.js"></script>
-      
-        <script src="../../assets/pymdownx-extras/image-zoom.js"></script>
-      
-        <script src="../../assets/pymdownx-extras/markdown-embed.js?v=20260516-1"></script>
-      
-        <script src="../../assets/pymdownx-extras/folder-path-bar.js?v=20260524-1"></script>
-      
-        <script src="../../assets/pymdownx-extras/legacy-image-width.js"></script>
-      
-        <script src="../../assets/pymdownx-extras/source-jump.js?v=20260523-2"></script>
+        <script src="../../assets/pymdownx-extras/conditional-loader.js?v=20260614-3"></script>
       
     
-  <script src="../../assets/pymdownx-extras/scroll-bottom.js?v=20260424-3" type="text/javascript"></script>
 
   </body>
 </html>

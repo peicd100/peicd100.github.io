@@ -7,10 +7,10 @@ plugins: []
 
 # preview-target:start
 nav:
-  - 'md/演算法筆記/卡塔蘭數.md'
+  - 'md/演算法筆記/圖論.md'
 
 exclude_docs: |
   *.md
-  !/md/演算法筆記/卡塔蘭數.md
+  !/md/演算法筆記/圖論.md
   !/index.md
 # preview-target:end

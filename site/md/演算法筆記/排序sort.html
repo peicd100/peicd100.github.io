@@ -44,8 +44,6 @@
     
 
       
-        <script src="https://unpkg.com/iframe-worker/shim"></script>
-      
     
 <script src="../../assets/pymdownx-extras/material-extra-theme-2ek1P7jT.js" type="text/javascript"></script>
 <script src="../../assets/pymdownx-extras/material-extra-3rdparty-BUCF4rjN.js" type="text/javascript"></script>
@@ -1956,7 +1954,7 @@
     
       <link rel="stylesheet" href="../../assets/pymdownx-extras/extra-8611f6c398.css">
     
-      <link rel="stylesheet" href="../../assets/pymdownx-extras/自定義.css?v=20260527-9">
+      <link rel="stylesheet" href="../../assets/pymdownx-extras/自定義.css?v=20260614-2">
     
     <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
@@ -6863,15 +6861,14 @@ is now available!
 <p>[6 9 18 27 49 50 58 80 90 95]（6 浮出）</p>
 <p>氣泡排序法可以利用旗標方式稍微減少比較時間，當尋訪完未排序部份都沒有發生任何交換動作，表示排序已經完成，不再進行後續的比較與交換動作。</p>
 <h2 id="merge-sot-合併演算法">merge sot 合併演算法<a class="headerlink" href="#merge-sot-合併演算法" title="Permanent link"></a></h2>
-<p>時間複雜度 O(log n)<br />
+<p>時間複雜度 O(log n)<br/>
 影片來源：<a href="https://www.youtube.com/watch?v=C9Xes8wH6Co">https://www.youtube.com/watch?v=C9Xes8wH6Co</a></p>
-<iframe width="1162" height="600" src="https://www.youtube.com/embed/6FV2v0bE7ls" title="merge sort" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-
+<iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="" frameborder="0" height="600" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/6FV2v0bE7ls" title="merge sort" width="1162"></iframe>
 <h2 id="自定義順序">自定義順序<a class="headerlink" href="#自定義順序" title="Permanent link"></a></h2>
 <blockquote>
-<p>一、<br />
-先宣告一個陣列<code>int v[n]={6,4,3,5,8}</code>，共n=5項。<br />
-二、<br />
+<p>一、<br/>
+先宣告一個陣列<code>int v[n]={6,4,3,5,8}</code>，共n=5項。<br/>
+二、<br/>
 把a想成左邊（前一項），b想成右邊（後一項），回傳是最後結果(左邊&gt;右邊)</p>
 </blockquote>
 <div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;bits/stdc++.h&gt;</span>
@@ -6884,7 +6881,7 @@ is now available!
 <span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">v</span><span class="p">[</span><span class="mi">10</span><span class="p">]</span><span class="o">=</span><span class="p">{</span><span class="mi">6</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">8</span><span class="p">};</span>
 <span class="w">    </span><span class="n">sort</span><span class="p">(</span><span class="n">v</span><span class="p">,</span><span class="n">v</span><span class="o">+</span><span class="mi">5</span><span class="p">,</span><span class="n">cmp</span><span class="p">);</span>
 <span class="w">    </span><span class="k">for</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="mi">5</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
-<span class="w">        </span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">v</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">&lt;&lt;</span><span class="s">&quot; &quot;</span><span class="p">;</span>
+<span class="w">        </span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">v</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">&lt;&lt;</span><span class="s">" "</span><span class="p">;</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
@@ -6893,9 +6890,9 @@ is now available!
 </code></pre></div>
 </div>
 <div class="admonition danger">
-<p class="admonition-title">要注意不能讓cmp變數x、y資料型態為<code>auto</code>，會錯誤</p>
+<p class="admonition-title">Danger | 要注意不能讓cmp變數x、y資料型態為<code>auto</code>，會錯誤</p>
 </div>
-<hr />
+<hr/>
 <blockquote>
 <p>也可以多個欄位，如下</p>
 </blockquote>
@@ -6909,14 +6906,14 @@ is now available!
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">a</span><span class="p">.</span><span class="n">y</span><span class="o">&gt;</span><span class="n">b</span><span class="p">.</span><span class="n">y</span><span class="p">;</span>
 <span class="p">}</span>
 <span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(){</span>
-<span class="w">    </span><span class="n">istringstream</span><span class="w"> </span><span class="n">cin</span><span class="p">(</span><span class="s">&quot;6 4 3 5 8 7&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="n">istringstream</span><span class="w"> </span><span class="n">cin</span><span class="p">(</span><span class="s">"6 4 3 5 8 7"</span><span class="p">);</span>
 
 <span class="w">    </span><span class="k">for</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="mi">3</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
 <span class="w">        </span><span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">v</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">x</span><span class="o">&gt;&gt;</span><span class="n">v</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">y</span><span class="p">;</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="w">    </span><span class="n">sort</span><span class="p">(</span><span class="n">v</span><span class="p">,</span><span class="n">v</span><span class="o">+</span><span class="mi">3</span><span class="p">,</span><span class="n">cmp</span><span class="p">);</span>
 <span class="w">    </span><span class="k">for</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="mi">3</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
-<span class="w">        </span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">v</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">x</span><span class="o">&lt;&lt;</span><span class="s">&quot; &quot;</span><span class="o">&lt;&lt;</span><span class="n">v</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">y</span><span class="o">&lt;&lt;</span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+<span class="w">        </span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">v</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">x</span><span class="o">&lt;&lt;</span><span class="s">" "</span><span class="o">&lt;&lt;</span><span class="n">v</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">y</span><span class="o">&lt;&lt;</span><span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
@@ -6935,6 +6932,9 @@ is now available!
 
 
 
+
+  
+  
 
 
 
@@ -7054,40 +7054,16 @@ is now available!
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.footer", "navigation.indexes", "navigation.instant", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.tabs", "navigation.top", "announce.dismiss", "content.tabs.link", "search.share", "content.code.copy", "content.code.annotations", "content.action.edit", "content.action.view", "content.tooltips"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.footer", "navigation.indexes", "navigation.instant", "navigation.instant.progress", "navigation.tabs", "navigation.top", "announce.dismiss", "content.tabs.link", "search.share", "content.code.copy", "content.code.annotations", "content.action.edit", "content.action.view", "content.tooltips"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
+  <script src="../../assets/pymdownx-extras/search-lazy-guard.js?v=20260614-1"></script>
   
       <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
       
-        <script src="https://unpkg.com/mermaid@10.6.1/dist/mermaid.min.js"></script>
-      
-        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-      
-        <script src="../../assets/pymdownx-extras/mermaid-config-override.js?v=20260523-1"></script>
-      
-        <script src="../../assets/pymdownx-extras/mermaid-legacy-flowchart-compat.js?v=20260329-1"></script>
-      
-        <script src="../../assets/pymdownx-extras/extra-loader-iLQ-keay.js"></script>
-      
-        <script src="../../assets/pymdownx-extras/mermaid-render-fix.js?v=20260522-1"></script>
-      
-        <script src="../../assets/pymdownx-extras/mermaid-zoom.js?v=20260404-1"></script>
-      
-        <script src="../../assets/pymdownx-extras/toc-fold.js"></script>
-      
-        <script src="../../assets/pymdownx-extras/image-zoom.js"></script>
-      
-        <script src="../../assets/pymdownx-extras/markdown-embed.js?v=20260516-1"></script>
-      
-        <script src="../../assets/pymdownx-extras/folder-path-bar.js?v=20260524-1"></script>
-      
-        <script src="../../assets/pymdownx-extras/legacy-image-width.js"></script>
-      
-        <script src="../../assets/pymdownx-extras/source-jump.js?v=20260523-2"></script>
+        <script src="../../assets/pymdownx-extras/conditional-loader.js?v=20260614-3"></script>
       
     
-  <script src="../../assets/pymdownx-extras/scroll-bottom.js?v=20260424-3" type="text/javascript"></script>
 
   </body>
 </html>

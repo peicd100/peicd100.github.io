@@ -44,8 +44,6 @@
     
 
       
-        <script src="https://unpkg.com/iframe-worker/shim"></script>
-      
     
 <script src="../../assets/pymdownx-extras/material-extra-theme-2ek1P7jT.js" type="text/javascript"></script>
 <script src="../../assets/pymdownx-extras/material-extra-3rdparty-BUCF4rjN.js" type="text/javascript"></script>
@@ -1956,7 +1954,7 @@
     
       <link rel="stylesheet" href="../../assets/pymdownx-extras/extra-8611f6c398.css">
     
-      <link rel="stylesheet" href="../../assets/pymdownx-extras/自定義.css?v=20260527-9">
+      <link rel="stylesheet" href="../../assets/pymdownx-extras/自定義.css?v=20260614-2">
     
     <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
@@ -6789,21 +6787,21 @@ is now available!
 <h1 id="掃瞄線演算法">掃瞄線演算法<a class="headerlink" href="#掃瞄線演算法" title="Permanent link"></a></h1>
 <h2 id="掃瞄線演算法_1">掃瞄線演算法<a class="headerlink" href="#掃瞄線演算法_1" title="Permanent link"></a></h2>
 <h3 id="p-4-13-最大連續子陣列">P-4-13. 最大連續子陣列<a class="headerlink" href="#p-4-13-最大連續子陣列" title="Permanent link"></a></h3>
-<p>輸入一個整數陣列 A[1:n]，請計算 A 的連續子陣列的最大可能總和，空陣列的和以<br />
-0 計算。<br />
-Time limit: 1 秒<br />
-輸入格式：第一行是正整數 n，第二行有 n 整數 A[1], A[2], …, A[n]。n 不超<br />
-過 1e5，陣列內容絕對值不超過 1e9。<br />
+<p>輸入一個整數陣列 A[1:n]，請計算 A 的連續子陣列的最大可能總和，空陣列的和以<br/>
+0 計算。<br/>
+Time limit: 1 秒<br/>
+輸入格式：第一行是正整數 n，第二行有 n 整數 A[1], A[2], …, A[n]。n 不超<br/>
+過 1e5，陣列內容絕對值不超過 1e9。<br/>
 輸出：最大可能總和。</p>
-<p>範例一輸入：  <br />
-8  <br />
+<p>範例一輸入：  <br/>
+8  <br/>
 4 12 -17 5 8 -2 7 -3    </p>
-<p>範例一輸出：  <br />
+<p>範例一輸出：  <br/>
 18    </p>
-<p>範例二輸入：  <br />
-3  <br />
+<p>範例二輸入：  <br/>
+3  <br/>
 -1 -1 -1    </p>
-<p>範例二輸出：  <br />
+<p>範例二輸出：  <br/>
 0    </p>
 <blockquote>
 <div class="highlight"><pre><span></span><code>  1 2 3     -6 2 -3    -3 6 9
@@ -6813,9 +6811,9 @@ Time limit: 1 秒<br />
 </code></pre></div>
 </blockquote>
 <h3 id="d784-一連續元素的和"><a href="https://zerojudge.tw/ShowProblem?problemid=d784">d784. 一、連續元素的和</a><a class="headerlink" href="#d784-一連續元素的和" title="Permanent link"></a></h3>
-<div class="collapse-code"><input checked="checked" id="__collapse0" name="__collapse0" type="checkbox" /><div class="highlight"><span class="filename">考慮要不要前面</span><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+<div class="collapse-code"><input checked="checked" id="__collapse0" name="__collapse0" type="checkbox"/><div class="highlight"><span class="filename">考慮要不要前面</span><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
 <span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span>
-<span class="cp">#define nn &quot;\n&quot;</span>
+<span class="cp">#define nn "\n"</span>
 <span class="cp">#define N 1000</span>
 
 <span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(){</span>
@@ -6843,9 +6841,9 @@ Time limit: 1 秒<br />
 </code></pre></div>
 <div class="code-footer"><label class="expand icon-only" for="__collapse0" tabindex="0"><span class="collapse-code__sr-only">expand</span></label><label class="collapse icon-only" for="__collapse0" tabindex="0"><span class="collapse-code__sr-only">collapse</span></label></div>
 </div>
-<div class="collapse-code"><input checked="checked" id="__collapse1" name="__collapse1" type="checkbox" /><div class="highlight"><span class="filename">考慮選、不選</span><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+<div class="collapse-code"><input checked="checked" id="__collapse1" name="__collapse1" type="checkbox"/><div class="highlight"><span class="filename">考慮選、不選</span><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
 <span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span>
-<span class="cp">#define nn &quot;\n&quot;</span>
+<span class="cp">#define nn "\n"</span>
 <span class="cp">#define N 1000</span>
 
 <span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(){</span>
@@ -6878,6 +6876,9 @@ Time limit: 1 秒<br />
 
 
 
+
+  
+  
 
 
 
@@ -6997,40 +6998,16 @@ Time limit: 1 秒<br />
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.footer", "navigation.indexes", "navigation.instant", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.tabs", "navigation.top", "announce.dismiss", "content.tabs.link", "search.share", "content.code.copy", "content.code.annotations", "content.action.edit", "content.action.view", "content.tooltips"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.footer", "navigation.indexes", "navigation.instant", "navigation.instant.progress", "navigation.tabs", "navigation.top", "announce.dismiss", "content.tabs.link", "search.share", "content.code.copy", "content.code.annotations", "content.action.edit", "content.action.view", "content.tooltips"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
+  <script src="../../assets/pymdownx-extras/search-lazy-guard.js?v=20260614-1"></script>
   
       <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
       
-        <script src="https://unpkg.com/mermaid@10.6.1/dist/mermaid.min.js"></script>
-      
-        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-      
-        <script src="../../assets/pymdownx-extras/mermaid-config-override.js?v=20260523-1"></script>
-      
-        <script src="../../assets/pymdownx-extras/mermaid-legacy-flowchart-compat.js?v=20260329-1"></script>
-      
-        <script src="../../assets/pymdownx-extras/extra-loader-iLQ-keay.js"></script>
-      
-        <script src="../../assets/pymdownx-extras/mermaid-render-fix.js?v=20260522-1"></script>
-      
-        <script src="../../assets/pymdownx-extras/mermaid-zoom.js?v=20260404-1"></script>
-      
-        <script src="../../assets/pymdownx-extras/toc-fold.js"></script>
-      
-        <script src="../../assets/pymdownx-extras/image-zoom.js"></script>
-      
-        <script src="../../assets/pymdownx-extras/markdown-embed.js?v=20260516-1"></script>
-      
-        <script src="../../assets/pymdownx-extras/folder-path-bar.js?v=20260524-1"></script>
-      
-        <script src="../../assets/pymdownx-extras/legacy-image-width.js"></script>
-      
-        <script src="../../assets/pymdownx-extras/source-jump.js?v=20260523-2"></script>
+        <script src="../../assets/pymdownx-extras/conditional-loader.js?v=20260614-3"></script>
       
     
-  <script src="../../assets/pymdownx-extras/scroll-bottom.js?v=20260424-3" type="text/javascript"></script>
 
   </body>
 </html>

@@ -44,8 +44,6 @@
     
 
       
-        <script src="https://unpkg.com/iframe-worker/shim"></script>
-      
     
 <script src="../../assets/pymdownx-extras/material-extra-theme-2ek1P7jT.js" type="text/javascript"></script>
 <script src="../../assets/pymdownx-extras/material-extra-3rdparty-BUCF4rjN.js" type="text/javascript"></script>
@@ -1956,7 +1954,7 @@
     
       <link rel="stylesheet" href="../../assets/pymdownx-extras/extra-8611f6c398.css">
     
-      <link rel="stylesheet" href="../../assets/pymdownx-extras/自定義.css?v=20260527-9">
+      <link rel="stylesheet" href="../../assets/pymdownx-extras/自定義.css?v=20260614-2">
     
     <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
@@ -6664,8 +6662,8 @@ is now available!
 
 
 <h1 id="定義比較規則">定義比較規則<a class="headerlink" href="#定義比較規則" title="Permanent link"></a></h1>
-<p>定義st與st之間如何互相比較<br />
-最簡單寫法是：<br />
+<p>定義st與st之間如何互相比較<br/>
+最簡單寫法是：<br/>
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="k">struct</span><span class="w"> </span><span class="nc">st</span><span class="p">{</span>
 <span class="hll"><span class="linenos" data-linenos=" 2 "></span><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="p">;</span>
 </span><span class="linenos" data-linenos=" 3 "></span><span class="w">    </span><span class="n">string</span><span class="w"> </span><span class="n">y</span><span class="p">;</span>
@@ -6677,8 +6675,8 @@ is now available!
 <span class="linenos" data-linenos=" 9 "></span>
 <span class="linenos" data-linenos="10 "></span><span class="p">};</span>
 </code></pre></div></p>
-<p>這個的函數名稱就叫做"operator&lt;"<br />
-因為<code>st other</code>要避免產生其他新的變數，改成取別名<code>st&amp; other</code>。<br />
+<p>這個的函數名稱就叫做"operator&lt;"<br/>
+因為<code>st other</code>要避免產生其他新的變數，改成取別名<code>st&amp; other</code>。<br/>
 因為要抱持好的編寫習慣，加上const，變成：</p>
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="k">struct</span><span class="w"> </span><span class="nc">st</span><span class="p">{</span>
 <span class="hll"><span class="linenos" data-linenos=" 2 "></span><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="p">;</span>
@@ -6697,7 +6695,7 @@ is now available!
 <p>所以如果只寫 <code>bool operator&lt;(const st&amp; other) const { return x &lt; other.x; }</code>時<code>{x=5, y="a"}</code> 與 <code>{x=5, y="b"}</code> 在 <code>set</code> 看來是「等價」的</p>
 <div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;bits/stdc++.h&gt;</span>
 <span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span>
-<span class="cp">#define nn &quot;\n&quot;</span>
+<span class="cp">#define nn "\n"</span>
 
 
 <span class="k">struct</span><span class="w"> </span><span class="nc">st</span><span class="p">{</span>
@@ -6722,18 +6720,18 @@ is now available!
 <span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="n">vector</span><span class="o">&lt;</span><span class="n">st</span><span class="o">&gt;</span><span class="n">v</span><span class="p">;</span>
 
-<span class="w">    </span><span class="n">v</span><span class="p">.</span><span class="n">push_back</span><span class="p">({</span><span class="mi">2</span><span class="p">,</span><span class="s">&quot;4444&quot;</span><span class="p">});</span>
-<span class="w">    </span><span class="n">v</span><span class="p">.</span><span class="n">push_back</span><span class="p">({</span><span class="mi">3</span><span class="p">,</span><span class="s">&quot;66&quot;</span><span class="p">});</span>
-<span class="w">    </span><span class="n">v</span><span class="p">.</span><span class="n">push_back</span><span class="p">({</span><span class="mi">1</span><span class="p">,</span><span class="s">&quot;99&quot;</span><span class="p">});</span>
-<span class="w">    </span><span class="n">v</span><span class="p">.</span><span class="n">push_back</span><span class="p">({</span><span class="mi">4</span><span class="p">,</span><span class="s">&quot;2222&quot;</span><span class="p">});</span>
-<span class="w">    </span><span class="n">v</span><span class="p">.</span><span class="n">push_back</span><span class="p">({</span><span class="mi">5</span><span class="p">,</span><span class="s">&quot;111&quot;</span><span class="p">});</span>
+<span class="w">    </span><span class="n">v</span><span class="p">.</span><span class="n">push_back</span><span class="p">({</span><span class="mi">2</span><span class="p">,</span><span class="s">"4444"</span><span class="p">});</span>
+<span class="w">    </span><span class="n">v</span><span class="p">.</span><span class="n">push_back</span><span class="p">({</span><span class="mi">3</span><span class="p">,</span><span class="s">"66"</span><span class="p">});</span>
+<span class="w">    </span><span class="n">v</span><span class="p">.</span><span class="n">push_back</span><span class="p">({</span><span class="mi">1</span><span class="p">,</span><span class="s">"99"</span><span class="p">});</span>
+<span class="w">    </span><span class="n">v</span><span class="p">.</span><span class="n">push_back</span><span class="p">({</span><span class="mi">4</span><span class="p">,</span><span class="s">"2222"</span><span class="p">});</span>
+<span class="w">    </span><span class="n">v</span><span class="p">.</span><span class="n">push_back</span><span class="p">({</span><span class="mi">5</span><span class="p">,</span><span class="s">"111"</span><span class="p">});</span>
 
 
 <span class="w">    </span><span class="n">sort</span><span class="p">(</span><span class="n">v</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span><span class="n">v</span><span class="p">.</span><span class="n">end</span><span class="p">());</span>
 
 
 <span class="w">    </span><span class="k">for</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="mi">5</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
-<span class="w">        </span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">v</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">x</span><span class="o">&lt;&lt;</span><span class="s">&quot; &quot;</span><span class="o">&lt;&lt;</span><span class="n">v</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">y</span><span class="o">&lt;&lt;</span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+<span class="w">        </span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">v</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">x</span><span class="o">&lt;&lt;</span><span class="s">" "</span><span class="o">&lt;&lt;</span><span class="n">v</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">y</span><span class="o">&lt;&lt;</span><span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
 <span class="w">    </span><span class="p">}</span>
 
 <span class="p">}</span>
@@ -6750,6 +6748,9 @@ is now available!
 
 
 
+
+  
+  
 
 
 
@@ -6869,40 +6870,16 @@ is now available!
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.footer", "navigation.indexes", "navigation.instant", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.tabs", "navigation.top", "announce.dismiss", "content.tabs.link", "search.share", "content.code.copy", "content.code.annotations", "content.action.edit", "content.action.view", "content.tooltips"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.footer", "navigation.indexes", "navigation.instant", "navigation.instant.progress", "navigation.tabs", "navigation.top", "announce.dismiss", "content.tabs.link", "search.share", "content.code.copy", "content.code.annotations", "content.action.edit", "content.action.view", "content.tooltips"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
+  <script src="../../assets/pymdownx-extras/search-lazy-guard.js?v=20260614-1"></script>
   
       <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
       
-        <script src="https://unpkg.com/mermaid@10.6.1/dist/mermaid.min.js"></script>
-      
-        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-      
-        <script src="../../assets/pymdownx-extras/mermaid-config-override.js?v=20260523-1"></script>
-      
-        <script src="../../assets/pymdownx-extras/mermaid-legacy-flowchart-compat.js?v=20260329-1"></script>
-      
-        <script src="../../assets/pymdownx-extras/extra-loader-iLQ-keay.js"></script>
-      
-        <script src="../../assets/pymdownx-extras/mermaid-render-fix.js?v=20260522-1"></script>
-      
-        <script src="../../assets/pymdownx-extras/mermaid-zoom.js?v=20260404-1"></script>
-      
-        <script src="../../assets/pymdownx-extras/toc-fold.js"></script>
-      
-        <script src="../../assets/pymdownx-extras/image-zoom.js"></script>
-      
-        <script src="../../assets/pymdownx-extras/markdown-embed.js?v=20260516-1"></script>
-      
-        <script src="../../assets/pymdownx-extras/folder-path-bar.js?v=20260524-1"></script>
-      
-        <script src="../../assets/pymdownx-extras/legacy-image-width.js"></script>
-      
-        <script src="../../assets/pymdownx-extras/source-jump.js?v=20260523-2"></script>
+        <script src="../../assets/pymdownx-extras/conditional-loader.js?v=20260614-3"></script>
       
     
-  <script src="../../assets/pymdownx-extras/scroll-bottom.js?v=20260424-3" type="text/javascript"></script>
 
   </body>
 </html>

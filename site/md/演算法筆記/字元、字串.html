@@ -44,8 +44,6 @@
     
 
       
-        <script src="https://unpkg.com/iframe-worker/shim"></script>
-      
     
 <script src="../../assets/pymdownx-extras/material-extra-theme-2ek1P7jT.js" type="text/javascript"></script>
 <script src="../../assets/pymdownx-extras/material-extra-3rdparty-BUCF4rjN.js" type="text/javascript"></script>
@@ -1956,7 +1954,7 @@
     
       <link rel="stylesheet" href="../../assets/pymdownx-extras/extra-8611f6c398.css">
     
-      <link rel="stylesheet" href="../../assets/pymdownx-extras/自定義.css?v=20260527-9">
+      <link rel="stylesheet" href="../../assets/pymdownx-extras/自定義.css?v=20260614-2">
     
     <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
@@ -7000,7 +6998,7 @@ is now available!
 <h2 id="字元">字元<a class="headerlink" href="#字元" title="Permanent link"></a></h2>
 <h3 id="字元數字轉換">字元、數字轉換<a class="headerlink" href="#字元數字轉換" title="Permanent link"></a></h3>
 <blockquote>
-<p>字元和數字之間轉換是使用ASCII<br />
+<p>字元和數字之間轉換是使用ASCII<br/>
 也可以說「ASCII」記錄了字元與字串轉換的對應關係</p>
 </blockquote>
 <details>
@@ -7660,46 +7658,46 @@ is now available!
 <blockquote>
 <p>運算時，程式會將char換成對應的ASCII，然後進行運算，運算結束以int回傳</p>
 </blockquote>
-<p>假設程式為：<br />
-<div class="highlight"><pre><span></span><code><span class="kt">char</span><span class="w"> </span><span class="n">a</span><span class="o">=</span><span class="sc">&#39;A&#39;</span><span class="p">;</span>
+<p>假設程式為：<br/>
+<div class="highlight"><pre><span></span><code><span class="kt">char</span><span class="w"> </span><span class="n">a</span><span class="o">=</span><span class="sc">'A'</span><span class="p">;</span>
 <span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">a</span><span class="o">+</span><span class="mi">1</span><span class="w"> </span><span class="p">;</span>
 </code></pre></div></p>
-<p>1.程式會把他先變成<br />
-<div class="highlight"><pre><span></span><code><span class="kt">char</span><span class="w"> </span><span class="n">a</span><span class="o">=</span><span class="sc">&#39;A&#39;</span><span class="p">;</span>
-<span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="sc">&#39;A&#39;</span><span class="o">+</span><span class="mi">1</span><span class="w"> </span><span class="p">;</span>
+<p>1.程式會把他先變成<br/>
+<div class="highlight"><pre><span></span><code><span class="kt">char</span><span class="w"> </span><span class="n">a</span><span class="o">=</span><span class="sc">'A'</span><span class="p">;</span>
+<span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="sc">'A'</span><span class="o">+</span><span class="mi">1</span><span class="w"> </span><span class="p">;</span>
 </code></pre></div></p>
-<p>2.再變成<br />
-<div class="highlight"><pre><span></span><code><span class="kt">char</span><span class="w"> </span><span class="n">a</span><span class="o">=</span><span class="sc">&#39;A&#39;</span><span class="p">;</span>
+<p>2.再變成<br/>
+<div class="highlight"><pre><span></span><code><span class="kt">char</span><span class="w"> </span><span class="n">a</span><span class="o">=</span><span class="sc">'A'</span><span class="p">;</span>
 <span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="mi">65</span><span class="o">+</span><span class="mi">1</span><span class="w"> </span><span class="p">;</span>
 </code></pre></div></p>
-<p>3.再變成<br />
-<div class="highlight"><pre><span></span><code><span class="kt">char</span><span class="w"> </span><span class="n">a</span><span class="o">=</span><span class="sc">&#39;A&#39;</span><span class="p">;</span>
+<p>3.再變成<br/>
+<div class="highlight"><pre><span></span><code><span class="kt">char</span><span class="w"> </span><span class="n">a</span><span class="o">=</span><span class="sc">'A'</span><span class="p">;</span>
 <span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="mi">66</span><span class="w"> </span><span class="p">;</span>
 </code></pre></div></p>
-<p>最後他會以 int 的資料型態輸出 66 <br />
+<p>最後他會以 int 的資料型態輸出 66 <br/>
 如果想要輸出的是B，那就要再轉為char型態，可以用以下兩種方式</p>
-<div class="highlight"><pre><span></span><code><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="kt">char</span><span class="p">(</span><span class="mi">66</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="kt">char</span><span class="p">(</span><span class="mi">66</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
 <span class="kt">char</span><span class="w"> </span><span class="n">c</span><span class="o">=</span><span class="mi">66</span><span class="p">;</span>
 <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="p">;</span>
 </code></pre></div>
 <h2 id="字串">字串<a class="headerlink" href="#字串" title="Permanent link"></a></h2>
 <h3 id="宣告">宣告<a class="headerlink" href="#宣告" title="Permanent link"></a></h3>
 <div class="admonition danger">
-<p class="admonition-title">要記住</p>
+<p class="admonition-title">Danger | 要記住</p>
 <p>儲存n個字，要用n+1的空間</p>
 </div>
-<div class="highlight"><pre><span></span><code><span class="kt">char</span><span class="w"> </span><span class="n">v</span><span class="p">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="sc">&#39;h&#39;</span><span class="p">,</span><span class="w"> </span><span class="sc">&#39;e&#39;</span><span class="p">,</span><span class="w"> </span><span class="sc">&#39;l&#39;</span><span class="p">,</span><span class="w"> </span><span class="sc">&#39;l&#39;</span><span class="p">,</span><span class="w"> </span><span class="sc">&#39;o&#39;</span><span class="p">,</span><span class="w"> </span><span class="sc">&#39;\0&#39;</span><span class="p">};</span>
+<div class="highlight"><pre><span></span><code><span class="kt">char</span><span class="w"> </span><span class="n">v</span><span class="p">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="sc">'h'</span><span class="p">,</span><span class="w"> </span><span class="sc">'e'</span><span class="p">,</span><span class="w"> </span><span class="sc">'l'</span><span class="p">,</span><span class="w"> </span><span class="sc">'l'</span><span class="p">,</span><span class="w"> </span><span class="sc">'o'</span><span class="p">,</span><span class="w"> </span><span class="sc">'\0'</span><span class="p">};</span>
 </code></pre></div>
 <blockquote>
 <p>長度為5，以<code>'\0'</code>為終止字元</p>
 </blockquote>
 <div class="admonition danger">
-<p class="admonition-title">要記住</p>
+<p class="admonition-title">Danger | 要記住</p>
 <p>長度為3的字串只能儲存兩個字!!!，如下</p>
 </div>
 <div class="highlight"><pre><span></span><code><span class="kt">char</span><span class="w"> </span><span class="n">s</span><span class="p">[</span><span class="mi">3</span><span class="p">];</span>
-<span class="n">s</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">=</span><span class="sc">&#39;1&#39;</span><span class="p">;</span>
-<span class="n">s</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">=</span><span class="sc">&#39;2&#39;</span><span class="p">;</span>
+<span class="n">s</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">=</span><span class="sc">'1'</span><span class="p">;</span>
+<span class="n">s</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">=</span><span class="sc">'2'</span><span class="p">;</span>
 </code></pre></div>
 <blockquote>
 <p>這樣<code>s[3]</code>就是"\0"</p>
@@ -7708,33 +7706,33 @@ is now available!
 <div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="cpf">&lt;bits/stdc++.h&gt;</span>
 <span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span>
 <span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(){</span>
-<span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="n">c</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">=</span><span class="s">&quot;&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="n">c</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">=</span><span class="s">""</span><span class="p">;</span>
 <span class="w">    </span><span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">c</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">&gt;&gt;</span><span class="n">c</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span>
 <span class="w">    </span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">c</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div>
 <blockquote>
-<p>這段程式碼在輸入時<br />
+<p>這段程式碼在輸入時<br/>
 輸入：「1 2」和「12」其實是一樣的，字串輸入中間不一定需要空格，因為一次只會拿一個字元。</p>
-<p>輸入：<br />
-1<br />
-2<br />
-輸出：<br />
+<p>輸入：<br/>
+1<br/>
+2<br/>
+輸出：<br/>
 12</p>
-<p>輸入：<br />
-12<br />
-輸出：<br />
+<p>輸入：<br/>
+12<br/>
+輸出：<br/>
 12</p>
 </blockquote>
 <h3 id="0為終止字元">\0為終止字元<a class="headerlink" href="#0為終止字元" title="Permanent link"></a></h3>
 <div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="cpf">&lt;bits/stdc++.h&gt;</span>
 <span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span>
-<span class="cp">#define nn &quot;\n&quot;</span>
+<span class="cp">#define nn "\n"</span>
 
 <span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(){</span>
-<span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="n">v</span><span class="p">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="sc">&#39;h&#39;</span><span class="p">,</span><span class="w"> </span><span class="sc">&#39;e&#39;</span><span class="p">,</span><span class="w"> </span><span class="sc">&#39;l&#39;</span><span class="p">,</span><span class="w"> </span><span class="sc">&#39;l&#39;</span><span class="p">,</span><span class="w"> </span><span class="sc">&#39;o&#39;</span><span class="p">,</span><span class="w"> </span><span class="sc">&#39;\0&#39;</span><span class="p">};</span>
+<span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="n">v</span><span class="p">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="sc">'h'</span><span class="p">,</span><span class="w"> </span><span class="sc">'e'</span><span class="p">,</span><span class="w"> </span><span class="sc">'l'</span><span class="p">,</span><span class="w"> </span><span class="sc">'l'</span><span class="p">,</span><span class="w"> </span><span class="sc">'o'</span><span class="p">,</span><span class="w"> </span><span class="sc">'\0'</span><span class="p">};</span>
 <span class="w">    </span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">v</span><span class="o">&lt;&lt;</span><span class="n">nn</span><span class="p">;</span>
-<span class="w">    </span><span class="n">v</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">=</span><span class="sc">&#39;\0&#39;</span><span class="p">;</span>
+<span class="w">    </span><span class="n">v</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">=</span><span class="sc">'\0'</span><span class="p">;</span>
 <span class="w">    </span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">v</span><span class="o">&lt;&lt;</span><span class="n">nn</span><span class="p">;</span>
 <span class="w">    </span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">v</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">&lt;&lt;</span><span class="n">nn</span><span class="p">;</span>
 <span class="w">    </span><span class="k">for</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="mi">5</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
@@ -7752,10 +7750,10 @@ helo
 <h3 id="取字串長度strlen">取字串長度(strlen)<a class="headerlink" href="#取字串長度strlen" title="Permanent link"></a></h3>
 <div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="cpf">&lt;bits/stdc++.h&gt;</span>
 <span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span>
-<span class="cp">#define nn &quot;\n&quot;</span>
+<span class="cp">#define nn "\n"</span>
 
 <span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(){</span>
-<span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="n">v</span><span class="p">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="sc">&#39;h&#39;</span><span class="p">,</span><span class="w"> </span><span class="sc">&#39;e&#39;</span><span class="p">,</span><span class="w"> </span><span class="sc">&#39;l&#39;</span><span class="p">,</span><span class="w"> </span><span class="sc">&#39;l&#39;</span><span class="p">,</span><span class="w"> </span><span class="sc">&#39;o&#39;</span><span class="p">,</span><span class="w"> </span><span class="sc">&#39;\0&#39;</span><span class="p">};</span>
+<span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="n">v</span><span class="p">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="sc">'h'</span><span class="p">,</span><span class="w"> </span><span class="sc">'e'</span><span class="p">,</span><span class="w"> </span><span class="sc">'l'</span><span class="p">,</span><span class="w"> </span><span class="sc">'l'</span><span class="p">,</span><span class="w"> </span><span class="sc">'o'</span><span class="p">,</span><span class="w"> </span><span class="sc">'\0'</span><span class="p">};</span>
 <span class="w">    </span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">strlen</span><span class="p">(</span><span class="n">v</span><span class="p">);</span>
 <span class="p">}</span>
 </code></pre></div>
@@ -7774,10 +7772,10 @@ helo
 </blockquote>
 <div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="cpf">&lt;bits/stdc++.h&gt;</span>
 <span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span>
-<span class="cp">#define nn &quot;\n&quot;</span>
+<span class="cp">#define nn "\n"</span>
 
 <span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(){</span>
-<span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="n">v</span><span class="p">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="sc">&#39;1&#39;</span><span class="p">,</span><span class="sc">&#39;2&#39;</span><span class="p">,</span><span class="sc">&#39;3&#39;</span><span class="p">,</span><span class="sc">&#39;4&#39;</span><span class="p">,</span><span class="sc">&#39;5&#39;</span><span class="p">,</span><span class="w"> </span><span class="sc">&#39;\0&#39;</span><span class="p">};</span>
+<span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="n">v</span><span class="p">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="sc">'1'</span><span class="p">,</span><span class="sc">'2'</span><span class="p">,</span><span class="sc">'3'</span><span class="p">,</span><span class="sc">'4'</span><span class="p">,</span><span class="sc">'5'</span><span class="p">,</span><span class="w"> </span><span class="sc">'\0'</span><span class="p">};</span>
 <span class="w">    </span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">strlen</span><span class="p">(</span><span class="n">v</span><span class="p">)</span><span class="o">&lt;&lt;</span><span class="n">nn</span><span class="p">;</span>
 <span class="w">    </span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">atoi</span><span class="p">(</span><span class="n">v</span><span class="p">);</span>
 <span class="p">}</span>
@@ -7791,18 +7789,18 @@ helo
 <blockquote>
 <p>看以下程式碼</p>
 </blockquote>
-<div class="highlight"><pre><span></span><code><span class="kt">char</span><span class="w"> </span><span class="n">c</span><span class="p">[</span><span class="mi">10</span><span class="p">]</span><span class="o">=</span><span class="s">&quot;123&quot;</span><span class="p">;</span>
-<span class="n">c</span><span class="o">=</span><span class="s">&quot;456&quot;</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><span class="kt">char</span><span class="w"> </span><span class="n">c</span><span class="p">[</span><span class="mi">10</span><span class="p">]</span><span class="o">=</span><span class="s">"123"</span><span class="p">;</span>
+<span class="n">c</span><span class="o">=</span><span class="s">"456"</span><span class="p">;</span>
 </code></pre></div>
 <blockquote>
-<p>雖然c會回傳"123"，但是c不能直接透過<code>c="456";</code>更改(像是數字陣列不能直接更改一樣)<br />
+<p>雖然c會回傳"123"，但是c不能直接透過<code>c="456";</code>更改(像是數字陣列不能直接更改一樣)<br/>
 要使用strcpy，如下</p>
 <p><strong>strcpy(複製目的地,複製來源)</strong></p>
 </blockquote>
 <div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="cpf">&lt;bits/stdc++.h&gt;</span>
 <span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span>
 <span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(){</span>
-<span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="n">c</span><span class="p">[</span><span class="mi">10</span><span class="p">]</span><span class="o">=</span><span class="s">&quot;123&quot;</span><span class="p">,</span><span class="n">v</span><span class="p">[</span><span class="mi">10</span><span class="p">]</span><span class="o">=</span><span class="s">&quot;456&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="n">c</span><span class="p">[</span><span class="mi">10</span><span class="p">]</span><span class="o">=</span><span class="s">"123"</span><span class="p">,</span><span class="n">v</span><span class="p">[</span><span class="mi">10</span><span class="p">]</span><span class="o">=</span><span class="s">"456"</span><span class="p">;</span>
 <span class="w">    </span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">c</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>
 <span class="w">    </span><span class="n">strcpy</span><span class="p">(</span><span class="n">c</span><span class="p">,</span><span class="n">v</span><span class="p">);</span>
 <span class="w">    </span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">c</span><span class="p">;</span>
@@ -7814,20 +7812,20 @@ helo
 </code></pre></div>
 </div>
 <h3 id="字串比大小要使用strcmp">字串比大小(要使用strcmp)<a class="headerlink" href="#字串比大小要使用strcmp" title="Permanent link"></a></h3>
-<div class="highlight"><pre><span></span><code><span class="kt">char</span><span class="w"> </span><span class="n">c</span><span class="p">[</span><span class="mi">100</span><span class="p">]</span><span class="o">=</span><span class="s">&quot;AB&quot;</span><span class="w"> </span><span class="p">,</span><span class="n">v</span><span class="p">[</span><span class="mi">100</span><span class="p">]</span><span class="o">=</span><span class="s">&quot;Z&quot;</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><span class="kt">char</span><span class="w"> </span><span class="n">c</span><span class="p">[</span><span class="mi">100</span><span class="p">]</span><span class="o">=</span><span class="s">"AB"</span><span class="w"> </span><span class="p">,</span><span class="n">v</span><span class="p">[</span><span class="mi">100</span><span class="p">]</span><span class="o">=</span><span class="s">"Z"</span><span class="p">;</span>
 <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="p">(</span><span class="n">c</span><span class="o">&gt;</span><span class="n">v</span><span class="p">)</span>
 </code></pre></div>
 <blockquote>
-<p>字串是不能直接這樣比大小的  <br />
+<p>字串是不能直接這樣比大小的  <br/>
 要使用strcmp   </p>
 <p>strcmp(A字串，B字串)</p>
-<p>這是用來比大小的  <br />
-如果A&gt;B，回傳1  <br />
-如果A&lt;B，回傳-1  <br />
+<p>這是用來比大小的  <br/>
+如果A&gt;B，回傳1  <br/>
+如果A&lt;B，回傳-1  <br/>
 如果A=B，回傳0    </p>
-<p>可以想像成：<br />
-大減小，回傳1(正)：(2)-(1)&gt;0<br />
-小減大，回傳-1(負)：(-2)-(1)&lt;  <br />
+<p>可以想像成：<br/>
+大減小，回傳1(正)：(2)-(1)&gt;0<br/>
+小減大，回傳-1(負)：(-2)-(1)&lt;  <br/>
 相等相減，回傳0：(2)-(2)=0  </p>
 </blockquote>
 <h3 id="字元陣列輸入">字元陣列輸入<a class="headerlink" href="#字元陣列輸入" title="Permanent link"></a></h3>
@@ -7839,13 +7837,13 @@ helo
 <span class="kt">char</span><span class="w"> </span><span class="n">c</span><span class="p">[</span><span class="mi">10</span><span class="p">][</span><span class="mi">10</span><span class="p">];</span>
 
 <span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(){</span>
-<span class="w">    </span><span class="n">istringstream</span><span class="w"> </span><span class="n">cin</span><span class="p">(</span><span class="s">&quot;\</span>
+<span class="w">    </span><span class="n">istringstream</span><span class="w"> </span><span class="n">cin</span><span class="p">(</span><span class="s">"\</span>
 <span class="s">12345 \</span>
 <span class="s">54123 \</span>
 <span class="s">78945 \</span>
 <span class="s">14725 \</span>
 <span class="s">36985\</span>
-<span class="s">&quot;</span><span class="p">);</span>
+<span class="s">"</span><span class="p">);</span>
 <span class="w">    </span><span class="k">for</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="mi">5</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
 <span class="w">        </span><span class="k">for</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">j</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">j</span><span class="o">&lt;</span><span class="mi">5</span><span class="p">;</span><span class="n">j</span><span class="o">++</span><span class="p">){</span>
 <span class="w">            </span><span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">c</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">];</span>
@@ -7863,36 +7861,36 @@ helo
 <span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span>
 
 <span class="kt">int</span><span class="w"> </span><span class="nf">toint</span><span class="p">(</span><span class="kt">char</span><span class="w"> </span><span class="n">c</span><span class="p">[</span><span class="mi">11</span><span class="p">]){</span>
-<span class="w">    </span><span class="k">if</span><span class="p">(</span><span class="n">c</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">==</span><span class="sc">&#39;-&#39;</span><span class="p">){</span>
+<span class="w">    </span><span class="k">if</span><span class="p">(</span><span class="n">c</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">==</span><span class="sc">'-'</span><span class="p">){</span>
 <span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">re</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
-<span class="w">        </span><span class="k">for</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">c</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">!=</span><span class="sc">&#39;\0&#39;</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
+<span class="w">        </span><span class="k">for</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">c</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">!=</span><span class="sc">'\0'</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
 <span class="w">            </span><span class="n">re</span><span class="o">*=</span><span class="mi">10</span><span class="p">;</span>
-<span class="w">            </span><span class="n">re</span><span class="o">+=</span><span class="n">c</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">-</span><span class="sc">&#39;0&#39;</span><span class="p">;</span>
+<span class="w">            </span><span class="n">re</span><span class="o">+=</span><span class="n">c</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">-</span><span class="sc">'0'</span><span class="p">;</span>
 <span class="w">        </span><span class="p">}</span>
 <span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="o">-</span><span class="n">re</span><span class="p">;</span>
 <span class="w">    </span><span class="p">}</span>
 
 <span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">re</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
-<span class="w">    </span><span class="k">for</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">c</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">!=</span><span class="sc">&#39;\0&#39;</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
+<span class="w">    </span><span class="k">for</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">c</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">!=</span><span class="sc">'\0'</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
 <span class="w">        </span><span class="n">re</span><span class="o">*=</span><span class="mi">10</span><span class="p">;</span>
-<span class="w">        </span><span class="n">re</span><span class="o">+=</span><span class="n">c</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">-</span><span class="sc">&#39;0&#39;</span><span class="p">;</span>
+<span class="w">        </span><span class="n">re</span><span class="o">+=</span><span class="n">c</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">-</span><span class="sc">'0'</span><span class="p">;</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">re</span><span class="p">;</span>
 <span class="p">}</span>
 
 <span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(){</span>
-<span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="n">c</span><span class="p">[</span><span class="mi">11</span><span class="p">](</span><span class="s">&quot;1000&quot;</span><span class="p">);</span>
-<span class="w">    </span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">c</span><span class="o">&lt;&lt;</span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="n">c</span><span class="p">[</span><span class="mi">11</span><span class="p">](</span><span class="s">"1000"</span><span class="p">);</span>
+<span class="w">    </span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">c</span><span class="o">&lt;&lt;</span><span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
 
-<span class="w">        </span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">atoi</span><span class="p">(</span><span class="n">c</span><span class="p">)</span><span class="mi">-1</span><span class="o">&lt;&lt;</span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+<span class="w">        </span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">atoi</span><span class="p">(</span><span class="n">c</span><span class="p">)</span><span class="mi">-1</span><span class="o">&lt;&lt;</span><span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
 
 <span class="w">    </span><span class="n">string</span><span class="w"> </span><span class="n">s</span><span class="o">=</span><span class="n">c</span><span class="p">;</span>
-<span class="w">    </span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">s</span><span class="o">&lt;&lt;</span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">s</span><span class="o">&lt;&lt;</span><span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
 
-<span class="w">        </span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">stoi</span><span class="p">(</span><span class="n">s</span><span class="p">)</span><span class="mi">-1</span><span class="o">&lt;&lt;</span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
-<span class="w">        </span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">to_string</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span><span class="o">&lt;&lt;</span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
-<span class="w">        </span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">toint</span><span class="p">(</span><span class="n">c</span><span class="p">)</span><span class="o">&lt;&lt;</span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
-<span class="w">        </span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">toint</span><span class="p">(</span><span class="s">&quot;-1000&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">stoi</span><span class="p">(</span><span class="n">s</span><span class="p">)</span><span class="mi">-1</span><span class="o">&lt;&lt;</span><span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+<span class="w">        </span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">to_string</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span><span class="o">&lt;&lt;</span><span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+<span class="w">        </span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">toint</span><span class="p">(</span><span class="n">c</span><span class="p">)</span><span class="o">&lt;&lt;</span><span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+<span class="w">        </span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">toint</span><span class="p">(</span><span class="s">"-1000"</span><span class="p">);</span>
 <span class="p">}</span>
 </code></pre></div>
 
@@ -7901,6 +7899,9 @@ helo
 
 
 
+
+  
+  
 
 
 
@@ -8020,40 +8021,16 @@ helo
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.footer", "navigation.indexes", "navigation.instant", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.tabs", "navigation.top", "announce.dismiss", "content.tabs.link", "search.share", "content.code.copy", "content.code.annotations", "content.action.edit", "content.action.view", "content.tooltips"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.footer", "navigation.indexes", "navigation.instant", "navigation.instant.progress", "navigation.tabs", "navigation.top", "announce.dismiss", "content.tabs.link", "search.share", "content.code.copy", "content.code.annotations", "content.action.edit", "content.action.view", "content.tooltips"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
+  <script src="../../assets/pymdownx-extras/search-lazy-guard.js?v=20260614-1"></script>
   
       <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
       
-        <script src="https://unpkg.com/mermaid@10.6.1/dist/mermaid.min.js"></script>
-      
-        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-      
-        <script src="../../assets/pymdownx-extras/mermaid-config-override.js?v=20260523-1"></script>
-      
-        <script src="../../assets/pymdownx-extras/mermaid-legacy-flowchart-compat.js?v=20260329-1"></script>
-      
-        <script src="../../assets/pymdownx-extras/extra-loader-iLQ-keay.js"></script>
-      
-        <script src="../../assets/pymdownx-extras/mermaid-render-fix.js?v=20260522-1"></script>
-      
-        <script src="../../assets/pymdownx-extras/mermaid-zoom.js?v=20260404-1"></script>
-      
-        <script src="../../assets/pymdownx-extras/toc-fold.js"></script>
-      
-        <script src="../../assets/pymdownx-extras/image-zoom.js"></script>
-      
-        <script src="../../assets/pymdownx-extras/markdown-embed.js?v=20260516-1"></script>
-      
-        <script src="../../assets/pymdownx-extras/folder-path-bar.js?v=20260524-1"></script>
-      
-        <script src="../../assets/pymdownx-extras/legacy-image-width.js"></script>
-      
-        <script src="../../assets/pymdownx-extras/source-jump.js?v=20260523-2"></script>
+        <script src="../../assets/pymdownx-extras/conditional-loader.js?v=20260614-3"></script>
       
     
-  <script src="../../assets/pymdownx-extras/scroll-bottom.js?v=20260424-3" type="text/javascript"></script>
 
   </body>
 </html>

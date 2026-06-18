@@ -110,12 +110,30 @@ int main(){
 priority_queue 預設是大的在前面，如何讓小的在前面？
 
 ```cpp
+priority_queue<
+    資料型態, 
+    vector<資料型態>, 
+    greater<資料型態>
+> pq;
+```
+
+```cpp
 priority_queue<int, vector<int>, greater<int>> pq;
 pq.push(5);
 pq.push(2);
 pq.push(8);
 cout << pq.top(); //  prints = 2 (smallest element)
 ```
+也可以 pair：
+
+```cpp
+priority_queue<
+    pair<ll, int>,
+    vector<pair<ll, int>>,
+    greater<pair<ll, int>>
+> pq;
+```
+
 
 
 ### list

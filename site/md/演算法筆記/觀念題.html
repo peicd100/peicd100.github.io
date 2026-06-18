@@ -44,8 +44,6 @@
     
 
       
-        <script src="https://unpkg.com/iframe-worker/shim"></script>
-      
     
 <script src="../../assets/pymdownx-extras/material-extra-theme-2ek1P7jT.js" type="text/javascript"></script>
 <script src="../../assets/pymdownx-extras/material-extra-3rdparty-BUCF4rjN.js" type="text/javascript"></script>
@@ -1956,7 +1954,7 @@
     
       <link rel="stylesheet" href="../../assets/pymdownx-extras/extra-8611f6c398.css">
     
-      <link rel="stylesheet" href="../../assets/pymdownx-extras/自定義.css?v=20260527-9">
+      <link rel="stylesheet" href="../../assets/pymdownx-extras/自定義.css?v=20260614-2">
     
     <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
@@ -7113,7 +7111,7 @@ is now available!
   <h1>觀念題</h1>
 
 <h2 id="題目整理mkdocs-可用-markdown">題目整理（MkDocs 可用 Markdown）<a class="headerlink" href="#題目整理mkdocs-可用-markdown" title="Permanent link"></a></h2>
-<hr />
+<hr/>
 <h3 id="1-遞迴函式輸出">1. 遞迴函式輸出<a class="headerlink" href="#1-遞迴函式輸出" title="Permanent link"></a></h3>
 <p><strong>選項</strong></p>
 <ul>
@@ -7141,14 +7139,14 @@ is now available!
 <span class="p">}</span>
 
 <span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(){</span>
-<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;%d&quot;</span><span class="p">,</span><span class="n">f</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">));</span>
-<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
-<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;%d&quot;</span><span class="p">,</span><span class="n">t</span><span class="p">);</span>
+<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">"%d"</span><span class="p">,</span><span class="n">f</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">));</span>
+<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">"%d"</span><span class="p">,</span><span class="n">t</span><span class="p">);</span>
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div>
 <p><strong>答案：A</strong></p>
-<hr />
+<hr/>
 <h3 id="2-變數作用域與傳值">2. 變數作用域與傳值<a class="headerlink" href="#2-變數作用域與傳值" title="Permanent link"></a></h3>
 <p><strong>選項</strong></p>
 <ul>
@@ -7166,12 +7164,12 @@ is now available!
 <span class="kt">void</span><span class="w"> </span><span class="nf">f</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="kt">int</span><span class="w"> </span><span class="n">b</span><span class="p">){</span>
 <span class="w">    </span><span class="n">a</span><span class="o">+=</span><span class="mi">5</span><span class="p">;</span>
 <span class="w">    </span><span class="n">b</span><span class="o">*=</span><span class="mi">2</span><span class="p">;</span>
-<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;%d %d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">);</span>
+<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">"%d %d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">);</span>
 <span class="w">    </span><span class="k">return</span><span class="p">;</span>
 <span class="p">}</span>
 
 <span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(){</span>
-<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;%d %d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">);</span>
+<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">"%d %d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">);</span>
 <span class="w">    </span><span class="n">a</span><span class="o">+=</span><span class="mi">10</span><span class="p">;</span>
 <span class="w">    </span><span class="n">b</span><span class="o">+=</span><span class="mi">5</span><span class="p">;</span>
 <span class="w">    </span><span class="n">f</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">);</span>
@@ -7179,17 +7177,17 @@ is now available!
 <span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">b</span><span class="o">=</span><span class="mi">100</span><span class="p">;</span>
 <span class="w">        </span><span class="n">a</span><span class="o">+=</span><span class="mi">10</span><span class="p">;</span>
 <span class="w">        </span><span class="n">b</span><span class="o">/=</span><span class="mi">2</span><span class="p">;</span>
-<span class="w">        </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;%d %d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">);</span>
+<span class="w">        </span><span class="n">printf</span><span class="p">(</span><span class="s">"%d %d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">);</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="w">    </span><span class="k">else</span><span class="p">{</span>
 <span class="w">        </span><span class="n">a</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span><span class="n">b</span><span class="o">=</span><span class="mi">40</span><span class="p">;</span>
 <span class="w">    </span><span class="p">}</span>
-<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;%d %d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">);</span>
+<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">"%d %d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">);</span>
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div>
 <p><strong>答案：A</strong></p>
-<hr />
+<hr/>
 <h3 id="3-多層迴圈累加">3. 多層迴圈累加<a class="headerlink" href="#3-多層迴圈累加" title="Permanent link"></a></h3>
 <p><strong>選項</strong></p>
 <ul>
@@ -7214,12 +7212,12 @@ is now available!
 <span class="w">            </span><span class="p">}</span>
 <span class="w">        </span><span class="p">}</span>
 <span class="w">    </span><span class="p">}</span>
-<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;%d&quot;</span><span class="p">,</span><span class="n">sum</span><span class="p">);</span>
+<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">"%d"</span><span class="p">,</span><span class="n">sum</span><span class="p">);</span>
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div>
 <p><strong>答案：D</strong></p>
-<hr />
+<hr/>
 <h3 id="4-作用域與條件分支空白分隔輸出">4. 作用域與條件分支（空白分隔輸出）<a class="headerlink" href="#4-作用域與條件分支空白分隔輸出" title="Permanent link"></a></h3>
 <p><strong>選項</strong></p>
 <ul>
@@ -7237,12 +7235,12 @@ is now available!
 <span class="kt">void</span><span class="w"> </span><span class="nf">f</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="kt">int</span><span class="w"> </span><span class="n">b</span><span class="p">){</span>
 <span class="w">    </span><span class="n">a</span><span class="o">+=</span><span class="mi">5</span><span class="p">;</span>
 <span class="w">    </span><span class="n">b</span><span class="o">*=</span><span class="mi">2</span><span class="p">;</span>
-<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;%d %d &quot;</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">);</span>
+<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">"%d %d "</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">);</span>
 <span class="w">    </span><span class="k">return</span><span class="p">;</span>
 <span class="p">}</span>
 
 <span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(){</span>
-<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;%d %d &quot;</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">);</span>
+<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">"%d %d "</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">);</span>
 <span class="w">    </span><span class="n">a</span><span class="o">+=</span><span class="mi">10</span><span class="p">;</span>
 <span class="w">    </span><span class="n">b</span><span class="o">+=</span><span class="mi">5</span><span class="p">;</span>
 <span class="w">    </span><span class="n">f</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">);</span>
@@ -7251,26 +7249,26 @@ is now available!
 <span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">b</span><span class="o">=</span><span class="mi">100</span><span class="p">;</span>
 <span class="w">        </span><span class="n">a</span><span class="o">+=</span><span class="mi">10</span><span class="p">;</span>
 <span class="w">        </span><span class="n">b</span><span class="o">/=</span><span class="mi">2</span><span class="p">;</span>
-<span class="w">        </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;%d %d &quot;</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">);</span>
+<span class="w">        </span><span class="n">printf</span><span class="p">(</span><span class="s">"%d %d "</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">);</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="w">    </span><span class="k">else</span><span class="p">{</span>
 <span class="w">        </span><span class="n">a</span><span class="o">*=</span><span class="mi">2</span><span class="p">;</span>
-<span class="w">        </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;%d %d &quot;</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">);</span>
+<span class="w">        </span><span class="n">printf</span><span class="p">(</span><span class="s">"%d %d "</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">);</span>
 <span class="w">    </span><span class="p">}</span>
 
 <span class="w">    </span><span class="k">if</span><span class="p">(</span><span class="n">a</span><span class="o">==</span><span class="mi">10</span><span class="p">){</span>
 <span class="w">        </span><span class="n">a</span><span class="o">+=</span><span class="mi">20</span><span class="p">;</span>
-<span class="w">        </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;%d %d &quot;</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">);</span>
+<span class="w">        </span><span class="n">printf</span><span class="p">(</span><span class="s">"%d %d "</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">);</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="w">    </span><span class="k">else</span><span class="p">{</span>
 <span class="w">        </span><span class="n">b</span><span class="o">*=</span><span class="mi">2</span><span class="p">;</span>
-<span class="w">        </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;%d %d &quot;</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">);</span>
+<span class="w">        </span><span class="n">printf</span><span class="p">(</span><span class="s">"%d %d "</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">);</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div>
 <p><strong>答案：C</strong></p>
-<hr />
+<hr/>
 <h3 id="5-bubble-sort-交換次數">5. Bubble Sort 交換次數<a class="headerlink" href="#5-bubble-sort-交換次數" title="Permanent link"></a></h3>
 <p><strong>選項</strong></p>
 <ul>
@@ -7300,12 +7298,12 @@ is now available!
 <span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">arr</span><span class="p">[]</span><span class="o">=</span><span class="p">{</span><span class="mi">10</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">},</span><span class="w"> </span><span class="n">n</span><span class="o">=</span><span class="mi">10</span><span class="p">;</span>
 <span class="w">    </span><span class="n">bubbleSort</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="p">);</span>
-<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;%d&quot;</span><span class="p">,</span><span class="n">t</span><span class="p">);</span>
+<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">"%d"</span><span class="p">,</span><span class="n">t</span><span class="p">);</span>
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div>
 <p><strong>答案：B</strong></p>
-<hr />
+<hr/>
 <h3 id="6-switch--case-貫穿fall-through">6. switch / case 貫穿（fall-through）<a class="headerlink" href="#6-switch--case-貫穿fall-through" title="Permanent link"></a></h3>
 <p><strong>選項</strong></p>
 <ul>
@@ -7322,15 +7320,15 @@ is now available!
 <span class="w">    </span><span class="k">for</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="mi">7</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
 <span class="w">        </span><span class="k">switch</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">            </span><span class="k">case</span><span class="w"> </span><span class="mi">3</span><span class="p">:</span>
-<span class="w">                </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;A&quot;</span><span class="p">);</span>
+<span class="w">                </span><span class="n">printf</span><span class="p">(</span><span class="s">"A"</span><span class="p">);</span>
 <span class="w">            </span><span class="k">case</span><span class="w"> </span><span class="mi">5</span><span class="p">:</span>
 <span class="w">            </span><span class="k">case</span><span class="w"> </span><span class="mi">4</span><span class="p">:</span>
-<span class="w">                </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;B&quot;</span><span class="p">);</span>
+<span class="w">                </span><span class="n">printf</span><span class="p">(</span><span class="s">"B"</span><span class="p">);</span>
 <span class="w">            </span><span class="k">case</span><span class="w"> </span><span class="mi">6</span><span class="p">:</span>
-<span class="w">                </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;C&quot;</span><span class="p">);</span>
+<span class="w">                </span><span class="n">printf</span><span class="p">(</span><span class="s">"C"</span><span class="p">);</span>
 <span class="w">                </span><span class="k">break</span><span class="p">;</span>
 <span class="w">            </span><span class="k">default</span><span class="o">:</span>
-<span class="w">                </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;D&quot;</span><span class="p">);</span>
+<span class="w">                </span><span class="n">printf</span><span class="p">(</span><span class="s">"D"</span><span class="p">);</span>
 <span class="w">                </span><span class="k">break</span><span class="p">;</span>
 <span class="w">        </span><span class="p">}</span>
 <span class="w">    </span><span class="p">}</span>
@@ -7338,7 +7336,7 @@ is now available!
 <span class="p">}</span>
 </code></pre></div>
 <p><strong>答案：A</strong></p>
-<hr />
+<hr/>
 <h3 id="7-二分搜尋填空輸出-5--1">7. 二分搜尋填空（輸出 5 -1）<a class="headerlink" href="#7-二分搜尋填空輸出-5--1" title="Permanent link"></a></h3>
 <p><strong>選項</strong></p>
 <ul>
@@ -7367,12 +7365,12 @@ is now available!
 
 <span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">v</span><span class="p">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">7</span><span class="p">,</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="mi">12</span><span class="p">,</span><span class="w"> </span><span class="mi">15</span><span class="p">};</span>
-<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;%d %d&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">bi</span><span class="p">(</span><span class="n">v</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">),</span><span class="w"> </span><span class="n">bi</span><span class="p">(</span><span class="n">v</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w"> </span><span class="mi">9</span><span class="p">));</span><span class="w"> </span><span class="c1">//會輸出 5 -1</span>
+<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">"%d %d"</span><span class="p">,</span><span class="w"> </span><span class="n">bi</span><span class="p">(</span><span class="n">v</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">),</span><span class="w"> </span><span class="n">bi</span><span class="p">(</span><span class="n">v</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w"> </span><span class="mi">9</span><span class="p">));</span><span class="w"> </span><span class="c1">//會輸出 5 -1</span>
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div>
 <p><strong>答案：B</strong></p>
-<hr />
+<hr/>
 <h3 id="8-哪個數列會讓二分搜尋回傳位置出錯">8. 哪個數列會讓二分搜尋回傳位置出錯<a class="headerlink" href="#8-哪個數列會讓二分搜尋回傳位置出錯" title="Permanent link"></a></h3>
 <p><strong>選項</strong></p>
 <ul>
@@ -7404,15 +7402,15 @@ is now available!
 <span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">b</span><span class="p">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">};</span>
 <span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">c</span><span class="p">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">};</span>
 <span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">d</span><span class="p">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">};</span>
-<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;%d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">bi</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">));</span>
-<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;%d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">bi</span><span class="p">(</span><span class="n">b</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">));</span>
-<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;%d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">bi</span><span class="p">(</span><span class="n">c</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">));</span>
-<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;%d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">bi</span><span class="p">(</span><span class="n">d</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">));</span>
+<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">"%d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span><span class="w"> </span><span class="n">bi</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">));</span>
+<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">"%d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span><span class="w"> </span><span class="n">bi</span><span class="p">(</span><span class="n">b</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">));</span>
+<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">"%d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span><span class="w"> </span><span class="n">bi</span><span class="p">(</span><span class="n">c</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">));</span>
+<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">"%d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span><span class="w"> </span><span class="n">bi</span><span class="p">(</span><span class="n">d</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">));</span>
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div>
 <p><strong>答案：B</strong></p>
-<hr />
+<hr/>
 <h3 id="9-if--else-配對dangling-else">9. if / else 配對（dangling else）<a class="headerlink" href="#9-if--else-配對dangling-else" title="Permanent link"></a></h3>
 <p><strong>選項</strong></p>
 <ul>
@@ -7427,14 +7425,14 @@ is now available!
 <span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">b</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span><span class="n">c</span><span class="o">=</span><span class="mi">20</span><span class="p">;</span>
 <span class="w">    </span><span class="k">if</span><span class="p">(</span><span class="n">a</span><span class="o">==</span><span class="mi">0</span><span class="p">)</span>
 <span class="w">        </span><span class="k">if</span><span class="p">(</span><span class="n">b</span><span class="o">==</span><span class="mi">20</span><span class="p">)</span>
-<span class="w">            </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;20&quot;</span><span class="p">);</span>
+<span class="w">            </span><span class="n">printf</span><span class="p">(</span><span class="s">"20"</span><span class="p">);</span>
 <span class="w">    </span><span class="k">else</span>
-<span class="w">        </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;30&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="n">printf</span><span class="p">(</span><span class="s">"30"</span><span class="p">);</span>
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div>
 <p><strong>答案：C</strong></p>
-<hr />
+<hr/>
 <h3 id="10-交換-ab-使輸出-20-10">10. 交換 a、b 使輸出 20 10<a class="headerlink" href="#10-交換-ab-使輸出-20-10" title="Permanent link"></a></h3>
 <p><strong>選項</strong></p>
 <ul>
@@ -7453,12 +7451,12 @@ is now available!
 <span class="w">    </span><span class="n">__A__</span>
 <span class="w">    </span><span class="n">__B__</span>
 <span class="w">    </span><span class="n">__C__</span>
-<span class="w">    </span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">a</span><span class="o">&lt;&lt;</span><span class="s">&quot; &quot;</span><span class="o">&lt;&lt;</span><span class="n">b</span><span class="p">;</span>
+<span class="w">    </span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">a</span><span class="o">&lt;&lt;</span><span class="s">" "</span><span class="o">&lt;&lt;</span><span class="n">b</span><span class="p">;</span>
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div>
 <p><strong>答案：B</strong></p>
-<hr />
+<hr/>
 <h3 id="11-deque-的特性">11. deque 的特性<a class="headerlink" href="#11-deque-的特性" title="Permanent link"></a></h3>
 <p><strong>選項</strong></p>
 <ul>
@@ -7467,9 +7465,9 @@ is now available!
 <li>C. deque 兩端（頭、尾）都能高效率插入/刪除</li>
 <li>D. deque 頭尾插入/刪除都很慢，通常都需要整段元素搬移（O(n)）</li>
 </ul>
-<p><strong>題目：deque 的特性是啥</strong><br />
+<p><strong>題目：deque 的特性是啥</strong><br/>
 <strong>答案：C</strong></p>
-<hr />
+<hr/>
 <h3 id="12-queue-的特性">12. queue 的特性<a class="headerlink" href="#12-queue-的特性" title="Permanent link"></a></h3>
 <p><strong>選項</strong></p>
 <ul>
@@ -7478,9 +7476,9 @@ is now available!
 <li>C. queue 可以從頭尾兩端都插入/刪除</li>
 <li>D. queue 插入與刪除都只能在中間進行，頭尾不允許操作</li>
 </ul>
-<p><strong>題目：queue 的特性是啥</strong><br />
+<p><strong>題目：queue 的特性是啥</strong><br/>
 <strong>答案：A</strong></p>
-<hr />
+<hr/>
 <h3 id="13-stack-的特性">13. stack 的特性<a class="headerlink" href="#13-stack-的特性" title="Permanent link"></a></h3>
 <p><strong>選項</strong></p>
 <ul>
@@ -7489,9 +7487,9 @@ is now available!
 <li>C. stack 可以從頂端插入、從底端刪除</li>
 <li>D. stack 可以從底端插入、從頂端刪除</li>
 </ul>
-<p><strong>題目：stack 的特性是啥</strong><br />
+<p><strong>題目：stack 的特性是啥</strong><br/>
 <strong>答案：A</strong></p>
-<hr />
+<hr/>
 <h3 id="14-t-是什麼">14. <code>\t</code> 是什麼<a class="headerlink" href="#14-t-是什麼" title="Permanent link"></a></h3>
 <p><strong>選項</strong></p>
 <ul>
@@ -7500,9 +7498,9 @@ is now available!
 <li>C. '\t' 是水平跳格（tab）字元，通常用來移動到下一個欄位對齊位置</li>
 <li>D. '\t' 會在輸出時自動補上 '\0' 以終止字串，並視情況插入 '\n' 以刷新緩衝區</li>
 </ul>
-<p><strong>題目：<code>\t</code> 是啥</strong><br />
+<p><strong>題目：<code>\t</code> 是啥</strong><br/>
 <strong>答案：C</strong></p>
-<hr />
+<hr/>
 <h3 id="15-想不到做法時怎麼做">15. 想不到做法時怎麼做<a class="headerlink" href="#15-想不到做法時怎麼做" title="Permanent link"></a></h3>
 <p><strong>選項</strong></p>
 <ul>
@@ -7511,9 +7509,9 @@ is now available!
 <li>C. 試著畫圖畫出流程、列舉所有條件</li>
 <li>D. 亂猜亂試，試圖矇對程式碼，不做任何推理</li>
 </ul>
-<p><strong>題目：請問看到題目想不到做法時可以怎麼做</strong><br />
+<p><strong>題目：請問看到題目想不到做法時可以怎麼做</strong><br/>
 <strong>答案：C</strong></p>
-<hr />
+<hr/>
 <h3 id="16-找不到-bug-時怎麼辦">16. 找不到 bug 時怎麼辦<a class="headerlink" href="#16-找不到-bug-時怎麼辦" title="Permanent link"></a></h3>
 <p><strong>選項</strong></p>
 <ul>
@@ -7522,9 +7520,9 @@ is now available!
 <li>C. 把過程全部 cout 出來找錯誤</li>
 <li>D. 在程式開頭加入 // no bugs allowed 註解</li>
 </ul>
-<p><strong>題目：找不到 bug 時怎麼辦</strong><br />
+<p><strong>題目：找不到 bug 時怎麼辦</strong><br/>
 <strong>答案：C</strong></p>
-<hr />
+<hr/>
 <h3 id="17-正確的寫程式習慣">17. 正確的寫程式習慣<a class="headerlink" href="#17-正確的寫程式習慣" title="Permanent link"></a></h3>
 <p><strong>選項</strong></p>
 <ul>
@@ -7533,7 +7531,7 @@ is now available!
 <li>C. 像蓋房子一樣，寫一段程式碼就檢查一次有沒有 bug</li>
 <li>D. 全部一次寫完程式碼，最後一起找 bug</li>
 </ul>
-<p><strong>題目：哪一個是正確的寫程式習慣</strong><br />
+<p><strong>題目：哪一個是正確的寫程式習慣</strong><br/>
 <strong>答案：C</strong></p>
 
 
@@ -7541,6 +7539,9 @@ is now available!
 
 
 
+
+  
+  
 
 
 
@@ -7660,40 +7661,16 @@ is now available!
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.footer", "navigation.indexes", "navigation.instant", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.tabs", "navigation.top", "announce.dismiss", "content.tabs.link", "search.share", "content.code.copy", "content.code.annotations", "content.action.edit", "content.action.view", "content.tooltips"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.footer", "navigation.indexes", "navigation.instant", "navigation.instant.progress", "navigation.tabs", "navigation.top", "announce.dismiss", "content.tabs.link", "search.share", "content.code.copy", "content.code.annotations", "content.action.edit", "content.action.view", "content.tooltips"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
+  <script src="../../assets/pymdownx-extras/search-lazy-guard.js?v=20260614-1"></script>
   
       <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
       
-        <script src="https://unpkg.com/mermaid@10.6.1/dist/mermaid.min.js"></script>
-      
-        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-      
-        <script src="../../assets/pymdownx-extras/mermaid-config-override.js?v=20260523-1"></script>
-      
-        <script src="../../assets/pymdownx-extras/mermaid-legacy-flowchart-compat.js?v=20260329-1"></script>
-      
-        <script src="../../assets/pymdownx-extras/extra-loader-iLQ-keay.js"></script>
-      
-        <script src="../../assets/pymdownx-extras/mermaid-render-fix.js?v=20260522-1"></script>
-      
-        <script src="../../assets/pymdownx-extras/mermaid-zoom.js?v=20260404-1"></script>
-      
-        <script src="../../assets/pymdownx-extras/toc-fold.js"></script>
-      
-        <script src="../../assets/pymdownx-extras/image-zoom.js"></script>
-      
-        <script src="../../assets/pymdownx-extras/markdown-embed.js?v=20260516-1"></script>
-      
-        <script src="../../assets/pymdownx-extras/folder-path-bar.js?v=20260524-1"></script>
-      
-        <script src="../../assets/pymdownx-extras/legacy-image-width.js"></script>
-      
-        <script src="../../assets/pymdownx-extras/source-jump.js?v=20260523-2"></script>
+        <script src="../../assets/pymdownx-extras/conditional-loader.js?v=20260614-3"></script>
       
     
-  <script src="../../assets/pymdownx-extras/scroll-bottom.js?v=20260424-3" type="text/javascript"></script>
 
   </body>
 </html>

@@ -44,8 +44,6 @@
     
 
       
-        <script src="https://unpkg.com/iframe-worker/shim"></script>
-      
     
 <script src="../../assets/pymdownx-extras/material-extra-theme-2ek1P7jT.js" type="text/javascript"></script>
 <script src="../../assets/pymdownx-extras/material-extra-3rdparty-BUCF4rjN.js" type="text/javascript"></script>
@@ -1956,7 +1954,7 @@
     
       <link rel="stylesheet" href="../../assets/pymdownx-extras/extra-8611f6c398.css">
     
-      <link rel="stylesheet" href="../../assets/pymdownx-extras/自定義.css?v=20260527-9">
+      <link rel="stylesheet" href="../../assets/pymdownx-extras/自定義.css?v=20260614-2">
     
     <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
@@ -6977,7 +6975,7 @@ is now available!
 <p>萊昂哈德·歐拉在1735年提出，並沒有方法能圓滿解決這個問題，他更在第二年發表在論文《柯尼斯堡的七橋》中，證明符合條件的走法並不存在，也順帶提出和解決了一筆畫問題。</p>
 <p>這篇論文在聖彼得堡科學院發表，成為圖論史上第一篇重要文獻。歐拉把實際的抽象問題簡化為平面上的點與線組合，每一座橋視為一條線，橋所連接的地區視為點。</p>
 <p>這樣若從某點出發後最後再回到這點，則這一點的線數必須是偶數，這樣的點稱為偶頂點。相對的，連有奇數條線的點稱為奇頂點。歐拉論述了，由於柯尼斯堡七橋問題中存在4個奇頂點，它無法實現符合題意的遍歷。</p>
-<p><img alt="alt text" src="../images/%E4%B8%83%E6%A9%8B%E5%95%8F%E9%A1%8C%26%E4%B8%80%E7%AD%86%E7%95%AB%E5%95%8F%E9%A1%8C/image-25.png" /></p>
+<p><img alt="alt text" decoding="async" src="../images/%E4%B8%83%E6%A9%8B%E5%95%8F%E9%A1%8C%26%E4%B8%80%E7%AD%86%E7%95%AB%E5%95%8F%E9%A1%8C/image-25.png"/></p>
 <p>歐拉把問題的實質歸於一筆畫問題，即判斷一個圖是否能夠遍歷完所有的邊而沒有重複，而柯尼斯堡七橋問題則是一筆畫問題的一個具體情境。</p>
 <p>歐拉最後給出任意一種河──橋圖能否全部走一次的判定法則，從而解決了「一筆畫問題」。</p>
 <p><strong>對於一個給定的連通圖，如果存在超過兩個的奇頂點，那麼滿足要求的路線便不存在了，且在n&gt;0的情況下，有2n個奇頂點的圖至少需要n筆畫出。如果只有兩個奇頂點，則可從其中任何一地出發完成一筆畫。若所有點均為偶頂點，則從任何一點出發，所求的路線都能實現，他還說明了怎樣快速找到所要求的路線。</strong></p>
@@ -6996,16 +6994,16 @@ is now available!
 <h3 id="證明"><strong>證明：</strong><a class="headerlink" href="#證明" title="Permanent link"></a></h3>
 <ul>
 <li>
-<p><strong>必要性：</strong> <br />
+<p><strong>必要性：</strong> <br/>
 如果一個圖能一筆畫成，那麼對每一個頂點，要麼路徑中「進入」這個點的邊數等於「離開」這個點的邊數：這時點的度為偶數。要麼兩者相差一：這時這個點必然是起點或終點之一。注意到有起點就必然有終點，因此奇頂點的數目要麼是 0，要麼是 2。</p>
 </li>
 <li>
-<p><strong>充分性：</strong><br />
+<p><strong>充分性：</strong><br/>
 如果圖中沒有奇頂點，那麼隨便選一個點出發，連一個環 <span class="arithmatex">\(C_1\)</span>。如果這個環就是原圖，那麼結束。如果不是，那麼由於原圖是連通的，<span class="arithmatex">\(C_1\)</span> 和原圖的其它部分必然有公共頂點 <span class="arithmatex">\(s_1\)</span>。從這一點出發，在原圖的剩餘部分中重複上述步驟。由於原圖是連通圖，經過若干步後，全圖被分為一些環。由於兩個相連的環就是一個環，原來的圖也就是一個歐拉環了。</p>
 </li>
 </ul>
 <p>如果圖中有兩個奇頂點 <span class="arithmatex">\(u\)</span> 和 <span class="arithmatex">\(v\)</span>，那麼加多一條邊將它們連上後得到一個無奇頂點的連通圖。由上知這個圖是一個環，因此去掉新加的邊後成為一條路徑，起點和終點是 <span class="arithmatex">\(u\)</span> 和 <span class="arithmatex">\(v\)</span>。證畢。</p>
-<hr />
+<hr/>
 <p>連通無向圖有歐拉路徑的充要條件也可以寫作「圖中奇頂點數目不多於 2 個」，這是因為奇頂點數目不可能是 1 個。實際上，連通無向圖中，奇頂點的數目總是偶數。</p>
 <p>對於不連通的無向圖，如果有兩個互不連通的部分都包含至少一條邊，那麼顯然不能一筆畫。只有當此圖的邊全都在某一個連通部分中（即其它的連通部分都是一個個孤立的頂點，度數為 0），並滿足連通無向圖關於一筆畫的充要條件，而該圖才能一筆畫。也即是說，可以一筆畫的（無向）圖如果不是連通圖，就必定是一個可以一筆畫的連通圖與若干個孤立頂點的組合。</p>
 <p>除了用頂點的度數作為判定的充要條件，還可以用圖中邊的特性來作為歐拉迴路存在的判定準則。連通的無向圖 <span class="arithmatex">\(G\)</span> 中存在歐拉迴路，等價於圖 <span class="arithmatex">\(G\)</span> 所有的邊可以劃分為若干個環的不交並。具體來說，等價於存在一系列的環 <span class="arithmatex">\(C_1, C_2, \cdots, C_m\)</span>，使得圖 <span class="arithmatex">\(G\)</span> 里的每一條邊都恰好屬於某一個環。</p>
@@ -7013,11 +7011,11 @@ is now available!
 <p>如果連通無向圖 <span class="arithmatex">\(G\)</span> 有 <span class="arithmatex">\(2k\)</span> 個奇頂點，那麼它可以用 <span class="arithmatex">\(k\)</span> 筆畫成，並且至少要用 <span class="arithmatex">\(k\)</span> 筆畫成。</p>
 <h3 id="證明_1"><strong>證明：</strong><a class="headerlink" href="#證明_1" title="Permanent link"></a></h3>
 <p>將這 <span class="arithmatex">\(2k\)</span> 個奇頂點分成 <span class="arithmatex">\(k\)</span> 對後分別連起，則得到一個無奇頂點的連通圖。由上知這個圖是一個環，因此去掉新加的邊後至多成為 <span class="arithmatex">\(k\)</span> 條歐拉路徑，因此必然可以用 <span class="arithmatex">\(k\)</span> 筆畫成。但是假設全圖可以分為 <span class="arithmatex">\(q\)</span> 條歐拉路徑，則由定理一知，每條鏈中只有不多於兩個奇頂點，於是 <span class="arithmatex">\(2q \geq 2k\)</span>。因此必定要 <span class="arithmatex">\(k\)</span> 筆畫成。</p>
-<hr />
-<p><strong>有向圖的一筆畫</strong><br />
+<hr/>
+<p><strong>有向圖的一筆畫</strong><br/>
 對有向圖來說，一筆畫不僅指遍歷所有邊，而且要遵循正確的方向。嚴謹地說，一個連通有向圖 <span class="arithmatex">\(G\)</span> 有歐拉路徑，指存在一個頂點，從它出發，沿著有向邊的方向，可以不重複地遍歷圖中所有的邊。有向圖的歐拉迴路則是指可以從某一頂點開始，沿有向邊的方向不重複地遍歷所有邊，然後回到原來出發的頂點。用類似於定理一中證明的思路，可以得到有向圖一筆畫的判定準則：</p>
-<p>一個連通的有向圖可以表示為一條從頂點 <span class="arithmatex">\(u\)</span> 到 <span class="arithmatex">\(v\)</span> 的（不閉合的）歐拉路徑的充要條件是：<br />
-<span class="arithmatex">\(u\)</span> 的出度（從這個頂點發出的有向邊的數量）比入度（指向這個頂點的有向邊的數量）多 1，<br />
+<p>一個連通的有向圖可以表示為一條從頂點 <span class="arithmatex">\(u\)</span> 到 <span class="arithmatex">\(v\)</span> 的（不閉合的）歐拉路徑的充要條件是：<br/>
+<span class="arithmatex">\(u\)</span> 的出度（從這個頂點發出的有向邊的數量）比入度（指向這個頂點的有向邊的數量）多 1，<br/>
 <span class="arithmatex">\(v\)</span> 的出度比入度少 1，而其它頂點的出度和入度都相等。</p>
 <p>一個連通的有向圖是歐拉環（存在歐拉迴路）的充要條件是以下兩個之一：  </p>
 <ul>
@@ -7030,6 +7028,9 @@ is now available!
 
 
 
+
+  
+  
 
 
 
@@ -7149,40 +7150,16 @@ is now available!
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.footer", "navigation.indexes", "navigation.instant", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.tabs", "navigation.top", "announce.dismiss", "content.tabs.link", "search.share", "content.code.copy", "content.code.annotations", "content.action.edit", "content.action.view", "content.tooltips"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.footer", "navigation.indexes", "navigation.instant", "navigation.instant.progress", "navigation.tabs", "navigation.top", "announce.dismiss", "content.tabs.link", "search.share", "content.code.copy", "content.code.annotations", "content.action.edit", "content.action.view", "content.tooltips"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
+  <script src="../../assets/pymdownx-extras/search-lazy-guard.js?v=20260614-1"></script>
   
       <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
       
-        <script src="https://unpkg.com/mermaid@10.6.1/dist/mermaid.min.js"></script>
-      
-        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-      
-        <script src="../../assets/pymdownx-extras/mermaid-config-override.js?v=20260523-1"></script>
-      
-        <script src="../../assets/pymdownx-extras/mermaid-legacy-flowchart-compat.js?v=20260329-1"></script>
-      
-        <script src="../../assets/pymdownx-extras/extra-loader-iLQ-keay.js"></script>
-      
-        <script src="../../assets/pymdownx-extras/mermaid-render-fix.js?v=20260522-1"></script>
-      
-        <script src="../../assets/pymdownx-extras/mermaid-zoom.js?v=20260404-1"></script>
-      
-        <script src="../../assets/pymdownx-extras/toc-fold.js"></script>
-      
-        <script src="../../assets/pymdownx-extras/image-zoom.js"></script>
-      
-        <script src="../../assets/pymdownx-extras/markdown-embed.js?v=20260516-1"></script>
-      
-        <script src="../../assets/pymdownx-extras/folder-path-bar.js?v=20260524-1"></script>
-      
-        <script src="../../assets/pymdownx-extras/legacy-image-width.js"></script>
-      
-        <script src="../../assets/pymdownx-extras/source-jump.js?v=20260523-2"></script>
+        <script src="../../assets/pymdownx-extras/conditional-loader.js?v=20260614-3"></script>
       
     
-  <script src="../../assets/pymdownx-extras/scroll-bottom.js?v=20260424-3" type="text/javascript"></script>
 
   </body>
 </html>

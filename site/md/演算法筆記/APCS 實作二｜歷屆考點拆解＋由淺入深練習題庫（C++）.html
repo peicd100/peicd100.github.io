@@ -44,8 +44,6 @@
     
 
       
-        <script src="https://unpkg.com/iframe-worker/shim"></script>
-      
     
 <script src="../../assets/pymdownx-extras/material-extra-theme-2ek1P7jT.js" type="text/javascript"></script>
 <script src="../../assets/pymdownx-extras/material-extra-3rdparty-BUCF4rjN.js" type="text/javascript"></script>
@@ -1956,7 +1954,7 @@
     
       <link rel="stylesheet" href="../../assets/pymdownx-extras/extra-8611f6c398.css">
     
-      <link rel="stylesheet" href="../../assets/pymdownx-extras/自定義.css?v=20260527-9">
+      <link rel="stylesheet" href="../../assets/pymdownx-extras/自定義.css?v=20260614-2">
     
     <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
@@ -12317,9 +12315,7 @@ is now available!
   <h1>APCS 實作二｜歷屆考點拆解＋由淺入深練習題庫（C++）</h1>
 
 <!-- GPT1 https://chatgpt.com/g/g-p-69524891367c8191a9be2a02cea47baf-peicd-apcs/c/69524be2-cd24-8320-b860-82393607b1ef -->
-
 <!--GPT2 https://chatgpt.com/g/g-p-69524891367c8191a9be2a02cea47baf-peicd-apcs/c/69538a24-4128-8321-a5d1-7b2d3871db80 -->
-
 <h2 id="t01每組取最大輸出每組最大值">T01｜每組取最大：輸出每組最大值<a class="headerlink" href="#t01每組取最大輸出每組最大值" title="Permanent link"></a></h2>
 <h3 id="題目">題目<a class="headerlink" href="#題目" title="Permanent link"></a></h3>
 <p>你會拿到 N 組數字，每組有 M 個整數。請你對每一組找出該組的最大值並輸出。</p>
@@ -12394,7 +12390,7 @@ is now available!
 <span class="w">            </span><span class="kt">long</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">x</span><span class="p">;</span><span class="w"> </span><span class="n">cin</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">x</span><span class="p">;</span>
 <span class="w">            </span><span class="n">mx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">max</span><span class="p">(</span><span class="n">mx</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="p">);</span>
 <span class="w">        </span><span class="p">}</span>
-<span class="w">        </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">mx</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+<span class="w">        </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">mx</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
@@ -12403,7 +12399,7 @@ is now available!
 <ul>
 <li>每一組開始前要把最大值重新初始化。</li>
 </ul>
-<hr />
+<hr/>
 <h2 id="t02總和--整除篩選輸出">T02｜總和 + 整除篩選輸出<a class="headerlink" href="#t02總和--整除篩選輸出" title="Permanent link"></a></h2>
 <h3 id="題目_1">題目<a class="headerlink" href="#題目_1" title="Permanent link"></a></h3>
 <p>你會拿到 N 個正整數 a1..aN。令 S 為總和。</p>
@@ -12473,18 +12469,18 @@ is now available!
 <span class="w">        </span><span class="n">S</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
 <span class="w">    </span><span class="p">}</span>
 
-<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">S</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">S</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
 
 <span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">any</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
 <span class="w">    </span><span class="k">for</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">N</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
 <span class="w">        </span><span class="k">if</span><span class="p">(</span><span class="n">S</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">){</span>
-<span class="w">            </span><span class="k">if</span><span class="p">(</span><span class="n">any</span><span class="p">)</span><span class="w"> </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="sc">&#39; &#39;</span><span class="p">;</span>
+<span class="w">            </span><span class="k">if</span><span class="p">(</span><span class="n">any</span><span class="p">)</span><span class="w"> </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="sc">' '</span><span class="p">;</span>
 <span class="w">            </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
 <span class="w">            </span><span class="n">any</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
 <span class="w">        </span><span class="p">}</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="w">    </span><span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">any</span><span class="p">)</span><span class="w"> </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="mi">-1</span><span class="p">;</span>
-<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div>
@@ -12493,10 +12489,10 @@ is now available!
 <li>第二行要求「依輸入順序」輸出。</li>
 <li>用 <code>any</code> 控制空格最不容易出錯。</li>
 </ul>
-<hr />
+<hr/>
 <h2 id="t03字串成對交換">T03｜字串成對交換<a class="headerlink" href="#t03字串成對交換" title="Permanent link"></a></h2>
 <h3 id="題目_2">題目<a class="headerlink" href="#題目_2" title="Permanent link"></a></h3>
-<p>給你一個長度為偶數的字串 S。把每兩個字元視為一組：(S[0],S[1])、(S[2],S[3])&hellip;</p>
+<p>給你一個長度為偶數的字串 S。把每兩個字元視為一組：(S[0],S[1])、(S[2],S[3])…</p>
 <p>請把每一組內的兩個字元交換位置，輸出新字串。</p>
 <p><strong>輸入格式</strong></p>
 <ul>
@@ -12549,7 +12545,7 @@ is now available!
 <span class="w">        </span><span class="n">swap</span><span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="w"> </span><span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]);</span>
 <span class="w">    </span><span class="p">}</span>
 
-<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">s</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">s</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div>
@@ -12557,7 +12553,7 @@ is now available!
 <ul>
 <li>用 <code>i += 2</code> 走訪，每次只處理一組。</li>
 </ul>
-<hr />
+<hr/>
 <h2 id="t04字串成對排序每兩字元內部排序">T04｜字串成對排序（每兩字元內部排序）<a class="headerlink" href="#t04字串成對排序每兩字元內部排序" title="Permanent link"></a></h2>
 <h3 id="題目_3">題目<a class="headerlink" href="#題目_3" title="Permanent link"></a></h3>
 <p>給你一個長度為偶數的字串 S。把每兩個字元視為一組。</p>
@@ -12613,7 +12609,7 @@ is now available!
 <span class="w">        </span><span class="k">if</span><span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">])</span><span class="w"> </span><span class="n">swap</span><span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="w"> </span><span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]);</span>
 <span class="w">    </span><span class="p">}</span>
 
-<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">s</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">s</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div>
@@ -12621,12 +12617,12 @@ is now available!
 <ul>
 <li>只做「每組兩個字元」的小排序，不是整串排序。</li>
 </ul>
-<hr />
+<hr/>
 <h2 id="t05完美洗牌交錯合併兩半">T05｜完美洗牌（交錯合併兩半）<a class="headerlink" href="#t05完美洗牌交錯合併兩半" title="Permanent link"></a></h2>
 <h3 id="題目_4">題目<a class="headerlink" href="#題目_4" title="Permanent link"></a></h3>
 <p>給你一個長度為偶數的字串 S。</p>
-<p>把 S 平分成左半 L 與右半 R（長度都為 n/2），輸出交錯合併結果：<br />
-L[0]R[0]L[1]R[1]&hellip;L[n/2-1]R[n/2-1]</p>
+<p>把 S 平分成左半 L 與右半 R（長度都為 n/2），輸出交錯合併結果：<br/>
+L[0]R[0]L[1]R[1]…L[n/2-1]R[n/2-1]</p>
 <p><strong>輸入格式</strong></p>
 <ul>
 <li>一行：字串 S（長度為偶數，且不含空白）</li>
@@ -12685,7 +12681,7 @@ L[0]R[0]L[1]R[1]&hellip;L[n/2-1]R[n/2-1]</p>
 <span class="w">        </span><span class="n">out</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">R</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
 <span class="w">    </span><span class="p">}</span>
 
-<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">out</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">out</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div>
@@ -12693,7 +12689,7 @@ L[0]R[0]L[1]R[1]&hellip;L[n/2-1]R[n/2-1]</p>
 <ul>
 <li>平分後再交錯輸出即可。</li>
 </ul>
-<hr />
+<hr/>
 <!-- ## T06｜矩陣上下翻轉（Flip Up-Down）
 
 ### 題目
@@ -12800,7 +12796,6 @@ L[0]R[0]L[1]R[1]&hellip;L[n/2-1]R[n/2-1]</p>
 
 ---
  -->
-
 <!-- ## T07｜矩陣順時針旋轉 90 度
 
 ### 題目
@@ -12917,7 +12912,6 @@ L[0]R[0]L[1]R[1]&hellip;L[n/2-1]R[n/2-1]</p>
 ---
 
  -->
-
 <h2 id="t08矩陣反推逆序還原操作序列旋轉翻轉">T08｜矩陣反推：逆序還原操作序列（旋轉/翻轉）<a class="headerlink" href="#t08矩陣反推逆序還原操作序列旋轉翻轉" title="Permanent link"></a></h2>
 <h3 id="題目_5">題目<a class="headerlink" href="#題目_5" title="Permanent link"></a></h3>
 <p>你會拿到「操作後」的矩陣 B 與一串操作序列。你必須還原「操作前」的原矩陣 A。</p>
@@ -12963,8 +12957,8 @@ L[0]R[0]L[1]R[1]&hellip;L[n/2-1]R[n/2-1]</p>
 </li>
 <li>0（順時針 90 度旋轉）的逆是逆時針 90 度旋轉</li>
 <li>
-<p>原序列為：1 0 1 1<br />
-  倒序後是：1 1 0 1<br />
+<p>原序列為：1 0 1 1<br/>
+  倒序後是：1 1 0 1<br/>
   因此對 B 依序執行：<strong>上下翻轉 → 逆時針 90 度 → 上下翻轉</strong></p>
 </li>
 <li>
@@ -13080,13 +13074,13 @@ L[0]R[0]L[1]R[1]&hellip;L[n/2-1]R[n/2-1]</p>
 <span class="w">        </span><span class="k">else</span><span class="w"> </span><span class="n">mat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rotCCW</span><span class="p">(</span><span class="n">mat</span><span class="p">);</span>
 <span class="w">    </span><span class="p">}</span>
 
-<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">mat</span><span class="p">.</span><span class="n">size</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="sc">&#39; &#39;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">mat</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">size</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">mat</span><span class="p">.</span><span class="n">size</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="sc">' '</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">mat</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">size</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
 <span class="w">    </span><span class="k">for</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">mat</span><span class="p">.</span><span class="n">size</span><span class="p">();</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
 <span class="w">        </span><span class="k">for</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">j</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">j</span><span class="o">&lt;</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">mat</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">size</span><span class="p">();</span><span class="n">j</span><span class="o">++</span><span class="p">){</span>
-<span class="w">            </span><span class="k">if</span><span class="p">(</span><span class="n">j</span><span class="p">)</span><span class="w"> </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="sc">&#39; &#39;</span><span class="p">;</span>
+<span class="w">            </span><span class="k">if</span><span class="p">(</span><span class="n">j</span><span class="p">)</span><span class="w"> </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="sc">' '</span><span class="p">;</span>
 <span class="w">            </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">mat</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">];</span>
 <span class="w">        </span><span class="p">}</span>
-<span class="w">        </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+<span class="w">        </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
@@ -13164,12 +13158,12 @@ R 1000000001
 <span class="w">    </span><span class="n">k</span><span class="w"> </span><span class="o">%=</span><span class="w"> </span><span class="n">n</span><span class="p">;</span>
 
 <span class="w">    </span><span class="c1">// 統一成右轉 k</span>
-<span class="w">    </span><span class="k">if</span><span class="p">(</span><span class="n">dir</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="sc">&#39;L&#39;</span><span class="p">){</span>
+<span class="w">    </span><span class="k">if</span><span class="p">(</span><span class="n">dir</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="sc">'L'</span><span class="p">){</span>
 <span class="w">        </span><span class="n">k</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">k</span><span class="p">)</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="n">n</span><span class="p">;</span>
 <span class="w">    </span><span class="p">}</span>
 
 <span class="w">    </span><span class="n">string</span><span class="w"> </span><span class="n">out</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">s</span><span class="p">.</span><span class="n">substr</span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">k</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">s</span><span class="p">.</span><span class="n">substr</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">k</span><span class="p">);</span>
-<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">out</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">out</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div>
@@ -13178,7 +13172,7 @@ R 1000000001
 <li>先做 <code>k %= n</code>。</li>
 <li>左轉 k 等價於右轉 (n-k)。</li>
 </ul>
-<hr />
+<hr/>
 <h2 id="t10兩張圖的相似度不旋轉">T10｜兩張圖的相似度（不旋轉）<a class="headerlink" href="#t10兩張圖的相似度不旋轉" title="Permanent link"></a></h2>
 <h3 id="題目_7">題目<a class="headerlink" href="#題目_7" title="Permanent link"></a></h3>
 <p>給你兩張同大小的圖片 A 與 B，皆為 R×C ( 0 &lt; R,C &lt; 100 ) 的整數矩陣。</p>
@@ -13274,7 +13268,7 @@ R 1000000001
 <span class="w">    </span><span class="kt">long</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">total</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1L</span><span class="n">L</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">R</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">C</span><span class="p">;</span>
 <span class="w">    </span><span class="kt">long</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">same</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">100</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">total</span><span class="p">;</span>
 
-<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;%</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">"%</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div>
@@ -13282,7 +13276,7 @@ R 1000000001
 <ul>
 <li>無條件捨去用整數除法最穩。</li>
 </ul>
-<hr />
+<hr/>
 <h2 id="t11條碼檢驗碼--統計最多產地">T11｜條碼檢驗碼 + 統計最多產地<a class="headerlink" href="#t11條碼檢驗碼--統計最多產地" title="Permanent link"></a></h2>
 <h3 id="題目_8">題目<a class="headerlink" href="#題目_8" title="Permanent link"></a></h3>
 <p>你會拿到 N 個 13 碼條碼字串（每碼皆為 '0'~'9'），格式為：</p>
@@ -13297,9 +13291,9 @@ R 1000000001
 <li><code>Sodd</code>：位置 1,3,5,7,9,11 的數字總和</li>
 <li><code>Seven</code>：位置 2,4,6,8,10,12 的數字總和</li>
 </ul>
-<p>條碼合法當且僅當：<br />
+<p>條碼合法當且僅當：<br/>
 <code>(Sodd + 3*Seven + C) % 10 == 0</code></p>
-<p>請在所有「合法條碼」中，找出出現次數最多的產地代碼，輸出：<br />
+<p>請在所有「合法條碼」中，找出出現次數最多的產地代碼，輸出：<br/>
 <code>產地代碼 次數</code></p>
 <p>題目保證：至少有 1 筆合法條碼，且最多次的產地代碼唯一。</p>
 <p><strong>輸入格式</strong></p>
@@ -13324,11 +13318,11 @@ R 1000000001
 <div class="highlight"><pre><span></span><code>471 2
 </code></pre></div>
 <p><strong>範例計算過程</strong></p>
-<p>4710018000112：sodd:14,seven:9,c:2  -&gt; 不合法<br />
-4711234560012：sodd:17,seven:17,c:2 -&gt; 合法<br />
-3001111111108：sodd:7,seven:4,c:8   -&gt; 不合法<br />
-3001111111118：sodd:7,seven:5,c:8   -&gt; 合法<br />
-0309876543216：sodd:20,seven:28,c:6 -&gt; 合法<br />
+<p>4710018000112：sodd:14,seven:9,c:2  -&gt; 不合法<br/>
+4711234560012：sodd:17,seven:17,c:2 -&gt; 合法<br/>
+3001111111108：sodd:7,seven:4,c:8   -&gt; 不合法<br/>
+3001111111118：sodd:7,seven:5,c:8   -&gt; 合法<br/>
+0309876543216：sodd:20,seven:28,c:6 -&gt; 合法<br/>
 4710018000102：sodd:14,seven:8,c:2  -&gt; 合法</p>
 <h3 id="測資_8">測資<a class="headerlink" href="#測資_8" title="Permanent link"></a></h3>
 <h4 id="測資-1_8">測資 1<a class="headerlink" href="#測資-1_8" title="Permanent link"></a></h4>
@@ -13372,12 +13366,12 @@ R 1000000001
 <span class="k">static</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="nf">valid13</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">string</span><span class="o">&amp;</span><span class="w"> </span><span class="n">s</span><span class="p">){</span>
 <span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">Sodd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">Seven</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 <span class="w">    </span><span class="k">for</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">pos</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">pos</span><span class="o">&lt;</span><span class="mi">12</span><span class="p">;</span><span class="w"> </span><span class="n">pos</span><span class="o">++</span><span class="p">){</span>
-<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">d</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">s</span><span class="p">[</span><span class="n">pos</span><span class="p">]</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="sc">&#39;0&#39;</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">d</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">s</span><span class="p">[</span><span class="n">pos</span><span class="p">]</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="sc">'0'</span><span class="p">;</span>
 <span class="w">        </span><span class="c1">// pos=0 對應位置 1</span>
 <span class="w">        </span><span class="k">if</span><span class="p">(</span><span class="n">pos</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="n">Sodd</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">d</span><span class="p">;</span>
 <span class="w">        </span><span class="k">else</span><span class="w"> </span><span class="n">Seven</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">d</span><span class="p">;</span>
 <span class="w">    </span><span class="p">}</span>
-<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">C</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">s</span><span class="p">[</span><span class="mi">12</span><span class="p">]</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="sc">&#39;0&#39;</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">C</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">s</span><span class="p">[</span><span class="mi">12</span><span class="p">]</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="sc">'0'</span><span class="p">;</span>
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="p">(</span><span class="n">Sodd</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">3</span><span class="o">*</span><span class="n">Seven</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">C</span><span class="p">)</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mi">10</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
 
@@ -13404,7 +13398,7 @@ R 1000000001
 <span class="w">        </span><span class="p">}</span>
 <span class="w">    </span><span class="p">}</span>
 
-<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">best</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="sc">&#39; &#39;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">bestCnt</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">best</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="sc">' '</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">bestCnt</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div>
@@ -13412,22 +13406,22 @@ R 1000000001
 <ul>
 <li>位置是 1~12，但程式用 0-index（0~11），奇偶位要對好。</li>
 </ul>
-<hr />
+<hr/>
 <h2 id="t12排列中的循環數量cycle-count-in-a-permutation">T12｜排列中的循環數量（Cycle Count in a Permutation）<a class="headerlink" href="#t12排列中的循環數量cycle-count-in-a-permutation" title="Permanent link"></a></h2>
 <h3 id="題目_9">題目<a class="headerlink" href="#題目_9" title="Permanent link"></a></h3>
 <p>給定一個長度為 N 的排列 p，表示 p 由 0..N-1 組成且每個數字恰好出現一次。</p>
-<p>我們把這個排列視為一張「每個點都指向另一個點」的有向圖：對每個 i（0 ≤ i ≤ N-1），都有一條箭頭 i → p[i]。<br />
+<p>我們把這個排列視為一張「每個點都指向另一個點」的有向圖：對每個 i（0 ≤ i ≤ N-1），都有一條箭頭 i → p[i]。<br/>
 因為 p 是排列，所以每個點的出度為 1、入度也為 1，因此整張圖一定會分解成若干個互不重疊的循環（cycle）。</p>
 <p>請你計算並輸出這張圖中一共有幾個 cycle。</p>
-<p><strong>什麼是 cycle？</strong><br />
-一組不同的數字 a1, a2, &hellip;, ak 若滿足 a1→a2、a2→a3、…、ak→a1，就形成一個 cycle（長度為 k）。<br />
+<p><strong>什麼是 cycle？</strong><br/>
+一組不同的數字 a1, a2, …, ak 若滿足 a1→a2、a2→a3、…、ak→a1，就形成一個 cycle（長度為 k）。<br/>
 每個數字只會屬於唯一的一個 cycle。</p>
-<p><strong>輸入格式</strong><br />
-- 第一行：整數 N<br />
-- 第二行：N 個整數 p[0], p[1], &hellip;, p[N-1]（為 0..N-1 的排列）</p>
-<p><strong>輸出格式</strong><br />
+<p><strong>輸入格式</strong><br/>
+- 第一行：整數 N<br/>
+- 第二行：N 個整數 p[0], p[1], …, p[N-1]（為 0..N-1 的排列）</p>
+<p><strong>輸出格式</strong><br/>
 - 輸出一行：cycle 的數量</p>
-<p><strong>範例輸入</strong><br />
+<p><strong>範例輸入</strong><br/>
 <div class="highlight"><pre><span></span><code>9
 1 2 0 4 3 6 7 5 8
 ````
@@ -13442,7 +13436,7 @@ R 1000000001
 <li>0 → 1 → 2 → 0 是一個 cycle（長度 3）</li>
 <li>3 → 4 → 3 是一個 cycle（長度 2）</li>
 <li>5 → 6 → 7 → 5 是一個 cycle（長度 3）</li>
-<li>8 → 8 是一個 cycle（長度 1）<br />
+<li>8 → 8 是一個 cycle（長度 1）<br/>
   共 4 個 cycle</li>
 </ul>
 <h3 id="測資_9">測資<a class="headerlink" href="#測資_9" title="Permanent link"></a></h3>
@@ -13492,7 +13486,7 @@ R 1000000001
 <span class="w">        </span><span class="p">}</span>
 <span class="w">    </span><span class="p">}</span>
 
-<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">cycles</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">cycles</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div>
@@ -13500,7 +13494,7 @@ R 1000000001
 <ul>
 <li>每個點都屬於且只屬於一個循環；用 visited 走訪即可。</li>
 </ul>
-<hr />
+<hr/>
 <h2 id="t1301-規則加密deque-兩端取出">T13｜01 規則加密（deque 兩端取出）<a class="headerlink" href="#t1301-規則加密deque-兩端取出" title="Permanent link"></a></h2>
 <h3 id="題目_10">題目<a class="headerlink" href="#題目_10" title="Permanent link"></a></h3>
 <p>給你長度 n 的字串 S，以及長度 n 的 01 字串 e。</p>
@@ -13528,7 +13522,7 @@ BCAADXYZ
 <p><strong>範例輸出</strong></p>
 <div class="highlight"><pre><span></span><code>ZBYXCADA
 </code></pre></div>
-<p><strong>範例計算過程</strong><br />
+<p><strong>範例計算過程</strong><br/>
 初始 deque=[B C A A D X Y Z]，T=""</p>
 <ul>
 <li>e[1]=1：取後端 Z → T=Z，deque=[B C A A D X Y]</li>
@@ -13586,7 +13580,7 @@ WXYZ
 <span class="w">    </span><span class="n">string</span><span class="w"> </span><span class="n">T</span><span class="p">;</span>
 <span class="w">    </span><span class="n">T</span><span class="p">.</span><span class="n">reserve</span><span class="p">(</span><span class="n">n</span><span class="p">);</span>
 <span class="w">    </span><span class="k">for</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">n</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
-<span class="w">        </span><span class="k">if</span><span class="p">(</span><span class="n">e</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="sc">&#39;0&#39;</span><span class="p">){</span>
+<span class="w">        </span><span class="k">if</span><span class="p">(</span><span class="n">e</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="sc">'0'</span><span class="p">){</span>
 <span class="w">            </span><span class="n">T</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">dq</span><span class="p">.</span><span class="n">front</span><span class="p">());</span>
 <span class="w">            </span><span class="n">dq</span><span class="p">.</span><span class="n">pop_front</span><span class="p">();</span>
 <span class="w">        </span><span class="p">}</span><span class="k">else</span><span class="p">{</span>
@@ -13595,7 +13589,7 @@ WXYZ
 <span class="w">        </span><span class="p">}</span>
 <span class="w">    </span><span class="p">}</span>
 
-<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">T</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">T</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div>
@@ -13603,7 +13597,7 @@ WXYZ
 <ul>
 <li>最常錯：把 0/1 對應的「前端/後端」寫反。</li>
 </ul>
-<hr />
+<hr/>
 <h2 id="t1401-規則解密反推倒序-push-回-deque">T14｜01 規則解密（反推：倒序 push 回 deque）<a class="headerlink" href="#t1401-規則解密反推倒序-push-回-deque" title="Permanent link"></a></h2>
 <h3 id="題目_11">題目<a class="headerlink" href="#題目_11" title="Permanent link"></a></h3>
 <p>加密規則如下：</p>
@@ -13635,7 +13629,7 @@ ZBYXCADA
 <p><strong>範例輸出</strong></p>
 <div class="highlight"><pre><span></span><code>BCAADXYZ
 </code></pre></div>
-<p><strong>範例計算過程</strong><br />
+<p><strong>範例計算過程</strong><br/>
 從最後往前放回去（deque 初始為空）：</p>
 <ul>
 <li>i=8，e=0：push_front('A') → [A]</li>
@@ -13645,7 +13639,7 @@ ZBYXCADA
 <li>i=4，e=1：push_back('X')  → [C A A D X]</li>
 <li>i=3，e=1：push_back('Y')  → [C A A D X Y]</li>
 <li>i=2，e=0：push_front('B') → [B C A A D X Y]</li>
-<li>i=1，e=1：push_back('Z')  → [B C A A D X Y Z]<br />
+<li>i=1，e=1：push_back('Z')  → [B C A A D X Y Z]<br/>
   得到 S="BCAADXYZ"。</li>
 </ul>
 <h3 id="測資_11">測資<a class="headerlink" href="#測資_11" title="Permanent link"></a></h3>
@@ -13689,12 +13683,12 @@ FABCDE
 
 <span class="w">    </span><span class="n">deque</span><span class="o">&lt;</span><span class="kt">char</span><span class="o">&gt;</span><span class="w"> </span><span class="n">dq</span><span class="p">;</span>
 <span class="w">    </span><span class="k">for</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="o">=</span><span class="n">n</span><span class="mi">-1</span><span class="p">;</span><span class="n">i</span><span class="o">&gt;=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">--</span><span class="p">){</span>
-<span class="w">        </span><span class="k">if</span><span class="p">(</span><span class="n">e</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="sc">&#39;0&#39;</span><span class="p">)</span><span class="w"> </span><span class="n">dq</span><span class="p">.</span><span class="n">push_front</span><span class="p">(</span><span class="n">T</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+<span class="w">        </span><span class="k">if</span><span class="p">(</span><span class="n">e</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="sc">'0'</span><span class="p">)</span><span class="w"> </span><span class="n">dq</span><span class="p">.</span><span class="n">push_front</span><span class="p">(</span><span class="n">T</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
 <span class="w">        </span><span class="k">else</span><span class="w"> </span><span class="n">dq</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">T</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
 <span class="w">    </span><span class="p">}</span>
 
 <span class="w">    </span><span class="k">for</span><span class="p">(</span><span class="kt">char</span><span class="w"> </span><span class="n">ch</span><span class="o">:</span><span class="w"> </span><span class="n">dq</span><span class="p">)</span><span class="w"> </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">ch</span><span class="p">;</span>
-<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div>
@@ -13702,7 +13696,7 @@ FABCDE
 <ul>
 <li>反推關鍵：必須倒序處理，否則 deque 的前後端對應會錯。</li>
 </ul>
-<hr />
+<hr/>
 <h2 id="t15電子畫布曼哈頓菱形加值多次操作">T15｜電子畫布：曼哈頓菱形加值（多次操作）<a class="headerlink" href="#t15電子畫布曼哈頓菱形加值多次操作" title="Permanent link"></a></h2>
 <h3 id="題目_12">題目<a class="headerlink" href="#題目_12" title="Permanent link"></a></h3>
 <p>有一個 H×W ( 0 &lt; H,W &lt; 100 ) 的畫布，初始每格都是 0。</p>
@@ -13740,19 +13734,19 @@ FABCDE
 0 0 0 0 0
 0 0 0 0 0
 0 0 0 0 0
-</code></pre></div><br />
+</code></pre></div><br/>
 * 操作 1：(r,c,t,x) = (1,2,1,5)，距離 (1,2) 曼哈頓距離 ≤ 1 的格子全部 +5</p>
 <p><div class="highlight"><pre><span></span><code>0 0 5 0 0
 0 5 5 5 0
 0 0 5 0 0
 0 0 0 0 0
-</code></pre></div><br />
+</code></pre></div><br/>
 * 操作 2：(r,c,t,x) = (0,0,2,3)，距離 (0,0) 曼哈頓距離 ≤ 2 的格子全部 +3</p>
 <p><div class="highlight"><pre><span></span><code>3 3 8 0 0
 3 8 5 5 0
 3 0 5 0 0
 0 0 0 0 0
-</code></pre></div><br />
+</code></pre></div><br/>
 * 操作 3：(r,c,t,x) = (2,4,1,-2)，距離 (2,4) 曼哈頓距離 ≤ 1 的格子全部 -2（得到最終結果）</p>
 <div class="highlight"><pre><span></span><code>3 3 8 0 0
 3 8 5 5 -2
@@ -13812,10 +13806,10 @@ FABCDE
 
 <span class="w">    </span><span class="k">for</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">H</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
 <span class="w">        </span><span class="k">for</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">j</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">j</span><span class="o">&lt;</span><span class="n">W</span><span class="p">;</span><span class="n">j</span><span class="o">++</span><span class="p">){</span>
-<span class="w">            </span><span class="k">if</span><span class="p">(</span><span class="n">j</span><span class="p">)</span><span class="w"> </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="sc">&#39; &#39;</span><span class="p">;</span>
+<span class="w">            </span><span class="k">if</span><span class="p">(</span><span class="n">j</span><span class="p">)</span><span class="w"> </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="sc">' '</span><span class="p">;</span>
 <span class="w">            </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">g</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">];</span>
 <span class="w">        </span><span class="p">}</span>
-<span class="w">        </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+<span class="w">        </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
@@ -13824,12 +13818,12 @@ FABCDE
 <ul>
 <li>依題意最直觀的暴力：每次操作掃整張表判曼哈頓距離。</li>
 </ul>
-<hr />
+<hr/>
 <h2 id="t16機器人的路徑從全域最小出發走向未訪最小鄰居">T16｜機器人的路徑：從全域最小出發，走向未訪最小鄰居<a class="headerlink" href="#t16機器人的路徑從全域最小出發走向未訪最小鄰居" title="Permanent link"></a></h2>
 <h3 id="題目_13">題目<a class="headerlink" href="#題目_13" title="Permanent link"></a></h3>
 <p>給你 n×m 的矩陣，所有數字互不相同。</p>
-<p>機器人起點為整張矩陣的最小值所在位置。<br />
-之後每一步：在四方向相鄰格（上、下、左、右）中，選擇「值最小且尚未走過」的格子前進。<br />
+<p>機器人起點為整張矩陣的最小值所在位置。<br/>
+之後每一步：在四方向相鄰格（上、下、左、右）中，選擇「值最小且尚未走過」的格子前進。<br/>
 若沒有符合條件的相鄰格，則停止。</p>
 <p>請輸出走過格子的數值總和（包含起點）。</p>
 <p><strong>輸入格式</strong></p>
@@ -13927,7 +13921,7 @@ FABCDE
 <span class="w">        </span><span class="n">r</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">bestR</span><span class="p">;</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">bestC</span><span class="p">;</span>
 <span class="w">    </span><span class="p">}</span>
 
-<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">sum</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">sum</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div>
@@ -13935,7 +13929,7 @@ FABCDE
 <ul>
 <li>每一步只掃 4 個鄰居，並用 visited 避免走回頭。</li>
 </ul>
-<hr />
+<hr/>
 <h2 id="t17人口遷移同時更新模擬-m-天後-minmax">T17｜人口遷移：同時更新模擬 m 天後 min/max<a class="headerlink" href="#t17人口遷移同時更新模擬-m-天後-minmax" title="Permanent link"></a></h2>
 <h3 id="題目_14">題目<a class="headerlink" href="#題目_14" title="Permanent link"></a></h3>
 <p>給你 R×C 網格：</p>
@@ -13943,7 +13937,7 @@ FABCDE
 <li>-1 表示不是城市</li>
 <li>其他非負整數表示城市人口</li>
 </ul>
-<p>每天，每個城市會向每個相鄰城市（上下左右）遷移 <code>population / k</code> 人（整數除法）。<br />
+<p>每天，每個城市會向每個相鄰城市（上下左右）遷移 <code>population / k</code> 人（整數除法）。<br/>
 遷移是<strong>同時發生</strong>：不能邊算邊改。</p>
 <p>模擬 m 天後輸出：最少城市人口與最多城市人口（只看城市格，不看 -1）。</p>
 <p><strong>輸入格式</strong></p>
@@ -13967,16 +13961,16 @@ FABCDE
 6
 </code></pre></div>
 <p><strong>範例計算過程</strong></p>
-<p>題目參數：k=3、m=2。<br />
-規則：每天對每個城市格 (不是 -1) 計算它要「分別」給每個相鄰城市（上/下/左/右、且相鄰格也必須是城市）的人數 = <code>population / k</code>（整數除法）。<br />
+<p>題目參數：k=3、m=2。<br/>
+規則：每天對每個城市格 (不是 -1) 計算它要「分別」給每個相鄰城市（上/下/左/右、且相鄰格也必須是城市）的人數 = <code>population / k</code>（整數除法）。<br/>
 同一天內所有遷移必須「同時」發生：先把所有城市的「流出/流入」用 delta 累積完，再一次更新人口。</p>
-<hr />
-<p>初始（第 0 天）<br />
+<hr/>
+<p>初始（第 0 天）<br/>
 <div class="highlight"><pre><span></span><code>10 0 -1 6
 5 -1 8 1
 2 7 3 -1
 </code></pre></div></p>
-<hr />
+<hr/>
 <p>第 1 天：先計算每個城市的「每個鄰居要給多少」</p>
 <p>以下用「每格給出的單位 g = population/3」表示該格對每一個相鄰城市都會給 g 人。</p>
 <ul>
@@ -14035,27 +14029,27 @@ FABCDE
 <p>給(1,2) 1，給(2,1) 1，共流出 2</p>
 </li>
 </ul>
-<hr />
+<hr/>
 <p>第 1 天：彙總每格「流入」並一次更新</p>
 <p>計算每格流入（只列城市格）：</p>
 <ul>
-<li>(0,0) 流入：從(1,0)得1、從(0,1)得0 → +1<br />
+<li>(0,0) 流入：從(1,0)得1、從(0,1)得0 → +1<br/>
   新人口 = 10 - 6 + 1 = 5</li>
-<li>(0,1) 流入：從(0,0)得3 → +3<br />
+<li>(0,1) 流入：從(0,0)得3 → +3<br/>
   新人口 = 0 - 0 + 3 = 3</li>
-<li>(0,3) 流入：從(1,3)得0 → +0<br />
+<li>(0,3) 流入：從(1,3)得0 → +0<br/>
   新人口 = 6 - 2 + 0 = 4</li>
-<li>(1,0) 流入：從(0,0)得3、從(2,0)得0 → +3<br />
+<li>(1,0) 流入：從(0,0)得3、從(2,0)得0 → +3<br/>
   新人口 = 5 - 2 + 3 = 6</li>
-<li>(1,2) 流入：從(2,2)得1、從(1,3)得0 → +1<br />
+<li>(1,2) 流入：從(2,2)得1、從(1,3)得0 → +1<br/>
   新人口 = 8 - 4 + 1 = 5</li>
-<li>(1,3) 流入：從(0,3)得2、從(1,2)得2 → +4<br />
+<li>(1,3) 流入：從(0,3)得2、從(1,2)得2 → +4<br/>
   新人口 = 1 - 0 + 4 = 5</li>
-<li>(2,0) 流入：從(1,0)得1、從(2,1)得2 → +3<br />
+<li>(2,0) 流入：從(1,0)得1、從(2,1)得2 → +3<br/>
   新人口 = 2 - 0 + 3 = 5</li>
-<li>(2,1) 流入：從(2,2)得1、從(2,0)得0 → +1<br />
+<li>(2,1) 流入：從(2,2)得1、從(2,0)得0 → +1<br/>
   新人口 = 7 - 4 + 1 = 4</li>
-<li>(2,2) 流入：從(1,2)得2、從(2,1)得2 → +4<br />
+<li>(2,2) 流入：從(1,2)得2、從(2,1)得2 → +4<br/>
   新人口 = 3 - 2 + 4 = 5</li>
 </ul>
 <p>第 1 天結束後（與你提供的中間狀態一致）</p>
@@ -14063,7 +14057,7 @@ FABCDE
 6 -1 5 5
 5 4 5 -1
 </code></pre></div>
-<hr />
+<hr/>
 <p>第 2 天：同樣先算「每個鄰居要給多少」</p>
 <ul>
 <li>
@@ -14121,26 +14115,26 @@ FABCDE
 <p>給(1,2)1、給(2,1)1，流出2</p>
 </li>
 </ul>
-<hr />
+<hr/>
 <p>第 2 天：彙總流入並一次更新</p>
 <ul>
-<li>(0,0) 流入：從(0,1)得1、從(1,0)得2 → +3<br />
+<li>(0,0) 流入：從(0,1)得1、從(1,0)得2 → +3<br/>
   新人口 = 5 - 2 + 3 = 6</li>
-<li>(0,1) 流入：從(0,0)得1 → +1<br />
+<li>(0,1) 流入：從(0,0)得1 → +1<br/>
   新人口 = 3 - 1 + 1 = 3</li>
-<li>(0,3) 流入：從(1,3)得1 → +1<br />
+<li>(0,3) 流入：從(1,3)得1 → +1<br/>
   新人口 = 4 - 1 + 1 = 4</li>
-<li>(1,0) 流入：從(0,0)得1、從(2,0)得1 → +2<br />
+<li>(1,0) 流入：從(0,0)得1、從(2,0)得1 → +2<br/>
   新人口 = 6 - 4 + 2 = 4</li>
-<li>(1,2) 流入：從(1,3)得1、從(2,2)得1 → +2<br />
+<li>(1,2) 流入：從(1,3)得1、從(2,2)得1 → +2<br/>
   新人口 = 5 - 2 + 2 = 5</li>
-<li>(1,3) 流入：從(0,3)得1、從(1,2)得1 → +2<br />
+<li>(1,3) 流入：從(0,3)得1、從(1,2)得1 → +2<br/>
   新人口 = 5 - 2 + 2 = 5</li>
-<li>(2,0) 流入：從(1,0)得2、從(2,1)得1 → +3<br />
+<li>(2,0) 流入：從(1,0)得2、從(2,1)得1 → +3<br/>
   新人口 = 5 - 2 + 3 = 6</li>
-<li>(2,1) 流入：從(2,0)得1、從(2,2)得1 → +2<br />
+<li>(2,1) 流入：從(2,0)得1、從(2,2)得1 → +2<br/>
   新人口 = 4 - 2 + 2 = 4</li>
-<li>(2,2) 流入：從(1,2)得1、從(2,1)得1 → +2<br />
+<li>(2,2) 流入：從(1,2)得1、從(2,1)得1 → +2<br/>
   新人口 = 5 - 2 + 2 = 5</li>
 </ul>
 <p>第 2 天結束後（與你提供的最終狀態一致）</p>
@@ -14148,7 +14142,7 @@ FABCDE
 4 -1 5 5
 6 4 5 -1
 </code></pre></div>
-<hr />
+<hr/>
 <p>最後只看城市格（排除 -1）：</p>
 <ul>
 <li>最小人口 = 3</li>
@@ -14234,7 +14228,7 @@ FABCDE
 <span class="w">        </span><span class="p">}</span>
 <span class="w">    </span><span class="p">}</span>
 
-<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">mn</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">mx</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">mn</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">mx</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div>
@@ -14242,13 +14236,13 @@ FABCDE
 <ul>
 <li>這題重點只有一個：<strong>同時更新</strong>（delta/next），不要邊算邊改原矩陣。</li>
 </ul>
-<hr />
+<hr/>
 <h2 id="t18特殊位置菱形加總取-mod-判定">T18｜特殊位置：菱形加總取 mod 判定<a class="headerlink" href="#t18特殊位置菱形加總取-mod-判定" title="Permanent link"></a></h2>
 <h3 id="題目_15">題目<a class="headerlink" href="#題目_15" title="Permanent link"></a></h3>
 <p>給定 n×m 的矩陣 a（每格為 0~9）。</p>
-<p>對每個位置 (i,j)：令 x=a[i][j]。<br />
-計算：<br />
-<code>sum = 所有滿足 |r-i|+|c-j|&lt;=x 的 a[r][c] 總和</code>。<br />
+<p>對每個位置 (i,j)：令 x=a[i][j]。<br/>
+計算：<br/>
+<code>sum = 所有滿足 |r-i|+|c-j|&lt;=x 的 a[r][c] 總和</code>。<br/>
 若 <code>sum % 10 == x</code>，則 (i,j) 為特殊位置。</p>
 <p>請輸出：</p>
 <ol>
@@ -14339,8 +14333,8 @@ FABCDE
 <span class="w">        </span><span class="p">}</span>
 <span class="w">    </span><span class="p">}</span>
 
-<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">ans</span><span class="p">.</span><span class="n">size</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
-<span class="w">    </span><span class="k">for</span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="o">&amp;</span><span class="n">p</span><span class="o">:</span><span class="w"> </span><span class="n">ans</span><span class="p">)</span><span class="w"> </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">p</span><span class="p">.</span><span class="n">first</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="sc">&#39; &#39;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">p</span><span class="p">.</span><span class="n">second</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">ans</span><span class="p">.</span><span class="n">size</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+<span class="w">    </span><span class="k">for</span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="o">&amp;</span><span class="n">p</span><span class="o">:</span><span class="w"> </span><span class="n">ans</span><span class="p">)</span><span class="w"> </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">p</span><span class="p">.</span><span class="n">first</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="sc">' '</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">p</span><span class="p">.</span><span class="n">second</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div>
@@ -14348,7 +14342,7 @@ FABCDE
 <ul>
 <li>依題意直接暴力：每個點再掃一次全表判距離。</li>
 </ul>
-<hr />
+<hr/>
 <h2 id="t19蒐集寶石決定下一個方向只做轉向規則">T19｜蒐集寶石：決定下一個方向（只做轉向規則）<a class="headerlink" href="#t19蒐集寶石決定下一個方向只做轉向規則" title="Permanent link"></a></h2>
 <h3 id="題目_16">題目<a class="headerlink" href="#題目_16" title="Permanent link"></a></h3>
 <p>你要做的是「轉向規則」本身，不做整張地圖移動。</p>
@@ -14427,7 +14421,7 @@ FABCDE
 
 <span class="w">    </span><span class="k">while</span><span class="p">(</span><span class="o">!</span><span class="n">can</span><span class="p">[</span><span class="n">dir</span><span class="p">])</span><span class="w"> </span><span class="n">dir</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">dir</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mi">4</span><span class="p">;</span>
 
-<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">dir</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">dir</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div>
@@ -14435,7 +14429,7 @@ FABCDE
 <ul>
 <li>先做「倍數右轉」，再做「找可走方向」，順序不能顛倒。</li>
 </ul>
-<hr />
+<hr/>
 <h2 id="t20蒐集寶石完整模擬撿到-0-或無路可走就停">T20｜蒐集寶石：完整模擬（撿到 0 或無路可走就停）<a class="headerlink" href="#t20蒐集寶石完整模擬撿到-0-或無路可走就停" title="Permanent link"></a></h2>
 <h3 id="題目_17">題目<a class="headerlink" href="#題目_17" title="Permanent link"></a></h3>
 <p>給你 M×N 地圖，每格：</p>
@@ -14556,7 +14550,7 @@ FABCDE
 <span class="w">        </span><span class="n">c</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">dc</span><span class="p">[</span><span class="n">dir</span><span class="p">];</span>
 <span class="w">    </span><span class="p">}</span>
 
-<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">picked</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">picked</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div>
@@ -14564,7 +14558,7 @@ FABCDE
 <ul>
 <li>最容易錯的是步驟順序：先撿、再倍數右轉、再避牆、最後才前進。</li>
 </ul>
-<hr />
+<hr/>
 <h2 id="t21子矩陣枚舉mismatch-上限--最小-sum-差">T21｜子矩陣枚舉：mismatch 上限 + 最小 sum 差<a class="headerlink" href="#t21子矩陣枚舉mismatch-上限--最小-sum-差" title="Permanent link"></a></h2>
 <h3 id="題目_18">題目<a class="headerlink" href="#題目_18" title="Permanent link"></a></h3>
 <p>你會拿到：</p>
@@ -14695,9 +14689,9 @@ FABCDE
 <span class="w">        </span><span class="p">}</span>
 <span class="w">    </span><span class="p">}</span>
 
-<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">cnt</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
-<span class="w">    </span><span class="k">if</span><span class="p">(</span><span class="n">cnt</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="mi">-1</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
-<span class="w">    </span><span class="k">else</span><span class="w"> </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">best</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">cnt</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+<span class="w">    </span><span class="k">if</span><span class="p">(</span><span class="n">cnt</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="mi">-1</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+<span class="w">    </span><span class="k">else</span><span class="w"> </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">best</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
 
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
@@ -14706,7 +14700,7 @@ FABCDE
 <ul>
 <li>左上角枚舉要用 <code>i+s&lt;=n</code>、<code>j+t&lt;=m</code> 避免越界。</li>
 </ul>
-<hr />
+<hr/>
 <h2 id="t22兩顆骰子滾動與交換">T22｜兩顆骰子：滾動與交換<a class="headerlink" href="#t22兩顆骰子滾動與交換" title="Permanent link"></a></h2>
 <h3 id="題目_19">題目<a class="headerlink" href="#題目_19" title="Permanent link"></a></h3>
 <p>有兩顆骰子 1 與 2。每顆骰子有 6 面：Top/Bottom/North/South/West/East。</p>
@@ -14827,7 +14821,7 @@ E 2
 <span class="w">    </span><span class="k">for</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">qi</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">qi</span><span class="o">&lt;</span><span class="n">Q</span><span class="p">;</span><span class="w"> </span><span class="n">qi</span><span class="o">++</span><span class="p">){</span>
 <span class="w">        </span><span class="n">string</span><span class="w"> </span><span class="n">op</span><span class="p">;</span>
 <span class="w">        </span><span class="n">cin</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">op</span><span class="p">;</span>
-<span class="w">        </span><span class="k">if</span><span class="p">(</span><span class="n">op</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&quot;X&quot;</span><span class="p">){</span>
+<span class="w">        </span><span class="k">if</span><span class="p">(</span><span class="n">op</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">"X"</span><span class="p">){</span>
 <span class="w">            </span><span class="n">swap</span><span class="p">(</span><span class="n">d1</span><span class="p">,</span><span class="w"> </span><span class="n">d2</span><span class="p">);</span>
 <span class="w">            </span><span class="k">continue</span><span class="p">;</span>
 <span class="w">        </span><span class="p">}</span>
@@ -14836,13 +14830,13 @@ E 2
 <span class="w">        </span><span class="n">cin</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">idx</span><span class="p">;</span>
 <span class="w">        </span><span class="n">Dice</span><span class="w"> </span><span class="o">&amp;</span><span class="n">d</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">idx</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="n">d1</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">d2</span><span class="p">);</span>
 
-<span class="w">        </span><span class="k">if</span><span class="p">(</span><span class="n">op</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&quot;N&quot;</span><span class="p">)</span><span class="w"> </span><span class="n">d</span><span class="p">.</span><span class="n">rollN</span><span class="p">();</span>
-<span class="w">        </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="p">(</span><span class="n">op</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&quot;S&quot;</span><span class="p">)</span><span class="w"> </span><span class="n">d</span><span class="p">.</span><span class="n">rollS</span><span class="p">();</span>
-<span class="w">        </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="p">(</span><span class="n">op</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&quot;E&quot;</span><span class="p">)</span><span class="w"> </span><span class="n">d</span><span class="p">.</span><span class="n">rollE</span><span class="p">();</span>
-<span class="w">        </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="p">(</span><span class="n">op</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&quot;W&quot;</span><span class="p">)</span><span class="w"> </span><span class="n">d</span><span class="p">.</span><span class="n">rollW</span><span class="p">();</span>
+<span class="w">        </span><span class="k">if</span><span class="p">(</span><span class="n">op</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">"N"</span><span class="p">)</span><span class="w"> </span><span class="n">d</span><span class="p">.</span><span class="n">rollN</span><span class="p">();</span>
+<span class="w">        </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="p">(</span><span class="n">op</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">"S"</span><span class="p">)</span><span class="w"> </span><span class="n">d</span><span class="p">.</span><span class="n">rollS</span><span class="p">();</span>
+<span class="w">        </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="p">(</span><span class="n">op</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">"E"</span><span class="p">)</span><span class="w"> </span><span class="n">d</span><span class="p">.</span><span class="n">rollE</span><span class="p">();</span>
+<span class="w">        </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="p">(</span><span class="n">op</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">"W"</span><span class="p">)</span><span class="w"> </span><span class="n">d</span><span class="p">.</span><span class="n">rollW</span><span class="p">();</span>
 <span class="w">    </span><span class="p">}</span>
 
-<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">d1</span><span class="p">.</span><span class="n">top</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="sc">&#39; &#39;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">d2</span><span class="p">.</span><span class="n">top</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">d1</span><span class="p">.</span><span class="n">top</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="sc">' '</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">d2</span><span class="p">.</span><span class="n">top</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div>
@@ -14850,7 +14844,7 @@ E 2
 <ul>
 <li>最常錯：方向滾動時，面交換的方向寫反。</li>
 </ul>
-<hr />
+<hr/>
 <h2 id="t23六方向移動輸出走過字串與字元種類數">T23｜六方向移動：輸出走過字串與字元種類數<a class="headerlink" href="#t23六方向移動輸出走過字串與字元種類數" title="Permanent link"></a></h2>
 <h3 id="題目_20">題目<a class="headerlink" href="#題目_20" title="Permanent link"></a></h3>
 <p>給定 m×n 的字母格子（m 行，每行 n 個字元）。起點固定 (m-1,0)。</p>
@@ -14896,7 +14890,7 @@ DEF
 <li>方向 1：右 → (1,1)='E'，輸出 E</li>
 <li>方向 1：右 → (1,2)='F'，輸出 F</li>
 <li>方向 4：左 → (1,1)='E'，輸出 E</li>
-<li>方向 4：左 → (1,0)='D'，輸出 D<br />
+<li>方向 4：左 → (1,0)='D'，輸出 D<br/>
   （此例的走過字串為 "EFED"；種類為 {E,F,D} 共 3）</li>
 </ul>
 <p>（註：若你希望範例更直觀，可把測資 1 當作實際練習輸入。）</p>
@@ -14969,8 +14963,8 @@ c
 <span class="w">        </span><span class="n">kinds</span><span class="p">.</span><span class="n">insert</span><span class="p">(</span><span class="n">ch</span><span class="p">);</span>
 <span class="w">    </span><span class="p">}</span>
 
-<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">path</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
-<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">kinds</span><span class="p">.</span><span class="n">size</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">path</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">kinds</span><span class="p">.</span><span class="n">size</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div>
@@ -14978,7 +14972,7 @@ c
 <ul>
 <li>寫死方向表 + 邊界判斷，是這類題最穩作法。</li>
 </ul>
-<hr />
+<hr/>
 <h2 id="t24彗星撞擊方形裁切--條件式更新--統計">T24｜彗星撞擊：方形裁切 + 條件式更新 + 統計<a class="headerlink" href="#t24彗星撞擊方形裁切--條件式更新--統計" title="Permanent link"></a></h2>
 <h3 id="題目_21">題目<a class="headerlink" href="#題目_21" title="Permanent link"></a></h3>
 <p>有 R×C 的高度地圖，初始高度全為 D。</p>
@@ -15117,7 +15111,7 @@ c
 <span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">awakeCells</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 <span class="w">    </span><span class="k">for</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">R</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="k">for</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">j</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">j</span><span class="o">&lt;</span><span class="n">C</span><span class="p">;</span><span class="n">j</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="k">if</span><span class="p">(</span><span class="n">awake</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="n">awakeCells</span><span class="o">++</span><span class="p">;</span>
 
-<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">mx</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="sc">&#39; &#39;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">mn</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="sc">&#39; &#39;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">awakeCells</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">mx</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="sc">' '</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">mn</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="sc">' '</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">awakeCells</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div>
@@ -15125,11 +15119,11 @@ c
 <ul>
 <li>每次撞擊：先裁切方形到地圖內，先判斷是否有清醒恐龍，再決定要「讓恐龍暈眩」或「高度下降」。</li>
 </ul>
-<hr />
+<hr/>
 <h2 id="t25交錯字串小規模暴力切段交錯選做">T25｜交錯字串：小規模暴力切段交錯（選做）<a class="headerlink" href="#t25交錯字串小規模暴力切段交錯選做" title="Permanent link"></a></h2>
 <h3 id="題目_22">題目<a class="headerlink" href="#題目_22" title="Permanent link"></a></h3>
 <p>給你字串 A、B、S（長度都不超過 10）。</p>
-<p>你要判斷是否能把 S 切成多段，並且段落來源必須交錯：A 段、B 段、A 段、B 段&hellip;（也可從 B 開始）。</p>
+<p>你要判斷是否能把 S 切成多段，並且段落來源必須交錯：A 段、B 段、A 段、B 段…（也可從 B 開始）。</p>
 <p>更精確：</p>
 <ul>
 <li>你有指標 pa、pb 表示 A/B 已用到的位置，ps 表示 S 已拼到的位置</li>
@@ -15165,7 +15159,7 @@ ABxyCD
 <ul>
 <li>從 A 取 "AB" → S 前進 2</li>
 <li>從 B 取 "xy" → S 前進 2</li>
-<li>從 A 取 "CD" → S 到結尾<br />
+<li>從 A 取 "CD" → S 到結尾<br/>
   因此輸出 Yes。</li>
 </ul>
 <h3 id="測資_22">測資<a class="headerlink" href="#測資_22" title="Permanent link"></a></h3>
@@ -15230,7 +15224,7 @@ aa
 <span class="w">    </span><span class="n">string</span><span class="w"> </span><span class="n">A</span><span class="p">,</span><span class="w"> </span><span class="n">B</span><span class="p">,</span><span class="w"> </span><span class="n">S</span><span class="p">;</span>
 <span class="w">    </span><span class="n">cin</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">A</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">B</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">S</span><span class="p">;</span>
 
-<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="p">(</span><span class="n">dfs</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="w"> </span><span class="n">B</span><span class="p">,</span><span class="w"> </span><span class="n">S</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="s">&quot;Yes&quot;</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="s">&quot;No&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="p">(</span><span class="n">dfs</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="w"> </span><span class="n">B</span><span class="p">,</span><span class="w"> </span><span class="n">S</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="s">"Yes"</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="s">"No"</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div>
@@ -15244,6 +15238,9 @@ aa
 
 
 
+
+  
+  
 
 
 
@@ -15363,40 +15360,16 @@ aa
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.footer", "navigation.indexes", "navigation.instant", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.tabs", "navigation.top", "announce.dismiss", "content.tabs.link", "search.share", "content.code.copy", "content.code.annotations", "content.action.edit", "content.action.view", "content.tooltips"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.footer", "navigation.indexes", "navigation.instant", "navigation.instant.progress", "navigation.tabs", "navigation.top", "announce.dismiss", "content.tabs.link", "search.share", "content.code.copy", "content.code.annotations", "content.action.edit", "content.action.view", "content.tooltips"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
+  <script src="../../assets/pymdownx-extras/search-lazy-guard.js?v=20260614-1"></script>
   
       <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
       
-        <script src="https://unpkg.com/mermaid@10.6.1/dist/mermaid.min.js"></script>
-      
-        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-      
-        <script src="../../assets/pymdownx-extras/mermaid-config-override.js?v=20260523-1"></script>
-      
-        <script src="../../assets/pymdownx-extras/mermaid-legacy-flowchart-compat.js?v=20260329-1"></script>
-      
-        <script src="../../assets/pymdownx-extras/extra-loader-iLQ-keay.js"></script>
-      
-        <script src="../../assets/pymdownx-extras/mermaid-render-fix.js?v=20260522-1"></script>
-      
-        <script src="../../assets/pymdownx-extras/mermaid-zoom.js?v=20260404-1"></script>
-      
-        <script src="../../assets/pymdownx-extras/toc-fold.js"></script>
-      
-        <script src="../../assets/pymdownx-extras/image-zoom.js"></script>
-      
-        <script src="../../assets/pymdownx-extras/markdown-embed.js?v=20260516-1"></script>
-      
-        <script src="../../assets/pymdownx-extras/folder-path-bar.js?v=20260524-1"></script>
-      
-        <script src="../../assets/pymdownx-extras/legacy-image-width.js"></script>
-      
-        <script src="../../assets/pymdownx-extras/source-jump.js?v=20260523-2"></script>
+        <script src="../../assets/pymdownx-extras/conditional-loader.js?v=20260614-3"></script>
       
     
-  <script src="../../assets/pymdownx-extras/scroll-bottom.js?v=20260424-3" type="text/javascript"></script>
 
   </body>
 </html>

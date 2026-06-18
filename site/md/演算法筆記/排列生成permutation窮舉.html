@@ -44,8 +44,6 @@
     
 
       
-        <script src="https://unpkg.com/iframe-worker/shim"></script>
-      
     
 <script src="../../assets/pymdownx-extras/material-extra-theme-2ek1P7jT.js" type="text/javascript"></script>
 <script src="../../assets/pymdownx-extras/material-extra-3rdparty-BUCF4rjN.js" type="text/javascript"></script>
@@ -1956,7 +1954,7 @@
     
       <link rel="stylesheet" href="../../assets/pymdownx-extras/extra-8611f6c398.css">
     
-      <link rel="stylesheet" href="../../assets/pymdownx-extras/自定義.css?v=20260527-9">
+      <link rel="stylesheet" href="../../assets/pymdownx-extras/自定義.css?v=20260614-2">
     
     <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
@@ -6834,7 +6832,7 @@ is now available!
 <p><a href="https://yuihuang.com/cpp-algorithm-next-permutation/">資料來源</a></p>
 <div class="i">
 <p>有三個函數可使用</p>
-<p>支援陣列資料結構 ( 記憶體位置連續儲存 )<br />
+<p>支援陣列資料結構 ( 記憶體位置連續儲存 )<br/>
 如：</p>
 <ul>
 <li><code>int v[N]</code></li>
@@ -6844,13 +6842,13 @@ is now available!
 <h2 id="is_permutation-">is_permutation( )<a class="headerlink" href="#is_permutation-" title="Permanent link"></a></h2>
 <blockquote>
 <p>is_permutation( 陣列A開頭指針 , 陣列A結尾指針 , 陣列B );</p>
-<p>判斷陣列 B 是否為陣列 A 轉換順序後的結果<br />
-也可把它看成集合比對器(集合不看順序)<br />
-如果A集合包含於B集合，就回傳true，否則回傳false<br />
-也就是在判斷a是否為b的子集合<br />
+<p>判斷陣列 B 是否為陣列 A 轉換順序後的結果<br/>
+也可把它看成集合比對器(集合不看順序)<br/>
+如果A集合包含於B集合，就回傳true，否則回傳false<br/>
+也就是在判斷a是否為b的子集合<br/>
 如下：  </p>
 </blockquote>
-<p>我們可假想他的函數是這樣寫的<br />
+<p>我們可假想他的函數是這樣寫的<br/>
 <div class="highlight"><pre><span></span><code><span class="kt">bool</span><span class="w"> </span><span class="nf">is_permutation</span><span class="p">(</span><span class="w"> </span><span class="n">陣列A開頭指針</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="n">陣列A結尾指針</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="n">陣列B</span><span class="w"> </span><span class="p">){</span>
 <span class="w">    </span>
 <span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">A集合包含於B集合</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
@@ -6862,15 +6860,15 @@ is now available!
 <span class="p">}</span>
 </code></pre></div></p>
 <h3 id="舉例">舉例：<a class="headerlink" href="#舉例" title="Permanent link"></a></h3>
-<div class="tabbed-set tabbed-alternate" data-tabs="1:4"><input checked="checked" id="舉例-完全相同回傳true" name="__tabbed_1" type="radio" /><input id="舉例-重新排列回傳true" name="__tabbed_1" type="radio" /><input id="舉例-為子集合回傳true" name="__tabbed_1" type="radio" /><input id="舉例-並非子集合回傳false" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="舉例-完全相同回傳true">完全相同，回傳true</label><label for="舉例-重新排列回傳true">重新排列，回傳true</label><label for="舉例-為子集合回傳true">為子集合，回傳true</label><label for="舉例-並非子集合回傳false">並非子集合，回傳false</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:4"><input checked="checked" id="舉例-完全相同回傳true" name="__tabbed_1" type="radio"/><input id="舉例-重新排列回傳true" name="__tabbed_1" type="radio"/><input id="舉例-為子集合回傳true" name="__tabbed_1" type="radio"/><input id="舉例-並非子集合回傳false" name="__tabbed_1" type="radio"/><div class="tabbed-labels"><label for="舉例-完全相同回傳true">完全相同，回傳true</label><label for="舉例-重新排列回傳true">重新排列，回傳true</label><label for="舉例-為子集合回傳true">為子集合，回傳true</label><label for="舉例-並非子集合回傳false">並非子集合，回傳false</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;bits/stdc++.h&gt;</span>
 <span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span>
 
 <span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(){</span>
-<span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="n">c</span><span class="p">[](</span><span class="s">&quot;123&quot;</span><span class="p">);</span>
-<span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="n">v</span><span class="p">[](</span><span class="s">&quot;123&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="n">c</span><span class="p">[](</span><span class="s">"123"</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="n">v</span><span class="p">[](</span><span class="s">"123"</span><span class="p">);</span>
 <span class="w">    </span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">is_permutation</span><span class="p">(</span><span class="n">c</span><span class="p">,</span><span class="n">c</span><span class="o">+</span><span class="mi">3</span><span class="p">,</span><span class="n">v</span><span class="p">);</span>
 <span class="w">    </span>
 <span class="p">}</span>
@@ -6885,8 +6883,8 @@ is now available!
 <span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span>
 
 <span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(){</span>
-<span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="n">c</span><span class="p">[](</span><span class="s">&quot;123&quot;</span><span class="p">);</span>
-<span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="n">v</span><span class="p">[](</span><span class="s">&quot;312&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="n">c</span><span class="p">[](</span><span class="s">"123"</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="n">v</span><span class="p">[](</span><span class="s">"312"</span><span class="p">);</span>
 <span class="w">    </span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">is_permutation</span><span class="p">(</span><span class="n">c</span><span class="p">,</span><span class="n">c</span><span class="o">+</span><span class="mi">3</span><span class="p">,</span><span class="n">v</span><span class="p">);</span>
 <span class="w">    </span>
 <span class="p">}</span>
@@ -6901,8 +6899,8 @@ is now available!
 <span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span>
 
 <span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(){</span>
-<span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="n">c</span><span class="p">[](</span><span class="s">&quot;123&quot;</span><span class="p">);</span>
-<span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="n">v</span><span class="p">[](</span><span class="s">&quot;1234&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="n">c</span><span class="p">[](</span><span class="s">"123"</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="n">v</span><span class="p">[](</span><span class="s">"1234"</span><span class="p">);</span>
 <span class="w">    </span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">is_permutation</span><span class="p">(</span><span class="n">c</span><span class="p">,</span><span class="n">c</span><span class="o">+</span><span class="mi">3</span><span class="p">,</span><span class="n">v</span><span class="p">);</span>
 
 <span class="p">}</span>
@@ -6917,8 +6915,8 @@ is now available!
 <span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span>
 
 <span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(){</span>
-<span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="n">c</span><span class="p">[](</span><span class="s">&quot;123&quot;</span><span class="p">);</span>
-<span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="n">v</span><span class="p">[](</span><span class="s">&quot;133&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="n">c</span><span class="p">[](</span><span class="s">"123"</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="n">v</span><span class="p">[](</span><span class="s">"133"</span><span class="p">);</span>
 <span class="w">    </span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">is_permutation</span><span class="p">(</span><span class="n">c</span><span class="p">,</span><span class="n">c</span><span class="o">+</span><span class="mi">3</span><span class="p">,</span><span class="n">v</span><span class="p">);</span>
 
 <span class="p">}</span>
@@ -6939,9 +6937,9 @@ is now available!
 <span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span>
 
 <span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(){</span>
-<span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="n">c</span><span class="p">[](</span><span class="s">&quot;321&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="n">c</span><span class="p">[](</span><span class="s">"321"</span><span class="p">);</span>
 <span class="w">    </span><span class="k">while</span><span class="p">(</span><span class="n">prev_permutation</span><span class="p">(</span><span class="n">c</span><span class="p">,</span><span class="n">c</span><span class="o">+</span><span class="mi">3</span><span class="p">)){</span>
-<span class="w">        </span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">c</span><span class="o">&lt;&lt;</span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+<span class="w">        </span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">c</span><span class="o">&lt;&lt;</span><span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
@@ -6962,9 +6960,9 @@ is now available!
 <span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span>
 
 <span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(){</span>
-<span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="n">c</span><span class="p">[](</span><span class="s">&quot;123&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="n">c</span><span class="p">[](</span><span class="s">"123"</span><span class="p">);</span>
 <span class="w">    </span><span class="k">while</span><span class="p">(</span><span class="n">next_permutation</span><span class="p">(</span><span class="n">c</span><span class="p">,</span><span class="n">c</span><span class="o">+</span><span class="mi">3</span><span class="p">)){</span>
-<span class="w">        </span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">c</span><span class="o">&lt;&lt;</span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+<span class="w">        </span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">c</span><span class="o">&lt;&lt;</span><span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
@@ -6980,9 +6978,9 @@ is now available!
 <div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;bits/stdc++.h&gt;</span>
 <span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span>
 <span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(){</span>
-<span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="n">c</span><span class="p">[](</span><span class="s">&quot;12345&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="n">c</span><span class="p">[](</span><span class="s">"12345"</span><span class="p">);</span>
 <span class="w">    </span><span class="k">while</span><span class="p">(</span><span class="n">next_permutation</span><span class="p">(</span><span class="n">c</span><span class="p">,</span><span class="n">c</span><span class="o">+</span><span class="n">strlen</span><span class="p">(</span><span class="n">c</span><span class="p">))){</span>
-<span class="w">        </span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">c</span><span class="o">&lt;&lt;</span><span class="s">&quot;;&quot;</span><span class="p">;</span>
+<span class="w">        </span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">c</span><span class="o">&lt;&lt;</span><span class="s">";"</span><span class="p">;</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
@@ -6996,6 +6994,9 @@ is now available!
 
 
 
+
+  
+  
 
 
 
@@ -7115,40 +7116,16 @@ is now available!
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.footer", "navigation.indexes", "navigation.instant", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.tabs", "navigation.top", "announce.dismiss", "content.tabs.link", "search.share", "content.code.copy", "content.code.annotations", "content.action.edit", "content.action.view", "content.tooltips"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.footer", "navigation.indexes", "navigation.instant", "navigation.instant.progress", "navigation.tabs", "navigation.top", "announce.dismiss", "content.tabs.link", "search.share", "content.code.copy", "content.code.annotations", "content.action.edit", "content.action.view", "content.tooltips"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
+  <script src="../../assets/pymdownx-extras/search-lazy-guard.js?v=20260614-1"></script>
   
       <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
       
-        <script src="https://unpkg.com/mermaid@10.6.1/dist/mermaid.min.js"></script>
-      
-        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-      
-        <script src="../../assets/pymdownx-extras/mermaid-config-override.js?v=20260523-1"></script>
-      
-        <script src="../../assets/pymdownx-extras/mermaid-legacy-flowchart-compat.js?v=20260329-1"></script>
-      
-        <script src="../../assets/pymdownx-extras/extra-loader-iLQ-keay.js"></script>
-      
-        <script src="../../assets/pymdownx-extras/mermaid-render-fix.js?v=20260522-1"></script>
-      
-        <script src="../../assets/pymdownx-extras/mermaid-zoom.js?v=20260404-1"></script>
-      
-        <script src="../../assets/pymdownx-extras/toc-fold.js"></script>
-      
-        <script src="../../assets/pymdownx-extras/image-zoom.js"></script>
-      
-        <script src="../../assets/pymdownx-extras/markdown-embed.js?v=20260516-1"></script>
-      
-        <script src="../../assets/pymdownx-extras/folder-path-bar.js?v=20260524-1"></script>
-      
-        <script src="../../assets/pymdownx-extras/legacy-image-width.js"></script>
-      
-        <script src="../../assets/pymdownx-extras/source-jump.js?v=20260523-2"></script>
+        <script src="../../assets/pymdownx-extras/conditional-loader.js?v=20260614-3"></script>
       
     
-  <script src="../../assets/pymdownx-extras/scroll-bottom.js?v=20260424-3" type="text/javascript"></script>
 
   </body>
 </html>

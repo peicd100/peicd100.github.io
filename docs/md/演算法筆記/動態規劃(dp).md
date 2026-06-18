@@ -1284,6 +1284,7 @@ signed main(){
         0       0       2       5       5       7       9       10      11      13      14
 14
 ```
+![alt text](images/動態規劃(dp)/image-5.png)
 原題是一個物品只能選一次，如果想要選多次，就把
 
 if(j - w[i] >= 0) d[i][j] = max(d[ ==i - 1== ][j - w[i]] + p[i], d[i - 1][j]);
@@ -1308,6 +1309,7 @@ if(j - w[i] >= 0) d[i][j] = max(d[ ==i== ][j - w[i]] + p[i], d[i - 1][j]);
         0       0       2       5       5       7       10      10      12      15      15
 15
 ```
+![alt text](images/動態規劃(dp)/image-6.png)
 一維的如果想要改成每個物品可以選多次，就改為順序，這樣就會重複選到同一商品
 
 
@@ -1545,17 +1547,86 @@ signed main() {
 #### d133. 00357 - Let Me Count The Ways
 https://zerojudge.tw/ShowProblem?problemid=d133
 
-![alt text](../images/動態規劃(dp)/SkDPP12X0.jpg)
-這題要求「組合數」    
-我們先想好如何計算排列數，再將物品移至外圈即可。    
-[排列數就像爬樓梯一樣](#d212-東東爬階梯)，所以`dp[i]=dp[i-1]+dp[i-5]+dp[i-10]+dp[i-25]+dp[i-50]`    
-如果要用`c[i]`的話，`dp[i]=dp[i]+dp[i-c[i]]`也就是`dp[i]+=dp[i-c[i]]`    
-    
-最後將物品移至外圈即可    
-    
+<!-- ![alt text](../images/動態規劃(dp)/SkDPP12X0.jpg) -->
+
+![alt text](images/動態規劃(dp)/image-7.png)
+
+
+可以看成相加(不是取 max )的完全背包問題，因為這題不是要選最大值，而是要把所有合法方法加總起來。
+有用它和沒用它，最後其實就是慢慢把越多個同種的硬幣加進去。
+
+假設：
+```cpp
+dp[2][15] = dp[1][15] + dp[1][10] + dp[1][5] + dp[2][0]
+```
+可以看成：
+
+```cpp
+dp[1][15]：用 0 個 5，剩下 15 用 1 湊
+dp[1][10]：用 1 個 5，剩下 10 用 1 湊
+dp[1][5] ：用 2 個 5，剩下 5 用 1 湊
+dp[2][0] ：用 3 個 5，剩下 0
+```
+
+所以實際組合是：
+
+```cpp
+0 個 5：1+1+1+1+1+1+1+1+1+1+1+1+1+1+1
+1 個 5：5+1+1+1+1+1+1+1+1+1+1
+2 個 5：5+5+1+1+1+1+1
+3 個 5：5+5+5
+```
+
+所以：
+
+```cpp
+dp[2][15] = 4
+```
+
+
+/// collapse-code
+```cpp title="二維完全背包問題"
+#include <bits/stdc++.h>
+using namespace std;
+#define int long long
+
+signed main() {
+    int c[6] = {0, 1, 5, 10, 25, 50};
+    int dp[6][30010] = {};
+
+    int ma = 30000;
+
+    // dp[i][j] = 前 i 種幣值，總額為 j 時的方法數。
+    dp[0][0] = 1;
+
+    for (int i = 1; i <= 5; i++) {
+        for (int j = 0; j <= ma; j++) {
+            if (j - c[i] >= 0)  // 選
+                dp[i][j] = dp[i - 1][j] + dp[i][j - c[i]];  // 直接相加
+            else // 不選
+                dp[i][j] = dp[i - 1][j];  
+        }
+    }
+
+    int n;
+    while (cin >> n) {
+        if (dp[5][n] == 1) {
+            cout << "There is only " << dp[5][n] << " way to produce " << n << " cents change. \n";
+
+        } else {
+            cout << "There are " << dp[5][n] << " ways to produce " << n << " cents change. \n";
+        }
+    }
+
+    return 0;
+}
+
+```
+///
+
 
 /// collapse-code  
-```cpp title="code"
+```cpp title="一維"
 #include <bits/stdc++.h>
 using namespace std;
 #define int long long
@@ -2006,11 +2077,63 @@ signed main(){
 
 
 
-<iframe src="https://drive.google.com/file/d/1IMmHMDpunWUVyo3zG4w5kI41gRJ0d2t8/preview" width="100%" height="1100px" style="border:none;"></iframe>
+<!-- <iframe src="https://drive.google.com/file/d/1IMmHMDpunWUVyo3zG4w5kI41gRJ0d2t8/preview" width="100%" height="1100px" style="border:none;"></iframe> -->
 
+![alt text](images/動態規劃(dp)/1_永春資訊學科背包問題.png)
+
+
+///collapse-code
+```cpp title="我的寫法"
+#include <bits/stdc++.h>
+using namespace std;
+#define int long long
+
+signed main() {
+    int w[5] = {0, 4, 5, 2, 1};
+    int p[5] = {0, 6400, 7750, 3000, 1300};
+
+    int n;
+    cin >> n;
+
+    vector<vector<int>> dp(5, vector<int>(n + 10));
+    vector<vector<vector<int>>> c(5, vector<vector<int>>(n + 10, vector<int>(5))); //每個 dp 位置都維護一個 c[5]
+
+    for (int j = 0; j <= n; j++) {
+        for (int i = 1; i <= 4; i++) {
+            if (j - w[i] >= 0) {
+                if (dp[i - 1][j] < dp[i][j - w[i]] + p[i]) {    // 選
+                    dp[i][j] = dp[i][j - w[i]] + p[i];
+                    
+                    c[i][j] = c[i][j - w[i]];
+                    c[i][j][i]++; // 該位置+1
+                } else {                                        // 不選
+                    dp[i][j] = dp[i - 1][j];
+                    
+                    c[i][j] = c[i-1][j];
+                }
+
+            } else {                                            // 不選
+                dp[i][j] = dp[i - 1][j];
+                    
+                c[i][j] = c[i-1][j];
+            }
+        }
+    }
+
+    cout << dp[4][n] << "\n";
+
+    for (int i = 1; i <= 4; i++) {
+        cout << c[4][n][i] << " ";
+    }
+
+    return 0;
+}
+
+```
+///
 
 /// collapse-code  
-```cpp title="code"
+```cpp title="學長寫法"
 #include<bits/stdc++.h>
 using namespace std;
 #define int long long

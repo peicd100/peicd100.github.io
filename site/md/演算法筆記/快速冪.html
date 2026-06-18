@@ -44,8 +44,6 @@
     
 
       
-        <script src="https://unpkg.com/iframe-worker/shim"></script>
-      
     
 <script src="../../assets/pymdownx-extras/material-extra-theme-2ek1P7jT.js" type="text/javascript"></script>
 <script src="../../assets/pymdownx-extras/material-extra-3rdparty-BUCF4rjN.js" type="text/javascript"></script>
@@ -1956,7 +1954,7 @@
     
       <link rel="stylesheet" href="../../assets/pymdownx-extras/extra-8611f6c398.css">
     
-      <link rel="stylesheet" href="../../assets/pymdownx-extras/自定義.css?v=20260527-9">
+      <link rel="stylesheet" href="../../assets/pymdownx-extras/自定義.css?v=20260614-2">
     
     <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
@@ -6932,7 +6930,7 @@ is now available!
 
 <h1 id="快速冪">快速冪<a class="headerlink" href="#快速冪" title="Permanent link"></a></h1>
 <blockquote>
-<p>數字太大要求mod的題目會需要在過程中mod<br />
+<p>數字太大要求mod的題目會需要在過程中mod<br/>
 所以有時候必須自己寫</p>
 </blockquote>
 <h2 id="一基本寫法">一、基本寫法<a class="headerlink" href="#一基本寫法" title="Permanent link"></a></h2>
@@ -6985,7 +6983,7 @@ is now available!
 </tr>
 </tbody>
 </table>
-<p>由表個中可以知道<span class="arithmatex">\(10=8+2\)</span><br />
+<p>由表個中可以知道<span class="arithmatex">\(10=8+2\)</span><br/>
 若<span class="arithmatex">\(10\)</span>在指數為 <span class="arithmatex">\(a^{10}\)</span> ， 那 <span class="arithmatex">\(a^8 *a^2 =
 a^{2+8}=a^{10}\)</span></p>
 <p>所以我們只要製作出一個圈可以跑<span class="arithmatex">\(2^8 , 2^4  ,2^2 , 2^1\)</span></p>
@@ -6997,11 +6995,11 @@ a^{2+8}=a^{10}\)</span></p>
 <span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="p">,</span><span class="n">x</span><span class="o">=</span><span class="mi">2</span><span class="p">;</span>
 <span class="w">    </span><span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">n</span><span class="p">;</span>
 <span class="w">    </span><span class="k">for</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">n</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
-<span class="w">        </span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">x</span><span class="o">&lt;&lt;</span><span class="s">&quot; &quot;</span><span class="p">;</span>
+<span class="w">        </span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">x</span><span class="o">&lt;&lt;</span><span class="s">" "</span><span class="p">;</span>
 <span class="w">        </span><span class="n">x</span><span class="o">*=</span><span class="n">x</span><span class="p">;</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="p">}</span>
-</code></pre></div><br />
+</code></pre></div><br/>
 <div class="highlight"><span class="filename">putput</span><pre><span></span><code><span class="mi">2</span><span class="w"> </span><span class="mi">4</span><span class="w"> </span><span class="mi">16</span><span class="w"> </span><span class="mi">256</span><span class="w"> </span>
 </code></pre></div></p>
 <h3 id="接下來使用位元運算對應需要相乘的數字">接下來使用位元運算對應需要相乘的數字：<a class="headerlink" href="#接下來使用位元運算對應需要相乘的數字" title="Permanent link"></a></h3>
@@ -7019,7 +7017,7 @@ a^{2+8}=a^{10}\)</span></p>
 <span class="p">}</span>
 </code></pre></div>
 <h3 id="最後就可以使用此方法作為快速幂迴圈方法">最後就可以使用此方法作為快速幂迴圈方法<a class="headerlink" href="#最後就可以使用此方法作為快速幂迴圈方法" title="Permanent link"></a></h3>
-<p>完整代碼<br />
+<p>完整代碼<br/>
 <div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;bits/stdc++.h&gt;</span>
 <span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span>
 
@@ -7046,16 +7044,16 @@ a^{2+8}=a^{10}\)</span></p>
 <h2 id="求mod寫法根據模運算性質">求mod寫法(根據<a href="%E6%A8%A1%E9%81%8B%E7%AE%97.html#模運算性質">模運算性質</a>)<a class="headerlink" href="#求mod寫法根據模運算性質" title="Permanent link"></a></h2>
 <h3 id="p-2-3-快速冪">P-2-3. 快速冪<a class="headerlink" href="#p-2-3-快速冪" title="Permanent link"></a></h3>
 <p>題目：<a href="https://judge.tcirc.tw/ShowProblem?problemid=d012">https://judge.tcirc.tw/ShowProblem?problemid=d012</a></p>
-<p>輸入正整數 x, y, 與 p，計算 x  <br />
-y (mod p)。x, y, p 皆不超過 1e9+9。例如 x=2,  <br />
-y=5, p=11，則答案是 10。  <br />
-Time limit: 1 秒  <br />
-輸入格式：輸入 x, y, 與 p 在同一行，以空白間隔。  <br />
-輸出格式：輸出計算結果。  <br />
-範例輸入：  <br />
-2 5 11  <br />
-範例輸出：  <br />
-10  <br />
+<p>輸入正整數 x, y, 與 p，計算 x  <br/>
+y (mod p)。x, y, p 皆不超過 1e9+9。例如 x=2,  <br/>
+y=5, p=11，則答案是 10。  <br/>
+Time limit: 1 秒  <br/>
+輸入格式：輸入 x, y, 與 p 在同一行，以空白間隔。  <br/>
+輸出格式：輸出計算結果。  <br/>
+範例輸入：  <br/>
+2 5 11  <br/>
+範例輸出：  <br/>
+10  <br/>
 <div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;bits/stdc++.h&gt;</span>
 <span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span>
 <span class="k">typedef</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">LL</span><span class="p">;</span>
@@ -7079,13 +7077,13 @@ Time limit: 1 秒  <br />
 <span class="w">    </span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">po</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span><span class="p">);</span>
 <span class="p">}</span>
 </code></pre></div></p>
-<h3 id="q-2-4-快速冪200-位整數">Q-2-4. 快速冪&ndash;200 位整數<a class="headerlink" href="#q-2-4-快速冪200-位整數" title="Permanent link"></a></h3>
-<p>題目：<a href="https://judge.tcirc.tw/ShowProblem?problemid=d013">https://judge.tcirc.tw/ShowProblem?problemid=d013</a>    </p>
-<p>題目與輸入皆同於 P-2-3，但 x 的範圍是不超過 200 位的正整數   <br />
-範例輸入： 123456789012345678901234567890 5 11   <br />
+<h3 id="q-2-4-快速冪200-位整數">Q-2-4. 快速冪–200 位整數<a class="headerlink" href="#q-2-4-快速冪200-位整數" title="Permanent link"></a></h3>
+<p>題目：<a href="https://judge.tcirc.tw/ShowProblem?problemid=d013">https://judge.tcirc.tw/ShowProblem?problemid=d013</a> </p>
+<p>題目與輸入皆同於 P-2-3，但 x 的範圍是不超過 200 位的正整數   <br/>
+範例輸入： 123456789012345678901234567890 5 11   <br/>
 範例輸出： 10    </p>
 <blockquote>
-<p>我們可以在字串轉數字時順便mod(根據<a href="%E6%A8%A1%E9%81%8B%E7%AE%97.html#模運算性質">模運算性質</a><br />
+<p>我們可以在字串轉數字時順便mod(根據<a href="%E6%A8%A1%E9%81%8B%E7%AE%97.html#模運算性質">模運算性質</a><br/>
 原本轉字串寫法如下：</p>
 </blockquote>
 <div class="highlight"><span class="filename">字串寫法</span><pre><span></span><code><span class="c1">//製作取餘數後的字串</span>
@@ -7095,14 +7093,14 @@ Time limit: 1 秒  <br />
 <span class="w">    </span><span class="k">for</span><span class="p">(</span><span class="n">LL</span><span class="w"> </span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">ssize</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
 <span class="w">        </span><span class="n">ans</span><span class="o">*=</span><span class="mi">10</span><span class="p">;</span>
 <span class="w">        </span><span class="n">ans</span><span class="o">%=</span><span class="n">z</span><span class="p">;</span>
-<span class="w">        </span><span class="n">ans</span><span class="o">+=</span><span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">-</span><span class="sc">&#39;0&#39;</span><span class="p">;</span>
+<span class="w">        </span><span class="n">ans</span><span class="o">+=</span><span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">-</span><span class="sc">'0'</span><span class="p">;</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">ans</span><span class="o">%</span><span class="n">z</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div>
-<div class="collapse-code"><input checked="checked" id="__collapse0" name="__collapse0" type="checkbox" /><div class="highlight"><span class="filename">解答</span><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;bits/stdc++.h&gt;</span>
+<div class="collapse-code"><input checked="checked" id="__collapse0" name="__collapse0" type="checkbox"/><div class="highlight"><span class="filename">解答</span><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;bits/stdc++.h&gt;</span>
 <span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span>
-<span class="cp">#define nn &quot;\n&quot;;</span>
+<span class="cp">#define nn "\n";</span>
 <span class="k">typedef</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">LL</span><span class="p">;</span>
 
 <span class="c1">//製作取餘數後的字串</span>
@@ -7112,7 +7110,7 @@ Time limit: 1 秒  <br />
 <span class="w">    </span><span class="k">for</span><span class="p">(</span><span class="n">LL</span><span class="w"> </span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">ssize</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
 <span class="w">        </span><span class="n">ans</span><span class="o">*=</span><span class="mi">10</span><span class="p">;</span>
 <span class="w">        </span><span class="n">ans</span><span class="o">%=</span><span class="n">z</span><span class="p">;</span>
-<span class="w">        </span><span class="n">ans</span><span class="o">+=</span><span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">-</span><span class="sc">&#39;0&#39;</span><span class="p">;</span>
+<span class="w">        </span><span class="n">ans</span><span class="o">+=</span><span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">-</span><span class="sc">'0'</span><span class="p">;</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">ans</span><span class="o">%</span><span class="n">z</span><span class="p">;</span>
 <span class="p">}</span>
@@ -7147,6 +7145,9 @@ Time limit: 1 秒  <br />
 
 
 
+
+  
+  
 
 
 
@@ -7266,40 +7267,16 @@ Time limit: 1 秒  <br />
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.footer", "navigation.indexes", "navigation.instant", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.tabs", "navigation.top", "announce.dismiss", "content.tabs.link", "search.share", "content.code.copy", "content.code.annotations", "content.action.edit", "content.action.view", "content.tooltips"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.footer", "navigation.indexes", "navigation.instant", "navigation.instant.progress", "navigation.tabs", "navigation.top", "announce.dismiss", "content.tabs.link", "search.share", "content.code.copy", "content.code.annotations", "content.action.edit", "content.action.view", "content.tooltips"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
+  <script src="../../assets/pymdownx-extras/search-lazy-guard.js?v=20260614-1"></script>
   
       <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
       
-        <script src="https://unpkg.com/mermaid@10.6.1/dist/mermaid.min.js"></script>
-      
-        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-      
-        <script src="../../assets/pymdownx-extras/mermaid-config-override.js?v=20260523-1"></script>
-      
-        <script src="../../assets/pymdownx-extras/mermaid-legacy-flowchart-compat.js?v=20260329-1"></script>
-      
-        <script src="../../assets/pymdownx-extras/extra-loader-iLQ-keay.js"></script>
-      
-        <script src="../../assets/pymdownx-extras/mermaid-render-fix.js?v=20260522-1"></script>
-      
-        <script src="../../assets/pymdownx-extras/mermaid-zoom.js?v=20260404-1"></script>
-      
-        <script src="../../assets/pymdownx-extras/toc-fold.js"></script>
-      
-        <script src="../../assets/pymdownx-extras/image-zoom.js"></script>
-      
-        <script src="../../assets/pymdownx-extras/markdown-embed.js?v=20260516-1"></script>
-      
-        <script src="../../assets/pymdownx-extras/folder-path-bar.js?v=20260524-1"></script>
-      
-        <script src="../../assets/pymdownx-extras/legacy-image-width.js"></script>
-      
-        <script src="../../assets/pymdownx-extras/source-jump.js?v=20260523-2"></script>
+        <script src="../../assets/pymdownx-extras/conditional-loader.js?v=20260614-3"></script>
       
     
-  <script src="../../assets/pymdownx-extras/scroll-bottom.js?v=20260424-3" type="text/javascript"></script>
 
   </body>
 </html>

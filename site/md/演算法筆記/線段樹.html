@@ -44,8 +44,6 @@
     
 
       
-        <script src="https://unpkg.com/iframe-worker/shim"></script>
-      
     
 <script src="../../assets/pymdownx-extras/material-extra-theme-2ek1P7jT.js" type="text/javascript"></script>
 <script src="../../assets/pymdownx-extras/material-extra-3rdparty-BUCF4rjN.js" type="text/javascript"></script>
@@ -1956,7 +1954,7 @@
     
       <link rel="stylesheet" href="../../assets/pymdownx-extras/extra-8611f6c398.css">
     
-      <link rel="stylesheet" href="../../assets/pymdownx-extras/自定義.css?v=20260527-9">
+      <link rel="stylesheet" href="../../assets/pymdownx-extras/自定義.css?v=20260614-2">
     
     <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
@@ -6997,9 +6995,9 @@ is now available!
 
 
 <h1 id="線段樹">線段樹<a class="headerlink" href="#線段樹" title="Permanent link"></a></h1>
-<p>大師寫的二元樹<br />
+<p>大師寫的二元樹<br/>
 題目：<a href="https://codeforces.com/group/f0XUnFzgmg/contest/539362/problem/F">https://codeforces.com/group/f0XUnFzgmg/contest/539362/problem/F</a></p>
-<div class="collapse-code"><input checked="checked" id="__collapse0" name="__collapse0" type="checkbox" /><div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;bits/stdc++.h&gt;</span>
+<div class="collapse-code"><input checked="checked" id="__collapse0" name="__collapse0" type="checkbox"/><div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;bits/stdc++.h&gt;</span>
 <span class="cp">#define Weakoying ios::sync_with_stdio(0), cin.tie(0), cout.tie(0);</span>
 <span class="cp">#define int long long</span>
 <span class="cp">#define ll long long</span>
@@ -7015,15 +7013,15 @@ is now available!
 <span class="cp">#define cmax(a, b) a = (a &gt; b ? a : b)</span>
 <span class="cp">#define cmin(a, b) a = (a &lt; b ? a : b)</span>
 <span class="cp">#define put(x) cout &lt;&lt; x &lt;&lt; endl;</span>
-<span class="cp">#define DB(x) cerr &lt;&lt; #x &lt;&lt; &quot; &quot; &lt;&lt; x &lt;&lt; endl</span>
+<span class="cp">#define DB(x) cerr &lt;&lt; #x &lt;&lt; " " &lt;&lt; x &lt;&lt; endl</span>
 <span class="cp">#define all(v) v.begin(), v.end()</span>
-<span class="cp">#define stop system(&quot;pause&quot;);</span>
+<span class="cp">#define stop system("pause");</span>
 <span class="cp">#define MEM(x, n) memset(x, n, sizeof(x));</span>
 <span class="cp">#define lowbit(x) x &amp;(-x)</span>
 <span class="cp">#define SZ(v) ((int)v.size())</span>
 <span class="cp">#if !LOCAL</span>
-<span class="cp">#define endl &quot;\n&quot;</span>
-<span class="cp">#pragma GCC optimize(&quot;Ofast&quot;, &quot;unroll-all-loops&quot;)</span>
+<span class="cp">#define endl "\n"</span>
+<span class="cp">#pragma GCC optimize("Ofast", "unroll-all-loops")</span>
 <span class="cp">#endif</span>
 <span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">INF</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mh">0x3f3f3f3f</span><span class="p">;</span>
 <span class="k">const</span><span class="w"> </span><span class="n">ll</span><span class="w"> </span><span class="n">INFLL</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mh">0x3f3f3f3f3f3f3f3f</span><span class="p">;</span>
@@ -7184,12 +7182,12 @@ is now available!
 </blockquote>
 <h2 id="簡介">簡介<a class="headerlink" href="#簡介" title="Permanent link"></a></h2>
 <p>以二元樹為基本架構</p>
-<p>線段樹可以在對數時間 <span class="arithmatex">\(O(log n)\)</span> 內完成「某一區間的」<br />
-* 寫入資料<br />
-* 查詢資料(某運算)<br />
+<p>線段樹可以在對數時間 <span class="arithmatex">\(O(log n)\)</span> 內完成「某一區間的」<br/>
+* 寫入資料<br/>
+* 查詢資料(某運算)<br/>
 * 修改資料</p>
 <blockquote>
-<p>先看到題目：<br />
+<p>先看到題目：<br/>
 有一個數列 <span class="arithmatex">\(a_1, a_2, a_3, \cdots, a_n\)</span>，想對這個數列做一些事：</p>
 <ol>
 <li>
@@ -7199,22 +7197,20 @@ is now available!
 <p><strong>add P V</strong>: 將 <span class="arithmatex">\(a_P\)</span> 的值加上整數 <span class="arithmatex">\(V\)</span></p>
 </li>
 </ol>
-<p><span class="arithmatex">\(n, q \leq 10^6\)</span>，<span class="arithmatex">\(q\)</span> 是操作數量。<br />
+<p><span class="arithmatex">\(n, q \leq 10^6\)</span>，<span class="arithmatex">\(q\)</span> 是操作數量。<br/>
 </p>
 </blockquote>
 <p>我們先假設<span class="arithmatex">\(a_1, a_2, a_3, \cdots, a_n\)</span> 為 <span class="arithmatex">\({1,9,6,5,5,4,1,3}，n=8\)</span></p>
-<p><img alt="alt text" src="../images/%E7%B7%9A%E6%AE%B5%E6%A8%B9/image-57.png" /></p>
+<p><img alt="alt text" decoding="async" src="../images/%E7%B7%9A%E6%AE%B5%E6%A8%B9/image-57.png"/></p>
 <p>我們先看線段樹如何運作</p>
 <h3 id="查詢區間和">查詢區間和<a class="headerlink" href="#查詢區間和" title="Permanent link"></a></h3>
-<p>假設我們要計算加總的範圍為 <span class="arithmatex">\([1,4]\)</span> 。<br />
+<p>假設我們要計算加總的範圍為 <span class="arithmatex">\([1,4]\)</span> 。<br/>
 用dfs查找，button傳遞答案</p>
-<iframe width="718" height="404" src="https://www.youtube.com/embed/jUzRtjOiqus" title="線段樹" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-
+<iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="" frameborder="0" height="404" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/jUzRtjOiqus" title="線段樹" width="718"></iframe>
 <h3 id="更新數據">更新數據<a class="headerlink" href="#更新數據" title="Permanent link"></a></h3>
-<p>假設我們修改的位置為 <span class="arithmatex">\(4\)</span> 。<br />
+<p>假設我們修改的位置為 <span class="arithmatex">\(4\)</span> 。<br/>
 用dfs查找，button傳遞修改</p>
-<iframe width="718" height="404" src="https://www.youtube.com/embed/4_4Ygig-40o" title="線段樹，修改數值" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-
+<iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="" frameborder="0" height="404" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/4_4Ygig-40o" title="線段樹，修改數值" width="718"></iframe>
 <h2 id="二元樹的特性">二元樹的特性<a class="headerlink" href="#二元樹的特性" title="Permanent link"></a></h2>
 <p>實作前我們需要先知道二元樹的特性</p>
 <ol>
@@ -7224,7 +7220,6 @@ is now available!
 </ol>
 <h3 id="圖一四層二元樹">圖一：四層二元樹<a class="headerlink" href="#圖一四層二元樹" title="Permanent link"></a></h3>
 <!-- ![alt text](image-6.png) -->
-
 <pre class="diagram"><code>graph TD;
     A[1] --&gt; B[2];
     A --&gt; C[3];
@@ -7240,16 +7235,15 @@ is now available!
     F --&gt; M[13];
     G --&gt; N[14];
     G --&gt; O[15];</code></pre>
-<p>我們可以使用一維陣列儲存不同節點的值。<br />
+<p>我們可以使用一維陣列儲存不同節點的值。<br/>
 那麼問題來了，儲存二元樹的陣列大小要設定多少呢？</p>
-<p>你可能會想：<br />
+<p>你可能會想：<br/>
 「根據特性，完整的二元樹總節點數為 <span class="arithmatex">\(n*2-1\)</span> ，那就設定為 <span class="arithmatex">\(2n\)</span> 吧。」</p>
 <p>萬萬不可！！看到圖二，原陣列數量 <span class="arithmatex">\(n=6\)</span> 但卻超過的 <span class="arithmatex">\(2n\)</span> 最大值為 <span class="arithmatex">\(13\)</span></p>
 <h3 id="圖二-n6-的二元樹綠色為儲存底層資料位置">圖二： <span class="arithmatex">\(n=6\)</span> 的二元樹，綠色為儲存底層資料位置<a class="headerlink" href="#圖二-n6-的二元樹綠色為儲存底層資料位置" title="Permanent link"></a></h3>
 <div class="highlight"><pre><span></span><code><span class="n">v</span><span class="o">=</span><span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">};</span>
 </code></pre></div>
 <!-- ![alt text](image-7.png) -->
-
 <pre class="diagram"><code>graph TD;
     A1[1:21] --&gt; A2[2:6]
     A1 --&gt; A3[3:15]
@@ -7283,7 +7277,7 @@ is now available!
 <p>於是，我們不能設定太小，設定為 <span class="arithmatex">\(4n\)</span> 。(我也不知道為何，多方資料都說這是安全的大小</p>
 <h3 id="宣告">宣告<a class="headerlink" href="#宣告" title="Permanent link"></a></h3>
 <p><div class="highlight"><pre><span></span><code><span class="kt">int</span><span class="w"> </span><span class="n">seg</span><span class="p">[</span><span class="mi">4</span><span class="o">*</span><span class="n">N</span><span class="p">];</span>
-</code></pre></div><br />
+</code></pre></div><br/>
 線段樹分成三個主要的部份，以及兩個操作函數：</p>
 <ul>
 <li><strong>Build</strong>：建立線段樹</li>
@@ -7308,12 +7302,12 @@ is now available!
 </code></pre></div>
 <h3 id="pull合併節點">pull(合併節點)<a class="headerlink" href="#pull合併節點" title="Permanent link"></a></h3>
 <p>在 build 的最後部分 <code>seg[id] = seg[id*2]+seg[id*2+1];</code> 是為了合併節點資訊，因為操作不一定是相加，也可能是相減，或是取min，也因為不只有 build會需要合併節點，所以將其製作為一個函數。</p>
-<p>pull函數：<br />
+<p>pull函數：<br/>
 <div class="highlight"><pre><span></span><code><span class="kt">void</span><span class="w"> </span><span class="nf">pull</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">id</span><span class="p">){</span><span class="w"> </span><span class="c1">//id:子樹id</span>
 <span class="w">    </span><span class="n">seg</span><span class="p">[</span><span class="n">id</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">seg</span><span class="p">[</span><span class="n">id</span><span class="o">*</span><span class="mi">2</span><span class="p">]</span><span class="o">+</span><span class="n">seg</span><span class="p">[</span><span class="n">id</span><span class="o">*</span><span class="mi">2</span><span class="o">+</span><span class="mi">1</span><span class="p">];</span><span class="w"> </span><span class="c1">// 不一定是加法</span>
 <span class="p">}</span>
 </code></pre></div></p>
-<p>於是可以將build函數更改如下：<br />
+<p>於是可以將build函數更改如下：<br/>
 <div class="highlight"><pre><span></span><code><span class="kt">void</span><span class="w"> </span><span class="nf">build</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">l</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">r</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">l</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">r</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">        </span><span class="n">seg</span><span class="p">[</span><span class="n">id</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">v</span><span class="p">[</span><span class="n">l</span><span class="p">];</span>
@@ -7340,8 +7334,7 @@ is now available!
 <li>其他情況：除了上述兩種情況外，剩下的情況就是當前節點的區間 <span class="arithmatex">\([l, r]\)</span> 和要查詢的區間 <span class="arithmatex">\([ql, qr]\)</span> 有交集但是沒有完全包含，此時直接遞迴兩邊再合併答案即可。如此不斷遞迴下去最終一定會變成前面兩種情況。</li>
 </ol>
 <p>以下為查詢區間和的影片</p>
-<iframe width="718" height="404" src="https://www.youtube.com/embed/jUzRtjOiqus" title="線段樹" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-
+<iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="" frameborder="0" height="404" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/jUzRtjOiqus" title="線段樹" width="718"></iframe>
 <h3 id="update更新數據">Update(更新數據)<a class="headerlink" href="#update更新數據" title="Permanent link"></a></h3>
 <p>將第 <span class="arithmatex">\(p\)</span> 個資料修改成 <span class="arithmatex">\(v\)</span>。與前面的 build 很像，先找出第 <span class="arithmatex">\(p\)</span> 個資料所在的位置，再由下而上的更新線段樹。同樣的更新節點也只需要花費 <span class="arithmatex">\(\mathcal{O}(\log n)\)</span> 的時間。但比暴力方法的 <span class="arithmatex">\(\mathcal{O}(1)\)</span> 還要差。</p>
 <div class="highlight"><pre><span></span><code><span class="kt">void</span><span class="w"> </span><span class="nf">update</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">p</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">v</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">l</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">r</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="c1">//p:目標物位置 v:修改的數值 l:子樹左邊界 r:子樹右邊界 id:子樹id</span>
@@ -7356,14 +7349,13 @@ is now available!
 <span class="w">    </span><span class="n">pull</span><span class="p">(</span><span class="n">id</span><span class="p">);</span><span class="w">  </span><span class="c1">//合併子節點資訊到父節點</span>
 <span class="p">}</span>
 </code></pre></div>
-<iframe width="718" height="404" src="https://www.youtube.com/embed/4_4Ygig-40o" title="線段樹，修改數值" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-
-<p>這樣我們就完成了第一階段，了解了線段樹的基本架構。<br />
-* 寫入資料 <span class="arithmatex">\(O(n)\)</span><br />
-* 查詢資料(某運算) <span class="arithmatex">\(O(log (n))\)</span><br />
+<iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="" frameborder="0" height="404" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/4_4Ygig-40o" title="線段樹，修改數值" width="718"></iframe>
+<p>這樣我們就完成了第一階段，了解了線段樹的基本架構。<br/>
+* 寫入資料 <span class="arithmatex">\(O(n)\)</span><br/>
+* 查詢資料(某運算) <span class="arithmatex">\(O(log (n))\)</span><br/>
 * 修改資料 <span class="arithmatex">\(O(log (n)))\)</span></p>
 <p>目前完整代碼：</p>
-<div class="collapse-code"><input checked="checked" id="__collapse1" name="__collapse1" type="checkbox" /><div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="cpf">&lt;bits/stdc++.h&gt;</span>
+<div class="collapse-code"><input checked="checked" id="__collapse1" name="__collapse1" type="checkbox"/><div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="cpf">&lt;bits/stdc++.h&gt;</span>
 <span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span>
 <span class="cp">#define MAXN 100</span>
 
@@ -7405,26 +7397,26 @@ is now available!
 <span class="w">    </span><span class="n">v</span><span class="o">=</span><span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">};</span>
 <span class="w">    </span><span class="n">n</span><span class="o">=</span><span class="n">v</span><span class="p">.</span><span class="n">size</span><span class="p">();</span>
 <span class="w">    </span><span class="n">build</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">n</span><span class="mi">-1</span><span class="p">);</span>
-<span class="w">    </span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">query</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="n">n</span><span class="mi">-1</span><span class="p">)</span><span class="o">&lt;&lt;</span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span><span class="w"> </span><span class="c1">//查詢[1,4]</span>
+<span class="w">    </span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">query</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="n">n</span><span class="mi">-1</span><span class="p">)</span><span class="o">&lt;&lt;</span><span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span><span class="w"> </span><span class="c1">//查詢[1,4]</span>
 <span class="w">    </span><span class="n">update</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="n">n</span><span class="mi">-1</span><span class="p">);</span><span class="w">  </span><span class="c1">//修改[4]的 5 為 8</span>
 <span class="w">    </span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">query</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="n">n</span><span class="mi">-1</span><span class="p">);</span><span class="w"> </span><span class="c1">//查詢[1,4]</span>
 <span class="p">}</span>
 </code></pre></div>
 <div class="code-footer"><label class="expand icon-only" for="__collapse1" tabindex="0"><span class="collapse-code__sr-only">expand</span></label><label class="collapse icon-only" for="__collapse1" tabindex="0"><span class="collapse-code__sr-only">collapse</span></label></div>
 </div>
-<p>剛提到：<br />
-* 寫入資料 <span class="arithmatex">\(O(n)\)</span><br />
-* 查詢資料 <span class="arithmatex">\(O(log (n))\)</span><br />
-* 修改資料 <span class="arithmatex">\(O(log (n)))\)</span>  </p>
+<p>剛提到：<br/>
+* 寫入資料 <span class="arithmatex">\(O(n)\)</span><br/>
+* 查詢資料 <span class="arithmatex">\(O(log (n))\)</span><br/>
+* 修改資料 <span class="arithmatex">\(O(log (n)))\)</span> </p>
 <p>可以看到修改資料的速度為<span class="arithmatex">\(O(log (n)))\)</span>，那假設我們需要修改一個區間的資料，速度不就是<span class="arithmatex">\(O((n)log (n)))\)</span>？這比暴力法還糟糕。</p>
 <p>如果我們能把一些事情先不要做，放到晚點真正需要的時候再做會不會更快？這就是懶惰標記的精神！</p>
 <p>說簡單一點，就是用 top down 的方式來修改數值。如果詢問的區間不需要到最底層，就不修改最底層數值，不做多餘的事情。</p>
 <p>假設指令為：將 <span class="arithmatex">\([3,5]\)</span> 區間所有數字加上 <span class="arithmatex">\(5\)</span></p>
-<hr />
-<p>第一步：<br />
+<hr/>
+<p>第一步：<br/>
 進入根遞迴，變更數值，傳遞標籤至子節點</p>
-<p>指令中，區間為 <span class="arithmatex">\([3,5]\)</span> 也就是總共有 <span class="arithmatex">\(5-3+1=3\)</span> 個節點會加 <span class="arithmatex">\(5\)</span> ，那麼總共會加多少呢？<br />
-答案是(被更改節點數)*(增加數值)，也就是 <span class="arithmatex">\(3*5=15\)</span> 。<br />
+<p>指令中，區間為 <span class="arithmatex">\([3,5]\)</span> 也就是總共有 <span class="arithmatex">\(5-3+1=3\)</span> 個節點會加 <span class="arithmatex">\(5\)</span> ，那麼總共會加多少呢？<br/>
+答案是(被更改節點數)*(增加數值)，也就是 <span class="arithmatex">\(3*5=15\)</span> 。<br/>
 更新完根節點數值後，把根節點的tag清除，傳遞tag給子節點 。  </p>
 <!-- ![alt text](image-8.png) -->
 <pre class="diagram"><code>graph TD;
@@ -7443,7 +7435,6 @@ is now available!
     style M fill:#7efffd</code></pre>
 <p>接下來假設要查詢 <span class="arithmatex">\([4,6]\)</span> 區間總和，直接看的話，我們其實需要的是 <span class="arithmatex">\([4、5]\)</span> 區間的值，以及<span class="arithmatex">\([6]\)</span>的值，如下圖紅色區域</p>
 <!-- ![alt text](image-9.png) -->
-
 <pre class="diagram"><code>graph TD;
     A[34+15=49：0,7 tag=0] --&gt; B[21：0,3 tag=5]; A --&gt; C[13：4,7 tag=5];
     B --&gt; D[10：0,1 tag=0]; B --&gt; E[11：2,3 tag=0];
@@ -7467,6 +7458,9 @@ is now available!
 
 
 
+
+  
+  
 
 
 
@@ -7586,40 +7580,16 @@ is now available!
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.footer", "navigation.indexes", "navigation.instant", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.tabs", "navigation.top", "announce.dismiss", "content.tabs.link", "search.share", "content.code.copy", "content.code.annotations", "content.action.edit", "content.action.view", "content.tooltips"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.footer", "navigation.indexes", "navigation.instant", "navigation.instant.progress", "navigation.tabs", "navigation.top", "announce.dismiss", "content.tabs.link", "search.share", "content.code.copy", "content.code.annotations", "content.action.edit", "content.action.view", "content.tooltips"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
+  <script src="../../assets/pymdownx-extras/search-lazy-guard.js?v=20260614-1"></script>
   
       <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
       
-        <script src="https://unpkg.com/mermaid@10.6.1/dist/mermaid.min.js"></script>
-      
-        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-      
-        <script src="../../assets/pymdownx-extras/mermaid-config-override.js?v=20260523-1"></script>
-      
-        <script src="../../assets/pymdownx-extras/mermaid-legacy-flowchart-compat.js?v=20260329-1"></script>
-      
-        <script src="../../assets/pymdownx-extras/extra-loader-iLQ-keay.js"></script>
-      
-        <script src="../../assets/pymdownx-extras/mermaid-render-fix.js?v=20260522-1"></script>
-      
-        <script src="../../assets/pymdownx-extras/mermaid-zoom.js?v=20260404-1"></script>
-      
-        <script src="../../assets/pymdownx-extras/toc-fold.js"></script>
-      
-        <script src="../../assets/pymdownx-extras/image-zoom.js"></script>
-      
-        <script src="../../assets/pymdownx-extras/markdown-embed.js?v=20260516-1"></script>
-      
-        <script src="../../assets/pymdownx-extras/folder-path-bar.js?v=20260524-1"></script>
-      
-        <script src="../../assets/pymdownx-extras/legacy-image-width.js"></script>
-      
-        <script src="../../assets/pymdownx-extras/source-jump.js?v=20260523-2"></script>
+        <script src="../../assets/pymdownx-extras/conditional-loader.js?v=20260614-3"></script>
       
     
-  <script src="../../assets/pymdownx-extras/scroll-bottom.js?v=20260424-3" type="text/javascript"></script>
 
   </body>
 </html>

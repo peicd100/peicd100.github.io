@@ -44,8 +44,6 @@
     
 
       
-        <script src="https://unpkg.com/iframe-worker/shim"></script>
-      
     
 <script src="../../assets/pymdownx-extras/material-extra-theme-2ek1P7jT.js" type="text/javascript"></script>
 <script src="../../assets/pymdownx-extras/material-extra-3rdparty-BUCF4rjN.js" type="text/javascript"></script>
@@ -1956,7 +1954,7 @@
     
       <link rel="stylesheet" href="../../assets/pymdownx-extras/extra-8611f6c398.css">
     
-      <link rel="stylesheet" href="../../assets/pymdownx-extras/自定義.css?v=20260527-9">
+      <link rel="stylesheet" href="../../assets/pymdownx-extras/自定義.css?v=20260614-2">
     
     <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
@@ -7531,11 +7529,11 @@ is now available!
 <span class="w">    </span><span class="p">}</span>
 <span class="w">    </span><span class="n">memset</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="k">sizeof</span><span class="p">(</span><span class="n">arr</span><span class="p">));</span>
 <span class="w">    </span><span class="k">for</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="o">:</span><span class="n">v</span><span class="p">){</span>
-<span class="w">        </span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">i</span><span class="o">&lt;&lt;</span><span class="s">&quot; &quot;</span><span class="p">;</span>
-<span class="w">    </span><span class="p">}</span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+<span class="w">        </span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">i</span><span class="o">&lt;&lt;</span><span class="s">" "</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
 
 <span class="w">    </span><span class="k">for</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="mi">5</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
-<span class="w">        </span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">&lt;&lt;</span><span class="s">&quot; &quot;</span><span class="p">;</span>
+<span class="w">        </span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">&lt;&lt;</span><span class="s">" "</span><span class="p">;</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
@@ -7550,7 +7548,7 @@ is now available!
 <span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span>
 
 <span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(){</span>
-<span class="w">    </span><span class="n">tuple</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span><span class="kt">char</span><span class="p">,</span><span class="kt">int</span><span class="p">,</span><span class="n">string</span><span class="o">&gt;</span><span class="w"> </span><span class="n">t</span><span class="o">=</span><span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="sc">&#39;a&#39;</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="s">&quot;PEICD100&quot;</span><span class="p">};</span>
+<span class="w">    </span><span class="n">tuple</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span><span class="kt">char</span><span class="p">,</span><span class="kt">int</span><span class="p">,</span><span class="n">string</span><span class="o">&gt;</span><span class="w"> </span><span class="n">t</span><span class="o">=</span><span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="sc">'a'</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="s">"PEICD100"</span><span class="p">};</span>
 <span class="w">    </span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">get</span><span class="o">&lt;</span><span class="mi">0</span><span class="o">&gt;</span><span class="p">(</span><span class="n">t</span><span class="p">);</span>
 <span class="w">    </span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">get</span><span class="o">&lt;</span><span class="mi">1</span><span class="o">&gt;</span><span class="p">(</span><span class="n">t</span><span class="p">);</span>
 <span class="w">    </span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">get</span><span class="o">&lt;</span><span class="mi">2</span><span class="o">&gt;</span><span class="p">(</span><span class="n">t</span><span class="p">);</span>
@@ -7564,23 +7562,36 @@ is now available!
 <p>.insert() .erase() .find .lower_bound() .upper_bound()</p>
 <h3 id="queue">queue<a class="headerlink" href="#queue" title="Permanent link"></a></h3>
 <p>後進前出(中間不能動)</p>
-<p><img alt="alt text" src="images/STL/%E8%9E%A2%E5%B9%95%E6%93%B7%E5%8F%96%E7%95%AB%E9%9D%A2%202025-06-03%20221541.png" width="70%" /></p>
+<p><img alt="alt text" decoding="async" src="images/STL/%E8%9E%A2%E5%B9%95%E6%93%B7%E5%8F%96%E7%95%AB%E9%9D%A2%202025-06-03%20221541.png" width="70%"/></p>
 <h3 id="deque">deque<a class="headerlink" href="#deque" title="Permanent link"></a></h3>
 <p>雙向進出(中間不能動)</p>
-<p><img alt="alt text" src="images/STL/%E8%9E%A2%E5%B9%95%E6%93%B7%E5%8F%96%E7%95%AB%E9%9D%A2%202025-06-03%20221603.png" width="70%" /></p>
+<p><img alt="alt text" decoding="async" loading="lazy" src="images/STL/%E8%9E%A2%E5%B9%95%E6%93%B7%E5%8F%96%E7%95%AB%E9%9D%A2%202025-06-03%20221603.png" width="70%"/></p>
 <h3 id="stack">stack<a class="headerlink" href="#stack" title="Permanent link"></a></h3>
-<p><img alt="alt text" src="images/STL/image.png" width="70%" /></p>
+<p><img alt="alt text" decoding="async" loading="lazy" src="images/STL/image.png" width="70%"/></p>
 <h3 id="priority_queue">priority_queue<a class="headerlink" href="#priority_queue" title="Permanent link"></a></h3>
-<p><img alt="alt text" src="images/STL/image-2.png" width="70%" /></p>
+<p><img alt="alt text" decoding="async" loading="lazy" src="images/STL/image-2.png" width="70%"/></p>
 <p>priority_queue 預設是大的在前面，如何讓小的在前面？</p>
-<div class="highlight"><pre><span></span><code><span class="n">priority_queue</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span><span class="w"> </span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">,</span><span class="w"> </span><span class="n">greater</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">pq</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><span class="n">priority_queue</span><span class="o">&lt;</span>
+<span class="w">    </span><span class="n">資料型態</span><span class="p">,</span><span class="w"> </span>
+<span class="w">    </span><span class="n">vector</span><span class="o">&lt;</span><span class="n">資料型態</span><span class="o">&gt;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">    </span><span class="n">greater</span><span class="o">&lt;</span><span class="n">資料型態</span><span class="o">&gt;</span>
+<span class="o">&gt;</span><span class="w"> </span><span class="n">pq</span><span class="p">;</span>
+</code></pre></div>
+<p><div class="highlight"><pre><span></span><code><span class="n">priority_queue</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span><span class="w"> </span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">,</span><span class="w"> </span><span class="n">greater</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">pq</span><span class="p">;</span>
 <span class="n">pq</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span>
 <span class="n">pq</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
 <span class="n">pq</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="mi">8</span><span class="p">);</span>
 <span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">pq</span><span class="p">.</span><span class="n">top</span><span class="p">();</span><span class="w"> </span><span class="c1">//  prints = 2 (smallest element)</span>
+</code></pre></div><br/>
+也可以 pair：</p>
+<div class="highlight"><pre><span></span><code><span class="n">priority_queue</span><span class="o">&lt;</span>
+<span class="w">    </span><span class="n">pair</span><span class="o">&lt;</span><span class="n">ll</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="o">&gt;</span><span class="p">,</span>
+<span class="w">    </span><span class="n">vector</span><span class="o">&lt;</span><span class="n">pair</span><span class="o">&lt;</span><span class="n">ll</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="o">&gt;&gt;</span><span class="p">,</span>
+<span class="w">    </span><span class="n">greater</span><span class="o">&lt;</span><span class="n">pair</span><span class="o">&lt;</span><span class="n">ll</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="o">&gt;&gt;</span>
+<span class="o">&gt;</span><span class="w"> </span><span class="n">pq</span><span class="p">;</span>
 </code></pre></div>
 <h3 id="list">list<a class="headerlink" href="#list" title="Permanent link"></a></h3>
-<p>用++和&ndash;操作</p>
+<p>用++和–操作</p>
 <div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="cpf">&lt;bits/stdc++.h&gt;</span>
 <span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span>
 
@@ -7604,17 +7615,17 @@ is now available!
 </code></pre></div>
 <h2 id="會自動排序的">會自動排序的<a class="headerlink" href="#會自動排序的" title="Permanent link"></a></h2>
 <blockquote>
-<p>小到大 (12345<br />
-1. set<br />
-2. multiset<br />
-2. map<br />
+<p>小到大 (12345<br/>
+1. set<br/>
+2. multiset<br/>
+2. map<br/>
 3. multimap  </p>
-<p>大到小 (54321<br />
-1. priority_queue<br />
+<p>大到小 (54321<br/>
+1. priority_queue<br/>
 2. sort()函數  (離題!!  </p>
 </blockquote>
 <h2 id="陣列重點">陣列重點<a class="headerlink" href="#陣列重點" title="Permanent link"></a></h2>
-<p><img alt="alt text" src="../images/STL/image-26.png" /></p>
+<p><img alt="alt text" decoding="async" loading="lazy" src="../images/STL/image-26.png"/></p>
 <h3 id="一般陣列">一般陣列<a class="headerlink" href="#一般陣列" title="Permanent link"></a></h3>
 <blockquote>
 <p>int v[10];</p>
@@ -7622,17 +7633,17 @@ is now available!
 </blockquote>
 <h3 id="vector_1">vector<a class="headerlink" href="#vector_1" title="Permanent link"></a></h3>
 <blockquote>
-<p><code>vector&lt;int&gt; v(5, 10);</code> // 建立大小為5的vector，每個元素初始化為10    <br />
+<p><code>vector&lt;int&gt; v(5, 10);</code> // 建立大小為5的vector，每個元素初始化為10    <br/>
 <code>vector&lt;vector&lt;int&gt;&gt; v(100, vector&lt;int&gt;(15, -1));</code> //(等同於int v[100][15]，全部初始化為-1)</p>
-<p>vector &lt;int&gt; v[10] ;<br />
-v.resize(大小,賦值)重新配置大小，若原本size從3變為5，不會更改v[2]以內的數值，只會新增v[3]、v[4]為-1;<br />
-v.begin()回傳<strong>第一個</strong>元素位置<br />
-v.end()回傳<strong>最後一個元素的後一個</strong>位置<br />
-v.begin()回傳<strong>最後一個</strong>元素位置<br />
+<p>vector &lt;int&gt; v[10] ;<br/>
+v.resize(大小,賦值)重新配置大小，若原本size從3變為5，不會更改v[2]以內的數值，只會新增v[3]、v[4]為-1;<br/>
+v.begin()回傳<strong>第一個</strong>元素位置<br/>
+v.end()回傳<strong>最後一個元素的後一個</strong>位置<br/>
+v.begin()回傳<strong>最後一個</strong>元素位置<br/>
 v.end()回傳<strong>第一個元素的前一個</strong>位置</p>
 </blockquote>
 <h2 id="賦值操作">賦值操作<a class="headerlink" href="#賦值操作" title="Permanent link"></a></h2>
-<p>GPT:<br />
+<p>GPT:<br/>
 大多數 STL 容器都支持直接賦值操作，包括：</p>
 <ul>
 <li>vector</li>
@@ -7652,7 +7663,7 @@ v.end()回傳<strong>第一個元素的前一個</strong>位置</p>
 <span class="w">    </span><span class="n">v1</span><span class="o">=</span><span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">};</span>
 <span class="w">    </span><span class="n">v2</span><span class="o">=</span><span class="n">v1</span><span class="p">;</span>
 <span class="w">    </span><span class="k">for</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="o">:</span><span class="n">v2</span><span class="p">){</span>
-<span class="w">        </span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">i</span><span class="o">&lt;&lt;</span><span class="s">&quot; &quot;</span><span class="p">;</span>
+<span class="w">        </span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">i</span><span class="o">&lt;&lt;</span><span class="s">" "</span><span class="p">;</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
@@ -7663,9 +7674,9 @@ v.end()回傳<strong>第一個元素的前一個</strong>位置</p>
 <h2 id="語法整理">語法整理<a class="headerlink" href="#語法整理" title="Permanent link"></a></h2>
 <h3 id="pushpoptop">.push()/.pop()/.top()<a class="headerlink" href="#pushpoptop" title="Permanent link"></a></h3>
 <blockquote>
-<p>進出位置固定<br />
-1. stack(堆疊)後進先出<br />
-3. priority_queue(優先駐列)後進先出，自動排序<br />
+<p>進出位置固定<br/>
+1. stack(堆疊)後進先出<br/>
+3. priority_queue(優先駐列)後進先出，自動排序<br/>
 2. queue(列隊)先進先出</p>
 </blockquote>
 <h3 id="inserterase-括號內放it或數字">.insert()/.erase()   (括號內放it或數字)<a class="headerlink" href="#inserterase-括號內放it或數字" title="Permanent link"></a></h3>
@@ -7690,7 +7701,7 @@ v.end()回傳<strong>第一個元素的前一個</strong>位置</p>
 <li>unordered_multimap</li>
 </ol>
 <h2 id="setmap-的刪除">set/map 的刪除<a class="headerlink" href="#setmap-的刪除" title="Permanent link"></a></h2>
-<p>.erase(數值)是所有匹配元素<br />
+<p>.erase(數值)是所有匹配元素<br/>
 .erase(it)是該位置元素</p>
 <h2 id="拆解元素-tie">拆解元素 (tie)<a class="headerlink" href="#拆解元素-tie" title="Permanent link"></a></h2>
 <div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="cpf">&lt;bits/stdc++.h&gt;</span>
@@ -7873,6 +7884,9 @@ v.end()回傳<strong>第一個元素的前一個</strong>位置</p>
 
 
 
+  
+  
+
 
 
 
@@ -7991,40 +8005,16 @@ v.end()回傳<strong>第一個元素的前一個</strong>位置</p>
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.footer", "navigation.indexes", "navigation.instant", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.tabs", "navigation.top", "announce.dismiss", "content.tabs.link", "search.share", "content.code.copy", "content.code.annotations", "content.action.edit", "content.action.view", "content.tooltips"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.footer", "navigation.indexes", "navigation.instant", "navigation.instant.progress", "navigation.tabs", "navigation.top", "announce.dismiss", "content.tabs.link", "search.share", "content.code.copy", "content.code.annotations", "content.action.edit", "content.action.view", "content.tooltips"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
+  <script src="../../assets/pymdownx-extras/search-lazy-guard.js?v=20260614-1"></script>
   
       <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
       
-        <script src="https://unpkg.com/mermaid@10.6.1/dist/mermaid.min.js"></script>
-      
-        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-      
-        <script src="../../assets/pymdownx-extras/mermaid-config-override.js?v=20260523-1"></script>
-      
-        <script src="../../assets/pymdownx-extras/mermaid-legacy-flowchart-compat.js?v=20260329-1"></script>
-      
-        <script src="../../assets/pymdownx-extras/extra-loader-iLQ-keay.js"></script>
-      
-        <script src="../../assets/pymdownx-extras/mermaid-render-fix.js?v=20260522-1"></script>
-      
-        <script src="../../assets/pymdownx-extras/mermaid-zoom.js?v=20260404-1"></script>
-      
-        <script src="../../assets/pymdownx-extras/toc-fold.js"></script>
-      
-        <script src="../../assets/pymdownx-extras/image-zoom.js"></script>
-      
-        <script src="../../assets/pymdownx-extras/markdown-embed.js?v=20260516-1"></script>
-      
-        <script src="../../assets/pymdownx-extras/folder-path-bar.js?v=20260524-1"></script>
-      
-        <script src="../../assets/pymdownx-extras/legacy-image-width.js"></script>
-      
-        <script src="../../assets/pymdownx-extras/source-jump.js?v=20260523-2"></script>
+        <script src="../../assets/pymdownx-extras/conditional-loader.js?v=20260614-3"></script>
       
     
-  <script src="../../assets/pymdownx-extras/scroll-bottom.js?v=20260424-3" type="text/javascript"></script>
 
   </body>
 </html>

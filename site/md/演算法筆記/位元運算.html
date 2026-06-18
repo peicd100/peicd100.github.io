@@ -44,8 +44,6 @@
     
 
       
-        <script src="https://unpkg.com/iframe-worker/shim"></script>
-      
     
 <script src="../../assets/pymdownx-extras/material-extra-theme-2ek1P7jT.js" type="text/javascript"></script>
 <script src="../../assets/pymdownx-extras/material-extra-3rdparty-BUCF4rjN.js" type="text/javascript"></script>
@@ -1956,7 +1954,7 @@
     
       <link rel="stylesheet" href="../../assets/pymdownx-extras/extra-8611f6c398.css">
     
-      <link rel="stylesheet" href="../../assets/pymdownx-extras/自定義.css?v=20260527-9">
+      <link rel="stylesheet" href="../../assets/pymdownx-extras/自定義.css?v=20260614-2">
     
     <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
@@ -7139,7 +7137,7 @@ is now available!
 </blockquote>
 <h2 id="符號">符號<a class="headerlink" href="#符號" title="Permanent link"></a></h2>
 <div class="i">
-<p>已經知道2147483647(最大值)二進制表示法，那負數如何表示呢？<br />
+<p>已經知道2147483647(最大值)二進制表示法，那負數如何表示呢？<br/>
 在此之前我們需要先知道如何正負數轉換</p>
 <p>我們先操作如何將5變成-5，以8位元為例</p>
 <p>一、5的二進制</p>
@@ -7229,10 +7227,10 @@ is now available!
 </tr>
 </tbody>
 </table>
-<p>簡單來說<br />
-要把正整數n變成負數<br />
+<p>簡單來說<br/>
+要把正整數n變成負數<br/>
 就是計算「 <span class="arithmatex">\(\sim n + 1 = m\)</span> 」   </p>
-<p>那麼要把負整數m變成正數<br />
+<p>那麼要把負整數m變成正數<br/>
 就是計算「 <span class="arithmatex">\(\sim (m - 1) = n\)</span> 」</p>
 <p>可以寫為</p>
 <pre class="arithmatex">\[
@@ -7242,25 +7240,25 @@ is now available!
 <pre class="arithmatex">\[
 \sim (m - 1) = n
 \]</pre>
-<hr />
+<hr/>
 <p>這樣就完成了5變成-5</p>
-<p>為甚麼要這樣做呢？  <br />
+<p>為甚麼要這樣做呢？  <br/>
 因為減法運算會需要「借位」，「借位」是個非常麻煩的東西</p>
-<p>假設我們要計算「5 - 3」<br />
+<p>假設我們要計算「5 - 3」<br/>
 如果我們他換成「5 + (-3)」就會方便很多</p>
 <p>利用「符號位」就能達到效果</p>
 <p>我們來看看 5 - 3 和 3 - 5 如何運作</p>
-<hr />
-<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="符號-計算-5---3" name="__tabbed_1" type="radio" /><input id="符號-計算-3---5" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="符號-計算-5---3">計算 5 - 3</label><label for="符號-計算-3---5">計算 3 - 5</label></div>
+<hr/>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="符號-計算-5---3" name="__tabbed_1" type="radio"/><input id="符號-計算-3---5" name="__tabbed_1" type="radio"/><div class="tabbed-labels"><label for="符號-計算-5---3">計算 5 - 3</label><label for="符號-計算-3---5">計算 3 - 5</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<p>步驟一：把 5 - 3 換成 5 + (-3)   <br />
-也就是把 3 換成 -3 <br />
+<p>步驟一：把 5 - 3 換成 5 + (-3)   <br/>
+也就是把 3 換成 -3 <br/>
 也就是把 3 取補數變為 -3     </p>
 <p><div class="highlight"><span class="filename">~(3) = -4</span><pre><span></span><code>00000011 → 11111100   // ~3 = -4
-</code></pre></div><br />
+</code></pre></div><br/>
 <div class="highlight"><span class="filename">(-4) + 1 = -3</span><pre><span></span><code>11111100 + 1 = 11111101  // (-4) + 1 = -3
-</code></pre></div><br />
+</code></pre></div><br/>
 步驟二：執行加法運算</p>
 <div class="highlight"><span class="filename">5 + (-3)</span><pre><span></span><code>  00000101  (5 的二進位)
 + 11111101  (-3 的二進位補碼)
@@ -7272,13 +7270,13 @@ is now available!
 <p>所以 5 - 3 在位元運算會得到<code>00000010</code>也就是 2</p>
 </div>
 <div class="tabbed-block">
-<p>步驟一：把 3 - 5 換成 3 + (-5)   <br />
-也就是把 5 換成 -5 <br />
+<p>步驟一：把 3 - 5 換成 3 + (-5)   <br/>
+也就是把 5 換成 -5 <br/>
 也就是把 5 取補數變為 -5     </p>
 <p><div class="highlight"><span class="filename">~(5) = -6</span><pre><span></span><code>00000101 → 11111010  // ~5 = -6
-</code></pre></div><br />
+</code></pre></div><br/>
 <div class="highlight"><span class="filename">(-4) + 1 = -3</span><pre><span></span><code>11111010 + 1 = 11111011  // (-6)+1 = -5
-</code></pre></div><br />
+</code></pre></div><br/>
 步驟二：執行加法運算</p>
 <div class="highlight"><span class="filename">3 + (-5)</span><pre><span></span><code>  00000011  (3 的二進位)
 + 11111011  (-5 的補碼)
@@ -7289,14 +7287,14 @@ is now available!
 </div>
 </div>
 </div>
-<hr />
+<hr/>
 <p>其實在<a href="%E5%A4%A7%E6%95%B8%E9%81%8B%E7%AE%97.html#大數運算">大數運算</a>時也可以使用「補數」的方式計算。</p>
 </div>
-<hr />
+<hr/>
 <h2 id="位元溢出overflow">位元溢出（overflow）<a class="headerlink" href="#位元溢出overflow" title="Permanent link"></a></h2>
 <blockquote>
-<p>我們在做加減法時，電腦是使用位元運算<br />
-當我們要做5+1時(以8位元的話)，電腦就是把00000101 + 00000001<br />
+<p>我們在做加減法時，電腦是使用位元運算<br/>
+當我們要做5+1時(以8位元的話)，電腦就是把00000101 + 00000001<br/>
 就會變成00000102，也就是00000110，變成6</p>
 <p>那如果我們遇到 -1 + 1 = 0 時電腦會如何處裡呢？以8位元為例</p>
 <p>一、 -1 的二進制</p>
@@ -7400,7 +7398,7 @@ is now available!
 </tbody>
 </table>
 <p>這是基本的溢出處理方式，那為甚麼超過 int 上限 2147483647 會稱為位元溢出（overflow）呢？</p>
-<p>我們都知道int n=2147483647，若 +1 換變成-2147483648<br />
+<p>我們都知道int n=2147483647，若 +1 換變成-2147483648<br/>
 我們來看看過程</p>
 <p>一、 2147483647 的二進制</p>
 <table>
@@ -7563,7 +7561,7 @@ is now available!
 <h4 id="反">~(反)<a class="headerlink" href="#反" title="Permanent link"></a></h4>
 <p>造反</p>
 <blockquote>
-<p>將數字的每一位進行取反操作，0變為1，1變為0。<br />
+<p>將數字的每一位進行取反操作，0變為1，1變為0。<br/>
 <div class="highlight"><pre><span></span><code><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span><span class="w"> </span><span class="c1">// 0101</span>
 <span class="kt">int</span><span class="w"> </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">~</span><span class="n">a</span><span class="p">;</span><span class="w"> </span><span class="c1">// 1010 -&gt; -6 (因為有符號位元，這裡顯示的是補碼)</span>
 </code></pre></div></p>
@@ -7588,7 +7586,7 @@ is now available!
 <h4 id="與">&amp;(與)<a class="headerlink" href="#與" title="Permanent link"></a></h4>
 <p>都true才true</p>
 <blockquote>
-<p>將兩個數字的二進位表示形式中的每一位進行「與」運算，只有當兩個對應位都是1時，結果才為1，否則為0。<br />
+<p>將兩個數字的二進位表示形式中的每一位進行「與」運算，只有當兩個對應位都是1時，結果才為1，否則為0。<br/>
 <div class="highlight"><pre><span></span><code><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span><span class="w"> </span><span class="c1">// 0101</span>
 <span class="kt">int</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">3</span><span class="p">;</span><span class="w"> </span><span class="c1">// 0011</span>
 <span class="kt">int</span><span class="w"> </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">b</span><span class="p">;</span><span class="w"> </span><span class="c1">// 0001 -&gt; 1</span>
@@ -7612,11 +7610,11 @@ is now available!
 <span class="kt">int</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">3</span><span class="p">;</span><span class="w"> </span><span class="c1">// 0011</span>
 <span class="kt">int</span><span class="w"> </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">^</span><span class="w"> </span><span class="n">b</span><span class="p">;</span><span class="w"> </span><span class="c1">// 0110 -&gt; 6</span>
 </code></pre></div>
-<p>GPT：<br />
-為什麼叫做 "exclusive OR"（互斥或）？<br />
-因為它的邏輯規則是這樣：<br />
-* 當兩個輸入「不同」時，結果為 1。<br />
-* 當兩個輸入「相同」時，結果為 0。<br />
+<p>GPT：<br/>
+為什麼叫做 "exclusive OR"（互斥或）？<br/>
+因為它的邏輯規則是這樣：<br/>
+* 當兩個輸入「不同」時，結果為 1。<br/>
+* 當兩個輸入「相同」時，結果為 0。<br/>
 所以它是一種「排他性（exclusive）」的「或」邏輯，只有其中一個為真時才為真。</p>
 <table>
 <thead>
@@ -7656,15 +7654,15 @@ is now available!
 </table>
 <h2 id="注意事項左移">注意事項：&lt;&lt;(左移)<a class="headerlink" href="#注意事項左移" title="Permanent link"></a></h2>
 <blockquote>
-<p>先看到以下程式碼<br />
+<p>先看到以下程式碼<br/>
 <div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;bits/stdc++.h&gt;</span>
 <span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span>
 <span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(){</span>
 <span class="w">    </span><span class="kt">long</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">n</span><span class="o">=</span><span class="mi">1</span><span class="o">&lt;&lt;</span><span class="mi">31</span><span class="p">;</span>
 <span class="w">    </span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">n</span><span class="p">;</span>
 <span class="p">}</span>
-</code></pre></div><br />
-輸出<br />
+</code></pre></div><br/>
+輸出<br/>
 <div class="highlight"><pre><span></span><code><span class="mi">-2147483648</span>
 </code></pre></div></p>
 </blockquote>
@@ -7672,13 +7670,13 @@ is now available!
 <blockquote>
 <p>因為「long long n=1&lt;&lt;31;」裡面的「1」資料型態為int</p>
 <p>正確寫法：</p>
-<p>一、<br />
+<p>一、<br/>
 <div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;bits/stdc++.h&gt;</span>
 <span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(){</span>
 <span class="w">    </span><span class="kt">long</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">n</span><span class="o">=</span><span class="p">((</span><span class="kt">long</span><span class="w"> </span><span class="kt">long</span><span class="p">)</span><span class="mi">1</span><span class="p">)</span><span class="o">&lt;&lt;</span><span class="mi">35</span><span class="p">;</span>
 <span class="w">    </span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">n</span><span class="p">;</span>
 <span class="p">}</span>
-</code></pre></div><br />
+</code></pre></div><br/>
 二、</p>
 <p><div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;bits/stdc++.h&gt;</span>
 <span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span>
@@ -7687,8 +7685,8 @@ is now available!
 <span class="w">    </span><span class="n">n</span><span class="o">=</span><span class="n">n</span><span class="o">&lt;&lt;</span><span class="mi">35</span><span class="p">;</span>
 <span class="w">    </span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">n</span><span class="p">;</span>
 <span class="p">}</span>
-</code></pre></div><br />
-輸出：<br />
+</code></pre></div><br/>
+輸出：<br/>
 <div class="highlight"><pre><span></span><code><span class="mi">34359738368</span>
 </code></pre></div></p>
 </blockquote>
@@ -7720,6 +7718,9 @@ is now available!
 
 
 
+
+  
+  
 
 
 
@@ -7839,40 +7840,16 @@ is now available!
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.footer", "navigation.indexes", "navigation.instant", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.tabs", "navigation.top", "announce.dismiss", "content.tabs.link", "search.share", "content.code.copy", "content.code.annotations", "content.action.edit", "content.action.view", "content.tooltips"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.footer", "navigation.indexes", "navigation.instant", "navigation.instant.progress", "navigation.tabs", "navigation.top", "announce.dismiss", "content.tabs.link", "search.share", "content.code.copy", "content.code.annotations", "content.action.edit", "content.action.view", "content.tooltips"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
+  <script src="../../assets/pymdownx-extras/search-lazy-guard.js?v=20260614-1"></script>
   
       <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
       
-        <script src="https://unpkg.com/mermaid@10.6.1/dist/mermaid.min.js"></script>
-      
-        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-      
-        <script src="../../assets/pymdownx-extras/mermaid-config-override.js?v=20260523-1"></script>
-      
-        <script src="../../assets/pymdownx-extras/mermaid-legacy-flowchart-compat.js?v=20260329-1"></script>
-      
-        <script src="../../assets/pymdownx-extras/extra-loader-iLQ-keay.js"></script>
-      
-        <script src="../../assets/pymdownx-extras/mermaid-render-fix.js?v=20260522-1"></script>
-      
-        <script src="../../assets/pymdownx-extras/mermaid-zoom.js?v=20260404-1"></script>
-      
-        <script src="../../assets/pymdownx-extras/toc-fold.js"></script>
-      
-        <script src="../../assets/pymdownx-extras/image-zoom.js"></script>
-      
-        <script src="../../assets/pymdownx-extras/markdown-embed.js?v=20260516-1"></script>
-      
-        <script src="../../assets/pymdownx-extras/folder-path-bar.js?v=20260524-1"></script>
-      
-        <script src="../../assets/pymdownx-extras/legacy-image-width.js"></script>
-      
-        <script src="../../assets/pymdownx-extras/source-jump.js?v=20260523-2"></script>
+        <script src="../../assets/pymdownx-extras/conditional-loader.js?v=20260614-3"></script>
       
     
-  <script src="../../assets/pymdownx-extras/scroll-bottom.js?v=20260424-3" type="text/javascript"></script>
 
   </body>
 </html>

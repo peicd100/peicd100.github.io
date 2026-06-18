@@ -44,8 +44,6 @@
     
 
       
-        <script src="https://unpkg.com/iframe-worker/shim"></script>
-      
     
 <script src="../../assets/pymdownx-extras/material-extra-theme-2ek1P7jT.js" type="text/javascript"></script>
 <script src="../../assets/pymdownx-extras/material-extra-3rdparty-BUCF4rjN.js" type="text/javascript"></script>
@@ -1956,7 +1954,7 @@
     
       <link rel="stylesheet" href="../../assets/pymdownx-extras/extra-8611f6c398.css">
     
-      <link rel="stylesheet" href="../../assets/pymdownx-extras/自定義.css?v=20260527-9">
+      <link rel="stylesheet" href="../../assets/pymdownx-extras/自定義.css?v=20260614-2">
     
     <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
@@ -6848,7 +6846,7 @@ is now available!
 <h2 id="定理1"><strong>定理1</strong><a class="headerlink" href="#定理1" title="Permanent link"></a></h2>
 <p>對於整數 <span class="arithmatex">\(a, b\)</span> 我們稱 <span class="arithmatex">\(a, b\)</span> 的<strong>最大公因數</strong>，是最大的正整數 <span class="arithmatex">\(d\)</span> 使得 <span class="arithmatex">\(d \mid a\)</span> 且 <span class="arithmatex">\(d \mid b\)</span>，記作 <span class="arithmatex">\(d = \gcd(a, b)\)</span>。當 <span class="arithmatex">\(\gcd(a, b) = 1\)</span> 時，我們稱 <span class="arithmatex">\(a, b\)</span> <strong>互質</strong>。</p>
 <h2 id="定理2"><strong>定理2</strong><a class="headerlink" href="#定理2" title="Permanent link"></a></h2>
-<p><span class="arithmatex">\(\gcd(a, b) \neq 1 \iff \exists p \text{ 是質數使得 } p \mid a \text{ 且 } p \mid b\)</span><br />
+<p><span class="arithmatex">\(\gcd(a, b) \neq 1 \iff \exists p \text{ 是質數使得 } p \mid a \text{ 且 } p \mid b\)</span><br/>
 (如果兩個數字 <span class="arithmatex">\(a\)</span> 和 <span class="arithmatex">\(b\)</span> 的最大公因數 <span class="arithmatex">\(\gcd(a, b)\)</span> 不等於 1，這意味著存在一個質數 <span class="arithmatex">\(p\)</span> 使得 <span class="arithmatex">\(p\)</span> 同時整除 <span class="arithmatex">\(a\)</span> 和 <span class="arithmatex">\(b\)</span>。)</p>
 <h2 id="定理3"><strong>定理3</strong><a class="headerlink" href="#定理3" title="Permanent link"></a></h2>
 <p><span class="arithmatex">\(lcm(a, b)\)</span> 被定義為最小的正整數 <span class="arithmatex">\(L\)</span> 使得 <span class="arithmatex">\(a \mid L\)</span> 且 <span class="arithmatex">\(b \mid L\)</span>。</p>
@@ -6869,6 +6867,9 @@ lcm(a, b) = p_1^{\max(k_1, t_1)} p_2^{\max(k_2, t_2)} \dots p_m^{\max(k_m, t_m)}
 
 
 
+
+  
+  
 
 
 
@@ -6988,40 +6989,16 @@ lcm(a, b) = p_1^{\max(k_1, t_1)} p_2^{\max(k_2, t_2)} \dots p_m^{\max(k_m, t_m)}
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.footer", "navigation.indexes", "navigation.instant", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.tabs", "navigation.top", "announce.dismiss", "content.tabs.link", "search.share", "content.code.copy", "content.code.annotations", "content.action.edit", "content.action.view", "content.tooltips"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.footer", "navigation.indexes", "navigation.instant", "navigation.instant.progress", "navigation.tabs", "navigation.top", "announce.dismiss", "content.tabs.link", "search.share", "content.code.copy", "content.code.annotations", "content.action.edit", "content.action.view", "content.tooltips"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
+  <script src="../../assets/pymdownx-extras/search-lazy-guard.js?v=20260614-1"></script>
   
       <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
       
-        <script src="https://unpkg.com/mermaid@10.6.1/dist/mermaid.min.js"></script>
-      
-        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-      
-        <script src="../../assets/pymdownx-extras/mermaid-config-override.js?v=20260523-1"></script>
-      
-        <script src="../../assets/pymdownx-extras/mermaid-legacy-flowchart-compat.js?v=20260329-1"></script>
-      
-        <script src="../../assets/pymdownx-extras/extra-loader-iLQ-keay.js"></script>
-      
-        <script src="../../assets/pymdownx-extras/mermaid-render-fix.js?v=20260522-1"></script>
-      
-        <script src="../../assets/pymdownx-extras/mermaid-zoom.js?v=20260404-1"></script>
-      
-        <script src="../../assets/pymdownx-extras/toc-fold.js"></script>
-      
-        <script src="../../assets/pymdownx-extras/image-zoom.js"></script>
-      
-        <script src="../../assets/pymdownx-extras/markdown-embed.js?v=20260516-1"></script>
-      
-        <script src="../../assets/pymdownx-extras/folder-path-bar.js?v=20260524-1"></script>
-      
-        <script src="../../assets/pymdownx-extras/legacy-image-width.js"></script>
-      
-        <script src="../../assets/pymdownx-extras/source-jump.js?v=20260523-2"></script>
+        <script src="../../assets/pymdownx-extras/conditional-loader.js?v=20260614-3"></script>
       
     
-  <script src="../../assets/pymdownx-extras/scroll-bottom.js?v=20260424-3" type="text/javascript"></script>
 
   </body>
 </html>
