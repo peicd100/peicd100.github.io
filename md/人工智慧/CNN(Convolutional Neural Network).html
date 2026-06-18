@@ -44,8 +44,6 @@
     
 
       
-        <script src="https://unpkg.com/iframe-worker/shim"></script>
-      
     
 <script src="../../assets/pymdownx-extras/material-extra-theme-2ek1P7jT.js" type="text/javascript"></script>
 <script src="../../assets/pymdownx-extras/material-extra-3rdparty-BUCF4rjN.js" type="text/javascript"></script>
@@ -1956,7 +1954,7 @@
     
       <link rel="stylesheet" href="../../assets/pymdownx-extras/extra-8611f6c398.css">
     
-      <link rel="stylesheet" href="../../assets/pymdownx-extras/自定義.css?v=20260527-9">
+      <link rel="stylesheet" href="../../assets/pymdownx-extras/自定義.css?v=20260614-2">
     
     <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
@@ -6812,22 +6810,22 @@ is now available!
 
   <h1>CNN(Convolutional Neural Network)</h1>
 
-<p>參考資料，推薦看完影片：<br />
-<a href="https://www.youtube.com/watch?v=OP5HcXJg2Aw&amp;t=6s">https://www.youtube.com/watch?v=OP5HcXJg2Aw&amp;t=6s</a><br />
+<p>參考資料，推薦看完影片：<br/>
+<a href="https://www.youtube.com/watch?v=OP5HcXJg2Aw&amp;t=6s">https://www.youtube.com/watch?v=OP5HcXJg2Aw&amp;t=6s</a><br/>
 <a href="https://youtu.be/vi9eNd9CPnk?si=cQ7L0q64dsr5EdWF">https://youtu.be/vi9eNd9CPnk?si=cQ7L0q64dsr5EdWF</a></p>
 <p>如下圖，已經知道一個神經網路是輸入一個矩陣 x ，輸出一個矩陣 y ，但是當我們要處裡影片時，我們該如何將二維的圖片矩陣輸入至神經網路。</p>
-<p><img alt="alt text" src="../images/CNN%28Convolutional%20Neural%20Network%29/image.png" /></p>
+<p><img alt="alt text" decoding="async" src="../images/CNN%28Convolutional%20Neural%20Network%29/image.png"/></p>
 <p>CNN就是為此產生的神經網路，我們可以將它視為：</p>
 <blockquote>
 <p>將二維圖片轉換為一維輸入(x)的過程</p>
 </blockquote>
 <p>可以看到下圖：</p>
-<p><img alt="alt text" src="../images/CNN%28Convolutional%20Neural%20Network%29/image-2.png" /></p>
+<p><img alt="alt text" decoding="async" loading="lazy" src="../images/CNN%28Convolutional%20Neural%20Network%29/image-2.png"/></p>
 <p><a href="https://www.spiceworks.com/tech/artificial-intelligence/articles/what-is-a-neural-network/">圖片來源1</a>、<a href="https://www.spiceworks.com/tech/artificial-intelligence/articles/what-is-a-neural-network/">圖片來源2</a></p>
 <h2 id="cnn-架構">CNN 架構<a class="headerlink" href="#cnn-架構" title="Permanent link"></a></h2>
-<p>下圖為CNN的基本架構。<br />
+<p>下圖為CNN的基本架構。<br/>
 可以看到很多名詞，以下分別說明。</p>
-<p><img alt="alt text" src="../images/CNN%28Convolutional%20Neural%20Network%29/slide_10.jpg" /><br />
+<p><img alt="alt text" decoding="async" loading="lazy" src="../images/CNN%28Convolutional%20Neural%20Network%29/slide_10.jpg"/><br/>
 <a href="https://www.digikey.tw/zh/articles/machine-vision-applications-draw-intelligence-from-deep-learning-neural-networks">圖片來源</a></p>
 <p>操作：</p>
 <ul>
@@ -6842,7 +6840,7 @@ is now available!
 <li>Output：輸出</li>
 </ul>
 <h2 id="convolutions">Convolutions<a class="headerlink" href="#convolutions" title="Permanent link"></a></h2>
-<p>Convolutional Layer<br />
+<p>Convolutional Layer<br/>
 使用Kernel（卷積核,又稱為Filter(濾波器))擷取特徵資訊，而擷取之後的圖片稱為特徵地圖(<a href="#feature-mapsfmaps">Feature maps</a>)。</p>
 <blockquote>
 <p>訓練：這些 Kernel 是可以訓練的權重，是透過訓練取得的。</p>
@@ -6851,15 +6849,15 @@ is now available!
 <p>又稱為(Pooling Layer)，常用的有下列三種：</p>
 <ol>
 <li>
-<p>Max pooling<br />
+<p>Max pooling<br/>
 取最大值</p>
 </li>
 <li>
-<p>Mean pooling<br />
+<p>Mean pooling<br/>
 取平均</p>
 </li>
 <li>
-<p>Min pooling<br />
+<p>Min pooling<br/>
 取最小值</p>
 </li>
 </ol>
@@ -6867,7 +6865,7 @@ is now available!
 <p>使用 Kernel 擷取特徵資訊之後的圖片</p>
 <h2 id="fully-connected">Fully connected<a class="headerlink" href="#fully-connected" title="Permanent link"></a></h2>
 <p>稱為全連接層，是最基本的神經元架構，只由「輸入層」、「隱藏層(多個神經元)」、「輸出層」組成，如下圖</p>
-<p><img alt="alt text" src="../images/CNN%28Convolutional%20Neural%20Network%29/image-3.png" /><br />
+<p><img alt="alt text" decoding="async" loading="lazy" src="../images/CNN%28Convolutional%20Neural%20Network%29/image-3.png"/><br/>
 <a href="https://www.spiceworks.com/tech/artificial-intelligence/articles/what-is-a-neural-network/">圖片來源</a></p>
 
 
@@ -6875,6 +6873,9 @@ is now available!
 
 
 
+
+  
+  
 
 
 
@@ -6994,40 +6995,16 @@ is now available!
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.footer", "navigation.indexes", "navigation.instant", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.tabs", "navigation.top", "announce.dismiss", "content.tabs.link", "search.share", "content.code.copy", "content.code.annotations", "content.action.edit", "content.action.view", "content.tooltips"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.footer", "navigation.indexes", "navigation.instant", "navigation.instant.progress", "navigation.tabs", "navigation.top", "announce.dismiss", "content.tabs.link", "search.share", "content.code.copy", "content.code.annotations", "content.action.edit", "content.action.view", "content.tooltips"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
+  <script src="../../assets/pymdownx-extras/search-lazy-guard.js?v=20260614-1"></script>
   
       <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
       
-        <script src="https://unpkg.com/mermaid@10.6.1/dist/mermaid.min.js"></script>
-      
-        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-      
-        <script src="../../assets/pymdownx-extras/mermaid-config-override.js?v=20260523-1"></script>
-      
-        <script src="../../assets/pymdownx-extras/mermaid-legacy-flowchart-compat.js?v=20260329-1"></script>
-      
-        <script src="../../assets/pymdownx-extras/extra-loader-iLQ-keay.js"></script>
-      
-        <script src="../../assets/pymdownx-extras/mermaid-render-fix.js?v=20260522-1"></script>
-      
-        <script src="../../assets/pymdownx-extras/mermaid-zoom.js?v=20260404-1"></script>
-      
-        <script src="../../assets/pymdownx-extras/toc-fold.js"></script>
-      
-        <script src="../../assets/pymdownx-extras/image-zoom.js"></script>
-      
-        <script src="../../assets/pymdownx-extras/markdown-embed.js?v=20260516-1"></script>
-      
-        <script src="../../assets/pymdownx-extras/folder-path-bar.js?v=20260524-1"></script>
-      
-        <script src="../../assets/pymdownx-extras/legacy-image-width.js"></script>
-      
-        <script src="../../assets/pymdownx-extras/source-jump.js?v=20260523-2"></script>
+        <script src="../../assets/pymdownx-extras/conditional-loader.js?v=20260614-3"></script>
       
     
-  <script src="../../assets/pymdownx-extras/scroll-bottom.js?v=20260424-3" type="text/javascript"></script>
 
   </body>
 </html>

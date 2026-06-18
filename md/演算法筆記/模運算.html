@@ -44,8 +44,6 @@
     
 
       
-        <script src="https://unpkg.com/iframe-worker/shim"></script>
-      
     
 <script src="../../assets/pymdownx-extras/material-extra-theme-2ek1P7jT.js" type="text/javascript"></script>
 <script src="../../assets/pymdownx-extras/material-extra-3rdparty-BUCF4rjN.js" type="text/javascript"></script>
@@ -1956,7 +1954,7 @@
     
       <link rel="stylesheet" href="../../assets/pymdownx-extras/extra-8611f6c398.css">
     
-      <link rel="stylesheet" href="../../assets/pymdownx-extras/自定義.css?v=20260527-9">
+      <link rel="stylesheet" href="../../assets/pymdownx-extras/自定義.css?v=20260614-2">
     
     <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
@@ -6900,16 +6898,16 @@ is now available!
 
 <h1 id="模運算">模運算<a class="headerlink" href="#模運算" title="Permanent link"></a></h1>
 <h2 id="基本介紹">基本介紹<a class="headerlink" href="#基本介紹" title="Permanent link"></a></h2>
-<p>有兩數字 <span class="arithmatex">\(a\)</span>、<span class="arithmatex">\(b\)</span><br />
+<p>有兩數字 <span class="arithmatex">\(a\)</span>、<span class="arithmatex">\(b\)</span><br/>
 <span class="arithmatex">\(a\%b\)</span> 時回傳 <span class="arithmatex">\(a/b\)</span> 的餘數</p>
 <h3 id="運算的符號">運算的符號<a class="headerlink" href="#運算的符號" title="Permanent link"></a></h3>
 <blockquote>
-<p>根據<a href="https://zh.wikipedia.org/wiki/%E6%A8%A1%E9%99%A4#%E5%90%84%E7%A7%8D%E5%AE%9A%E4%B9%89">維基百科</a>：  <br />
+<p>根據<a href="https://zh.wikipedia.org/wiki/%E6%A8%A1%E9%99%A4#%E5%90%84%E7%A7%8D%E5%AE%9A%E4%B9%89">維基百科</a>：  <br/>
 通常情況下，在數論中總是選擇正餘數。但在編程中，選擇餘數的符號依賴於程式語言和被除數 <span class="arithmatex">\(a\)</span> 或除數 <span class="arithmatex">\(n\)</span> 的符號。在程式語言所定義的整數模除中，ISO/IEC 標準 Pascal 和 ALGOL 68，在計算出的餘數 <span class="arithmatex">\(r\)</span> 為負數時，返回正數 <span class="arithmatex">\(r + |n|\)</span> 作為結果。</p>
 </blockquote>
-<p>所以在 <span class="arithmatex">\(a\%b=c\)</span> 時   <br />
+<p>所以在 <span class="arithmatex">\(a\%b=c\)</span> 時   <br/>
 <span class="arithmatex">\(c\)</span> 總是為正數</p>
-<p>程式碼根據定義可以這樣寫：<br />
+<p>程式碼根據定義可以這樣寫：<br/>
 <div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;bits/stdc++.h&gt;</span>
 <span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span>
 <span class="kt">int</span><span class="w"> </span><span class="nf">mod</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
@@ -6923,7 +6921,7 @@ is now available!
 <span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">mod</span><span class="p">(</span><span class="mi">-5</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">);</span>
 <span class="p">}</span>
 </code></pre></div></p>
-<p>也可以簡化寫：<br />
+<p>也可以簡化寫：<br/>
 <div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;bits/stdc++.h&gt;</span>
 <span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span>
 <span class="kt">int</span><span class="w"> </span><span class="nf">mod</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="kt">int</span><span class="w"> </span><span class="n">b</span><span class="p">){</span>
@@ -6934,10 +6932,10 @@ is now available!
 <span class="w">    </span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">mod</span><span class="p">(</span><span class="mi">-5</span><span class="p">,</span><span class="mi">3</span><span class="p">);</span>
 <span class="p">}</span>
 </code></pre></div></p>
-<p>輸出：<br />
-mod(5,3)=2<br />
-mod(-5,3)=1<br />
-mod(5,-3)=2<br />
+<p>輸出：<br/>
+mod(5,3)=2<br/>
+mod(-5,3)=1<br/>
+mod(5,-3)=2<br/>
 mod(-5,-3)=1  </p>
 <h2 id="同餘性質">同餘性質<a class="headerlink" href="#同餘性質" title="Permanent link"></a></h2>
 <p><span class="arithmatex">\(a \equiv b \pmod{k}\)</span></p>
@@ -6995,9 +6993,9 @@ mod(-5,-3)=1  </p>
 <li><span class="arithmatex">\(a \times (b + c) \% m = ((a \times b) \% m + (a \times c) \% m) \% m\)</span></li>
 <li>
 <p>例如，  </p>
-<p><span class="arithmatex">\(3 \times (4 + 5) \% 7\)</span><br />
-<span class="arithmatex">\(= ((3 \times 4) \% 7 + (3 \times 5) \% 7) \% 7\)</span><br />
-<span class="arithmatex">\(= (12 \% 7 + 15 \% 7) \% 7 = (5 + 1) \% 7\)</span><br />
+<p><span class="arithmatex">\(3 \times (4 + 5) \% 7\)</span><br/>
+<span class="arithmatex">\(= ((3 \times 4) \% 7 + (3 \times 5) \% 7) \% 7\)</span><br/>
+<span class="arithmatex">\(= (12 \% 7 + 15 \% 7) \% 7 = (5 + 1) \% 7\)</span><br/>
 <span class="arithmatex">\(= 6\)</span></p>
 </li>
 </ul>
@@ -7010,7 +7008,7 @@ mod(-5,-3)=1  </p>
 \]</pre>
 <p>1.<strong>定義符號和等式：</strong></p>
 <ul>
-<li>設 <span class="arithmatex">\(a = kc + r_a\)</span> ，其中 <span class="arithmatex">\(k\)</span> 是整數，<span class="arithmatex">\(r_a = a \% c\)</span> 且 <span class="arithmatex">\(0 \le r_a &lt; c\)</span>     </li>
+<li>設 <span class="arithmatex">\(a = kc + r_a\)</span> ，其中 <span class="arithmatex">\(k\)</span> 是整數，<span class="arithmatex">\(r_a = a \% c\)</span> 且 <span class="arithmatex">\(0 \le r_a &lt; c\)</span> </li>
 <li>設 <span class="arithmatex">\(b = mc + r_b\)</span> ，其中 <span class="arithmatex">\(m\)</span> 是整數，<span class="arithmatex">\(r_b = b \% c\)</span> 且 <span class="arithmatex">\(0 \le r_b &lt; c\)</span></li>
 </ul>
 <p>2.<strong>代入加法分配律左邊：</strong></p>
@@ -7067,7 +7065,7 @@ a \times b = c(kmc + kr_b + mr_a) + r_a r_b
 <pre class="arithmatex">\[
 [(a \% c) \times (b \% c)] \% c = (r_a \times r_b) \% c
 \]</pre>
-<p>6.<strong>結論：</strong><br />
+<p>6.<strong>結論：</strong><br/>
    左右兩邊相等，因此：</p>
 <pre class="arithmatex">\[
 (a \times b) \% c = [(a \% c) \times (b \% c)] \% c
@@ -7078,6 +7076,9 @@ a \times b = c(kmc + kr_b + mr_a) + r_a r_b
 
 
 
+
+  
+  
 
 
 
@@ -7197,40 +7198,16 @@ a \times b = c(kmc + kr_b + mr_a) + r_a r_b
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.footer", "navigation.indexes", "navigation.instant", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.tabs", "navigation.top", "announce.dismiss", "content.tabs.link", "search.share", "content.code.copy", "content.code.annotations", "content.action.edit", "content.action.view", "content.tooltips"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.footer", "navigation.indexes", "navigation.instant", "navigation.instant.progress", "navigation.tabs", "navigation.top", "announce.dismiss", "content.tabs.link", "search.share", "content.code.copy", "content.code.annotations", "content.action.edit", "content.action.view", "content.tooltips"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
+  <script src="../../assets/pymdownx-extras/search-lazy-guard.js?v=20260614-1"></script>
   
       <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
       
-        <script src="https://unpkg.com/mermaid@10.6.1/dist/mermaid.min.js"></script>
-      
-        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-      
-        <script src="../../assets/pymdownx-extras/mermaid-config-override.js?v=20260523-1"></script>
-      
-        <script src="../../assets/pymdownx-extras/mermaid-legacy-flowchart-compat.js?v=20260329-1"></script>
-      
-        <script src="../../assets/pymdownx-extras/extra-loader-iLQ-keay.js"></script>
-      
-        <script src="../../assets/pymdownx-extras/mermaid-render-fix.js?v=20260522-1"></script>
-      
-        <script src="../../assets/pymdownx-extras/mermaid-zoom.js?v=20260404-1"></script>
-      
-        <script src="../../assets/pymdownx-extras/toc-fold.js"></script>
-      
-        <script src="../../assets/pymdownx-extras/image-zoom.js"></script>
-      
-        <script src="../../assets/pymdownx-extras/markdown-embed.js?v=20260516-1"></script>
-      
-        <script src="../../assets/pymdownx-extras/folder-path-bar.js?v=20260524-1"></script>
-      
-        <script src="../../assets/pymdownx-extras/legacy-image-width.js"></script>
-      
-        <script src="../../assets/pymdownx-extras/source-jump.js?v=20260523-2"></script>
+        <script src="../../assets/pymdownx-extras/conditional-loader.js?v=20260614-3"></script>
       
     
-  <script src="../../assets/pymdownx-extras/scroll-bottom.js?v=20260424-3" type="text/javascript"></script>
 
   </body>
 </html>

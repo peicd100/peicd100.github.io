@@ -44,8 +44,6 @@
     
 
       
-        <script src="https://unpkg.com/iframe-worker/shim"></script>
-      
     
 <script src="../../assets/pymdownx-extras/material-extra-theme-2ek1P7jT.js" type="text/javascript"></script>
 <script src="../../assets/pymdownx-extras/material-extra-3rdparty-BUCF4rjN.js" type="text/javascript"></script>
@@ -1956,7 +1954,7 @@
     
       <link rel="stylesheet" href="../../assets/pymdownx-extras/extra-8611f6c398.css">
     
-      <link rel="stylesheet" href="../../assets/pymdownx-extras/自定義.css?v=20260527-9">
+      <link rel="stylesheet" href="../../assets/pymdownx-extras/自定義.css?v=20260614-2">
     
     <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
@@ -7553,17 +7551,13 @@ is now available!
 
 
 <!-- GPT內文:https://chatgpt.com/g/g-p-69650ccbb8ec81918d027d74876b7c1b-peicd-c/c/696712a3-4498-8324-8551-871fa8ea3f6b -->
-
 <!-- GPT例題
 例題1
 https://chatgpt.com/g/g-p-69650ccbb8ec81918d027d74876b7c1b-peicd-c/c/69667cd5-0e9c-8324-9ff4-21f66d906690
 例題2
 https://chatgpt.com/g/g-p-69650ccbb8ec81918d027d74876b7c1b-peicd-c/c/69667d96-3b10-8324-aedc-b7a268540925 -->
-
 <!-- ## 例題：[e514. 01594 - Ducci Sequence](https://zerojudge.tw/ShowProblem?problemid=e514) -->
-
 <!-- 程式碼GPT:https://chatgpt.com/g/g-p-694775493bb48191a277ba30b540ae2c-peicd/c/6967367e-e1cc-8329-afd2-d716d00da05d -->
-
 <h1 id="循環節cycle-循環入口cycle-entry筆記以-zerojudge-e864-循環小數為例">循環節（cycle）/ 循環入口（cycle entry）筆記（以 ZeroJudge e864 循環小數為例）<a class="headerlink" href="#循環節cycle-循環入口cycle-entry筆記以-zerojudge-e864-循環小數為例" title="Permanent link"></a></h1>
 <h2 id="0-題目模型為什麼會循環狀態是誰">0) 題目模型：為什麼會循環？「狀態」是誰？<a class="headerlink" href="#0-題目模型為什麼會循環狀態是誰" title="Permanent link"></a></h2>
 <p>e864 的小數展開其實就是長除法反覆做同一件事。若目前餘數為 <code>r</code>（<code>0 &lt;= r &lt; B</code>）：</p>
@@ -7572,9 +7566,9 @@ https://chatgpt.com/g/g-p-69650ccbb8ec81918d027d74876b7c1b-peicd-c/c/69667d96-3b
 <li>新餘數：<code>r' = (r * 10) % B</code></li>
 </ul>
 <p>因此序列的「狀態」就是餘數 <code>r</code>，轉移函式是 <code>f(r) = (r*10) % B</code>。</p>
-<p>重點觀察（只講怎麼做，不講證明）：<br />
-- 餘數最多只有 <code>B</code> 種<br />
-- 一旦某個餘數重複出現，之後產生的小數位會開始重複<br />
+<p>重點觀察（只講怎麼做，不講證明）：<br/>
+- 餘數最多只有 <code>B</code> 種<br/>
+- 一旦某個餘數重複出現，之後產生的小數位會開始重複<br/>
 - <code>r == 0</code> 代表小數終止（題目要求輸出 <code>(0)</code>）</p>
 <h2 id="1-名詞循環入口與循環節在這題代表什麼">1) 名詞：循環入口與循環節在這題代表什麼？<a class="headerlink" href="#1-名詞循環入口與循環節在這題代表什麼" title="Permanent link"></a></h2>
 <ul>
@@ -7584,7 +7578,7 @@ https://chatgpt.com/g/g-p-69650ccbb8ec81918d027d74876b7c1b-peicd-c/c/69667d96-3b
 <li>cycle 長度 λ：括號內循環節長度</li>
 </ul>
 <h2 id="2-統一範例用-6781234-講清楚入口與循環節概念對齊">2) 統一範例：用 <code>678(1234)</code> 講清楚入口與循環節（概念對齊）<a class="headerlink" href="#2-統一範例用-6781234-講清楚入口與循環節概念對齊" title="Permanent link"></a></h2>
-<p><code>678(1234)</code> 表示序列：<br />
+<p><code>678(1234)</code> 表示序列：<br/>
 <code>6 → 7 → 8 → 1 → 2 → 3 → 4 → 1 → 2 → 3 → 4 → ...</code></p>
 <ul>
 <li>循環入口 = <code>1</code></li>
@@ -7600,65 +7594,65 @@ https://chatgpt.com/g/g-p-69650ccbb8ec81918d027d74876b7c1b-peicd-c/c/69667d96-3b
 <li>若無循環（餘數變 0）：輸出 <code>(0)</code></li>
 <li>若循環節長度 &gt; 50：括號內只印前 50 位再加 <code>...</code></li>
 </ul>
-<hr />
+<hr/>
 <h2 id="part-1用-set-判斷重複ok-log-k-ok">Part 1：用 <code>set</code> 判斷重複（O(k log k), O(k)）<a class="headerlink" href="#part-1用-set-判斷重複ok-log-k-ok" title="Permanent link"></a></h2>
 <p>適合：最直覺、狀態可比較排序、資料不大。</p>
 <h3 id="入口cycle-entry怎麼求">入口（cycle entry）怎麼求？<a class="headerlink" href="#入口cycle-entry怎麼求" title="Permanent link"></a></h3>
-<p>做法：<br />
-1. 用 <code>set</code> 存已出現的狀態<br />
-2. 從起點一路走：<br />
-   - 如果下一個狀態已在 set：該狀態就是入口（第一次再次遇到的狀態）<br />
+<p>做法：<br/>
+1. 用 <code>set</code> 存已出現的狀態<br/>
+2. 從起點一路走：<br/>
+   - 如果下一個狀態已在 set：該狀態就是入口（第一次再次遇到的狀態）<br/>
    - 否則插入並繼續</p>
-<p>用 <code>678(1234)</code>：<br />
-- seen 依序加入：6,7,8,1,2,3,4<br />
-- 下一步回到 1，發現 1 已存在<br />
+<p>用 <code>678(1234)</code>：<br/>
+- seen 依序加入：6,7,8,1,2,3,4<br/>
+- 下一步回到 1，發現 1 已存在<br/>
 - 入口 = 1</p>
 <h3 id="循環節cycle怎麼求">循環節（cycle）怎麼求？<a class="headerlink" href="#循環節cycle怎麼求" title="Permanent link"></a></h3>
-<p><code>set</code> 只能告訴你「重複了」，要取出循環節內容，常見補法：<br />
+<p><code>set</code> 只能告訴你「重複了」，要取出循環節內容，常見補法：<br/>
 - 已知入口 <code>1</code> 後，從 <code>1</code> 開始一直走到再次回到 <code>1</code>，沿途收集就是循環節</p>
-<p>用 <code>678(1234)</code>：<br />
-- 1 → 2 → 3 → 4 → 1（回來停止）<br />
+<p>用 <code>678(1234)</code>：<br/>
+- 1 → 2 → 3 → 4 → 1（回來停止）<br/>
 - 循環節 = 1234，λ = 4</p>
-<hr />
+<hr/>
 <h2 id="part-2用-unordered_map或陣列記第一次出現位置平均-ok-ok">Part 2：用 unordered_map（或陣列）記「第一次出現位置」（平均 O(k), O(k)）<a class="headerlink" href="#part-2用-unordered_map或陣列記第一次出現位置平均-ok-ok" title="Permanent link"></a></h2>
 <p>適合：競賽最推薦。入口位置、循環節長度、循環內容都能一次拿到。</p>
 <h3 id="入口cycle-entry怎麼求_1">入口（cycle entry）怎麼求？<a class="headerlink" href="#入口cycle-entry怎麼求_1" title="Permanent link"></a></h3>
-<p>用 <code>first[state] = step</code> 記錄「第一次看到 state 的步數」：<br />
-- 當你走到某個 state，發現它已存在於 first：<br />
-  - 入口 = 這個 state<br />
+<p>用 <code>first[state] = step</code> 記錄「第一次看到 state 的步數」：<br/>
+- 當你走到某個 state，發現它已存在於 first：<br/>
+  - 入口 = 這個 state<br/>
   - μ = first[state]</p>
-<p>用 <code>678(1234)</code>：<br />
-- step0: 6（first[6]=0）<br />
-- step1: 7（first[7]=1）<br />
-- step2: 8（first[8]=2）<br />
-- step3: 1（first[1]=3）<br />
-- step4: 2（first[2]=4）<br />
-- step5: 3（first[3]=5）<br />
-- step6: 4（first[4]=6）<br />
-- step7: 1（已出現過，first[1]=3）<br />
+<p>用 <code>678(1234)</code>：<br/>
+- step0: 6（first[6]=0）<br/>
+- step1: 7（first[7]=1）<br/>
+- step2: 8（first[8]=2）<br/>
+- step3: 1（first[1]=3）<br/>
+- step4: 2（first[2]=4）<br/>
+- step5: 3（first[3]=5）<br/>
+- step6: 4（first[4]=6）<br/>
+- step7: 1（已出現過，first[1]=3）<br/>
 - 入口 = 1，μ = 3</p>
 <h3 id="循環節cycle怎麼求_1">循環節（cycle）怎麼求？<a class="headerlink" href="#循環節cycle怎麼求_1" title="Permanent link"></a></h3>
 <ul>
 <li>λ = step - first[entry]</li>
 <li>循環節內容：從 entry 第一次出現的位置開始，取長度 λ 的那段</li>
 </ul>
-<p>用 <code>678(1234)</code>：<br />
-- λ = 7 - 3 = 4<br />
+<p>用 <code>678(1234)</code>：<br/>
+- λ = 7 - 3 = 4<br/>
 - 循環節 = 從 step3 開始 4 個：1,2,3,4</p>
-<hr />
+<hr/>
 <h2 id="part3floyd-龜兔賽跑ok-o1">Part3：Floyd 龜兔賽跑（O(k), O(1)）<a class="headerlink" href="#part3floyd-龜兔賽跑ok-o1" title="Permanent link"></a></h2>
 <p>適合：不想存 seen，記憶體要省到 O(1)。</p>
 <h3 id="入口cycle-entry怎麼求_2">入口（cycle entry）怎麼求？<a class="headerlink" href="#入口cycle-entry怎麼求_2" title="Permanent link"></a></h3>
-<p>Phase 1：先在環內相遇<br />
-- A 慢：一次走 1 步<br />
-- B 快：一次走 2 步<br />
+<p>Phase 1：先在環內相遇<br/>
+- A 慢：一次走 1 步<br/>
+- B 快：一次走 2 步<br/>
 - 相遇點一定在環內（不一定是入口）</p>
-<p>Phase 2：找入口<br />
-- A 重設回起點<br />
-- B 留在相遇點<br />
-- A、B 都一次走 1 步<br />
+<p>Phase 2：找入口<br/>
+- A 重設回起點<br/>
+- B 留在相遇點<br/>
+- A、B 都一次走 1 步<br/>
 - 下一次相遇點就是入口</p>
-<p>用 <code>678(1234)</code>（列出你圖那種走位感）：<br />
+<p>用 <code>678(1234)</code>（列出你圖那種走位感）：<br/>
 Phase 1（相遇）：</p>
 <table>
 <thead>
@@ -7731,63 +7725,63 @@ Phase 1（相遇）：</p>
 </table>
 <p>入口 = 1。</p>
 <h3 id="循環節cycle怎麼求_2">循環節（cycle）怎麼求？<a class="headerlink" href="#循環節cycle怎麼求_2" title="Permanent link"></a></h3>
-<p>Floyd Phase 2 只給入口；要循環節內容通常再做：<br />
+<p>Floyd Phase 2 只給入口；要循環節內容通常再做：<br/>
 - 從入口開始走，直到回到入口，沿途就是循環節</p>
-<p>用 <code>678(1234)</code>：<br />
-- 1 → 2 → 3 → 4 → 1<br />
+<p>用 <code>678(1234)</code>：<br/>
+- 1 → 2 → 3 → 4 → 1<br/>
 - 循環節 = 1234，λ = 4</p>
-<hr />
+<hr/>
 <h2 id="part4floyd-先求-λ再錯開-λ-步找入口ok-o1-詳細版">Part4：Floyd 先求 λ，再「錯開 λ 步」找入口（O(k), O(1)）— 詳細版<a class="headerlink" href="#part4floyd-先求-λ再錯開-λ-步找入口ok-o1-詳細版" title="Permanent link"></a></h2>
 <p>適合：你想把「入口」與「循環節長度」拆得很乾淨，流程也很直覺。</p>
 <h3 id="step-a先找相遇點-meet">Step A：先找相遇點 meet<a class="headerlink" href="#step-a先找相遇點-meet" title="Permanent link"></a></h3>
-<p>同 Part3 的 Phase 1。<br />
+<p>同 Part3 的 Phase 1。<br/>
 在 <code>678(1234)</code> 中，meet = 2。</p>
 <h3 id="step-b由-meet-求循環長度-λ">Step B：由 meet 求循環長度 λ<a class="headerlink" href="#step-b由-meet-求循環長度-λ" title="Permanent link"></a></h3>
-<p>做法：<br />
-- 固定 meet<br />
-- 從 meet 開始一直走，直到再次回到 meet<br />
+<p>做法：<br/>
+- 固定 meet<br/>
+- 從 meet 開始一直走，直到再次回到 meet<br/>
 - 走的步數就是 λ</p>
-<p>用 <code>678(1234)</code>（從 meet=2）：<br />
-- 2 → 3（1）<br />
-- 3 → 4（2）<br />
-- 4 → 1（3）<br />
-- 1 → 2（4）回到 2<br />
+<p>用 <code>678(1234)</code>（從 meet=2）：<br/>
+- 2 → 3（1）<br/>
+- 3 → 4（2）<br/>
+- 4 → 1（3）<br/>
+- 1 → 2（4）回到 2<br/>
 所以 λ = 4。</p>
 <h3 id="step-c錯開-λ-步找入口最直覺的入口定位">Step C：錯開 λ 步找入口（最直覺的入口定位）<a class="headerlink" href="#step-c錯開-λ-步找入口最直覺的入口定位" title="Permanent link"></a></h3>
-<p>做法：<br />
-1. p1 = 起點<br />
-2. p2 = 起點<br />
-3. p2 先走 λ 步（拉開一整圈距離）<br />
+<p>做法：<br/>
+1. p1 = 起點<br/>
+2. p2 = 起點<br/>
+3. p2 先走 λ 步（拉開一整圈距離）<br/>
 4. p1、p2 同速走，第一次相遇就是入口</p>
-<p>用 <code>678(1234)</code>：<br />
-- p1=6，p2=6<br />
-- p2 先走 4 步：6→7→8→1→2，所以 p2=2<br />
-- 同速走：<br />
-  - (6,2) → (7,3) → (8,4) → (1,1)<br />
+<p>用 <code>678(1234)</code>：<br/>
+- p1=6，p2=6<br/>
+- p2 先走 4 步：6→7→8→1→2，所以 p2=2<br/>
+- 同速走：<br/>
+  - (6,2) → (7,3) → (8,4) → (1,1)<br/>
 - 入口 = 1，且走了 3 步所以 μ = 3。</p>
 <h3 id="循環節cycle怎麼求_3">循環節（cycle）怎麼求？<a class="headerlink" href="#循環節cycle怎麼求_3" title="Permanent link"></a></h3>
-<p>入口與 λ 都有了：<br />
-- 從入口走 λ 步收集：1,2,3,4<br />
+<p>入口與 λ 都有了：<br/>
+- 從入口走 λ 步收集：1,2,3,4<br/>
 - 循環節 = 1234</p>
-<hr />
+<hr/>
 <h2 id="part5brentok-o1-詳細版">Part5：Brent（O(k), O(1)）— 詳細版<a class="headerlink" href="#part5brentok-o1-詳細版" title="Permanent link"></a></h2>
 <p>適合：<code>f()</code> 很貴、想少做函式呼叫次數。Brent 會先求 λ，再求 μ/入口，最後循環節直接列出。</p>
 <h3 id="step-abrent-求-λ循環長度">Step A：Brent 求 λ（循環長度）<a class="headerlink" href="#step-abrent-求-λ循環長度" title="Permanent link"></a></h3>
-<p>概念：分段倍增比對（power = 1,2,4,8,&hellip;）<br />
-- tortoise 固定在「某段起點」<br />
-- hare 往前走並計 lam<br />
+<p>概念：分段倍增比對（power = 1,2,4,8,…）<br/>
+- tortoise 固定在「某段起點」<br/>
+- hare 往前走並計 lam<br/>
 - 每當 lam 跑滿 power，就把 tortoise 推進到 hare，power 倍增，lam 歸零再比下一段</p>
-<p>流程（口語化）：<br />
-1. power=1, lam=1<br />
-2. tortoise = 起點<br />
-3. hare = 下一步<br />
-4. while tortoise != hare:<br />
-   - 若 power == lam：tortoise = hare，power *= 2，lam=0<br />
+<p>流程（口語化）：<br/>
+1. power=1, lam=1<br/>
+2. tortoise = 起點<br/>
+3. hare = 下一步<br/>
+4. while tortoise != hare:<br/>
+   - 若 power == lam：tortoise = hare，power *= 2，lam=0<br/>
    - hare 往前一步，lam++</p>
-<p>用 <code>678(1234)</code> 直覺理解：<br />
-- hare 會一路往前跑<br />
-- tortoise 會在 1、2、4&hellip; 這些倍增檢查點更新<br />
-- 最後第一次讓 tortoise == hare 時，lam 就是 λ<br />
+<p>用 <code>678(1234)</code> 直覺理解：<br/>
+- hare 會一路往前跑<br/>
+- tortoise 會在 1、2、4… 這些倍增檢查點更新<br/>
+- 最後第一次讓 tortoise == hare 時，lam 就是 λ<br/>
 此例會得到 λ = 4（因為環是 1234）。</p>
 <h3 id="step-b用-λ-求-μ-與入口錯開-λ-步">Step B：用 λ 求 μ 與入口（錯開 λ 步）<a class="headerlink" href="#step-b用-λ-求-μ-與入口錯開-λ-步" title="Permanent link"></a></h3>
 <p>拿到 λ 後，入口求法與 Part4 Step C 相同：</p>
@@ -7797,17 +7791,17 @@ Phase 1（相遇）：</p>
 <li>p2 先走 λ 步</li>
 <li>同速走到相遇：相遇點是入口，相遇前走的步數是 μ</li>
 </ol>
-<p>用 <code>678(1234)</code>：<br />
-- λ=4<br />
-- p2 先走 4 步：6→7→8→1→2（p2=2）<br />
-- 同速走：<br />
-  - (6,2) → (7,3) → (8,4) → (1,1)<br />
+<p>用 <code>678(1234)</code>：<br/>
+- λ=4<br/>
+- p2 先走 4 步：6→7→8→1→2（p2=2）<br/>
+- 同速走：<br/>
+  - (6,2) → (7,3) → (8,4) → (1,1)<br/>
 - 入口 = 1，μ = 3</p>
 <h3 id="step-c循環節cycle怎麼求">Step C：循環節（cycle）怎麼求？<a class="headerlink" href="#step-c循環節cycle怎麼求" title="Permanent link"></a></h3>
-<p>入口與 λ 都有了：<br />
-- 從入口走 λ 步：1,2,3,4<br />
+<p>入口與 λ 都有了：<br/>
+- 從入口走 λ 步：1,2,3,4<br/>
 - 循環節 = 1234</p>
-<hr />
+<hr/>
 <h2 id="本題e864角度的選法比較">本題（e864）角度的選法比較<a class="headerlink" href="#本題e864角度的選法比較" title="Permanent link"></a></h2>
 <table>
 <thead>
@@ -7859,7 +7853,7 @@ Phase 1（相遇）：</p>
 </table>
 <h2 id="例題1-j057-11634---generate-random-numbers">例題1 <a href="https://zerojudge.tw/ShowProblem?problemid=j057">j057. 11634 - Generate random numbers</a><a class="headerlink" href="#例題1-j057-11634---generate-random-numbers" title="Permanent link"></a></h2>
 <h3 id="part-1-set-ac-4ms-340kb">Part 1 set AC (4ms, 340KB)<a class="headerlink" href="#part-1-set-ac-4ms-340kb" title="Permanent link"></a></h3>
-<div class="collapse-code"><input checked="checked" id="__collapse0" name="__collapse0" type="checkbox" /><div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;bits/stdc++.h&gt;</span>
+<div class="collapse-code"><input checked="checked" id="__collapse0" name="__collapse0" type="checkbox"/><div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;bits/stdc++.h&gt;</span>
 <span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span>
 <span class="cp">#define int long long</span>
 
@@ -7872,7 +7866,7 @@ Phase 1（相遇）：</p>
 <span class="w">    </span><span class="n">string</span><span class="w"> </span><span class="n">ns</span><span class="o">=</span><span class="n">to_string</span><span class="p">(</span><span class="n">a2</span><span class="p">);</span>
 
 <span class="w">    </span><span class="k">while</span><span class="p">(</span><span class="n">ns</span><span class="p">.</span><span class="n">size</span><span class="p">()</span><span class="o">!=</span><span class="mi">8</span><span class="p">){</span>
-<span class="w">        </span><span class="n">ns</span><span class="o">=</span><span class="sc">&#39;0&#39;</span><span class="o">+</span><span class="n">ns</span><span class="p">;</span>
+<span class="w">        </span><span class="n">ns</span><span class="o">=</span><span class="sc">'0'</span><span class="o">+</span><span class="n">ns</span><span class="p">;</span>
 <span class="w">    </span><span class="p">}</span>
 
 <span class="w">    </span><span class="n">ns</span><span class="o">=</span><span class="n">ns</span><span class="p">.</span><span class="n">substr</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">);</span>
@@ -7887,17 +7881,17 @@ Phase 1（相遇）：</p>
 <span class="w">    </span><span class="n">cin</span><span class="p">.</span><span class="n">tie</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
 
 
-<span class="c1">//    stringstream cin(R&quot;(5555</span>
+<span class="c1">//    stringstream cin(R"(5555</span>
 <span class="c1">//0815</span>
 <span class="c1">//6239</span>
 <span class="c1">//0</span>
-<span class="c1">//)&quot;);</span>
+<span class="c1">//)");</span>
 
 <span class="w">    </span><span class="n">string</span><span class="w"> </span><span class="n">s</span><span class="p">;</span>
 
 
 
-<span class="w">    </span><span class="k">while</span><span class="p">(</span><span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">s</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">s</span><span class="o">!=</span><span class="s">&quot;0&quot;</span><span class="p">){</span>
+<span class="w">    </span><span class="k">while</span><span class="p">(</span><span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">s</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">s</span><span class="o">!=</span><span class="s">"0"</span><span class="p">){</span>
 <span class="w">        </span><span class="n">set</span><span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span><span class="n">se</span><span class="p">;</span>
 <span class="w">        </span><span class="n">se</span><span class="p">.</span><span class="n">insert</span><span class="p">(</span><span class="n">s</span><span class="p">);</span>
 <span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">ans</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span>
@@ -7911,7 +7905,7 @@ Phase 1（相遇）：</p>
 
 <span class="w">        </span><span class="p">}</span>
 
-<span class="w">        </span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">ans</span><span class="o">&lt;&lt;</span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+<span class="w">        </span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">ans</span><span class="o">&lt;&lt;</span><span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
 <span class="w">    </span><span class="p">}</span>
 
 
@@ -7922,27 +7916,27 @@ Phase 1（相遇）：</p>
 <div class="code-footer"><label class="expand icon-only" for="__collapse0" tabindex="0"><span class="collapse-code__sr-only">expand</span></label><label class="collapse icon-only" for="__collapse0" tabindex="0"><span class="collapse-code__sr-only">collapse</span></label></div>
 </div>
 <h3 id="part-3-龜兔賽跑-ac-6ms-336kb">Part 3 龜兔賽跑 AC (6ms, 336KB)<a class="headerlink" href="#part-3-龜兔賽跑-ac-6ms-336kb" title="Permanent link"></a></h3>
-<div class="collapse-code"><input checked="checked" id="__collapse1" name="__collapse1" type="checkbox" /><div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;bits/stdc++.h&gt;</span>
+<div class="collapse-code"><input checked="checked" id="__collapse1" name="__collapse1" type="checkbox"/><div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;bits/stdc++.h&gt;</span>
 <span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span>
 
 <span class="n">string</span><span class="w"> </span><span class="nf">next_s</span><span class="p">(</span><span class="n">string</span><span class="w"> </span><span class="n">s</span><span class="p">){</span>
 <span class="w">    </span><span class="kt">long</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">a2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">stoll</span><span class="p">(</span><span class="n">s</span><span class="p">);</span>
 <span class="w">    </span><span class="n">a2</span><span class="w"> </span><span class="o">*=</span><span class="w"> </span><span class="n">a2</span><span class="p">;</span>
 <span class="w">    </span><span class="n">string</span><span class="w"> </span><span class="n">ns</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">to_string</span><span class="p">(</span><span class="n">a2</span><span class="p">);</span>
-<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">ns</span><span class="p">.</span><span class="n">size</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">8</span><span class="p">)</span><span class="w"> </span><span class="n">ns</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sc">&#39;0&#39;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">ns</span><span class="p">;</span><span class="w"> </span><span class="c1">// 用 &lt;8 較安全</span>
+<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">ns</span><span class="p">.</span><span class="n">size</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">8</span><span class="p">)</span><span class="w"> </span><span class="n">ns</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sc">'0'</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">ns</span><span class="p">;</span><span class="w"> </span><span class="c1">// 用 &lt;8 較安全</span>
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">ns</span><span class="p">.</span><span class="n">substr</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">);</span>
 <span class="p">}</span>
 
 <span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(){</span>
 <span class="w">    </span><span class="n">ios</span><span class="o">::</span><span class="n">sync_with_stdio</span><span class="p">(</span><span class="nb">false</span><span class="p">);</span>
 <span class="w">    </span><span class="n">cin</span><span class="p">.</span><span class="n">tie</span><span class="p">(</span><span class="nb">nullptr</span><span class="p">);</span>
-<span class="w">    </span><span class="c1">//    stringstream cin(R&quot;(5555</span>
+<span class="w">    </span><span class="c1">//    stringstream cin(R"(5555</span>
 <span class="w">    </span><span class="c1">//0815</span>
 <span class="w">    </span><span class="c1">//6239</span>
 <span class="w">    </span><span class="c1">//0</span>
-<span class="w">    </span><span class="c1">//)&quot;);</span>
+<span class="w">    </span><span class="c1">//)");</span>
 <span class="w">    </span><span class="n">string</span><span class="w"> </span><span class="n">s</span><span class="p">;</span>
-<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">cin</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">s</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">s</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="s">&quot;0&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">cin</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">s</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">s</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="s">"0"</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">        </span><span class="c1">// Phase 1: 找相遇點</span>
 <span class="w">        </span><span class="n">string</span><span class="w"> </span><span class="n">slow</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">next_s</span><span class="p">(</span><span class="n">s</span><span class="p">);</span>
 <span class="w">        </span><span class="n">string</span><span class="w"> </span><span class="n">fast</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">next_s</span><span class="p">(</span><span class="n">next_s</span><span class="p">(</span><span class="n">s</span><span class="p">));</span>
@@ -7969,7 +7963,7 @@ Phase 1（相遇）：</p>
 <span class="w">            </span><span class="n">lambda</span><span class="o">++</span><span class="p">;</span>
 <span class="w">        </span><span class="p">}</span>
 
-<span class="w">        </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="p">(</span><span class="n">mu</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">lambda</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span><span class="w"> </span><span class="c1">// 不同值總數（含 a0）</span>
+<span class="w">        </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="p">(</span><span class="n">mu</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">lambda</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span><span class="w"> </span><span class="c1">// 不同值總數（含 a0）</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
@@ -7978,7 +7972,7 @@ Phase 1（相遇）：</p>
 </div>
 <h2 id="例題2-e864-q3-2-循環小數">例題2 <a href="https://zerojudge.tw/ShowProblem?problemid=e864">e864. Q3-2 循環小數</a><a class="headerlink" href="#例題2-e864-q3-2-循環小數" title="Permanent link"></a></h2>
 <h3 id="part-2-unordered_map-ac-1ms-328kb">Part 2 unordered_map AC (1ms, 328KB)<a class="headerlink" href="#part-2-unordered_map-ac-1ms-328kb" title="Permanent link"></a></h3>
-<div class="collapse-code"><input checked="checked" id="__collapse2" name="__collapse2" type="checkbox" /><div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;bits/stdc++.h&gt;</span>
+<div class="collapse-code"><input checked="checked" id="__collapse2" name="__collapse2" type="checkbox"/><div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;bits/stdc++.h&gt;</span>
 <span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span>
 
 <span class="kt">int</span><span class="w"> </span><span class="n">m</span><span class="p">;</span>
@@ -7997,7 +7991,7 @@ Phase 1（相遇）：</p>
 <span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="p">;</span>
 <span class="w">        </span><span class="n">cin</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">m</span><span class="p">;</span>
 
-<span class="w">        </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">m</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="sc">&#39;.&#39;</span><span class="p">;</span>
+<span class="w">        </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">m</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="sc">'.'</span><span class="p">;</span>
 <span class="w">        </span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="n">m</span><span class="p">;</span>
 
 <span class="w">        </span><span class="n">unordered_map</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">mp</span><span class="p">;</span>
@@ -8024,27 +8018,27 @@ Phase 1（相遇）：</p>
 
 <span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">v</span><span class="p">.</span><span class="n">size</span><span class="p">();</span>
 <span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">size</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="sc">&#39;(&#39;</span><span class="p">;</span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="sc">'('</span><span class="p">;</span>
 <span class="w">            </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">v</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
 
 <span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">50</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">  </span>
-<span class="w">                </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;...)&quot;</span><span class="p">;</span>
+<span class="w">                </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">"...)"</span><span class="p">;</span>
 <span class="w">                </span><span class="k">break</span><span class="p">;</span>
 <span class="w">            </span><span class="p">}</span>
 <span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">L</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">  </span>
-<span class="w">                </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;)&quot;</span><span class="p">;</span>
+<span class="w">                </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">")"</span><span class="p">;</span>
 <span class="w">                </span><span class="k">break</span><span class="p">;</span>
 <span class="w">            </span><span class="p">}</span>
 <span class="w">        </span><span class="p">}</span>
 
-<span class="w">        </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+<span class="w">        </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
 <div class="code-footer"><label class="expand icon-only" for="__collapse2" tabindex="0"><span class="collapse-code__sr-only">expand</span></label><label class="collapse icon-only" for="__collapse2" tabindex="0"><span class="collapse-code__sr-only">collapse</span></label></div>
 </div>
 <h3 id="part-2-vector-ac-1ms-332kb">Part 2 vector AC (1ms, 332KB)<a class="headerlink" href="#part-2-vector-ac-1ms-332kb" title="Permanent link"></a></h3>
-<div class="collapse-code"><input checked="checked" id="__collapse3" name="__collapse3" type="checkbox" /><div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;bits/stdc++.h&gt;</span>
+<div class="collapse-code"><input checked="checked" id="__collapse3" name="__collapse3" type="checkbox"/><div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;bits/stdc++.h&gt;</span>
 <span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span>
 
 <span class="kt">int</span><span class="w"> </span><span class="n">m</span><span class="p">;</span>
@@ -8063,7 +8057,7 @@ Phase 1（相遇）：</p>
 <span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="p">;</span>
 <span class="w">        </span><span class="n">cin</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">m</span><span class="p">;</span>
 
-<span class="w">        </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">m</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="sc">&#39;.&#39;</span><span class="p">;</span>
+<span class="w">        </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">m</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="sc">'.'</span><span class="p">;</span>
 <span class="w">        </span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="n">m</span><span class="p">;</span>
 
 <span class="w">        </span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">vv</span><span class="p">(</span><span class="n">m</span><span class="p">,</span><span class="w"> </span><span class="mi">-1</span><span class="p">);</span>
@@ -8090,27 +8084,27 @@ Phase 1（相遇）：</p>
 
 <span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">v</span><span class="p">.</span><span class="n">size</span><span class="p">();</span>
 <span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">size</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="sc">&#39;(&#39;</span><span class="p">;</span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="sc">'('</span><span class="p">;</span>
 <span class="w">            </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">v</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
 
 <span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">50</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;...)&quot;</span><span class="p">;</span>
+<span class="w">                </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">"...)"</span><span class="p">;</span>
 <span class="w">                </span><span class="k">break</span><span class="p">;</span>
 <span class="w">            </span><span class="p">}</span>
 <span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">L</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;)&quot;</span><span class="p">;</span>
+<span class="w">                </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">")"</span><span class="p">;</span>
 <span class="w">                </span><span class="k">break</span><span class="p">;</span>
 <span class="w">            </span><span class="p">}</span>
 <span class="w">        </span><span class="p">}</span>
 
-<span class="w">        </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+<span class="w">        </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
 <div class="code-footer"><label class="expand icon-only" for="__collapse3" tabindex="0"><span class="collapse-code__sr-only">expand</span></label><label class="collapse icon-only" for="__collapse3" tabindex="0"><span class="collapse-code__sr-only">collapse</span></label></div>
 </div>
 <h3 id="part-3-龜兔賽跑-ac-1ms-332kb">Part 3 龜兔賽跑 AC (1ms, 332KB)<a class="headerlink" href="#part-3-龜兔賽跑-ac-1ms-332kb" title="Permanent link"></a></h3>
-<div class="collapse-code"><input checked="checked" id="__collapse4" name="__collapse4" type="checkbox" /><div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;bits/stdc++.h&gt;</span>
+<div class="collapse-code"><input checked="checked" id="__collapse4" name="__collapse4" type="checkbox"/><div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;bits/stdc++.h&gt;</span>
 <span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span>
 
 <span class="kt">int</span><span class="w"> </span><span class="n">m</span><span class="p">;</span>
@@ -8132,7 +8126,7 @@ Phase 1（相遇）：</p>
 <span class="w">        </span><span class="n">cin</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">m</span><span class="p">;</span>
 
 <span class="w">        </span><span class="c1">// 先輸出整數部分</span>
-<span class="w">        </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">m</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="sc">&#39;.&#39;</span><span class="p">;</span>
+<span class="w">        </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">m</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="sc">'.'</span><span class="p">;</span>
 
 <span class="w">        </span><span class="c1">// 令 n 變成餘數，作為小數部分的起點狀態</span>
 <span class="w">        </span><span class="n">n</span><span class="w"> </span><span class="o">%=</span><span class="w"> </span><span class="n">m</span><span class="p">;</span>
@@ -8191,22 +8185,22 @@ Phase 1（相遇）：</p>
 
 <span class="w">        </span><span class="c1">// 依題意輸出括號與截斷</span>
 <span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">v</span><span class="p">.</span><span class="n">size</span><span class="p">();</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="sc">&#39;(&#39;</span><span class="p">;</span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="sc">'('</span><span class="p">;</span>
 <span class="w">            </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">v</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
 
-<span class="w">            </span><span class="c1">// 循環段長度 &gt; 50：只印循環段前 50 位，結尾用 &quot;...)&quot;</span>
+<span class="w">            </span><span class="c1">// 循環段長度 &gt; 50：只印循環段前 50 位，結尾用 "...)"</span>
 <span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">L</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">50</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">50</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;...)&quot;</span><span class="p">;</span>
+<span class="w">                </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">"...)"</span><span class="p">;</span>
 <span class="w">                </span><span class="k">break</span><span class="p">;</span>
 <span class="w">            </span><span class="p">}</span>
 <span class="w">            </span><span class="c1">// 循環段長度 &lt;= 50：印完循環段就關括號</span>
 <span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">L</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mi">50</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">L</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;)&quot;</span><span class="p">;</span>
+<span class="w">                </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">")"</span><span class="p">;</span>
 <span class="w">                </span><span class="k">break</span><span class="p">;</span>
 <span class="w">            </span><span class="p">}</span>
 <span class="w">        </span><span class="p">}</span>
 
-<span class="w">        </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+<span class="w">        </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
@@ -8216,20 +8210,20 @@ Phase 1（相遇）：</p>
 <h3 id="part-2-unordered_map-na-score66">Part 2 unordered_map NA (score:66%)<a class="headerlink" href="#part-2-unordered_map-na-score66" title="Permanent link"></a></h3>
 <details>
 <summary>查看詳細評分結果</summary>
-<p>#0: 16% AC (1ms, 316KB)<br />
-通過檢測<br />
-#1: 16% AC (4ms, 392KB)<br />
-通過檢測<br />
-#2: 17% AC (24ms, 732KB)<br />
-通過檢測<br />
-#3: 17% AC (63ms, 11.2MB)<br />
-通過檢測<br />
-#4: 17% MLE (46.9MB)<br />
-您的程式使用記憶體超過限制<br />
-#5: 17% MLE (36.8MB)<br />
+<p>#0: 16% AC (1ms, 316KB)<br/>
+通過檢測<br/>
+#1: 16% AC (4ms, 392KB)<br/>
+通過檢測<br/>
+#2: 17% AC (24ms, 732KB)<br/>
+通過檢測<br/>
+#3: 17% AC (63ms, 11.2MB)<br/>
+通過檢測<br/>
+#4: 17% MLE (46.9MB)<br/>
+您的程式使用記憶體超過限制<br/>
+#5: 17% MLE (36.8MB)<br/>
 您的程式使用記憶體超過限制</p>
 </details>
-<div class="collapse-code"><input checked="checked" id="__collapse5" name="__collapse5" type="checkbox" /><div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;bits/stdc++.h&gt;</span>
+<div class="collapse-code"><input checked="checked" id="__collapse5" name="__collapse5" type="checkbox"/><div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;bits/stdc++.h&gt;</span>
 <span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span>
 
 <span class="kt">int</span><span class="w"> </span><span class="n">m</span><span class="p">;</span>
@@ -8267,9 +8261,9 @@ Phase 1（相遇）：</p>
 <span class="w">            </span><span class="n">it</span><span class="o">++</span><span class="p">;</span>
 <span class="w">        </span><span class="p">}</span>
 
-<span class="w">        </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">L</span><span class="p">;</span>
+<span class="w">        </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">" "</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">L</span><span class="p">;</span>
 
-<span class="w">        </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+<span class="w">        </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
@@ -8278,26 +8272,26 @@ Phase 1（相遇）：</p>
 <h3 id="part-2-vector-na-score83">Part 2 vector NA (score:83%)<a class="headerlink" href="#part-2-vector-na-score83" title="Permanent link"></a></h3>
 <details>
 <summary>查看詳細評分結果</summary>
-<p>#0: 16% AC (1ms, 364KB)<br />
-通過檢測<br />
-#1: 16% AC (3ms, 396KB)<br />
-通過檢測<br />
-#2: 17% AC (2ms, 372KB)<br />
-通過檢測<br />
-#3: 17% AC (7ms, 1.1MB)<br />
-通過檢測<br />
-#4: 17% AC (18ms, 14.8MB)<br />
-通過檢測<br />
-#5: 17% RE (SIGABRT)<br />
-系統呼叫了 abort 函式！<br />
-terminate called after throwing an instance of 'std::bad_alloc'<br />
-what():  std::bad_alloc<br />
-Aborted (core dumped)<br />
-terminate called after throwing an instance of 'std::bad_alloc'<br />
-what():  std::bad_alloc<br />
+<p>#0: 16% AC (1ms, 364KB)<br/>
+通過檢測<br/>
+#1: 16% AC (3ms, 396KB)<br/>
+通過檢測<br/>
+#2: 17% AC (2ms, 372KB)<br/>
+通過檢測<br/>
+#3: 17% AC (7ms, 1.1MB)<br/>
+通過檢測<br/>
+#4: 17% AC (18ms, 14.8MB)<br/>
+通過檢測<br/>
+#5: 17% RE (SIGABRT)<br/>
+系統呼叫了 abort 函式！<br/>
+terminate called after throwing an instance of 'std::bad_alloc'<br/>
+what():  std::bad_alloc<br/>
+Aborted (core dumped)<br/>
+terminate called after throwing an instance of 'std::bad_alloc'<br/>
+what():  std::bad_alloc<br/>
 Aborted (core dumped)</p>
 </details>
-<div class="collapse-code"><input checked="checked" id="__collapse6" name="__collapse6" type="checkbox" /><div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;bits/stdc++.h&gt;</span>
+<div class="collapse-code"><input checked="checked" id="__collapse6" name="__collapse6" type="checkbox"/><div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;bits/stdc++.h&gt;</span>
 <span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span>
 
 <span class="kt">int</span><span class="w"> </span><span class="n">m</span><span class="p">;</span>
@@ -8335,9 +8329,9 @@ Aborted (core dumped)</p>
 <span class="w">            </span><span class="n">it</span><span class="o">++</span><span class="p">;</span>
 <span class="w">        </span><span class="p">}</span>
 
-<span class="w">        </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">L</span><span class="p">;</span>
+<span class="w">        </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">" "</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">L</span><span class="p">;</span>
 
-<span class="w">        </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+<span class="w">        </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
@@ -8346,20 +8340,20 @@ Aborted (core dumped)</p>
 <h3 id="part-3-龜兔賽跑-ac-42ms-348kb">Part 3 龜兔賽跑 AC (42ms, 348KB)<a class="headerlink" href="#part-3-龜兔賽跑-ac-42ms-348kb" title="Permanent link"></a></h3>
 <details>
 <summary>查看詳細評分結果</summary>
-<p>#0: 16% AC (4ms, 348KB)<br />
-通過檢測<br />
-#1: 16% AC (2ms, 320KB)<br />
-通過檢測<br />
-#2: 17% AC (8ms, 348KB)<br />
-通過檢測<br />
-#3: 17% AC (22ms, 320KB)<br />
-通過檢測<br />
-#4: 17% AC (42ms, 340KB)<br />
-通過檢測<br />
-#5: 17% AC (34ms, 324KB)<br />
+<p>#0: 16% AC (4ms, 348KB)<br/>
+通過檢測<br/>
+#1: 16% AC (2ms, 320KB)<br/>
+通過檢測<br/>
+#2: 17% AC (8ms, 348KB)<br/>
+通過檢測<br/>
+#3: 17% AC (22ms, 320KB)<br/>
+通過檢測<br/>
+#4: 17% AC (42ms, 340KB)<br/>
+通過檢測<br/>
+#5: 17% AC (34ms, 324KB)<br/>
 通過檢測</p>
 </details>
-<div class="collapse-code"><input checked="checked" id="__collapse7" name="__collapse7" type="checkbox" /><div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;bits/stdc++.h&gt;</span>
+<div class="collapse-code"><input checked="checked" id="__collapse7" name="__collapse7" type="checkbox"/><div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;bits/stdc++.h&gt;</span>
 <span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span>
 
 <span class="kt">int</span><span class="w"> </span><span class="n">m</span><span class="p">;</span>
@@ -8423,9 +8417,9 @@ Aborted (core dumped)</p>
 <span class="w">            </span><span class="n">L</span><span class="o">++</span><span class="p">;</span>
 <span class="w">        </span><span class="p">}</span>
 
-<span class="w">        </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">L</span><span class="p">;</span>
+<span class="w">        </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">" "</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">L</span><span class="p">;</span>
 
-<span class="w">        </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+<span class="w">        </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
@@ -8437,6 +8431,9 @@ Aborted (core dumped)</p>
 
 
 
+
+  
+  
 
 
 
@@ -8556,40 +8553,16 @@ Aborted (core dumped)</p>
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.footer", "navigation.indexes", "navigation.instant", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.tabs", "navigation.top", "announce.dismiss", "content.tabs.link", "search.share", "content.code.copy", "content.code.annotations", "content.action.edit", "content.action.view", "content.tooltips"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.footer", "navigation.indexes", "navigation.instant", "navigation.instant.progress", "navigation.tabs", "navigation.top", "announce.dismiss", "content.tabs.link", "search.share", "content.code.copy", "content.code.annotations", "content.action.edit", "content.action.view", "content.tooltips"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
+  <script src="../../assets/pymdownx-extras/search-lazy-guard.js?v=20260614-1"></script>
   
       <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
       
-        <script src="https://unpkg.com/mermaid@10.6.1/dist/mermaid.min.js"></script>
-      
-        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-      
-        <script src="../../assets/pymdownx-extras/mermaid-config-override.js?v=20260523-1"></script>
-      
-        <script src="../../assets/pymdownx-extras/mermaid-legacy-flowchart-compat.js?v=20260329-1"></script>
-      
-        <script src="../../assets/pymdownx-extras/extra-loader-iLQ-keay.js"></script>
-      
-        <script src="../../assets/pymdownx-extras/mermaid-render-fix.js?v=20260522-1"></script>
-      
-        <script src="../../assets/pymdownx-extras/mermaid-zoom.js?v=20260404-1"></script>
-      
-        <script src="../../assets/pymdownx-extras/toc-fold.js"></script>
-      
-        <script src="../../assets/pymdownx-extras/image-zoom.js"></script>
-      
-        <script src="../../assets/pymdownx-extras/markdown-embed.js?v=20260516-1"></script>
-      
-        <script src="../../assets/pymdownx-extras/folder-path-bar.js?v=20260524-1"></script>
-      
-        <script src="../../assets/pymdownx-extras/legacy-image-width.js"></script>
-      
-        <script src="../../assets/pymdownx-extras/source-jump.js?v=20260523-2"></script>
+        <script src="../../assets/pymdownx-extras/conditional-loader.js?v=20260614-3"></script>
       
     
-  <script src="../../assets/pymdownx-extras/scroll-bottom.js?v=20260424-3" type="text/javascript"></script>
 
   </body>
 </html>

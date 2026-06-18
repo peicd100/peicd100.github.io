@@ -40,8 +40,6 @@
     
 
       
-        <script src="https://unpkg.com/iframe-worker/shim"></script>
-      
     
 <script src="assets/pymdownx-extras/material-extra-theme-2ek1P7jT.js" type="text/javascript"></script>
 <script src="assets/pymdownx-extras/material-extra-3rdparty-BUCF4rjN.js" type="text/javascript"></script>
@@ -1952,7 +1950,7 @@
     
       <link rel="stylesheet" href="assets/pymdownx-extras/extra-8611f6c398.css">
     
-      <link rel="stylesheet" href="assets/pymdownx-extras/自定義.css?v=20260527-9">
+      <link rel="stylesheet" href="assets/pymdownx-extras/自定義.css?v=20260614-2">
     
     <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
@@ -6686,26 +6684,26 @@ is now available!
 <div class="highlight"><pre><span></span><code>activate mkdocs_desk
 mkdocs gh-deploy
 git add .
-git commit -m &quot;PEICD100&quot;
+git commit -m "PEICD100"
 git branch -M main
 git push -u origin main
 </code></pre></div>
 <h2 id="預覽">預覽<a class="headerlink" href="#預覽" title="Permanent link"></a></h2>
 <p><div class="highlight"><pre><span></span><code>activate mkdocs_desk
 p              docs\md\114-2\電機_作業系統\ch 4.md
-</code></pre></div><br />
+</code></pre></div><br/>
 <div class="highlight"><pre><span></span><code>activate mkdocs_desk
 mkdocs serve
-</code></pre></div><br />
+</code></pre></div><br/>
 <div class="highlight"><pre><span></span><code>activate mkdocs_desk
 mkdocs serve -f mkdocs.preview.yml --dirty
 </code></pre></div></p>
 <h2 id="單頁預覽快捷指令">單頁預覽快捷指令<a class="headerlink" href="#單頁預覽快捷指令" title="Permanent link"></a></h2>
 <p><div class="highlight"><pre><span></span><code>activate mkdocs_desk
 .\preview     docs\md\114-2\電機_作業系統\ch 4.md
-</code></pre></div><br />
-- 可接受 <code>docs\...</code> 或 <code>md\...</code> 路徑。<br />
-- 如果目前終端是 PowerShell，請用 <code>.\preview ...</code>；若是 <code>cmd</code>，可直接用 <code>preview ...</code>。<br />
+</code></pre></div><br/>
+- 可接受 <code>docs\...</code> 或 <code>md\...</code> 路徑。<br/>
+- 如果目前終端是 PowerShell，請用 <code>.\preview ...</code>；若是 <code>cmd</code>，可直接用 <code>preview ...</code>。<br/>
 - 指令會自動更新 <code>mkdocs.preview.yml</code> 內的 preview 目標，然後啟用 <code>mkdocs_desk</code>，最後以 <code>python -m mkdocs serve -f mkdocs.preview.yml --dirty</code> 啟動預覽。</p>
 <h1 id="環境安裝指令">環境安裝指令<a class="headerlink" href="#環境安裝指令" title="Permanent link"></a></h1>
 <h2 id="只安裝環境">只安裝環境<a class="headerlink" href="#只安裝環境" title="Permanent link"></a></h2>
@@ -6722,7 +6720,7 @@ conda install git -y
 <h2 id="使用-git">使用 git<a class="headerlink" href="#使用-git" title="Permanent link"></a></h2>
 <div class="highlight"><pre><span></span><code>git clone https://github.com/peicd100/peicd100.github.io.git
 git init
-git commit -m &quot;first commit&quot;
+git commit -m "first commit"
 git branch -M main
 git remote add origin https://github.com/peicd100/peicd100.github.io.git
 git push -u origin main
@@ -6735,7 +6733,7 @@ git remote add origin https://github.com/peicd100/peicd100.github.io.git
 </code></pre></div>
 <h2 id="推送到main">推送到main<a class="headerlink" href="#推送到main" title="Permanent link"></a></h2>
 <div class="highlight"><pre><span></span><code>git add .
-git commit -m &quot;PEICD100&quot;
+git commit -m "PEICD100"
 git branch -M main
 git push -u origin main
 </code></pre></div>
@@ -6760,6 +6758,9 @@ git push -u origin main
 
 
 
+
+  
+  
 
 
 
@@ -6835,40 +6836,16 @@ git push -u origin main
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": ".", "features": ["navigation.footer", "navigation.indexes", "navigation.instant", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.tabs", "navigation.top", "announce.dismiss", "content.tabs.link", "search.share", "content.code.copy", "content.code.annotations", "content.action.edit", "content.action.view", "content.tooltips"], "search": "assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": ".", "features": ["navigation.footer", "navigation.indexes", "navigation.instant", "navigation.instant.progress", "navigation.tabs", "navigation.top", "announce.dismiss", "content.tabs.link", "search.share", "content.code.copy", "content.code.annotations", "content.action.edit", "content.action.view", "content.tooltips"], "search": "assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
+  <script src="assets/pymdownx-extras/search-lazy-guard.js?v=20260614-1"></script>
   
       <script src="assets/javascripts/bundle.79ae519e.min.js"></script>
       
-        <script src="https://unpkg.com/mermaid@10.6.1/dist/mermaid.min.js"></script>
-      
-        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-      
-        <script src="assets/pymdownx-extras/mermaid-config-override.js?v=20260523-1"></script>
-      
-        <script src="assets/pymdownx-extras/mermaid-legacy-flowchart-compat.js?v=20260329-1"></script>
-      
-        <script src="assets/pymdownx-extras/extra-loader-iLQ-keay.js"></script>
-      
-        <script src="assets/pymdownx-extras/mermaid-render-fix.js?v=20260522-1"></script>
-      
-        <script src="assets/pymdownx-extras/mermaid-zoom.js?v=20260404-1"></script>
-      
-        <script src="assets/pymdownx-extras/toc-fold.js"></script>
-      
-        <script src="assets/pymdownx-extras/image-zoom.js"></script>
-      
-        <script src="assets/pymdownx-extras/markdown-embed.js?v=20260516-1"></script>
-      
-        <script src="assets/pymdownx-extras/folder-path-bar.js?v=20260524-1"></script>
-      
-        <script src="assets/pymdownx-extras/legacy-image-width.js"></script>
-      
-        <script src="assets/pymdownx-extras/source-jump.js?v=20260523-2"></script>
+        <script src="assets/pymdownx-extras/conditional-loader.js?v=20260614-3"></script>
       
     
-  <script src="assets/pymdownx-extras/scroll-bottom.js?v=20260424-3" type="text/javascript"></script>
 
   </body>
 </html>

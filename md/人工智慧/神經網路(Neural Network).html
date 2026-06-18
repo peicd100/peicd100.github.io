@@ -44,8 +44,6 @@
     
 
       
-        <script src="https://unpkg.com/iframe-worker/shim"></script>
-      
     
 <script src="../../assets/pymdownx-extras/material-extra-theme-2ek1P7jT.js" type="text/javascript"></script>
 <script src="../../assets/pymdownx-extras/material-extra-3rdparty-BUCF4rjN.js" type="text/javascript"></script>
@@ -1956,7 +1954,7 @@
     
       <link rel="stylesheet" href="../../assets/pymdownx-extras/extra-8611f6c398.css">
     
-      <link rel="stylesheet" href="../../assets/pymdownx-extras/自定義.css?v=20260527-9">
+      <link rel="stylesheet" href="../../assets/pymdownx-extras/自定義.css?v=20260614-2">
     
     <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
@@ -7934,8 +7932,7 @@ is now available!
 <h2 id="神經元">神經元<a class="headerlink" href="#神經元" title="Permanent link"></a></h2>
 <h3 id="神經元是啥">神經元是啥<a class="headerlink" href="#神經元是啥" title="Permanent link"></a></h3>
 <!-- [來源](https://youtu.be/NhvEGSuCLHA?si=CQOXjPXYxL-1WDLz) -->
-
-<p><img alt="alt text" src="../images/%E7%A5%9E%E7%B6%93%E7%B6%B2%E8%B7%AF%28Neural%20Network%29/image-1.png" /><br />
+<p><img alt="alt text" decoding="async" src="../images/%E7%A5%9E%E7%B6%93%E7%B6%B2%E8%B7%AF%28Neural%20Network%29/image-1.png"/><br/>
 (圖片來源：<a href="https://simple.wikipedia.org/wiki/Neuron">維基百科</a>)</p>
 <ul>
 <li>Dendrites(樹突)：輸入資料</li>
@@ -7944,7 +7941,7 @@ is now available!
 </ul>
 <h3 id="線性神經元">線性神經元<a class="headerlink" href="#線性神經元" title="Permanent link"></a></h3>
 <p><a href="%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%28Machine%20Learning%29.html#線性模型">線性模型</a>其實就是神經元的應用，有兩個輸入，分別乘上兩個w後再經過激活函數，最後得到<span class="arithmatex">\(f(x)\)</span></p>
-<p><img alt="alt text" src="../images/%E7%A5%9E%E7%B6%93%E7%B6%B2%E8%B7%AF%28Neural%20Network%29/image-3.png" /></p>
+<p><img alt="alt text" decoding="async" loading="lazy" src="../images/%E7%A5%9E%E7%B6%93%E7%B6%B2%E8%B7%AF%28Neural%20Network%29/image-3.png"/></p>
 <p>若以<a href="%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%28Machine%20Learning%29.html#線性模型">線性模型</a>為例</p>
 <pre class="arithmatex">\[
 f(x) = w_1x_1 + w_2x_2 = w^T x
@@ -7962,7 +7959,7 @@ w^T \cdot x = \begin{bmatrix} 3 \\ -2 \end{bmatrix}
 <p>我們輸入了兩個數值，<span class="arithmatex">\(x_1\)</span>、<span class="arithmatex">\(x_2\)</span>，最後經過神經元運算得到結果 <span class="arithmatex">\(f(x)=8\)</span>。</p>
 <h3 id="非線性神經元">非線性神經元<a class="headerlink" href="#非線性神經元" title="Permanent link"></a></h3>
 <p>如果我們要讓神經元變成非線性，我們要加上<a href="#激活函數activation-function">激活函數</a>，如圖。</p>
-<p><img alt="alt text" src="../images/%E7%A5%9E%E7%B6%93%E7%B6%B2%E8%B7%AF%28Neural%20Network%29/image-4.png" /></p>
+<p><img alt="alt text" decoding="async" loading="lazy" src="../images/%E7%A5%9E%E7%B6%93%E7%B6%B2%E8%B7%AF%28Neural%20Network%29/image-4.png"/></p>
 <p>我們先假設<a href="#激活函數activation-function">激活函數</a>為 <span class="arithmatex">\(\sigma(x)\)</span>：</p>
 <pre class="arithmatex">\[
 \sigma(x) =
@@ -7994,9 +7991,9 @@ f(x)=\sigma(8)=1
 <blockquote>
 <p>也就是說，一個神經元可以劃出一條線，做一個二元分類。</p>
 </blockquote>
-<p><img alt="alt text" src="../images/%E7%A5%9E%E7%B6%93%E7%B6%B2%E8%B7%AF%28Neural%20Network%29/image-3-1.png" /></p>
+<p><img alt="alt text" decoding="async" loading="lazy" src="../images/%E7%A5%9E%E7%B6%93%E7%B6%B2%E8%B7%AF%28Neural%20Network%29/image-3-1.png"/></p>
 <h3 id="激活函數activation-function">激活函數(Activation function)<a class="headerlink" href="#激活函數activation-function" title="Permanent link"></a></h3>
-<p>我們要將線性函數轉換為非線性函數時，會使用到激活函數。<br />
+<p>我們要將線性函數轉換為非線性函數時，會使用到激活函數。<br/>
 以下介紹幾種常見激活函數：</p>
 <ul>
 <li><a href="#sign">Sign</a></li>
@@ -8004,15 +8001,15 @@ f(x)=\sigma(8)=1
 <li><a href="#relu">Relu</a></li>
 </ul>
 <h4 id="sign">Sign<a class="headerlink" href="#sign" title="Permanent link"></a></h4>
-<p>英文字 "Sign" 的意思是「符號」或「記號」，在數學中特指數值的「正」或「負」。<br />
+<p>英文字 "Sign" 的意思是「符號」或「記號」，在數學中特指數值的「正」或「負」。<br/>
 Sign 函數的核心功能是區分數值的符號屬性，並根據數值的符號返回對應的輸出。</p>
 <p>輸出值為 0 或 1</p>
-<p><img alt="alt text" src="../images/%E7%A5%9E%E7%B6%93%E7%B6%B2%E8%B7%AF%28Neural%20Network%29/images.png" width="50%" /><br />
+<p><img alt="alt text" decoding="async" loading="lazy" src="../images/%E7%A5%9E%E7%B6%93%E7%B6%B2%E8%B7%AF%28Neural%20Network%29/images.png" width="50%"/><br/>
 <a href="https://www.statisticshowto.com/sign-function/">圖片來源</a></p>
 <h4 id="sigmoid">Sigmoid<a class="headerlink" href="#sigmoid" title="Permanent link"></a></h4>
 <p>"Sigmoid" 來自拉丁語 "sigmoides"，意思是「類似於 S 的形狀」。</p>
 <p>輸出只有 0 ~ 1 之間，通常使用於機率。</p>
-<p><img alt="alt text" src="../images/%E7%A5%9E%E7%B6%93%E7%B6%B2%E8%B7%AF%28Neural%20Network%29/download.png" width="50%" /><br />
+<p><img alt="alt text" decoding="async" loading="lazy" src="../images/%E7%A5%9E%E7%B6%93%E7%B6%B2%E8%B7%AF%28Neural%20Network%29/download.png" width="50%"/><br/>
 <a href="https://en.wikipedia.org/wiki/Sigmoid_function">圖片來源</a></p>
 <h4 id="relu">Relu<a class="headerlink" href="#relu" title="Permanent link"></a></h4>
 <p>ReLU 是 Rectified Linear Unit 的縮寫，由三部分組成：</p>
@@ -8021,20 +8018,20 @@ Sign 函數的核心功能是區分數值的符號屬性，並根據數值的符
 <li>Linear：表示當輸入為正值時，輸出的關係是線性的（即輸入值直接作為輸出值）。</li>
 <li>Unit：源自神經網路的術語，指代「神經元單元」。</li>
 </ul>
-<p><img alt="alt text" src="../images/%E7%A5%9E%E7%B6%93%E7%B6%B2%E8%B7%AF%28Neural%20Network%29/download-1.png" width="50%" /><br />
+<p><img alt="alt text" decoding="async" loading="lazy" src="../images/%E7%A5%9E%E7%B6%93%E7%B6%B2%E8%B7%AF%28Neural%20Network%29/download-1.png" width="50%"/><br/>
 <a href="https://www.researchgate.net/figure/Graphic-representation-of-the-ReLU-activation-function_fig3_348703101">圖片來源</a></p>
 <h2 id="多層神經元">多層神經元<a class="headerlink" href="#多層神經元" title="Permanent link"></a></h2>
-<p>剛剛提到，神經元可以劃出一條線進進行二元分類。<br />
-那我們看到下圖，這種情況該怎麼辦？<br />
+<p>剛剛提到，神經元可以劃出一條線進進行二元分類。<br/>
+那我們看到下圖，這種情況該怎麼辦？<br/>
 我們希望畫出一條線分開藍點與紅點，但是我們似乎無法用一條線做到，不管是紅線和綠線都沒辦法一次分開。</p>
-<p><img alt="alt text" src="../images/%E7%A5%9E%E7%B6%93%E7%B6%B2%E8%B7%AF%28Neural%20Network%29/image-6.png" /></p>
-<p>但是如果我們畫出兩條線，看看點是不是在兩條線之間(紅色與綠色重疊區域)就可以判斷出藍色點，如下圖。<br />
+<p><img alt="alt text" decoding="async" loading="lazy" src="../images/%E7%A5%9E%E7%B6%93%E7%B6%B2%E8%B7%AF%28Neural%20Network%29/image-6.png"/></p>
+<p>但是如果我們畫出兩條線，看看點是不是在兩條線之間(紅色與綠色重疊區域)就可以判斷出藍色點，如下圖。<br/>
 也就是說符合「<span class="arithmatex">\(3x-y&gt;0\)</span>、<span class="arithmatex">\(-3x+2y+3&gt;0\)</span>」就算是藍色點。</p>
-<p><img alt="alt text" src="../images/%E7%A5%9E%E7%B6%93%E7%B6%B2%E8%B7%AF%28Neural%20Network%29/image-16.png" /></p>
-<p>這樣子我們畫出了兩條線，也就是說我們使用了不只一個神經元。<br />
-我們以 <span class="arithmatex">\(x=(4,8)\)</span> 為例，下圖為三個神經元及計算過程：<br />
+<p><img alt="alt text" decoding="async" loading="lazy" src="../images/%E7%A5%9E%E7%B6%93%E7%B6%B2%E8%B7%AF%28Neural%20Network%29/image-16.png"/></p>
+<p>這樣子我們畫出了兩條線，也就是說我們使用了不只一個神經元。<br/>
+我們以 <span class="arithmatex">\(x=(4,8)\)</span> 為例，下圖為三個神經元及計算過程：<br/>
 最後計算出來是 1，就代表點被歸類為藍色。</p>
-<p><img alt="alt text" src="../images/%E7%A5%9E%E7%B6%93%E7%B6%B2%E8%B7%AF%28Neural%20Network%29/image-17.png" /></p>
+<p><img alt="alt text" decoding="async" loading="lazy" src="../images/%E7%A5%9E%E7%B6%93%E7%B6%B2%E8%B7%AF%28Neural%20Network%29/image-17.png"/></p>
 <p>我們寫成數學式：</p>
 <pre class="arithmatex">\[
 w_1^T = \begin{bmatrix} 3 \\ -1 \end{bmatrix} , \quad
@@ -8048,42 +8045,42 @@ f_2(x) =  w_2^T x +3
 <pre class="arithmatex">\[
 g(x) =  sign(f_1(x)+f_2(x)) = 1
 \]</pre>
-<p>這樣我們就成功使用多層神經元做比較困難的事。<br />
+<p>這樣我們就成功使用多層神經元做比較困難的事。<br/>
 從這邊我們就可以理解，遇到要畫圓圈時，我們只要用很多神經元，畫出超多條線就好。</p>
-<p><img alt="alt text" src="../images/%E7%A5%9E%E7%B6%93%E7%B6%B2%E8%B7%AF%28Neural%20Network%29/image-18.png" /></p>
+<p><img alt="alt text" decoding="async" loading="lazy" src="../images/%E7%A5%9E%E7%B6%93%E7%B6%B2%E8%B7%AF%28Neural%20Network%29/image-18.png"/></p>
 <p>而我們最後我們決定好的神經結構，就是<a href="%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%28Machine%20Learning%29.html#假設集合-hypothesis-set">假設集合</a>，如下圖，而<a href="%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%28Machine%20Learning%29.html#學習演算法">學習演算法</a>要挑選出最適合的參數(<span class="arithmatex">\(w\)</span>)。</p>
 <h2 id="多層神經元的計算">多層神經元的計算<a class="headerlink" href="#多層神經元的計算" title="Permanent link"></a></h2>
-<p>接下來我們要來理解如何計算多層神經元。<br />
+<p>接下來我們要來理解如何計算多層神經元。<br/>
 從前面的二維神經元例子，我們可以整理出：</p>
-<p><img alt="alt text" src="../images/%E7%A5%9E%E7%B6%93%E7%B6%B2%E8%B7%AF%28Neural%20Network%29/image-24.png" /><br />
+<p><img alt="alt text" decoding="async" loading="lazy" src="../images/%E7%A5%9E%E7%B6%93%E7%B6%B2%E8%B7%AF%28Neural%20Network%29/image-24.png"/><br/>
 圖一：前面的二維神經元例子</p>
-<p><img alt="alt text" src="../images/%E7%A5%9E%E7%B6%93%E7%B6%B2%E8%B7%AF%28Neural%20Network%29/image-37.png" /><br />
+<p><img alt="alt text" decoding="async" loading="lazy" src="../images/%E7%A5%9E%E7%B6%93%E7%B6%B2%E8%B7%AF%28Neural%20Network%29/image-37.png"/><br/>
 圖二：前面的二維神經元例子的整理</p>
 <p>分別說明</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="1:5"><input checked="checked" id="多層神經元的計算-x_ik" name="__tabbed_1" type="radio" /><input id="多層神經元的計算-l_i" name="__tabbed_1" type="radio" /><input id="多層神經元的計算-σ_ik" name="__tabbed_1" type="radio" /><input id="多層神經元的計算-w_ik" name="__tabbed_1" type="radio" /><input id="多層神經元的計算-b_ik" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="多層神經元的計算-x_ik"><span class="arithmatex">\(x_{(i,k)}\)</span></label><label for="多層神經元的計算-l_i"><span class="arithmatex">\(L_{i}\)</span></label><label for="多層神經元的計算-σ_ik"><span class="arithmatex">\(σ_{(i,k)}\)</span></label><label for="多層神經元的計算-w_ik"><span class="arithmatex">\(w_{(i,k)}\)</span></label><label for="多層神經元的計算-b_ik"><span class="arithmatex">\(b_{(i,k)}\)</span></label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:5"><input checked="checked" id="多層神經元的計算-x_ik" name="__tabbed_1" type="radio"/><input id="多層神經元的計算-l_i" name="__tabbed_1" type="radio"/><input id="多層神經元的計算-σ_ik" name="__tabbed_1" type="radio"/><input id="多層神經元的計算-w_ik" name="__tabbed_1" type="radio"/><input id="多層神經元的計算-b_ik" name="__tabbed_1" type="radio"/><div class="tabbed-labels"><label for="多層神經元的計算-x_ik"><span class="arithmatex">\(x_{(i,k)}\)</span></label><label for="多層神經元的計算-l_i"><span class="arithmatex">\(L_{i}\)</span></label><label for="多層神經元的計算-σ_ik"><span class="arithmatex">\(σ_{(i,k)}\)</span></label><label for="多層神經元的計算-w_ik"><span class="arithmatex">\(w_{(i,k)}\)</span></label><label for="多層神經元的計算-b_ik"><span class="arithmatex">\(b_{(i,k)}\)</span></label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <p>第 <span class="arithmatex">\(i\)</span> 層第 <span class="arithmatex">\(k\)</span> 個神經元的輸出</p>
 </div>
 <div class="tabbed-block">
-<p>第 <span class="arithmatex">\(i\)</span> 層(Layer)的全部輸出<br />
+<p>第 <span class="arithmatex">\(i\)</span> 層(Layer)的全部輸出<br/>
 也就是所有的 <span class="arithmatex">\(x_{(i,k)}\)</span> 組成的矩陣</p>
 </div>
 <div class="tabbed-block">
 <p>第 <span class="arithmatex">\(i\)</span> 層的第 <span class="arithmatex">\(k\)</span> 個神經元所使用的<a href="#激活函數activation-function">激活函數(Activation function)</a></p>
 </div>
 <div class="tabbed-block">
-<p>第 <span class="arithmatex">\(i\)</span> 層的第 <span class="arithmatex">\(k\)</span> 個神經元的各個權重所組成的矩陣 <span class="arithmatex">\(w\)</span>。<br />
+<p>第 <span class="arithmatex">\(i\)</span> 層的第 <span class="arithmatex">\(k\)</span> 個神經元的各個權重所組成的矩陣 <span class="arithmatex">\(w\)</span>。<br/>
 以範例的「<span class="arithmatex">\(-3+2+3=0\)</span>」的紅色線條為例：<span class="arithmatex">\(w = \begin{bmatrix} -3 &amp; 2 \end{bmatrix}\)</span>。</p>
 </div>
 <div class="tabbed-block">
-<p>第 <span class="arithmatex">\(i\)</span> 層的第 <span class="arithmatex">\(k\)</span> 個神經元的偏移量。<br />
+<p>第 <span class="arithmatex">\(i\)</span> 層的第 <span class="arithmatex">\(k\)</span> 個神經元的偏移量。<br/>
 以範例的「<span class="arithmatex">\(-3+2+3=0\)</span>」的紅色線條為例，<span class="arithmatex">\(b = 3\)</span>。</p>
 </div>
 </div>
 </div>
 <p>我們以二維作為例子，但是實際上不一定是二維，可能很多維，假設有 <span class="arithmatex">\(n\)</span> 維，如圖。</p>
-<p><img alt="alt text" src="../images/%E7%A5%9E%E7%B6%93%E7%B6%B2%E8%B7%AF%28Neural%20Network%29/image-38.png" /></p>
+<p><img alt="alt text" decoding="async" loading="lazy" src="../images/%E7%A5%9E%E7%B6%93%E7%B6%B2%E8%B7%AF%28Neural%20Network%29/image-38.png"/></p>
 <p>公式：</p>
 <pre class="arithmatex">\[
 L_{i+1} = 
@@ -8093,22 +8090,22 @@ L_{i+1} =
 \end{bmatrix}
 \]</pre>
 <p>當然，每一層的數量也不一定一樣，如圖：</p>
-<p><img alt="alt text" src="../images/%E7%A5%9E%E7%B6%93%E7%B6%B2%E8%B7%AF%28Neural%20Network%29/image-28.png" /></p>
+<p><img alt="alt text" decoding="async" loading="lazy" src="../images/%E7%A5%9E%E7%B6%93%E7%B6%B2%E8%B7%AF%28Neural%20Network%29/image-28.png"/></p>
 <h3 id="回歸問題regression-problem">回歸問題(Regression Problem)<a class="headerlink" href="#回歸問題regression-problem" title="Permanent link"></a></h3>
-<p>在多層神經元要處裡回歸問題時，輸出的會是實數，代表可能是房價或是某數字。<br />
+<p>在多層神經元要處裡回歸問題時，輸出的會是實數，代表可能是房價或是某數字。<br/>
 這時我們的最後一層只需要一個神經元，而這個神經元不需要激活函數，直接輸出一個數字即可，如圖， <span class="arithmatex">\(L_m\)</span> 為 <span class="arithmatex">\(1 \times m\)</span> 的矩陣。</p>
-<p><img alt="alt text" src="../images/%E7%A5%9E%E7%B6%93%E7%B6%B2%E8%B7%AF%28Neural%20Network%29/image-39.png" /></p>
+<p><img alt="alt text" decoding="async" loading="lazy" src="../images/%E7%A5%9E%E7%B6%93%E7%B6%B2%E8%B7%AF%28Neural%20Network%29/image-39.png"/></p>
 <h3 id="分類問題classification-problem">分類問題(Classification Problem)<a class="headerlink" href="#分類問題classification-problem" title="Permanent link"></a></h3>
 <p>在分類問題時，會使用<a href="#softmax函數"> <span class="arithmatex">\(Softmax\)</span> 函數</a>將最後一層的神經元輸出矩陣轉換為機率分布(總和為1)，如圖：</p>
-<p><img alt="alt text" src="../images/%E7%A5%9E%E7%B6%93%E7%B6%B2%E8%B7%AF%28Neural%20Network%29/image-40.png" /></p>
-<p>所以如果最後一層為 <span class="arithmatex">\(L_m=[1,2,5,3,4]\)</span> ，輸出如圖：<br />
+<p><img alt="alt text" decoding="async" loading="lazy" src="../images/%E7%A5%9E%E7%B6%93%E7%B6%B2%E8%B7%AF%28Neural%20Network%29/image-40.png"/></p>
+<p>所以如果最後一層為 <span class="arithmatex">\(L_m=[1,2,5,3,4]\)</span> ，輸出如圖：<br/>
 可以看到，假設輸入了一張圖片，如果第三個神經元代表貓，結果顯示「該圖片為貓的機率最高」。</p>
-<p><img alt="alt text" src="../images/%E7%A5%9E%E7%B6%93%E7%B6%B2%E8%B7%AF%28Neural%20Network%29/image-35.png" /></p>
+<p><img alt="alt text" decoding="async" loading="lazy" src="../images/%E7%A5%9E%E7%B6%93%E7%B6%B2%E8%B7%AF%28Neural%20Network%29/image-35.png"/></p>
 <h4 id="softmax函數">Softmax函數<a class="headerlink" href="#softmax函數" title="Permanent link"></a></h4>
 <pre class="arithmatex">\[
 Softma𝑥(\mathbf{x_i}) = \frac{e^{x_i}}{\sum^n_j e^{x_j}} = \frac{e^{-m}}{e^{-m}} \frac{e^{x_i}}{\sum^n_j e^{x_j}} = \frac{e^{x_i - m}}{\sum^n_j e^{x_j - m}}
 \]</pre>
-<div class="tabbed-set tabbed-alternate" data-tabs="2:5"><input checked="checked" id="softmax函數-x" name="__tabbed_2" type="radio" /><input id="softmax函數-e" name="__tabbed_2" type="radio" /><input id="softmax函數-x_i" name="__tabbed_2" type="radio" /><input id="softmax函數-m" name="__tabbed_2" type="radio" /><input id="softmax函數-n" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="softmax函數-x">x</label><label for="softmax函數-e"><span class="arithmatex">\(e\)</span></label><label for="softmax函數-x_i"><span class="arithmatex">\(x_i\)</span></label><label for="softmax函數-m">m</label><label for="softmax函數-n">n</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:5"><input checked="checked" id="softmax函數-x" name="__tabbed_2" type="radio"/><input id="softmax函數-e" name="__tabbed_2" type="radio"/><input id="softmax函數-x_i" name="__tabbed_2" type="radio"/><input id="softmax函數-m" name="__tabbed_2" type="radio"/><input id="softmax函數-n" name="__tabbed_2" type="radio"/><div class="tabbed-labels"><label for="softmax函數-x">x</label><label for="softmax函數-e"><span class="arithmatex">\(e\)</span></label><label for="softmax函數-x_i"><span class="arithmatex">\(x_i\)</span></label><label for="softmax函數-m">m</label><label for="softmax函數-n">n</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <p>所有最後一層的神經元輸出組成的矩陣，如：<span class="arithmatex">\(x=[1,2,5,3,4]\)</span></p>
@@ -8130,12 +8127,13 @@ Softma𝑥(\mathbf{x_i}) = \frac{e^{x_i}}{\sum^n_j e^{x_j}} = \frac{e^{-m}}{e^{-
 <div class="i">
 <p>假設 <span class="arithmatex">\(L_m=\)</span> (你可以更改以下數字)</p>
 <!DOCTYPE html>
+
 <html lang="zh-Hant">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<style>
         .input-container {
             display: flex;
             gap: 10px;
@@ -8175,29 +8173,26 @@ Softma𝑥(\mathbf{x_i}) = \frac{e^{x_i}}{\sum^n_j e^{x_j}} = \frac{e^{-m}}{e^{-
     </style>
 </head>
 <body>
-    <div class="input-container">
-        <p>[</p>
-        <input type="number" id="num1" value="1">
-        <p>,</p>
-        <input type="number" id="num2" value="2">
-        <p>,</p>
-        <input type="number" id="num3" value="5">
-        <p>,</p>
-        <input type="number" id="num4" value="3">
-        <p>,</p>
-        <input type="number" id="num5" value="4">
-        <p>]</p>
-    </div>
-
-    <!-- 圖表容器 -->
-    <div id="chart-container">
-        <canvas id="probabilityChart"></canvas>
-    </div>
-
-    <!-- 計算過程輸出 -->
-    <p id="output"></p>
-
-    <script>
+<div class="input-container">
+<p>[</p>
+<input id="num1" type="number" value="1"/>
+<p>,</p>
+<input id="num2" type="number" value="2"/>
+<p>,</p>
+<input id="num3" type="number" value="5"/>
+<p>,</p>
+<input id="num4" type="number" value="3"/>
+<p>,</p>
+<input id="num5" type="number" value="4"/>
+<p>]</p>
+</div>
+<!-- 圖表容器 -->
+<div id="chart-container">
+<canvas id="probabilityChart"></canvas>
+</div>
+<!-- 計算過程輸出 -->
+<p id="output"></p>
+<script>
         let chart; // 用於存儲圖表實例
 
         // Softmax 計算函數
@@ -8306,7 +8301,7 @@ Softma𝑥(\mathbf{x_i}) = \frac{e^{x_i}}{\sum^n_j e^{x_j}} = \frac{e^{-m}}{e^{-
 <p>(內容消失時請重新整理或按下f5)</p>
 </div>
 <h2 id="損失函數">損失函數<a class="headerlink" href="#損失函數" title="Permanent link"></a></h2>
-<p>我們要告訴人工智慧他找到的假設到底好不好，所以我們需要一個「評分標準」，被稱為損失函數。<br />
+<p>我們要告訴人工智慧他找到的假設到底好不好，所以我們需要一個「評分標準」，被稱為損失函數。<br/>
 損失函數通常是計算「模型輸出」與「標籤(正確答案)」的差異程度，損失函數值越高，代表差異越大。</p>
 <p>回歸問題的損失函數：</p>
 <ul>
@@ -8371,14 +8366,14 @@ L(y, \hat{y}) =
 <pre class="arithmatex">\[
 L(y, \hat{y}) = [0, 1, 1]
 \]</pre>
-<p>解釋：<br />
-<span class="arithmatex">\(y_1 = \hat{y_1}\)</span> 沒有損失，得到0分<br />
-<span class="arithmatex">\(y_2 \neq \hat{y_2}\)</span> 有損失，得到1分<br />
-<span class="arithmatex">\(y_3 \neq \hat{y_3}\)</span> 有損失，得到1分<br />
+<p>解釋：<br/>
+<span class="arithmatex">\(y_1 = \hat{y_1}\)</span> 沒有損失，得到0分<br/>
+<span class="arithmatex">\(y_2 \neq \hat{y_2}\)</span> 有損失，得到1分<br/>
+<span class="arithmatex">\(y_3 \neq \hat{y_3}\)</span> 有損失，得到1分<br/>
 共2分</p>
 <h4 id="negative-log-likelihoodnll">Negative Log-Likelihood(NLL)<a class="headerlink" href="#negative-log-likelihoodnll" title="Permanent link"></a></h4>
 <p>根據標籤和輸出的機率計算損失函數。</p>
-<p>假設模型是輸入一張圖片，要判斷動物。<br />
+<p>假設模型是輸入一張圖片，要判斷動物。<br/>
 標籤使用 one-hot vector 的形式，正確答案的動物種類為 1 ，其餘為 0 。</p>
 <pre class="arithmatex">\[
 標籤：y =[ y_1 , y_2 , \cdots , y_n ]
@@ -8392,7 +8387,7 @@ L(y, \hat{y}) = [0, 1, 1]
 \text{NLL} = - \sum_{i=1}^k y_i \log P(c_i | x)
 \]</pre>
 <p>公式解釋：</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="3:3"><input checked="checked" id="negative-log-likelihoodnll-c_i" name="__tabbed_3" type="radio" /><input id="negative-log-likelihoodnll-pc_i--x" name="__tabbed_3" type="radio" /><input id="negative-log-likelihoodnll-y_i" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="negative-log-likelihoodnll-c_i"><span class="arithmatex">\(c_i\)</span></label><label for="negative-log-likelihoodnll-pc_i--x"><span class="arithmatex">\(P(c_i | x)\)</span></label><label for="negative-log-likelihoodnll-y_i"><span class="arithmatex">\(y_i\)</span></label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="3:3"><input checked="checked" id="negative-log-likelihoodnll-c_i" name="__tabbed_3" type="radio"><input id="negative-log-likelihoodnll-pc_i--x" name="__tabbed_3" type="radio"><input id="negative-log-likelihoodnll-y_i" name="__tabbed_3" type="radio"><div class="tabbed-labels"><label for="negative-log-likelihoodnll-c_i"><span class="arithmatex">\(c_i\)</span></label><label for="negative-log-likelihoodnll-pc_i--x"><span class="arithmatex">\(P(c_i | x)\)</span></label><label for="negative-log-likelihoodnll-y_i"><span class="arithmatex">\(y_i\)</span></label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <p>所有可能的動物中的第 i 種動物。</p>
@@ -8404,7 +8399,7 @@ L(y, \hat{y}) = [0, 1, 1]
 <p>標籤（one-hot vector）的第 i 項，表示真實答案(標籤)是否為第 i 種，是的話就是 1 不是的話就是 0 。</p>
 </div>
 </div>
-</div>
+</input></input></input></div>
 <p>計算範例(無條件捨去至小數第三位)：</p>
 <pre class="arithmatex">\[
 標籤：y =[ 0 , 0 , 1 , 0 , 0 ] 
@@ -8435,7 +8430,7 @@ NLL &amp;= -(0*\log 0.011 + 1*\log 0.031 + 0*\log 0.636 + 0*\log 0.086 + 0*\log 
 \]</pre>
 <p>可以看到損失變大了</p>
 <h2 id="梯度下降演算法">梯度下降演算法<a class="headerlink" href="#梯度下降演算法" title="Permanent link"></a></h2>
-<p>有了損失函數之後，我們訓練的目標就顯而易見了：「讓模型的 loss 越低越好」<br />
+<p>有了損失函數之後，我們訓練的目標就顯而易見了：「讓模型的 loss 越低越好」<br/>
 這時可以把機器學習看成一個最佳化問題：「模型的參數如何選擇時，可以得到最低的 loss，讓預測結果最接近真實答案」</p>
 <h3 id="一元函數梯度下降演算法">一元函數梯度下降演算法<a class="headerlink" href="#一元函數梯度下降演算法" title="Permanent link"></a></h3>
 <p>為了解釋梯度下降演算法，我們先理解他的運作原理，我們用一個簡單的例子：</p>
@@ -8443,9 +8438,9 @@ NLL &amp;= -(0*\log 0.011 + 1*\log 0.031 + 0*\log 0.636 + 0*\log 0.086 + 0*\log 
 <p>不管輸入及輸出， loss function 為 <span class="arithmatex">\(loss=x^2\)</span> ，我們要如何找出最好的 x 讓 loss 最小。</p>
 </blockquote>
 <p>我們將 <span class="arithmatex">\(loss=x^2\)</span> 的圖形畫出來：</p>
-<p><img alt="alt text" src="../images/%E7%A5%9E%E7%B6%93%E7%B6%B2%E8%B7%AF%28Neural%20Network%29/image-42.png" /></p>
+<p><img alt="alt text" decoding="async" loading="lazy" src="../images/%E7%A5%9E%E7%B6%93%E7%B6%B2%E8%B7%AF%28Neural%20Network%29/image-42.png"/></p>
 <p>顯而易見，我們要找出圖形中的極小值(最小的數值)，也就是最小的 <span class="arithmatex">\(loss(y)\)</span>，答案是：「<span class="arithmatex">\(x\)</span> 為 <span class="arithmatex">\(0\)</span> 時，有極小值 <span class="arithmatex">\(loss(y)\)</span> 為 <span class="arithmatex">\(0\)</span>」</p>
-<p>你可能會想說為何不直接微分 <span class="arithmatex">\([x^2]'=2x\)</span> ，得到 <span class="arithmatex">\(x\)</span> 為 <span class="arithmatex">\(0\)</span> 時有極小值。<br />
+<p>你可能會想說為何不直接微分 <span class="arithmatex">\([x^2]'=2x\)</span> ，得到 <span class="arithmatex">\(x\)</span> 為 <span class="arithmatex">\(0\)</span> 時有極小值。<br/>
 那是因為現在的函數為<a href="#一元函數-univariate-function">一元函數</a>，若為<a href="#多元函數-multivariate-function">多元函數</a>便無法做到。</p>
 <p>若使用梯度下降演算法，可以使用於夠複雜的<a href="#多元函數-multivariate-function">多元函數</a>，而我們現在先舉例<a href="#一元函數-univariate-function">一元函數</a>就好。</p>
 <h4 id="數學式">數學式<a class="headerlink" href="#數學式" title="Permanent link"></a></h4>
@@ -8454,7 +8449,7 @@ NLL &amp;= -(0*\log 0.011 + 1*\log 0.031 + 0*\log 0.636 + 0*\log 0.086 + 0*\log 
 \theta_{i+1} := \theta_i - η \nabla_\theta f(\theta)
 \]</pre>
 <p>解釋：</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="4:4"><input checked="checked" id="數學式-theta_i1" name="__tabbed_4" type="radio" /><input id="數學式-theta_i" name="__tabbed_4" type="radio" /><input id="數學式-η" name="__tabbed_4" type="radio" /><input id="數學式-nabla_theta-ftheta" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="數學式-theta_i1"><span class="arithmatex">\(\theta_{i+1}\)</span></label><label for="數學式-theta_i"><span class="arithmatex">\(\theta_i\)</span></label><label for="數學式-η"><span class="arithmatex">\(η\)</span></label><label for="數學式-nabla_theta-ftheta"><span class="arithmatex">\(\nabla_\theta f(\theta)\)</span></label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="4:4"><input checked="checked" id="數學式-theta_i1" name="__tabbed_4" type="radio"><input id="數學式-theta_i" name="__tabbed_4" type="radio"><input id="數學式-η" name="__tabbed_4" type="radio"/><input id="數學式-nabla_theta-ftheta" name="__tabbed_4" type="radio"/><div class="tabbed-labels"><label for="數學式-theta_i1"><span class="arithmatex">\(\theta_{i+1}\)</span></label><label for="數學式-theta_i"><span class="arithmatex">\(\theta_i\)</span></label><label for="數學式-η"><span class="arithmatex">\(η\)</span></label><label for="數學式-nabla_theta-ftheta"><span class="arithmatex">\(\nabla_\theta f(\theta)\)</span></label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <p>更新後的參數值，也就是在第 <span class="arithmatex">\(i+1\)</span> 次迭代後的參數。</p>
@@ -8469,13 +8464,13 @@ NLL &amp;= -(0*\log 0.011 + 1*\log 0.031 + 0*\log 0.636 + 0*\log 0.086 + 0*\log 
 <p>損失函數 <span class="arithmatex">\(f(\theta)\)</span> 相對於參數 <span class="arithmatex">\(\theta\)</span> 的梯度。</p>
 </div>
 </div>
-</div>
+</input></input></div>
 <p>我們針對現在的 loss function( <span class="arithmatex">\(loss=x^2\)</span> ) 寫一個更好懂的數學式：</p>
 <pre class="arithmatex">\[
 x_{new} := x - η f'(x)
 \]</pre>
 <p>解釋：</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="5:4"><input checked="checked" id="數學式-x_new" name="__tabbed_5" type="radio" /><input id="數學式-x" name="__tabbed_5" type="radio" /><input id="數學式-η_1" name="__tabbed_5" type="radio" /><input id="數學式-fx" name="__tabbed_5" type="radio" /><div class="tabbed-labels"><label for="數學式-x_new"><span class="arithmatex">\(x_{new}\)</span></label><label for="數學式-x"><span class="arithmatex">\(x\)</span></label><label for="數學式-η_1"><span class="arithmatex">\(η\)</span></label><label for="數學式-fx"><span class="arithmatex">\(f'(x)\)</span></label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="5:4"><input checked="checked" id="數學式-x_new" name="__tabbed_5" type="radio"/><input id="數學式-x" name="__tabbed_5" type="radio"/><input id="數學式-η_1" name="__tabbed_5" type="radio"/><input id="數學式-fx" name="__tabbed_5" type="radio"/><div class="tabbed-labels"><label for="數學式-x_new"><span class="arithmatex">\(x_{new}\)</span></label><label for="數學式-x"><span class="arithmatex">\(x\)</span></label><label for="數學式-η_1"><span class="arithmatex">\(η\)</span></label><label for="數學式-fx"><span class="arithmatex">\(f'(x)\)</span></label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <p>更新之後的x數值。</p>
@@ -8494,22 +8489,22 @@ x_{new} := x - η f'(x)
 <p>接下來我們提出幾個問題</p>
 <ol>
 <li>
-<p>為何算式中有 f'(x)<br />
-<span class="arithmatex">\(f'(x)\)</span>代表斜率。<br />
-斜率為正時，代表在 <span class="arithmatex">\(x\)</span> 附近遞增，便意味著若要讓 <span class="arithmatex">\(f(x)\)</span> 減少(下降)，<span class="arithmatex">\(x\)</span> 就要往負的地方移動，也就是把 <span class="arithmatex">\(x\)</span> 減去 <span class="arithmatex">\(f'(x)\)</span> 。<br />
+<p>為何算式中有 f'(x)<br/>
+<span class="arithmatex">\(f'(x)\)</span>代表斜率。<br/>
+斜率為正時，代表在 <span class="arithmatex">\(x\)</span> 附近遞增，便意味著若要讓 <span class="arithmatex">\(f(x)\)</span> 減少(下降)，<span class="arithmatex">\(x\)</span> 就要往負的地方移動，也就是把 <span class="arithmatex">\(x\)</span> 減去 <span class="arithmatex">\(f'(x)\)</span> 。<br/>
 若斜率為負則反之。</p>
 </li>
 <li>
-<p>為何要使用學習率<br />
-假設原本 <span class="arithmatex">\(x\)</span> 是 <span class="arithmatex">\(10\)</span>，<span class="arithmatex">\(f(x)=x^2\)</span>，<span class="arithmatex">\(f'(x)=2x\)</span>。<br />
-第一次更新： <span class="arithmatex">\(-10 = 10-2*10\)</span><br />
-第二次更新： <span class="arithmatex">\(10 = -10 - 2*(-10)\)</span><br />
-第三次更新： <span class="arithmatex">\(-10 = 10-2*10\)</span><br />
-第四次更新： <span class="arithmatex">\(10 = -10 - 2*(-10)\)</span><br />
-可以發現，這樣會一直循環沒有結果，我們可以試著在更新越多次時，每次走的更少，所增加了學習率：<br />
-第一次更新： <span class="arithmatex">\(-6 = 10 - 0.8*2*10\)</span><br />
-第二次更新： <span class="arithmatex">\(4 = -6 - 0.8*2*(-6)\)</span><br />
-第三次更新： <span class="arithmatex">\(-2 = 4 - 0.8*2*4\)</span><br />
+<p>為何要使用學習率<br/>
+假設原本 <span class="arithmatex">\(x\)</span> 是 <span class="arithmatex">\(10\)</span>，<span class="arithmatex">\(f(x)=x^2\)</span>，<span class="arithmatex">\(f'(x)=2x\)</span>。<br/>
+第一次更新： <span class="arithmatex">\(-10 = 10-2*10\)</span><br/>
+第二次更新： <span class="arithmatex">\(10 = -10 - 2*(-10)\)</span><br/>
+第三次更新： <span class="arithmatex">\(-10 = 10-2*10\)</span><br/>
+第四次更新： <span class="arithmatex">\(10 = -10 - 2*(-10)\)</span><br/>
+可以發現，這樣會一直循環沒有結果，我們可以試著在更新越多次時，每次走的更少，所增加了學習率：<br/>
+第一次更新： <span class="arithmatex">\(-6 = 10 - 0.8*2*10\)</span><br/>
+第二次更新： <span class="arithmatex">\(4 = -6 - 0.8*2*(-6)\)</span><br/>
+第三次更新： <span class="arithmatex">\(-2 = 4 - 0.8*2*4\)</span><br/>
 這樣就不會鬼牆了</p>
 </li>
 </ol>
@@ -8521,14 +8516,15 @@ x_{new} := x - η f'(x)
 <h4 id="模擬">模擬<a class="headerlink" href="#模擬" title="Permanent link"></a></h4>
 <div class="i">
 <p>你可以更改以下數字(初始值不可更改)，你可以從「最大迭代次數 (max iterations)=0」開始，慢慢增加迭代次數，看看迭代過程。</p>
-<hr />
+<hr/>
 <!DOCTYPE html>
+
 <html lang="zh-Hant">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<style>
         .input-container {
             display: flex;
             flex-wrap: wrap;
@@ -8564,35 +8560,32 @@ x_{new} := x - η f'(x)
     </style>
 </head>
 <body>
-    <div class="input-container">
-        <div>
-            <label>初始值 (x): 10</label>
-        </div>
-        <div>
-            <label>學習率 (learning rate): <input type="number" id="learningRate" value="0.7" step="0.1"></label>
-        </div>
-        <div>
-            <label>最大迭代次數 (max iterations): <input type="number" id="maxIterations" value="50" step="1"></label>
-        </div>
-        <div>
-            <label>收斂條件 (tolerance): <input type="number" id="tolerance" value="0.1" step="0.01"></label>
-        </div>
-    </div>
-
-    <!-- 圖表區域 -->
-    <div class="chart-container">
-        <canvas id="gradientChart"></canvas>
-    </div>
-    <div class="chart-container">
-        <canvas id="lossChart"></canvas>
-    </div>
-    <div class="chart-container">
-        <canvas id="xChart"></canvas>
-    </div>
-
-    <p id="gradientOutput"></p>
-
-    <script>
+<div class="input-container">
+<div>
+<label>初始值 (x): 10</label>
+</div>
+<div>
+<label>學習率 (learning rate): <input id="learningRate" step="0.1" type="number" value="0.7"/></label>
+</div>
+<div>
+<label>最大迭代次數 (max iterations): <input id="maxIterations" step="1" type="number" value="50"/></label>
+</div>
+<div>
+<label>收斂條件 (tolerance): <input id="tolerance" step="0.01" type="number" value="0.1"/></label>
+</div>
+</div>
+<!-- 圖表區域 -->
+<div class="chart-container">
+<canvas id="gradientChart"></canvas>
+</div>
+<div class="chart-container">
+<canvas id="lossChart"></canvas>
+</div>
+<div class="chart-container">
+<canvas id="xChart"></canvas>
+</div>
+<p id="gradientOutput"></p>
+<script>
         let lossChart, xChart, gradientChart;
 
         // 定義損失函數和梯度
@@ -8760,7 +8753,6 @@ x_{new} := x - η f'(x)
     </script>
 </body>
 </html>
-
 <p>(內容消失時請重新整理或按下f5)</p>
 </div>
 <p>這個例子和實際的梯度下降演算法還是有一些差異喔！！</p>
@@ -8780,10 +8772,10 @@ x_{new} := x - η f'(x)
 <li><span class="arithmatex">\( f(x, y, z) = x + y + z \)</span></li>
 </ul>
 <h3 id="多元函數梯度下降演算法">多元函數梯度下降演算法<a class="headerlink" href="#多元函數梯度下降演算法" title="Permanent link"></a></h3>
-<p>有了損失函數之後，我們訓練的目標就顯而易見了：「讓模型的 loss 越低越好」<br />
+<p>有了損失函數之後，我們訓練的目標就顯而易見了：「讓模型的 loss 越低越好」<br/>
 這時可以把機器學習看成一個最佳化問題：「模型的參數為多少時，可以得到最低的 loss」</p>
 <p>我們假設損失函數為 <a href="#msel2-loss">L2 loss</a> ，看看如何執行梯度下降演算法，模型如下圖。</p>
-<p><img alt="alt text" src="../images/%E7%A5%9E%E7%B6%93%E7%B6%B2%E8%B7%AF%28Neural%20Network%29/image-41.png" /></p>
+<p><img alt="alt text" decoding="async" loading="lazy" src="../images/%E7%A5%9E%E7%B6%93%E7%B6%B2%E8%B7%AF%28Neural%20Network%29/image-41.png"/></p>
 <p>這個模型輸入數值 <span class="arithmatex">\(x\)</span> ， 計算之後輸出 <span class="arithmatex">\(\hat{y}\)</span> ，再其中我們希望<a href="%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%28Machine%20Learning%29.html#學習演算法">學習演算法</a>調整的參數有 <span class="arithmatex">\(w\)</span> 及 <span class="arithmatex">\(b\)</span> ，而他使用 <a href="#msel2-loss">L2 loss</a> 作為 loss function，如下。</p>
 <pre class="arithmatex">\[
 L2 \_ loss = \sum_{i=1}^{n} (y_i - \hat{y}_i)^2 = f(x)= \sum_{i=1}^{n} (y_i - (wx_i + b))^2 
@@ -8801,7 +8793,7 @@ w_{new} := w - η \frac{\partial L2\_loss}{\partial w}
 b_{new} := b - η \frac{\partial L2\_loss}{\partial b}
 \]</pre>
 <p>解釋：</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="6:4"><input checked="checked" id="多元函數梯度下降演算法-w_new" name="__tabbed_6" type="radio" /><input id="多元函數梯度下降演算法-w" name="__tabbed_6" type="radio" /><input id="多元函數梯度下降演算法-η" name="__tabbed_6" type="radio" /><input id="多元函數梯度下降演算法-fracpartial-l2_losspartial-w" name="__tabbed_6" type="radio" /><div class="tabbed-labels"><label for="多元函數梯度下降演算法-w_new"><span class="arithmatex">\(w_{new}\)</span></label><label for="多元函數梯度下降演算法-w"><span class="arithmatex">\(w\)</span></label><label for="多元函數梯度下降演算法-η"><span class="arithmatex">\(η\)</span></label><label for="多元函數梯度下降演算法-fracpartial-l2_losspartial-w"><span class="arithmatex">\(\frac{\partial L2\_loss}{\partial w}\)</span></label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="6:4"><input checked="checked" id="多元函數梯度下降演算法-w_new" name="__tabbed_6" type="radio"><input id="多元函數梯度下降演算法-w" name="__tabbed_6" type="radio"><input id="多元函數梯度下降演算法-η" name="__tabbed_6" type="radio"><input id="多元函數梯度下降演算法-fracpartial-l2_losspartial-w" name="__tabbed_6" type="radio"/><div class="tabbed-labels"><label for="多元函數梯度下降演算法-w_new"><span class="arithmatex">\(w_{new}\)</span></label><label for="多元函數梯度下降演算法-w"><span class="arithmatex">\(w\)</span></label><label for="多元函數梯度下降演算法-η"><span class="arithmatex">\(η\)</span></label><label for="多元函數梯度下降演算法-fracpartial-l2_losspartial-w"><span class="arithmatex">\(\frac{\partial L2\_loss}{\partial w}\)</span></label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <p>更新之後的w數值。</p>
@@ -8816,8 +8808,8 @@ b_{new} := b - η \frac{\partial L2\_loss}{\partial b}
 <p>是損失函數(L2 loss)對偏差 <span class="arithmatex">\(w\)</span> 的<a href="#偏微分">偏微分</a></p>
 </div>
 </div>
-</div>
-<div class="tabbed-set tabbed-alternate" data-tabs="7:4"><input checked="checked" id="多元函數梯度下降演算法-b_new" name="__tabbed_7" type="radio" /><input id="多元函數梯度下降演算法-b" name="__tabbed_7" type="radio" /><input id="多元函數梯度下降演算法-η_1" name="__tabbed_7" type="radio" /><input id="多元函數梯度下降演算法-fracpartial-l2_losspartial-b" name="__tabbed_7" type="radio" /><div class="tabbed-labels"><label for="多元函數梯度下降演算法-b_new"><span class="arithmatex">\(b_{new}\)</span></label><label for="多元函數梯度下降演算法-b"><span class="arithmatex">\(b\)</span></label><label for="多元函數梯度下降演算法-η_1"><span class="arithmatex">\(η\)</span></label><label for="多元函數梯度下降演算法-fracpartial-l2_losspartial-b"><span class="arithmatex">\(\frac{\partial L2\_loss}{\partial b}\)</span></label></div>
+</input></input></input></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="7:4"><input checked="checked" id="多元函數梯度下降演算法-b_new" name="__tabbed_7" type="radio"/><input id="多元函數梯度下降演算法-b" name="__tabbed_7" type="radio"/><input id="多元函數梯度下降演算法-η_1" name="__tabbed_7" type="radio"/><input id="多元函數梯度下降演算法-fracpartial-l2_losspartial-b" name="__tabbed_7" type="radio"/><div class="tabbed-labels"><label for="多元函數梯度下降演算法-b_new"><span class="arithmatex">\(b_{new}\)</span></label><label for="多元函數梯度下降演算法-b"><span class="arithmatex">\(b\)</span></label><label for="多元函數梯度下降演算法-η_1"><span class="arithmatex">\(η\)</span></label><label for="多元函數梯度下降演算法-fracpartial-l2_losspartial-b"><span class="arithmatex">\(\frac{\partial L2\_loss}{\partial b}\)</span></label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <p>更新之後的w數值。</p>
@@ -8833,7 +8825,7 @@ b_{new} := b - η \frac{\partial L2\_loss}{\partial b}
 </div>
 </div>
 </div>
-<p>我們先將所有會用到的都計算好<br />
+<p>我們先將所有會用到的都計算好<br/>
 模型為： </p>
 <pre class="arithmatex">\[
 \hat{y}=wx+b
@@ -8842,7 +8834,7 @@ b_{new} := b - η \frac{\partial L2\_loss}{\partial b}
 <pre class="arithmatex">\[
 loss = \sum_{i=1}^{n} (y_i - \hat{y}_i)^2 = f(x)= \sum_{i=1}^{n} (y_i - (wx_i + b))^2 
 \]</pre>
-<p>loss對w偏導：<br />
+<p>loss對w偏導：<br/>
 我們先不管<span class="arithmatex">\(\sum\)</span>，最後再加入(根據<a href="../%E6%BC%94%E7%AE%97%E6%B3%95%E7%AD%86%E8%A8%98/%CE%A3%20sigma%20%28%E8%A5%BF%E6%A0%BC%E7%91%AA%29.html#-的性質"><span class="arithmatex">\(\sum\)</span>的性質</a>)</p>
 <pre class="arithmatex">\[
 \begin{aligned}
@@ -8854,7 +8846,7 @@ loss = \sum_{i=1}^{n} (y_i - \hat{y}_i)^2 = f(x)= \sum_{i=1}^{n} (y_i - (wx_i + 
 故\frac{\partial loss}{\partial w} &amp;= \sum_{i=1}^{n} 2x(y_i - (wx + b))= \sum_{i=1}^{n} 2x(y_i - \hat{y})
 \end{aligned}
 \]</pre>
-<p>loss對b偏導：<br />
+<p>loss對b偏導：<br/>
 我們先不管<span class="arithmatex">\(\sum\)</span>，最後再加入(根據<a href="../%E6%BC%94%E7%AE%97%E6%B3%95%E7%AD%86%E8%A8%98/%CE%A3%20sigma%20%28%E8%A5%BF%E6%A0%BC%E7%91%AA%29.html#-的性質"><span class="arithmatex">\(\sum\)</span>的性質</a>)</p>
 <pre class="arithmatex">\[
 \begin{aligned}
@@ -8868,49 +8860,50 @@ loss = \sum_{i=1}^{n} (y_i - \hat{y}_i)^2 = f(x)= \sum_{i=1}^{n} (y_i - (wx_i + 
 \]</pre>
 <h4 id="計算流程">計算流程<a class="headerlink" href="#計算流程" title="Permanent link"></a></h4>
 <div class="i">
-<p>// 宣告 w 、 b<br />
-w = 5                              <br />
+<p>// 宣告 w 、 b<br/>
+w = 5                              <br/>
 b = 5</p>
 <p>重複「最大跌帶次數」次：</p>
-<p>&nbsp; // 從訓練資料中拿取一個<a href="#batch">Batch</a>的資料<br />
-&nbsp; X = [1, 2, 3, 4] <br />
-&nbsp; // 拿取的訓練資料(X)的正確答案(標籤)<br />
-&nbsp; y = [5, 7, 9, 11]<br />
-&nbsp; <br />
-&nbsp; // 宣告一個預測值陣列，<span class="arithmatex">\(\hat{y}=[wx_i+b,wx_{i+1}+b,...,wx_i+b]\)</span><br />
-&nbsp; y_hat = w * X(陣列) + b            <br />
-&nbsp; <br />
-&nbsp; // 計算損失 (L2 Loss)，<span class="arithmatex">\(loss=\sum_{i=1}^{n} (y_i - \hat{y}_i)^2\)</span> <br />
-&nbsp; loss = sigma((y - y_hat) ** 2)          <br />
-&nbsp; <br />
-&nbsp; // 計算w梯度<span class="arithmatex">\(\frac{\partial loss}{\partial w} = \sum_{i=1}^{n} 2x(y_i - (wx + b))= \sum_{i=1}^{n} 2x(y_i - \hat{y})\)</span><br />
-&nbsp; grad_w = -2 * sigma(X * (y - y_hat))<br />
-&nbsp; // 計算b梯度<span class="arithmatex">\(\frac{\partial loss}{\partial b} = \sum_{i=1}^{n} 2(y_i - (wx + b))= \sum_{i=1}^{n} 2(y_i - \hat{y})\)</span><br />
-&nbsp; grad_b = -2 * sigma(y - y_hat)      <br />
-&nbsp; <br />
-&nbsp; //更新w參數<br />
-&nbsp; w = w - eta * grad_w              <br />
-&nbsp; //更新b參數<br />
-&nbsp; b = b - eta * grad_b  <br />
-&nbsp;          <br />
-&nbsp; // 收斂條件判斷：如果梯度的大小小於收斂閾值，停止迭代<br />
-&nbsp; if sqrt(grad_w ** 2 + grad_b ** 2) &lt; 收斂閾值:<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;離開迴圈</p>
+<p>  // 從訓練資料中拿取一個<a href="#batch">Batch</a>的資料<br/>
+  X = [1, 2, 3, 4] <br/>
+  // 拿取的訓練資料(X)的正確答案(標籤)<br/>
+  y = [5, 7, 9, 11]<br/>
+  <br/>
+  // 宣告一個預測值陣列，<span class="arithmatex">\(\hat{y}=[wx_i+b,wx_{i+1}+b,...,wx_i+b]\)</span><br/>
+  y_hat = w * X(陣列) + b            <br/>
+  <br/>
+  // 計算損失 (L2 Loss)，<span class="arithmatex">\(loss=\sum_{i=1}^{n} (y_i - \hat{y}_i)^2\)</span> <br/>
+  loss = sigma((y - y_hat) ** 2)          <br/>
+  <br/>
+  // 計算w梯度<span class="arithmatex">\(\frac{\partial loss}{\partial w} = \sum_{i=1}^{n} 2x(y_i - (wx + b))= \sum_{i=1}^{n} 2x(y_i - \hat{y})\)</span><br/>
+  grad_w = -2 * sigma(X * (y - y_hat))<br/>
+  // 計算b梯度<span class="arithmatex">\(\frac{\partial loss}{\partial b} = \sum_{i=1}^{n} 2(y_i - (wx + b))= \sum_{i=1}^{n} 2(y_i - \hat{y})\)</span><br/>
+  grad_b = -2 * sigma(y - y_hat)      <br/>
+  <br/>
+  //更新w參數<br/>
+  w = w - eta * grad_w              <br/>
+  //更新b參數<br/>
+  b = b - eta * grad_b  <br/>
+           <br/>
+  // 收斂條件判斷：如果梯度的大小小於收斂閾值，停止迭代<br/>
+  if sqrt(grad_w ** 2 + grad_b ** 2) &lt; 收斂閾值:<br/>
+      離開迴圈</p>
 <p>最後得到 w 、 b</p>
 </div>
 <h4 id="模擬_1">模擬<a class="headerlink" href="#模擬_1" title="Permanent link"></a></h4>
 <div class="i">
-<p>輸入 X = [1, 2, 3, 4]<br />
-標籤 y = [5, 7, 9, 11]<br />
-模型 y = wx + b<br />
-初始 w = 5<br />
+<p>輸入 X = [1, 2, 3, 4]<br/>
+標籤 y = [5, 7, 9, 11]<br/>
+模型 y = wx + b<br/>
+初始 w = 5<br/>
 初始 b = 5</p>
 <!DOCTYPE html>
+
 <html lang="zh-Hant">
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://cdn.jsdelivr.net/npm/plotly.js-dist@2.16.1"></script>
-    <style>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.jsdelivr.net/npm/plotly.js-dist@2.16.1"></script>
+<style>
         .input-container {
             display: flex;
             flex-wrap: wrap;
@@ -8946,19 +8939,16 @@ b = 5</p>
     </style>
 </head>
 <body>
-    <div class="input-container">
-        <label>學習率 (learning rate): <input type="number" id="model2_learningRate" value="0.01" step="0.01"></label>
-        <label>最大迭代次數 (max iterations): <input type="number" id="model2_maxIterations" value="300" step="1"></label>
-        <label>收斂條件 (tolerance): <input type="number" id="model2_tolerance" value="0.1" step="0.01"></label>
-    </div>
-
-    <div class="chart-container">
-        <div id="model2_3d_chart"></div>
-    </div>
-
-    <p id="model2_output"></p>
-
-    <script>
+<div class="input-container">
+<label>學習率 (learning rate): <input id="model2_learningRate" step="0.01" type="number" value="0.01"/></label>
+<label>最大迭代次數 (max iterations): <input id="model2_maxIterations" step="1" type="number" value="300"/></label>
+<label>收斂條件 (tolerance): <input id="model2_tolerance" step="0.01" type="number" value="0.1"/></label>
+</div>
+<div class="chart-container">
+<div id="model2_3d_chart"></div>
+</div>
+<p id="model2_output"></p>
+<script>
         function model2_runGradientDescent() {
             const outputDiv = document.getElementById('model2_output');
             outputDiv.innerHTML = ''; // 清空結果
@@ -9059,9 +9049,9 @@ b = 5</p>
 <p>(內容消失時請重新整理或按下f5)</p>
 </div>
 <h4 id="補充">補充<a class="headerlink" href="#補充" title="Permanent link"></a></h4>
-<p>如果覺得對於梯度下降演算法不夠熟悉，可以參考以下兩個影片<br />
-<a href="https://www.youtube.com/watch?v=UkcUZTe49Pg">https://www.youtube.com/watch?v=UkcUZTe49Pg</a>              <br />
-<a href="https://www.youtube.com/watch?v=s7BxboxEfnU">https://www.youtube.com/watch?v=s7BxboxEfnU</a>   </p>
+<p>如果覺得對於梯度下降演算法不夠熟悉，可以參考以下兩個影片<br/>
+<a href="https://www.youtube.com/watch?v=UkcUZTe49Pg">https://www.youtube.com/watch?v=UkcUZTe49Pg</a> <br/>
+<a href="https://www.youtube.com/watch?v=s7BxboxEfnU">https://www.youtube.com/watch?v=s7BxboxEfnU</a> </p>
 <h4 id="備註_1">備註<a class="headerlink" href="#備註_1" title="Permanent link"></a></h4>
 <h5 id="偏微分">偏微分<a class="headerlink" href="#偏微分" title="Permanent link"></a></h5>
 <p>我們先來講一元函數微分，公式 ：</p>
@@ -9075,7 +9065,7 @@ f(x) = x^2 + x + 1
 <pre class="arithmatex">\[
 f'(x) = \frac{df}{dx} = 2x^{2-1} + x^{1-1} + 0 \cdot 1 \cdot x^{0-1} = 2x + 1 + 0 = 2x + 1
 \]</pre>
-<hr />
+<hr/>
 <p>接下來我們看看偏微分</p>
 <p>偏微分是針對多變數函數的一種微分方法。在偏微分中，我們選擇其中的一個變數進行微分，其他變數視為常數。</p>
 <p>對於一個多變數函數 <span class="arithmatex">\(f(x, y, z)\)</span>，如果只對變數 <span class="arithmatex">\(z\)</span> 求導，記作：</p>
@@ -9087,7 +9077,7 @@ f'(x) = \frac{df}{dx} = 2x^{2-1} + x^{1-1} + 0 \cdot 1 \cdot x^{0-1} = 2x + 1 + 
 <pre class="arithmatex">\[
 f(x, y, z) = x^2 + x + y^3 + y^2 + z^3 + z^2 + z + 1
 \]</pre>
-<p>對於這個函數，只有包含 <span class="arithmatex">\(z\)</span> 的項會影響偏導數，與 <span class="arithmatex">\(z\)</span> 無關的部分視為常數，其導數為 <span class="arithmatex">\(0\)</span>。<br />
+<p>對於這個函數，只有包含 <span class="arithmatex">\(z\)</span> 的項會影響偏導數，與 <span class="arithmatex">\(z\)</span> 無關的部分視為常數，其導數為 <span class="arithmatex">\(0\)</span>。<br/>
 包含 <span class="arithmatex">\(z\)</span> 的項為：</p>
 <pre class="arithmatex">\[
 z^3 + z^2 + z
@@ -9100,13 +9090,13 @@ z^3 + z^2 + z
 <li><span class="arithmatex">\(\frac{\partial}{\partial z}(z^2) = 2z\)</span></li>
 <li><span class="arithmatex">\(\frac{\partial}{\partial z}(z) = 1\)</span></li>
 </ol>
-<hr />
+<hr/>
 <p>綜合結果：</p>
 <p>將偏導數加總：</p>
 <pre class="arithmatex">\[
 \frac{\partial f}{\partial z} = 3z^2 + 2z + 1
 \]</pre>
-<hr />
+<hr/>
 <p>最終答案：</p>
 <p>對 <span class="arithmatex">\(z\)</span> 偏微分的結果為：</p>
 <pre class="arithmatex">\[
@@ -9114,7 +9104,7 @@ z^3 + z^2 + z
 \]</pre>
 <h5 id="batch">Batch<a class="headerlink" href="#batch" title="Permanent link"></a></h5>
 <p>在機器學習中，<strong>batch</strong>（批次）指的是在訓練過程中，每次用來更新模型參數的一組數據樣本。訓練過程中的數據通常不是一次性全部傳遞給模型，而是分批進行處理，每一批數據稱為「mini-batch」。</p>
-<p>為什麼要使用 batch？<br />
+<p>為什麼要使用 batch？<br/>
 1. <strong>計算效率</strong>：將數據分批處理有助於減少計算量，並且可以充分利用硬體資源（如 GPU），這樣可以提高訓練效率。</p>
 <ol>
 <li>
@@ -9131,31 +9121,31 @@ z^3 + z^2 + z
 <h2 id="幫助訓練神經網路">幫助訓練神經網路<a class="headerlink" href="#幫助訓練神經網路" title="Permanent link"></a></h2>
 <h3 id="dropout">Dropout<a class="headerlink" href="#dropout" title="Permanent link"></a></h3>
 <p><a href="https://datasciocean.tech/deep-learning-core-concept/understand-dropout-in-deep-learning/">參考資料</a></p>
-<p>這是一種<a href="%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%28Machine%20Learning%29.html#regularization正規化">Generalization</a>的方式，能夠有效防止<a href="%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%28Machine%20Learning%29.html#overfitting過擬合">overfitting</a>。<br />
-如下圖，(a)是一般的神經網路，(b)是加上 Dropout 機制的神經元。<br />
+<p>這是一種<a href="%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%28Machine%20Learning%29.html#regularization正規化">Generalization</a>的方式，能夠有效防止<a href="%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%28Machine%20Learning%29.html#overfitting過擬合">overfitting</a>。<br/>
+如下圖，(a)是一般的神經網路，(b)是加上 Dropout 機制的神經元。<br/>
 Dropout 就是在訓練時將幾個神經元隨機關閉進行訓練，避免每個神經元「太專一」，也就是避免每個神經元只能做同樣的事情。</p>
-<p><img alt="alt text" src="../images/%E7%A5%9E%E7%B6%93%E7%B6%B2%E8%B7%AF%28Neural%20Network%29/dropout.png" /><br />
+<p><img alt="alt text" decoding="async" loading="lazy" src="../images/%E7%A5%9E%E7%B6%93%E7%B6%B2%E8%B7%AF%28Neural%20Network%29/dropout.png"/><br/>
 <a href="https://datasciocean.tech/deep-learning-core-concept/understand-dropout-in-deep-learning/">圖片來源</a></p>
 <p>如下圖，Dropout 與一般神經網路的差異就是於神經元計算完成後乘上 r ，這個 r 可能是 0 或是 1 ，也就是決定是否啟用神經元(決定是否採用神經元的輸出)。</p>
-<p><img alt="alt text" src="../images/%E7%A5%9E%E7%B6%93%E7%B6%B2%E8%B7%AF%28Neural%20Network%29/dropout-network-vs-standard-network.png" /><br />
+<p><img alt="alt text" decoding="async" loading="lazy" src="../images/%E7%A5%9E%E7%B6%93%E7%B6%B2%E8%B7%AF%28Neural%20Network%29/dropout-network-vs-standard-network.png"/><br/>
 <a href="https://datasciocean.tech/deep-learning-core-concept/understand-dropout-in-deep-learning/">圖片來源</a></p>
 <p>數學式如下，紅色是 Dropout 機制才有的計算，可以看到透過Bernoulli(<a href="https://zh.wikipedia.org/zh-tw/%E4%BC%AF%E5%8A%AA%E5%88%A9%E5%88%86%E5%B8%83">伯努利分布</a>，也就是隨機的方式)得到 r 為 1 或是 0 ，再將神經元輸出乘上 r ，用來決定是否要將神經元的輸出加入計算。</p>
-<p><img alt="alt text" src="../images/%E7%A5%9E%E7%B6%93%E7%B6%B2%E8%B7%AF%28Neural%20Network%29/dropout-formula.png" /><br />
+<p><img alt="alt text" decoding="async" loading="lazy" src="../images/%E7%A5%9E%E7%B6%93%E7%B6%B2%E8%B7%AF%28Neural%20Network%29/dropout-formula.png"/><br/>
 <a href="https://datasciocean.tech/deep-learning-core-concept/understand-dropout-in-deep-learning/">圖片來源</a></p>
 <h3 id="batch-normalization">Batch Normalization<a class="headerlink" href="#batch-normalization" title="Permanent link"></a></h3>
 <p>Batch Normalization 的作法就是對每一個 mini-batch 都進行正規化，將數據轉換為均值為0、標準差為1的常態分佈。這樣可以將分散的數據統一，有助於減緩梯度消失問題，並解決內部協方差偏移（Internal Covariate Shift）的問題。由於每層的輸入數據保持穩定，模型能夠更快速地收斂。此外，Batch Normalization 還具有<a href="%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%28Machine%20Learning%29.html#generalization泛化">generalization</a>的效果，這使得模型在某些情況下可以不使用 <a href="#dropout">Dropout</a> 等其他<a href="%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%28Machine%20Learning%29.html#generalization泛化">generalization</a>技術。總結來說，Batch Normalization 可以提高訓練效率、穩定性，並減少過擬合的風險。</p>
 <h2 id="梯度傳遞">梯度傳遞<a class="headerlink" href="#梯度傳遞" title="Permanent link"></a></h2>
 <p>我們逐步來講解<strong>每一層的輸入微分</strong>，再將它轉換為對權重 <span class="arithmatex">\( W \)</span> 和輸入 <span class="arithmatex">\( x \)</span> 的梯度計算。這樣更能清楚地看到每層的微分如何傳遞到權重和偏置。</p>
-<hr />
+<hr/>
 <h3 id="每層的定義"><strong>每層的定義</strong><a class="headerlink" href="#每層的定義" title="Permanent link"></a></h3>
 <ul>
-<li><strong>輸入</strong>：<span class="arithmatex">\( x^{(l)} \)</span>  </li>
-<li><strong>輸出</strong>：<span class="arithmatex">\( y^{(l)} = g(z^{(l)}) \)</span>  </li>
-<li><strong>線性組合</strong>：<span class="arithmatex">\( z^{(l)} = W^{(l)} x^{(l)} + b^{(l)} \)</span>  </li>
+<li><strong>輸入</strong>：<span class="arithmatex">\( x^{(l)} \)</span> </li>
+<li><strong>輸出</strong>：<span class="arithmatex">\( y^{(l)} = g(z^{(l)}) \)</span> </li>
+<li><strong>線性組合</strong>：<span class="arithmatex">\( z^{(l)} = W^{(l)} x^{(l)} + b^{(l)} \)</span> </li>
 <li><strong>激活函數</strong>：<span class="arithmatex">\( g \)</span></li>
 </ul>
 <p>目標：從 <strong>損失函數 <span class="arithmatex">\( L \)</span></strong> 開始，計算每層的輸入微分，然後將它轉換為權重 <span class="arithmatex">\( W^{(l)} \)</span> 和偏置 <span class="arithmatex">\( b^{(l)} \)</span> 的梯度。</p>
-<hr />
+<hr/>
 <h3 id="1-第-5-層輸出層"><strong>1. 第 5 層（輸出層）</strong><a class="headerlink" href="#1-第-5-層輸出層" title="Permanent link"></a></h3>
 <ul>
 <li><strong>損失對輸出 <span class="arithmatex">\( y^{(5)} \)</span> 的微分</strong>：  </li>
@@ -9164,53 +9154,53 @@ Dropout 就是在訓練時將幾個神經元隨機關閉進行訓練，避免每
 \frac{\partial L}{\partial y^{(5)}}
 \]</pre>
 <ul>
-<li><strong>損失對線性輸出 <span class="arithmatex">\( z^{(5)} \)</span> 的微分</strong>：<br />
+<li><strong>損失對線性輸出 <span class="arithmatex">\( z^{(5)} \)</span> 的微分</strong>：<br/>
    由鏈式法則，激活函數 <span class="arithmatex">\( g \)</span> 的導數 <span class="arithmatex">\( g'(z^{(5)}) \)</span> 帶入：  </li>
 </ul>
 <pre class="arithmatex">\[
 \frac{\partial L}{\partial z^{(5)}} = \frac{\partial L}{\partial y^{(5)}} \cdot g'(z^{(5)})
 \]</pre>
 <ul>
-<li><strong>將損失對輸入 <span class="arithmatex">\( x^{(5)} \)</span> 的微分轉換至權重 <span class="arithmatex">\( W^{(5)} \)</span>：</strong>  </li>
+<li><strong>將損失對輸入 <span class="arithmatex">\( x^{(5)} \)</span> 的微分轉換至權重 <span class="arithmatex">\( W^{(5)} \)</span>：</strong> </li>
 </ul>
 <pre class="arithmatex">\[
 \frac{\partial L}{\partial W^{(5)}} = \frac{\partial L}{\partial z^{(5)}} \cdot x^{(5)^T}
 \]</pre>
 <ul>
-<li><strong>損失對偏置 <span class="arithmatex">\( b^{(5)} \)</span> 的微分：</strong>  </li>
+<li><strong>損失對偏置 <span class="arithmatex">\( b^{(5)} \)</span> 的微分：</strong> </li>
 </ul>
 <pre class="arithmatex">\[
 \frac{\partial L}{\partial b^{(5)}} = \frac{\partial L}{\partial z^{(5)}}
 \]</pre>
-<hr />
+<hr/>
 <h3 id="2-第-4-層"><strong>2. 第 4 層</strong><a class="headerlink" href="#2-第-4-層" title="Permanent link"></a></h3>
 <ul>
-<li><strong>損失對第 4 層輸出 <span class="arithmatex">\( y^{(4)} \)</span> 的微分</strong>：<br />
+<li><strong>損失對第 4 層輸出 <span class="arithmatex">\( y^{(4)} \)</span> 的微分</strong>：<br/>
    從第 5 層傳回來，透過權重 <span class="arithmatex">\( W^{(5)} \)</span>：  </li>
 </ul>
 <pre class="arithmatex">\[
 \frac{\partial L}{\partial y^{(4)}} = W^{(5)^T} \cdot \frac{\partial L}{\partial z^{(5)}}
 \]</pre>
 <ul>
-<li><strong>損失對線性輸出 <span class="arithmatex">\( z^{(4)} \)</span> 的微分</strong>：<br />
+<li><strong>損失對線性輸出 <span class="arithmatex">\( z^{(4)} \)</span> 的微分</strong>：<br/>
    激活函數的導數 <span class="arithmatex">\( g'(z^{(4)}) \)</span>：  </li>
 </ul>
 <pre class="arithmatex">\[
 \frac{\partial L}{\partial z^{(4)}} = \frac{\partial L}{\partial y^{(4)}} \cdot g'(z^{(4)})
 \]</pre>
 <ul>
-<li><strong>將損失對輸入 <span class="arithmatex">\( x^{(4)} \)</span> 的微分轉換至權重 <span class="arithmatex">\( W^{(4)} \)</span>：</strong>  </li>
+<li><strong>將損失對輸入 <span class="arithmatex">\( x^{(4)} \)</span> 的微分轉換至權重 <span class="arithmatex">\( W^{(4)} \)</span>：</strong> </li>
 </ul>
 <pre class="arithmatex">\[
 \frac{\partial L}{\partial W^{(4)}} = \frac{\partial L}{\partial z^{(4)}} \cdot x^{(4)^T}
 \]</pre>
 <ul>
-<li><strong>損失對偏置 <span class="arithmatex">\( b^{(4)} \)</span> 的微分：</strong>  </li>
+<li><strong>損失對偏置 <span class="arithmatex">\( b^{(4)} \)</span> 的微分：</strong> </li>
 </ul>
 <pre class="arithmatex">\[
 \frac{\partial L}{\partial b^{(4)}} = \frac{\partial L}{\partial z^{(4)}}
 \]</pre>
-<hr />
+<hr/>
 <h3 id="3-第-3-層"><strong>3. 第 3 層</strong><a class="headerlink" href="#3-第-3-層" title="Permanent link"></a></h3>
 <ul>
 <li><strong>損失對第 3 層輸出 <span class="arithmatex">\( y^{(3)} \)</span> 的微分</strong>：  </li>
@@ -9225,18 +9215,18 @@ Dropout 就是在訓練時將幾個神經元隨機關閉進行訓練，避免每
 \frac{\partial L}{\partial z^{(3)}} = \frac{\partial L}{\partial y^{(3)}} \cdot g'(z^{(3)})
 \]</pre>
 <ul>
-<li><strong>將損失對輸入 <span class="arithmatex">\( x^{(3)} \)</span> 的微分轉換至權重 <span class="arithmatex">\( W^{(3)} \)</span>：</strong>  </li>
+<li><strong>將損失對輸入 <span class="arithmatex">\( x^{(3)} \)</span> 的微分轉換至權重 <span class="arithmatex">\( W^{(3)} \)</span>：</strong> </li>
 </ul>
 <pre class="arithmatex">\[
 \frac{\partial L}{\partial W^{(3)}} = \frac{\partial L}{\partial z^{(3)}} \cdot x^{(3)^T}
 \]</pre>
 <ul>
-<li><strong>損失對偏置 <span class="arithmatex">\( b^{(3)} \)</span> 的微分：</strong>  </li>
+<li><strong>損失對偏置 <span class="arithmatex">\( b^{(3)} \)</span> 的微分：</strong> </li>
 </ul>
 <pre class="arithmatex">\[
 \frac{\partial L}{\partial b^{(3)}} = \frac{\partial L}{\partial z^{(3)}}
 \]</pre>
-<hr />
+<hr/>
 <h3 id="4-第-2-層"><strong>4. 第 2 層</strong><a class="headerlink" href="#4-第-2-層" title="Permanent link"></a></h3>
 <ul>
 <li><strong>損失對第 2 層輸出 <span class="arithmatex">\( y^{(2)} \)</span> 的微分</strong>：  </li>
@@ -9251,18 +9241,18 @@ Dropout 就是在訓練時將幾個神經元隨機關閉進行訓練，避免每
 \frac{\partial L}{\partial z^{(2)}} = \frac{\partial L}{\partial y^{(2)}} \cdot g'(z^{(2)})
 \]</pre>
 <ul>
-<li><strong>將損失對輸入 <span class="arithmatex">\( x^{(2)} \)</span> 的微分轉換至權重 <span class="arithmatex">\( W^{(2)} \)</span>：</strong>  </li>
+<li><strong>將損失對輸入 <span class="arithmatex">\( x^{(2)} \)</span> 的微分轉換至權重 <span class="arithmatex">\( W^{(2)} \)</span>：</strong> </li>
 </ul>
 <pre class="arithmatex">\[
 \frac{\partial L}{\partial W^{(2)}} = \frac{\partial L}{\partial z^{(2)}} \cdot x^{(2)^T}
 \]</pre>
 <ul>
-<li><strong>損失對偏置 <span class="arithmatex">\( b^{(2)} \)</span> 的微分：</strong>  </li>
+<li><strong>損失對偏置 <span class="arithmatex">\( b^{(2)} \)</span> 的微分：</strong> </li>
 </ul>
 <pre class="arithmatex">\[
 \frac{\partial L}{\partial b^{(2)}} = \frac{\partial L}{\partial z^{(2)}}
 \]</pre>
-<hr />
+<hr/>
 <h3 id="5-第-1-層"><strong>5. 第 1 層</strong><a class="headerlink" href="#5-第-1-層" title="Permanent link"></a></h3>
 <ul>
 <li><strong>損失對第 1 層輸出 <span class="arithmatex">\( y^{(1)} \)</span> 的微分</strong>：  </li>
@@ -9277,39 +9267,39 @@ Dropout 就是在訓練時將幾個神經元隨機關閉進行訓練，避免每
 \frac{\partial L}{\partial z^{(1)}} = \frac{\partial L}{\partial y^{(1)}} \cdot g'(z^{(1)})
 \]</pre>
 <ul>
-<li><strong>將損失對輸入 <span class="arithmatex">\( x^{(1)} \)</span> 的微分轉換至權重 <span class="arithmatex">\( W^{(1)} \)</span>：</strong>  </li>
+<li><strong>將損失對輸入 <span class="arithmatex">\( x^{(1)} \)</span> 的微分轉換至權重 <span class="arithmatex">\( W^{(1)} \)</span>：</strong> </li>
 </ul>
 <pre class="arithmatex">\[
 \frac{\partial L}{\partial W^{(1)}} = \frac{\partial L}{\partial z^{(1)}} \cdot x^{(1)^T}
 \]</pre>
 <ul>
-<li><strong>損失對偏置 <span class="arithmatex">\( b^{(1)} \)</span> 的微分：</strong>  </li>
+<li><strong>損失對偏置 <span class="arithmatex">\( b^{(1)} \)</span> 的微分：</strong> </li>
 </ul>
 <pre class="arithmatex">\[
 \frac{\partial L}{\partial b^{(1)}} = \frac{\partial L}{\partial z^{(1)}}
 \]</pre>
-<hr />
+<hr/>
 <h3 id="統一總結"><strong>統一總結</strong><a class="headerlink" href="#統一總結" title="Permanent link"></a></h3>
-<p>對於第 <span class="arithmatex">\( l \)</span> 層：<br />
+<p>對於第 <span class="arithmatex">\( l \)</span> 層：<br/>
 1. <strong>損失對線性輸出 <span class="arithmatex">\( z^{(l)} \)</span> 的微分</strong>：</p>
 <pre class="arithmatex">\[
 \frac{\partial L}{\partial z^{(l)}} = \left( W^{(l+1)^T} \frac{\partial L}{\partial z^{(l+1)}} \right) \cdot g'(z^{(l)})
 \]</pre>
 <ol>
-<li><strong>權重梯度 <span class="arithmatex">\( W^{(l)} \)</span>：</strong>  </li>
+<li><strong>權重梯度 <span class="arithmatex">\( W^{(l)} \)</span>：</strong> </li>
 </ol>
 <pre class="arithmatex">\[
 \frac{\partial L}{\partial W^{(l)}} = \frac{\partial L}{\partial z^{(l)}} \cdot x^{(l)^T}
 \]</pre>
 <ol>
-<li><strong>偏置梯度 <span class="arithmatex">\( b^{(l)} \)</span>：</strong>  </li>
+<li><strong>偏置梯度 <span class="arithmatex">\( b^{(l)} \)</span>：</strong> </li>
 </ol>
 <pre class="arithmatex">\[
 \frac{\partial L}{\partial b^{(l)}} = \frac{\partial L}{\partial z^{(l)}}
 \]</pre>
 <p>這樣，從輸出層逐層向回傳遞，將損失對輸入的微分一步步轉換為權重 <span class="arithmatex">\( W \)</span> 和偏置 <span class="arithmatex">\( b \)</span> 的梯度。</p>
 <h2 id="梯度消失">梯度消失<a class="headerlink" href="#梯度消失" title="Permanent link"></a></h2>
-<p><img alt="alt text" src="../images/%E7%A5%9E%E7%B6%93%E7%B6%B2%E8%B7%AF%28Neural%20Network%29/image-43.png" /><br />
+<p><img alt="alt text" decoding="async" loading="lazy" src="../images/%E7%A5%9E%E7%B6%93%E7%B6%B2%E8%B7%AF%28Neural%20Network%29/image-43.png"/><br/>
 圖片來源：交大人培</p>
 <p>看到圖片，sigmoid的微分在遠離0時，會接近0，導致梯度超級小，調整幅度超級小。</p>
 <p>要解決這問題可以可以將<a href="#激活函數activation-function">激活函數</a>換成Relu，他在正數時都是1，所以不會導致梯度消失</p>
@@ -9319,6 +9309,9 @@ Dropout 就是在訓練時將幾個神經元隨機關閉進行訓練，避免每
 
 
 
+
+  
+  
 
 
 
@@ -9438,40 +9431,16 @@ Dropout 就是在訓練時將幾個神經元隨機關閉進行訓練，避免每
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.footer", "navigation.indexes", "navigation.instant", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.tabs", "navigation.top", "announce.dismiss", "content.tabs.link", "search.share", "content.code.copy", "content.code.annotations", "content.action.edit", "content.action.view", "content.tooltips"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.footer", "navigation.indexes", "navigation.instant", "navigation.instant.progress", "navigation.tabs", "navigation.top", "announce.dismiss", "content.tabs.link", "search.share", "content.code.copy", "content.code.annotations", "content.action.edit", "content.action.view", "content.tooltips"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
+  <script src="../../assets/pymdownx-extras/search-lazy-guard.js?v=20260614-1"></script>
   
       <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
       
-        <script src="https://unpkg.com/mermaid@10.6.1/dist/mermaid.min.js"></script>
-      
-        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-      
-        <script src="../../assets/pymdownx-extras/mermaid-config-override.js?v=20260523-1"></script>
-      
-        <script src="../../assets/pymdownx-extras/mermaid-legacy-flowchart-compat.js?v=20260329-1"></script>
-      
-        <script src="../../assets/pymdownx-extras/extra-loader-iLQ-keay.js"></script>
-      
-        <script src="../../assets/pymdownx-extras/mermaid-render-fix.js?v=20260522-1"></script>
-      
-        <script src="../../assets/pymdownx-extras/mermaid-zoom.js?v=20260404-1"></script>
-      
-        <script src="../../assets/pymdownx-extras/toc-fold.js"></script>
-      
-        <script src="../../assets/pymdownx-extras/image-zoom.js"></script>
-      
-        <script src="../../assets/pymdownx-extras/markdown-embed.js?v=20260516-1"></script>
-      
-        <script src="../../assets/pymdownx-extras/folder-path-bar.js?v=20260524-1"></script>
-      
-        <script src="../../assets/pymdownx-extras/legacy-image-width.js"></script>
-      
-        <script src="../../assets/pymdownx-extras/source-jump.js?v=20260523-2"></script>
+        <script src="../../assets/pymdownx-extras/conditional-loader.js?v=20260614-3"></script>
       
     
-  <script src="../../assets/pymdownx-extras/scroll-bottom.js?v=20260424-3" type="text/javascript"></script>
 
   </body>
 </html>

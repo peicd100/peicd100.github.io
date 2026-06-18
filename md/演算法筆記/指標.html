@@ -44,8 +44,6 @@
     
 
       
-        <script src="https://unpkg.com/iframe-worker/shim"></script>
-      
     
 <script src="../../assets/pymdownx-extras/material-extra-theme-2ek1P7jT.js" type="text/javascript"></script>
 <script src="../../assets/pymdownx-extras/material-extra-3rdparty-BUCF4rjN.js" type="text/javascript"></script>
@@ -1956,7 +1954,7 @@
     
       <link rel="stylesheet" href="../../assets/pymdownx-extras/extra-8611f6c398.css">
     
-      <link rel="stylesheet" href="../../assets/pymdownx-extras/自定義.css?v=20260527-9">
+      <link rel="stylesheet" href="../../assets/pymdownx-extras/自定義.css?v=20260614-2">
     
     <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
@@ -6756,7 +6754,7 @@ is now available!
 <p>先看到程式碼</p>
 <div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;bits/stdc++.h&gt;</span>
 <span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span>
-<span class="cp">#define nn &quot;\n&quot;</span>
+<span class="cp">#define nn "\n"</span>
 
 <span class="kt">void</span><span class="w"> </span><span class="nf">square</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&amp;</span><span class="n">arr</span><span class="p">){</span>
 <span class="w">    </span><span class="n">arr</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="mi">21</span><span class="p">);</span>
@@ -6766,22 +6764,22 @@ is now available!
 <span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="o">=</span><span class="mi">9</span><span class="p">;</span>
 <span class="w">    </span><span class="kt">int</span><span class="o">*</span><span class="n">k</span><span class="o">=&amp;</span><span class="n">n</span><span class="p">;</span>
-<span class="w">    </span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&quot;k_it: &quot;</span><span class="o">&lt;&lt;</span><span class="n">k</span><span class="o">&lt;&lt;</span><span class="n">nn</span><span class="p">;</span><span class="w"> </span><span class="c1">//k: 0x61fee8</span>
-<span class="w">    </span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&quot;k_val: &quot;</span><span class="o">&lt;&lt;*</span><span class="n">k</span><span class="o">&lt;&lt;</span><span class="n">nn</span><span class="p">;</span><span class="w"> </span><span class="c1">//k_val: 9</span>
+<span class="w">    </span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">"k_it: "</span><span class="o">&lt;&lt;</span><span class="n">k</span><span class="o">&lt;&lt;</span><span class="n">nn</span><span class="p">;</span><span class="w"> </span><span class="c1">//k: 0x61fee8</span>
+<span class="w">    </span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">"k_val: "</span><span class="o">&lt;&lt;*</span><span class="n">k</span><span class="o">&lt;&lt;</span><span class="n">nn</span><span class="p">;</span><span class="w"> </span><span class="c1">//k_val: 9</span>
 <span class="w">    </span><span class="kt">int</span><span class="o">&amp;</span><span class="n">m</span><span class="o">=</span><span class="n">n</span><span class="p">;</span><span class="w"> </span><span class="c1">//取別名</span>
-<span class="w">    </span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&quot;m: &quot;</span><span class="o">&lt;&lt;</span><span class="n">m</span><span class="o">&lt;&lt;</span><span class="n">nn</span><span class="p">;</span><span class="w"> </span><span class="c1">//m: 9</span>
+<span class="w">    </span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">"m: "</span><span class="o">&lt;&lt;</span><span class="n">m</span><span class="o">&lt;&lt;</span><span class="n">nn</span><span class="p">;</span><span class="w"> </span><span class="c1">//m: 9</span>
 <span class="w">    </span><span class="n">n</span><span class="o">+=</span><span class="mi">1</span><span class="p">;</span><span class="w">     </span><span class="c1">//不加在m，加在n</span>
-<span class="w">    </span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&quot;m: &quot;</span><span class="o">&lt;&lt;</span><span class="n">m</span><span class="o">&lt;&lt;</span><span class="n">nn</span><span class="p">;</span><span class="w"> </span><span class="c1">//m: 10</span>
+<span class="w">    </span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">"m: "</span><span class="o">&lt;&lt;</span><span class="n">m</span><span class="o">&lt;&lt;</span><span class="n">nn</span><span class="p">;</span><span class="w"> </span><span class="c1">//m: 10</span>
 <span class="w">    </span><span class="n">pair</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span><span class="kt">int</span><span class="o">&gt;*</span><span class="w"> </span><span class="n">p</span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">pair</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">};</span>
-<span class="w">    </span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&quot;p: &quot;</span><span class="o">&lt;&lt;</span><span class="n">p</span><span class="o">&lt;&lt;</span><span class="n">nn</span><span class="p">;</span><span class="w"> </span><span class="c1">//p: 0x11d7b80</span>
+<span class="w">    </span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">"p: "</span><span class="o">&lt;&lt;</span><span class="n">p</span><span class="o">&lt;&lt;</span><span class="n">nn</span><span class="p">;</span><span class="w"> </span><span class="c1">//p: 0x11d7b80</span>
 
 
 <span class="w">    </span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="n">v</span><span class="o">=</span><span class="p">{</span><span class="mi">37</span><span class="p">};</span>
 <span class="w">    </span><span class="n">square</span><span class="p">(</span><span class="n">v</span><span class="p">);</span>
 
-<span class="w">    </span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&quot;v: &quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">"v: "</span><span class="p">;</span>
 <span class="w">    </span><span class="k">for</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="o">:</span><span class="n">v</span><span class="p">){</span>
-<span class="w">        </span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">i</span><span class="o">&lt;&lt;</span><span class="s">&quot; &quot;</span><span class="p">;</span><span class="w"> </span><span class="c1">//v: 37 21 </span>
+<span class="w">        </span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">i</span><span class="o">&lt;&lt;</span><span class="s">" "</span><span class="p">;</span><span class="w"> </span><span class="c1">//v: 37 21 </span>
 <span class="w">    </span><span class="p">}</span>
 
 <span class="p">}</span>
@@ -6828,15 +6826,15 @@ v: 37 21
 </table>
 <div class="i">
 <p>以下為方便講解，不按照順序</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="1:4"><input checked="checked" id="用法-註四" name="__tabbed_1" type="radio" /><input id="用法-註一" name="__tabbed_1" type="radio" /><input id="用法-註二" name="__tabbed_1" type="radio" /><input id="用法-註三" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="用法-註四">【註四】</label><label for="用法-註一">【註一】</label><label for="用法-註二">【註二】</label><label for="用法-註三">【註三】</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:4"><input checked="checked" id="用法-註四" name="__tabbed_1" type="radio"/><input id="用法-註一" name="__tabbed_1" type="radio"/><input id="用法-註二" name="__tabbed_1" type="radio"/><input id="用法-註三" name="__tabbed_1" type="radio"/><div class="tabbed-labels"><label for="用法-註四">【註四】</label><label for="用法-註一">【註一】</label><label for="用法-註二">【註二】</label><label for="用法-註三">【註三】</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <p><span class="arithmatex">\(「\&amp;」\)</span> 呼叫模式，取得變數(該變數為物件)的址(位置)。</p>
 <ul>
-<li>格式：<br />
+<li>格式：<br/>
 &amp;{變數} </li>
-<li>範例(&amp;與變數間有空格不影響<br />
-    <div class="highlight"><pre><span></span><code><span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="o">=</span><span class="mi">10</span><span class="p">;</span>
+<li>範例(&amp;與變數間有空格不影響<br/>
+<div class="highlight"><pre><span></span><code><span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="o">=</span><span class="mi">10</span><span class="p">;</span>
 <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">n</span><span class="p">;</span><span class="w"> </span><span class="c1">//0x61ff0c</span>
 </code></pre></div></li>
 </ul>
@@ -6844,7 +6842,7 @@ v: 37 21
 <div class="tabbed-block">
 <p><span class="arithmatex">\(「*」\)</span> 宣告模式，製作存位置的變數。</p>
 <ul>
-<li>格式：<br />
+<li>格式：<br/>
 {資料型態}*{變數} </li>
 <li>
 <p>範例(*靠近資料型態或是變數不影響結果</p>
@@ -6859,10 +6857,10 @@ v: 37 21
 <div class="tabbed-block">
 <p><span class="arithmatex">\(「*」\)</span> 呼叫模式，回傳變數(該變數為位置)的物件。</p>
 <ul>
-<li>格式：<br />
+<li>格式：<br/>
 *{變數} </li>
-<li>範例(*與變數間有空格不影響<br />
-    <div class="highlight"><pre><span></span><code><span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="o">=</span><span class="mi">10</span><span class="p">;</span>
+<li>範例(*與變數間有空格不影響<br/>
+<div class="highlight"><pre><span></span><code><span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="o">=</span><span class="mi">10</span><span class="p">;</span>
 <span class="kt">int</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">k</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&amp;</span><span class="n">n</span>
 <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">k</span><span class="p">;</span><span class="w"> </span><span class="c1">//10</span>
 </code></pre></div></li>
@@ -6871,10 +6869,10 @@ v: 37 21
 <div class="tabbed-block">
 <p><span class="arithmatex">\(「\&amp;」\)</span> 宣告模式，製作對於某物件的別名。</p>
 <ul>
-<li>格式：<br />
+<li>格式：<br/>
 &amp;{變數} </li>
-<li>範例(&amp;與變數間有空格不影響<br />
-    <div class="highlight"><pre><span></span><code><span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="o">=</span><span class="mi">10</span><span class="p">;</span>
+<li>範例(&amp;與變數間有空格不影響<br/>
+<div class="highlight"><pre><span></span><code><span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="o">=</span><span class="mi">10</span><span class="p">;</span>
 <span class="kt">int</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">n</span><span class="p">;</span>
 <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">c</span><span class="p">;</span><span class="w">  </span><span class="c1">//10</span>
 <span class="n">n</span><span class="o">+=</span><span class="mi">1</span><span class="p">;</span>
@@ -6886,7 +6884,7 @@ v: 37 21
 </div>
 </div>
 <h2 id="new-用法">new 用法<a class="headerlink" href="#new-用法" title="Permanent link"></a></h2>
-<p>拿一個位置放變數，回傳指標<br />
+<p>拿一個位置放變數，回傳指標<br/>
 <div class="highlight"><pre><span></span><code><span class="n">pair</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span><span class="kt">int</span><span class="o">&gt;*</span><span class="w"> </span><span class="n">p</span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">pair</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">};</span>
 <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">p</span><span class="o">&lt;&lt;</span><span class="n">nn</span><span class="p">;</span><span class="w"> </span><span class="c1">//0x11d7b80</span>
 </code></pre></div></p>
@@ -6896,6 +6894,9 @@ v: 37 21
 
 
 
+
+  
+  
 
 
 
@@ -7015,40 +7016,16 @@ v: 37 21
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.footer", "navigation.indexes", "navigation.instant", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.tabs", "navigation.top", "announce.dismiss", "content.tabs.link", "search.share", "content.code.copy", "content.code.annotations", "content.action.edit", "content.action.view", "content.tooltips"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.footer", "navigation.indexes", "navigation.instant", "navigation.instant.progress", "navigation.tabs", "navigation.top", "announce.dismiss", "content.tabs.link", "search.share", "content.code.copy", "content.code.annotations", "content.action.edit", "content.action.view", "content.tooltips"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
+  <script src="../../assets/pymdownx-extras/search-lazy-guard.js?v=20260614-1"></script>
   
       <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
       
-        <script src="https://unpkg.com/mermaid@10.6.1/dist/mermaid.min.js"></script>
-      
-        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-      
-        <script src="../../assets/pymdownx-extras/mermaid-config-override.js?v=20260523-1"></script>
-      
-        <script src="../../assets/pymdownx-extras/mermaid-legacy-flowchart-compat.js?v=20260329-1"></script>
-      
-        <script src="../../assets/pymdownx-extras/extra-loader-iLQ-keay.js"></script>
-      
-        <script src="../../assets/pymdownx-extras/mermaid-render-fix.js?v=20260522-1"></script>
-      
-        <script src="../../assets/pymdownx-extras/mermaid-zoom.js?v=20260404-1"></script>
-      
-        <script src="../../assets/pymdownx-extras/toc-fold.js"></script>
-      
-        <script src="../../assets/pymdownx-extras/image-zoom.js"></script>
-      
-        <script src="../../assets/pymdownx-extras/markdown-embed.js?v=20260516-1"></script>
-      
-        <script src="../../assets/pymdownx-extras/folder-path-bar.js?v=20260524-1"></script>
-      
-        <script src="../../assets/pymdownx-extras/legacy-image-width.js"></script>
-      
-        <script src="../../assets/pymdownx-extras/source-jump.js?v=20260523-2"></script>
+        <script src="../../assets/pymdownx-extras/conditional-loader.js?v=20260614-3"></script>
       
     
-  <script src="../../assets/pymdownx-extras/scroll-bottom.js?v=20260424-3" type="text/javascript"></script>
 
   </body>
 </html>

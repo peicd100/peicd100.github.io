@@ -44,8 +44,6 @@
     
 
       
-        <script src="https://unpkg.com/iframe-worker/shim"></script>
-      
     
 <script src="../../assets/pymdownx-extras/material-extra-theme-2ek1P7jT.js" type="text/javascript"></script>
 <script src="../../assets/pymdownx-extras/material-extra-3rdparty-BUCF4rjN.js" type="text/javascript"></script>
@@ -1956,7 +1954,7 @@
     
       <link rel="stylesheet" href="../../assets/pymdownx-extras/extra-8611f6c398.css">
     
-      <link rel="stylesheet" href="../../assets/pymdownx-extras/自定義.css?v=20260527-9">
+      <link rel="stylesheet" href="../../assets/pymdownx-extras/自定義.css?v=20260614-2">
     
     <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
@@ -6867,8 +6865,8 @@ is now available!
 <p>(A/B)%C 無法計算，要換成乘法： (A*B')%C ，其中 B' 是未知的</p>
 <p>假設 power(x,y) 回傳 <span class="arithmatex">\(x^y\)</span> </p>
 <p>則 B'=power(B,C-2)%C</p>
-<p>則 (A/B)%C<br />
-=(A*(power(B,C-2)%C))%C<br />
+<p>則 (A/B)%C<br/>
+=(A*(power(B,C-2)%C))%C<br/>
 =(A%C)*(power(B,C-2)%C)</p>
 <h2 id="重點">重點<a class="headerlink" href="#重點" title="Permanent link"></a></h2>
 <div class="i">
@@ -6902,25 +6900,25 @@ a^p \equiv a \pmod{p}
 </ol>
 <h2 id="模反元素">模反元素<a class="headerlink" href="#模反元素" title="Permanent link"></a></h2>
 <p>在數學中，「模反元素」是指在模算術（Modular arithmetic）中一個數的逆元。給定一個正整數 <span class="arithmatex">\(P\)</span> 和一個與 <span class="arithmatex">\(P\)</span> 互質的整數 <span class="arithmatex">\(a\)</span>，<span class="arithmatex">\(a\)</span> 的模 <span class="arithmatex">\(P\)</span> 逆元是指一個整數 <span class="arithmatex">\(b\)</span>，使得 <span class="arithmatex">\(a \times b \equiv 1 \pmod{P}\)</span>，此時 <span class="arithmatex">\(b\)</span> 也可記作 <span class="arithmatex">\(a^{-1}\)</span>。換句話說，當 <span class="arithmatex">\(a\)</span> 和 <span class="arithmatex">\(b\)</span> 相乘後除以 <span class="arithmatex">\(P\)</span> 的餘數為 1，也就是<span class="arithmatex">\((a\times b) \% P=1\)</span>。</p>
-<p>為何是乘法不是加減法呢?<br />
-因為在做模運算的時候 加法 減法 乘法都能正常運作 <br />
-<span class="arithmatex">\((8+7)\%5=(8\%5+7\%5)\%5\)</span><br />
-<span class="arithmatex">\((8-7)\%5=(8\%5-7\%5)\%5\)</span> <br />
-<span class="arithmatex">\((8*7)\%5=((8\%5)*(7\%5))\%5\)</span><br />
+<p>為何是乘法不是加減法呢?<br/>
+因為在做模運算的時候 加法 減法 乘法都能正常運作 <br/>
+<span class="arithmatex">\((8+7)\%5=(8\%5+7\%5)\%5\)</span><br/>
+<span class="arithmatex">\((8-7)\%5=(8\%5-7\%5)\%5\)</span> <br/>
+<span class="arithmatex">\((8*7)\%5=((8\%5)*(7\%5))\%5\)</span><br/>
 換成除法時，就無法正常成立，「模反元素」就是為此存在的</p>
 <blockquote>
 <p>問題：我們要計算<span class="arithmatex">\((56/7)\%5\)</span>時該怎麼做?</p>
 </blockquote>
-<p>一、我們知道要計算 <span class="arithmatex">\(a/b=c\)</span> 時如果想換成乘法，就是讓 <span class="arithmatex">\(a\)</span> 乘上 <span class="arithmatex">\(b\)</span> 的乘法反元素 <span class="arithmatex">\(k\)</span> (<span class="arithmatex">\(b\times k=1\)</span>)，也就是 <span class="arithmatex">\(\frac{1}{b}\)</span> ：<br />
+<p>一、我們知道要計算 <span class="arithmatex">\(a/b=c\)</span> 時如果想換成乘法，就是讓 <span class="arithmatex">\(a\)</span> 乘上 <span class="arithmatex">\(b\)</span> 的乘法反元素 <span class="arithmatex">\(k\)</span> (<span class="arithmatex">\(b\times k=1\)</span>)，也就是 <span class="arithmatex">\(\frac{1}{b}\)</span> ：<br/>
 <span class="arithmatex">\(a/b=a\times k =a\times\frac{1}{b}=c\)</span>，<span class="arithmatex">\(b\times k=1\)</span></p>
-<p>二、那麼我們知道要計算 <span class="arithmatex">\((a/b)\%P=c\)</span> 時如果想換成乘法，就是讓 <span class="arithmatex">\(a\)</span> 乘上 <span class="arithmatex">\(b\)</span> 模 <span class="arithmatex">\(P\)</span> 的模反元素 <span class="arithmatex">\(k\)</span> (<span class="arithmatex">\((b\times k)\%P=1\)</span>)：<br />
+<p>二、那麼我們知道要計算 <span class="arithmatex">\((a/b)\%P=c\)</span> 時如果想換成乘法，就是讓 <span class="arithmatex">\(a\)</span> 乘上 <span class="arithmatex">\(b\)</span> 模 <span class="arithmatex">\(P\)</span> 的模反元素 <span class="arithmatex">\(k\)</span> (<span class="arithmatex">\((b\times k)\%P=1\)</span>)：<br/>
 <span class="arithmatex">\((a/b)\%P=(a\times k)\%P =c\)</span>，<span class="arithmatex">\((b\times k)\%P=1\)</span></p>
 <p>三、回到問題，所以要求<span class="arithmatex">\((56/7)\%5\)</span>時，我們想要換成<span class="arithmatex">\((56\times k)\%5\)</span>的話(因為乘法才可以展開)，就要先求<span class="arithmatex">\((7\times k)\%5=1\)</span>，經過運算(先直接推的話)，可以得到<span class="arithmatex">\(k=3\)</span> ，因為<span class="arithmatex">\((7\times 3)\%5=(21)\%5=1\)</span>，所以 <span class="arithmatex">\((56/7)\%5\)</span> 可以換成 <span class="arithmatex">\((56\times 3)\%5\)</span>：</p>
-<p>&nbsp;&nbsp;&nbsp; <span class="arithmatex">\((56/7)\%5\)</span> <br />
-<span class="arithmatex">\(=(56\times 3)\%5\)</span><br />
-<span class="arithmatex">\(=(56\%5\times 3\%5)\%5\)</span><br />
-<span class="arithmatex">\(=(1\times 3)\%5\)</span><br />
-<span class="arithmatex">\(=3\)</span>  </p>
+<p>    <span class="arithmatex">\((56/7)\%5\)</span> <br/>
+<span class="arithmatex">\(=(56\times 3)\%5\)</span><br/>
+<span class="arithmatex">\(=(56\%5\times 3\%5)\%5\)</span><br/>
+<span class="arithmatex">\(=(1\times 3)\%5\)</span><br/>
+<span class="arithmatex">\(=3\)</span> </p>
 <p>到底這個 3 是如何得到的，我們先留個懸念。</p>
 <h2 id="求模反元素">求模反元素<a class="headerlink" href="#求模反元素" title="Permanent link"></a></h2>
 <blockquote>
@@ -6928,7 +6926,7 @@ a^p \equiv a \pmod{p}
 </blockquote>
 <div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;bits/stdc++.h&gt;</span>
 <span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span>
-<span class="cp">#define nn &quot;\n&quot;</span>
+<span class="cp">#define nn "\n"</span>
 <span class="kt">int</span><span class="w"> </span><span class="nf">_find</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="kt">int</span><span class="w"> </span><span class="n">c</span><span class="p">){</span>
 <span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">b</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span>
 <span class="w">    </span><span class="k">for</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">c</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
@@ -6944,9 +6942,9 @@ a^p \equiv a \pmod{p}
 <span class="w">    </span><span class="c1">//計算(56/7)%5;</span>
 <span class="w">    </span><span class="c1">//(7*k)%5=1</span>
 <span class="w">    </span><span class="n">b</span><span class="o">=</span><span class="n">_find</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span><span class="mi">5</span><span class="p">);</span>
-<span class="w">    </span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&quot;計算(56/7)%5&quot;</span><span class="o">&lt;&lt;</span><span class="n">nn</span><span class="p">;</span>
-<span class="w">    </span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&quot;反元素： &quot;</span><span class="o">&lt;&lt;</span><span class="n">b</span><span class="o">&lt;&lt;</span><span class="n">nn</span><span class="p">;</span>
-<span class="w">    </span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&quot;答案： &quot;</span><span class="o">&lt;&lt;</span><span class="p">(</span><span class="mi">56</span><span class="o">/</span><span class="n">b</span><span class="p">)</span><span class="o">%</span><span class="mi">5</span><span class="p">;</span>
+<span class="w">    </span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">"計算(56/7)%5"</span><span class="o">&lt;&lt;</span><span class="n">nn</span><span class="p">;</span>
+<span class="w">    </span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">"反元素： "</span><span class="o">&lt;&lt;</span><span class="n">b</span><span class="o">&lt;&lt;</span><span class="n">nn</span><span class="p">;</span>
+<span class="w">    </span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">"答案： "</span><span class="o">&lt;&lt;</span><span class="p">(</span><span class="mi">56</span><span class="o">/</span><span class="n">b</span><span class="p">)</span><span class="o">%</span><span class="mi">5</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div>
 <div class="result">
@@ -6955,13 +6953,13 @@ a^p \equiv a \pmod{p}
 答案=3
 </code></pre></div>
 </div>
-<p>複雜度為O(P)也就是O(n)，太慢了。<br />
-要如何更快找到答案呢？<br />
+<p>複雜度為O(P)也就是O(n)，太慢了。<br/>
+要如何更快找到答案呢？<br/>
 這時候要用到費馬小定理。</p>
 <h2 id="費馬小定理_1">費馬小定理<a class="headerlink" href="#費馬小定理_1" title="Permanent link"></a></h2>
-<p>費馬小定理提到(詳細證明此篇不提)  <br />
-如果有一個「整數」<span class="arithmatex">\(a\)</span> 和一個「質數」<span class="arithmatex">\(p\)</span> 那麼 <span class="arithmatex">\(a^p \equiv a \pmod{p}\)</span><br />
-有些地方也會寫成 <span class="arithmatex">\(a^p-a \equiv 0 \pmod{p}\)</span><br />
+<p>費馬小定理提到(詳細證明此篇不提)  <br/>
+如果有一個「整數」<span class="arithmatex">\(a\)</span> 和一個「質數」<span class="arithmatex">\(p\)</span> 那麼 <span class="arithmatex">\(a^p \equiv a \pmod{p}\)</span><br/>
+有些地方也會寫成 <span class="arithmatex">\(a^p-a \equiv 0 \pmod{p}\)</span><br/>
 也就是 <span class="arithmatex">\(a^p-a\)</span> 為 p 的倍數</p>
 <p>將指數拆開得到</p>
 <p><span class="arithmatex">\(a^{p-2} * a^2 \equiv a^{-1} * a^2  \pmod{p}\)</span></p>
@@ -6970,36 +6968,36 @@ a^p \equiv a \pmod{p}
 <p>由上式子可知在<span class="arithmatex">\(\pmod{p}\)</span> 時，求 <span class="arithmatex">\(a^{p-2}\)</span> 就可以得到 <span class="arithmatex">\(a^{-1}\)</span> 也就是得到模逆元</p>
 <p>完整推導如下：</p>
 <div class="i">
-<p>根據<a href="%E6%A8%A1%E9%81%8B%E7%AE%97.html#模運算">冪次性質</a>得到：<br />
-<span class="arithmatex">\(a^p \equiv a \pmod{p}\)</span><br />
-左右拆出 <span class="arithmatex">\(a^2\)</span>：<br />
-<span class="arithmatex">\(a^{p-2} * a^2 \equiv a^{-1} * a^2  \pmod{p}\)</span><br />
-左右消掉(根據<a href="%E6%A8%A1%E9%81%8B%E7%AE%97.html#同餘性質">同餘性質</a>)<br />
+<p>根據<a href="%E6%A8%A1%E9%81%8B%E7%AE%97.html#模運算">冪次性質</a>得到：<br/>
+<span class="arithmatex">\(a^p \equiv a \pmod{p}\)</span><br/>
+左右拆出 <span class="arithmatex">\(a^2\)</span>：<br/>
+<span class="arithmatex">\(a^{p-2} * a^2 \equiv a^{-1} * a^2  \pmod{p}\)</span><br/>
+左右消掉(根據<a href="%E6%A8%A1%E9%81%8B%E7%AE%97.html#同餘性質">同餘性質</a>)<br/>
 <span class="arithmatex">\(a^{p-2} \equiv a^{-1}  \pmod{p}\)</span></p>
 </div>
 <p>便可得到最後結論：</p>
 <blockquote>
 <p>費馬小定理：「若 <span class="arithmatex">\(P\)</span> 為質數，對任意正整數 <span class="arithmatex">\(a\)</span> ， <span class="arithmatex">\((a^{P-2} \% P)\)</span> 是 <span class="arithmatex">\(a\)</span> 在 <span class="arithmatex">\([1, P-1]\)</span> 區間的唯一乘法反元素。」</p>
 </blockquote>
-<p>再回到前面例子：<span class="arithmatex">\((56/7)\%5\)</span><br />
-要求 <span class="arithmatex">\(7\%5\)</span> 的模逆元<br />
-就是求 <span class="arithmatex">\(7^{5-2}\%5=343\%5=3\)</span>  </p>
+<p>再回到前面例子：<span class="arithmatex">\((56/7)\%5\)</span><br/>
+要求 <span class="arithmatex">\(7\%5\)</span> 的模逆元<br/>
+就是求 <span class="arithmatex">\(7^{5-2}\%5=343\%5=3\)</span> </p>
 <blockquote>
-<p>完整運算式：<br />
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="arithmatex">\((56/7)\%5\)</span><br />
-<span class="arithmatex">\(=(56 \times (7^{5-2}\%5))\%5\)</span><br />
-<span class="arithmatex">\(=(56 \times (343\%5))\%5\)</span><br />
-<span class="arithmatex">\(=(56 \times 3)\%5\)</span><br />
-<span class="arithmatex">\(=(56\%5\times 3\%5)\%5\)</span><br />
-<span class="arithmatex">\(=(1\times 3)\%5\)</span><br />
-<span class="arithmatex">\(=3\)</span>  </p>
+<p>完整運算式：<br/>
+    <span class="arithmatex">\((56/7)\%5\)</span><br/>
+<span class="arithmatex">\(=(56 \times (7^{5-2}\%5))\%5\)</span><br/>
+<span class="arithmatex">\(=(56 \times (343\%5))\%5\)</span><br/>
+<span class="arithmatex">\(=(56 \times 3)\%5\)</span><br/>
+<span class="arithmatex">\(=(56\%5\times 3\%5)\%5\)</span><br/>
+<span class="arithmatex">\(=(1\times 3)\%5\)</span><br/>
+<span class="arithmatex">\(=3\)</span> </p>
 </blockquote>
 <p>接下來要思考如何求 <span class="arithmatex">\(a^{p-2}\)</span> ，如果慢慢乘上去，複雜度為O(P)，太慢了，情況並沒有改善。</p>
-<p>所以要我們可以使用快速幂，就能夠用O(log(P)) <br />
+<p>所以要我們可以使用快速幂，就能夠用O(log(P)) <br/>
 就計算出模逆元</p>
 <div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;bits/stdc++.h&gt;</span>
 <span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span>
-<span class="cp">#define nn &quot;\n&quot;</span>
+<span class="cp">#define nn "\n"</span>
 
 <span class="kt">int</span><span class="w"> </span><span class="n">A</span><span class="p">,</span><span class="n">P</span><span class="p">;</span>
 
@@ -7016,7 +7014,7 @@ a^p \equiv a \pmod{p}
 <span class="p">}</span>
 
 <span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(){</span>
-<span class="w">    </span><span class="n">istringstream</span><span class="w"> </span><span class="n">cin</span><span class="p">(</span><span class="s">&quot;7 5&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="n">istringstream</span><span class="w"> </span><span class="n">cin</span><span class="p">(</span><span class="s">"7 5"</span><span class="p">);</span>
 <span class="w">    </span><span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">A</span><span class="o">&gt;&gt;</span><span class="n">P</span><span class="p">;</span>
 <span class="w">    </span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">mod</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">P</span><span class="mi">-2</span><span class="p">);</span><span class="c1">//to a^(p-2)</span>
 <span class="p">}</span>
@@ -7031,6 +7029,9 @@ a^p \equiv a \pmod{p}
 
 
 
+
+  
+  
 
 
 
@@ -7150,40 +7151,16 @@ a^p \equiv a \pmod{p}
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.footer", "navigation.indexes", "navigation.instant", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.tabs", "navigation.top", "announce.dismiss", "content.tabs.link", "search.share", "content.code.copy", "content.code.annotations", "content.action.edit", "content.action.view", "content.tooltips"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.footer", "navigation.indexes", "navigation.instant", "navigation.instant.progress", "navigation.tabs", "navigation.top", "announce.dismiss", "content.tabs.link", "search.share", "content.code.copy", "content.code.annotations", "content.action.edit", "content.action.view", "content.tooltips"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
+  <script src="../../assets/pymdownx-extras/search-lazy-guard.js?v=20260614-1"></script>
   
       <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
       
-        <script src="https://unpkg.com/mermaid@10.6.1/dist/mermaid.min.js"></script>
-      
-        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-      
-        <script src="../../assets/pymdownx-extras/mermaid-config-override.js?v=20260523-1"></script>
-      
-        <script src="../../assets/pymdownx-extras/mermaid-legacy-flowchart-compat.js?v=20260329-1"></script>
-      
-        <script src="../../assets/pymdownx-extras/extra-loader-iLQ-keay.js"></script>
-      
-        <script src="../../assets/pymdownx-extras/mermaid-render-fix.js?v=20260522-1"></script>
-      
-        <script src="../../assets/pymdownx-extras/mermaid-zoom.js?v=20260404-1"></script>
-      
-        <script src="../../assets/pymdownx-extras/toc-fold.js"></script>
-      
-        <script src="../../assets/pymdownx-extras/image-zoom.js"></script>
-      
-        <script src="../../assets/pymdownx-extras/markdown-embed.js?v=20260516-1"></script>
-      
-        <script src="../../assets/pymdownx-extras/folder-path-bar.js?v=20260524-1"></script>
-      
-        <script src="../../assets/pymdownx-extras/legacy-image-width.js"></script>
-      
-        <script src="../../assets/pymdownx-extras/source-jump.js?v=20260523-2"></script>
+        <script src="../../assets/pymdownx-extras/conditional-loader.js?v=20260614-3"></script>
       
     
-  <script src="../../assets/pymdownx-extras/scroll-bottom.js?v=20260424-3" type="text/javascript"></script>
 
   </body>
 </html>

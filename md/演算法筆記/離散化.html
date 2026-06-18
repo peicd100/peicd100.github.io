@@ -44,8 +44,6 @@
     
 
       
-        <script src="https://unpkg.com/iframe-worker/shim"></script>
-      
     
 <script src="../../assets/pymdownx-extras/material-extra-theme-2ek1P7jT.js" type="text/javascript"></script>
 <script src="../../assets/pymdownx-extras/material-extra-3rdparty-BUCF4rjN.js" type="text/javascript"></script>
@@ -1956,7 +1954,7 @@
     
       <link rel="stylesheet" href="../../assets/pymdownx-extras/extra-8611f6c398.css">
     
-      <link rel="stylesheet" href="../../assets/pymdownx-extras/自定義.css?v=20260527-9">
+      <link rel="stylesheet" href="../../assets/pymdownx-extras/自定義.css?v=20260614-2">
     
     <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
@@ -6845,37 +6843,37 @@ is now available!
 <h1 id="離散化">離散化<a class="headerlink" href="#離散化" title="Permanent link"></a></h1>
 <h2 id="離散化_1">離散化<a class="headerlink" href="#離散化_1" title="Permanent link"></a></h2>
 <blockquote>
-<p>如果資料要存入陣列，資料數字範圍極大，但並非連續。<br />
+<p>如果資料要存入陣列，資料數字範圍極大，但並非連續。<br/>
 也就是數學中的「標準化」</p>
 </blockquote>
 <h3 id="p-2-2-離散化--sort">P-2-2. 離散化 – sort<a class="headerlink" href="#p-2-2-離散化--sort" title="Permanent link"></a></h3>
 <p>題目：<a href="https://zerojudge.cchs.chc.edu.tw/ShowProblem?problemid=a140">https://zerojudge.cchs.chc.edu.tw/ShowProblem?problemid=a140</a></p>
-<p>假設有 N 個整數要被讀到一個陣列中，我們想要將這些整數置換成從 0 開始依序排列的整數並且維持它們原來的大小關係，例如輸入的整數序列是 (5, 3, 9, 3, 15, 9, 8, 9)，這些數如從小到大排是 ( 3, 3, 5, 8, 9, 9, 9, 15)，去 除重複者後為(3, 5, 8, 9, 15)，所以我們要替換的是： <br />
-3 → 0    <br />
-5 → 1   <br />
-8 → 2    <br />
-9 → 3    <br />
+<p>假設有 N 個整數要被讀到一個陣列中，我們想要將這些整數置換成從 0 開始依序排列的整數並且維持它們原來的大小關係，例如輸入的整數序列是 (5, 3, 9, 3, 15, 9, 8, 9)，這些數如從小到大排是 ( 3, 3, 5, 8, 9, 9, 9, 15)，去 除重複者後為(3, 5, 8, 9, 15)，所以我們要替換的是： <br/>
+3 → 0    <br/>
+5 → 1   <br/>
+8 → 2    <br/>
+9 → 3    <br/>
 15 → 4     </p>
-<p>所以原先的序列就會變成(1, 0, 3, 0, 4, 3, 2, 3)。  <br />
-Time limit: 1 秒  <br />
-輸入格式：輸入兩行，第一行是正整數 N，N 不超過 10 萬，第二行是 N 個整數，大 小不超過 109，以空白間隔。     <br />
+<p>所以原先的序列就會變成(1, 0, 3, 0, 4, 3, 2, 3)。  <br/>
+Time limit: 1 秒  <br/>
+輸入格式：輸入兩行，第一行是正整數 N，N 不超過 10 萬，第二行是 N 個整數，大 小不超過 109，以空白間隔。     <br/>
 輸出：輸出置換後的序列，兩數之間以一個空白間隔。       </p>
-<p>範例輸入： 7 0 3 9 3 3 -1 0     <br />
+<p>範例輸入： 7 0 3 9 3 3 -1 0     <br/>
 範例輸出： 1 2 3 2 2 0 1      </p>
 <h4 id="1純陣列法">1.純陣列法<a class="headerlink" href="#1純陣列法" title="Permanent link"></a></h4>
-<div class="collapse-code"><input checked="checked" id="__collapse0" name="__collapse0" type="checkbox" /><div class="highlight"><span class="filename">code</span><pre><span></span><code><span class="cp">#include</span><span class="cpf">&lt;bits/stdc++.h&gt;</span>
+<div class="collapse-code"><input checked="checked" id="__collapse0" name="__collapse0" type="checkbox"/><div class="highlight"><span class="filename">code</span><pre><span></span><code><span class="cp">#include</span><span class="cpf">&lt;bits/stdc++.h&gt;</span>
 <span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span>
 <span class="cp">#define pii pair&lt;int,int&gt;</span>
 <span class="cp">#define all(x) x.begin(),x.end()</span>
-<span class="cp">#define nn &quot;\n&quot;</span>
+<span class="cp">#define nn "\n"</span>
 
 <span class="kt">bool</span><span class="w"> </span><span class="nf">cmp</span><span class="p">(</span><span class="n">pii</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">pii</span><span class="w"> </span><span class="n">b</span><span class="p">){</span>
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">a</span><span class="p">.</span><span class="n">first</span><span class="o">&lt;</span><span class="n">b</span><span class="p">.</span><span class="n">first</span><span class="p">;</span>
 <span class="p">}</span>
 
 <span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(){</span>
-<span class="w">    </span><span class="c1">//istringstream cin(&quot;7 \</span>
-<span class="c1">0 3 9 3 3 -1 0&quot;);</span>
+<span class="w">    </span><span class="c1">//istringstream cin("7 \</span>
+<span class="c1">0 3 9 3 3 -1 0");</span>
 
 <span class="w">    </span><span class="n">vector</span><span class="o">&lt;</span><span class="n">pii</span><span class="o">&gt;</span><span class="n">v</span><span class="p">;</span>
 
@@ -6888,14 +6886,14 @@ Time limit: 1 秒  <br />
 <span class="w">    </span><span class="p">}</span>
 
 <span class="w">    </span><span class="c1">// for(pii i:v){</span>
-<span class="w">    </span><span class="c1">//     cout&lt;&lt;i.first&lt;&lt;&quot; &quot;;</span>
+<span class="w">    </span><span class="c1">//     cout&lt;&lt;i.first&lt;&lt;" ";</span>
 <span class="w">    </span><span class="c1">// }cout&lt;&lt;nn;</span>
 
 <span class="w">    </span><span class="n">sort</span><span class="p">(</span><span class="n">all</span><span class="p">(</span><span class="n">v</span><span class="p">),</span><span class="n">cmp</span><span class="p">);</span>
 
 
 <span class="w">    </span><span class="c1">// for(pii i:v){</span>
-<span class="w">    </span><span class="c1">//     cout&lt;&lt;i.first&lt;&lt;&quot; &quot;;</span>
+<span class="w">    </span><span class="c1">//     cout&lt;&lt;i.first&lt;&lt;" ";</span>
 <span class="w">    </span><span class="c1">// }cout&lt;&lt;nn;</span>
 
 <span class="w">    </span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="n">ans</span><span class="p">(</span><span class="n">n</span><span class="p">);</span>
@@ -6910,14 +6908,14 @@ Time limit: 1 秒  <br />
 <span class="w">        </span><span class="n">ans</span><span class="p">[</span><span class="n">v</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">second</span><span class="p">]</span><span class="o">=</span><span class="n">it</span><span class="p">;</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="w">    </span><span class="k">for</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="o">:</span><span class="n">ans</span><span class="p">){</span>
-<span class="w">        </span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">i</span><span class="o">&lt;&lt;</span><span class="s">&quot; &quot;</span><span class="p">;</span>
+<span class="w">        </span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">i</span><span class="o">&lt;&lt;</span><span class="s">" "</span><span class="p">;</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
 <div class="code-footer"><label class="expand icon-only" for="__collapse0" tabindex="0"><span class="collapse-code__sr-only">expand</span></label><label class="collapse icon-only" for="__collapse0" tabindex="0"><span class="collapse-code__sr-only">collapse</span></label></div>
 </div>
 <h4 id="2運用map">2.運用map<a class="headerlink" href="#2運用map" title="Permanent link"></a></h4>
-<div class="collapse-code"><input checked="checked" id="__collapse1" name="__collapse1" type="checkbox" /><div class="highlight"><span class="filename">code</span><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;bits/stdc++.h&gt;</span>
+<div class="collapse-code"><input checked="checked" id="__collapse1" name="__collapse1" type="checkbox"/><div class="highlight"><span class="filename">code</span><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;bits/stdc++.h&gt;</span>
 <span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span>
 <span class="cp">#define N 100001</span>
 
@@ -6942,19 +6940,19 @@ Time limit: 1 秒  <br />
 
 <span class="w">    </span><span class="c1">//依照每個v[i]輸出</span>
 <span class="w">    </span><span class="k">for</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">n</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
-<span class="w">        </span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">mp</span><span class="p">[</span><span class="n">v</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span><span class="o">&lt;&lt;</span><span class="s">&quot; &quot;</span><span class="p">;</span>
+<span class="w">        </span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">mp</span><span class="p">[</span><span class="n">v</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span><span class="o">&lt;&lt;</span><span class="s">" "</span><span class="p">;</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
 <div class="code-footer"><label class="expand icon-only" for="__collapse1" tabindex="0"><span class="collapse-code__sr-only">expand</span></label><label class="collapse icon-only" for="__collapse1" tabindex="0"><span class="collapse-code__sr-only">collapse</span></label></div>
 </div>
 <blockquote>
-<p>看完兩種解法<br />
+<p>看完兩種解法<br/>
 誰比較快呢？</p>
 <p>純陣列法較快，因為排序速度一樣，而遍歷陣列比set來的快</p>
 </blockquote>
 <h4 id="陣列更好寫的方法from-ionc">陣列、更好寫的方法(from IONC)<a class="headerlink" href="#陣列更好寫的方法from-ionc" title="Permanent link"></a></h4>
-<div class="collapse-code"><input checked="checked" id="__collapse2" name="__collapse2" type="checkbox" /><div class="highlight"><span class="filename">code</span><pre><span></span><code><span class="c1">//IONC做法</span>
+<div class="collapse-code"><input checked="checked" id="__collapse2" name="__collapse2" type="checkbox"/><div class="highlight"><span class="filename">code</span><pre><span></span><code><span class="c1">//IONC做法</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;vector&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;algorithm&gt;</span>
@@ -6988,7 +6986,7 @@ Time limit: 1 秒  <br />
 
 <span class="w">    </span><span class="c1">// 輸出離散化後的結果</span>
 <span class="w">    </span><span class="k">for</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">arr</span><span class="p">.</span><span class="n">size</span><span class="p">();</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; &quot;</span><span class="p">;</span>
+<span class="w">        </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">" "</span><span class="p">;</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
 
@@ -7003,6 +7001,9 @@ Time limit: 1 秒  <br />
 
 
 
+
+  
+  
 
 
 
@@ -7122,40 +7123,16 @@ Time limit: 1 秒  <br />
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.footer", "navigation.indexes", "navigation.instant", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.tabs", "navigation.top", "announce.dismiss", "content.tabs.link", "search.share", "content.code.copy", "content.code.annotations", "content.action.edit", "content.action.view", "content.tooltips"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.footer", "navigation.indexes", "navigation.instant", "navigation.instant.progress", "navigation.tabs", "navigation.top", "announce.dismiss", "content.tabs.link", "search.share", "content.code.copy", "content.code.annotations", "content.action.edit", "content.action.view", "content.tooltips"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
+  <script src="../../assets/pymdownx-extras/search-lazy-guard.js?v=20260614-1"></script>
   
       <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
       
-        <script src="https://unpkg.com/mermaid@10.6.1/dist/mermaid.min.js"></script>
-      
-        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-      
-        <script src="../../assets/pymdownx-extras/mermaid-config-override.js?v=20260523-1"></script>
-      
-        <script src="../../assets/pymdownx-extras/mermaid-legacy-flowchart-compat.js?v=20260329-1"></script>
-      
-        <script src="../../assets/pymdownx-extras/extra-loader-iLQ-keay.js"></script>
-      
-        <script src="../../assets/pymdownx-extras/mermaid-render-fix.js?v=20260522-1"></script>
-      
-        <script src="../../assets/pymdownx-extras/mermaid-zoom.js?v=20260404-1"></script>
-      
-        <script src="../../assets/pymdownx-extras/toc-fold.js"></script>
-      
-        <script src="../../assets/pymdownx-extras/image-zoom.js"></script>
-      
-        <script src="../../assets/pymdownx-extras/markdown-embed.js?v=20260516-1"></script>
-      
-        <script src="../../assets/pymdownx-extras/folder-path-bar.js?v=20260524-1"></script>
-      
-        <script src="../../assets/pymdownx-extras/legacy-image-width.js"></script>
-      
-        <script src="../../assets/pymdownx-extras/source-jump.js?v=20260523-2"></script>
+        <script src="../../assets/pymdownx-extras/conditional-loader.js?v=20260614-3"></script>
       
     
-  <script src="../../assets/pymdownx-extras/scroll-bottom.js?v=20260424-3" type="text/javascript"></script>
 
   </body>
 </html>

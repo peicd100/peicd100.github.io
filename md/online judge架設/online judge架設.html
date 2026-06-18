@@ -44,8 +44,6 @@
     
 
       
-        <script src="https://unpkg.com/iframe-worker/shim"></script>
-      
     
 <script src="../../assets/pymdownx-extras/material-extra-theme-2ek1P7jT.js" type="text/javascript"></script>
 <script src="../../assets/pymdownx-extras/material-extra-3rdparty-BUCF4rjN.js" type="text/javascript"></script>
@@ -1956,7 +1954,7 @@
     
       <link rel="stylesheet" href="../../assets/pymdownx-extras/extra-8611f6c398.css">
     
-      <link rel="stylesheet" href="../../assets/pymdownx-extras/自定義.css?v=20260527-9">
+      <link rel="stylesheet" href="../../assets/pymdownx-extras/自定義.css?v=20260614-2">
     
     <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
@@ -7139,16 +7137,16 @@ is now available!
 <p><a href="https://theriseofdavid.github.io/2021/03/29/linux/linux-build-online-judge/">https://theriseofdavid.github.io/2021/03/29/linux/linux-build-online-judge/</a></p>
 <h2 id="開始架設">開始架設<a class="headerlink" href="#開始架設" title="Permanent link"></a></h2>
 <h3 id="介紹">介紹<a class="headerlink" href="#介紹" title="Permanent link"></a></h3>
-<p>先介紹一下 online judge 是啥<br />
-<img alt="alt text" src="images/online%20judge%E6%9E%B6%E8%A8%AD/image-6.png" /></p>
-<p>就是線上評測程式碼<br />
+<p>先介紹一下 online judge 是啥<br/>
+<img alt="alt text" decoding="async" src="images/online%20judge%E6%9E%B6%E8%A8%AD/image-6.png"/></p>
+<p>就是線上評測程式碼<br/>
 但其實就是「把程式碼丟到某台電腦執行」</p>
 <p>現在，就是要讓大家把程式碼丟到你電腦裡面</p>
 <h3 id="系統要求">系統要求<a class="headerlink" href="#系統要求" title="Permanent link"></a></h3>
-<p>windows 11 <br />
+<p>windows 11 <br/>
 記憶體(RAM) 30 以上(建議)</p>
-<p>下圖是啥設定都還沒做，已經消耗 17GB 的記憶體(RAM)<br />
-<img alt="alt text" src="images/online%20judge%E6%9E%B6%E8%A8%AD/image-54.png" /></p>
+<p>下圖是啥設定都還沒做，已經消耗 17GB 的記憶體(RAM)<br/>
+<img alt="alt text" decoding="async" loading="lazy" src="images/online%20judge%E6%9E%B6%E8%A8%AD/image-54.png"/></p>
 <h3 id="安裝python虛擬環境anaconda">安裝python虛擬環境：Anaconda<a class="headerlink" href="#安裝python虛擬環境anaconda" title="Permanent link"></a></h3>
 <p>我喜歡把不同事情的程式碼分成很多個「環境」</p>
 <p>因為有些套件會有版本衝突，就像如果要開古董車，結果拿最新的輪胎，古董車不一定可以用</p>
@@ -7157,180 +7155,180 @@ is now available!
 <p>Anaconda 就是一個可以創造「工作室」的 Python 平台，它讓我們可以蓋出很多工作室修理不同的車</p>
 <h4 id="1下載-anaconda">1.下載 Anaconda<a class="headerlink" href="#1下載-anaconda" title="Permanent link"></a></h4>
 <p>點擊網址，選擇下載</p>
-<p><a href="https://www.anaconda.com/download/success">https://www.anaconda.com/download/success</a><br />
-<img alt="alt text" src="images/online%20judge%E6%9E%B6%E8%A8%AD/image.png" /></p>
-<p>所有都按下繼續(你也可以仔細看，像是更換安裝位置之類的，但是我覺得別換比較好)<br />
+<p><a href="https://www.anaconda.com/download/success">https://www.anaconda.com/download/success</a><br/>
+<img alt="alt text" decoding="async" loading="lazy" src="images/online%20judge%E6%9E%B6%E8%A8%AD/image.png"/></p>
+<p>所有都按下繼續(你也可以仔細看，像是更換安裝位置之類的，但是我覺得別換比較好)<br/>
 直到出現以下視窗</p>
-<p><img alt="alt text" src="images/online%20judge%E6%9E%B6%E8%A8%AD/image-1.png" /></p>
+<p><img alt="alt text" decoding="async" loading="lazy" src="images/online%20judge%E6%9E%B6%E8%A8%AD/image-1.png"/></p>
 <p>選擇 anaconda_promopt 點開 launch  ，如下圖</p>
-<p><img alt="alt text" src="images/online%20judge%E6%9E%B6%E8%A8%AD/image-2.png" /></p>
+<p><img alt="alt text" decoding="async" loading="lazy" src="images/online%20judge%E6%9E%B6%E8%A8%AD/image-2.png"/></p>
 <p>會跳出一個視窗，如下圖：</p>
-<p><img alt="alt text" src="images/online%20judge%E6%9E%B6%E8%A8%AD/image-3.png" /></p>
+<p><img alt="alt text" decoding="async" loading="lazy" src="images/online%20judge%E6%9E%B6%E8%A8%AD/image-3.png"/></p>
 <p>這邊就是 Anaconda 平台，其實也就是一個終端機(不知道終端機是啥沒關係)</p>
 <h4 id="2創建環境">2.創建環境<a class="headerlink" href="#2創建環境" title="Permanent link"></a></h4>
 <p>簡單介紹一下他的環境，可以看到代碼最前面寫了「(base) C:\Users\x1064&gt;」也就是說現在 Anaconda 在 base 環境，他開啟了 C:\Users\x1064 資料夾，接下來我們要創造一個環境</p>
-<p>在視窗中輸入以下代碼，按下enter<br />
+<p>在視窗中輸入以下代碼，按下enter<br/>
 <div class="highlight"><pre><span></span><code>conda create --name online_judge
 </code></pre></div></p>
-<p>他可能會問你是否同意(如圖)，直接輸入y按下enter就好<br />
-<img alt="alt text" src="images/online%20judge%E6%9E%B6%E8%A8%AD/image-4.png" /></p>
-<p>好了之後輸入以下代碼，按下enter<br />
+<p>他可能會問你是否同意(如圖)，直接輸入y按下enter就好<br/>
+<img alt="alt text" decoding="async" loading="lazy" src="images/online%20judge%E6%9E%B6%E8%A8%AD/image-4.png"/></p>
+<p>好了之後輸入以下代碼，按下enter<br/>
 <div class="highlight"><pre><span></span><code>conda env list
 </code></pre></div></p>
 <p>會看到類似下圖的畫面(我已經使用了一些環境來做事情)，可以看到其中有一個叫做 online_judge </p>
-<p><img alt="alt text" src="images/online%20judge%E6%9E%B6%E8%A8%AD/image-5.png" /></p>
+<p><img alt="alt text" decoding="async" loading="lazy" src="images/online%20judge%E6%9E%B6%E8%A8%AD/image-5.png"/></p>
 <p>注意看base後面影一顆星星，就是現在 Anaconda 在 base 中，我們要讓他進入 online_judge 工作室，輸入以下代碼</p>
 <div class="highlight"><pre><span></span><code>conda activate online_judge 
 </code></pre></div>
 <p>現在已經進入了工作室了</p>
 <p>接下來請你選擇你 online judge 要存哪裡 (大概會用到20~30 GB甚至更多)，你自己選擇，任何地方都可以</p>
-<p>選好地方之後用檔案總管打開你要存的位置，類似下圖<br />
-<img alt="alt text" src="images/online%20judge%E6%9E%B6%E8%A8%AD/image-7.png" /></p>
+<p>選好地方之後用檔案總管打開你要存的位置，類似下圖<br/>
+<img alt="alt text" decoding="async" loading="lazy" src="images/online%20judge%E6%9E%B6%E8%A8%AD/image-7.png"/></p>
 <p>點擊上面路徑空白的地方，如下圖的右半邊</p>
-<p><img alt="alt text" src="images/online%20judge%E6%9E%B6%E8%A8%AD/image-8.png" /></p>
+<p><img alt="alt text" decoding="async" loading="lazy" src="images/online%20judge%E6%9E%B6%E8%A8%AD/image-8.png"/></p>
 <p>他會讓你複製，如圖，把他複製下來</p>
-<p><img alt="alt text" src="images/online%20judge%E6%9E%B6%E8%A8%AD/image-9.png" /></p>
-<p>輸入以下程式碼到 Anaconda<br />
+<p><img alt="alt text" decoding="async" loading="lazy" src="images/online%20judge%E6%9E%B6%E8%A8%AD/image-9.png"/></p>
+<p>輸入以下程式碼到 Anaconda<br/>
 <div class="highlight"><pre><span></span><code>cd &lt;你的檔案位置&gt;
 </code></pre></div></p>
-<p>像我的檔案位置是在<code>D:\x1064\pei\online_judge</code>，就要輸入以下程式碼<br />
+<p>像我的檔案位置是在<code>D:\x1064\pei\online_judge</code>，就要輸入以下程式碼<br/>
 會發現前面多了一個<code>D:</code>，這是因為 Anaconda 預設是在C槽，要些換到D槽要先輸入<code>D:</code></p>
 <div class="highlight"><pre><span></span><code>D:
 cd D:\x1064\pei\online_judge
 </code></pre></div>
 <p>最後就會到想要的路徑，像是下面這樣</p>
-<p><img alt="alt text" src="images/online%20judge%E6%9E%B6%E8%A8%AD/image-10.png" /></p>
+<p><img alt="alt text" decoding="async" loading="lazy" src="images/online%20judge%E6%9E%B6%E8%A8%AD/image-10.png"/></p>
 <h4 id="3下載-online-judge">3.下載 online judge<a class="headerlink" href="#3下載-online-judge" title="Permanent link"></a></h4>
 <p>在 Anaconda 輸入以下代碼，分別是「下載 online judge」和進到 「下載的檔案中的OnlineJudgeDeploy資料夾」</p>
 <div class="highlight"><pre><span></span><code>git clone -b 2.0 https://github.com/QingdaoU/OnlineJudgeDeploy.git
 cd OnlineJudgeDeploy
 </code></pre></div>
-<p>畫面如下：<br />
-<img alt="alt text" src="images/online%20judge%E6%9E%B6%E8%A8%AD/image-12.png" /></p>
+<p>畫面如下：<br/>
+<img alt="alt text" decoding="async" loading="lazy" src="images/online%20judge%E6%9E%B6%E8%A8%AD/image-12.png"/></p>
 <h4 id="4建立-docker-服務">4.建立 docker 服務<a class="headerlink" href="#4建立-docker-服務" title="Permanent link"></a></h4>
-<p>前面完成了 Anaconda 的基本設置，接下來就要讓 docker 接管你的 online judge<br />
+<p>前面完成了 Anaconda 的基本設置，接下來就要讓 docker 接管你的 online judge<br/>
 先安裝以下網址</p>
 <p><a href="https://www.docker.com/get-started/">https://www.docker.com/get-started/</a></p>
 <p>安裝之後一樣都按下確定，但是要注意他最後會問你要不要重新開機，不要直接按，把東西都關好之後再按下</p>
-<p>開機之後<br />
+<p>開機之後<br/>
 他會出現兩個畫面</p>
-<p>1.<br />
-<img alt="alt text" src="images/online%20judge%E6%9E%B6%E8%A8%AD/image-14.png" /></p>
-<p>2.<br />
-<img alt="alt text" src="images/online%20judge%E6%9E%B6%E8%A8%AD/image-13.png" /></p>
+<p>1.<br/>
+<img alt="alt text" decoding="async" loading="lazy" src="images/online%20judge%E6%9E%B6%E8%A8%AD/image-14.png"/></p>
+<p>2.<br/>
+<img alt="alt text" decoding="async" loading="lazy" src="images/online%20judge%E6%9E%B6%E8%A8%AD/image-13.png"/></p>
 <p>我們先操作第一個畫面(可能沒有)</p>
-<p>輸入並執行<br />
+<p>輸入並執行<br/>
 <div class="highlight"><pre><span></span><code>wsl.exe --update
 </code></pre></div></p>
-<p>開始更新，如圖<br />
-<img alt="alt text" src="images/online%20judge%E6%9E%B6%E8%A8%AD/image-17.png" /></p>
-<p>按下任何按鍵就好<br />
-<img alt="alt text" src="images/online%20judge%E6%9E%B6%E8%A8%AD/image-18.png" /></p>
+<p>開始更新，如圖<br/>
+<img alt="alt text" decoding="async" loading="lazy" src="images/online%20judge%E6%9E%B6%E8%A8%AD/image-17.png"/></p>
+<p>按下任何按鍵就好<br/>
+<img alt="alt text" decoding="async" loading="lazy" src="images/online%20judge%E6%9E%B6%E8%A8%AD/image-18.png"/></p>
 <p>接著用第二個畫面</p>
 <p>直接按下 Accept ，他會出現以下畫面，按下 Finish</p>
-<p><img alt="alt text" src="images/online%20judge%E6%9E%B6%E8%A8%AD/image-15.png" /></p>
+<p><img alt="alt text" decoding="async" loading="lazy" src="images/online%20judge%E6%9E%B6%E8%A8%AD/image-15.png"/></p>
 <p>接著登入，用任何一個 gmail 帳號就好，登入後會出現以下畫面，可以跳過(左上角 skip)</p>
-<p><img alt="alt text" src="images/online%20judge%E6%9E%B6%E8%A8%AD/image-16.png" /></p>
-<p>會出現類似下面畫面<br />
-<img alt="alt text" src="images/online%20judge%E6%9E%B6%E8%A8%AD/image-19.png" /></p>
+<p><img alt="alt text" decoding="async" loading="lazy" src="images/online%20judge%E6%9E%B6%E8%A8%AD/image-16.png"/></p>
+<p>會出現類似下面畫面<br/>
+<img alt="alt text" decoding="async" loading="lazy" src="images/online%20judge%E6%9E%B6%E8%A8%AD/image-19.png"/></p>
 <p>這樣就可以先不管 docker 了</p>
 <p>接下來回到 Anaconda ，剛剛 Anaconda 應該已經重開機被關掉了</p>
-<p>所以打開他，可以按下 windows 按鈕，查詢 anaconda Prompt ，如下圖<br />
-<img alt="alt text" src="images/online%20judge%E6%9E%B6%E8%A8%AD/image-21.png" /></p>
-<p>再輸入一次指令，開啟環境和資料夾：<br />
+<p>所以打開他，可以按下 windows 按鈕，查詢 anaconda Prompt ，如下圖<br/>
+<img alt="alt text" decoding="async" loading="lazy" src="images/online%20judge%E6%9E%B6%E8%A8%AD/image-21.png"/></p>
+<p>再輸入一次指令，開啟環境和資料夾：<br/>
 <div class="highlight"><pre><span></span><code>conda activate online_judge
 cd &lt;你的檔案位置&gt;
 cd OnlineJudgeDeploy
 </code></pre></div></p>
-<p>我的話是：<br />
+<p>我的話是：<br/>
 <div class="highlight"><pre><span></span><code>conda activate online_judge
 D:
 cd D:\x1064\pei\online_judge
 cd OnlineJudgeDeploy
 </code></pre></div></p>
 <p>如下圖</p>
-<p><img alt="alt text" src="images/online%20judge%E6%9E%B6%E8%A8%AD/image-22.png" /></p>
+<p><img alt="alt text" decoding="async" loading="lazy" src="images/online%20judge%E6%9E%B6%E8%A8%AD/image-22.png"/></p>
 <p>現在開啟環境「(online_judge) 」和「OnlineJudgeDeploy」資料夾了</p>
 <p>接著我們繼續做事情，接下來要讓 docker 接管你的 online judge</p>
-<p>執行以下程式碼<br />
+<p>執行以下程式碼<br/>
 <div class="highlight"><pre><span></span><code>sudo docker-compose up -d
-</code></pre></div><br />
+</code></pre></div><br/>
 如果出現像下面的錯誤</p>
-<p><img alt="alt text" src="images/online%20judge%E6%9E%B6%E8%A8%AD/image-11.png" /></p>
+<p><img alt="alt text" decoding="async" loading="lazy" src="images/online%20judge%E6%9E%B6%E8%A8%AD/image-11.png"/></p>
 <p>就把下面的設定打開</p>
-<p><img alt="alt text" src="images/online%20judge%E6%9E%B6%E8%A8%AD/%E8%9E%A2%E5%B9%95%E6%93%B7%E5%8F%96%E7%95%AB%E9%9D%A2%202025-04-14%20203130.png" /></p>
+<p><img alt="alt text" decoding="async" loading="lazy" src="images/online%20judge%E6%9E%B6%E8%A8%AD/%E8%9E%A2%E5%B9%95%E6%93%B7%E5%8F%96%E7%95%AB%E9%9D%A2%202025-04-14%20203130.png"/></p>
 <p>然後在執行一次</p>
-<p>他會出現以下視窗<br />
-<img alt="alt text" src="images/online%20judge%E6%9E%B6%E8%A8%AD/image-23.png" /></p>
+<p>他會出現以下視窗<br/>
+<img alt="alt text" decoding="async" loading="lazy" src="images/online%20judge%E6%9E%B6%E8%A8%AD/image-23.png"/></p>
 <p>等他跑完，會發現 docker 出現了一個東西正在運作，如下圖</p>
-<p><img alt="alt text" src="images/online%20judge%E6%9E%B6%E8%A8%AD/image-24.png" /></p>
+<p><img alt="alt text" decoding="async" loading="lazy" src="images/online%20judge%E6%9E%B6%E8%A8%AD/image-24.png"/></p>
 <p>現在就......成功了在本地做好了！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！</p>
-<p>你可以開啟隨便一個瀏覽器，輸入以下網址或是點擊連結： <a href="http://localhost:80" target="_blank"><a href="http://localhost:80">http://localhost:80</a></a><br />
+<p>你可以開啟隨便一個瀏覽器，輸入以下網址或是點擊連結： <a href="http://localhost:80" target="_blank"><a href="http://localhost:80">http://localhost:80</a></a><br/>
 <div class="highlight"><pre><span></span><code>localhost:80
 </code></pre></div></p>
 <p>你會看到一個預設畫面</p>
-<p><img alt="alt text" src="images/online%20judge%E6%9E%B6%E8%A8%AD/image-25.png" /></p>
+<p><img alt="alt text" decoding="async" loading="lazy" src="images/online%20judge%E6%9E%B6%E8%A8%AD/image-25.png"/></p>
 <p>這樣已經完成了「在本地評測程式碼」</p>
 <p>接下來就要讓別人可以連到你的主機</p>
 <h3 id="讓別人可以連到你的主機">讓別人可以連到你的主機<a class="headerlink" href="#讓別人可以連到你的主機" title="Permanent link"></a></h3>
 <h4 id="1下載ngrok">1.下載ngrok<a class="headerlink" href="#1下載ngrok" title="Permanent link"></a></h4>
 <p><a href="https://ngrok.com/downloads/windows?tab=download">https://ngrok.com/downloads/windows?tab=download</a></p>
-<p>點開後如下圖<br />
-<img alt="alt text" src="images/online%20judge%E6%9E%B6%E8%A8%AD/image-26.png" /></p>
+<p>點開後如下圖<br/>
+<img alt="alt text" decoding="async" loading="lazy" src="images/online%20judge%E6%9E%B6%E8%A8%AD/image-26.png"/></p>
 <p>選擇你電腦的 Bit下載</p>
 <details>
 <summary>不知道自己電腦是多少bit就點進來</summary>
 <ol>
 <li>按下 Windows 鍵 + R，開啟「執行」對話方塊。</li>
-<li>輸入 msinfo32，然後按下「確定」。<br />
-    <div class="highlight"><pre><span></span><code>msinfo32
+<li>輸入 msinfo32，然後按下「確定」。<br/>
+<div class="highlight"><pre><span></span><code>msinfo32
 </code></pre></div></li>
-<li>在「系統資訊」視窗中，找到「系統類型」項目，如下圖，我的是 64 Bit<br />
-<img alt="alt text" src="images/online%20judge%E6%9E%B6%E8%A8%AD/image-27.png" /></li>
+<li>在「系統資訊」視窗中，找到「系統類型」項目，如下圖，我的是 64 Bit<br/>
+<img alt="alt text" decoding="async" loading="lazy" src="images/online%20judge%E6%9E%B6%E8%A8%AD/image-27.png"/></li>
 </ol>
 </details>
 <p>下載之後隨便找個地方解壓縮，點開解壓縮的資料夾，如下圖</p>
-<p><img alt="alt text" src="images/online%20judge%E6%9E%B6%E8%A8%AD/image-29.png" /></p>
+<p><img alt="alt text" decoding="async" loading="lazy" src="images/online%20judge%E6%9E%B6%E8%A8%AD/image-29.png"/></p>
 <p>將ngrok.exe複製到你的 online judge 資料夾，如下圖：</p>
-<p><img alt="alt text" src="images/online%20judge%E6%9E%B6%E8%A8%AD/image-30.png" /></p>
+<p><img alt="alt text" decoding="async" loading="lazy" src="images/online%20judge%E6%9E%B6%E8%A8%AD/image-30.png"/></p>
 <h4 id="2創建帳戶並取得授權">2.創建帳戶並取得授權<a class="headerlink" href="#2創建帳戶並取得授權" title="Permanent link"></a></h4>
 <p>接下來要創建帳戶並取得授權，點擊以下網址，用gmail登入，接下來可以全部跳過</p>
 <p><a href="https://dashboard.ngrok.com/get-started/your-authtoken">https://dashboard.ngrok.com/get-started/your-authtoken</a></p>
 <p>會看到以下畫面：</p>
-<p><img alt="alt text" src="images/online%20judge%E6%9E%B6%E8%A8%AD/image-32.png" /></p>
+<p><img alt="alt text" decoding="async" loading="lazy" src="images/online%20judge%E6%9E%B6%E8%A8%AD/image-32.png"/></p>
 <p>點選左邊Your Authtoken按鈕，如下圖</p>
-<p><img alt="alt text" src="images/online%20judge%E6%9E%B6%E8%A8%AD/%E8%9E%A2%E5%B9%95%E6%93%B7%E5%8F%96%E7%95%AB%E9%9D%A2%202025-04-14%20223841.png" /></p>
+<p><img alt="alt text" decoding="async" loading="lazy" src="images/online%20judge%E6%9E%B6%E8%A8%AD/%E8%9E%A2%E5%B9%95%E6%93%B7%E5%8F%96%E7%95%AB%E9%9D%A2%202025-04-14%20223841.png"/></p>
 <p>會看到以下畫面，點選 copy ，這就是你的「授權token」</p>
-<p><img alt="alt text" src="images/online%20judge%E6%9E%B6%E8%A8%AD/image-33.png" /></p>
+<p><img alt="alt text" decoding="async" loading="lazy" src="images/online%20judge%E6%9E%B6%E8%A8%AD/image-33.png"/></p>
 <h4 id="3執行ngrok">3.執行ngrok<a class="headerlink" href="#3執行ngrok" title="Permanent link"></a></h4>
 <p>點開 ngrok.exe ，會出現終端機，如下兩張圖</p>
-<p><img alt="alt text" src="images/online%20judge%E6%9E%B6%E8%A8%AD/image-34.png" /></p>
-<p><img alt="alt text" src="images/online%20judge%E6%9E%B6%E8%A8%AD/image-35.png" /></p>
+<p><img alt="alt text" decoding="async" loading="lazy" src="images/online%20judge%E6%9E%B6%E8%A8%AD/image-34.png"/></p>
+<p><img alt="alt text" decoding="async" loading="lazy" src="images/online%20judge%E6%9E%B6%E8%A8%AD/image-35.png"/></p>
 <p>在ngrok開啟的終端機輸入，按下enter</p>
 <p><div class="highlight"><pre><span></span><code>ngrok authtoken &lt;你剛剛複製的授權代碼&gt;
-</code></pre></div><br />
+</code></pre></div><br/>
 像我的是</p>
 <div class="highlight"><pre><span></span><code>ngrok authtoken 2viyyc7F3qTV2xefz0TbxsCRIOD_3WTuuwTAC647Rpm9kVpkT
 </code></pre></div>
 <p>會出現像是下面的畫面</p>
-<p><img alt="alt text" src="images/online%20judge%E6%9E%B6%E8%A8%AD/image-38.png" /></p>
+<p><img alt="alt text" decoding="async" loading="lazy" src="images/online%20judge%E6%9E%B6%E8%A8%AD/image-38.png"/></p>
 <p>接著到 ngrok 網站，點選按鈕，如圖</p>
-<p><img alt="alt text" src="images/online%20judge%E6%9E%B6%E8%A8%AD/%E8%9E%A2%E5%B9%95%E6%93%B7%E5%8F%96%E7%95%AB%E9%9D%A2%202025-04-14%20225634.png" /></p>
+<p><img alt="alt text" decoding="async" loading="lazy" src="images/online%20judge%E6%9E%B6%E8%A8%AD/%E8%9E%A2%E5%B9%95%E6%93%B7%E5%8F%96%E7%95%AB%E9%9D%A2%202025-04-14%20225634.png"/></p>
 <p>會出現以下畫面，按下複製，如圖</p>
-<p><img alt="alt text" src="images/online%20judge%E6%9E%B6%E8%A8%AD/image-40.png" /></p>
+<p><img alt="alt text" decoding="async" loading="lazy" src="images/online%20judge%E6%9E%B6%E8%A8%AD/image-40.png"/></p>
 <p>貼上到 ngrok </p>
 <p>他就會出現下面的畫面</p>
-<p><img alt="alt text" src="images/online%20judge%E6%9E%B6%E8%A8%AD/%E8%9E%A2%E5%B9%95%E6%93%B7%E5%8F%96%E7%95%AB%E9%9D%A2%202025-04-14%20225856.png" /></p>
+<p><img alt="alt text" decoding="async" loading="lazy" src="images/online%20judge%E6%9E%B6%E8%A8%AD/%E8%9E%A2%E5%B9%95%E6%93%B7%E5%8F%96%E7%95%AB%E9%9D%A2%202025-04-14%20225856.png"/></p>
 <p>點選網址(要按ctrl)就可以連到網站，如圖</p>
-<p><img alt="alt text" src="images/online%20judge%E6%9E%B6%E8%A8%AD/image-43.png" /></p>
+<p><img alt="alt text" decoding="async" loading="lazy" src="images/online%20judge%E6%9E%B6%E8%A8%AD/image-43.png"/></p>
 <p>現在這個網址就是你的網站了！！要記得存下來</p>
 <h3 id="自動化開啟">自動化開啟<a class="headerlink" href="#自動化開啟" title="Permanent link"></a></h3>
 <p>以下是你每次開機之後要做的動作(你先看看就好不用動作)</p>
 <ol>
 <li>開啟 docker 應用程式</li>
 <li>開啟 Anaconda Prompt</li>
-<li>輸入：<br />
-  <div class="highlight"><pre><span></span><code># 進入conda(不用改)
+<li>輸入：<br/>
+<div class="highlight"><pre><span></span><code># 進入conda(不用改)
 conda activate online_judge
 
 # 開啟資料夾(改成你的)
@@ -7340,8 +7338,8 @@ cd D:\x1064\pei\online_judge\OnlineJudgeDeploy
 # 讓docker代理(不用改)
 docker-compose up -d
 </code></pre></div></li>
-<li>開啟 ngrok.exe，輸入：<br />
-  <div class="highlight"><pre><span></span><code>#都改成你的
+<li>開啟 ngrok.exe，輸入：<br/>
+<div class="highlight"><pre><span></span><code>#都改成你的
 ngrok authtoken 2viyyc7F3qTV2xefz0TbxsCRIOD_3WTuuwTAC647Rpm9kVpkT
 ngrok http --url=polliwog-correct-chamois.ngrok-free.app 80
 </code></pre></div></li>
@@ -7349,11 +7347,11 @@ ngrok http --url=polliwog-correct-chamois.ngrok-free.app 80
 <p>這樣很多很麻煩，反正每次都要開電腦都要開網站，那是不是設定成「開啟電腦自動執行」會不會超級方便</p>
 <p>接下來就教你怎麼做</p>
 <p>你先把所有終端機關掉，按下叉叉就好(Anaconda 和 ngrok)，再開啟docker把代理關掉，如下圖</p>
-<p><img alt="alt text" src="images/online%20judge%E6%9E%B6%E8%A8%AD/%E8%9E%A2%E5%B9%95%E6%93%B7%E5%8F%96%E7%95%AB%E9%9D%A2%202025-04-14%20231330.png" /></p>
+<p><img alt="alt text" decoding="async" loading="lazy" src="images/online%20judge%E6%9E%B6%E8%A8%AD/%E8%9E%A2%E5%B9%95%E6%93%B7%E5%8F%96%E7%95%AB%E9%9D%A2%202025-04-14%20231330.png"/></p>
 <p>接著在 online judge 資料夾新增一個文字檔，如下圖</p>
-<p><img alt="alt text" src="images/online%20judge%E6%9E%B6%E8%A8%AD/image-44.png" /></p>
+<p><img alt="alt text" decoding="async" loading="lazy" src="images/online%20judge%E6%9E%B6%E8%A8%AD/image-44.png"/></p>
 <p>開啟文字檔，貼上：</p>
-<div class="highlight"><pre><span></span><code>&quot;C:\Program Files\Docker\Docker\Docker Desktop.exe&quot;
+<div class="highlight"><pre><span></span><code>"C:\Program Files\Docker\Docker\Docker Desktop.exe"
 
 &lt;你的 OnlineJudgeDeploy 資料夾的路徑&gt;
 
@@ -7365,7 +7363,7 @@ ngrok authtoken &lt;你的ngrok授權token&gt;
 &lt;你在Domains複製下來的東西&gt;
 </code></pre></div>
 <p>我的是：</p>
-<div class="highlight"><pre><span></span><code>&quot;C:\Program Files\Docker\Docker\Docker Desktop.exe&quot;
+<div class="highlight"><pre><span></span><code>"C:\Program Files\Docker\Docker\Docker Desktop.exe"
 
 D:
 cd D:\pei\OnlineJudge\OnlineJudgeDeploy
@@ -7378,75 +7376,75 @@ ngrok authtoken 2viyyc7F3qTV2xefz0TbxsCRIOD_3WTuuwTAC647Rpm9kVpkT
 ngrok http --url=polliwog-correct-chamois.ngrok-free.app 80
 </code></pre></div>
 <p>修改好後 檔案 -&gt; 另存新檔，如下圖</p>
-<p><img alt="alt text" src="images/online%20judge%E6%9E%B6%E8%A8%AD/image-45.png" /></p>
+<p><img alt="alt text" decoding="async" loading="lazy" src="images/online%20judge%E6%9E%B6%E8%A8%AD/image-45.png"/></p>
 <p>存檔名稱改為：</p>
 <div class="highlight"><pre><span></span><code>&lt;你喜歡的名字&gt;.bat
 </code></pre></div>
 <p>注意副檔名是 bat</p>
 <p>檔爛類型改為「所有檔案(<em>.</em>)」，如下圖</p>
-<p><img alt="alt text" src="images/online%20judge%E6%9E%B6%E8%A8%AD/image-46.png" /></p>
+<p><img alt="alt text" decoding="async" loading="lazy" src="images/online%20judge%E6%9E%B6%E8%A8%AD/image-46.png"/></p>
 <p>按下存檔，如下圖，會看到APCS.bat在資料夾中</p>
-<p><img alt="alt text" src="images/online%20judge%E6%9E%B6%E8%A8%AD/image-47.png" /></p>
-<p>接著按下 Windows 鍵 + R 鍵，開啟「執行」對話框。<br />
-輸入：<br />
+<p><img alt="alt text" decoding="async" loading="lazy" src="images/online%20judge%E6%9E%B6%E8%A8%AD/image-47.png"/></p>
+<p>接著按下 Windows 鍵 + R 鍵，開啟「執行」對話框。<br/>
+輸入：<br/>
 <div class="highlight"><pre><span></span><code>shell:startup
-</code></pre></div><br />
+</code></pre></div><br/>
 然後按下「確定」。</p>
-<p>會開啟一個「啟動」資料夾<br />
+<p>會開啟一個「啟動」資料夾<br/>
 在這資料夾中的捷徑會自動開啟(只能放捷徑)，如下圖，你可能會有一些已經預設的</p>
-<p><img alt="alt text" src="images/online%20judge%E6%9E%B6%E8%A8%AD/image-49.png" /></p>
-<p>按右鍵-&gt;新增捷徑-&gt;瀏覽，找到你的APCS.bat，按下確定，如圖。<br />
-<img alt="alt text" src="images/online%20judge%E6%9E%B6%E8%A8%AD/image-50.png" /></p>
+<p><img alt="alt text" decoding="async" loading="lazy" src="images/online%20judge%E6%9E%B6%E8%A8%AD/image-49.png"/></p>
+<p>按右鍵-&gt;新增捷徑-&gt;瀏覽，找到你的APCS.bat，按下確定，如圖。<br/>
+<img alt="alt text" decoding="async" loading="lazy" src="images/online%20judge%E6%9E%B6%E8%A8%AD/image-50.png"/></p>
 <p>然後按下「下一步」、「完成」。</p>
-<p>最後將電腦重新開機，出現像是下圖的網頁，等個10~20秒按下重新整理網頁，神奇的事情發生了<br />
+<p>最後將電腦重新開機，出現像是下圖的網頁，等個10~20秒按下重新整理網頁，神奇的事情發生了<br/>
 ！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！</p>
-<p><img alt="alt text" src="images/online%20judge%E6%9E%B6%E8%A8%AD/image-51.png" /></p>
+<p><img alt="alt text" decoding="async" loading="lazy" src="images/online%20judge%E6%9E%B6%E8%A8%AD/image-51.png"/></p>
 <p>這樣就完成了所有的網站架設</p>
 <p>要注意不要把 ngrok 的視窗關掉(如下)</p>
-<p><img alt="alt text" src="images/online%20judge%E6%9E%B6%E8%A8%AD/image-52.png" /></p>
+<p><img alt="alt text" decoding="async" loading="lazy" src="images/online%20judge%E6%9E%B6%E8%A8%AD/image-52.png"/></p>
 <p>不小心關掉的話就找到 APCS.bat 點兩下就好</p>
 <p>而 docker 視窗關掉沒關係，他會在背景執行</p>
 <h2 id="操作網頁">操作網頁<a class="headerlink" href="#操作網頁" title="Permanent link"></a></h2>
 <h3 id="進入後台">進入後台<a class="headerlink" href="#進入後台" title="Permanent link"></a></h3>
 <p>我們先進入管理者的權限，查看後台配置</p>
-<p>管理者預設帳號 <br />
+<p>管理者預設帳號 <br/>
 <div class="highlight"><pre><span></span><code>root
-</code></pre></div><br />
-管理者預設密碼 <br />
+</code></pre></div><br/>
+管理者預設密碼 <br/>
 <div class="highlight"><pre><span></span><code>rootroot
 </code></pre></div></p>
-<p><img alt="alt text" src="images/online%20judge%E6%9E%B6%E8%A8%AD/%E8%9E%A2%E5%B9%95%E6%93%B7%E5%8F%96%E7%95%AB%E9%9D%A2%202025-04-15%20000927.png" /></p>
+<p><img alt="alt text" decoding="async" loading="lazy" src="images/online%20judge%E6%9E%B6%E8%A8%AD/%E8%9E%A2%E5%B9%95%E6%93%B7%E5%8F%96%E7%95%AB%E9%9D%A2%202025-04-15%20000927.png"/></p>
 <h3 id="測資產生">測資產生<a class="headerlink" href="#測資產生" title="Permanent link"></a></h3>
-<div class="collapse-code"><input checked="checked" id="__collapse0" name="__collapse0" type="checkbox" /><div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<div class="collapse-code"><input checked="checked" id="__collapse0" name="__collapse0" type="checkbox"/><div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">zipfile</span>
 
 <span class="n">script_folder</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="vm">__file__</span><span class="p">))</span>
-<span class="n">cph_folder</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">script_folder</span><span class="p">,</span> <span class="s2">&quot;.cph&quot;</span><span class="p">)</span>
-<span class="n">zip_file_name</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">script_folder</span><span class="p">,</span> <span class="s2">&quot;0.zip&quot;</span><span class="p">)</span>
+<span class="n">cph_folder</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">script_folder</span><span class="p">,</span> <span class="s2">".cph"</span><span class="p">)</span>
+<span class="n">zip_file_name</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">script_folder</span><span class="p">,</span> <span class="s2">"0.zip"</span><span class="p">)</span>
 <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">cph_folder</span><span class="p">):</span>
     <span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-<span class="k">with</span> <span class="n">zipfile</span><span class="o">.</span><span class="n">ZipFile</span><span class="p">(</span><span class="n">zip_file_name</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">zipf</span><span class="p">:</span>
+<span class="k">with</span> <span class="n">zipfile</span><span class="o">.</span><span class="n">ZipFile</span><span class="p">(</span><span class="n">zip_file_name</span><span class="p">,</span> <span class="s2">"w"</span><span class="p">)</span> <span class="k">as</span> <span class="n">zipf</span><span class="p">:</span>
     <span class="k">for</span> <span class="n">file_name</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">cph_folder</span><span class="p">):</span>
-        <span class="k">if</span> <span class="n">file_name</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">&quot;.prob&quot;</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">file_name</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">".prob"</span><span class="p">):</span>
             <span class="n">prob_file_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">cph_folder</span><span class="p">,</span> <span class="n">file_name</span><span class="p">)</span>
-            <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">prob_file_path</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">prob_file</span><span class="p">:</span>
+            <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">prob_file_path</span><span class="p">,</span> <span class="s2">"r"</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">"utf-8"</span><span class="p">)</span> <span class="k">as</span> <span class="n">prob_file</span><span class="p">:</span>
                 <span class="k">try</span><span class="p">:</span>
                     <span class="n">prob_data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">prob_file</span><span class="p">)</span>
                 <span class="k">except</span> <span class="n">json</span><span class="o">.</span><span class="n">JSONDecodeError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
                     <span class="k">continue</span>
-                <span class="n">tests</span> <span class="o">=</span> <span class="n">prob_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;tests&quot;</span><span class="p">,</span> <span class="p">[])</span>
+                <span class="n">tests</span> <span class="o">=</span> <span class="n">prob_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"tests"</span><span class="p">,</span> <span class="p">[])</span>
                 <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">test</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">tests</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
-                    <span class="n">input_data</span> <span class="o">=</span> <span class="n">test</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;input&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
-                    <span class="n">output_data</span> <span class="o">=</span> <span class="n">test</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;output&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
-                    <span class="n">input_file_name</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">.in&quot;</span>
-                    <span class="n">output_file_name</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">.out&quot;</span>
+                    <span class="n">input_data</span> <span class="o">=</span> <span class="n">test</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"input"</span><span class="p">,</span> <span class="s2">""</span><span class="p">)</span>
+                    <span class="n">output_data</span> <span class="o">=</span> <span class="n">test</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"output"</span><span class="p">,</span> <span class="s2">""</span><span class="p">)</span>
+                    <span class="n">input_file_name</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">.in"</span>
+                    <span class="n">output_file_name</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">.out"</span>
                     <span class="n">input_file_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">script_folder</span><span class="p">,</span> <span class="n">input_file_name</span><span class="p">)</span>
-                    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">input_file_path</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">in_file</span><span class="p">:</span>
+                    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">input_file_path</span><span class="p">,</span> <span class="s2">"w"</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">"utf-8"</span><span class="p">)</span> <span class="k">as</span> <span class="n">in_file</span><span class="p">:</span>
                         <span class="n">in_file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">input_data</span><span class="p">)</span>
                     <span class="n">zipf</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">input_file_path</span><span class="p">,</span> <span class="n">arcname</span><span class="o">=</span><span class="n">input_file_name</span><span class="p">)</span>  
                     <span class="n">output_file_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">script_folder</span><span class="p">,</span> <span class="n">output_file_name</span><span class="p">)</span>
-                    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">output_file_path</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">out_file</span><span class="p">:</span>
+                    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">output_file_path</span><span class="p">,</span> <span class="s2">"w"</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">"utf-8"</span><span class="p">)</span> <span class="k">as</span> <span class="n">out_file</span><span class="p">:</span>
                         <span class="n">out_file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">output_data</span><span class="p">)</span>
                     <span class="n">zipf</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">output_file_path</span><span class="p">,</span> <span class="n">arcname</span><span class="o">=</span><span class="n">output_file_name</span><span class="p">)</span>
 </code></pre></div>
@@ -7582,40 +7580,16 @@ ngrok http --url=polliwog-correct-chamois.ngrok-free.app 80
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.footer", "navigation.indexes", "navigation.instant", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.tabs", "navigation.top", "announce.dismiss", "content.tabs.link", "search.share", "content.code.copy", "content.code.annotations", "content.action.edit", "content.action.view", "content.tooltips"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.footer", "navigation.indexes", "navigation.instant", "navigation.instant.progress", "navigation.tabs", "navigation.top", "announce.dismiss", "content.tabs.link", "search.share", "content.code.copy", "content.code.annotations", "content.action.edit", "content.action.view", "content.tooltips"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
+  <script src="../../assets/pymdownx-extras/search-lazy-guard.js?v=20260614-1"></script>
   
       <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
       
-        <script src="https://unpkg.com/mermaid@10.6.1/dist/mermaid.min.js"></script>
-      
-        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-      
-        <script src="../../assets/pymdownx-extras/mermaid-config-override.js?v=20260523-1"></script>
-      
-        <script src="../../assets/pymdownx-extras/mermaid-legacy-flowchart-compat.js?v=20260329-1"></script>
-      
-        <script src="../../assets/pymdownx-extras/extra-loader-iLQ-keay.js"></script>
-      
-        <script src="../../assets/pymdownx-extras/mermaid-render-fix.js?v=20260522-1"></script>
-      
-        <script src="../../assets/pymdownx-extras/mermaid-zoom.js?v=20260404-1"></script>
-      
-        <script src="../../assets/pymdownx-extras/toc-fold.js"></script>
-      
-        <script src="../../assets/pymdownx-extras/image-zoom.js"></script>
-      
-        <script src="../../assets/pymdownx-extras/markdown-embed.js?v=20260516-1"></script>
-      
-        <script src="../../assets/pymdownx-extras/folder-path-bar.js?v=20260524-1"></script>
-      
-        <script src="../../assets/pymdownx-extras/legacy-image-width.js"></script>
-      
-        <script src="../../assets/pymdownx-extras/source-jump.js?v=20260523-2"></script>
+        <script src="../../assets/pymdownx-extras/conditional-loader.js?v=20260614-3"></script>
       
     
-  <script src="../../assets/pymdownx-extras/scroll-bottom.js?v=20260424-3" type="text/javascript"></script>
 
   </body>
 </html>

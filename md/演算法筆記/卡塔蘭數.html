@@ -44,8 +44,6 @@
     
 
       
-        <script src="https://unpkg.com/iframe-worker/shim"></script>
-      
     
 <script src="../../assets/pymdownx-extras/material-extra-theme-2ek1P7jT.js" type="text/javascript"></script>
 <script src="../../assets/pymdownx-extras/material-extra-3rdparty-BUCF4rjN.js" type="text/javascript"></script>
@@ -1956,7 +1954,7 @@
     
       <link rel="stylesheet" href="../../assets/pymdownx-extras/extra-8611f6c398.css">
     
-      <link rel="stylesheet" href="../../assets/pymdownx-extras/自定義.css?v=20260527-9">
+      <link rel="stylesheet" href="../../assets/pymdownx-extras/自定義.css?v=20260614-2">
     
     <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
@@ -6797,23 +6795,23 @@ is now available!
 
 
 <h1 id="卡塔蘭數">卡塔蘭數<a class="headerlink" href="#卡塔蘭數" title="Permanent link"></a></h1>
-<p>只要一個問題可以被拆成「左邊一個小問題 + 右邊一個小問題」，<br />
+<p>只要一個問題可以被拆成「左邊一個小問題 + 右邊一個小問題」，<br/>
 而且所有可能切法都要加總，就很可能是 Catalan number。</p>
-<p><strong>第 0 項到第 19 項的卡塔蘭數為</strong>：           <br />
+<p><strong>第 0 項到第 19 項的卡塔蘭數為</strong>：           <br/>
 1, 1, 2, 5, 14, 42, 132, 429, 1430, 4862, 16796, 58786, 208012, 742900, 2674440, 9694845, 35357670, 129644790, 477638700, 1767263190</p>
 <h2 id="公式">公式<a class="headerlink" href="#公式" title="Permanent link"></a></h2>
 <div class="i">
-<p><a href="https://zh.m.wikipedia.org/wiki/%E5%8D%A1%E5%A1%94%E5%85%B0%E6%95%B0">from wiki</a>     </p>
+<p><a href="https://zh.m.wikipedia.org/wiki/%E5%8D%A1%E5%A1%94%E5%85%B0%E6%95%B0">from wiki</a> </p>
 <pre class="arithmatex">\[
 C_n = \frac{1}{n+1} \binom{2n}{n} = \frac{(2n)!}{(n+1)!n!}
 \]</pre>
-<hr />
+<hr/>
 <pre class="arithmatex">\[
 其中，\binom{2n}{n} = \frac{(2n)!}{n!(2n-n)!} = \frac{(2n)!}{n!n!}
 \]</pre>
 </div>
 <h2 id="程式">程式<a class="headerlink" href="#程式" title="Permanent link"></a></h2>
-<div class="collapse-code"><input checked="checked" id="__collapse0" name="__collapse0" type="checkbox" /><div class="highlight"><span class="filename">用原式，(2*25)!會爆掉 long long 裝不下</span><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;bits/stdc++.h&gt;</span>
+<div class="collapse-code"><input checked="checked" id="__collapse0" name="__collapse0" type="checkbox"/><div class="highlight"><span class="filename">用原式，(2*25)!會爆掉 long long 裝不下</span><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;bits/stdc++.h&gt;</span>
 <span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span>
 <span class="cp">#define int long long</span>
 
@@ -6840,7 +6838,7 @@ C_n = \frac{1}{n+1} \binom{2n}{n} = \frac{(2n)!}{(n+1)!n!}
 
 <span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="p">;</span>
 <span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">cin</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">n</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">c</span><span class="p">[</span><span class="n">n</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+<span class="w">        </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">c</span><span class="p">[</span><span class="n">n</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
 <span class="w">    </span><span class="p">}</span>
 
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
@@ -6850,9 +6848,9 @@ C_n = \frac{1}{n+1} \binom{2n}{n} = \frac{(2n)!}{(n+1)!n!}
 </div>
 <details>
 <summary>參考圖片</summary>
-<p><img alt="alt text" src="images/%E5%8D%A1%E5%A1%94%E8%98%AD%E6%95%B8/image.png" /></p>
+<p><img alt="alt text" decoding="async" src="images/%E5%8D%A1%E5%A1%94%E8%98%AD%E6%95%B8/image.png"/></p>
 </details>
-<div class="collapse-code"><input checked="checked" id="__collapse1" name="__collapse1" type="checkbox" /><div class="highlight"><span class="filename">用表格，不會爆掉，一維</span><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;bits/stdc++.h&gt;</span>
+<div class="collapse-code"><input checked="checked" id="__collapse1" name="__collapse1" type="checkbox"/><div class="highlight"><span class="filename">用表格，不會爆掉，一維</span><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;bits/stdc++.h&gt;</span>
 <span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span>
 <span class="cp">#define int long long</span>
 
@@ -6864,14 +6862,14 @@ C_n = \frac{1}{n+1} \binom{2n}{n} = \frac{(2n)!}{(n+1)!n!}
 <span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mi">25</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">i</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mi">25</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">            </span><span class="n">c</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">c</span><span class="p">[</span><span class="n">j</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">];</span>
-<span class="w">            </span><span class="c1">// cout &lt;&lt; c[j] &lt;&lt; &quot; &quot;;</span>
+<span class="w">            </span><span class="c1">// cout &lt;&lt; c[j] &lt;&lt; " ";</span>
 <span class="w">        </span><span class="p">}</span>
-<span class="w">        </span><span class="c1">// cout &lt;&lt; &quot;\n&quot;;</span>
+<span class="w">        </span><span class="c1">// cout &lt;&lt; "\n";</span>
 <span class="w">    </span><span class="p">}</span>
 
 <span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="p">;</span>
 <span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">cin</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">n</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">c</span><span class="p">[</span><span class="n">n</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+<span class="w">        </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">c</span><span class="p">[</span><span class="n">n</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
 <span class="w">    </span><span class="p">}</span>
 
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
@@ -6879,7 +6877,7 @@ C_n = \frac{1}{n+1} \binom{2n}{n} = \frac{(2n)!}{(n+1)!n!}
 </code></pre></div>
 <div class="code-footer"><label class="expand icon-only" for="__collapse1" tabindex="0"><span class="collapse-code__sr-only">expand</span></label><label class="collapse icon-only" for="__collapse1" tabindex="0"><span class="collapse-code__sr-only">collapse</span></label></div>
 </div>
-<div class="collapse-code"><input checked="checked" id="__collapse2" name="__collapse2" type="checkbox" /><div class="highlight"><span class="filename">用表格，不會爆掉，二維</span><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;bits/stdc++.h&gt;</span>
+<div class="collapse-code"><input checked="checked" id="__collapse2" name="__collapse2" type="checkbox"/><div class="highlight"><span class="filename">用表格，不會爆掉，二維</span><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;bits/stdc++.h&gt;</span>
 <span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span>
 <span class="cp">#define int long long</span>
 
@@ -6901,7 +6899,7 @@ C_n = \frac{1}{n+1} \binom{2n}{n} = \frac{(2n)!}{(n+1)!n!}
 
 <span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="p">;</span>
 <span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">cin</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">n</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">dp</span><span class="p">[</span><span class="n">n</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">][</span><span class="n">n</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+<span class="w">        </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">dp</span><span class="p">[</span><span class="n">n</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">][</span><span class="n">n</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
 <span class="w">    </span><span class="p">}</span>
 
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
@@ -6909,7 +6907,7 @@ C_n = \frac{1}{n+1} \binom{2n}{n} = \frac{(2n)!}{(n+1)!n!}
 </code></pre></div>
 <div class="code-footer"><label class="expand icon-only" for="__collapse2" tabindex="0"><span class="collapse-code__sr-only">expand</span></label><label class="collapse icon-only" for="__collapse2" tabindex="0"><span class="collapse-code__sr-only">collapse</span></label></div>
 </div>
-<div class="collapse-code"><input checked="checked" id="__collapse3" name="__collapse3" type="checkbox" /><div class="highlight"><span class="filename">推導後</span><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;bits/stdc++.h&gt;</span>
+<div class="collapse-code"><input checked="checked" id="__collapse3" name="__collapse3" type="checkbox"/><div class="highlight"><span class="filename">推導後</span><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;bits/stdc++.h&gt;</span>
 <span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span>
 
 <span class="cp">#define int long long</span>
@@ -6925,7 +6923,7 @@ C_n = \frac{1}{n+1} \binom{2n}{n} = \frac{(2n)!}{(n+1)!n!}
 
 <span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="p">;</span>
 <span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">cin</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">n</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">C</span><span class="p">[</span><span class="n">n</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+<span class="w">        </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">C</span><span class="p">[</span><span class="n">n</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
 <span class="w">    </span><span class="p">}</span>
 
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
@@ -6935,16 +6933,16 @@ C_n = \frac{1}{n+1} \binom{2n}{n} = \frac{(2n)!}{(n+1)!n!}
 </div>
 <h2 id="應用">應用<a class="headerlink" href="#應用" title="Permanent link"></a></h2>
 <ol>
-<li><span class="arithmatex">\(C_n\)</span> 表示長度 <span class="arithmatex">\(2n\)</span> 的 <a href="https://en.wikipedia.org/wiki/Dyck_language">dyck word</a> 的個數。Dyck 詞是一個有 <span class="arithmatex">\(n\)</span> 個 X 和 <span class="arithmatex">\(n\)</span> 個 Y 組成的字串，且所有的前綴字串皆滿足 X 的個數大於等於 Y 的個數。以下為長度為 6 的 dyck words：  <br />
+<li><span class="arithmatex">\(C_n\)</span> 表示長度 <span class="arithmatex">\(2n\)</span> 的 <a href="https://en.wikipedia.org/wiki/Dyck_language">dyck word</a> 的個數。Dyck 詞是一個有 <span class="arithmatex">\(n\)</span> 個 X 和 <span class="arithmatex">\(n\)</span> 個 Y 組成的字串，且所有的前綴字串皆滿足 X 的個數大於等於 Y 的個數。以下為長度為 6 的 dyck words：  <br/>
 XXYYYY XYXXYY XYXYXY XXYYXY</li>
-<li>將上例的 X 換成左括號，Y 換成右括號，<span class="arithmatex">\(C_n\)</span> 表示所有包含 <span class="arithmatex">\(n\)</span> 組括號的合法運算式的個數： <br />
+<li>將上例的 X 換成左括號，Y 換成右括號，<span class="arithmatex">\(C_n\)</span> 表示所有包含 <span class="arithmatex">\(n\)</span> 組括號的合法運算式的個數： <br/>
 ((())) 、 ()(()) 、 ()()() 、 (())() 、 (()())</li>
-<li><span class="arithmatex">\(C_n\)</span> 表示所有在 <span class="arithmatex">\(n \times n\)</span> 棋盤中不越過對角線的單調路徑的個數。一個單調路徑從左下角出發，在右上角結束，每一步均為向上或向右。計算這種路徑的個數等價於計算 Dyck word 的個數：X 代表「向右」，Y 代表「向上」。下圖為 <span class="arithmatex">\(n = 4\)</span> 的情況：<br />
-<img alt="alt text" src="images/%E5%8D%A1%E5%A1%94%E8%98%AD%E6%95%B8/image-11-1.png" /></li>
-<li><span class="arithmatex">\(C_n\)</span> 表示通過連結頂點將 <span class="arithmatex">\(n + 2\)</span> 邊的凸多邊形分成三角形的方法個數。下圖中為 <span class="arithmatex">\(n = 4\)</span> 的情況： <br />
-<img alt="alt text" src="images/%E5%8D%A1%E5%A1%94%E8%98%AD%E6%95%B8/image-12-1.png" /></li>
-<li><span class="arithmatex">\(C_n\)</span> 表示不用 <span class="arithmatex">\(n\)</span> 個長方形填充一個高為 <span class="arithmatex">\(n\)</span> 的階梯狀長方形的方法個數。下圖為 <span class="arithmatex">\(n = 4\)</span> 的情況：      <br />
-<img alt="alt text" src="images/%E5%8D%A1%E5%A1%94%E8%98%AD%E6%95%B8/image-13-1.png" /></li>
+<li><span class="arithmatex">\(C_n\)</span> 表示所有在 <span class="arithmatex">\(n \times n\)</span> 棋盤中不越過對角線的單調路徑的個數。一個單調路徑從左下角出發，在右上角結束，每一步均為向上或向右。計算這種路徑的個數等價於計算 Dyck word 的個數：X 代表「向右」，Y 代表「向上」。下圖為 <span class="arithmatex">\(n = 4\)</span> 的情況：<br/>
+<img alt="alt text" decoding="async" loading="lazy" src="images/%E5%8D%A1%E5%A1%94%E8%98%AD%E6%95%B8/image-11-1.png"/></li>
+<li><span class="arithmatex">\(C_n\)</span> 表示通過連結頂點將 <span class="arithmatex">\(n + 2\)</span> 邊的凸多邊形分成三角形的方法個數。下圖中為 <span class="arithmatex">\(n = 4\)</span> 的情況： <br/>
+<img alt="alt text" decoding="async" loading="lazy" src="images/%E5%8D%A1%E5%A1%94%E8%98%AD%E6%95%B8/image-12-1.png"/></li>
+<li><span class="arithmatex">\(C_n\)</span> 表示不用 <span class="arithmatex">\(n\)</span> 個長方形填充一個高為 <span class="arithmatex">\(n\)</span> 的階梯狀長方形的方法個數。下圖為 <span class="arithmatex">\(n = 4\)</span> 的情況：      <br/>
+<img alt="alt text" decoding="async" loading="lazy" src="images/%E5%8D%A1%E5%A1%94%E8%98%AD%E6%95%B8/image-13-1.png"/></li>
 </ol>
 <h2 id="例題">例題<a class="headerlink" href="#例題" title="Permanent link"></a></h2>
 <p><a href="https://zerojudge.tw/ShowProblem?problemid=e876">e876. Q1 - 配對連線</a></p>
@@ -6957,6 +6955,9 @@ XXYYYY XYXXYY XYXYXY XXYYXY</li>
 
 
 
+
+  
+  
 
 
 
@@ -7076,40 +7077,16 @@ XXYYYY XYXXYY XYXYXY XXYYXY</li>
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.footer", "navigation.indexes", "navigation.instant", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.tabs", "navigation.top", "announce.dismiss", "content.tabs.link", "search.share", "content.code.copy", "content.code.annotations", "content.action.edit", "content.action.view", "content.tooltips"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.footer", "navigation.indexes", "navigation.instant", "navigation.instant.progress", "navigation.tabs", "navigation.top", "announce.dismiss", "content.tabs.link", "search.share", "content.code.copy", "content.code.annotations", "content.action.edit", "content.action.view", "content.tooltips"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
+  <script src="../../assets/pymdownx-extras/search-lazy-guard.js?v=20260614-1"></script>
   
       <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
       
-        <script src="https://unpkg.com/mermaid@10.6.1/dist/mermaid.min.js"></script>
-      
-        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-      
-        <script src="../../assets/pymdownx-extras/mermaid-config-override.js?v=20260523-1"></script>
-      
-        <script src="../../assets/pymdownx-extras/mermaid-legacy-flowchart-compat.js?v=20260329-1"></script>
-      
-        <script src="../../assets/pymdownx-extras/extra-loader-iLQ-keay.js"></script>
-      
-        <script src="../../assets/pymdownx-extras/mermaid-render-fix.js?v=20260522-1"></script>
-      
-        <script src="../../assets/pymdownx-extras/mermaid-zoom.js?v=20260404-1"></script>
-      
-        <script src="../../assets/pymdownx-extras/toc-fold.js"></script>
-      
-        <script src="../../assets/pymdownx-extras/image-zoom.js"></script>
-      
-        <script src="../../assets/pymdownx-extras/markdown-embed.js?v=20260516-1"></script>
-      
-        <script src="../../assets/pymdownx-extras/folder-path-bar.js?v=20260524-1"></script>
-      
-        <script src="../../assets/pymdownx-extras/legacy-image-width.js"></script>
-      
-        <script src="../../assets/pymdownx-extras/source-jump.js?v=20260523-2"></script>
+        <script src="../../assets/pymdownx-extras/conditional-loader.js?v=20260614-3"></script>
       
     
-  <script src="../../assets/pymdownx-extras/scroll-bottom.js?v=20260424-3" type="text/javascript"></script>
 
   </body>
 </html>

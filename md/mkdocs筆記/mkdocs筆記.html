@@ -44,8 +44,6 @@
     
 
       
-        <script src="https://unpkg.com/iframe-worker/shim"></script>
-      
     
 <script src="../../assets/pymdownx-extras/material-extra-theme-2ek1P7jT.js" type="text/javascript"></script>
 <script src="../../assets/pymdownx-extras/material-extra-3rdparty-BUCF4rjN.js" type="text/javascript"></script>
@@ -1956,7 +1954,7 @@
     
       <link rel="stylesheet" href="../../assets/pymdownx-extras/extra-8611f6c398.css">
     
-      <link rel="stylesheet" href="../../assets/pymdownx-extras/自定義.css?v=20260527-9">
+      <link rel="stylesheet" href="../../assets/pymdownx-extras/自定義.css?v=20260614-2">
     
     <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
@@ -7810,13 +7808,12 @@ is now available!
 
 <h1 id="mkdocs筆記">mkdocs筆記<a class="headerlink" href="#mkdocs筆記" title="Permanent link"></a></h1>
 <h2 id="常用語法">常用語法<a class="headerlink" href="#常用語法" title="Permanent link"></a></h2>
-<div class="highlight"><span class="filename">嵌入</span><pre><span></span><code>&lt;iframe src=&quot;https://drive.google.com/file/d/1oO0sJSXeb9vxLrz9AjAvrsnqDtLMqWKz/preview&quot; width=&quot;100<span class="c">%&quot; height=&quot;300px&quot;&gt;&lt;/iframe&gt;</span>
+<div class="highlight"><span class="filename">嵌入</span><pre><span></span><code>&lt;iframe src="https://drive.google.com/file/d/1oO0sJSXeb9vxLrz9AjAvrsnqDtLMqWKz/preview" width="100<span class="c">%" height="300px"&gt;&lt;/iframe&gt;</span>
 </code></pre></div>
 <div class="result">
-<iframe src="https://drive.google.com/file/d/1oO0sJSXeb9vxLrz9AjAvrsnqDtLMqWKz/preview" width="100%" height="300px"></iframe>
-
+<iframe height="300px" src="https://drive.google.com/file/d/1oO0sJSXeb9vxLrz9AjAvrsnqDtLMqWKz/preview" width="100%"></iframe>
 </div>
-<!--  -->
+<!-- -->
 <div class="highlight"><span class="filename">程式塊</span><pre><span></span><code>/// collapse-code  
 ```cpp  
 #include&lt;bits/stdc++.h&gt;
@@ -7825,7 +7822,7 @@ using namespace std;
 ///
 </code></pre></div>
 <div class="result">
-<div class="collapse-code"><input checked="checked" id="__collapse0" name="__collapse0" type="checkbox" /><div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="cpf">&lt;bits/stdc++.h&gt;</span>
+<div class="collapse-code"><input checked="checked" id="__collapse0" name="__collapse0" type="checkbox"/><div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="cpf">&lt;bits/stdc++.h&gt;</span>
 <span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span>
 <span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(){</span>
 <span class="w">    </span><span class="c1">//...//</span>
@@ -7838,21 +7835,21 @@ using namespace std;
 ```
 </code></pre></div>
 <div class="result">
-<p><img alt="alt text" src="../images/mkdocs%E7%AD%86%E8%A8%98/image-17.png" width="10%" /></p>
+<p><img alt="alt text" decoding="async" src="../images/mkdocs%E7%AD%86%E8%A8%98/image-17.png" width="10%"/></p>
 </div>
-<div class="highlight"><span class="filename">內文</span><pre><span></span><code>=== &quot;部分一&quot;
+<div class="highlight"><span class="filename">內文</span><pre><span></span><code>=== "部分一"
     早安
 
-=== &quot;部分二&quot;
+=== "部分二"
     你好
-===! &quot;部分三&quot;
+===! "部分三"
     午安
 
-=== &quot;部分四&quot;
+=== "部分四"
     晚安
 </code></pre></div>
 <div class="result">
-<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="常用語法-部分一" name="__tabbed_1" type="radio" /><input id="常用語法-部分二" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="常用語法-部分一">部分一</label><label for="常用語法-部分二">部分二</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="常用語法-部分一" name="__tabbed_1" type="radio"/><input id="常用語法-部分二" name="__tabbed_1" type="radio"/><div class="tabbed-labels"><label for="常用語法-部分一">部分一</label><label for="常用語法-部分二">部分二</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <p>早安</p>
@@ -7862,7 +7859,7 @@ using namespace std;
 </div>
 </div>
 </div>
-<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="常用語法-部分三" name="__tabbed_2" type="radio" /><input id="常用語法-部分四" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="常用語法-部分三">部分三</label><label for="常用語法-部分四">部分四</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="常用語法-部分三" name="__tabbed_2" type="radio"/><input id="常用語法-部分四" name="__tabbed_2" type="radio"/><div class="tabbed-labels"><label for="常用語法-部分三">部分三</label><label for="常用語法-部分四">部分四</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <p>午安</p>
@@ -7885,63 +7882,63 @@ Some content
 </code></pre></div>
 <div class="result">
 <div class="admonition settings">
-<p class="admonition-title">title</p>
+<p class="admonition-title">Settings | title</p>
 <p>Some content</p>
 </div>
 </div>
 <div class="admonition settings">
-<p class="admonition-title">settings</p>
+<p class="admonition-title">Settings</p>
 <p>Some content</p>
 </div>
 <div class="admonition note">
-<p class="admonition-title">note</p>
+<p class="admonition-title">Note</p>
 <p>Some content</p>
 </div>
 <div class="admonition abstract">
-<p class="admonition-title">abstract</p>
+<p class="admonition-title">Abstract</p>
 <p>Some content</p>
 </div>
 <div class="admonition info">
-<p class="admonition-title">info</p>
+<p class="admonition-title">Info</p>
 <p>Some content</p>
 </div>
 <div class="admonition tip">
-<p class="admonition-title">tip</p>
+<p class="admonition-title">Tip</p>
 <p>Some content</p>
 </div>
 <div class="admonition success">
-<p class="admonition-title">success</p>
+<p class="admonition-title">Success</p>
 <p>Some content</p>
 </div>
 <div class="admonition question">
-<p class="admonition-title">question</p>
+<p class="admonition-title">Question</p>
 <p>Some content</p>
 </div>
 <div class="admonition warning">
-<p class="admonition-title">warning</p>
+<p class="admonition-title">Warning</p>
 <p>Some content</p>
 </div>
 <div class="admonition failure">
-<p class="admonition-title">failure</p>
+<p class="admonition-title">Failure</p>
 <p>Some content</p>
 </div>
 <div class="admonition danger">
-<p class="admonition-title">danger</p>
+<p class="admonition-title">Danger</p>
 <p>Some content</p>
 </div>
 <div class="admonition bug">
-<p class="admonition-title">bug</p>
+<p class="admonition-title">Bug</p>
 <p>Some content</p>
 </div>
 <div class="admonition example">
-<p class="admonition-title">example</p>
+<p class="admonition-title">Example</p>
 <p>Some content</p>
 </div>
 <div class="admonition quote">
-<p class="admonition-title">quote</p>
+<p class="admonition-title">Quote</p>
 <p>Some content</p>
 </div>
-<div class="tabbed-set tabbed-alternate" data-tabs="3:2"><input checked="checked" id="整理框框使用-部分一" name="__tabbed_3" type="radio" /><input id="整理框框使用-部分二" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="整理框框使用-部分一">部分一</label><label for="整理框框使用-部分二">部分二</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="3:2"><input checked="checked" id="整理框框使用-部分一" name="__tabbed_3" type="radio"/><input id="整理框框使用-部分二" name="__tabbed_3" type="radio"/><div class="tabbed-labels"><label for="整理框框使用-部分一">部分一</label><label for="整理框框使用-部分二">部分二</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <p>早安</p>
@@ -7951,7 +7948,7 @@ Some content
 </div>
 </div>
 </div>
-<div class="tabbed-set tabbed-alternate" data-tabs="4:2"><input checked="checked" id="整理框框使用-部分三" name="__tabbed_4" type="radio" /><input id="整理框框使用-部分四" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="整理框框使用-部分三">部分三</label><label for="整理框框使用-部分四">部分四</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="4:2"><input checked="checked" id="整理框框使用-部分三" name="__tabbed_4" type="radio"/><input id="整理框框使用-部分四" name="__tabbed_4" type="radio"/><div class="tabbed-labels"><label for="整理框框使用-部分三">部分三</label><label for="整理框框使用-部分四">部分四</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <p>午安</p>
@@ -7967,48 +7964,48 @@ Some content
 <li>markdown.extensions.admonition: </li>
 </ul>
 </blockquote>
-<div class="highlight"><span class="filename">指令</span><pre><span></span><code>!!! note &quot;注意&quot;
+<div class="highlight"><span class="filename">指令</span><pre><span></span><code>!!! note "注意"
     這是一個提醒框。
     
-!!! warning &quot;警告&quot;
+!!! warning "警告"
     這是一個警告框。
 
-!!! tip &quot;提示&quot;
+!!! tip "提示"
     這是一個提示框。
 
-!!! danger &quot;危險&quot;
+!!! danger "危險"
     這是一個錯誤或危險框。
 </code></pre></div>
 <div class="result">
 <div class="admonition note">
-<p class="admonition-title">注意</p>
+<p class="admonition-title">Note | 注意</p>
 <p>這是一個提醒框。</p>
 </div>
 <div class="admonition warning">
-<p class="admonition-title">警告</p>
+<p class="admonition-title">Warning | 警告</p>
 <p>這是一個警告框。</p>
 </div>
 <div class="admonition tip">
-<p class="admonition-title">提示</p>
+<p class="admonition-title">Tip | 提示</p>
 <p>這是一個提示框。</p>
 </div>
 <div class="admonition danger">
-<p class="admonition-title">危險</p>
+<p class="admonition-title">Danger | 危險</p>
 <p>這是一個錯誤或危險框。</p>
 </div>
 </div>
-<hr />
+<hr/>
 <h2 id="禁用智能引號">禁用智能引號<a class="headerlink" href="#禁用智能引號" title="Permanent link"></a></h2>
 <blockquote>
 <p>smart_quotes: false</p>
 </blockquote>
 <p>不啟用：</p>
-<p><img alt="alt text" src="../images/mkdocs%E7%AD%86%E8%A8%98/image-14.png" width="50%" /><br />
+<p><img alt="alt text" decoding="async" loading="lazy" src="../images/mkdocs%E7%AD%86%E8%A8%98/image-14.png" width="50%"/><br/>
 啟用：</p>
 <blockquote>
 <p>"Hello", she said. 'It's a nice day!'</p>
 </blockquote>
-<hr />
+<hr/>
 <h2 id="betterem-擴展增強的-markdown-語法支持">BetterEm 擴展，增強的 Markdown 語法支持<a class="headerlink" href="#betterem-擴展增強的-markdown-語法支持" title="Permanent link"></a></h2>
 <blockquote>
 <ul>
@@ -8023,7 +8020,7 @@ Some content
 <p>This is <em>italic</em> and this is <strong>bold</strong>.</p>
 </blockquote>
 </div>
-<hr />
+<hr/>
 <h2 id="支持-markdown-內的-html-屬性語法">支持 Markdown 內的 <abbr title="Hyper Text Markup Language">HTML</abbr> 屬性語法<a class="headerlink" href="#支持-markdown-內的-html-屬性語法" title="Permanent link"></a></h2>
 <blockquote>
 <ul>
@@ -8031,11 +8028,11 @@ Some content
 </ul>
 </blockquote>
 <p>透過{}來加入class</p>
-<p>像是<br />
-<div class="highlight"><span class="filename">指令</span><pre><span></span><code>![示例圖片](image.jpg)<span class="nb">{</span>width=&quot;300px&quot; height=&quot;200px&quot;<span class="nb">}</span>
-</code></pre></div><br />
-會被替換成<br />
-<div class="highlight"><span class="filename">指令</span><pre><span></span><code>&lt;img src=&quot;image.jpg&quot; alt=&quot;示例圖片&quot; width=&quot;300px&quot; height=&quot;200px&quot;&gt;
+<p>像是<br/>
+<div class="highlight"><span class="filename">指令</span><pre><span></span><code>![示例圖片](image.jpg)<span class="nb">{</span>width="300px" height="200px"<span class="nb">}</span>
+</code></pre></div><br/>
+會被替換成<br/>
+<div class="highlight"><span class="filename">指令</span><pre><span></span><code>&lt;img src="image.jpg" alt="示例圖片" width="300px" height="200px"&gt;
 </code></pre></div></p>
 <p>所以可以透過在照片後面加入{width=50%}調整比例</p>
 <h2 id="定義列表擴展">定義列表擴展<a class="headerlink" href="#定義列表擴展" title="Permanent link"></a></h2>
@@ -8049,8 +8046,8 @@ Markdown
 : A lightweight markup language with plain-text formatting syntax.
 
 MkDocs
-: A static site generator that&#39;s geared towards project documentation.
-</code></pre></div><br />
+: A static site generator that's geared towards project documentation.
+</code></pre></div><br/>
 會被替換成</p>
 <div class="highlight"><span class="filename">指令</span><pre><span></span><code>&lt;dl&gt;
   &lt;dt&gt;Term 1&lt;/dt&gt;
@@ -8061,10 +8058,10 @@ MkDocs
 </code></pre></div>
 <div class="result">
 <dl>
-  <dt>Term 1</dt>
-  <dd>Definition of term 1</dd>
-  <dt>Term 2</dt>
-  <dd>Definition of term 2, can span multiple lines</dd>
+<dt>Term 1</dt>
+<dd>Definition of term 1</dd>
+<dt>Term 2</dt>
+<dd>Definition of term 2, can span multiple lines</dd>
 </dl>
 </div>
 <h2 id="表格支持">表格支持<a class="headerlink" href="#表格支持" title="Permanent link"></a></h2>
@@ -8132,16 +8129,15 @@ The HTML standard is maintained by the W3C.
 </ul>
 </blockquote>
 <div class="admonition failure">
-<p class="admonition-title">好像不能用</p>
+<p class="admonition-title">Failure | 好像不能用</p>
 <div class="highlight"><span class="filename">指令</span><pre><span></span><code>&lt;div&gt;
   **這是嵌入在 HTML 中的粗體文本**
 &lt;/div&gt;
 </code></pre></div>
 <div class="result">
-<div>
-  **這是嵌入在 HTML 中的粗體文本**
-</div>
-
+<p><div><br/>
+<strong>這是嵌入在 <abbr title="Hyper Text Markup Language">HTML</abbr> 中的粗體文本</strong><br/>
+</div></p>
 </div>
 </div>
 <h2 id="增強的程式碼塊擴展">增強的程式碼塊擴展<a class="headerlink" href="#增強的程式碼塊擴展" title="Permanent link"></a></h2>
@@ -8165,7 +8161,7 @@ The HTML standard is maintained by the W3C.
 </details>
 <h3 id="mermaid-語法繪製圖表">Mermaid 語法繪製圖表<a class="headerlink" href="#mermaid-語法繪製圖表" title="Permanent link"></a></h3>
 <p>這段配置允許你在 Markdown 中使用以下兩種自定義區塊：</p>
-<p>使用 Mermaid 語法繪製圖表（例如流程圖）。<br />
+<p>使用 Mermaid 語法繪製圖表（例如流程圖）。<br/>
 使用 Arithmatex 語法來呈現數學公式。</p>
 <div class="highlight"><span class="filename">範例</span><pre><span></span><code>```diagram
 graph TD;
@@ -8203,7 +8199,7 @@ graph TD;
     G --&gt; O[15];</code></pre>
 </div>
 <div class="admonition success">
-<p class="admonition-title">Practical</p>
+<p class="admonition-title">Success | Practical</p>
 <details>
 <summary>diagram</summary>
 <pre class="diagram"><code>graph TD
@@ -8211,7 +8207,6 @@ graph TD;
     B --&gt; C{Decision}
     C --&gt;|One| D[Result 1]
     C --&gt;|Two| E[Result 2]</code></pre>
-</details>
 <details>
 <summary>diagram</summary>
 <pre class="diagram"><code>sequenceDiagram
@@ -8327,6 +8322,7 @@ graph TD;
     Go downstairs: 5: Me
     Sit down: 5: Me</code></pre>
 </details>
+</details>
 </div>
 <h3 id="arithmatex">Arithmatex<a class="headerlink" href="#arithmatex" title="Permanent link"></a></h3>
 <p>這是行內公式：<span class="arithmatex">\(E = mc^2\)</span>，它會嵌入在文本中。</p>
@@ -8356,7 +8352,7 @@ E = mc^2
         format: !!python/object/apply:pymdownx.arithmatex.arithmatex_inline_format {kwds: {mode: generic}}
 </code></pre></div>
 </details>
-<hr />
+<hr/>
 <div class="highlight"><span class="filename">指令</span><pre><span></span><code>這是一個行內數學公式 <span class="s">$</span><span class="nb">E </span><span class="o">=</span><span class="nb"> mc^</span><span class="m">2</span><span class="s">$</span> 的示例。
 </code></pre></div>
 <div class="result">
@@ -8401,9 +8397,9 @@ E = mc^2
 反向雙箭頭&lt;&lt;   
 </code></pre></div>
 <div class="result">
-<p>省略號&hellip;       </p>
-<p>短破折號&ndash;      </p>
-<p>長破折號&mdash;     </p>
+<p>省略號…       </p>
+<p>短破折號–      </p>
+<p>長破折號—     </p>
 <p>雙箭頭&gt;&gt;        </p>
 <p>反向雙箭頭&lt;&lt;        </p>
 </div>
@@ -8425,8 +8421,8 @@ E = mc^2
  
 </code></pre></div>
 <div class="result">
-<p>這是一個笑臉 Emoji <img alt="😄" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/1f604.svg" title=":smile:" /><br />
-這是一個大拇指 Emoji <img alt="👍" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/1f44d.svg" title=":+1:" /></p>
+<p>這是一個笑臉 Emoji <img alt="😄" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/1f604.svg" title=":smile:"/><br/>
+這是一個大拇指 Emoji <img alt="👍" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/1f44d.svg" title=":+1:"/></p>
 </div>
 <details>
 <summary>部分內容</summary>
@@ -8510,7 +8506,7 @@ E = mc^2
 </ul>
 </blockquote>
 <div class="admonition failure">
-<p class="admonition-title">好像沒啥用</p>
+<p class="admonition-title">Failure | 好像沒啥用</p>
 </div>
 <details>
 <summary>完整代碼</summary>
@@ -8539,9 +8535,9 @@ E = mc^2
 </code></pre></div>
 <div class="result">
 <ul class="task-list">
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> 完成任務一</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 完成任務二</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 完成任務三      </li>
+<li class="task-list-item"><label class="task-list-control"><input checked="" disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> 完成任務一</li>
+<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> 完成任務二</li>
+<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> 完成任務三      </li>
 </ul>
 </div>
 <h2 id="進度條擴展">進度條擴展<a class="headerlink" href="#進度條擴展" title="Permanent link"></a></h2>
@@ -8551,13 +8547,13 @@ E = mc^2
 </ul>
 </blockquote>
 <p>這個擴展允許你用簡單的語法定義視覺化的進度條，展示某個項目的完成進度。</p>
-<div class="highlight"><span class="filename">指令</span><pre><span></span><code>[=0<span class="c">% &quot;0%&quot;]</span>
-[=5<span class="c">% &quot;5%&quot;]</span>
-[=25<span class="c">% &quot;25%&quot;]</span>
-[=45<span class="c">% &quot;45%&quot;]</span>
-[=65<span class="c">% &quot;65%&quot;]</span>
-[=85<span class="c">% &quot;85%&quot;]</span>
-[=100<span class="c">% &quot;100%&quot;]</span>
+<div class="highlight"><span class="filename">指令</span><pre><span></span><code>[=0<span class="c">% "0%"]</span>
+[=5<span class="c">% "5%"]</span>
+[=25<span class="c">% "25%"]</span>
+[=45<span class="c">% "45%"]</span>
+[=65<span class="c">% "65%"]</span>
+[=85<span class="c">% "85%"]</span>
+[=100<span class="c">% "100%"]</span>
 </code></pre></div>
 <div class="result">
 <p>
@@ -8566,37 +8562,37 @@ E = mc^2
 <p class="progress-label">0%</p>
 </div>
 </div>
-<br />
+<br/>
 <div class="progress progress-0plus">
 <div class="progress-bar" style="width:5.00%">
 <p class="progress-label">5%</p>
 </div>
 </div>
-<br />
+<br/>
 <div class="progress progress-20plus">
 <div class="progress-bar" style="width:25.00%">
 <p class="progress-label">25%</p>
 </div>
 </div>
-<br />
+<br/>
 <div class="progress progress-40plus">
 <div class="progress-bar" style="width:45.00%">
 <p class="progress-label">45%</p>
 </div>
 </div>
-<br />
+<br/>
 <div class="progress progress-60plus">
 <div class="progress-bar" style="width:65.00%">
 <p class="progress-label">65%</p>
 </div>
 </div>
-<br />
+<br/>
 <div class="progress progress-80plus">
 <div class="progress-bar" style="width:85.00%">
 <p class="progress-label">85%</p>
 </div>
 </div>
-<br />
+<br/>
 <div class="progress progress-100plus">
 <div class="progress-bar" style="width:100.00%">
 <p class="progress-label">100%</p>
@@ -8615,7 +8611,7 @@ E = mc^2
 <summary>完整代碼</summary>
 <div class="highlight"><pre><span></span><code>- pymdownx.arithmatex:  # Arithmatex 數學公式擴展
     generic: true  # 通用模式
-    block_tag: &#39;pre&#39;  # 渲染為 `&lt;pre&gt;` 標籤
+    block_tag: 'pre'  # 渲染為 `&lt;pre&gt;` 標籤
 </code></pre></div>
 </details>
 <div class="highlight"><span class="filename">Block</span><pre><span></span><code><span class="sb">$$</span>
@@ -8661,7 +8657,7 @@ E(\mathbf{v}, \mathbf{h}) = -\sum_{i,j}w_{ij}v_i h_j - \sum_i b_i v_i - \sum_j c
 </ul>
 </blockquote>
 <div class="admonition failure">
-<p class="admonition-title">看來沒用</p>
+<p class="admonition-title">Failure | 看來沒用</p>
 </div>
 <div class="highlight"><span class="filename">指令</span><pre><span></span><code>這是一段文本，&lt;b&gt;這部分是加粗的&lt;/b&gt;，&lt;i&gt;這部分是斜體的&lt;/i&gt;。
 </code></pre></div>
@@ -8675,13 +8671,13 @@ E(\mathbf{v}, \mathbf{h}) = -\sum_{i,j}w_{ij}v_i h_j - \sum_i b_i v_i - \sum_j c
 </ul>
 </blockquote>
 <p>是一個擴展，用來在 Markdown 文檔中美化和格式化鍵盤按鍵的顯示。這個擴展允許將按鍵組合顯示為帶有按鍵樣式的格式，非常適合用於技術文檔中需要提及特定的鍵盤操作或快捷鍵的情況。</p>
-<p>功能與應用場景：<br />
-按鍵顯示：將鍵盤按鍵顯示為專門樣式的按鍵圖標，讓文檔中的快捷鍵和按鍵組合更加易於理解。<br />
+<p>功能與應用場景：<br/>
+按鍵顯示：將鍵盤按鍵顯示為專門樣式的按鍵圖標，讓文檔中的快捷鍵和按鍵組合更加易於理解。<br/>
 自定義分隔符：可以設置自定義的按鍵組合分隔符號，讓按鍵顯示符合不同的語言習慣或樣式要求。</p>
 <details>
 <summary>完整代碼</summary>
 <div class="highlight"><pre><span></span><code>- pymdownx.keys:  # 鍵盤按鍵樣式支持
-    separator: &quot;\uff0b&quot;  # 自定義鍵位分隔符號
+    separator: "\uff0b"  # 自定義鍵位分隔符號
 </code></pre></div>
 </details>
 <div class="highlight"><span class="filename">指令</span><pre><span></span><code>++ctrl+alt+delete++
@@ -8703,7 +8699,7 @@ E(\mathbf{v}, \mathbf{h}) = -\sum_{i,j}w_{ij}v_i h_j - \sum_i b_i v_i - \sum_j c
 <div class="result">
 <details>
 <summary>點擊展開詳細信息</summary>
-<p>這裡是隱藏的詳細信息。<br />
+<p>這裡是隱藏的詳細信息。<br/>
 可以包含多行內容，也可以使用其他的 Markdown 語法。</p>
 </details>
 </div>
@@ -8719,19 +8715,19 @@ E(\mathbf{v}, \mathbf{h}) = -\sum_{i,j}w_{ij}v_i h_j - \sum_i b_i v_i - \sum_j c
     alternate_style: true  # 啟用交替樣式
 </code></pre></div>
 </details>
-<div class="highlight"><span class="filename">Tabs</span><pre><span></span><code>=== &quot;Tab 1&quot;
+<div class="highlight"><span class="filename">Tabs</span><pre><span></span><code>=== "Tab 1"
     Markdown **content**.
 
     Multiple paragraphs.
 
-=== &quot;Tab 2&quot;
+=== "Tab 2"
     More Markdown **content**.
 
     - list item a
     - list item b
 </code></pre></div>
 <div class="result">
-<div class="tabbed-set tabbed-alternate" data-tabs="5:2"><input checked="checked" id="標籤頁擴展-tab-1" name="__tabbed_5" type="radio" /><input id="標籤頁擴展-tab-2" name="__tabbed_5" type="radio" /><div class="tabbed-labels"><label for="標籤頁擴展-tab-1">Tab 1</label><label for="標籤頁擴展-tab-2">Tab 2</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="5:2"><input checked="checked" id="標籤頁擴展-tab-1" name="__tabbed_5" type="radio"/><input id="標籤頁擴展-tab-2" name="__tabbed_5" type="radio"/><div class="tabbed-labels"><label for="標籤頁擴展-tab-1">Tab 1</label><label for="標籤頁擴展-tab-2">Tab 2</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <p>Markdown <strong>content</strong>.</p>
@@ -8754,7 +8750,7 @@ E(\mathbf{v}, \mathbf{h}) = -\sum_{i,j}w_{ij}v_i h_j - \sum_i b_i v_i - \sum_j c
 </ul>
 </blockquote>
 <div class="admonition failure">
-<p class="admonition-title">看來沒用</p>
+<p class="admonition-title">Failure | 看來沒用</p>
 </div>
 <div class="highlight"><span class="filename">Tabs</span><pre><span></span><code>## 123
 ##123
@@ -8775,60 +8771,60 @@ Some content
 </code></pre></div>
 <div class="result">
 <div class="admonition settings">
-<p class="admonition-title">title</p>
+<p class="admonition-title">Settings | title</p>
 <p>Some content</p>
 </div>
 </div>
 <div class="admonition settings">
-<p class="admonition-title">settings</p>
+<p class="admonition-title">Settings</p>
 <p>Some content</p>
 </div>
 <div class="admonition note">
-<p class="admonition-title">note</p>
+<p class="admonition-title">Note</p>
 <p>Some content</p>
 </div>
 <div class="admonition abstract">
-<p class="admonition-title">abstract</p>
+<p class="admonition-title">Abstract</p>
 <p>Some content</p>
 </div>
 <div class="admonition info">
-<p class="admonition-title">info</p>
+<p class="admonition-title">Info</p>
 <p>Some content</p>
 </div>
 <div class="admonition tip">
-<p class="admonition-title">tip</p>
+<p class="admonition-title">Tip</p>
 <p>Some content</p>
 </div>
 <div class="admonition success">
-<p class="admonition-title">success</p>
+<p class="admonition-title">Success</p>
 <p>Some content</p>
 </div>
 <div class="admonition question">
-<p class="admonition-title">question</p>
+<p class="admonition-title">Question</p>
 <p>Some content</p>
 </div>
 <div class="admonition warning">
-<p class="admonition-title">warning</p>
+<p class="admonition-title">Warning</p>
 <p>Some content</p>
 </div>
 <div class="admonition failure">
-<p class="admonition-title">failure</p>
+<p class="admonition-title">Failure</p>
 <p>Some content</p>
 </div>
 <div class="admonition danger">
-<p class="admonition-title">danger</p>
+<p class="admonition-title">Danger</p>
 <p>Some content</p>
 </div>
 <div class="admonition bug">
-<p class="admonition-title">bug</p>
+<p class="admonition-title">Bug</p>
 <p>Some content</p>
 </div>
 <div class="admonition example">
-<p class="admonition-title">example</p>
+<p class="admonition-title">Example</p>
 <p>Some content</p>
 </div>
 <div class="admonition quote">
-<p class="admonition-title">quote</p>
+<p class="admonition-title">Quote</p>
 <p>Some content</p>
 </div>
 <div class="highlight"><span class="filename">全部有這些</span><pre><span></span><code>settings
@@ -8852,7 +8848,7 @@ quote
 </ul>
 </blockquote>
 <p>上一個提到了很多不同的框框，我們也可以讓這些框框折疊起來</p>
-<div class="highlight"><span class="filename">指令</span><pre><span></span><code>/// details | &quot;settings&quot; 
+<div class="highlight"><span class="filename">指令</span><pre><span></span><code>/// details | "settings" 
 Some content
 ///
 </code></pre></div>
@@ -8883,7 +8879,7 @@ quote
 </ul>
 </blockquote>
 <p>透過：div[style='border: 1px solid red;']來讓整個區塊使用</p>
-<div class="highlight"><span class="filename">這個東東</span><pre><span></span><code>/// html | div[style=&#39;border: 1px solid red;&#39;]
+<div class="highlight"><span class="filename">這個東東</span><pre><span></span><code>/// html | div[style='border: 1px solid red;']
 some *markdown* content
 ///
 </code></pre></div>
@@ -8909,7 +8905,7 @@ Apple
 <div class="result">
 <dl>
 <dt>Apple</dt>
-<dd>Pomaceous fruit of plants of the genus Malus in<br />
+<dd>Pomaceous fruit of plants of the genus Malus in<br/>
   the family Rosaceae.</dd>
 </dl>
 </div>
@@ -8928,31 +8924,31 @@ Apple
 </code></pre></div>
 </details>
 <p>使用驚嘆號換行</p>
-<div class="highlight"><span class="filename">Tab Breaks</span><pre><span></span><code>=== &quot;Tab 1&quot;
+<div class="highlight"><span class="filename">Tab Breaks</span><pre><span></span><code>=== "Tab 1"
     Markdown **content**.
 
     Multiple paragraphs.
 
-=== &quot;Tab 2&quot;
+=== "Tab 2"
     More Markdown **content**.
 
     - list item a
     - list item b
 
-=== &quot;Tab A&quot;
+=== "Tab A"
     Different tab set.
 
-===! &quot;Tab B&quot;
+===! "Tab B"
     ```
     More content.
     ```
-=== &quot;Tab c&quot;
+=== "Tab c"
     ```
     Hi.
     ```
 </code></pre></div>
 <div class="result">
-<div class="tabbed-set tabbed-alternate" data-tabs="6:3"><input checked="checked" id="支持標籤頁-block-tab-1" name="__tabbed_6" type="radio" /><input id="支持標籤頁-block-tab-2" name="__tabbed_6" type="radio" /><input id="支持標籤頁-block-tab-a" name="__tabbed_6" type="radio" /><div class="tabbed-labels"><label for="支持標籤頁-block-tab-1">Tab 1</label><label for="支持標籤頁-block-tab-2">Tab 2</label><label for="支持標籤頁-block-tab-a">Tab A</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="6:3"><input checked="checked" id="支持標籤頁-block-tab-1" name="__tabbed_6" type="radio"/><input id="支持標籤頁-block-tab-2" name="__tabbed_6" type="radio"/><input id="支持標籤頁-block-tab-a" name="__tabbed_6" type="radio"/><div class="tabbed-labels"><label for="支持標籤頁-block-tab-1">Tab 1</label><label for="支持標籤頁-block-tab-2">Tab 2</label><label for="支持標籤頁-block-tab-a">Tab A</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <p>Markdown <strong>content</strong>.</p>
@@ -8970,7 +8966,7 @@ Apple
 </div>
 </div>
 </div>
-<div class="tabbed-set tabbed-alternate" data-tabs="7:2"><input checked="checked" id="支持標籤頁-block-tab-b" name="__tabbed_7" type="radio" /><input id="支持標籤頁-block-tab-c" name="__tabbed_7" type="radio" /><div class="tabbed-labels"><label for="支持標籤頁-block-tab-b">Tab B</label><label for="支持標籤頁-block-tab-c">Tab c</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="7:2"><input checked="checked" id="支持標籤頁-block-tab-b" name="__tabbed_7" type="radio"/><input id="支持標籤頁-block-tab-c" name="__tabbed_7" type="radio"/><div class="tabbed-labels"><label for="支持標籤頁-block-tab-b">Tab B</label><label for="支持標籤頁-block-tab-c">Tab c</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="highlight"><pre><span></span><code>More content.
@@ -8992,8 +8988,8 @@ Apple
 <details>
 <summary>全部</summary>
 <div class="highlight"><pre><span></span><code>- tools.collapse_code:  # 支持折疊程式碼塊
-    expand_text: &#39;&#39;  # 展開時顯示的文本
-    collapse_text: &#39;&#39;  # 折疊時顯示的文本
+    expand_text: ''  # 展開時顯示的文本
+    collapse_text: ''  # 折疊時顯示的文本
 </code></pre></div>
 </details>
 <div class="highlight"><span class="filename">程式塊</span><pre><span></span><code>/// collapse-code  
@@ -9004,7 +9000,7 @@ using namespace std;
 ///
 </code></pre></div>
 <div class="result">
-<div class="collapse-code"><input checked="checked" id="__collapse1" name="__collapse1" type="checkbox" /><div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="cpf">&lt;bits/stdc++.h&gt;</span>
+<div class="collapse-code"><input checked="checked" id="__collapse1" name="__collapse1" type="checkbox"/><div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="cpf">&lt;bits/stdc++.h&gt;</span>
 <span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span>
 <span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(){</span>
 <span class="w">    </span><span class="c1">//...//</span>
@@ -9031,7 +9027,7 @@ hide:
 ---
 </code></pre></div>
 <h2 id="有行號的code方塊">有行號的code方塊<a class="headerlink" href="#有行號的code方塊" title="Permanent link"></a></h2>
-<div class="highlight"><pre><span></span><code>``` cpp linenums=&quot;1&quot; hl_lines=&quot;3-5&quot;  title=&quot;code&quot;
+<div class="highlight"><pre><span></span><code>``` cpp linenums="1" hl_lines="3-5"  title="code"
 def bubble_sort(items):
     for i in range(len(items)):
         for j in range(len(items) - 1 - i):
@@ -9061,40 +9057,39 @@ def bubble_sort(items):
 </details>
 </div>
 <h2 id="設定密碼">設定密碼<a class="headerlink" href="#設定密碼" title="Permanent link"></a></h2>
-<p>在文件開頭寫上<br />
+<p>在文件開頭寫上<br/>
 <div class="highlight"><pre><span></span><code>---
-password: &#39;88888888&#39;
+password: '88888888'
 search:
   exclude: true  # 這會讓此頁面不被 mkdocs 的搜尋引擎索引
-encryption_info_message: &#39;密碼 八個八&#39;    # 密碼提示
+encryption_info_message: '密碼 八個八'    # 密碼提示
 
 hide:        #隱藏右邊目錄，防止內容被偷看
   - toc
 ---
 </code></pre></div></p>
 <h2 id="連結其他文件的標題">連結其他文件的標題<a class="headerlink" href="#連結其他文件的標題" title="Permanent link"></a></h2>
-<p>假設有一段文字<br />
+<p>假設有一段文字<br/>
 <div class="highlight"><pre><span></span><code>要連結的文字
 </code></pre></div></p>
-<p>先加上'[]'<br />
+<p>先加上'[]'<br/>
 <div class="highlight"><pre><span></span><code>[要連結的文字]
 </code></pre></div></p>
-<p>後面加上'()'<br />
+<p>後面加上'()'<br/>
 <div class="highlight"><pre><span></span><code>[要連結的文字]()
 </code></pre></div></p>
-<p>最後在裡面輸入 # / ## 就會跳出標題，然後繼續打字可以搜尋<br />
-- # ：同一個 .md 的標題<br />
-- # ：別篇 .md 的標題<br />
+<p>最後在裡面輸入 # / ## 就會跳出標題，然後繼續打字可以搜尋<br/>
+- # ：同一個 .md 的標題<br/>
+- # ：別篇 .md 的標題<br/>
 <div class="highlight"><pre><span></span><code>[要連結的文字](#設定密碼)
 </code></pre></div></p>
-<video controls src="images/mkdocs筆記/錄製內容 2026-01-26 153933.mp4" title="Title"></video>
-
+<video controls="" src="images/mkdocs筆記/錄製內容 2026-01-26 153933.mp4" title="Title"></video>
 <p><a href="../%E6%BC%94%E7%AE%97%E6%B3%95%E7%AD%86%E8%A8%98/%E8%B2%AA%E5%BF%83%E6%BC%94%E7%AE%97%E6%B3%95%28Greedy%29.html#貪心演算法greedy">要連結的文字</a></p>
 <div class="footnote">
-<hr />
+<hr/>
 <ol>
 <li id="fn:1">
-<p>這是腳註的內容。&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+<p>這是腳註的內容。 <a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">↩</a></p>
 </li>
 </ol>
 </div>
@@ -9104,6 +9099,9 @@ hide:        #隱藏右邊目錄，防止內容被偷看
 
 
 
+
+  
+  
 
 
 
@@ -9223,40 +9221,16 @@ hide:        #隱藏右邊目錄，防止內容被偷看
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.footer", "navigation.indexes", "navigation.instant", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.tabs", "navigation.top", "announce.dismiss", "content.tabs.link", "search.share", "content.code.copy", "content.code.annotations", "content.action.edit", "content.action.view", "content.tooltips"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.footer", "navigation.indexes", "navigation.instant", "navigation.instant.progress", "navigation.tabs", "navigation.top", "announce.dismiss", "content.tabs.link", "search.share", "content.code.copy", "content.code.annotations", "content.action.edit", "content.action.view", "content.tooltips"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
+  <script src="../../assets/pymdownx-extras/search-lazy-guard.js?v=20260614-1"></script>
   
       <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
       
-        <script src="https://unpkg.com/mermaid@10.6.1/dist/mermaid.min.js"></script>
-      
-        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-      
-        <script src="../../assets/pymdownx-extras/mermaid-config-override.js?v=20260523-1"></script>
-      
-        <script src="../../assets/pymdownx-extras/mermaid-legacy-flowchart-compat.js?v=20260329-1"></script>
-      
-        <script src="../../assets/pymdownx-extras/extra-loader-iLQ-keay.js"></script>
-      
-        <script src="../../assets/pymdownx-extras/mermaid-render-fix.js?v=20260522-1"></script>
-      
-        <script src="../../assets/pymdownx-extras/mermaid-zoom.js?v=20260404-1"></script>
-      
-        <script src="../../assets/pymdownx-extras/toc-fold.js"></script>
-      
-        <script src="../../assets/pymdownx-extras/image-zoom.js"></script>
-      
-        <script src="../../assets/pymdownx-extras/markdown-embed.js?v=20260516-1"></script>
-      
-        <script src="../../assets/pymdownx-extras/folder-path-bar.js?v=20260524-1"></script>
-      
-        <script src="../../assets/pymdownx-extras/legacy-image-width.js"></script>
-      
-        <script src="../../assets/pymdownx-extras/source-jump.js?v=20260523-2"></script>
+        <script src="../../assets/pymdownx-extras/conditional-loader.js?v=20260614-3"></script>
       
     
-  <script src="../../assets/pymdownx-extras/scroll-bottom.js?v=20260424-3" type="text/javascript"></script>
 
   </body>
 </html>

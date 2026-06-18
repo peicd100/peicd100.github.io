@@ -44,8 +44,6 @@
     
 
       
-        <script src="https://unpkg.com/iframe-worker/shim"></script>
-      
     
 <script src="../../assets/pymdownx-extras/material-extra-theme-2ek1P7jT.js" type="text/javascript"></script>
 <script src="../../assets/pymdownx-extras/material-extra-3rdparty-BUCF4rjN.js" type="text/javascript"></script>
@@ -1956,7 +1954,7 @@
     
       <link rel="stylesheet" href="../../assets/pymdownx-extras/extra-8611f6c398.css">
     
-      <link rel="stylesheet" href="../../assets/pymdownx-extras/自定義.css?v=20260527-9">
+      <link rel="stylesheet" href="../../assets/pymdownx-extras/自定義.css?v=20260614-2">
     
     <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
@@ -6807,8 +6805,8 @@ is now available!
 <p>看到下圖每個神經元都是一個特徵，假設我們要分辨圖片中是不是一隻貓，每一個神經元都是一個函數，輸出是否具有某特性。</p>
 <p>我們看到嘴巴的神經元，這個神經元是綜合了下面的線條，如果線條組成符合特定比例，就可以判斷為「圖片中存在嘴巴」</p>
 <p>而這些線條也可以用於判斷耳朵，如果線條組成符合耳朵的比例，就可以判斷為「圖片中有嘴巴」</p>
-<p>如果同時具有嘴巴和耳朵和其他「&hellip;」的特徵，就可以判斷為「圖片為一隻貓」</p>
-<p><img alt="alt text" src="../images/%E6%B7%B1%E5%BA%A6%E5%AD%B8%E7%BF%92%28Deep%20Learning%29/image.png" /><br />
+<p>如果同時具有嘴巴和耳朵和其他「…」的特徵，就可以判斷為「圖片為一隻貓」</p>
+<p><img alt="alt text" decoding="async" src="../images/%E6%B7%B1%E5%BA%A6%E5%AD%B8%E7%BF%92%28Deep%20Learning%29/image.png"/><br/>
 <a href="https://www.7-11.com.tw/event/22doraemon/capoo.aspx">圖片來源</a></p>
 <p>這些特徵都是由人工決定的，需要仰賴大量經驗，但是深度學習可以自己做到找出特徵，也就是<a href="#表徵">表徵</a>。</p>
 <h2 id="表徵">表徵<a class="headerlink" href="#表徵" title="Permanent link"></a></h2>
@@ -6816,17 +6814,17 @@ is now available!
 <p>深度學習學習出的表徵往往很抽象，是AI對於圖片的看法，無法解讀。</p>
 <h3 id="分散式表徵distributed-representation">分散式表徵(Distributed representation)<a class="headerlink" href="#分散式表徵distributed-representation" title="Permanent link"></a></h3>
 <p>假設貓與狗的表徵如下：</p>
-<p>貓：[0,0,1,0]<br />
+<p>貓：[0,0,1,0]<br/>
 狗：[0,1,0,0]</p>
 <p>這是兩個 one-hot vector ，這樣會存在一個問題：沒有距離性，也就是沒有在空間中的概念。</p>
 <p>像是提到貓、狗、車子，我們會覺得貓和狗很相近，而貓和車子距離較遠，如果我們想要知道之間的關係就使用非分散式表徵。</p>
 <h3 id="非分散式表徵non-distributed-representation">非分散式表徵(Non distributed representation)<a class="headerlink" href="#非分散式表徵non-distributed-representation" title="Permanent link"></a></h3>
 <p>假設貓與狗的表徵如下：</p>
-<p>貓：[0.2,0.5,1.7,0.3]<br />
+<p>貓：[0.2,0.5,1.7,0.3]<br/>
 狗：[0.6,1.4,0.5,0.1]</p>
 <p>就可以透過内積算出兩個向量的距離。</p>
 <p>我們可以看到下圖，右下角是相同意思不同語言的三句話，可以看到在深度學習將他表徵之後，他其實距離是非常接近的。</p>
-<p><img alt="alt text" src="../images/%E6%B7%B1%E5%BA%A6%E5%AD%B8%E7%BF%92%28Deep%20Learning%29/image-1.png" /><br />
+<p><img alt="alt text" decoding="async" loading="lazy" src="../images/%E6%B7%B1%E5%BA%A6%E5%AD%B8%E7%BF%92%28Deep%20Learning%29/image-1.png"/><br/>
 <a href="https://arxiv.org/pdf/1611.04558v1">圖片來源</a></p>
 
 
@@ -6834,6 +6832,9 @@ is now available!
 
 
 
+
+  
+  
 
 
 
@@ -6953,40 +6954,16 @@ is now available!
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.footer", "navigation.indexes", "navigation.instant", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.tabs", "navigation.top", "announce.dismiss", "content.tabs.link", "search.share", "content.code.copy", "content.code.annotations", "content.action.edit", "content.action.view", "content.tooltips"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.footer", "navigation.indexes", "navigation.instant", "navigation.instant.progress", "navigation.tabs", "navigation.top", "announce.dismiss", "content.tabs.link", "search.share", "content.code.copy", "content.code.annotations", "content.action.edit", "content.action.view", "content.tooltips"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
+  <script src="../../assets/pymdownx-extras/search-lazy-guard.js?v=20260614-1"></script>
   
       <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
       
-        <script src="https://unpkg.com/mermaid@10.6.1/dist/mermaid.min.js"></script>
-      
-        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-      
-        <script src="../../assets/pymdownx-extras/mermaid-config-override.js?v=20260523-1"></script>
-      
-        <script src="../../assets/pymdownx-extras/mermaid-legacy-flowchart-compat.js?v=20260329-1"></script>
-      
-        <script src="../../assets/pymdownx-extras/extra-loader-iLQ-keay.js"></script>
-      
-        <script src="../../assets/pymdownx-extras/mermaid-render-fix.js?v=20260522-1"></script>
-      
-        <script src="../../assets/pymdownx-extras/mermaid-zoom.js?v=20260404-1"></script>
-      
-        <script src="../../assets/pymdownx-extras/toc-fold.js"></script>
-      
-        <script src="../../assets/pymdownx-extras/image-zoom.js"></script>
-      
-        <script src="../../assets/pymdownx-extras/markdown-embed.js?v=20260516-1"></script>
-      
-        <script src="../../assets/pymdownx-extras/folder-path-bar.js?v=20260524-1"></script>
-      
-        <script src="../../assets/pymdownx-extras/legacy-image-width.js"></script>
-      
-        <script src="../../assets/pymdownx-extras/source-jump.js?v=20260523-2"></script>
+        <script src="../../assets/pymdownx-extras/conditional-loader.js?v=20260614-3"></script>
       
     
-  <script src="../../assets/pymdownx-extras/scroll-bottom.js?v=20260424-3" type="text/javascript"></script>
 
   </body>
 </html>
