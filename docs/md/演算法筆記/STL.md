@@ -163,6 +163,19 @@ int main(){
 }
 ```
 
+### array
+
+固定大小的陣列
+```cpp
+array<int, 3> a = {10, 20, 30};
+
+a[0] = 100;
+a[2] = 300;
+
+cout << a[0] << "\n";  // 100
+cout << a[2] << "\n";  // 300
+```
+
 
 ## 會自動排序的
 
@@ -282,6 +295,8 @@ int main() {
 
 ## 拆解元素 (tie)
 
+tie 只能用在 pair、 tuple，可以配合 ignore 來忽略元素。
+
 ```cpp  
 #include<bits/stdc++.h>
 using namespace std;
@@ -290,13 +305,25 @@ using  pii = pair<int,int>;
 
 int main(){
     pii p={9,2};
-    int a,b;
-    tie(a,b)=p;
-    cout<<a; //9
+    int b;
+    tie(ignore,b)=p;
+    cout<<b; //2
 }
 ```
 
-## tuple、get<1>使用
+## get<1>使用
+
+`get<n>(x)` 最常用在這幾種資料型態：
+
+(x = 以下幾種資料型態)
+```cpp
+std::pair
+std::tuple
+std::array
+std::variant
+```
+
+`get<n>(x)` 裡面的 n 不能是變數，只能是常數。
 
 ```cpp  
 #include<bits/stdc++.h>

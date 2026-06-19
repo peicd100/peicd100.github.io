@@ -4537,6 +4537,17 @@ is now available!
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#array" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        array
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -4704,10 +4715,10 @@ is now available!
 </li>
       
         <li class="md-nav__item">
-  <a href="#tupleget使用" class="md-nav__link">
+  <a href="#get使用" class="md-nav__link">
     <span class="md-ellipsis">
       
-        tuple、get&lt;1&gt;使用
+        get&lt;1&gt;使用
       
     </span>
   </a>
@@ -7286,6 +7297,17 @@ is now available!
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#array" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        array
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -7453,10 +7475,10 @@ is now available!
 </li>
       
         <li class="md-nav__item">
-  <a href="#tupleget使用" class="md-nav__link">
+  <a href="#get使用" class="md-nav__link">
     <span class="md-ellipsis">
       
-        tuple、get&lt;1&gt;使用
+        get&lt;1&gt;使用
       
     </span>
   </a>
@@ -7613,6 +7635,16 @@ is now available!
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div>
+<h3 id="array">array<a class="headerlink" href="#array" title="Permanent link"></a></h3>
+<p>固定大小的陣列<br/>
+<div class="highlight"><pre><span></span><code><span class="n">array</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="o">&gt;</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w"> </span><span class="mi">30</span><span class="p">};</span>
+
+<span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">100</span><span class="p">;</span>
+<span class="n">a</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">300</span><span class="p">;</span>
+
+<span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span><span class="w">  </span><span class="c1">// 100</span>
+<span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">a</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span><span class="w">  </span><span class="c1">// 300</span>
+</code></pre></div></p>
 <h2 id="會自動排序的">會自動排序的<a class="headerlink" href="#會自動排序的" title="Permanent link"></a></h2>
 <blockquote>
 <p>小到大 (12345<br/>
@@ -7704,6 +7736,7 @@ v.end()回傳<strong>第一個元素的前一個</strong>位置</p>
 <p>.erase(數值)是所有匹配元素<br/>
 .erase(it)是該位置元素</p>
 <h2 id="拆解元素-tie">拆解元素 (tie)<a class="headerlink" href="#拆解元素-tie" title="Permanent link"></a></h2>
+<p>tie 只能用在 pair、 tuple，可以配合 ignore 來忽略元素。</p>
 <div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="cpf">&lt;bits/stdc++.h&gt;</span>
 <span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span>
 
@@ -7711,12 +7744,20 @@ v.end()回傳<strong>第一個元素的前一個</strong>位置</p>
 
 <span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(){</span>
 <span class="w">    </span><span class="n">pii</span><span class="w"> </span><span class="n">p</span><span class="o">=</span><span class="p">{</span><span class="mi">9</span><span class="p">,</span><span class="mi">2</span><span class="p">};</span>
-<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">;</span>
-<span class="w">    </span><span class="n">tie</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">)</span><span class="o">=</span><span class="n">p</span><span class="p">;</span>
-<span class="w">    </span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">a</span><span class="p">;</span><span class="w"> </span><span class="c1">//9</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">b</span><span class="p">;</span>
+<span class="w">    </span><span class="n">tie</span><span class="p">(</span><span class="n">ignore</span><span class="p">,</span><span class="n">b</span><span class="p">)</span><span class="o">=</span><span class="n">p</span><span class="p">;</span>
+<span class="w">    </span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">b</span><span class="p">;</span><span class="w"> </span><span class="c1">//2</span>
 <span class="p">}</span>
 </code></pre></div>
-<h2 id="tupleget使用">tuple、get&lt;1&gt;使用<a class="headerlink" href="#tupleget使用" title="Permanent link"></a></h2>
+<h2 id="get使用">get&lt;1&gt;使用<a class="headerlink" href="#get使用" title="Permanent link"></a></h2>
+<p><code>get&lt;n&gt;(x)</code> 最常用在這幾種資料型態：</p>
+<p>(x = 以下幾種資料型態)<br/>
+<div class="highlight"><pre><span></span><code><span class="n">std</span><span class="o">::</span><span class="n">pair</span>
+<span class="n">std</span><span class="o">::</span><span class="n">tuple</span>
+<span class="n">std</span><span class="o">::</span><span class="n">array</span>
+<span class="n">std</span><span class="o">::</span><span class="n">variant</span>
+</code></pre></div></p>
+<p><code>get&lt;n&gt;(x)</code> 裡面的 n 不能是變數，只能是常數。</p>
 <div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="cpf">&lt;bits/stdc++.h&gt;</span>
 <span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span>
 <span class="k">using</span><span class="w">  </span><span class="n">tiii</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tuple</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span><span class="kt">int</span><span class="p">,</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">;</span>
