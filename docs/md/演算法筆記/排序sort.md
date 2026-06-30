@@ -95,6 +95,10 @@
 > 二、  
 > 把a想成左邊（前一項），b想成右邊（後一項），回傳是最後結果(左邊>右邊)
 
+/// danger|口訣
+cmp(a, b) 回傳 true，代表 a 應該排在 b 前面(左邊)。
+///
+
 ```cpp  
 #include <bits/stdc++.h>
 using namespace std;

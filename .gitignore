@@ -18,6 +18,7 @@ ENV/
 
 # 測試與工具快取
 .cache/
+.cph-ng/
 .playwright-cli/
 playwright-report/
 .pytest_cache/
