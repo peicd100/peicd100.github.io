@@ -149,6 +149,7 @@ nav:  # 自定義網站的導航結構
       - 'md/python/控制程式流程—while 迴圈.md'
       - 'md/python/排序與搜尋.md'
       - 'md/python/一些講義中沒講的東西.md'
+      - 'md/python/set.md'
       
       
     #   - '變數': 'md/python/變數.md'
