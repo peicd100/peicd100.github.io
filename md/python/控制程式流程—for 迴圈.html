@@ -1979,7 +1979,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#rangen-是啥" class="md-skip">
+        <a href="#range-是啥" class="md-skip">
           Skip to content
         </a>
       
@@ -6192,6 +6192,10 @@ is now available!
       
         
       
+        
+      
+        
+      
     
     
     
@@ -6469,10 +6473,10 @@ is now available!
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#rangen-是啥" class="md-nav__link">
+  <a href="#range-是啥" class="md-nav__link">
     <span class="md-ellipsis">
       
-        range(n) 是啥？
+        range 是啥？
       
     </span>
   </a>
@@ -6693,6 +6697,62 @@ is now available!
     
   
     Set
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="dict%28map%29.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python dict 超級簡單筆記
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="%E7%AB%B6%E7%A8%8B%E5%B8%B8%E7%94%A8%E7%9A%84%E3%80%8C%E9%AB%98%E9%80%9F%E8%BC%B8%E5%85%A5%20%E3%80%81%E9%9B%86%E4%B8%AD%E8%BC%B8%E5%87%BA%E3%80%8D.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    競程常用的「高速輸入 、集中輸出」
   
 
     
@@ -7074,10 +7134,10 @@ is now available!
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#rangen-是啥" class="md-nav__link">
+  <a href="#range-是啥" class="md-nav__link">
     <span class="md-ellipsis">
       
-        range(n) 是啥？
+        range 是啥？
       
     </span>
   </a>
@@ -7126,8 +7186,21 @@ is now available!
 
   <h1>控制程式流程—for 迴圈</h1>
 
-<h2 id="rangen-是啥">range(n) 是啥？<a class="headerlink" href="#rangen-是啥" title="Permanent link"></a></h2>
+<h2 id="range-是啥">range 是啥？<a class="headerlink" href="#range-是啥" title="Permanent link"></a></h2>
+<p>Python 的 <code>range()</code> 格式是：</p>
+<div class="highlight"><pre><span></span><code><span class="nb">range</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">stop</span><span class="p">,</span> <span class="n">step</span><span class="p">)</span>
+</code></pre></div>
+<p>其中：</p>
+<div class="highlight"><pre><span></span><code><span class="n">start</span>  <span class="c1"># 起始值，會包含</span>
+<span class="n">stop</span>   <span class="c1"># 結束值，不包含</span>
+<span class="n">step</span>   <span class="c1"># 每次增加或減少多少</span>
+</code></pre></div>
+<p>如果 <code>step</code> 是負數，就可以倒數。</p>
 <div class="highlight"><pre><span></span><code><span class="nb">print</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">)))</span> <span class="c1"># [0, 1, 2, 3, 4]</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="nb">print</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">5</span><span class="p">)))</span> <span class="c1"># [2, 3, 4]</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="nb">print</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)))</span> <span class="c1"># [5, 4, 3, 2, 1]</span>
 </code></pre></div>
 <h2 id="for-迴圈">for 迴圈<a class="headerlink" href="#for-迴圈" title="Permanent link"></a></h2>
 <div class="highlight"><pre><span></span><code><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
