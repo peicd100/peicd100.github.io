@@ -1,7 +1,32 @@
-## range(n) 是啥？
+## range 是啥？
+
+Python 的 `range()` 格式是：
+
+
+```py
+range(start, stop, step)
+```
+
+其中：
+
+```py
+start  # 起始值，會包含
+stop   # 結束值，不包含
+step   # 每次增加或減少多少
+```
+
+如果 `step` 是負數，就可以倒數。
 
 ```py
 print(list(range(5))) # [0, 1, 2, 3, 4]
+```
+
+```py
+print(list(range(2,5))) # [2, 3, 4]
+```
+
+```py
+print(list(range(5, 0, -1))) # [5, 4, 3, 2, 1]
 ```
 
 

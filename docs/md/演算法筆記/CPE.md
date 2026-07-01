@@ -82,6 +82,48 @@ even、even -> small
 /// collapse-code
 
 ```py
+n, m = map(int, input().split())
+
+lost = set()
+
+while 1:
+    try:
+        x, y, d = input().split()
+        x = int(x)
+        y = int(y)
+        s = input()
+    except EOFError:
+        break
+
+    dirs = "NESW"
+    current_d = dirs.index(d)  # 0,1,2,3 NESW
+    add_x = [0, 1, 0, -1]
+    add_y = [1, 0, -1, 0]
+
+    is_lost = 0
+    for c in s:
+        if c == "R":
+            current_d = (current_d + 1) % 4
+        elif c == "L":
+            current_d = (current_d - 1) % 4
+        elif c == "F":
+            next_x = x + add_x[current_d]
+            next_y = y + add_y[current_d]
+
+            if 0 <= next_x and next_x <= n and 0 <= next_y and next_y <= m:
+                x = next_x
+                y = next_y
+            else:
+                if (x, y) in lost:
+                    continue
+                lost.add((x, y))
+                is_lost = 1
+                break
+
+    if is_lost:
+        print(x, y, dirs[current_d], "LOST")
+    else:
+        print(x, y, dirs[current_d])
 ```
 
 ///
@@ -93,6 +135,25 @@ even、even -> small
 /// collapse-code
 
 ```py
+l = 1
+while 1:
+    try:
+        s = input()
+    except EOFError:
+        break
+
+    for i in s:
+        if i == '"':
+            if l:
+                print("``", end="")
+                l = 0
+            else:
+                print("''", end="")
+                l = 1
+        else:
+            print(i, end="")
+    print()
+
 ```
 
 ///
@@ -104,6 +165,22 @@ even、even -> small
 /// collapse-code
 
 ```py
+w = int(input())
+
+while w:
+    w = w - 1
+
+    n = int(input())
+    v = list(map(int, input().split()))
+
+    ans = 0
+    for i in range(n-1):
+        for j in range(i + 1, n):
+            if v[j] < v[i]:
+                ans += 1
+
+    print(f"Optimal train swapping takes {ans} swaps.")
+
 ```
 
 ///
@@ -115,6 +192,29 @@ even、even -> small
 /// collapse-code
 
 ```py
+k = 105
+v = [[" "] * k for _ in range(k)]
+
+it = 0
+max_len = 0
+
+while True:
+    try:
+        s = input()
+    except EOFError:
+        break
+
+    max_len = max(max_len, len(s))
+
+    for j, ch in enumerate(s):
+        v[it][j] = ch
+
+    it += 1
+
+for j in range(max_len):
+    for i in range(it - 1, -1, -1):
+        print(v[i][j], end="")
+    print()
 ```
 
 ///
@@ -126,6 +226,37 @@ even、even -> small
 /// collapse-code
 
 ```py
+f = [1, 1]
+while 1:
+    k = f[-1] + f[-2]
+    if k > 100_0000_000:
+        break
+    f.append(k)
+
+f.pop(0)
+f.reverse()
+
+
+w = int(input())
+while w:
+    w = w - 1
+
+    n = int(input())
+    q = n
+
+    out = 0
+    ans = ""
+    for i in f:
+        if n >= i:
+            n -= i
+            out = 1
+            ans += "1"
+        else:
+            if out:
+                ans += "0"
+
+    print(f"{q} = {ans} (fib)")
+
 ```
 
 ///
@@ -137,6 +268,25 @@ even、even -> small
 /// collapse-code
 
 ```py
+w = int(input())
+
+d = {}
+
+while w:
+    w -= 1
+
+    s = input()
+
+    for chr in s.upper():
+        if "A" <= chr <= "Z":
+            d[chr] = d.get(chr, 0) + 1
+
+
+ans = sorted(d.items(), key=lambda x: (-x[1], x[0]))
+
+for x, y in ans:
+    print(x, y)
+
 ```
 
 ///
@@ -148,6 +298,33 @@ even、even -> small
 /// collapse-code
 
 ```py
+def bi(x):
+    s = []
+    while x:
+        s.append(x % 2)
+        x //= 2
+
+    s.reverse()
+
+    return s
+
+
+def hex(x):
+    s = []
+    xx = str(x)
+
+    for i in xx:
+        s += bi(int(i))
+
+    return s
+
+
+w = int(input())
+
+for _ in range(w):
+    n = int(input())
+    print(bi(n).count(1), hex(n).count(1))
+
 ```
 
 ///
@@ -159,6 +336,37 @@ even、even -> small
 /// collapse-code
 
 ```py
+while 1:
+    n, m = input().split()
+    if n == "0" and m == "0":
+        break
+    n = [int(i) for i in n]
+    m = [int(i) for i in m]
+
+    n.reverse()
+    m.reverse()
+
+    max_len = max(len(n), len(m)) + 1
+
+    while len(n) < max_len:
+        n += [0]
+
+    while len(m) < max_len:
+        m += [0]
+
+    carry = 0
+    for i in range(max_len):
+        if n[i] + m[i] >= 10:
+            carry += 1
+            n[i + 1] += 1
+
+    if carry == 0:
+        print("No carry operation.")
+    elif carry == 1:
+        print("1 carry operation.")
+    else:
+        print(f"{carry} carry operations.")
+
 ```
 
 ///
@@ -170,6 +378,7 @@ even、even -> small
 /// collapse-code
 
 ```py
+
 ```
 
 ///
@@ -181,6 +390,7 @@ even、even -> small
 /// collapse-code
 
 ```py
+
 ```
 
 ///
@@ -192,6 +402,7 @@ even、even -> small
 /// collapse-code
 
 ```py
+
 ```
 
 ///
@@ -203,6 +414,7 @@ even、even -> small
 /// collapse-code
 
 ```py
+
 ```
 
 ///
@@ -214,6 +426,7 @@ even、even -> small
 /// collapse-code
 
 ```py
+
 ```
 
 ///
@@ -225,6 +438,7 @@ even、even -> small
 /// collapse-code
 
 ```py
+
 ```
 
 ///
@@ -236,6 +450,7 @@ even、even -> small
 /// collapse-code
 
 ```py
+
 ```
 
 ///
@@ -247,6 +462,7 @@ even、even -> small
 /// collapse-code
 
 ```py
+
 ```
 
 ///
@@ -258,6 +474,7 @@ even、even -> small
 /// collapse-code
 
 ```py
+
 ```
 
 ///
@@ -269,6 +486,7 @@ even、even -> small
 /// collapse-code
 
 ```py
+
 ```
 
 ///
@@ -280,6 +498,7 @@ even、even -> small
 /// collapse-code
 
 ```py
+
 ```
 
 ///
@@ -291,6 +510,7 @@ even、even -> small
 /// collapse-code
 
 ```py
+
 ```
 
 ///
@@ -302,6 +522,7 @@ even、even -> small
 /// collapse-code
 
 ```py
+
 ```
 
 ///
@@ -313,6 +534,7 @@ even、even -> small
 /// collapse-code
 
 ```py
+
 ```
 
 ///
@@ -324,6 +546,7 @@ even、even -> small
 /// collapse-code
 
 ```py
+
 ```
 
 ///
@@ -335,6 +558,7 @@ even、even -> small
 /// collapse-code
 
 ```py
+
 ```
 
 ///
@@ -346,6 +570,7 @@ even、even -> small
 /// collapse-code
 
 ```py
+
 ```
 
 ///
@@ -357,6 +582,7 @@ even、even -> small
 /// collapse-code
 
 ```py
+
 ```
 
 ///
@@ -368,6 +594,7 @@ even、even -> small
 /// collapse-code
 
 ```py
+
 ```
 
 ///
@@ -379,6 +606,7 @@ even、even -> small
 /// collapse-code
 
 ```py
+
 ```
 
 ///
@@ -390,6 +618,7 @@ even、even -> small
 /// collapse-code
 
 ```py
+
 ```
 
 ///
@@ -401,6 +630,7 @@ even、even -> small
 /// collapse-code
 
 ```py
+
 ```
 
 ///
@@ -412,6 +642,7 @@ even、even -> small
 /// collapse-code
 
 ```py
+
 ```
 
 ///
@@ -423,6 +654,7 @@ even、even -> small
 /// collapse-code
 
 ```py
+
 ```
 
 ///
@@ -434,6 +666,7 @@ even、even -> small
 /// collapse-code
 
 ```py
+
 ```
 
 ///
@@ -445,6 +678,7 @@ even、even -> small
 /// collapse-code
 
 ```py
+
 ```
 
 ///
@@ -456,6 +690,7 @@ even、even -> small
 /// collapse-code
 
 ```py
+
 ```
 
 ///
@@ -467,6 +702,7 @@ even、even -> small
 /// collapse-code
 
 ```py
+
 ```
 
 ///
@@ -478,6 +714,7 @@ even、even -> small
 /// collapse-code
 
 ```py
+
 ```
 
 ///
@@ -489,6 +726,7 @@ even、even -> small
 /// collapse-code
 
 ```py
+
 ```
 
 ///
@@ -500,6 +738,7 @@ even、even -> small
 /// collapse-code
 
 ```py
+
 ```
 
 ///
@@ -511,6 +750,7 @@ even、even -> small
 /// collapse-code
 
 ```py
+
 ```
 
 ///
@@ -522,6 +762,7 @@ even、even -> small
 /// collapse-code
 
 ```py
+
 ```
 
 ///
@@ -533,6 +774,7 @@ even、even -> small
 /// collapse-code
 
 ```py
+
 ```
 
 ///
@@ -544,6 +786,7 @@ even、even -> small
 /// collapse-code
 
 ```py
+
 ```
 
 ///
@@ -555,6 +798,7 @@ even、even -> small
 /// collapse-code
 
 ```py
+
 ```
 
 ///
@@ -566,6 +810,7 @@ even、even -> small
 /// collapse-code
 
 ```py
+
 ```
 
 ///
@@ -577,6 +822,7 @@ even、even -> small
 /// collapse-code
 
 ```py
+
 ```
 
 ///
@@ -588,6 +834,7 @@ even、even -> small
 /// collapse-code
 
 ```py
+
 ```
 
 ///
@@ -599,6 +846,7 @@ even、even -> small
 /// collapse-code
 
 ```py
+
 ```
 
 ///
