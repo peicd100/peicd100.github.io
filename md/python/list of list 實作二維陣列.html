@@ -6185,6 +6185,8 @@ is now available!
       
         
       
+        
+      
     
     
     
@@ -6603,6 +6605,34 @@ is now available!
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="set.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Set
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -6997,6 +7027,23 @@ is now available!
 <p><code>b = [[0]*4]*3</code><br/>
 =&gt;<code>b = [[0,0,0,0]]*3</code><br/>
 =&gt;<code>b = [[0,0,0,0],[0,0,0,0],[0,0,0,0]]</code></p>
+<p>但 b 其實是錯的，因為你以為建立的是</p>
+<div class="highlight"><pre><span></span><code>[
+ ['+','+','+'],
+ ['+','+','+'],
+ ['+','+','+']
+]
+</code></pre></div>
+<p>但實際上建立的是</p>
+<div class="highlight"><pre><span></span><code>      ┌──────────────┐
+v ───►│ ['+','+','+']│◄──┐
+      └──────────────┘   │
+            ▲            │
+            │            │
+            └────────────┘
+</code></pre></div>
+<p>也就是 <strong>n 個元素都指向同一個 list</strong>。 </p>
+<hr/>
 <p>建一個九九乘法表</p>
 <p><div class="highlight"><pre><span></span><code><span class="n">t</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="mi">10</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)]</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">):</span>
