@@ -427,6 +427,33 @@ int main() {
 /// collapse-code
 
 ```py
+import sys
+
+data = list(sys.stdin.read().split())
+out = []
+it = 0
+
+while it < len(data):
+    n = int(data[it])
+    it += 1
+
+    for _ in range(n):
+        m = int(data[it])
+        it += 1
+
+        s = list(map(int, data[it : it + m]))
+        it += m
+
+        s.sort()
+
+        ans = 0
+
+        c = s[len(s) // 2]
+
+        for i in s:
+            ans += abs(int(c) - int(i))
+
+        print(ans)
 
 ```
 
