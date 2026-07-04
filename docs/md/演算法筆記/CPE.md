@@ -377,8 +377,45 @@ while 1:
 
 /// collapse-code
 
-```py
+```cpp
+#include <bits/stdc++.h>
+using namespace std;
+int main() {
+    int n;
+    while (cin >> n) {
+        vector<int> v(n);
+        for (int i = 0; i < n; i++) {
+            cin >> v[i];
+        }
 
+        vector<int> sub;
+
+        for (int i = 0; i < n - 1; i++) {
+            sub.push_back(abs(v[i] - v[i + 1]));
+        }
+
+        sort(sub.begin(), sub.end());
+
+        int j = 1;
+        for (int i = 0; i < n - 1; i++) {
+            if (sub[i] != i + 1) {
+                j = 0;
+                break;
+            }
+        }
+
+        // for (int i : sub) {
+        //     cout << i << " ";
+        // }
+        // cout << "\n";
+
+        if (j) {
+            cout << "Jolly" << "\n";
+        } else {
+            cout << "Not jolly" << "\n";
+        }
+    }
+}
 ```
 
 ///
