@@ -4436,6 +4436,45 @@ is now available!
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="vector">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#一般陣列" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        一般陣列
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vector_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        vector
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vector-切片" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        vector 切片
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
         
           <li class="md-nav__item">
@@ -4561,45 +4600,6 @@ is now available!
       
     </span>
   </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#陣列重點" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        陣列重點
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="陣列重點">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#一般陣列" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        一般陣列
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#vector_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        vector
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -7616,6 +7616,45 @@ is now available!
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="vector">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#一般陣列" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        一般陣列
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vector_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        vector
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vector-切片" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        vector 切片
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
         
           <li class="md-nav__item">
@@ -7741,45 +7780,6 @@ is now available!
       
     </span>
   </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#陣列重點" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        陣列重點
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="陣列重點">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#一般陣列" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        一般陣列
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#vector_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        vector
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -7983,6 +7983,37 @@ is now available!
 <h2 id="常用stl">常用STL<a class="headerlink" href="#常用stl" title="Permanent link"></a></h2>
 <h3 id="vector">vector<a class="headerlink" href="#vector" title="Permanent link"></a></h3>
 <p>就是陣列</p>
+<p><img alt="alt text" decoding="async" src="../images/STL/image-26.png"/></p>
+<h4 id="一般陣列">一般陣列<a class="headerlink" href="#一般陣列" title="Permanent link"></a></h4>
+<blockquote>
+<p>int v[10];</p>
+<p>v回傳第一個v[0]的指標</p>
+</blockquote>
+<h4 id="vector_1">vector<a class="headerlink" href="#vector_1" title="Permanent link"></a></h4>
+<blockquote>
+<p><code>vector&lt;int&gt; v(5, 10);</code> // 建立大小為5的vector，每個元素初始化為10    <br/>
+<code>vector&lt;vector&lt;int&gt;&gt; v(100, vector&lt;int&gt;(15, -1));</code> //(等同於int v[100][15]，全部初始化為-1)</p>
+<p>vector &lt;int&gt; v[10] ;<br/>
+v.resize(大小,賦值)重新配置大小，若原本size從3變為5，不會更改v[2]以內的數值，只會新增v[3]、v[4]為-1;<br/>
+v.assign(大小,賦值)重新分配，所有數值都會被更新，但是"大小"、"賦值"都要給，不能只給其中一個。<br/>
+v.begin()回傳<strong>第一個</strong>元素位置<br/>
+v.end()回傳<strong>最後一個元素的後一個</strong>位置<br/>
+v.rbegin()回傳<strong>最後一個</strong>元素位置<br/>
+v.rend()回傳<strong>第一個元素的前一個</strong>位置</p>
+</blockquote>
+<h4 id="vector-切片">vector 切片<a class="headerlink" href="#vector-切片" title="Permanent link"></a></h4>
+<div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;bits/stdc++.h&gt;</span>
+<span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">6</span><span class="p">};</span>
+
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">l</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="n">r</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span>
+<span class="w">    </span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">b</span><span class="p">(</span><span class="n">a</span><span class="p">.</span><span class="n">begin</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">l</span><span class="p">,</span><span class="w"> </span><span class="n">a</span><span class="p">.</span><span class="n">begin</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">r</span><span class="p">);</span>
+
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">b</span><span class="p">)</span><span class="w"> </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">" "</span><span class="p">;</span><span class="w">  </span><span class="c1">// 2 3 4</span>
+<span class="p">}</span>
+</code></pre></div>
 <h3 id="pair">pair<a class="headerlink" href="#pair" title="Permanent link"></a></h3>
 <p>.first .second </p>
 <h3 id="tupleget">tuple/get<a class="headerlink" href="#tupleget" title="Permanent link"></a></h3>
@@ -8004,7 +8035,7 @@ is now available!
 <p>.insert() .erase() .find .lower_bound() .upper_bound()</p>
 <h3 id="queue">queue<a class="headerlink" href="#queue" title="Permanent link"></a></h3>
 <p>後進前出(中間不能動)</p>
-<p><img alt="alt text" decoding="async" src="images/STL/%E8%9E%A2%E5%B9%95%E6%93%B7%E5%8F%96%E7%95%AB%E9%9D%A2%202025-06-03%20221541.png" width="70%"/></p>
+<p><img alt="alt text" decoding="async" loading="lazy" src="images/STL/%E8%9E%A2%E5%B9%95%E6%93%B7%E5%8F%96%E7%95%AB%E9%9D%A2%202025-06-03%20221541.png" width="70%"/></p>
 <h3 id="deque">deque<a class="headerlink" href="#deque" title="Permanent link"></a></h3>
 <p>雙向進出(中間不能動)</p>
 <p><img alt="alt text" decoding="async" loading="lazy" src="images/STL/%E8%9E%A2%E5%B9%95%E6%93%B7%E5%8F%96%E7%95%AB%E9%9D%A2%202025-06-03%20221603.png" width="70%"/></p>
@@ -8075,24 +8106,6 @@ is now available!
 <p>大到小 (54321<br/>
 1. priority_queue<br/>
 2. sort()函數  (離題!!  </p>
-</blockquote>
-<h2 id="陣列重點">陣列重點<a class="headerlink" href="#陣列重點" title="Permanent link"></a></h2>
-<p><img alt="alt text" decoding="async" loading="lazy" src="../images/STL/image-26.png"/></p>
-<h3 id="一般陣列">一般陣列<a class="headerlink" href="#一般陣列" title="Permanent link"></a></h3>
-<blockquote>
-<p>int v[10];</p>
-<p>v回傳第一個v[0]的指標</p>
-</blockquote>
-<h3 id="vector_1">vector<a class="headerlink" href="#vector_1" title="Permanent link"></a></h3>
-<blockquote>
-<p><code>vector&lt;int&gt; v(5, 10);</code> // 建立大小為5的vector，每個元素初始化為10    <br/>
-<code>vector&lt;vector&lt;int&gt;&gt; v(100, vector&lt;int&gt;(15, -1));</code> //(等同於int v[100][15]，全部初始化為-1)</p>
-<p>vector &lt;int&gt; v[10] ;<br/>
-v.resize(大小,賦值)重新配置大小，若原本size從3變為5，不會更改v[2]以內的數值，只會新增v[3]、v[4]為-1;<br/>
-v.begin()回傳<strong>第一個</strong>元素位置<br/>
-v.end()回傳<strong>最後一個元素的後一個</strong>位置<br/>
-v.begin()回傳<strong>最後一個</strong>元素位置<br/>
-v.end()回傳<strong>第一個元素的前一個</strong>位置</p>
 </blockquote>
 <h2 id="賦值操作">賦值操作<a class="headerlink" href="#賦值操作" title="Permanent link"></a></h2>
 <p>GPT:<br/>
