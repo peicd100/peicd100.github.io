@@ -67,6 +67,48 @@ int main(){
 
 ### vector
 就是陣列
+
+
+
+
+![alt text](../images/STL/image-26.png)
+#### 一般陣列
+
+> int v[10];
+> 
+> v回傳第一個v[0]的指標
+
+#### vector
+
+>`vector<int> v(5, 10);` // 建立大小為5的vector，每個元素初始化為10      
+>`vector<vector<int>> v(100, vector<int>(15, -1));` //(等同於int v[100][15]，全部初始化為-1)
+
+
+> vector <int\> v[10] ;
+> v.resize(大小,賦值)重新配置大小，若原本size從3變為5，不會更改v[2]以內的數值，只會新增v[3]、v[4]為-1;
+> v.assign(大小,賦值)重新分配，所有數值都會被更新，但是"大小"、"賦值"都要給，不能只給其中一個。
+> v.begin()回傳**第一個**元素位置
+> v.end()回傳**最後一個元素的後一個**位置
+> v.rbegin()回傳**最後一個**元素位置
+> v.rend()回傳**第一個元素的前一個**位置
+
+#### vector 切片
+
+```cpp
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+    vector<int> a = {0, 1, 2, 3, 4, 5, 6};
+
+    int l = 2, r = 5;
+    vector<int> b(a.begin() + l, a.begin() + r);
+
+    for (int x : b) cout << x << " ";  // 2 3 4
+}
+```
+
+
 ### pair
 .first .second 
 ### tuple/get
@@ -196,28 +238,6 @@ cout << a[2] << "\n";  // 300
 
 
 
-## 陣列重點
-
-
-![alt text](../images/STL/image-26.png)
-### 一般陣列
-
-> int v[10];
-> 
-> v回傳第一個v[0]的指標
-
-### vector
-
->`vector<int> v(5, 10);` // 建立大小為5的vector，每個元素初始化為10      
->`vector<vector<int>> v(100, vector<int>(15, -1));` //(等同於int v[100][15]，全部初始化為-1)
-
-
-> vector <int\> v[10] ;
-> v.resize(大小,賦值)重新配置大小，若原本size從3變為5，不會更改v[2]以內的數值，只會新增v[3]、v[4]為-1;
-> v.begin()回傳**第一個**元素位置
-> v.end()回傳**最後一個元素的後一個**位置
-> v.begin()回傳**最後一個**元素位置
-> v.end()回傳**第一個元素的前一個**位置
 
 ## 賦值操作
 
