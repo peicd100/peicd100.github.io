@@ -17,17 +17,41 @@ step   # 每次增加或減少多少
 
 如果 `step` 是負數，就可以倒數。
 
+### 一個參數：`range(stop)`
 ```py
 print(list(range(5))) # [0, 1, 2, 3, 4]
+
+# 等同於
+
+print(list(range(0, 5, 1)))
 ```
 
+### 兩個參數：`range(start, stop)`
 ```py
 print(list(range(2,5))) # [2, 3, 4]
+
+# 等同於
+
+print(list(range(2,5,1)))
 ```
 
+### 三個參數：`range(start, stop, step)`
+```py
+print(list(range(1, 10, 2))) # [1, 3, 5, 7, 9]
+```
+
+### step 是負數：倒著跑
 ```py
 print(list(range(5, 0, -1))) # [5, 4, 3, 2, 1]
 ```
+
+### 如果想倒著跑到 0，要這樣寫
+```py
+print(list(range(5, -1, -1))) # [5, 4, 3, 2, 1, 0]
+```
+
+
+
 
 
 ## for 迴圈

@@ -10,102 +10,326 @@ Python 用 list of list 來實作二維陣列，也就是 a 是一個有 m 個�
 > 先注意 list 乘法是把 *n 相鄰的 list 裡面的資料給重複。
 > 也就是 [[[0]]]*3 其實是重複三次 list 的內容 `[[0]]`，變成 `[[[0]], [[0]], [[0]]]`
 
+## 二維陣列宣告
+
+
+宣告一個全部為 0 的二維陣列
+
 `a = [[0]*4 for i in range(3)]`
 =>`a = [[0,0,0,0] for i in range(3)]`
 =>`a = [[0,0,0,0],[0,0,0,0],[0,0,0,0]]`
 
-`b = [[0]*4]*3`
-=>`b = [[0,0,0,0]]*3`
-=>`b = [[0,0,0,0],[0,0,0,0],[0,0,0,0]]`
-
-但 b 其實是錯的，因為你以為建立的是
-
-```
-[
- ['+','+','+'],
- ['+','+','+'],
- ['+','+','+']
-]
-```
-
-但實際上建立的是
-
-```
-      ┌──────────────┐
-v ───►│ ['+','+','+']│◄──┐
-      └──────────────┘   │
-            ▲            │
-            │            │
-            └────────────┘
-```
-
-也就是 **n 個元素都指向同一個 list**。 
-
----
-
-建一個九九乘法表
-
-
-```py
-t = [[0] * 10 for i in range(10)]
-for i in range(1, 10):
-    for j in range(1, 10):
-        t[i][j] = i * j
-
-for i in t:
-    for j in i:
-        print(j,end=" ")
-    print()
-
-```
-output:
-```
-0 0 0 0 0 0 0 0 0 0 
-0 1 2 3 4 5 6 7 8 9 
-0 2 4 6 8 10 12 14 16 18 
-0 3 6 9 12 15 18 21 24 27 
-0 4 8 12 16 20 24 28 32 36 
-0 5 10 15 20 25 30 35 40 45 
-0 6 12 18 24 30 36 42 48 54 
-0 7 14 21 28 35 42 49 56 63 
-0 8 16 24 32 40 48 56 64 72 
-0 9 18 27 36 45 54 63 72 81 
-```
-
-
-
-常見的二維陣列輸入格式是由上而下、由左而右。
-
-例如，若輸入資料為：
-
-```text
-3 4
-0 1 2 3
-4 5 6 7
-8 9 10 11
-```
+## 輸入資料
 
 第一行的兩個數字是 `m` 與 `n`，我們可以用以下方式讀入：
 
 ```python
+import io
+import sys
+
+sys.stdin = io.StringIO("""\
+2 3 
+1 2 3
+4 5 6                                                
+""")
+
+
 m, n = map(int, input().split())
 a = []
 
 for i in range(m):
     a.append([int(x) for x in input().split()])
+    
+    
+for row in a:
+    print(*row)
+```
+
+output:
+
+```py
+1 2 3
+4 5 6
+
 ```
 
 
-也可以先將 `a` 初始化為 `m` 個空 list：
+## 複製
+
+看下面程式：
+
+```py
+a = [[i+j for j in range(3)] for i in range(3)]
+
+b = a.copy()
+
+a[0][0] = -1
+
+for row in a:
+    print(*row)
+
+print()
+
+for row in b:
+    print(*row)
+    
+```
+
+output:
+
+```py
+-1 1 2
+1 2 3
+2 3 4
+
+-1 1 2
+1 2 3
+2 3 4
+
+```
+
+可以發現這時用 copy 就不管用了。
+
+///details|講解
+
+
+### 1. 原因：`a.copy()` 只複製「外層 list」
+
+你的程式：
 
 ```python
-m, n = map(int, input().split())
-a = [[] for i in range(m)]
+a = [[i+j for j in range(3)] for i in range(3)]
 
-for i in range(m):
-    a[i] = [int(x) for x in input().split()]
+b = a.copy()
+
+a[0][0] = -1
+```
+
+重點在這行：
+
+```python
+b = a.copy()
+```
+
+它是 **shallow copy(淺拷貝)**。
+
+意思是：
+
+> `b` 會得到一個新的外層 list，但是裡面的每一列小 list 還是跟 `a` 共用同一份。
+
+---
+
+### 2. 原本的 `a`
+
+```python
+a = [[i+j for j in range(3)] for i in range(3)]
+```
+
+產生：
+
+```python
+a = [
+    [0, 1, 2],
+    [1, 2, 3],
+    [2, 3, 4]
+]
+```
+
+印出來是：
+
+```txt
+0 1 2
+1 2 3
+2 3 4
 ```
 
 ---
 
-比較推薦使用前者初始化變數與 list，除非事前無法得知元素個數。
+### 3. `b = a.copy()` 後的狀態
+
+看起來好像是：
+
+```python
+b = [
+    [0, 1, 2],
+    [1, 2, 3],
+    [2, 3, 4]
+]
+```
+
+但真正的記憶體概念比較像這樣：
+
+```mermaid
+flowchart LR
+    a[a 外層 list] --> r0["第 0 列 list<br>[0, 1, 2]"]
+    a --> r1["第 1 列 list<br>[1, 2, 3]"]
+    a --> r2["第 2 列 list<br>[2, 3, 4]"]
+
+    b[b 外層 list] --> r0
+    b --> r1
+    b --> r2
+```
+
+所以 `a[0]` 和 `b[0]` 其實是同一個 list。
+
+---
+
+### 4. 所以你改 `a[0][0]`，`b` 也會變
+
+這行：
+
+```python
+a[0][0] = -1
+```
+
+意思是：
+
+> 去 `a` 的第 0 列，再把那一列的第 0 個元素改成 `-1`。
+
+但 `a[0]` 和 `b[0]` 共用同一個小 list，所以 `b[0][0]` 也會看到變化。
+
+結果 `b` 印出：
+
+```txt
+-1 1 2
+1 2 3
+2 3 4
+```
+
+---
+
+### 5. 可以用 `id()` 驗證
+
+你可以試試看：
+
+```python
+a = [[i+j for j in range(3)] for i in range(3)]
+b = a.copy()
+
+print(a is b)        # False，外層不是同一個
+print(a[0] is b[0])  # True，第 0 列是同一個
+print(a[1] is b[1])  # True，第 1 列是同一個
+print(a[2] is b[2])  # True，第 2 列是同一個
+```
+
+輸出：
+
+```txt
+False
+True
+True
+True
+```
+
+也就是：
+
+```python
+a is b
+```
+
+代表整個外層 list 是否同一個。
+
+```python
+a[0] is b[0]
+```
+
+代表第 0 列小 list 是否同一個。
+
+---
+
+### 6. 正確複製二維 list 的方法
+
+如果你想讓 `b` 完全獨立，競程裡最常用這種：
+
+```python
+b = [row[:] for row in a]
+```
+
+完整範例：
+
+```python
+a = [[i+j for j in range(3)] for i in range(3)]
+
+b = [row[:] for row in a]
+
+a[0][0] = -1
+
+for row in b:
+    print(*row)
+```
+
+這樣 `b` 不會被改到，輸出：
+
+```txt
+0 1 2
+1 2 3
+2 3 4
+```
+
+---
+
+## 7. 記法
+
+一維 list：
+
+```python
+b = a.copy()
+```
+
+通常可以。
+
+二維 list：
+
+```python
+b = [row[:] for row in a]
+```
+
+比較安全。
+
+更深層，例如三維、裡面還有 list 包 list，可以用：
+
+```python
+import copy
+
+b = copy.deepcopy(a)
+```
+
+但競程裡二維陣列通常用這個就夠了：
+
+```python
+b = [row[:] for row in a]
+```
+///
+
+
+所以我們要改成：
+```py
+a = [[i + j for j in range(3)] for i in range(3)]
+
+# b = a.copy()
+b = [row[:] for row in a]
+
+a[0][0] = -1
+
+for row in a:
+    print(*row)
+
+print()
+
+for row in b:
+    print(*row)
+
+```
+
+output:
+
+```py
+-1 1 2
+1 2 3
+2 3 4
+
+0 1 2
+1 2 3
+2 3 4
+
+```

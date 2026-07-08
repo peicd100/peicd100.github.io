@@ -1,3 +1,25 @@
+# List
+
+## 簡單介紹 list
+
+```py
+a = [1, 5, 4, 3, 7, 2, 4, 1]
+
+print(a) # python 井字號之後該行是註解，註解是給人看的，編譯器不看
+print(*a) # 這個先記一下，相當是 C 語言的指標
+print(*a, sep=',') # 分隔符號可以更改
+
+```
+
+> 注意！假設 a、b 是 list， a = b 是製作別名，不是複製。
+> 要複製要用：
+```py 
+a = b.copy() # b.copy() 回傳 b 的內容
+```
+
+
+
+
 ## 序列運算只有 + 、 *
 
 - + 串接 (Concatenation)
@@ -11,6 +33,33 @@ print(a)
 print(b)
 
 ```
+
+
+## list 常用函數
+
+最大、最小、總和
+```py
+a = [5, 3, 4]
+large = max(a)
+small = min(a)
+middle = sum(a) – large - small
+
+```
+
+排序
+```py
+a = [3, 1, 5, 7, 3, 4, 2, 5]
+a.sort()
+print(a) # [1,2,3,3,4,5,5,7]
+
+```
+
+如果要由大而小排序呢？可以這樣下指令
+```py
+a.sort(reverse=True) 
+```
+
+
 
 ## `.append()` / `.pop()`
 

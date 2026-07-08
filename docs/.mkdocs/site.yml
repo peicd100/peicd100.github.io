@@ -152,6 +152,7 @@ nav:  # 自定義網站的導航結構
       - 'md/python/set.md'
       - 'md/python/dict(map).md'
       - 'md/python/競程常用的「高速輸入 、集中輸出」.md'
+      - 'md/python/競賽偷懶輸入法.md'
       
       
     #   - '變數': 'md/python/變數.md'
