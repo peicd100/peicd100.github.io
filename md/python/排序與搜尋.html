@@ -6196,6 +6196,8 @@ is now available!
       
         
       
+        
+      
     
     
     
@@ -6452,7 +6454,7 @@ is now available!
   <span class="md-ellipsis">
     
   
-    再探 List(串列)與字串操作
+    List
   
 
     
@@ -6621,6 +6623,40 @@ is now available!
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="寫排序規則">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#多欄位" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        多欄位
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="多欄位">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#自定義排序的萬用公式" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        自定義排序的萬用公式
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -6764,6 +6800,34 @@ is now available!
     
   
     競程常用的「高速輸入 、集中輸出」
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="%E7%AB%B6%E8%B3%BD%E5%81%B7%E6%87%B6%E8%BC%B8%E5%85%A5%E6%B3%95.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    競賽偷懶輸入法
   
 
     
@@ -7153,6 +7217,40 @@ is now available!
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="寫排序規則">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#多欄位" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        多欄位
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="多欄位">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#自定義排序的萬用公式" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        自定義排序的萬用公式
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -7215,6 +7313,9 @@ is now available!
 <p>sorted(a) 是在不改變 a 的情況下回傳 a 排序後的 list</p>
 <h2 id="寫排序規則">寫排序規則<a class="headerlink" href="#寫排序規則" title="Permanent link"></a></h2>
 <p><code>a.sort(key=lambda x: x[1])</code></p>
+<blockquote>
+<p>這裡的 x 可以想成 for x in a:</p>
+</blockquote>
 <p>上述指令的意思是排序用的 key 值是對於每一個元素 x(自己隨便取名字)，取出 x[1]當作比較對象。當<br/>
 然可以用各種欄位運算的結果來排序，例如：</p>
 <p><code>a.sort(key=lambda x: x[1]+x[0])</code></p>
@@ -7227,6 +7328,68 @@ is now available!
 <p>a = [[1, 3], [2, 1], [2, 4], [2, 6]]<br/>
 a.sort(key=lambda x: x[0] + x[1], reverse=True)<br/>
 print(a)  # [[2, 6], [2, 4], [1, 3], [2, 1]]</p>
+<h3 id="多欄位">多欄位<a class="headerlink" href="#多欄位" title="Permanent link"></a></h3>
+<p><div class="highlight"><pre><span></span><code><span class="n">g</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">4</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">4</span><span class="p">,</span><span class="mi">3</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">4</span><span class="p">,</span><span class="mi">2</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">8</span><span class="p">],</span>
+<span class="p">]</span>
+
+<span class="n">g</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">key</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="p">(</span><span class="o">-</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="o">-</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+
+<span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">g</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="o">*</span><span class="n">row</span><span class="p">)</span>
+</code></pre></div><br/>
+output:<br/>
+<div class="highlight"><pre><span></span><code><span class="mi">1</span> <span class="mi">2</span>
+<span class="mi">2</span> <span class="mi">8</span>
+<span class="mi">4</span> <span class="mi">3</span>
+<span class="mi">4</span> <span class="mi">2</span>
+<span class="mi">4</span> <span class="mi">1</span>
+</code></pre></div></p>
+<h4 id="自定義排序的萬用公式">自定義排序的萬用公式<a class="headerlink" href="#自定義排序的萬用公式" title="Permanent link"></a></h4>
+<p>你可以先把題目要求翻成：</p>
+<div class="highlight"><pre><span></span><code>第 1 條規則
+第 2 條規則
+第 3 條規則
+...
+</code></pre></div>
+<p>然後寫成：</p>
+<div class="highlight"><pre><span></span><code><span class="n">a</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="p">(</span><span class="n">規則1</span><span class="p">,</span> <span class="n">規則2</span><span class="p">,</span> <span class="n">規則3</span><span class="p">))</span>
+</code></pre></div>
+<p>重點：</p>
+<div class="highlight"><pre><span></span><code>小到大：直接放原值
+大到小：放負值
+</code></pre></div>
+<p>例如二維資料 <code>[a, b]</code>：</p>
+<table>
+<thead>
+<tr>
+<th>需求</th>
+<th>寫法</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>第一欄小到大，第二欄小到大</td>
+<td><code>key=lambda x: (x[0], x[1])</code></td>
+</tr>
+<tr>
+<td>第一欄小到大，第二欄大到小</td>
+<td><code>key=lambda x: (x[0], -x[1])</code></td>
+</tr>
+<tr>
+<td>第一欄大到小，第二欄小到大</td>
+<td><code>key=lambda x: (-x[0], x[1])</code></td>
+</tr>
+<tr>
+<td>第一欄大到小，第二欄大到小</td>
+<td><code>key=lambda x: (-x[0], -x[1])</code></td>
+</tr>
+</tbody>
+</table>
 <h2 id="cmpa-b-回傳規則"><code>cmp(a, b)</code> 回傳規則<a class="headerlink" href="#cmpa-b-回傳規則" title="Permanent link"></a></h2>
 <p>Python 的 cmp 回傳和 C++ 不一樣，C++ 裡面 cmp(a, b) 回傳 true，代表 a 應該排在 b 前面。</p>
 <p>而 Python 是像下面這樣。</p>

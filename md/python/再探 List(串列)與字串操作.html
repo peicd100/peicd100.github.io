@@ -28,7 +28,7 @@
     
     
       
-        <title>再探 List(串列)與字串操作 - PEICD100</title>
+        <title>List - PEICD100</title>
       
     
     
@@ -1979,7 +1979,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#序列運算只有---" class="md-skip">
+        <a href="#list" class="md-skip">
           Skip to content
         </a>
       
@@ -2085,7 +2085,7 @@ is now available!
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              再探 List(串列)與字串操作
+              List
             
           </span>
         </div>
@@ -6196,6 +6196,8 @@ is now available!
       
         
       
+        
+      
     
     
     
@@ -6451,6 +6453,8 @@ is now available!
       <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
       
+        
+      
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
           
@@ -6459,7 +6463,7 @@ is now available!
   <span class="md-ellipsis">
     
   
-    再探 List(串列)與字串操作
+    List
   
 
     
@@ -6477,7 +6481,7 @@ is now available!
   <span class="md-ellipsis">
     
   
-    再探 List(串列)與字串操作
+    List
   
 
     
@@ -6493,6 +6497,8 @@ is now available!
   
   
   
+    
+  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
@@ -6501,10 +6507,32 @@ is now available!
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#簡單介紹-list" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        簡單介紹 list
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#序列運算只有---" class="md-nav__link">
     <span class="md-ellipsis">
       
         序列運算只有 + 、 *
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#list-常用函數" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        list 常用函數
       
     </span>
   </a>
@@ -6753,6 +6781,34 @@ is now available!
     
   
     競程常用的「高速輸入 、集中輸出」
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="%E7%AB%B6%E8%B3%BD%E5%81%B7%E6%87%B6%E8%BC%B8%E5%85%A5%E6%B3%95.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    競賽偷懶輸入法
   
 
     
@@ -7126,6 +7182,8 @@ is now available!
   
   
   
+    
+  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
@@ -7134,10 +7192,32 @@ is now available!
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#簡單介紹-list" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        簡單介紹 list
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#序列運算只有---" class="md-nav__link">
     <span class="md-ellipsis">
       
         序列運算只有 + 、 *
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#list-常用函數" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        list 常用函數
       
     </span>
   </a>
@@ -7184,8 +7264,20 @@ is now available!
 
 
 
-  <h1>再探 List(串列)與字串操作</h1>
+<h1 id="list">List<a class="headerlink" href="#list" title="Permanent link"></a></h1>
+<h2 id="簡單介紹-list">簡單介紹 list<a class="headerlink" href="#簡單介紹-list" title="Permanent link"></a></h2>
+<div class="highlight"><pre><span></span><code><span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
 
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="c1"># python 井字號之後該行是註解，註解是給人看的，編譯器不看</span>
+<span class="nb">print</span><span class="p">(</span><span class="o">*</span><span class="n">a</span><span class="p">)</span> <span class="c1"># 這個先記一下，相當是 C 語言的指標</span>
+<span class="nb">print</span><span class="p">(</span><span class="o">*</span><span class="n">a</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">','</span><span class="p">)</span> <span class="c1"># 分隔符號可以更改</span>
+</code></pre></div>
+<blockquote>
+<p>注意！假設 a、b 是 list， a = b 是製作別名，不是複製。<br/>
+要複製要用：<br/>
+<div class="highlight"><pre><span></span><code><span class="n">a</span> <span class="o">=</span> <span class="n">b</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span> <span class="c1"># b.copy() 回傳 b 的內容</span>
+</code></pre></div></p>
+</blockquote>
 <h2 id="序列運算只有---">序列運算只有 + 、 *<a class="headerlink" href="#序列運算只有---" title="Permanent link"></a></h2>
 <ul>
 <li>
@@ -7205,6 +7297,21 @@ is now available!
 <span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
 </code></pre></div>
+<h2 id="list-常用函數">list 常用函數<a class="headerlink" href="#list-常用函數" title="Permanent link"></a></h2>
+<p>最大、最小、總和<br/>
+<div class="highlight"><pre><span></span><code><span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
+<span class="n">large</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="n">small</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="n">middle</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="err">–</span> <span class="n">large</span> <span class="o">-</span> <span class="n">small</span>
+</code></pre></div></p>
+<p>排序<br/>
+<div class="highlight"><pre><span></span><code><span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
+<span class="n">a</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="c1"># [1,2,3,3,4,5,5,7]</span>
+</code></pre></div></p>
+<p>如果要由大而小排序呢？可以這樣下指令<br/>
+<div class="highlight"><pre><span></span><code><span class="n">a</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> 
+</code></pre></div></p>
 <h2 id="append--pop"><code>.append()</code> / <code>.pop()</code><a class="headerlink" href="#append--pop" title="Permanent link"></a></h2>
 <p>.append(n) 插入數字 n<br/>
 .pop(index) 把位置 index 的數字刪掉</p>
