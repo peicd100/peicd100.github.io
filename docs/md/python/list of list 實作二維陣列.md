@@ -7,8 +7,8 @@ a = [1, 3.1416, 'Python', 'x']
 Python 用 list of list 來實作二維陣列，也就是 a 是一個有 m 個元素的 List，
 而 a 的每個元素都是一個有 n 個元素的 list。如果執行下面的程式：
 
-> 先注意 list 乘法是把 *n 相鄰的 list 裡面的資料給重複。
-> 也就是 [[[0]]]*3 其實是重複三次 list 的內容 `[[0]]`，變成 `[[[0]], [[0]], [[0]]]`
+> 先注意 list 乘法是把 \*n 相鄰的 list 裡面的資料給重複。
+> 也就是 [[[0]]]\*3 其實是重複三次 list 的內容 `[[0]]`，變成 `[[[0]], [[0]], [[0]]]`
 
 ## 二維陣列宣告
 
@@ -52,6 +52,81 @@ output:
 4 5 6
 
 ```
+
+
+## 二維陣列函數
+
+### 用法
+
+可以配合 map 使用
+```py
+a = [
+    [1,2,3],
+    [4,5,6],
+    [7,8,9]
+]
+
+
+for row in a:
+    print(*row)
+
+print()
+    
+    
+ma = max(map(max,a))
+mi = min(map(min,a))
+su = sum(map(sum,a))
+
+print(ma,mi,su)
+# 1 2 3
+# 4 5 6
+# 7 8 9
+
+# 9 1 45
+
+```
+
+
+### 原因
+
+```python
+ma = max(map(max, a))
+```
+
+假設 `a` 是二維串列：
+
+```python
+a = [
+    [1, 5, 3],
+    [8, 2, 4],
+    [6, 7, 0]
+]
+```
+
+* `map(max, a)`：對每一列執行 `max()`，得到每列最大值：
+
+```python
+[5, 8, 7]
+```
+
+* 外層的 `max()`：再從每列最大值中找最大值：
+
+```python
+max([5, 8, 7])  # 8
+```
+
+所以：
+
+```python
+ma = max(map(max, a))
+```
+
+意思就是：
+
+> **先找每列最大值，再找這些最大值中的最大值，也就是整個二維串列的最大值。** ([docs.python.org][1])
+
+[1]: https://docs.python.org/3/library/functions.html?utm_source=chatgpt.com "Built-in Functions"
+
 
 
 ## 複製
@@ -268,7 +343,7 @@ for row in b:
 
 ---
 
-## 7. 記法
+### 7. 記法
 
 一維 list：
 
@@ -333,3 +408,5 @@ output:
 2 3 4
 
 ```
+
+
