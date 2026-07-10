@@ -6198,6 +6198,8 @@ is now available!
       
         
       
+        
+      
     
     
     
@@ -6518,6 +6520,17 @@ is now available!
 </li>
       
         <li class="md-nav__item">
+  <a href="#複製" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        複製
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#序列運算只有---" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -6537,16 +6550,33 @@ is now available!
     </span>
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#append--pop" class="md-nav__link">
+    <nav class="md-nav" aria-label="list 常用函數">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#運算" class="md-nav__link">
     <span class="md-ellipsis">
       
-        .append() / .pop()
+        運算
       
     </span>
   </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#操作" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        操作
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -6817,6 +6847,96 @@ is now available!
   
 
       </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_18" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_18" id="__nav_4_18_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    觀念題練習
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_18_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_18">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    觀念題練習
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Python%20APCS%20%E5%AE%98%E6%96%B9%E8%AD%98%E8%AE%80%E4%BE%8B%E9%A1%8C%E8%BD%89%20HTML.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    None
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
     </li>
   
 
@@ -7203,6 +7323,17 @@ is now available!
 </li>
       
         <li class="md-nav__item">
+  <a href="#複製" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        複製
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#序列運算只有---" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -7222,16 +7353,33 @@ is now available!
     </span>
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#append--pop" class="md-nav__link">
+    <nav class="md-nav" aria-label="list 常用函數">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#運算" class="md-nav__link">
     <span class="md-ellipsis">
       
-        .append() / .pop()
+        運算
       
     </span>
   </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#操作" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        操作
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -7272,12 +7420,41 @@ is now available!
 <span class="nb">print</span><span class="p">(</span><span class="o">*</span><span class="n">a</span><span class="p">)</span> <span class="c1"># 這個先記一下，相當是 C 語言的指標</span>
 <span class="nb">print</span><span class="p">(</span><span class="o">*</span><span class="n">a</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">','</span><span class="p">)</span> <span class="c1"># 分隔符號可以更改</span>
 </code></pre></div>
+<h2 id="複製">複製<a class="headerlink" href="#複製" title="Permanent link"></a></h2>
 <blockquote>
-<p>注意！假設 a、b 是 list， a = b 是製作別名，不是複製。<br/>
+<p>注意！假設 a、b 是 list， b = a 是製作別名，不是複製。<br/>
 要複製要用：<br/>
-<div class="highlight"><pre><span></span><code><span class="n">a</span> <span class="o">=</span> <span class="n">b</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span> <span class="c1"># b.copy() 回傳 b 的內容</span>
+<div class="highlight"><pre><span></span><code><span class="n">b</span> <span class="o">=</span> <span class="n">a</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span> <span class="c1"># a.copy() 回傳 a 的內容</span>
 </code></pre></div></p>
 </blockquote>
+<p>但是當我 a 重新指向新的東西時，並不會改掉 b，如下。</p>
+<div class="highlight"><pre><span></span><code><span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">a</span>
+
+<span class="c1"># a ─┐</span>
+<span class="c1">#    ├──&gt; [1, 2, 3]</span>
+<span class="c1"># b ─┘</span>
+
+
+<span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">4</span>
+
+<span class="c1"># a ─┐</span>
+<span class="c1">#    ├──&gt; [4, 2, 3]</span>
+<span class="c1"># b ─┘</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+<span class="c1"># [4, 2, 3] [4, 2, 3]</span>
+
+
+<span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="c1"># a ───&gt; [1]</span>
+<span class="c1">#</span>
+<span class="c1"># b ───&gt; [4, 2, 3]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+<span class="c1"># [1] [4, 2, 3]</span>
+</code></pre></div>
 <h2 id="序列運算只有---">序列運算只有 + 、 *<a class="headerlink" href="#序列運算只有---" title="Permanent link"></a></h2>
 <ul>
 <li>
@@ -7298,6 +7475,7 @@ is now available!
 <span class="nb">print</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
 </code></pre></div>
 <h2 id="list-常用函數">list 常用函數<a class="headerlink" href="#list-常用函數" title="Permanent link"></a></h2>
+<h3 id="運算">運算<a class="headerlink" href="#運算" title="Permanent link"></a></h3>
 <p>最大、最小、總和<br/>
 <div class="highlight"><pre><span></span><code><span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
 <span class="n">large</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
@@ -7312,15 +7490,19 @@ is now available!
 <p>如果要由大而小排序呢？可以這樣下指令<br/>
 <div class="highlight"><pre><span></span><code><span class="n">a</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> 
 </code></pre></div></p>
-<h2 id="append--pop"><code>.append()</code> / <code>.pop()</code><a class="headerlink" href="#append--pop" title="Permanent link"></a></h2>
-<p>.append(n) 插入數字 n<br/>
-.pop(index) 把位置 index 的數字刪掉</p>
-<div class="highlight"><pre><span></span><code><span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">]</span>
+<h3 id="操作">操作<a class="headerlink" href="#操作" title="Permanent link"></a></h3>
+<p>.append(n) 插入 value n<br/>
+.pop(index) 把位置 index 的數字刪掉<br/>
+.index(n) 第一個 value n 的 index</p>
+<div class="highlight"><pre><span></span><code><span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">7</span><span class="p">]</span>
 
-<span class="n">a</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">9</span><span class="p">)</span> <span class="c1"># [6, 7, 8, 9]</span>
-<span class="n">a</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span>   <span class="c1"># [6, 7, 9]</span>
+<span class="n">a</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">9</span><span class="p">)</span>         
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>            <span class="c1"># [6, 7, 8, 7, 9]</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>    <span class="c1"># [6, 7, 9]</span>
+<span class="n">a</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span>           
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>            <span class="c1"># [6, 7, 8, 9]</span>
+        
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="mi">7</span><span class="p">))</span>   <span class="c1"># 1</span>
 </code></pre></div>
 <blockquote>
 <p>-2 可以想成往前會循環到尾巴，所以 -2 是倒數第二個。</p>
