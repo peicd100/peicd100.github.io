@@ -153,8 +153,10 @@ nav:  # 自定義網站的導航結構
       - 'md/python/dict(map).md'
       - 'md/python/競程常用的「高速輸入 、集中輸出」.md'
       - 'md/python/競賽偷懶輸入法.md'
+      - 'md/python/物件的參照.md'
       - '觀念題練習':
         - 'Python APCS 官方識讀例題轉 HTML': 'md/python/Python APCS 官方識讀例題轉 HTML.html'
+        - 'Python APCS 官方識讀例題轉 HTML': 'md/python/Python APCS 自編識讀例題轉 HTML.html'
          
       
     #   - '變數': 'md/python/變數.md'

@@ -376,13 +376,24 @@ b = [row[:] for row in a]
 ```
 ///
 
+其實原因可以看成：
+
+```py
+L1, L2 = [1, 2], [3, 4]
+
+L3 = [L1, L2]
+
+a = L3
+
+b = a[:]  # b = L4 , L4 = [L1,L2]
+
+```
 
 所以我們要改成：
 ```py
 a = [[i + j for j in range(3)] for i in range(3)]
 
-# b = a.copy()
-b = [row[:] for row in a]
+b = [row[:] for row in a] # 等同於 b = [row.copy() for row in a]
 
 a[0][0] = -1
 

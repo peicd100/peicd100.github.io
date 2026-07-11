@@ -17,6 +17,7 @@ print(*a, sep=',') # 分隔符號可以更改
 > 要複製要用：
 ```py 
 b = a.copy() # a.copy() 回傳 a 的內容
+b = a[:]     # 功能和上面一樣
 ```
 
 但是當我 a 重新指向新的東西時，並不會改掉 b，如下。
@@ -54,8 +55,8 @@ print(a, b)
 
 ## 序列運算只有 + 、 *
 
-- + 串接 (Concatenation)
-- * 重複 (Repetition)
+- \+ 串接 (Concatenation)
+- \* 重複 (Repetition)
 
 ```py
 a = [1,3,4]+[4,6,7,8]   # [1,3,4,4,6,7,8]
