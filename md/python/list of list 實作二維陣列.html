@@ -6200,6 +6200,8 @@ is now available!
       
         
       
+        
+      
     
     
     
@@ -6926,8 +6928,38 @@ is now available!
   
   
   
+    <li class="md-nav__item">
+      <a href="%E7%89%A9%E4%BB%B6%E7%9A%84%E5%8F%83%E7%85%A7.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    物件的參照
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
     
     
+      
+        
       
         
       
@@ -6942,10 +6974,10 @@ is now available!
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_18" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_19" >
         
           
-          <label class="md-nav__link" for="__nav_4_18" id="__nav_4_18_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_4_19" id="__nav_4_19_label" tabindex="0">
             
   
   
@@ -6963,8 +6995,8 @@ is now available!
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_18_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_4_18">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_19_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_19">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -6982,6 +7014,34 @@ is now available!
   
     <li class="md-nav__item">
       <a href="Python%20APCS%20%E5%AE%98%E6%96%B9%E8%AD%98%E8%AE%80%E4%BE%8B%E9%A1%8C%E8%BD%89%20HTML.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python APCS 官方識讀例題轉 HTML
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Python%20APCS%20%E8%87%AA%E7%B7%A8%E8%AD%98%E8%AE%80%E4%BE%8B%E9%A1%8C%E8%BD%89%20HTML.html" class="md-nav__link">
         
   
   
@@ -7804,11 +7864,19 @@ True
 <div class="highlight"><pre><span></span><code><span class="n">b</span> <span class="o">=</span> <span class="p">[</span><span class="n">row</span><span class="p">[:]</span> <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">a</span><span class="p">]</span>
 </code></pre></div>
 </details>
+<p>其實原因可以看成：</p>
+<div class="highlight"><pre><span></span><code><span class="n">L1</span><span class="p">,</span> <span class="n">L2</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
+
+<span class="n">L3</span> <span class="o">=</span> <span class="p">[</span><span class="n">L1</span><span class="p">,</span> <span class="n">L2</span><span class="p">]</span>
+
+<span class="n">a</span> <span class="o">=</span> <span class="n">L3</span>
+
+<span class="n">b</span> <span class="o">=</span> <span class="n">a</span><span class="p">[:]</span>  <span class="c1"># b = L4 , L4 = [L1,L2]</span>
+</code></pre></div>
 <p>所以我們要改成：<br/>
 <div class="highlight"><pre><span></span><code><span class="n">a</span> <span class="o">=</span> <span class="p">[[</span><span class="n">i</span> <span class="o">+</span> <span class="n">j</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">)]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">)]</span>
 
-<span class="c1"># b = a.copy()</span>
-<span class="n">b</span> <span class="o">=</span> <span class="p">[</span><span class="n">row</span><span class="p">[:]</span> <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">a</span><span class="p">]</span>
+<span class="n">b</span> <span class="o">=</span> <span class="p">[</span><span class="n">row</span><span class="p">[:]</span> <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">a</span><span class="p">]</span> <span class="c1"># 等同於 b = [row.copy() for row in a]</span>
 
 <span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
 

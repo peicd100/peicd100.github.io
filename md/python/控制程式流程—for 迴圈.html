@@ -6200,6 +6200,8 @@ is now available!
       
         
       
+        
+      
     
     
     
@@ -6560,13 +6562,41 @@ is now available!
 </li>
       
         <li class="md-nav__item">
-  <a href="#提早結束迴圈-break-與-continue" class="md-nav__link">
+  <a href="#提早結束迴圈break-與-continue" class="md-nav__link">
     <span class="md-ellipsis">
       
-        提早結束迴圈 break 與 continue
+        提早結束迴圈：break 與 continue
       
     </span>
   </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#for-迴圈如何逐項取值" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        for 迴圈如何逐項取值
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="for 迴圈如何逐項取值">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#走訪時修改串列長度要小心" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        走訪時修改串列長度要小心
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -6865,8 +6895,38 @@ is now available!
   
   
   
+    <li class="md-nav__item">
+      <a href="%E7%89%A9%E4%BB%B6%E7%9A%84%E5%8F%83%E7%85%A7.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    物件的參照
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
     
     
+      
+        
       
         
       
@@ -6881,10 +6941,10 @@ is now available!
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_18" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_19" >
         
           
-          <label class="md-nav__link" for="__nav_4_18" id="__nav_4_18_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_4_19" id="__nav_4_19_label" tabindex="0">
             
   
   
@@ -6902,8 +6962,8 @@ is now available!
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_18_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_4_18">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_19_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_19">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -6921,6 +6981,34 @@ is now available!
   
     <li class="md-nav__item">
       <a href="Python%20APCS%20%E5%AE%98%E6%96%B9%E8%AD%98%E8%AE%80%E4%BE%8B%E9%A1%8C%E8%BD%89%20HTML.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python APCS 官方識讀例題轉 HTML
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Python%20APCS%20%E8%87%AA%E7%B7%A8%E8%AD%98%E8%AE%80%E4%BE%8B%E9%A1%8C%E8%BD%89%20HTML.html" class="md-nav__link">
         
   
   
@@ -7400,13 +7488,41 @@ is now available!
 </li>
       
         <li class="md-nav__item">
-  <a href="#提早結束迴圈-break-與-continue" class="md-nav__link">
+  <a href="#提早結束迴圈break-與-continue" class="md-nav__link">
     <span class="md-ellipsis">
       
-        提早結束迴圈 break 與 continue
+        提早結束迴圈：break 與 continue
       
     </span>
   </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#for-迴圈如何逐項取值" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        for 迴圈如何逐項取值
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="for 迴圈如何逐項取值">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#走訪時修改串列長度要小心" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        走訪時修改串列長度要小心
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -7465,35 +7581,37 @@ is now available!
 </code></pre></div>
 <h2 id="for-迴圈">for 迴圈<a class="headerlink" href="#for-迴圈" title="Permanent link"></a></h2>
 <div class="highlight"><pre><span></span><code><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">" "</span><span class="p">)</span> <span class="c1"># 0 1 2 3 4 5 6 7 8 9 </span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">" "</span><span class="p">)</span> <span class="c1"># 0 1 2 3 4 5 6 7 8 9</span>
 </code></pre></div>
 <blockquote>
-<p>所以格式是 for i in &lt;一個 list&gt;</p>
+<p>所以格式是 <code>for i in &lt;一個可迭代物件&gt;</code></p>
 </blockquote>
-<p>也可以是字串<br/>
+<p>可迭代物件除了 <code>range</code>、<code>list</code>，也可以是字串：</p>
 <div class="highlight"><pre><span></span><code><span class="n">a</span> <span class="o">=</span> <span class="s2">"axxple"</span>
-<span class="n">x</span><span class="o">=</span> <span class="mi">0</span>
+<span class="n">x</span> <span class="o">=</span> <span class="mi">0</span>
+
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">a</span><span class="p">:</span>
-    <span class="k">if</span> <span class="n">i</span><span class="o">==</span><span class="s1">'x'</span><span class="p">:</span>
-        <span class="n">x</span><span class="o">+=</span><span class="mi">1</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>     <span class="c1"># 2</span>
-</code></pre></div><br/>
-上面程式碼其實就是</p>
-<div class="highlight"><pre><span></span><code><span class="n">a</span> <span class="o">=</span> <span class="s2">"axxple"</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="s2">"x"</span><span class="p">))</span>
+    <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="s2">"x"</span><span class="p">:</span>
+        <span class="n">x</span> <span class="o">+=</span> <span class="mi">1</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="c1"># 2</span>
 </code></pre></div>
-<h2 id="提早結束迴圈-break-與-continue">提早結束迴圈 break 與 continue<a class="headerlink" href="#提早結束迴圈-break-與-continue" title="Permanent link"></a></h2>
-<p>break：跳離迴圈，到迴圈結束的下一個指令。<br/>
-continue：略過本回合迴圈剩下的部分，跳到迴圈的起點，是否進入迴圈的下一回合要看是否到達迴圈結束條件。</p>
+<p>上面程式碼也可以寫成：</p>
+<div class="highlight"><pre><span></span><code><span class="n">a</span> <span class="o">=</span> <span class="s2">"axxple"</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="s2">"x"</span><span class="p">))</span> <span class="c1"># 2</span>
+</code></pre></div>
+<h2 id="提早結束迴圈break-與-continue">提早結束迴圈：<code>break</code> 與 <code>continue</code><a class="headerlink" href="#提早結束迴圈break-與-continue" title="Permanent link"></a></h2>
+<p><code>break</code>：跳離整個迴圈，接著執行迴圈結束後的下一個指令。</p>
+<p><code>continue</code>：略過本回合剩下的程式，直接準備進入下一回合。是否還有下一回合，取決於迭代是否結束。</p>
 <div class="highlight"><pre><span></span><code><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">):</span>
     <span class="k">if</span> <span class="nb">input</span><span class="p">()</span> <span class="o">==</span> <span class="s2">"1"</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">"It is 1"</span><span class="p">)</span>
         <span class="k">continue</span>
-    
+
     <span class="nb">print</span><span class="p">(</span><span class="s2">"It is not 1"</span><span class="p">)</span>
     <span class="k">break</span>
 </code></pre></div>
-<p>輸出：<br/>
+<p>輸出：</p>
 <div class="highlight"><pre><span></span><code>1
 It is 1
 1
@@ -7502,7 +7620,55 @@ It is 1
 It is 1
 2
 It is not 1
-</code></pre></div></p>
+</code></pre></div>
+<h2 id="for-迴圈如何逐項取值">for 迴圈如何逐項取值<a class="headerlink" href="#for-迴圈如何逐項取值" title="Permanent link"></a></h2>
+<p><code>for</code> 迴圈會依序從可迭代物件中取得下一個值，再把這個值指定給迴圈變數。</p>
+<p>例如：</p>
+<div class="highlight"><pre><span></span><code><span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">]</span>
+
+<span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">a</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</code></pre></div>
+<p>輸出：</p>
+<div class="highlight"><pre><span></span><code>10
+20
+30
+</code></pre></div>
+<p>對串列進行正向走訪時，可以暫時使用下面的簡化模型理解：</p>
+<div class="highlight"><pre><span></span><code><span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">]</span>
+
+<span class="n">index</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="k">while</span> <span class="n">index</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">a</span><span class="p">):</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="n">index</span><span class="p">]</span>
+    <span class="n">index</span> <span class="o">+=</span> <span class="mi">1</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</code></pre></div>
+<p>可以把流程想成：</p>
+<div class="highlight"><pre><span></span><code>index = 0 → 取得 a[0]
+index = 1 → 取得 a[1]
+index = 2 → 取得 a[2]
+index = 3 → 已到串列結尾，迴圈結束
+</code></pre></div>
+<p>這只是方便理解串列走訪的簡化模型。Python 實際上會先建立 Iterator（迭代器），再逐次取得下一個值，因此 <code>for</code> 也可以走訪字串、<code>range</code> 等其他可迭代物件。</p>
+<h3 id="走訪時修改串列長度要小心">走訪時修改串列長度要小心<a class="headerlink" href="#走訪時修改串列長度要小心" title="Permanent link"></a></h3>
+<p>如果在走訪串列時刪除元素，後面的元素會向左移，但迴圈仍會繼續前進，因此可能跳過某些元素。</p>
+<div class="highlight"><pre><span></span><code><span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+
+<span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">a</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">x</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="n">a</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="c1"># [1, 2, 3]</span>
+</code></pre></div>
+<p>簡單記法：</p>
+<div class="highlight"><pre><span></span><code>串列元素被刪除
+→ 後面的元素向左移
+
+迴圈的位置仍然向前
+→ 可能跳過剛剛向左移的元素
+</code></pre></div>
 
 
 
