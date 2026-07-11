@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>APCS Python 程式識讀｜自訂題目試作 27 題</title>
+<title>APCS Python 程式識讀｜自訂題目試作 30 題</title>
 <style>
 :root {
   --bg:#f5f5f3;
@@ -175,13 +175,13 @@ th,td {
 </header>
 <main>
   <section class="intro">
-    <h1>APCS Python 程式識讀｜自訂題目試作 27 題</h1>
+    <h1>APCS Python 程式識讀｜自訂題目試作 30 題</h1>
     <p>本版本將既有自訂題目與補強題合併，作為 APCS Python 程式識讀的試作題庫。</p>
     <p>題目涵蓋程式追蹤、填空、測試除錯與演算法辨識，並加入 Python 串列參照、切片及可變物件等特性。</p>
     <p>每題分為「1. 題目」與「2. 解析」；解析預設收合，作答後再點開。</p>
-    <div class="note">題型分布：迴圈與遞迴、搜尋與排序、字串與串列、函式參數、Stack、Queue、後序運算式與測試除錯。第 25～26 題檢查 Stack／Queue 模擬函式的正確性與限制。</div>
+    <div class="note">題型分布：迴圈與遞迴、搜尋與排序、字串與串列、函式參數、Stack、Queue、後序運算式、測試除錯、布林短路求值、二維串列走訪與輾轉相除法。</div>
     <div class="index">
-      <a href="#q1">1</a><a href="#q2">2</a><a href="#q3">3</a><a href="#q4">4</a><a href="#q5">5</a><a href="#q6">6</a><a href="#q7">7</a><a href="#q8">8</a><a href="#q9">9</a><a href="#q10">10</a><a href="#q11">11</a><a href="#q12">12</a><a href="#q13">13</a><a href="#q14">14</a><a href="#q15">15</a><a href="#q16">16</a><a href="#q17">17</a><a href="#q18">18</a><a href="#q19">19</a><a href="#q20">20</a><a href="#q21">21</a><a href="#q22">22</a><a href="#q23">23</a><a href="#q24">24</a><a href="#q25">25</a><a href="#q26">26</a><a href="#q27">27</a>
+      <a href="#q1">1</a><a href="#q2">2</a><a href="#q3">3</a><a href="#q4">4</a><a href="#q5">5</a><a href="#q6">6</a><a href="#q7">7</a><a href="#q8">8</a><a href="#q9">9</a><a href="#q10">10</a><a href="#q11">11</a><a href="#q12">12</a><a href="#q13">13</a><a href="#q14">14</a><a href="#q15">15</a><a href="#q16">16</a><a href="#q17">17</a><a href="#q18">18</a><a href="#q19">19</a><a href="#q20">20</a><a href="#q21">21</a><a href="#q22">22</a><a href="#q23">23</a><a href="#q24">24</a><a href="#q25">25</a><a href="#q26">26</a><a href="#q27">27</a><a href="#q28">28</a><a href="#q29">29</a><a href="#q30">30</a>
     </div>
   </section>
 
@@ -1442,6 +1442,154 @@ print(a)</code></pre>
 <p>迴圈走訪串列時刪除元素，後方元素會向左移，但迭代位置仍繼續前進，因此某些元素會被跳過。</p>
 <p>本題第一次刪除後，下一個 2 移到目前索引卻未被檢查；最後仍留下其中一個 2。</p>
 <p class="answer">答案：B，<code>[1, 2, 3]</code>。</p>
+</div></details>
+</section>
+
+
+<section class="card" id="q28">
+  <div class="qhead"><span class="qnum">第 28 題</span></div>
+  <h3>1. 題目</h3>
+  <div class="question">
+<p>下列程式執行後輸出為何？</p>
+<pre><code>calls = 0
+
+def check(x):
+    global calls
+    calls += 1
+    return x &gt; 0
+
+result = check(0) and check(1) or check(2)
+
+print(result, calls)</code></pre>
+<ol class="choices" type="A">
+<li><code>False 1</code></li>
+<li><code>False 2</code></li>
+<li><code>True 2</code></li>
+<li><code>True 3</code></li>
+</ol>
+</div>
+<details><summary>2. 解析（點擊後顯示）</summary><div class="analysis">
+<p><code>and</code> 的優先順序高於 <code>or</code>，因此可先理解成：</p>
+<pre><code>(check(0) and check(1)) or check(2)</code></pre>
+<p>第一次呼叫：</p>
+<pre><code>check(0)
+calls = 1
+回傳 False</code></pre>
+<p>因為 <code>False and ...</code> 的結果已確定為 <code>False</code>，所以 <code>check(1)</code> 不會執行。</p>
+<p>接著運算：</p>
+<pre><code>False or check(2)</code></pre>
+<p><code>or</code> 左側為 <code>False</code>，因此必須計算右側：</p>
+<pre><code>check(2)
+calls = 2
+回傳 True</code></pre>
+<table>
+<thead><tr><th>運算</th><th>是否執行</th><th>回傳值</th><th><code>calls</code></th></tr></thead>
+<tbody>
+<tr><td><code>check(0)</code></td><td>是</td><td><code>False</code></td><td>1</td></tr>
+<tr><td><code>check(1)</code></td><td>否，因 <code>and</code> 短路</td><td>—</td><td>1</td></tr>
+<tr><td><code>check(2)</code></td><td>是</td><td><code>True</code></td><td>2</td></tr>
+</tbody></table>
+<p>所以輸出為：</p>
+<pre><code>True 2</code></pre>
+<p class="answer">答案：C。</p>
+</div></details>
+</section>
+
+<section class="card" id="q29">
+  <div class="qhead"><span class="qnum">第 29 題</span></div>
+  <h3>1. 題目</h3>
+  <div class="question">
+<p>下列程式執行後輸出為何？</p>
+<pre><code>grid = [
+    [1, 2, 3],
+    [4, 5, 6],
+    [7, 8, 9]
+]
+
+total = 0
+
+for i in range(len(grid)):
+    for j in range(len(grid[i])):
+        if i == j or i + j == len(grid) - 1:
+            total += grid[i][j]
+
+print(total)</code></pre>
+<ol class="choices" type="A">
+<li><code>20</code></li>
+<li><code>25</code></li>
+<li><code>30</code></li>
+<li><code>35</code></li>
+</ol>
+</div>
+<details><summary>2. 解析（點擊後顯示）</summary><div class="analysis">
+<p><code>grid</code> 是一個 3×3 的二維串列：</p>
+<pre><code>索引       j=0  j=1  j=2
+i=0         1    2    3
+i=1         4    5    6
+i=2         7    8    9</code></pre>
+<p><code>i == j</code> 代表主對角線：</p>
+<pre><code>(0, 0) → 1
+(1, 1) → 5
+(2, 2) → 9</code></pre>
+<p><code>i + j == len(grid) - 1</code> 代表副對角線。因為 <code>len(grid) - 1 = 2</code>：</p>
+<pre><code>(0, 2) → 3
+(1, 1) → 5
+(2, 0) → 7</code></pre>
+<p>中心位置 <code>(1, 1)</code> 同時符合兩個條件，但同一回合的 <code>if</code> 只會執行一次，因此 <code>5</code> 只加一次。</p>
+<pre><code>1 + 3 + 5 + 7 + 9 = 25</code></pre>
+<table>
+<thead><tr><th>座標</th><th>值</th><th>符合條件</th></tr></thead>
+<tbody>
+<tr><td><code>(0, 0)</code></td><td>1</td><td>主對角線</td></tr>
+<tr><td><code>(0, 2)</code></td><td>3</td><td>副對角線</td></tr>
+<tr><td><code>(1, 1)</code></td><td>5</td><td>兩者皆符合，但只加一次</td></tr>
+<tr><td><code>(2, 0)</code></td><td>7</td><td>副對角線</td></tr>
+<tr><td><code>(2, 2)</code></td><td>9</td><td>主對角線</td></tr>
+</tbody></table>
+<p>所以輸出為：</p>
+<pre><code>25</code></pre>
+<p class="answer">答案：B。</p>
+</div></details>
+</section>
+
+<section class="card" id="q30">
+  <div class="qhead"><span class="qnum">第 30 題</span></div>
+  <h3>1. 題目</h3>
+  <div class="question">
+<p>下列程式執行後輸出為何？</p>
+<pre><code>a = 48
+b = 18
+count = 0
+
+while b != 0:
+    a, b = b, a % b
+    count += 1
+
+print(a, count)</code></pre>
+<ol class="choices" type="A">
+<li><code>6 2</code></li>
+<li><code>6 3</code></li>
+<li><code>12 2</code></li>
+<li><code>12 3</code></li>
+</ol>
+</div>
+<details><summary>2. 解析（點擊後顯示）</summary><div class="analysis">
+<p>這段程式使用 Euclidean Algorithm（輾轉相除法）計算最大公因數。</p>
+<p>這一行會先使用更新前的 <code>a</code>、<code>b</code> 計算右側，再同時指定給左側：</p>
+<pre><code>a, b = b, a % b</code></pre>
+<table>
+<thead><tr><th>回合</th><th>原本 <code>a</code></th><th>原本 <code>b</code></th><th><code>a % b</code></th><th>更新後 <code>(a, b)</code></th><th><code>count</code></th></tr></thead>
+<tbody>
+<tr><td>1</td><td>48</td><td>18</td><td>12</td><td><code>(18, 12)</code></td><td>1</td></tr>
+<tr><td>2</td><td>18</td><td>12</td><td>6</td><td><code>(12, 6)</code></td><td>2</td></tr>
+<tr><td>3</td><td>12</td><td>6</td><td>0</td><td><code>(6, 0)</code></td><td>3</td></tr>
+</tbody></table>
+<p>第三回合後 <code>b = 0</code>，所以 <code>b != 0</code> 不成立，迴圈結束。</p>
+<pre><code>a = 6
+count = 3</code></pre>
+<p>所以輸出為：</p>
+<pre><code>6 3</code></pre>
+<p class="answer">答案：B。</p>
 </div></details>
 </section>
 
