@@ -5177,6 +5177,23 @@ is now available!
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="重心">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#例題_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        例題
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
         
           <li class="md-nav__item">
@@ -8158,6 +8175,23 @@ is now available!
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="重心">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#例題_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        例題
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
         
           <li class="md-nav__item">
@@ -8936,7 +8970,7 @@ ex：n=15，分割後兩棵樹節點皆為7。(15/2=7.5，7&lt;=7.5)   </p>
 <span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">mx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">s</span><span class="p">[</span><span class="n">u</span><span class="p">];</span><span class="w">  </span><span class="c1">// u 上面那一塊，也就是 parent 方向那一塊</span>
 
 <span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">g</span><span class="p">[</span><span class="n">u</span><span class="p">])</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="n">mx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">max</span><span class="p">(</span><span class="n">mx</span><span class="p">,</span><span class="w"> </span><span class="n">s</span><span class="p">[</span><span class="n">v</span><span class="p">]);</span><span class="w">  </span><span class="c1">// 每個 child subtree 的大小</span>
+<span class="w">        </span><span class="n">mx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">max</span><span class="p">(</span><span class="n">mx</span><span class="p">,</span><span class="w"> </span><span class="n">s</span><span class="p">[</span><span class="n">v</span><span class="p">]);</span><span class="w">  </span><span class="c1">// 每個 child subtree 的大小，如果最大的小於 n/2 ，就代表所有的都小於 n/2</span>
 <span class="w">        </span><span class="n">dfs_centroid</span><span class="p">(</span><span class="n">v</span><span class="p">);</span>
 <span class="w">    </span><span class="p">}</span>
 
@@ -8980,6 +9014,8 @@ ex：n=15，分割後兩棵樹節點皆為7。(15/2=7.5，7&lt;=7.5)   </p>
 <div class="highlight"><pre><span></span><code>Centroid:
 1 0 
 </code></pre></div>
+<h4 id="例題_1">例題<a class="headerlink" href="#例題_1" title="Permanent link"></a></h4>
+<p><a href="https://cses.fi/problemset/task/2079/">https://cses.fi/problemset/task/2079/</a></p>
 <h3 id="樹中心">樹中心<a class="headerlink" href="#樹中心" title="Permanent link"></a></h3>
 <p>樹的中心這條最長路徑上的中間節點。如果直徑是奇數長度，則中心是唯一的；如果直徑是偶數長度，則中心是兩個相鄰的節點。</p>
 <table>
