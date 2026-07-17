@@ -5197,17 +5197,6 @@ is now available!
 </li>
         
           <li class="md-nav__item">
-  <a href="#樹中心" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        樹中心
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#直徑問題" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -5254,6 +5243,17 @@ is now available!
         
       </ul>
     </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#樹中心" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        樹中心
+      
+    </span>
+  </a>
   
 </li>
         
@@ -8195,17 +8195,6 @@ is now available!
 </li>
         
           <li class="md-nav__item">
-  <a href="#樹中心" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        樹中心
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#直徑問題" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -8252,6 +8241,17 @@ is now available!
         
       </ul>
     </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#樹中心" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        樹中心
+      
+    </span>
+  </a>
   
 </li>
         
@@ -9016,6 +9016,355 @@ ex：n=15，分割後兩棵樹節點皆為7。(15/2=7.5，7&lt;=7.5)   </p>
 </code></pre></div>
 <h4 id="例題_1">例題<a class="headerlink" href="#例題_1" title="Permanent link"></a></h4>
 <p><a href="https://cses.fi/problemset/task/2079/">https://cses.fi/problemset/task/2079/</a></p>
+<h3 id="直徑問題">直徑問題<a class="headerlink" href="#直徑問題" title="Permanent link"></a></h3>
+<p>一棵樹的直徑定義為樹當中最遠的兩點間的簡單路徑；圓心是能使樹高度最小的根。<br/>
+要如何找出一棵樹的直徑呢？<br/>
+有一個很簡單的方法：先從任意一個點DFS到深度最深的點v，再從v點DFS到最遠的點u，則v、u的簡單路徑即為直徑。這個方法的正確性不難證，可以自己嘗試看看。  <br/>
+</p>
+<h4 id="farthest-of-farthest-演算法">farthest of farthest 演算法<a class="headerlink" href="#farthest-of-farthest-演算法" title="Permanent link"></a></h4>
+<blockquote>
+<p>GPT：    <br/>
+計算一棵樹的直徑是計算圖論中的一個常見問題。在這裡的「樹」指的是一種特殊的圖，其中任何兩個節點都有一條唯一的路徑連接它們，且不含任何循環。樹的直徑定義為樹中所有節點對的最長距離，      即最遠的兩個節點之間的路徑長度。    <br/>
+計算樹的直徑通常有幾種方法，其中最常見的是使用兩次廣度優先搜索（BFS）：      </p>
+<ol>
+<li>
+<p><strong>隨機選擇一個節點</strong>：從樹中隨機選擇一個節點 𝑣 v。      </p>
+</li>
+<li>
+<p><strong>第一次 BFS</strong>：從節點 𝑣 v 開始進行 BFS，找到距離 𝑣 v 最遠的節點 𝑢 。      </p>
+</li>
+<li>
+<p><strong>第二次 BFS</strong>：從節點 𝑢 u 開始進行第二次 BFS，找到距離 𝑢 最遠的節點 𝑤。      </p>
+</li>
+<li>
+<p><strong>計算直徑</strong>：節點 𝑢 到節點 𝑤 的距離就是樹的直徑。      </p>
+</li>
+</ol>
+<p>這個方法之所以有效，是因為從任意點出發，找到的最遠點一定是從這個點出發的最長路徑上的端點之一，再從這個端點開始找最遠點，這樣保證能找到整棵樹的最長路徑。    <br/>
+如果需要更具體的實現或解釋，隨時告訴我！      </p>
+</blockquote>
+<h4 id="a060-201603_q4-血緣關係"><a href="https://zerojudge.tw/ShowProblem?problemid=h032">a060: 201603_q4 血緣關係</a><a class="headerlink" href="#a060-201603_q4-血緣關係" title="Permanent link"></a></h4>
+<iframe height="1010px" src="https://drive.google.com/file/d/1oO0sJSXeb9vxLrz9AjAvrsnqDtLMqWKz/preview" width="100%"></iframe>
+<blockquote>
+<p>方法1：<br/>
+對每一個節點 u，都假設直徑可能經過 u，找出從 u 往下延伸的最大深度和第二大深度。<br/>
+以下為範例一</p>
+</blockquote>
+<!-- ![alt text](../images/樹論/image-55.png){width=100%} -->
+<div class="collapse-code"><input checked="checked" id="__collapse5" name="__collapse5" type="checkbox"/><div class="highlight"><span class="filename">找最大、第二大值方式</span><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;bits/stdc++.h&gt;</span>
+<span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">m1</span><span class="o">=</span><span class="n">INT_MIN</span><span class="p">,</span><span class="n">m2</span><span class="o">=</span><span class="n">INT_MIN</span><span class="p">;</span><span class="w"> </span><span class="c1">// 初始化為最小整數</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">v</span><span class="p">[</span><span class="mi">7</span><span class="p">]</span><span class="o">=</span><span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w"> </span><span class="mi">7</span><span class="p">};</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="mi">7</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">v</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">&gt;</span><span class="n">m1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">m2</span><span class="o">=</span><span class="n">m1</span><span class="p">;</span><span class="w"> </span><span class="c1">// 將當前最大值更新為第二大值</span>
+<span class="w">            </span><span class="n">m1</span><span class="o">=</span><span class="n">v</span><span class="p">[</span><span class="n">i</span><span class="p">];</span><span class="w"> </span><span class="c1">// 更新最大值</span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="p">(</span><span class="n">v</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">&gt;</span><span class="n">m2</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">m2</span><span class="o">=</span><span class="n">v</span><span class="p">[</span><span class="n">i</span><span class="p">];</span><span class="w"> </span><span class="c1">// 更新第二大值</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">m1</span><span class="o">&lt;&lt;</span><span class="s">" "</span><span class="o">&lt;&lt;</span><span class="n">m2</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<div class="code-footer"><label class="expand icon-only" for="__collapse5" tabindex="0"><span class="collapse-code__sr-only">expand</span></label><label class="collapse icon-only" for="__collapse5" tabindex="0"><span class="collapse-code__sr-only">collapse</span></label></div>
+</div>
+<div class="collapse-code"><input checked="checked" id="__collapse6" name="__collapse6" type="checkbox"/><div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="cpf">&lt;bits/stdc++.h&gt;</span>
+<span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span>
+<span class="cp">#define N int(1e5)+1</span>
+<span class="cp">#define nn "\n"</span>
+<span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="n">v</span><span class="p">[</span><span class="n">N</span><span class="p">];</span>
+<span class="kt">bool</span><span class="w"> </span><span class="n">visit</span><span class="p">[</span><span class="n">N</span><span class="p">];</span>
+<span class="kt">int</span><span class="w"> </span><span class="n">dp</span><span class="p">[</span><span class="n">N</span><span class="p">];</span>
+<span class="kt">int</span><span class="w"> </span><span class="n">ans</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">dfs</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">f</span><span class="p">){</span>
+<span class="w">    </span><span class="n">visit</span><span class="p">[</span><span class="n">f</span><span class="p">]</span><span class="o">=</span><span class="nb">true</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">m1</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">m2</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+<span class="w">    </span><span class="k">for</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="o">:</span><span class="n">v</span><span class="p">[</span><span class="n">f</span><span class="p">]){</span>
+<span class="w">        </span><span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">visit</span><span class="p">[</span><span class="n">i</span><span class="p">]){</span>
+<span class="w">            </span><span class="n">dfs</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
+<span class="w">            </span><span class="n">dp</span><span class="p">[</span><span class="n">f</span><span class="p">]</span><span class="o">=</span><span class="n">max</span><span class="p">(</span><span class="n">dp</span><span class="p">[</span><span class="n">f</span><span class="p">],</span><span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+
+<span class="w">            </span><span class="k">if</span><span class="p">(</span><span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">&gt;</span><span class="n">m1</span><span class="p">){</span><span class="w">                </span><span class="c1">//找到子節點中兩個最大的長度</span>
+<span class="w">                </span><span class="n">m2</span><span class="o">=</span><span class="n">m1</span><span class="p">;</span>
+<span class="w">                </span><span class="n">m1</span><span class="o">=</span><span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">            </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="p">(</span><span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">&gt;</span><span class="n">m2</span><span class="p">){</span>
+<span class="w">                </span><span class="n">m2</span><span class="o">=</span><span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="n">ans</span><span class="o">=</span><span class="n">max</span><span class="p">(</span><span class="n">ans</span><span class="p">,</span><span class="n">m1</span><span class="o">+</span><span class="n">m2</span><span class="p">);</span>
+<span class="w">    </span><span class="n">dp</span><span class="p">[</span><span class="n">f</span><span class="p">]</span><span class="o">+=</span><span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(){</span>
+<span class="w">    </span><span class="c1">//istringstream cin("8 \</span>
+<span class="c1">0 1 \</span>
+<span class="c1">0 2 \</span>
+<span class="c1">0 3 \</span>
+<span class="c1">7 0 \</span>
+<span class="c1">1 4 \</span>
+<span class="c1">1 5 \</span>
+<span class="c1">3 6 \</span>
+<span class="c1">");</span>
+<span class="w">    </span><span class="c1">//istringstream cin("4 \</span>
+<span class="c1">0 1 \</span>
+<span class="c1">0 2 \</span>
+<span class="c1">2 3");</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="p">;</span>
+<span class="w">    </span><span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">n</span><span class="p">;</span>
+<span class="w">    </span><span class="k">for</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">n</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">;</span>
+<span class="w">        </span><span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">x</span><span class="o">&gt;&gt;</span><span class="n">y</span><span class="p">;</span>
+<span class="w">        </span><span class="n">v</span><span class="p">[</span><span class="n">x</span><span class="p">].</span><span class="n">push_back</span><span class="p">(</span><span class="n">y</span><span class="p">);</span>
+<span class="w">        </span><span class="n">v</span><span class="p">[</span><span class="n">y</span><span class="p">].</span><span class="n">push_back</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="n">dfs</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+<span class="w">    </span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">ans</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<div class="code-footer"><label class="expand icon-only" for="__collapse6" tabindex="0"><span class="collapse-code__sr-only">expand</span></label><label class="collapse icon-only" for="__collapse6" tabindex="0"><span class="collapse-code__sr-only">collapse</span></label></div>
+</div>
+<blockquote>
+<p>方法2：     <br/>
+概念同方法一，變換找最大值、第二大值的合方式     <br/>
+如下：     <br/>
+假設 h[f] 是父節點的高度，h[i] 是現在掃到的子節點的高度，看到下面的樹，假設父節點是 0 剛剛掃過了 1 ，h[0] = 2，當他現在要掃 3 時，就會得到 h[0] + h[3] + 1 = 4，所以可以得到直徑就是 4 ，其實 h[0] + h[3] 就是最大值和第二大值，但 h[3] 還沒有接到 0 所以要額外加一。<br/>
+也就是說只要我們會算樹的高度，就可以算直徑。 <br/>
+<div class="highlight"><pre><span></span><code>      7
+      |
+      0
+   /  |  \
+  1   2   3
+ / \      |
+4   5     6
+</code></pre></div></p>
+</blockquote>
+<div class="collapse-code"><input checked="checked" id="__collapse7" name="__collapse7" type="checkbox"/><div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;bits/stdc++.h&gt;</span>
+<span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span>
+
+<span class="n">vector</span><span class="o">&lt;</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">g</span><span class="p">;</span>
+<span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">h</span><span class="p">;</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="n">ma</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">dfs</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">u</span><span class="p">,</span><span class="kt">int</span><span class="w"> </span><span class="n">parent</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">g</span><span class="p">[</span><span class="n">u</span><span class="p">])</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span>
+<span class="w">        </span><span class="k">if</span><span class="p">(</span><span class="n">v</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">parent</span><span class="p">)</span><span class="k">continue</span><span class="p">;</span>
+<span class="w">        </span>
+<span class="w">        </span><span class="n">dfs</span><span class="p">(</span><span class="n">v</span><span class="p">,</span><span class="n">u</span><span class="p">);</span>
+<span class="w">        </span>
+<span class="w">        </span><span class="n">ma</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">max</span><span class="p">(</span><span class="n">ma</span><span class="p">,</span><span class="w"> </span><span class="n">h</span><span class="p">[</span><span class="n">u</span><span class="p">]</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">h</span><span class="p">[</span><span class="n">v</span><span class="p">]</span><span class="o">+</span><span class="mi">1</span><span class="p">);</span>
+<span class="w">        </span>
+<span class="w">        </span><span class="n">h</span><span class="p">[</span><span class="n">u</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">max</span><span class="p">(</span><span class="n">h</span><span class="p">[</span><span class="n">u</span><span class="p">],</span><span class="w"> </span><span class="n">h</span><span class="p">[</span><span class="n">v</span><span class="p">]</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+<span class="w">        </span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// stringstream cin(R"(8</span>
+<span class="w">    </span><span class="c1">// 0 1</span>
+<span class="w">    </span><span class="c1">// 0 2</span>
+<span class="w">    </span><span class="c1">// 0 3</span>
+<span class="w">    </span><span class="c1">// 7 0</span>
+<span class="w">    </span><span class="c1">// 1 4</span>
+<span class="w">    </span><span class="c1">// 1 5</span>
+<span class="w">    </span><span class="c1">// 3 6)");</span>
+
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="p">;</span>
+<span class="w">    </span><span class="n">cin</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">n</span><span class="p">;</span>
+
+<span class="w">    </span><span class="n">g</span><span class="p">.</span><span class="n">resize</span><span class="p">(</span><span class="n">n</span><span class="p">);</span>
+<span class="w">    </span><span class="n">h</span><span class="p">.</span><span class="n">resize</span><span class="p">(</span><span class="n">n</span><span class="p">);</span>
+
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">n</span><span class="mi">-1</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">;</span>
+<span class="w">        </span><span class="n">cin</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">y</span><span class="p">;</span>
+<span class="w">        </span><span class="n">g</span><span class="p">[</span><span class="n">x</span><span class="p">].</span><span class="n">push_back</span><span class="p">(</span><span class="n">y</span><span class="p">);</span>
+<span class="w">        </span><span class="n">g</span><span class="p">[</span><span class="n">y</span><span class="p">].</span><span class="n">push_back</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="n">dfs</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">-1</span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// for (int i : h) {</span>
+<span class="w">    </span><span class="c1">//     cout &lt;&lt; i &lt;&lt; " ";</span>
+<span class="w">    </span><span class="c1">// }</span>
+<span class="w">    </span><span class="c1">// cout &lt;&lt; "\n";</span>
+
+<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">ma</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<div class="code-footer"><label class="expand icon-only" for="__collapse7" tabindex="0"><span class="collapse-code__sr-only">expand</span></label><label class="collapse icon-only" for="__collapse7" tabindex="0"><span class="collapse-code__sr-only">collapse</span></label></div>
+</div>
+<blockquote>
+<p>方法三：   <br/>
+farthest of farthest 演算法   <br/>
+兩次DFS   <br/>
+第一次找f的最遠點i，第二次找i最遠點k     </p>
+</blockquote>
+<div class="collapse-code"><input checked="checked" id="__collapse8" name="__collapse8" type="checkbox"/><div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;bits/stdc++.h&gt;</span>
+<span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span>
+
+<span class="n">vector</span><span class="o">&lt;</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">g</span><span class="p">;</span>
+<span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">d</span><span class="p">;</span>
+<span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">ma</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">dfs</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">u</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">parent</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">d</span><span class="p">[</span><span class="n">u</span><span class="p">]</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">ma</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">ma</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">d</span><span class="p">[</span><span class="n">u</span><span class="p">];</span>
+<span class="w">        </span><span class="n">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">u</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">g</span><span class="p">[</span><span class="n">u</span><span class="p">])</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">v</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">parent</span><span class="p">)</span><span class="w"> </span><span class="k">continue</span><span class="p">;</span>
+
+<span class="w">        </span><span class="n">d</span><span class="p">[</span><span class="n">v</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">d</span><span class="p">[</span><span class="n">u</span><span class="p">]</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+
+<span class="w">        </span><span class="n">dfs</span><span class="p">(</span><span class="n">v</span><span class="p">,</span><span class="w"> </span><span class="n">u</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="c1">//     stringstream cin(R"(8</span>
+<span class="c1">// 0 1</span>
+<span class="c1">// 0 2</span>
+<span class="c1">// 0 3</span>
+<span class="c1">// 7 0</span>
+<span class="c1">// 1 4</span>
+<span class="c1">// 1 5</span>
+<span class="c1">// 3 6)");</span>
+
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="p">;</span>
+<span class="w">    </span><span class="n">cin</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">n</span><span class="p">;</span>
+
+<span class="w">    </span><span class="n">g</span><span class="p">.</span><span class="n">resize</span><span class="p">(</span><span class="n">n</span><span class="p">);</span>
+
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">;</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">cin</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">y</span><span class="p">;</span>
+<span class="w">        </span><span class="n">g</span><span class="p">[</span><span class="n">x</span><span class="p">].</span><span class="n">push_back</span><span class="p">(</span><span class="n">y</span><span class="p">);</span>
+<span class="w">        </span><span class="n">g</span><span class="p">[</span><span class="n">y</span><span class="p">].</span><span class="n">push_back</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="n">d</span><span class="p">.</span><span class="n">assign</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
+<span class="w">    </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">    </span><span class="n">dfs</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="mi">-1</span><span class="p">);</span>
+
+<span class="w">    </span><span class="n">d</span><span class="p">.</span><span class="n">assign</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
+<span class="w">    </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">b</span><span class="p">;</span>
+<span class="w">    </span><span class="n">dfs</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="mi">-1</span><span class="p">);</span>
+
+<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">d</span><span class="p">[</span><span class="n">b</span><span class="p">];</span>
+<span class="p">}</span>
+</code></pre></div>
+<div class="code-footer"><label class="expand icon-only" for="__collapse8" tabindex="0"><span class="collapse-code__sr-only">expand</span></label><label class="collapse icon-only" for="__collapse8" tabindex="0"><span class="collapse-code__sr-only">collapse</span></label></div>
+</div>
+<h4 id="a143-q_8_15-樹上一位不回家的推銷員">a143: Q_8_15 樹上一位不回家的推銷員<a class="headerlink" href="#a143-q_8_15-樹上一位不回家的推銷員" title="Permanent link"></a></h4>
+<p><a href="https://judge.tcirc.tw/problem/d115">https://judge.tcirc.tw/problem/d115</a></p>
+<p>內容<br/>
+有一個推銷員要走訪 n 個城市。這些城市以 (n−1)條道路連接，每條道路連接兩個不 同的城市並且雙向可以通行，而且已知每一個城市都可以到達，不會有到達不了的狀況。輸入道路的資料，請你幫推銷員找出一個最短的路徑走訪所有的城市，推銷員可 以從任何城市開始，也不必回到開始的城市，只要每個城市至少到一次就可以。 舉例來說，如右圖，有 5 個城市以 4條道路連接，假設 每條道路的長度都是 1。最短的拜訪路徑是 (1,0,4,2,4,3)，長度為 5。</p>
+<p><img alt="alt text" decoding="async" src="../images/%E6%A8%B9%E8%AB%96/image-56.png" width="50%"/></p>
+<p>輸入說明  <br/>
+第一行是正整數 n  <br/>
+，代表城市的數量，城市是以 0∼(n−1)  <br/>
+ 編號，接下來有 n−1  <br/>
+ 行是道路的資料，每行三個整數 a,b  <br/>
+ 與 w  <br/>
+，代表此道 路連接城市 a  <br/>
+ 與 b  <br/>
+，道路的長度是 w  <br/>
+。n  <br/>
+ 不超過 50000  <br/>
+，每條道路長度是不超過 100  <br/>
+ 的正整數。    </p>
+<p>輸出說明       <br/>
+ 輸出最短的旅行距離。     </p>
+<p>範例輸入 #1   <br/>
+5   <br/>
+1 0 1   <br/>
+0 4 1   <br/>
+2 4 1   <br/>
+4 3 1   <br/>
+範例輸出 #1   <br/>
+5   <br/>
+範例輸入 #2   <br/>
+3   <br/>
+1 2 5   <br/>
+0 2 3   <br/>
+範例輸出 #2   <br/>
+8     </p>
+<blockquote>
+<p>我們需要找到起點、終點，起點、終點間路徑只會路過一次，其餘路徑會路過兩次，全體最小化路徑，就是最大化起點、終點間路徑  <br/>
+使用權重作為距離，找出最大直徑。  <br/>
+全部路段長度*2-直徑即為答案    </p>
+</blockquote>
+<div class="collapse-code"><input checked="checked" id="__collapse9" name="__collapse9" type="checkbox"/><div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;bits/stdc++.h&gt;</span>
+<span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span>
+<span class="cp">#define N 100000</span>
+<span class="cp">#define nn "\n"</span>
+
+<span class="k">struct</span><span class="w"> </span><span class="nc">st</span><span class="p">{</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="n">vector</span><span class="o">&lt;</span><span class="n">st</span><span class="o">&gt;</span><span class="n">v</span><span class="p">[</span><span class="n">N</span><span class="p">];</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="n">vi</span><span class="p">[</span><span class="n">N</span><span class="p">];</span>
+<span class="kt">int</span><span class="w"> </span><span class="n">d</span><span class="p">[</span><span class="n">N</span><span class="p">];</span>
+<span class="kt">int</span><span class="w"> </span><span class="n">all_w</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">dfs</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">f</span><span class="p">){</span>
+<span class="w">    </span><span class="n">vi</span><span class="p">[</span><span class="n">f</span><span class="p">]</span><span class="o">=</span><span class="nb">true</span><span class="p">;</span>
+<span class="w">    </span><span class="k">for</span><span class="p">(</span><span class="n">st</span><span class="w"> </span><span class="n">i</span><span class="o">:</span><span class="n">v</span><span class="p">[</span><span class="n">f</span><span class="p">]){</span>
+<span class="w">        </span><span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">vi</span><span class="p">[</span><span class="n">i</span><span class="p">.</span><span class="n">x</span><span class="p">]){</span>
+<span class="c1">//            cout&lt;&lt;f&lt;&lt;": "&lt;&lt;i.x&lt;&lt;nn;</span>
+<span class="w">            </span><span class="n">d</span><span class="p">[</span><span class="n">i</span><span class="p">.</span><span class="n">x</span><span class="p">]</span><span class="o">=</span><span class="n">d</span><span class="p">[</span><span class="n">f</span><span class="p">]</span><span class="o">+</span><span class="n">i</span><span class="p">.</span><span class="n">y</span><span class="p">;</span>
+<span class="w">            </span><span class="n">dfs</span><span class="p">(</span><span class="n">i</span><span class="p">.</span><span class="n">x</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(){</span>
+<span class="w">    </span><span class="c1">//istringstream cin("5 \</span>
+<span class="c1">1 0 1 \</span>
+<span class="c1">0 4 1 \</span>
+<span class="c1">2 4 1 \</span>
+<span class="c1">4 3 1");</span>
+
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="p">;</span>
+<span class="w">    </span><span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">n</span><span class="p">;</span>
+<span class="w">    </span><span class="k">for</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">n</span><span class="mi">-1</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span><span class="p">;</span>
+<span class="w">        </span><span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">x</span><span class="o">&gt;&gt;</span><span class="n">y</span><span class="o">&gt;&gt;</span><span class="n">z</span><span class="p">;</span>
+<span class="w">        </span><span class="n">all_w</span><span class="o">+=</span><span class="n">z</span><span class="p">;</span>
+<span class="w">        </span><span class="n">v</span><span class="p">[</span><span class="n">x</span><span class="p">].</span><span class="n">push_back</span><span class="p">({</span><span class="n">y</span><span class="p">,</span><span class="n">z</span><span class="p">});</span>
+<span class="w">        </span><span class="n">v</span><span class="p">[</span><span class="n">y</span><span class="p">].</span><span class="n">push_back</span><span class="p">({</span><span class="n">x</span><span class="p">,</span><span class="n">z</span><span class="p">});</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="n">dfs</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">re</span><span class="o">=</span><span class="n">max_element</span><span class="p">(</span><span class="n">d</span><span class="p">,</span><span class="n">d</span><span class="o">+</span><span class="n">n</span><span class="p">)</span><span class="o">-</span><span class="n">d</span><span class="p">;</span>
+<span class="w">    </span><span class="k">for</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">n</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
+<span class="w">        </span><span class="n">d</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+<span class="w">        </span><span class="n">vi</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">=</span><span class="nb">false</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="c1">//    cout&lt;&lt;nn;</span>
+
+<span class="w">    </span><span class="n">dfs</span><span class="p">(</span><span class="n">re</span><span class="p">);</span>
+
+<span class="c1">//    cout&lt;&lt;nn;</span>
+
+<span class="w">    </span><span class="n">re</span><span class="o">=</span><span class="n">max_element</span><span class="p">(</span><span class="n">d</span><span class="p">,</span><span class="n">d</span><span class="o">+</span><span class="n">n</span><span class="p">)</span><span class="o">-</span><span class="n">d</span><span class="p">;</span>
+<span class="w">    </span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">all_w</span><span class="o">*</span><span class="mi">2</span><span class="o">-</span><span class="n">d</span><span class="p">[</span><span class="n">re</span><span class="p">]</span><span class="o">&lt;&lt;</span><span class="n">nn</span><span class="p">;</span>
+<span class="c1">//    cout&lt;&lt;re;</span>
+
+
+<span class="p">}</span>
+</code></pre></div>
+<div class="code-footer"><label class="expand icon-only" for="__collapse9" tabindex="0"><span class="collapse-code__sr-only">expand</span></label><label class="collapse icon-only" for="__collapse9" tabindex="0"><span class="collapse-code__sr-only">collapse</span></label></div>
+</div>
 <h3 id="樹中心">樹中心<a class="headerlink" href="#樹中心" title="Permanent link"></a></h3>
 <p>樹的中心這條最長路徑上的中間節點。如果直徑是奇數長度，則中心是唯一的；如果直徑是偶數長度，則中心是兩個相鄰的節點。</p>
 <table>
@@ -9050,7 +9399,7 @@ ex：n=15，分割後兩棵樹節點皆為7。(15/2=7.5，7&lt;=7.5)   </p>
  /
 7
 </code></pre></div>
-<div class="collapse-code"><input checked="checked" id="__collapse5" name="__collapse5" type="checkbox"/><div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;bits/stdc++.h&gt;</span>
+<div class="collapse-code"><input checked="checked" id="__collapse10" name="__collapse10" type="checkbox"/><div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;bits/stdc++.h&gt;</span>
 <span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span>
 <span class="cp">#define pii pair&lt;int, int&gt;</span>
 
@@ -9132,7 +9481,7 @@ ex：n=15，分割後兩棵樹節點皆為7。(15/2=7.5，7&lt;=7.5)   </p>
 <span class="w">    </span>
 <span class="p">}</span>
 </code></pre></div>
-<div class="code-footer"><label class="expand icon-only" for="__collapse5" tabindex="0"><span class="collapse-code__sr-only">expand</span></label><label class="collapse icon-only" for="__collapse5" tabindex="0"><span class="collapse-code__sr-only">collapse</span></label></div>
+<div class="code-footer"><label class="expand icon-only" for="__collapse10" tabindex="0"><span class="collapse-code__sr-only">expand</span></label><label class="collapse icon-only" for="__collapse10" tabindex="0"><span class="collapse-code__sr-only">collapse</span></label></div>
 </div>
 <p>output:<br/>
 <div class="highlight"><pre><span></span><code>Diameter path:
@@ -9140,355 +9489,6 @@ ex：n=15，分割後兩棵樹節點皆為7。(15/2=7.5，7&lt;=7.5)   </p>
 Center:
 1
 </code></pre></div></p>
-<h3 id="直徑問題">直徑問題<a class="headerlink" href="#直徑問題" title="Permanent link"></a></h3>
-<p>一棵樹的直徑定義為樹當中最遠的兩點間的簡單路徑；圓心是能使樹高度最小的根。<br/>
-要如何找出一棵樹的直徑呢？<br/>
-有一個很簡單的方法：先從任意一個點DFS到深度最深的點v，再從v點DFS到最遠的點u，則v、u的簡單路徑即為直徑。這個方法的正確性不難證，可以自己嘗試看看。  <br/>
-</p>
-<h4 id="farthest-of-farthest-演算法">farthest of farthest 演算法<a class="headerlink" href="#farthest-of-farthest-演算法" title="Permanent link"></a></h4>
-<blockquote>
-<p>GPT：    <br/>
-計算一棵樹的直徑是計算圖論中的一個常見問題。在這裡的「樹」指的是一種特殊的圖，其中任何兩個節點都有一條唯一的路徑連接它們，且不含任何循環。樹的直徑定義為樹中所有節點對的最長距離，      即最遠的兩個節點之間的路徑長度。    <br/>
-計算樹的直徑通常有幾種方法，其中最常見的是使用兩次廣度優先搜索（BFS）：      </p>
-<ol>
-<li>
-<p><strong>隨機選擇一個節點</strong>：從樹中隨機選擇一個節點 𝑣 v。      </p>
-</li>
-<li>
-<p><strong>第一次 BFS</strong>：從節點 𝑣 v 開始進行 BFS，找到距離 𝑣 v 最遠的節點 𝑢 。      </p>
-</li>
-<li>
-<p><strong>第二次 BFS</strong>：從節點 𝑢 u 開始進行第二次 BFS，找到距離 𝑢 最遠的節點 𝑤。      </p>
-</li>
-<li>
-<p><strong>計算直徑</strong>：節點 𝑢 到節點 𝑤 的距離就是樹的直徑。      </p>
-</li>
-</ol>
-<p>這個方法之所以有效，是因為從任意點出發，找到的最遠點一定是從這個點出發的最長路徑上的端點之一，再從這個端點開始找最遠點，這樣保證能找到整棵樹的最長路徑。    <br/>
-如果需要更具體的實現或解釋，隨時告訴我！      </p>
-</blockquote>
-<h4 id="a060-201603_q4-血緣關係"><a href="https://zerojudge.tw/ShowProblem?problemid=h032">a060: 201603_q4 血緣關係</a><a class="headerlink" href="#a060-201603_q4-血緣關係" title="Permanent link"></a></h4>
-<iframe height="1010px" src="https://drive.google.com/file/d/1oO0sJSXeb9vxLrz9AjAvrsnqDtLMqWKz/preview" width="100%"></iframe>
-<blockquote>
-<p>方法1：<br/>
-對每一個節點 u，都假設直徑可能經過 u，找出從 u 往下延伸的最大深度和第二大深度。<br/>
-以下為範例一</p>
-</blockquote>
-<!-- ![alt text](../images/樹論/image-55.png){width=100%} -->
-<div class="collapse-code"><input checked="checked" id="__collapse6" name="__collapse6" type="checkbox"/><div class="highlight"><span class="filename">找最大、第二大值方式</span><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;bits/stdc++.h&gt;</span>
-<span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span>
-
-<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">m1</span><span class="o">=</span><span class="n">INT_MIN</span><span class="p">,</span><span class="n">m2</span><span class="o">=</span><span class="n">INT_MIN</span><span class="p">;</span><span class="w"> </span><span class="c1">// 初始化為最小整數</span>
-<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">v</span><span class="p">[</span><span class="mi">7</span><span class="p">]</span><span class="o">=</span><span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w"> </span><span class="mi">7</span><span class="p">};</span>
-<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="mi">7</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">v</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">&gt;</span><span class="n">m1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="n">m2</span><span class="o">=</span><span class="n">m1</span><span class="p">;</span><span class="w"> </span><span class="c1">// 將當前最大值更新為第二大值</span>
-<span class="w">            </span><span class="n">m1</span><span class="o">=</span><span class="n">v</span><span class="p">[</span><span class="n">i</span><span class="p">];</span><span class="w"> </span><span class="c1">// 更新最大值</span>
-<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="p">(</span><span class="n">v</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">&gt;</span><span class="n">m2</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="n">m2</span><span class="o">=</span><span class="n">v</span><span class="p">[</span><span class="n">i</span><span class="p">];</span><span class="w"> </span><span class="c1">// 更新第二大值</span>
-<span class="w">        </span><span class="p">}</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="w">    </span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">m1</span><span class="o">&lt;&lt;</span><span class="s">" "</span><span class="o">&lt;&lt;</span><span class="n">m2</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></div>
-<div class="code-footer"><label class="expand icon-only" for="__collapse6" tabindex="0"><span class="collapse-code__sr-only">expand</span></label><label class="collapse icon-only" for="__collapse6" tabindex="0"><span class="collapse-code__sr-only">collapse</span></label></div>
-</div>
-<div class="collapse-code"><input checked="checked" id="__collapse7" name="__collapse7" type="checkbox"/><div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="cpf">&lt;bits/stdc++.h&gt;</span>
-<span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span>
-<span class="cp">#define N int(1e5)+1</span>
-<span class="cp">#define nn "\n"</span>
-<span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="n">v</span><span class="p">[</span><span class="n">N</span><span class="p">];</span>
-<span class="kt">bool</span><span class="w"> </span><span class="n">visit</span><span class="p">[</span><span class="n">N</span><span class="p">];</span>
-<span class="kt">int</span><span class="w"> </span><span class="n">dp</span><span class="p">[</span><span class="n">N</span><span class="p">];</span>
-<span class="kt">int</span><span class="w"> </span><span class="n">ans</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
-<span class="kt">int</span><span class="w"> </span><span class="nf">dfs</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">f</span><span class="p">){</span>
-<span class="w">    </span><span class="n">visit</span><span class="p">[</span><span class="n">f</span><span class="p">]</span><span class="o">=</span><span class="nb">true</span><span class="p">;</span>
-<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">m1</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">m2</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
-<span class="w">    </span><span class="k">for</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="o">:</span><span class="n">v</span><span class="p">[</span><span class="n">f</span><span class="p">]){</span>
-<span class="w">        </span><span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">visit</span><span class="p">[</span><span class="n">i</span><span class="p">]){</span>
-<span class="w">            </span><span class="n">dfs</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
-<span class="w">            </span><span class="n">dp</span><span class="p">[</span><span class="n">f</span><span class="p">]</span><span class="o">=</span><span class="n">max</span><span class="p">(</span><span class="n">dp</span><span class="p">[</span><span class="n">f</span><span class="p">],</span><span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
-
-<span class="w">            </span><span class="k">if</span><span class="p">(</span><span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">&gt;</span><span class="n">m1</span><span class="p">){</span><span class="w">                </span><span class="c1">//找到子節點中兩個最大的長度</span>
-<span class="w">                </span><span class="n">m2</span><span class="o">=</span><span class="n">m1</span><span class="p">;</span>
-<span class="w">                </span><span class="n">m1</span><span class="o">=</span><span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
-<span class="w">            </span><span class="p">}</span>
-<span class="w">            </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="p">(</span><span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">&gt;</span><span class="n">m2</span><span class="p">){</span>
-<span class="w">                </span><span class="n">m2</span><span class="o">=</span><span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
-<span class="w">            </span><span class="p">}</span>
-<span class="w">        </span><span class="p">}</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="w">    </span><span class="n">ans</span><span class="o">=</span><span class="n">max</span><span class="p">(</span><span class="n">ans</span><span class="p">,</span><span class="n">m1</span><span class="o">+</span><span class="n">m2</span><span class="p">);</span>
-<span class="w">    </span><span class="n">dp</span><span class="p">[</span><span class="n">f</span><span class="p">]</span><span class="o">+=</span><span class="mi">1</span><span class="p">;</span>
-<span class="p">}</span>
-<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(){</span>
-<span class="w">    </span><span class="c1">//istringstream cin("8 \</span>
-<span class="c1">0 1 \</span>
-<span class="c1">0 2 \</span>
-<span class="c1">0 3 \</span>
-<span class="c1">7 0 \</span>
-<span class="c1">1 4 \</span>
-<span class="c1">1 5 \</span>
-<span class="c1">3 6 \</span>
-<span class="c1">");</span>
-<span class="w">    </span><span class="c1">//istringstream cin("4 \</span>
-<span class="c1">0 1 \</span>
-<span class="c1">0 2 \</span>
-<span class="c1">2 3");</span>
-<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="p">;</span>
-<span class="w">    </span><span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">n</span><span class="p">;</span>
-<span class="w">    </span><span class="k">for</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">n</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
-<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">;</span>
-<span class="w">        </span><span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">x</span><span class="o">&gt;&gt;</span><span class="n">y</span><span class="p">;</span>
-<span class="w">        </span><span class="n">v</span><span class="p">[</span><span class="n">x</span><span class="p">].</span><span class="n">push_back</span><span class="p">(</span><span class="n">y</span><span class="p">);</span>
-<span class="w">        </span><span class="n">v</span><span class="p">[</span><span class="n">y</span><span class="p">].</span><span class="n">push_back</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="w">    </span><span class="n">dfs</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
-<span class="w">    </span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">ans</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></div>
-<div class="code-footer"><label class="expand icon-only" for="__collapse7" tabindex="0"><span class="collapse-code__sr-only">expand</span></label><label class="collapse icon-only" for="__collapse7" tabindex="0"><span class="collapse-code__sr-only">collapse</span></label></div>
-</div>
-<blockquote>
-<p>方法2：     <br/>
-概念同方法一，變換找最大值、第二大值的合方式     <br/>
-如下：     <br/>
-假設 h[f] 是父節點的高度，h[i] 是現在掃到的子節點的高度，看到下面的樹，假設父節點是 0 剛剛掃過了 1 ，h[0] = 2，當他現在要掃 3 時，就會得到 h[0] + h[3] + 1 = 4，所以可以得到直徑就是 4 ，其實 h[0] + h[3] 就是最大值和第二大值，但 h[3] 還沒有接到 0 所以要額外加一。<br/>
-也就是說只要我們會算樹的高度，就可以算直徑。 <br/>
-<div class="highlight"><pre><span></span><code>      7
-      |
-      0
-   /  |  \
-  1   2   3
- / \      |
-4   5     6
-</code></pre></div></p>
-</blockquote>
-<div class="collapse-code"><input checked="checked" id="__collapse8" name="__collapse8" type="checkbox"/><div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;bits/stdc++.h&gt;</span>
-<span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span>
-
-<span class="n">vector</span><span class="o">&lt;</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">g</span><span class="p">;</span>
-<span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">h</span><span class="p">;</span>
-
-<span class="kt">int</span><span class="w"> </span><span class="n">ma</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
-
-<span class="kt">void</span><span class="w"> </span><span class="nf">dfs</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">u</span><span class="p">,</span><span class="kt">int</span><span class="w"> </span><span class="n">parent</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">g</span><span class="p">[</span><span class="n">u</span><span class="p">])</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span>
-<span class="w">        </span><span class="k">if</span><span class="p">(</span><span class="n">v</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">parent</span><span class="p">)</span><span class="k">continue</span><span class="p">;</span>
-<span class="w">        </span>
-<span class="w">        </span><span class="n">dfs</span><span class="p">(</span><span class="n">v</span><span class="p">,</span><span class="n">u</span><span class="p">);</span>
-<span class="w">        </span>
-<span class="w">        </span><span class="n">ma</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">max</span><span class="p">(</span><span class="n">ma</span><span class="p">,</span><span class="w"> </span><span class="n">h</span><span class="p">[</span><span class="n">u</span><span class="p">]</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">h</span><span class="p">[</span><span class="n">v</span><span class="p">]</span><span class="o">+</span><span class="mi">1</span><span class="p">);</span>
-<span class="w">        </span>
-<span class="w">        </span><span class="n">h</span><span class="p">[</span><span class="n">u</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">max</span><span class="p">(</span><span class="n">h</span><span class="p">[</span><span class="n">u</span><span class="p">],</span><span class="w"> </span><span class="n">h</span><span class="p">[</span><span class="n">v</span><span class="p">]</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
-<span class="w">        </span>
-<span class="w">    </span><span class="p">}</span>
-<span class="p">}</span>
-
-<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="c1">// stringstream cin(R"(8</span>
-<span class="w">    </span><span class="c1">// 0 1</span>
-<span class="w">    </span><span class="c1">// 0 2</span>
-<span class="w">    </span><span class="c1">// 0 3</span>
-<span class="w">    </span><span class="c1">// 7 0</span>
-<span class="w">    </span><span class="c1">// 1 4</span>
-<span class="w">    </span><span class="c1">// 1 5</span>
-<span class="w">    </span><span class="c1">// 3 6)");</span>
-
-<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="p">;</span>
-<span class="w">    </span><span class="n">cin</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">n</span><span class="p">;</span>
-
-<span class="w">    </span><span class="n">g</span><span class="p">.</span><span class="n">resize</span><span class="p">(</span><span class="n">n</span><span class="p">);</span>
-<span class="w">    </span><span class="n">h</span><span class="p">.</span><span class="n">resize</span><span class="p">(</span><span class="n">n</span><span class="p">);</span>
-
-<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">n</span><span class="mi">-1</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">;</span>
-<span class="w">        </span><span class="n">cin</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">y</span><span class="p">;</span>
-<span class="w">        </span><span class="n">g</span><span class="p">[</span><span class="n">x</span><span class="p">].</span><span class="n">push_back</span><span class="p">(</span><span class="n">y</span><span class="p">);</span>
-<span class="w">        </span><span class="n">g</span><span class="p">[</span><span class="n">y</span><span class="p">].</span><span class="n">push_back</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="w">    </span><span class="n">dfs</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">-1</span><span class="p">);</span>
-
-<span class="w">    </span><span class="c1">// for (int i : h) {</span>
-<span class="w">    </span><span class="c1">//     cout &lt;&lt; i &lt;&lt; " ";</span>
-<span class="w">    </span><span class="c1">// }</span>
-<span class="w">    </span><span class="c1">// cout &lt;&lt; "\n";</span>
-
-<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">ma</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></div>
-<div class="code-footer"><label class="expand icon-only" for="__collapse8" tabindex="0"><span class="collapse-code__sr-only">expand</span></label><label class="collapse icon-only" for="__collapse8" tabindex="0"><span class="collapse-code__sr-only">collapse</span></label></div>
-</div>
-<blockquote>
-<p>方法三：   <br/>
-farthest of farthest 演算法   <br/>
-兩次DFS   <br/>
-第一次找f的最遠點i，第二次找i最遠點k     </p>
-</blockquote>
-<div class="collapse-code"><input checked="checked" id="__collapse9" name="__collapse9" type="checkbox"/><div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;bits/stdc++.h&gt;</span>
-<span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span>
-
-<span class="n">vector</span><span class="o">&lt;</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">g</span><span class="p">;</span>
-<span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">d</span><span class="p">;</span>
-<span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">ma</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
-
-<span class="kt">void</span><span class="w"> </span><span class="nf">dfs</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">u</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">parent</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">d</span><span class="p">[</span><span class="n">u</span><span class="p">]</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">ma</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="n">ma</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">d</span><span class="p">[</span><span class="n">u</span><span class="p">];</span>
-<span class="w">        </span><span class="n">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">u</span><span class="p">;</span>
-<span class="w">    </span><span class="p">}</span>
-
-<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">g</span><span class="p">[</span><span class="n">u</span><span class="p">])</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">v</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">parent</span><span class="p">)</span><span class="w"> </span><span class="k">continue</span><span class="p">;</span>
-
-<span class="w">        </span><span class="n">d</span><span class="p">[</span><span class="n">v</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">d</span><span class="p">[</span><span class="n">u</span><span class="p">]</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
-
-<span class="w">        </span><span class="n">dfs</span><span class="p">(</span><span class="n">v</span><span class="p">,</span><span class="w"> </span><span class="n">u</span><span class="p">);</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="p">}</span>
-
-<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="c1">//     stringstream cin(R"(8</span>
-<span class="c1">// 0 1</span>
-<span class="c1">// 0 2</span>
-<span class="c1">// 0 3</span>
-<span class="c1">// 7 0</span>
-<span class="c1">// 1 4</span>
-<span class="c1">// 1 5</span>
-<span class="c1">// 3 6)");</span>
-
-<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="p">;</span>
-<span class="w">    </span><span class="n">cin</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">n</span><span class="p">;</span>
-
-<span class="w">    </span><span class="n">g</span><span class="p">.</span><span class="n">resize</span><span class="p">(</span><span class="n">n</span><span class="p">);</span>
-
-<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">;</span>
-<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="n">cin</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">y</span><span class="p">;</span>
-<span class="w">        </span><span class="n">g</span><span class="p">[</span><span class="n">x</span><span class="p">].</span><span class="n">push_back</span><span class="p">(</span><span class="n">y</span><span class="p">);</span>
-<span class="w">        </span><span class="n">g</span><span class="p">[</span><span class="n">y</span><span class="p">].</span><span class="n">push_back</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
-<span class="w">    </span><span class="p">}</span>
-
-<span class="w">    </span><span class="n">d</span><span class="p">.</span><span class="n">assign</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
-<span class="w">    </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
-<span class="w">    </span><span class="n">dfs</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="mi">-1</span><span class="p">);</span>
-
-<span class="w">    </span><span class="n">d</span><span class="p">.</span><span class="n">assign</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
-<span class="w">    </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">b</span><span class="p">;</span>
-<span class="w">    </span><span class="n">dfs</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="mi">-1</span><span class="p">);</span>
-
-<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">d</span><span class="p">[</span><span class="n">b</span><span class="p">];</span>
-<span class="p">}</span>
-</code></pre></div>
-<div class="code-footer"><label class="expand icon-only" for="__collapse9" tabindex="0"><span class="collapse-code__sr-only">expand</span></label><label class="collapse icon-only" for="__collapse9" tabindex="0"><span class="collapse-code__sr-only">collapse</span></label></div>
-</div>
-<h4 id="a143-q_8_15-樹上一位不回家的推銷員">a143: Q_8_15 樹上一位不回家的推銷員<a class="headerlink" href="#a143-q_8_15-樹上一位不回家的推銷員" title="Permanent link"></a></h4>
-<p><a href="https://judge.tcirc.tw/problem/d115">https://judge.tcirc.tw/problem/d115</a></p>
-<p>內容<br/>
-有一個推銷員要走訪 n 個城市。這些城市以 (n−1)條道路連接，每條道路連接兩個不 同的城市並且雙向可以通行，而且已知每一個城市都可以到達，不會有到達不了的狀況。輸入道路的資料，請你幫推銷員找出一個最短的路徑走訪所有的城市，推銷員可 以從任何城市開始，也不必回到開始的城市，只要每個城市至少到一次就可以。 舉例來說，如右圖，有 5 個城市以 4條道路連接，假設 每條道路的長度都是 1。最短的拜訪路徑是 (1,0,4,2,4,3)，長度為 5。</p>
-<p><img alt="alt text" decoding="async" src="../images/%E6%A8%B9%E8%AB%96/image-56.png" width="50%"/></p>
-<p>輸入說明  <br/>
-第一行是正整數 n  <br/>
-，代表城市的數量，城市是以 0∼(n−1)  <br/>
- 編號，接下來有 n−1  <br/>
- 行是道路的資料，每行三個整數 a,b  <br/>
- 與 w  <br/>
-，代表此道 路連接城市 a  <br/>
- 與 b  <br/>
-，道路的長度是 w  <br/>
-。n  <br/>
- 不超過 50000  <br/>
-，每條道路長度是不超過 100  <br/>
- 的正整數。    </p>
-<p>輸出說明       <br/>
- 輸出最短的旅行距離。     </p>
-<p>範例輸入 #1   <br/>
-5   <br/>
-1 0 1   <br/>
-0 4 1   <br/>
-2 4 1   <br/>
-4 3 1   <br/>
-範例輸出 #1   <br/>
-5   <br/>
-範例輸入 #2   <br/>
-3   <br/>
-1 2 5   <br/>
-0 2 3   <br/>
-範例輸出 #2   <br/>
-8     </p>
-<blockquote>
-<p>我們需要找到起點、終點，起點、終點間路徑只會路過一次，其餘路徑會路過兩次，全體最小化路徑，就是最大化起點、終點間路徑  <br/>
-使用權重作為距離，找出最大直徑。  <br/>
-全部路段長度*2-直徑即為答案    </p>
-</blockquote>
-<div class="collapse-code"><input checked="checked" id="__collapse10" name="__collapse10" type="checkbox"/><div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;bits/stdc++.h&gt;</span>
-<span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span>
-<span class="cp">#define N 100000</span>
-<span class="cp">#define nn "\n"</span>
-
-<span class="k">struct</span><span class="w"> </span><span class="nc">st</span><span class="p">{</span>
-<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">;</span>
-<span class="p">};</span>
-
-<span class="n">vector</span><span class="o">&lt;</span><span class="n">st</span><span class="o">&gt;</span><span class="n">v</span><span class="p">[</span><span class="n">N</span><span class="p">];</span>
-
-<span class="kt">int</span><span class="w"> </span><span class="n">vi</span><span class="p">[</span><span class="n">N</span><span class="p">];</span>
-<span class="kt">int</span><span class="w"> </span><span class="n">d</span><span class="p">[</span><span class="n">N</span><span class="p">];</span>
-<span class="kt">int</span><span class="w"> </span><span class="n">all_w</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
-
-<span class="kt">int</span><span class="w"> </span><span class="nf">dfs</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">f</span><span class="p">){</span>
-<span class="w">    </span><span class="n">vi</span><span class="p">[</span><span class="n">f</span><span class="p">]</span><span class="o">=</span><span class="nb">true</span><span class="p">;</span>
-<span class="w">    </span><span class="k">for</span><span class="p">(</span><span class="n">st</span><span class="w"> </span><span class="n">i</span><span class="o">:</span><span class="n">v</span><span class="p">[</span><span class="n">f</span><span class="p">]){</span>
-<span class="w">        </span><span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">vi</span><span class="p">[</span><span class="n">i</span><span class="p">.</span><span class="n">x</span><span class="p">]){</span>
-<span class="c1">//            cout&lt;&lt;f&lt;&lt;": "&lt;&lt;i.x&lt;&lt;nn;</span>
-<span class="w">            </span><span class="n">d</span><span class="p">[</span><span class="n">i</span><span class="p">.</span><span class="n">x</span><span class="p">]</span><span class="o">=</span><span class="n">d</span><span class="p">[</span><span class="n">f</span><span class="p">]</span><span class="o">+</span><span class="n">i</span><span class="p">.</span><span class="n">y</span><span class="p">;</span>
-<span class="w">            </span><span class="n">dfs</span><span class="p">(</span><span class="n">i</span><span class="p">.</span><span class="n">x</span><span class="p">);</span>
-<span class="w">        </span><span class="p">}</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="p">}</span>
-
-
-<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(){</span>
-<span class="w">    </span><span class="c1">//istringstream cin("5 \</span>
-<span class="c1">1 0 1 \</span>
-<span class="c1">0 4 1 \</span>
-<span class="c1">2 4 1 \</span>
-<span class="c1">4 3 1");</span>
-
-<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="p">;</span>
-<span class="w">    </span><span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">n</span><span class="p">;</span>
-<span class="w">    </span><span class="k">for</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">n</span><span class="mi">-1</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
-<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span><span class="p">;</span>
-<span class="w">        </span><span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">x</span><span class="o">&gt;&gt;</span><span class="n">y</span><span class="o">&gt;&gt;</span><span class="n">z</span><span class="p">;</span>
-<span class="w">        </span><span class="n">all_w</span><span class="o">+=</span><span class="n">z</span><span class="p">;</span>
-<span class="w">        </span><span class="n">v</span><span class="p">[</span><span class="n">x</span><span class="p">].</span><span class="n">push_back</span><span class="p">({</span><span class="n">y</span><span class="p">,</span><span class="n">z</span><span class="p">});</span>
-<span class="w">        </span><span class="n">v</span><span class="p">[</span><span class="n">y</span><span class="p">].</span><span class="n">push_back</span><span class="p">({</span><span class="n">x</span><span class="p">,</span><span class="n">z</span><span class="p">});</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="w">    </span><span class="n">dfs</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
-<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">re</span><span class="o">=</span><span class="n">max_element</span><span class="p">(</span><span class="n">d</span><span class="p">,</span><span class="n">d</span><span class="o">+</span><span class="n">n</span><span class="p">)</span><span class="o">-</span><span class="n">d</span><span class="p">;</span>
-<span class="w">    </span><span class="k">for</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">n</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
-<span class="w">        </span><span class="n">d</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
-<span class="w">        </span><span class="n">vi</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">=</span><span class="nb">false</span><span class="p">;</span>
-<span class="w">    </span><span class="p">}</span>
-
-<span class="c1">//    cout&lt;&lt;nn;</span>
-
-<span class="w">    </span><span class="n">dfs</span><span class="p">(</span><span class="n">re</span><span class="p">);</span>
-
-<span class="c1">//    cout&lt;&lt;nn;</span>
-
-<span class="w">    </span><span class="n">re</span><span class="o">=</span><span class="n">max_element</span><span class="p">(</span><span class="n">d</span><span class="p">,</span><span class="n">d</span><span class="o">+</span><span class="n">n</span><span class="p">)</span><span class="o">-</span><span class="n">d</span><span class="p">;</span>
-<span class="w">    </span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">all_w</span><span class="o">*</span><span class="mi">2</span><span class="o">-</span><span class="n">d</span><span class="p">[</span><span class="n">re</span><span class="p">]</span><span class="o">&lt;&lt;</span><span class="n">nn</span><span class="p">;</span>
-<span class="c1">//    cout&lt;&lt;re;</span>
-
-
-<span class="p">}</span>
-</code></pre></div>
-<div class="code-footer"><label class="expand icon-only" for="__collapse10" tabindex="0"><span class="collapse-code__sr-only">expand</span></label><label class="collapse icon-only" for="__collapse10" tabindex="0"><span class="collapse-code__sr-only">collapse</span></label></div>
-</div>
 <h3 id="計算連通區塊數量">計算連通區塊數量<a class="headerlink" href="#計算連通區塊數量" title="Permanent link"></a></h3>
 <p>要計算一個圖中有幾個連通區塊</p>
 <p>直接對所有點dfs，有經過的就不用找，看可以找幾次。<br/>
