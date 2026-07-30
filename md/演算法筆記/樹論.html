@@ -10737,8 +10737,8 @@ n 不超過 50000，每條道路長度是不超過 100 的正整數。     </p>
 <div class="code-footer"><label class="expand icon-only" for="__collapse18" tabindex="0"><span class="collapse-code__sr-only">expand</span></label><label class="collapse icon-only" for="__collapse18" tabindex="0"><span class="collapse-code__sr-only">collapse</span></label></div>
 </div>
 <h3 id="a223-q_8_6-樹狀圖的距離總和">a223: Q_8_6 樹狀圖的距離總和<a class="headerlink" href="#a223-q_8_6-樹狀圖的距離總和" title="Permanent link"></a></h3>
-<p><a href="https://judge.hwsh.tc.edu.tw/ShowProblem?problemid=a223">https://judge.hwsh.tc.edu.tw/ShowProblem?problemid=a223</a><br/>
-內容     </p>
+<p><a href="https://judge.tcirc.tw/problem/d108">https://judge.tcirc.tw/problem/d108</a></p>
+<p>內容     </p>
 <p>輸入一個樹狀圖，請計算所有點到所有點的距離總和。本題假設編號 1  1 是根節點。     </p>
 <p>輸入說明     </p>
 <p>第一行是正整數 n  𝑛，代表點數，點以 1∼n  1∼𝑛編號，     </p>
@@ -10841,7 +10841,7 @@ n 不超過 50000，每條道路長度是不超過 100 的正整數。     </p>
 <div class="code-footer"><label class="expand icon-only" for="__collapse19" tabindex="0"><span class="collapse-code__sr-only">expand</span></label><label class="collapse icon-only" for="__collapse19" tabindex="0"><span class="collapse-code__sr-only">collapse</span></label></div>
 </div>
 <h3 id="a132-p_8_7-寶石的顏色-108全國高中賽">a132: P_8_7 寶石的顏色 (108全國高中賽)<a class="headerlink" href="#a132-p_8_7-寶石的顏色-108全國高中賽" title="Permanent link"></a></h3>
-<p><a href="https://judge.hwsh.tc.edu.tw/ShowProblem?problemid=a132">https://judge.hwsh.tc.edu.tw/ShowProblem?problemid=a132</a> </p>
+<p><a href="https://judge.tcirc.tw/problem/d106">https://judge.tcirc.tw/problem/d106</a> </p>
 <p>內容      </p>
 <p>尋寶之旅的遊戲有一個地圖，地圖上有 n 個站，以 0 到 (n – 1) 編號，此外有 (n – 1) 條道路，這些道路都是單向的，遊戲固定從 0 號站出發，且已知從 0 號站出發可以直接或間接到達任何其他      站。每一個站都有一顆寶石，寶石有分為多種顏色，第 i 站存放的寶石顏色為 c(i)。出發之前，你可以選定一種顏色的寶石收集箱，路途中遇到與你的收集箱相同顏色的寶石就可以收集(包含起點)，請你      計算最多可以收集到多少顆同色寶石。      </p>
 <p>輸入說明      </p>
@@ -10872,76 +10872,60 @@ n 不超過 50000，每條道路長度是不超過 100 的正整數。     </p>
 4 9      </p>
 <p>範例輸出 #2      </p>
 <p>2      </p>
-<div class="collapse-code"><input checked="checked" id="__collapse20" name="__collapse20" type="checkbox"/><div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="cpf">&lt;bits/stdc++.h&gt;</span>
+<div class="collapse-code"><input checked="checked" id="__collapse20" name="__collapse20" type="checkbox"/><div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;bits/stdc++.h&gt;</span>
 <span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span>
-<span class="cp">#define N 200001</span>
-<span class="cp">#define nn "\n"</span>
+<span class="cp">#define pii pair&lt;int, int&gt;</span>
 <span class="cp">#define int long long</span>
+<span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="n">ma</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="n">vector</span><span class="o">&lt;</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">g</span><span class="p">;</span>
+<span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">p</span><span class="p">;</span>
 
-<span class="kt">int</span><span class="w"> </span><span class="n">w</span><span class="p">[</span><span class="n">N</span><span class="p">];</span>
-<span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="n">v</span><span class="p">[</span><span class="n">N</span><span class="p">];</span>
-<span class="n">map</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span><span class="kt">int</span><span class="o">&gt;</span><span class="n">b</span><span class="p">;</span>
-<span class="kt">int</span><span class="w"> </span><span class="n">ou</span><span class="p">[</span><span class="n">N</span><span class="p">];</span><span class="w"> </span><span class="c1">//出度</span>
-<span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="p">;</span>
-<span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="n">ans</span><span class="p">;</span>
-<span class="kt">int</span><span class="w"> </span><span class="nf">dfs</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">f</span><span class="p">){</span>
-<span class="w">    </span><span class="k">if</span><span class="p">(</span><span class="n">ou</span><span class="p">[</span><span class="n">f</span><span class="p">]</span><span class="o">==</span><span class="mi">0</span><span class="p">){</span><span class="c1">//leaf</span>
-<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">ma</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
-<span class="w">        </span><span class="k">for</span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="n">i</span><span class="o">:</span><span class="n">b</span><span class="p">){</span>
-<span class="w">            </span><span class="n">ma</span><span class="o">=</span><span class="n">max</span><span class="p">(</span><span class="n">ma</span><span class="p">,</span><span class="n">i</span><span class="p">.</span><span class="n">second</span><span class="p">);</span>
+<span class="n">map</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">mp</span><span class="p">;</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">dfs</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">u</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">w</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">p</span><span class="p">[</span><span class="n">u</span><span class="p">];</span>
+
+<span class="w">    </span><span class="n">mp</span><span class="p">[</span><span class="n">w</span><span class="p">]</span><span class="o">++</span><span class="p">;</span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">g</span><span class="p">[</span><span class="n">u</span><span class="p">].</span><span class="n">empty</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">pii</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">mp</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">ma</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">max</span><span class="p">(</span><span class="n">ma</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="p">.</span><span class="n">second</span><span class="p">);</span>
 <span class="w">        </span><span class="p">}</span>
-<span class="w">        </span><span class="n">ans</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">ma</span><span class="p">);</span>
-<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
-<span class="w">    </span>
-<span class="w">    </span><span class="k">for</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="o">:</span><span class="n">v</span><span class="p">[</span><span class="n">f</span><span class="p">]){</span>
-<span class="w">        </span><span class="n">b</span><span class="p">[</span><span class="n">w</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span><span class="o">++</span><span class="p">;</span>
-<span class="w">        </span><span class="n">dfs</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
-<span class="w">        </span><span class="n">b</span><span class="p">[</span><span class="n">w</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span><span class="o">--</span><span class="p">;</span>
-
 <span class="w">    </span><span class="p">}</span>
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">g</span><span class="p">[</span><span class="n">u</span><span class="p">])</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">dfs</span><span class="p">(</span><span class="n">v</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="n">mp</span><span class="p">[</span><span class="n">w</span><span class="p">]</span><span class="o">--</span><span class="p">;</span>
 <span class="p">}</span>
 
-<span class="kt">signed</span><span class="w"> </span><span class="n">main</span><span class="p">(){</span>
-<span class="w">    </span><span class="n">ios</span><span class="o">::</span><span class="n">sync_with_stdio</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
-<span class="w">    </span><span class="n">cin</span><span class="p">.</span><span class="n">tie</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
-<span class="c1">//    stringstream cin("10 \</span>
-<span class="c1">5 3 3 1 4 0 3 4 5 0 \</span>
-<span class="c1">0 8 \</span>
-<span class="c1">5 2 \</span>
-<span class="c1">7 3 \</span>
-<span class="c1">5 4 \</span>
-<span class="c1">0 5 \</span>
-<span class="c1">4 6 \</span>
-<span class="c1">1 7 \</span>
-<span class="c1">0 1 \</span>
-<span class="c1">4 9");</span>
-<span class="w">    </span><span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">n</span><span class="p">;</span>
-<span class="w">    </span><span class="k">for</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">n</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
-<span class="w">        </span><span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">w</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+<span class="kt">signed</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">cin</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">n</span><span class="p">;</span>
+<span class="w">    </span><span class="n">g</span><span class="p">.</span><span class="n">resize</span><span class="p">(</span><span class="n">n</span><span class="p">);</span>
+<span class="w">    </span><span class="n">p</span><span class="p">.</span><span class="n">resize</span><span class="p">(</span><span class="n">n</span><span class="p">);</span>
+
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">n</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">cin</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">p</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
 <span class="w">    </span><span class="p">}</span>
-<span class="w">    </span><span class="k">for</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">n</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
-<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">;</span>
-<span class="w">        </span><span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">x</span><span class="o">&gt;&gt;</span><span class="n">y</span><span class="p">;</span>
-<span class="w">        </span><span class="n">v</span><span class="p">[</span><span class="n">x</span><span class="p">].</span><span class="n">push_back</span><span class="p">(</span><span class="n">y</span><span class="p">);</span>
-<span class="w">        </span><span class="n">ou</span><span class="p">[</span><span class="n">x</span><span class="p">]</span><span class="o">++</span><span class="p">;</span>
+
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">;</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">cin</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">y</span><span class="p">;</span>
+<span class="w">        </span><span class="n">g</span><span class="p">[</span><span class="n">x</span><span class="p">].</span><span class="n">push_back</span><span class="p">(</span><span class="n">y</span><span class="p">);</span>
 <span class="w">    </span><span class="p">}</span>
+
 <span class="w">    </span><span class="n">dfs</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
-<span class="w">    </span><span class="n">cout</span><span class="o">&lt;&lt;*</span><span class="n">max_element</span><span class="p">(</span><span class="n">ans</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span><span class="n">ans</span><span class="p">.</span><span class="n">end</span><span class="p">());</span>
+
+<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">ma</span><span class="p">;</span>
+
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
-
-<span class="cm">/*</span>
-
-
-
-
-<span class="cm">*/</span>
 </code></pre></div>
 <div class="code-footer"><label class="expand icon-only" for="__collapse20" tabindex="0"><span class="collapse-code__sr-only">expand</span></label><label class="collapse icon-only" for="__collapse20" tabindex="0"><span class="collapse-code__sr-only">collapse</span></label></div>
 </div>
 <h3 id="a133-p_8_8-樹的最大獨立集">a133: P_8_8 樹的最大獨立集<a class="headerlink" href="#a133-p_8_8-樹的最大獨立集" title="Permanent link"></a></h3>
-<p><a href="https://judge.hwsh.tc.edu.tw/ShowProblem?problemid=a133">https://judge.hwsh.tc.edu.tw/ShowProblem?problemid=a133</a><br/>
+<p><a href="https://judge.tcirc.tw/problem/d107">https://judge.tcirc.tw/problem/d107</a><br/>
 內容</p>
 <p>輸入一棵有n個點的樹，我們要挑選一群彼此不相鄰的點，而且挑選的點越多點越好。請計算最多可以挑多少點。以下圖為例，我們可以挑{0,3,4,5,6,7}共6點，沒有辦法挑出更多的不相鄰的點。      </p>
 <p><img alt="alt text" decoding="async" loading="lazy" src="../images/%E6%A8%B9%E8%AB%96/image.png" width="50%"/> </p>
