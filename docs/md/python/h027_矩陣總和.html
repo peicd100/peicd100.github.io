@@ -145,30 +145,11 @@ pre{
 .sample-explanation-body th,.sample-explanation-body td{border:1px solid #d9d9d4;padding:6px 8px;text-align:left;vertical-align:top}
 .sample-explanation-body th{background:#f5f5f2}
 
-/* 範例測資圖解：只呈現該筆範例的資料與計算，不呈現解題策略。 */
+/* Sample explanation */
 .demo-story{display:grid;gap:12px}
-.demo-controls{display:flex;align-items:center;gap:7px;flex-wrap:wrap;padding:10px 12px;border:1px solid #e5e5e0;border-radius:10px;background:#fff}
-.demo-btn{border:1px solid #bdbdb8;background:#fff;border-radius:7px;padding:5px 9px;font-size:.82rem;font-weight:750;color:#333}
-.demo-btn:hover{background:#f2f2ef}
-.demo-btn:disabled{opacity:.42;cursor:default}
-.demo-status{margin-left:auto;color:#777;font-size:.82rem;font-variant-numeric:tabular-nums}
-.demo-progress{height:8px;border-radius:999px;background:#ecece7;overflow:hidden}
-.demo-progress-bar{height:100%;width:0%;background:linear-gradient(90deg,#9fb8d3,#6b92bd);transition:width .25s ease}
-.demo-dots{display:grid;grid-template-columns:repeat(auto-fit,minmax(86px,1fr));gap:8px}
-.demo-dot{border:1px solid #d8d8d2;background:#fff;border-radius:9px;padding:8px 10px;text-align:left;cursor:pointer;display:grid;gap:2px;transition:border-color .2s ease,background .2s ease,box-shadow .2s ease}
-.demo-dot:hover{background:#f7f9fc}
-.demo-dot small{font-size:.72rem;color:#6a6a6a;font-family:"Cascadia Mono","Consolas",monospace}
-.demo-dot span{font-size:.78rem;font-weight:800;color:#333;line-height:1.3}
-.demo-dot.is-active{border-color:#9fb8d3;background:#fbfdff;box-shadow:0 0 0 3px rgba(46,91,147,.07)}
 .demo-viewport{display:grid;gap:10px}
 .demo-step{border:1px solid #e3e3de;border-radius:12px;padding:12px 13px;background:linear-gradient(180deg,#fff 0%,#fcfcfa 100%);transition:border-color .2s ease,box-shadow .2s ease,background .2s ease,transform .2s ease;position:relative;overflow:hidden}
-.demo-step::after{content:'';position:absolute;inset:0 auto 0 0;width:4px;background:transparent;transition:background .2s ease}
-.demo-step.is-active{border-color:#9fb8d3;background:#fbfdff;box-shadow:0 0 0 3px rgba(46,91,147,.07),0 12px 24px rgba(18,37,63,.05);transform:translateY(-1px);animation:demoStepIn .3s ease both}
 .demo-step.is-active::after{background:linear-gradient(180deg,#9fb8d3,#6b92bd)}
-.demo-step-head{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap;margin-bottom:8px}
-.demo-step-kicker{display:inline-flex;align-items:center;gap:6px;border:1px solid #c9d7e7;background:#f4f8fd;color:#35506e;border-radius:999px;padding:4px 9px;font-size:.75rem;font-weight:850}
-.demo-step-hint{font-size:.75rem;color:#7a7a7a}
-@keyframes demoStepIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
 .visual-row{display:flex;gap:14px;align-items:center;justify-content:center;flex-wrap:wrap;margin:12px 0}
 .visual-row.center{justify-content:center}
 .matrix-card{display:inline-grid;gap:6px;justify-items:center}
@@ -227,10 +208,10 @@ pre{
 .final-output-visual>div:not(.big-arrow){min-width:120px;text-align:center;border:1px solid #d7d7d2;border-radius:10px;background:#fff;padding:10px}
 .final-output-visual small{display:block;color:#666}
 .final-output-visual strong{display:block;font-size:1.6rem;margin-top:2px}
-@media (max-width:620px){.matrix-grid{grid-template-columns:repeat(var(--cols),36px)}.matrix-cell{min-height:34px}.coord-map{grid-template-columns:repeat(2,1fr)}.demo-status{width:100%;margin-left:0}.demo-dots{grid-template-columns:1fr 1fr}.window-gallery,.candidate-gallery{grid-template-columns:1fr 1fr}}
-@media (prefers-reduced-motion:reduce){.demo-step.is-active,.matrix-cell.diff-cell,.pulse-soft,.stagger,.window-card.ok-card,.qualify-chip,.difference-bars i{animation:none!important}.demo-progress-bar{transition:none!important}}
+@media (max-width:620px){.matrix-grid{grid-template-columns:repeat(var(--cols),36px)}.matrix-cell{min-height:34px}.coord-map{grid-template-columns:repeat(2,1fr)}.window-gallery,.candidate-gallery{grid-template-columns:1fr 1fr}}
+@media (prefers-reduced-motion:reduce){.matrix-cell.diff-cell,.pulse-soft,.stagger,.window-card.ok-card,.qualify-chip,.difference-bars i{animation:none!important}}
 
-/* 原因導向的範例圖解：每個結論都附上「為什麼」。 */
+/* Sample explanation details */
 .why-card{display:grid;grid-template-columns:auto 1fr;gap:9px;align-items:start;margin:10px 0;padding:10px 11px;border:1px solid #d9e1ea;border-radius:10px;background:#f8fbff}
 .why-icon{display:grid;place-items:center;min-width:42px;height:27px;padding:0 7px;border-radius:999px;background:#eaf2fb;color:#35506e;font-size:.75rem;font-weight:900}
 .why-card p{margin:0!important;color:#394a5d}
@@ -280,8 +261,18 @@ pre{
 .test-row.pass .verdict{color:var(--ok)}
 .test-row.fail .verdict{color:var(--bad)}
 .test-row.wait .verdict{color:#777}
+.hidden-tests{margin-top:14px;border-top:1px solid #e8e8e4;padding-top:12px}
+.hidden-tests summary,.submission-history summary{cursor:pointer;font-weight:800;color:#444}
+.hidden-tests-list{display:grid;gap:10px;margin-top:10px}
+.hidden-test-item{border:1px solid #deded9;background:#fafaf8;border-radius:4px;padding:10px}
+.hidden-test-item strong{display:block;margin-bottom:7px;font-size:.88rem}
+.hidden-test-io{display:grid;grid-template-columns:minmax(0,1fr) minmax(150px,.45fr);gap:9px}
+.hidden-test-block{min-width:0}
+.hidden-test-label{display:block;margin:0 0 4px;color:#666;font-size:.78rem;font-weight:800}
+.hidden-test-item pre{margin:0;background:#fff;max-height:240px;overflow:auto}
+@media(max-width:640px){.hidden-test-io{grid-template-columns:1fr}}
+.hidden-tests-empty{color:#777;font-size:.88rem;padding:4px 0}
 .submission-history{margin-top:14px}
-.submission-history summary{cursor:pointer;font-weight:800;color:#444}
 .history-list{display:grid;gap:6px;margin-top:9px}
 .history-item{display:flex;justify-content:space-between;gap:10px;padding:6px 8px;border-bottom:1px solid #eee;font-size:.86rem;color:#666}
 .editor-head{
@@ -365,12 +356,559 @@ dialog::backdrop{background:rgba(0,0,0,.38)}
   .topbar{padding:9px 10px}
   .progress{width:90px}
 }
+
+/* Professional Online Judge visual system */
+:root{
+  --bg:#f3f5f7;
+  --paper:#ffffff;
+  --ink:#18212f;
+  --muted:#697386;
+  --line:#dce2e8;
+  --line-strong:#c8d0d9;
+  --soft:#f7f9fb;
+  --soft2:#f9fafb;
+  --accent:#315b7d;
+  --accent-strong:#244762;
+  --accent-soft:#edf3f8;
+  --ok:#18794e;
+  --ok-soft:#edf8f2;
+  --bad:#b42318;
+  --bad-soft:#fff2f0;
+  --warn:#9a5b13;
+  --warn-soft:#fff8e8;
+  --terminal:#111827;
+  --terminal-soft:#182235;
+  --shadow:0 1px 2px rgba(15,23,42,.04),0 10px 28px rgba(15,23,42,.045);
+}
+html{background:var(--bg)}
+body{
+  background:var(--bg);
+  color:var(--ink);
+  font-family:"Noto Sans TC","PingFang TC","Microsoft JhengHei",system-ui,-apple-system,sans-serif;
+  line-height:1.68;
+  letter-spacing:.005em;
+}
+::selection{background:#dceaf5;color:#142235}
+button,a,summary{ -webkit-tap-highlight-color:transparent }
+button:focus-visible,a:focus-visible,summary:focus-visible{
+  outline:3px solid rgba(49,91,125,.18);
+  outline-offset:2px;
+}
+
+/* Header */
+header{
+  background:rgba(255,255,255,.97);
+  backdrop-filter:saturate(120%) blur(10px);
+  border-bottom:1px solid var(--line);
+  box-shadow:0 1px 0 rgba(15,23,42,.025);
+}
+.topbar{
+  max-width:1560px;
+  min-height:60px;
+  padding:9px 20px;
+  gap:14px;
+}
+.brand{
+  margin-right:auto;
+  display:flex;
+  align-items:baseline;
+  gap:9px;
+  min-width:0;
+  white-space:nowrap;
+}
+.brand-code{
+  font-family:"Cascadia Mono","SFMono-Regular",Consolas,monospace;
+  color:var(--accent);
+  font-size:.82rem;
+  font-weight:800;
+  letter-spacing:.035em;
+}
+.brand-title{font-weight:800;font-size:1.02rem;color:#17202c}
+.brand-subtitle{font-size:.8rem;color:#7a8494;font-weight:600}
+.progress-wrap{gap:9px;font-size:.8rem;color:#697386;font-weight:700}
+.progress{width:116px;height:6px;background:#e7ebef;border-radius:999px}
+.progress>span{background:var(--accent);border-radius:999px}
+.runtime{
+  gap:7px;
+  min-height:32px;
+  padding:0 10px;
+  border:1px solid var(--line);
+  border-radius:6px;
+  background:#fff;
+  font-size:.79rem;
+  color:#647083;
+}
+.dot{width:7px;height:7px}
+.source-link{
+  display:inline-flex;
+  align-items:center;
+  min-height:34px;
+  padding:0 10px;
+  color:#445064;
+  border:1px solid var(--line);
+  border-radius:6px;
+  text-decoration:none;
+  font-size:.82rem;
+  font-weight:700;
+  transition:.16s ease;
+}
+.source-link:hover{color:var(--accent-strong);background:var(--soft);border-color:var(--line-strong)}
+
+/* Main layout */
+.app{
+  max-width:1560px;
+  margin:20px auto 54px;
+  padding:0 20px;
+  grid-template-columns:minmax(470px,.94fr) minmax(560px,1.06fr);
+  gap:20px;
+}
+.panel{
+  background:var(--paper);
+  border:1px solid var(--line);
+  border-radius:9px;
+  box-shadow:var(--shadow);
+  overflow:hidden;
+}
+.left-panel{min-height:calc(100vh - 102px)}
+.right-panel{top:78px;min-height:calc(100vh - 100px)}
+
+/* Level navigation */
+.level-strip{
+  grid-template-columns:repeat(8,minmax(42px,1fr));
+  gap:6px;
+  padding:10px 12px;
+  background:#f8fafb;
+  border-bottom:1px solid var(--line);
+}
+.level-btn{
+  min-height:38px;
+  border:1px solid var(--line);
+  border-radius:6px;
+  background:#fff;
+  color:#596579;
+  font-size:.82rem;
+  font-weight:750;
+  transition:background .15s ease,border-color .15s ease,color .15s ease,transform .15s ease;
+}
+.level-btn:hover{background:#f4f7fa;border-color:#bdc8d2;color:#29384a}
+.level-btn:active{transform:translateY(1px)}
+.level-btn.active{background:var(--accent);border-color:var(--accent);color:#fff;box-shadow:0 1px 2px rgba(49,91,125,.2)}
+.level-btn.accepted:not(.active){background:var(--ok-soft);border-color:#b7dfca;color:var(--ok)}
+
+/* Problem content */
+.problem{padding:27px 30px 30px}
+.kicker{
+  margin-bottom:5px;
+  color:#7b8796;
+  font-size:.76rem;
+  font-weight:750;
+  letter-spacing:.035em;
+  text-transform:none;
+}
+.problem h1{
+  margin:0;
+  color:#17202c;
+  font-size:1.48rem;
+  line-height:1.35;
+  font-weight:800;
+  letter-spacing:-.015em;
+}
+.meta{margin:7px 0 24px;gap:0;color:#7a8492;font-size:.8rem}
+.meta span+span::before{content:'·';margin:0 8px;color:#b1b8c1}
+.section-title{
+  position:relative;
+  margin:27px 0 10px;
+  padding:0 0 8px 13px;
+  border-bottom:1px solid #e7ebef;
+  color:#273345;
+  font-size:.92rem;
+  font-weight:800;
+}
+.section-title::before{
+  content:'';
+  position:absolute;
+  left:0;
+  top:.25em;
+  width:3px;
+  height:1.05em;
+  border-radius:2px;
+  background:var(--accent);
+}
+.problem p{margin:.45rem 0;color:#374151;font-size:.95rem}
+.problem code,.dialog-body code{
+  background:#f1f4f7;
+  color:#25364a;
+  border:1px solid #e5e9ee;
+  border-radius:4px;
+  padding:.06em .28em;
+}
+pre{
+  margin:9px 0;
+  padding:13px 15px;
+  background:#f8fafb;
+  color:#273345;
+  border:1px solid #e1e6eb;
+  border-radius:6px;
+  font-family:"Cascadia Mono","SFMono-Regular",Consolas,monospace;
+  font-size:.88rem;
+  line-height:1.62;
+}
+.sample-grid{gap:12px}
+.sample-box{
+  min-width:0;
+  padding:0;
+}
+.sample-box h4{
+  margin:0 0 6px;
+  color:#7a8492;
+  font-size:.75rem;
+  font-weight:800;
+  letter-spacing:.025em;
+}
+.sample-box pre{height:calc(100% - 25px);min-height:64px;background:#f9fafb}
+
+/* Sample explanation */
+.sample-explanation{
+  margin-top:9px;
+  padding:16px;
+  border:1px solid #dfe5ea;
+  border-radius:7px;
+  background:#f8fafb;
+  color:#364152;
+  box-shadow:none;
+}
+.sample-explain-intro{
+  display:flex;
+  align-items:baseline;
+  gap:9px;
+  margin:0 0 14px;
+  padding:0 0 10px;
+  border:0;
+  border-bottom:1px solid #e2e7ec;
+  border-radius:0;
+  background:transparent;
+}
+.sample-explain-intro strong{font-size:.88rem;color:#273345;font-weight:800}
+.sample-explain-intro small{display:inline;margin:0;color:#7a8492;font-size:.78rem}
+.sample-explain-intro .intro-badge{display:none}
+.demo-story,.demo-viewport{gap:12px}
+.demo-step{
+  padding:14px 15px;
+  border:1px solid #e3e8ed;
+  border-radius:6px;
+  background:#fff;
+  box-shadow:none;
+  transform:none;
+  transition:none;
+}
+.demo-step p:first-child{margin-top:0}
+.demo-step:last-child{margin-bottom:0}
+.why-card{
+  display:block;
+  margin:11px 0 4px;
+  padding:9px 11px;
+  border:0;
+  border-left:3px solid #91a9bc;
+  border-radius:0;
+  background:#f5f8fa;
+}
+.why-card p{color:#4b596a!important;font-size:.88rem}
+.why-icon{display:none}
+.reason-node,.pair-card,.placement-card,.window-card,.candidate-card,.candidate-map .candidate-pos{
+  border-color:#dde3e8;
+  border-radius:5px;
+  box-shadow:none;
+}
+.reason-node{padding:9px 11px}
+.reason-node.good,.candidate-pos.ok,.window-card.ok-card{background:var(--ok-soft);border-color:#b9ddca;animation:none}
+.reason-node.bad{background:var(--bad-soft);border-color:#efc1bc}
+.reason-node.answer{background:var(--accent-soft);border-color:#c5d5e2}
+.reason-arrow{color:#8691a0;animation:none}
+.matrix-grid{
+  border-radius:5px;
+  border-color:#d7dee5;
+  background:#fff;
+  box-shadow:0 1px 1px rgba(15,23,42,.025);
+}
+.matrix-cell{border-radius:4px;border-color:#dde3e8;background:#f9fafb;color:#2f3b4d}
+.matrix-cell.diff-cell{background:#fff3f1;border-color:#e8aaa3;animation:none}
+.matrix-cell.focus-cell{background:#edf4fa;border-color:#9ebbd1;box-shadow:inset 0 0 0 1px #9ebbd1}
+.matrix-label{color:#596579;font-size:.78rem}
+.pair-card.same{background:#f4fbf7;border-color:#c2dfcf}
+.pair-card.diff{background:#fff5f3;border-color:#efc4bf}
+.candidate-metrics span,.candidate-metrics strong{
+  border-radius:4px;
+  background:#f5f7f9;
+  border-color:#e1e5e9;
+}
+.candidate-metrics strong{background:#edf3f8;border-color:#cbd9e4}
+.threshold-line .threshold,.threshold-line .pass,.threshold-line .fail,.qualify-chip{
+  border-radius:5px;
+  box-shadow:none;
+  animation:none;
+}
+.placement-grid span.on{animation:none}
+.pulse-soft,.stagger,.difference-bars i{animation:none}
+
+/* Results */
+.results-wrap{padding:20px 30px 28px;border-top:1px solid var(--line)}
+.results-head{margin-bottom:12px}
+.results-head h2{font-size:1rem;color:#273345;font-weight:800}
+.status-pill{
+  min-width:74px;
+  padding:4px 9px;
+  border-radius:5px;
+  background:#f7f9fb;
+  border:1px solid var(--line);
+  color:#697386;
+  text-align:center;
+  font-size:.76rem;
+  font-weight:800;
+}
+.status-pill.ok{color:var(--ok);border-color:#b5dec8;background:var(--ok-soft)}
+.status-pill.bad{color:var(--bad);border-color:#efc0ba;background:var(--bad-soft)}
+.status-pill.warn{color:var(--warn);border-color:#ead3a5;background:var(--warn-soft)}
+.result-summary{
+  margin-bottom:12px;
+  padding:11px 13px;
+  border:1px solid #dfe5ea;
+  border-radius:6px;
+  background:#f8fafb;
+  color:#5d697b;
+  font-size:.86rem;
+}
+.test-list{gap:6px}
+.test-row{
+  min-height:43px;
+  grid-template-columns:92px 1fr 54px;
+  gap:10px;
+  padding:8px 11px;
+  border:1px solid #e1e6ea;
+  border-radius:5px;
+  background:#fff;
+  font-size:.84rem;
+}
+.test-row .label{color:#334155;font-weight:750}
+.test-row .detail{color:#7a8492}
+.test-row .verdict{text-align:right;font-family:"Cascadia Mono",Consolas,monospace;font-size:.78rem}
+.test-row.pass{border-left:3px solid #4ca677}
+.test-row.fail{border-left:3px solid #d5675e}
+.hidden-tests,.submission-history{margin-top:14px;padding-top:0;border-top:0}
+.hidden-tests summary,.submission-history summary{
+  position:relative;
+  list-style:none;
+  padding:10px 12px;
+  border:1px solid #e1e6ea;
+  border-radius:5px;
+  background:#f9fafb;
+  color:#485568;
+  font-size:.84rem;
+  font-weight:750;
+  cursor:pointer;
+}
+.hidden-tests summary::-webkit-details-marker,.submission-history summary::-webkit-details-marker{display:none}
+.hidden-tests summary::after,.submission-history summary::after{
+  content:'＋';
+  position:absolute;
+  right:12px;
+  top:50%;
+  transform:translateY(-50%);
+  color:#8b95a3;
+  font-size:1rem;
+  font-weight:500;
+}
+.hidden-tests[open] summary::after,.submission-history[open] summary::after{content:'−'}
+.hidden-tests[open] summary,.submission-history[open] summary{background:#f4f7f9;border-color:#d5dde4;color:#2f3e50}
+.hidden-tests-list,.history-list{gap:8px;margin-top:8px}
+.hidden-test-item{
+  padding:11px;
+  border:1px solid #e1e6ea;
+  border-radius:5px;
+  background:#fff;
+}
+.hidden-test-item strong{margin-bottom:8px;color:#405064;font-size:.8rem}
+.hidden-test-io{gap:10px}
+.hidden-test-label{margin-bottom:5px;color:#7a8492;font-size:.72rem;letter-spacing:.03em}
+.hidden-test-item pre{background:#f8fafb;max-height:220px}
+.history-item{padding:8px 10px;border:1px solid #e7ebef;border-radius:4px;background:#fff;font-size:.8rem;color:#657184}
+
+/* Editor */
+.editor-head{
+  min-height:50px;
+  padding:8px 11px 8px 14px;
+  background:#f8fafb;
+  border-bottom:1px solid var(--line);
+}
+.editor-head strong{color:#273345;font-size:.88rem;font-weight:800}
+.btn{
+  min-height:34px;
+  padding:6px 11px;
+  border:1px solid #cfd6de;
+  border-radius:5px;
+  background:#fff;
+  color:#3f4b5d;
+  font-size:.8rem;
+  font-weight:750;
+  box-shadow:0 1px 1px rgba(15,23,42,.02);
+  transition:background .14s ease,border-color .14s ease,color .14s ease,transform .14s ease;
+}
+.btn:hover{background:#f4f7f9;border-color:#b9c3cd;color:#253447}
+.btn:active{transform:translateY(1px)}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:#fff;box-shadow:0 1px 2px rgba(49,91,125,.2)}
+.btn.primary:hover{background:var(--accent-strong);border-color:var(--accent-strong)}
+.btn.danger{color:#9e3a33;border-color:#e0c9c7;background:#fff}
+.btn.danger:hover{background:#fff5f4;border-color:#d9b2ae;color:#8f2e27}
+.btn:disabled{opacity:.5;cursor:not-allowed;transform:none}
+.editor-shell{height:calc(100vh - 427px);min-height:370px;background:#fbfcfd}
+.CodeMirror{
+  height:100%;
+  background:#fbfcfd;
+  color:#263548;
+  font-family:"Cascadia Mono","SFMono-Regular",Consolas,monospace;
+  font-size:14.5px;
+  line-height:1.62;
+}
+.CodeMirror-gutters{background:#f6f8fa;border-right:1px solid #e1e6ea}
+.CodeMirror-linenumber{color:#9aa4b2;padding:0 9px 0 7px}
+.CodeMirror-cursor{border-left:2px solid #315b7d}
+.CodeMirror-selected{background:#dce8f2!important}
+.CodeMirror-focused{outline:none;box-shadow:inset 0 0 0 1px rgba(49,91,125,.18)}
+.cm-s-default .cm-keyword{color:#315b7d;font-weight:700}
+.cm-s-default .cm-builtin{color:#7256a3}
+.cm-s-default .cm-number{color:#a05a16}
+.cm-s-default .cm-string{color:#28724a}
+.cm-s-default .cm-comment{color:#8792a1;font-style:italic}
+.cm-s-default .cm-def{color:#2e627d}
+.cm-s-default .cm-variable-2{color:#3d556e}
+.CodeMirror-hints{
+  border:1px solid #cfd7df;
+  border-radius:6px;
+  box-shadow:0 12px 30px rgba(15,23,42,.12);
+  font-size:.84rem;
+  padding:4px;
+}
+.CodeMirror-hint{padding:4px 8px;border-radius:4px}
+li.CodeMirror-hint-active{background:#e8f0f6;color:#22364b}
+.fallback-editor{background:#fbfcfd;color:#263548;padding:16px 18px}
+
+/* Terminal and compact test results */
+.terminal-workspace{grid-template-columns:minmax(0,1fr) 232px;background:var(--terminal);border-top:1px solid #0b1220}
+.terminal-panel{background:var(--terminal)}
+.terminal-head,.submit-tests-head{
+  min-height:39px;
+  background:var(--terminal-soft);
+  border-bottom:1px solid #2b3649;
+  color:#eef2f7;
+}
+.terminal-head{padding:7px 12px}
+.terminal-head strong,.submit-tests-head strong{font-size:.76rem;letter-spacing:.045em}
+.terminal-meta{color:#9da8b8;font-size:.75rem}
+.terminal-clear{
+  border:1px solid #3a4659;
+  background:#202b3d;
+  color:#cbd3df;
+  border-radius:4px;
+  font-size:.74rem;
+}
+.terminal-clear:hover{background:#283449;color:#fff}
+.terminal-output{
+  min-height:178px;
+  max-height:246px;
+  padding:13px 15px;
+  background:var(--terminal);
+  color:#e7ebf0;
+  font-size:.82rem;
+  line-height:1.58;
+}
+.terminal-output.error{color:#ffb8b2}
+.submit-tests-panel{background:#121a29;border-left:1px solid #2b3649}
+.submit-tests-list{min-height:178px;max-height:246px;padding:8px;gap:5px}
+.submit-test-row{
+  min-height:32px;
+  padding:5px 7px;
+  border:1px solid #303b4e;
+  border-radius:4px;
+  background:#182235;
+  font-size:.7rem;
+}
+.submit-test-row .mini-label{color:#c8d0db}
+.submit-test-row .mini-verdict{font-size:.68rem}
+.submit-test-row.pass{border-color:#2f6d50;background:#162a22}
+.submit-test-row.pass .mini-verdict{color:#72d7a5}
+.submit-test-row.fail{border-color:#713936;background:#2c1d20}
+.submit-test-row.fail .mini-verdict{color:#ff9992}
+.submit-test-row.wait{border-color:#354054;background:#182235}
+.submit-tests-count{color:#97a3b4}
+.editor-foot{
+  padding:8px 12px;
+  background:#f8fafb;
+  border-top:1px solid var(--line);
+  color:#7b8695;
+  font-size:.74rem;
+  line-height:1.5;
+}
+
+/* Dialog */
+dialog{
+  width:min(840px,92vw);
+  border:1px solid #d7dee5;
+  border-radius:8px;
+  box-shadow:0 24px 70px rgba(15,23,42,.22);
+}
+dialog::backdrop{background:rgba(15,23,42,.4)}
+.dialog-head{padding:12px 15px;background:#f8fafb;border-bottom:1px solid var(--line)}
+.dialog-head strong{color:#273345;font-size:.9rem}
+.dialog-body{padding:17px;background:#fff}
+.close-btn{min-height:32px;border:1px solid #cfd6de;border-radius:5px;background:#fff;color:#4b586a;font-size:.79rem}
+
+/* Responsive */
+@media(max-width:1120px){
+  .app{grid-template-columns:1fr;max-width:980px}
+  .right-panel{position:relative;top:0}
+  .editor-shell{height:560px;min-height:430px}
+  .brand-subtitle{display:none}
+}
+@media(max-width:720px){
+  .topbar{padding:8px 12px;gap:8px}
+  .brand{width:100%;margin-right:0}
+  .progress-wrap{margin-right:auto}
+  .app{padding:0 10px;margin-top:10px;gap:12px}
+  .problem,.results-wrap{padding:20px}
+  .terminal-workspace{grid-template-columns:1fr}
+  .submit-tests-panel{border-left:0;border-top:1px solid #2b3649}
+  .submit-tests-list{grid-template-columns:repeat(2,minmax(0,1fr));min-height:0;max-height:210px}
+  .sample-grid{grid-template-columns:1fr}
+  .hidden-test-io{grid-template-columns:1fr}
+}
+@media(max-width:520px){
+  .level-strip{grid-template-columns:repeat(4,1fr)}
+  .problem,.results-wrap{padding:17px 15px}
+  .problem h1{font-size:1.32rem}
+  .section-title{margin-top:24px}
+  .sample-explanation{padding:12px}
+  .demo-step{padding:12px}
+  .editor-head{align-items:center}
+  .editor-head strong{width:100%;margin-bottom:2px}
+  .btn{flex:1;min-width:64px;padding-left:8px;padding-right:8px}
+  .editor-shell{height:500px;min-height:380px}
+  .test-row{grid-template-columns:80px 1fr 45px}
+  .runtime{padding:0 8px}
+  .source-link{min-height:32px}
+}
+@media(prefers-reduced-motion:reduce){
+  *{scroll-behavior:auto!important;transition:none!important;animation:none!important}
+}
+
 </style>
 </head>
 <body>
 <header>
   <div class="topbar">
-    <div class="brand">h027 矩陣總和｜APCS 階梯式 Online Judge</div>
+    <div class="brand">
+      <span class="brand-code">h027</span>
+      <span class="brand-title">矩陣總和</span>
+      <span class="brand-subtitle">APCS 階梯式 Online Judge</span>
+    </div>
     <div class="progress-wrap"><span id="progressText">0 / 8 AC</span><div class="progress"><span id="progressBar"></span></div></div>
     <div class="runtime"><span id="runtimeDot" class="dot"></span><span id="runtimeText">Python 尚未載入</span></div>
     <button class="btn danger" id="clearAllBtn" type="button" title="清除所有題目草稿、AC 進度與提交紀錄">清除所有紀錄</button>
@@ -389,6 +927,10 @@ dialog::backdrop{background:rgba(0,0,0,.38)}
       </div>
       <div class="result-summary" id="resultSummary">按右側「執行」會使用公開範例輸入並把 stdout / Python 錯誤顯示在終端機；按「提交」才會評測全部測資，右側 TEST RESULTS 會同步顯示每筆 verdict。</div>
       <div class="test-list" id="testList"></div>
+      <details class="hidden-tests">
+        <summary>查看隱藏測資</summary>
+        <div class="hidden-tests-list" id="hiddenTestsList"></div>
+      </details>
       <details class="submission-history">
         <summary>本機提交紀錄</summary>
         <div class="history-list" id="historyList"></div>
@@ -423,7 +965,7 @@ dialog::backdrop{background:rgba(0,0,0,.38)}
       </aside>
     </div>
     <div class="editor-foot">
-      <span>Tab：4 空白｜Shift+Tab：反縮排｜行首 Backspace：一次刪除 4 空白｜Ctrl+/：切換單行／多行註解｜Ctrl+Space / Alt+/：補全｜Ctrl+Enter / F9：執行</span>
+      <span>Tab：移到下一個 4 欄定位點｜Shift+Tab：反縮排｜行首 Backspace：一次刪除 4 空白｜Ctrl+/：切換單行／多行註解｜Ctrl+Space / Alt+/：補全｜Ctrl+Enter / F9：執行</span>
       <span>執行使用公開範例輸入；提交後右側 TEST RESULTS 顯示所有測資 verdict｜每次上限 2.5 秒</span>
     </div>
   </section>
@@ -445,13 +987,12 @@ const TASKS = [
   id:1,
   title:'矩陣讀取與總和',
   difficulty:'基礎',
-  focus:'二維 list、輸入、sum',
   statement:`給定一個 <code>n × m</code> 的整數矩陣。這裡的意思是：矩陣共有 <code>n</code> 個橫列，每一列有 <code>m</code> 個整數。請把矩陣中的每一個元素都算進去，求出全部元素的總和。`,
   input:`第一行有兩個正整數 <code>n m</code>。接下來有 <code>n</code> 行，每行恰有 <code>m</code> 個整數；這些數字依序就是矩陣的每一個橫列。`,
   output:`輸出一個整數：矩陣中所有元素的總和。`,
   sampleIn:`2 3\n1 2 3\n4 5 6`,
   sampleOut:`21`,
-  sampleExplain:`<div class="demo-story" data-sample-demo><div class="demo-controls" aria-label="範例計算步驟控制"><button type="button" class="demo-btn" data-demo-prev>上一步</button><button type="button" class="demo-btn" data-demo-play>播放</button><button type="button" class="demo-btn" data-demo-next>下一步</button><span class="demo-status" data-demo-status aria-live="polite"></span></div><div class="demo-viewport"><section class="demo-step is-active" data-demo-step><p>第一行是 <code>2 3</code>，所以後面的資料要排成 2 個橫列，每列 3 個數字。</p><div class="visual-row center"><div class="matrix-card"><div class="matrix-label">2 × 3 矩陣</div><div class="matrix-grid" style="--cols:3"><span class="matrix-cell">1</span><span class="matrix-cell">2</span><span class="matrix-cell">3</span><span class="matrix-cell">4</span><span class="matrix-cell">5</span><span class="matrix-cell">6</span></div></div></div><div class="why-card"><span class="why-icon">為什麼</span><p>因為題目要求的是「矩陣全部元素的總和」，所以圖中的 6 個格子都必須算進去，沒有任何一格可以省略。</p></div></section><section class="demo-step" data-demo-step><p>先看每一列各自的總和，再把兩列合起來。</p><div class="row-sum-grid"><div class="row-sum"><span class="row-tag">第 0 列</span><span>1 + 2 + 3</span><strong>= 6</strong></div><div class="row-sum"><span class="row-tag">第 1 列</span><span>4 + 5 + 6</span><strong>= 15</strong></div></div><div class="reason-flow"><div class="reason-node"><strong>第一列</strong><small>總和 6</small></div><div class="reason-arrow">＋</div><div class="reason-node"><strong>第二列</strong><small>總和 15</small></div><div class="reason-arrow">→</div><div class="reason-node answer"><strong>全部元素</strong><small>6 + 15 = 21</small></div></div><div class="why-card"><span class="why-icon">原因</span><p>兩列剛好涵蓋整個矩陣，因此 <code>6 + 15</code> 就是全部 6 格的總和。</p></div></section><section class="demo-step" data-demo-step><p>全部元素相加得到 <code>21</code>，所以這筆範例輸出：</p><pre>21</pre></section></div></div>`,
+  sampleExplain:`<div class="demo-story"><div class="demo-viewport"><section class="demo-step"><p>第一行是 <code>2 3</code>，所以後面的資料要排成 2 個橫列，每列 3 個數字。</p><div class="visual-row center"><div class="matrix-card"><div class="matrix-label">2 × 3 矩陣</div><div class="matrix-grid" style="--cols:3"><span class="matrix-cell">1</span><span class="matrix-cell">2</span><span class="matrix-cell">3</span><span class="matrix-cell">4</span><span class="matrix-cell">5</span><span class="matrix-cell">6</span></div></div></div><div class="why-card"><p>因為題目要求的是「矩陣全部元素的總和」，所以圖中的 6 個格子都必須算進去，沒有任何一格可以省略。</p></div></section><section class="demo-step"><p>先看每一列各自的總和，再把兩列合起來。</p><div class="row-sum-grid"><div class="row-sum"><span class="row-tag">第 0 列</span><span>1 + 2 + 3</span><strong>= 6</strong></div><div class="row-sum"><span class="row-tag">第 1 列</span><span>4 + 5 + 6</span><strong>= 15</strong></div></div><div class="reason-flow"><div class="reason-node"><strong>第一列</strong><small>總和 6</small></div><div class="reason-arrow">＋</div><div class="reason-node"><strong>第二列</strong><small>總和 15</small></div><div class="reason-arrow">→</div><div class="reason-node answer"><strong>全部元素</strong><small>6 + 15 = 21</small></div></div><div class="why-card"><p>兩列剛好涵蓋整個矩陣，因此 <code>6 + 15</code> 就是全部 6 格的總和。</p></div></section><section class="demo-step"><p>全部元素相加得到 <code>21</code>，所以這筆範例輸出：</p><pre>21</pre></section></div></div>`,
   starter:'',
   answer:`n, m = map(int, input().split())\n\ntotal = 0\nfor _ in range(n):\n    row = list(map(int, input().split()))\n    total += sum(row)\n\nprint(total)`,
   tests:[
@@ -465,13 +1006,12 @@ const TASKS = [
   id:2,
   title:'兩矩陣的距離',
   difficulty:'基礎',
-  focus:'對應位置比較、計數器',
   statement:`給定兩個同樣大小的 <code>n × m</code> 整數矩陣 A 與 B。把兩個矩陣放在相同座標系下比較：若某一個座標上的兩個數值不同，這個座標就貢獻 1；若相同則貢獻 0。所有座標的貢獻加總後，稱為 A 與 B 的 <b>distance（距離）</b>。請輸出這個 distance。`,
   input:`第一行有兩個正整數 <code>n m</code>。接下來 <code>n</code> 行為矩陣 A，每行有 <code>m</code> 個整數；再接下來 <code>n</code> 行為矩陣 B，每行同樣有 <code>m</code> 個整數。`,
   output:`輸出一個整數：A 與 B 在相同座標上數值不同的位置數量。`,
   sampleIn:`2 3\n1 2 3\n4 5 6\n1 9 3\n0 5 7`,
   sampleOut:`3`,
-  sampleExplain:`<div class="demo-story" data-sample-demo><div class="demo-controls" aria-label="範例計算步驟控制"><button type="button" class="demo-btn" data-demo-prev>上一步</button><button type="button" class="demo-btn" data-demo-play>播放</button><button type="button" class="demo-btn" data-demo-next>下一步</button><span class="demo-status" data-demo-status aria-live="polite"></span></div><div class="demo-viewport"><section class="demo-step is-active" data-demo-step><p>A 與 B 都是 2 × 3，因此每一格都有唯一的「同座標」對象。</p><div class="visual-row"><div class="matrix-card"><div class="matrix-label">A</div><div class="matrix-grid" style="--cols:3"><span class="matrix-cell">1</span><span class="matrix-cell diff-cell">2</span><span class="matrix-cell">3</span><span class="matrix-cell diff-cell">4</span><span class="matrix-cell">5</span><span class="matrix-cell diff-cell">6</span></div></div><div class="big-arrow">↔</div><div class="matrix-card"><div class="matrix-label">B</div><div class="matrix-grid" style="--cols:3"><span class="matrix-cell">1</span><span class="matrix-cell diff-cell">9</span><span class="matrix-cell">3</span><span class="matrix-cell diff-cell">0</span><span class="matrix-cell">5</span><span class="matrix-cell diff-cell">7</span></div></div></div><div class="why-card"><span class="why-icon">為什麼</span><p>distance 比較的是「相同座標」是否相等，不是比較兩個矩陣的總和，也不是看兩數相差多少。</p></div></section><section class="demo-step" data-demo-step><p>六組對應位置逐格判斷：相同記 0，不同記 1。</p><div class="pair-grid"><div class="pair-card same"><div class="pair-values">1 <span class="pair-mark">=</span> 1</div><div class="pair-score">貢獻 0</div></div><div class="pair-card diff"><div class="pair-values">2 <span class="pair-mark">≠</span> 9</div><div class="pair-score">貢獻 1</div></div><div class="pair-card same"><div class="pair-values">3 <span class="pair-mark">=</span> 3</div><div class="pair-score">貢獻 0</div></div><div class="pair-card diff"><div class="pair-values">4 <span class="pair-mark">≠</span> 0</div><div class="pair-score">貢獻 1</div></div><div class="pair-card same"><div class="pair-values">5 <span class="pair-mark">=</span> 5</div><div class="pair-score">貢獻 0</div></div><div class="pair-card diff"><div class="pair-values">6 <span class="pair-mark">≠</span> 7</div><div class="pair-score">貢獻 1</div></div></div><div class="absolute-diff"><span>0</span> + <span>1</span> + <span>0</span> + <span>1</span> + <span>0</span> + <span>1</span> <strong>= 3</strong></div></section><section class="demo-step" data-demo-step><div class="reason-flow"><div class="reason-node bad"><strong>不同座標</strong><small>(0,1)、(1,0)、(1,2)</small></div><div class="reason-arrow">→</div><div class="reason-node answer"><strong>共有 3 格</strong><small>distance = 3</small></div></div><p>因此輸出：</p><pre>3</pre></section></div></div>`,
+  sampleExplain:`<div class="demo-story"><div class="demo-viewport"><section class="demo-step"><p>A 與 B 都是 2 × 3，因此每一格都有唯一的「同座標」對象。</p><div class="visual-row"><div class="matrix-card"><div class="matrix-label">A</div><div class="matrix-grid" style="--cols:3"><span class="matrix-cell">1</span><span class="matrix-cell diff-cell">2</span><span class="matrix-cell">3</span><span class="matrix-cell diff-cell">4</span><span class="matrix-cell">5</span><span class="matrix-cell diff-cell">6</span></div></div><div class="big-arrow">↔</div><div class="matrix-card"><div class="matrix-label">B</div><div class="matrix-grid" style="--cols:3"><span class="matrix-cell">1</span><span class="matrix-cell diff-cell">9</span><span class="matrix-cell">3</span><span class="matrix-cell diff-cell">0</span><span class="matrix-cell">5</span><span class="matrix-cell diff-cell">7</span></div></div></div><div class="why-card"><p>distance 比較的是「相同座標」是否相等，不是比較兩個矩陣的總和，也不是看兩數相差多少。</p></div></section><section class="demo-step"><p>六組對應位置逐格判斷：相同記 0，不同記 1。</p><div class="pair-grid"><div class="pair-card same"><div class="pair-values">1 <span class="pair-mark">=</span> 1</div><div class="pair-score">貢獻 0</div></div><div class="pair-card diff"><div class="pair-values">2 <span class="pair-mark">≠</span> 9</div><div class="pair-score">貢獻 1</div></div><div class="pair-card same"><div class="pair-values">3 <span class="pair-mark">=</span> 3</div><div class="pair-score">貢獻 0</div></div><div class="pair-card diff"><div class="pair-values">4 <span class="pair-mark">≠</span> 0</div><div class="pair-score">貢獻 1</div></div><div class="pair-card same"><div class="pair-values">5 <span class="pair-mark">=</span> 5</div><div class="pair-score">貢獻 0</div></div><div class="pair-card diff"><div class="pair-values">6 <span class="pair-mark">≠</span> 7</div><div class="pair-score">貢獻 1</div></div></div><div class="absolute-diff"><span>0</span> + <span>1</span> + <span>0</span> + <span>1</span> + <span>0</span> + <span>1</span> <strong>= 3</strong></div></section><section class="demo-step"><div class="reason-flow"><div class="reason-node bad"><strong>不同座標</strong><small>(0,1)、(1,0)、(1,2)</small></div><div class="reason-arrow">→</div><div class="reason-node answer"><strong>共有 3 格</strong><small>distance = 3</small></div></div><p>因此輸出：</p><pre>3</pre></section></div></div>`,
   starter:'',
   answer:`n, m = map(int, input().split())\nA = [list(map(int, input().split())) for _ in range(n)]\nB = [list(map(int, input().split())) for _ in range(n)]\n\ndis = 0\nfor i in range(n):\n    for j in range(m):\n        if A[i][j] != B[i][j]:\n            dis += 1\n\nprint(dis)`,
   tests:[
@@ -485,13 +1025,12 @@ const TASKS = [
   id:3,
   title:'指定子矩陣的總和',
   difficulty:'基礎+',
-  focus:'索引位移、巢狀迴圈',
   statement:`給定一個 <code>n × m</code> 的整數矩陣 B，並指定其中一個大小為 <code>s × t</code> 的連續矩形區塊。座標從 <code>0</code> 開始，左上角座標 <code>(x, y)</code> 表示從第 <code>x</code> 個橫列、第 <code>y</code> 個位置開始；區塊向下涵蓋 <code>s</code> 列、向右涵蓋 <code>t</code> 個元素。請輸出這個指定區塊內所有數字的總和。`,
   input:`第一行有兩個正整數 <code>n m</code>，表示 B 有 <code>n</code> 個橫列、每列 <code>m</code> 個整數。接下來 <code>n</code> 行為矩陣 B。最後一行有四個整數 <code>s t x y</code>：區塊大小是 <code>s × t</code>，左上角是 <code>(x, y)</code>。保證指定區塊不會超出 B。`,
   output:`輸出一個整數：題目指定的 <code>s × t</code> 區塊內所有元素的總和。`,
   sampleIn:`3 4\n1 2 3 4\n5 6 7 8\n9 1 2 3\n2 2 1 1`,
   sampleOut:`16`,
-  sampleExplain:`<div class="demo-story" data-sample-demo><div class="demo-controls" aria-label="範例計算步驟控制"><button type="button" class="demo-btn" data-demo-prev>上一步</button><button type="button" class="demo-btn" data-demo-play>播放</button><button type="button" class="demo-btn" data-demo-next>下一步</button><span class="demo-status" data-demo-status aria-live="polite"></span></div><div class="demo-viewport"><section class="demo-step is-active" data-demo-step><p>最後一行是 <code>2 2 1 1</code>：區塊大小為 2 × 2，左上角在 <code>(1,1)</code>。</p><div class="visual-row center"><div class="matrix-card"><div class="matrix-label">B（藍色為指定區塊）</div><div class="matrix-grid" style="--cols:4"><span class="matrix-cell">1</span><span class="matrix-cell">2</span><span class="matrix-cell">3</span><span class="matrix-cell">4</span><span class="matrix-cell">5</span><span class="matrix-cell focus-cell">6</span><span class="matrix-cell focus-cell">7</span><span class="matrix-cell">8</span><span class="matrix-cell">9</span><span class="matrix-cell focus-cell">1</span><span class="matrix-cell focus-cell">2</span><span class="matrix-cell">3</span></div></div></div><div class="why-card"><span class="why-icon">為什麼</span><p>左上角是第 1 列、第 1 行的位置；大小是 2 × 2，所以會占用第 1、2 列與第 1、2 行交會的四個格子。</p></div></section><section class="demo-step" data-demo-step><p>因此指定區塊就是 <code>6、7、1、2</code>，不是整個 B。</p><div class="reason-flow"><div class="reason-node"><strong>從 (1,1) 開始</strong><small>第一格是 6</small></div><div class="reason-arrow">→</div><div class="reason-node"><strong>向右 2 格</strong><small>6、7</small></div><div class="reason-arrow">→</div><div class="reason-node"><strong>向下 2 列</strong><small>再加入 1、2</small></div></div><div class="visual-row center"><div class="matrix-card"><div class="matrix-label">實際被取出的 2 × 2</div><div class="matrix-grid" style="--cols:2"><span class="matrix-cell focus-cell">6</span><span class="matrix-cell focus-cell">7</span><span class="matrix-cell focus-cell">1</span><span class="matrix-cell focus-cell">2</span></div></div></div></section><section class="demo-step" data-demo-step><p>只把這四格相加：</p><div class="row-sum-grid"><div class="row-sum"><span class="row-tag">上列</span><span>6 + 7</span><strong>= 13</strong></div><div class="row-sum"><span class="row-tag">下列</span><span>1 + 2</span><strong>= 3</strong></div></div><div class="absolute-diff"><span>13</span> + <span>3</span> <strong>= 16</strong></div><div class="why-card"><span class="why-icon">原因</span><p>題目要的是「指定子矩陣」的總和，因此 B 中其他沒有被藍色框到的格子都不計入。</p></div><pre>16</pre></section></div></div>`,
+  sampleExplain:`<div class="demo-story"><div class="demo-viewport"><section class="demo-step"><p>最後一行是 <code>2 2 1 1</code>：區塊大小為 2 × 2，左上角在 <code>(1,1)</code>。</p><div class="visual-row center"><div class="matrix-card"><div class="matrix-label">B（藍色為指定區塊）</div><div class="matrix-grid" style="--cols:4"><span class="matrix-cell">1</span><span class="matrix-cell">2</span><span class="matrix-cell">3</span><span class="matrix-cell">4</span><span class="matrix-cell">5</span><span class="matrix-cell focus-cell">6</span><span class="matrix-cell focus-cell">7</span><span class="matrix-cell">8</span><span class="matrix-cell">9</span><span class="matrix-cell focus-cell">1</span><span class="matrix-cell focus-cell">2</span><span class="matrix-cell">3</span></div></div></div><div class="why-card"><p>左上角是第 1 列、第 1 行的位置；大小是 2 × 2，所以會占用第 1、2 列與第 1、2 行交會的四個格子。</p></div></section><section class="demo-step"><p>因此指定區塊就是 <code>6、7、1、2</code>，不是整個 B。</p><div class="reason-flow"><div class="reason-node"><strong>從 (1,1) 開始</strong><small>第一格是 6</small></div><div class="reason-arrow">→</div><div class="reason-node"><strong>向右 2 格</strong><small>6、7</small></div><div class="reason-arrow">→</div><div class="reason-node"><strong>向下 2 列</strong><small>再加入 1、2</small></div></div><div class="visual-row center"><div class="matrix-card"><div class="matrix-label">實際被取出的 2 × 2</div><div class="matrix-grid" style="--cols:2"><span class="matrix-cell focus-cell">6</span><span class="matrix-cell focus-cell">7</span><span class="matrix-cell focus-cell">1</span><span class="matrix-cell focus-cell">2</span></div></div></div></section><section class="demo-step"><p>只把這四格相加：</p><div class="row-sum-grid"><div class="row-sum"><span class="row-tag">上列</span><span>6 + 7</span><strong>= 13</strong></div><div class="row-sum"><span class="row-tag">下列</span><span>1 + 2</span><strong>= 3</strong></div></div><div class="absolute-diff"><span>13</span> + <span>3</span> <strong>= 16</strong></div><div class="why-card"><p>題目要的是「指定子矩陣」的總和，因此 B 中其他沒有被藍色框到的格子都不計入。</p></div><pre>16</pre></section></div></div>`,
   starter:'',
   answer:`n, m = map(int, input().split())\nB = [list(map(int, input().split())) for _ in range(n)]\ns, t, x, y = map(int, input().split())\n\ntotal = 0\nfor i in range(s):\n    for j in range(t):\n        total += B[x + i][y + j]\n\nprint(total)`,
   tests:[
@@ -505,13 +1044,12 @@ const TASKS = [
   id:4,
   title:'A 與指定子矩陣的距離',
   difficulty:'中階',
-  focus:'索引對齊、distance',
   statement:`給定一個 <code>s × t</code> 的整數矩陣 A，以及一個較大的 <code>n × m</code> 整數矩陣 B。題目另外指定 B 中一個左上角座標 <code>(x, y)</code>；從這個位置向下取 <code>s</code> 列、向右取 <code>t</code> 個元素，可得到一個和 A 同樣大小的區塊。將 A 與這個區塊的相同相對位置逐格比較，數值不同的格子總數就是 <b>distance（距離）</b>。請輸出這個 distance。`,
   input:`第一行有四個正整數 <code>s t n m</code>。接下來 <code>s</code> 行為矩陣 A，每行 <code>t</code> 個整數；再接下來 <code>n</code> 行為矩陣 B，每行 <code>m</code> 個整數。最後一行有兩個整數 <code>x y</code>，表示從 B 的 <code>(x, y)</code> 開始取出一個 <code>s × t</code> 區塊。保證此區塊完整位於 B 內。`,
   output:`輸出一個整數：A 與 B 中指定區塊的 distance。`,
   sampleIn:`2 2 3 4\n1 2\n3 4\n0 1 2 0\n9 1 8 2\n7 3 4 5\n1 1`,
   sampleOut:`1`,
-  sampleExplain:`<div class="demo-story" data-sample-demo><div class="demo-controls" aria-label="範例計算步驟控制"><button type="button" class="demo-btn" data-demo-prev>上一步</button><button type="button" class="demo-btn" data-demo-play>播放</button><button type="button" class="demo-btn" data-demo-next>下一步</button><span class="demo-status" data-demo-status aria-live="polite"></span></div><div class="demo-viewport"><section class="demo-step is-active" data-demo-step><p>題目指定 B 的左上角 <code>(1,1)</code>，並要求取出和 A 一樣大的 2 × 2 區塊。</p><div class="visual-row"><div class="matrix-card"><div class="matrix-label">A</div><div class="matrix-grid" style="--cols:2"><span class="matrix-cell">1</span><span class="matrix-cell diff-cell">2</span><span class="matrix-cell">3</span><span class="matrix-cell">4</span></div></div><div class="big-arrow">↔</div><div class="matrix-card"><div class="matrix-label">B 中 (1,1) 的 2 × 2</div><div class="matrix-grid" style="--cols:2"><span class="matrix-cell">1</span><span class="matrix-cell diff-cell">8</span><span class="matrix-cell">3</span><span class="matrix-cell">4</span></div></div></div><div class="why-card"><span class="why-icon">為什麼</span><p>兩邊都是 2 × 2，所以左上比左上、右上比右上、左下比左下、右下比右下；每一格只和自己的對應位置比較。</p></div></section><section class="demo-step" data-demo-step><div class="pair-grid"><div class="pair-card same"><div class="pair-values">1 = 1</div><div class="pair-score">貢獻 0</div></div><div class="pair-card diff"><div class="pair-values">2 ≠ 8</div><div class="pair-score">貢獻 1</div></div><div class="pair-card same"><div class="pair-values">3 = 3</div><div class="pair-score">貢獻 0</div></div><div class="pair-card same"><div class="pair-values">4 = 4</div><div class="pair-score">貢獻 0</div></div></div><div class="why-card"><span class="why-icon">原因</span><p>只有右上角這一組不同，因此只有它讓 distance 增加 1；其他三組相同，不增加。</p></div></section><section class="demo-step" data-demo-step><div class="absolute-diff"><span>0</span> + <span>1</span> + <span>0</span> + <span>0</span> <strong>= 1</strong></div><p>所以 distance 是 <code>1</code>，輸出：</p><pre>1</pre></section></div></div>`,
+  sampleExplain:`<div class="demo-story"><div class="demo-viewport"><section class="demo-step"><p>題目指定 B 的左上角 <code>(1,1)</code>，並要求取出和 A 一樣大的 2 × 2 區塊。</p><div class="visual-row"><div class="matrix-card"><div class="matrix-label">A</div><div class="matrix-grid" style="--cols:2"><span class="matrix-cell">1</span><span class="matrix-cell diff-cell">2</span><span class="matrix-cell">3</span><span class="matrix-cell">4</span></div></div><div class="big-arrow">↔</div><div class="matrix-card"><div class="matrix-label">B 中 (1,1) 的 2 × 2</div><div class="matrix-grid" style="--cols:2"><span class="matrix-cell">1</span><span class="matrix-cell diff-cell">8</span><span class="matrix-cell">3</span><span class="matrix-cell">4</span></div></div></div><div class="why-card"><p>兩邊都是 2 × 2，所以左上比左上、右上比右上、左下比左下、右下比右下；每一格只和自己的對應位置比較。</p></div></section><section class="demo-step"><div class="pair-grid"><div class="pair-card same"><div class="pair-values">1 = 1</div><div class="pair-score">貢獻 0</div></div><div class="pair-card diff"><div class="pair-values">2 ≠ 8</div><div class="pair-score">貢獻 1</div></div><div class="pair-card same"><div class="pair-values">3 = 3</div><div class="pair-score">貢獻 0</div></div><div class="pair-card same"><div class="pair-values">4 = 4</div><div class="pair-score">貢獻 0</div></div></div><div class="why-card"><p>只有右上角這一組不同，因此只有它讓 distance 增加 1；其他三組相同，不增加。</p></div></section><section class="demo-step"><div class="absolute-diff"><span>0</span> + <span>1</span> + <span>0</span> + <span>0</span> <strong>= 1</strong></div><p>所以 distance 是 <code>1</code>，輸出：</p><pre>1</pre></section></div></div>`,
   starter:'',
   answer:`s, t, n, m = map(int, input().split())\nA = [list(map(int, input().split())) for _ in range(s)]\nB = [list(map(int, input().split())) for _ in range(n)]\nx, y = map(int, input().split())\n\ndis = 0\nfor i in range(s):\n    for j in range(t):\n        if A[i][j] != B[x + i][y + j]:\n            dis += 1\n\nprint(dis)`,
   tests:[
@@ -525,13 +1063,12 @@ const TASKS = [
   id:5,
   title:'合法的子矩陣左上角',
   difficulty:'中階',
-  focus:'合法範圍、雙層枚舉',
   statement:`有一個大小為 <code>n × m</code> 的大矩陣，以及一個大小為 <code>s × t</code> 的矩形區塊。座標從 <code>0</code> 開始。若把區塊的左上角放在 <code>(i, j)</code> 後，整個 <code>s × t</code> 區塊仍完全位於大矩陣內，則 <code>(i, j)</code> 稱為合法左上角。請依題目指定的順序輸出所有合法左上角：先由上到下，再由左到右。`,
   input:`一行有四個正整數 <code>s t n m</code>，其中 <code>s × t</code> 是要放入的區塊大小，<code>n × m</code> 是大矩陣大小，並保證 <code>s ≤ n</code>、<code>t ≤ m</code>。本題只需要根據尺寸判斷座標，不提供矩陣元素。`,
   output:`每個合法左上角輸出一行 <code>i j</code>。順序為先由上到下，再由左到右。`,
   sampleIn:`2 2 3 4`,
   sampleOut:`0 0\n0 1\n0 2\n1 0\n1 1\n1 2`,
-  sampleExplain:`<div class="demo-story" data-sample-demo><div class="demo-controls" aria-label="範例計算步驟控制"><button type="button" class="demo-btn" data-demo-prev>上一步</button><button type="button" class="demo-btn" data-demo-play>播放</button><button type="button" class="demo-btn" data-demo-next>下一步</button><span class="demo-status" data-demo-status aria-live="polite"></span></div><div class="demo-viewport"><section class="demo-step is-active" data-demo-step><p>大矩陣是 3 × 4，要放入的區塊是 2 × 2。左上角不能太靠右或太靠下，否則區塊會伸出邊界。</p><div class="shape-compare"><div class="shape-grid" style="--r:3;--c:4"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div><div class="big-arrow">容納</div><div class="shape-grid mini" style="--r:2;--c:2"><span></span><span></span><span></span><span></span></div></div><div class="why-card"><span class="why-icon">為什麼</span><p>若左上角放在第 2 列，2 × 2 區塊還需要下一列，但大矩陣已沒有第 3 列；同理，若放在第 3 行，還需要右邊一行，也會超出。</p></div></section><section class="demo-step" data-demo-step><p>因此合法起點只有列 <code>0、1</code>，以及行 <code>0、1、2</code>。下面六張小圖直接畫出六種放法。</p><div class="placement-gallery"><div class="placement-card"><strong>(0,0)</strong><div class="placement-grid"><span class="on"></span><span class="on"></span><span></span><span></span><span class="on"></span><span class="on"></span><span></span><span></span><span></span><span></span><span></span><span></span></div></div><div class="placement-card"><strong>(0,1)</strong><div class="placement-grid"><span></span><span class="on"></span><span class="on"></span><span></span><span></span><span class="on"></span><span class="on"></span><span></span><span></span><span></span><span></span><span></span></div></div><div class="placement-card"><strong>(0,2)</strong><div class="placement-grid"><span></span><span></span><span class="on"></span><span class="on"></span><span></span><span></span><span class="on"></span><span class="on"></span><span></span><span></span><span></span><span></span></div></div><div class="placement-card"><strong>(1,0)</strong><div class="placement-grid"><span></span><span></span><span></span><span></span><span class="on"></span><span class="on"></span><span></span><span></span><span class="on"></span><span class="on"></span><span></span><span></span></div></div><div class="placement-card"><strong>(1,1)</strong><div class="placement-grid"><span></span><span></span><span></span><span></span><span></span><span class="on"></span><span class="on"></span><span></span><span></span><span class="on"></span><span class="on"></span><span></span></div></div><div class="placement-card"><strong>(1,2)</strong><div class="placement-grid"><span></span><span></span><span></span><span></span><span></span><span></span><span class="on"></span><span class="on"></span><span></span><span></span><span class="on"></span><span class="on"></span></div></div></div><div class="reason-flow"><div class="reason-node"><strong>2 種列位置</strong><small>0、1</small></div><div class="reason-arrow">×</div><div class="reason-node"><strong>3 種行位置</strong><small>0、1、2</small></div><div class="reason-arrow">→</div><div class="reason-node answer"><strong>6 個合法座標</strong><small>全部都沒有超界</small></div></div></section><section class="demo-step" data-demo-step><p>輸出要求先由上到下，再由左到右，所以先列出第 0 列的三個起點，再列第 1 列的三個起點：</p><pre>0 0
+  sampleExplain:`<div class="demo-story"><div class="demo-viewport"><section class="demo-step"><p>大矩陣是 3 × 4，要放入的區塊是 2 × 2。左上角不能太靠右或太靠下，否則區塊會伸出邊界。</p><div class="shape-compare"><div class="shape-grid" style="--r:3;--c:4"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div><div class="big-arrow">容納</div><div class="shape-grid mini" style="--r:2;--c:2"><span></span><span></span><span></span><span></span></div></div><div class="why-card"><p>若左上角放在第 2 列，2 × 2 區塊還需要下一列，但大矩陣已沒有第 3 列；同理，若放在第 3 行，還需要右邊一行，也會超出。</p></div></section><section class="demo-step"><p>因此合法起點只有列 <code>0、1</code>，以及行 <code>0、1、2</code>。下面六張小圖直接畫出六種放法。</p><div class="placement-gallery"><div class="placement-card"><strong>(0,0)</strong><div class="placement-grid"><span class="on"></span><span class="on"></span><span></span><span></span><span class="on"></span><span class="on"></span><span></span><span></span><span></span><span></span><span></span><span></span></div></div><div class="placement-card"><strong>(0,1)</strong><div class="placement-grid"><span></span><span class="on"></span><span class="on"></span><span></span><span></span><span class="on"></span><span class="on"></span><span></span><span></span><span></span><span></span><span></span></div></div><div class="placement-card"><strong>(0,2)</strong><div class="placement-grid"><span></span><span></span><span class="on"></span><span class="on"></span><span></span><span></span><span class="on"></span><span class="on"></span><span></span><span></span><span></span><span></span></div></div><div class="placement-card"><strong>(1,0)</strong><div class="placement-grid"><span></span><span></span><span></span><span></span><span class="on"></span><span class="on"></span><span></span><span></span><span class="on"></span><span class="on"></span><span></span><span></span></div></div><div class="placement-card"><strong>(1,1)</strong><div class="placement-grid"><span></span><span></span><span></span><span></span><span></span><span class="on"></span><span class="on"></span><span></span><span></span><span class="on"></span><span class="on"></span><span></span></div></div><div class="placement-card"><strong>(1,2)</strong><div class="placement-grid"><span></span><span></span><span></span><span></span><span></span><span></span><span class="on"></span><span class="on"></span><span></span><span></span><span class="on"></span><span class="on"></span></div></div></div><div class="reason-flow"><div class="reason-node"><strong>2 種列位置</strong><small>0、1</small></div><div class="reason-arrow">×</div><div class="reason-node"><strong>3 種行位置</strong><small>0、1、2</small></div><div class="reason-arrow">→</div><div class="reason-node answer"><strong>6 個合法座標</strong><small>全部都沒有超界</small></div></div></section><section class="demo-step"><p>輸出要求先由上到下，再由左到右，所以先列出第 0 列的三個起點，再列第 1 列的三個起點：</p><pre>0 0
 0 1
 0 2
 1 0
@@ -550,13 +1087,12 @@ const TASKS = [
   id:6,
   title:'符合距離條件的數量',
   difficulty:'中階+',
-  focus:'四層迴圈、條件統計',
   statement:`給定一個 <code>s × t</code> 的整數矩陣 A，以及一個 <code>n × m</code> 的整數矩陣 B。B 中每一個能完整框出 <code>s × t</code> 大小的連續區塊都視為一個候選。把候選區塊與 A 的相同相對位置逐格比較，數值不同的格子數稱為 <b>distance（距離）</b>。另給非負整數 <code>r</code>；當某候選的 <code>distance ≤ r</code> 時，就稱它符合條件。請輸出符合條件的候選數量。`,
   input:`第一行有五個整數 <code>s t n m r</code>。A 的大小為 <code>s × t</code>，B 的大小為 <code>n × m</code>，且 <code>s ≤ n</code>、<code>t ≤ m</code>、<code>r ≥ 0</code>。接下來 <code>s</code> 行為 A，再接下來 <code>n</code> 行為 B。`,
   output:`輸出一個整數：B 中所有候選區塊裡，滿足 <code>distance ≤ r</code> 的數量。`,
   sampleIn:`2 2 3 4 1\n1 2\n3 4\n1 2 9 2\n3 4 3 4\n1 2 3 0`,
   sampleOut:`2`,
-  sampleExplain:`<div class="demo-story" data-sample-demo><div class="demo-controls" aria-label="範例計算步驟控制"><button type="button" class="demo-btn" data-demo-prev>上一步</button><button type="button" class="demo-btn" data-demo-play>播放</button><button type="button" class="demo-btn" data-demo-next>下一步</button><span class="demo-status" data-demo-status aria-live="polite"></span></div><div class="demo-viewport"><section class="demo-step is-active" data-demo-step><p>這筆範例中的 A 是真正的 <code>2 × 2</code> 矩陣，B 是 <code>3 × 4</code> 矩陣。候選區塊也必須是 2 列、2 行，不能只取一整列來比較。</p><div class="visual-row"><div class="matrix-card"><div class="matrix-label">A（2 × 2）</div><div class="matrix-grid" style="--cols:2"><span class="matrix-cell">1</span><span class="matrix-cell">2</span><span class="matrix-cell">3</span><span class="matrix-cell">4</span></div></div><div class="big-arrow">↔</div><div class="matrix-card"><div class="matrix-label">B（3 × 4）</div><div class="matrix-grid" style="--cols:4"><span class="matrix-cell">1</span><span class="matrix-cell">2</span><span class="matrix-cell">9</span><span class="matrix-cell">2</span><span class="matrix-cell">3</span><span class="matrix-cell">4</span><span class="matrix-cell">3</span><span class="matrix-cell">4</span><span class="matrix-cell">1</span><span class="matrix-cell">2</span><span class="matrix-cell">3</span><span class="matrix-cell">0</span></div></div></div><div class="why-card"><span class="why-icon">為什麼</span><p>A 有 2 列、2 行，所以每一個候選也要框出 B 中連續的 2 列、2 行，才能讓四個相對位置一一對應。</p></div></section><section class="demo-step" data-demo-step><p>B 中共有 6 個合法的 2 × 2 候選。下方每張卡都保留二維形狀；紅格代表該位置和 A 的相對位置數值不同。</p><div class="candidate-gallery"><div class="candidate-card"><div class="candidate-title">左上角 (0,0)</div><div class="matrix-card"><div class="matrix-grid compact" style="--cols:2"><span class="matrix-cell">1</span><span class="matrix-cell">2</span><span class="matrix-cell">3</span><span class="matrix-cell">4</span></div></div><div class="candidate-metrics"><strong>distance 0</strong></div></div><div class="candidate-card"><div class="candidate-title">左上角 (0,1)</div><div class="matrix-card"><div class="matrix-grid compact" style="--cols:2"><span class="matrix-cell diff-cell">2</span><span class="matrix-cell diff-cell">9</span><span class="matrix-cell diff-cell">4</span><span class="matrix-cell diff-cell">3</span></div></div><div class="candidate-metrics"><strong>distance 4</strong></div></div><div class="candidate-card"><div class="candidate-title">左上角 (0,2)</div><div class="matrix-card"><div class="matrix-grid compact" style="--cols:2"><span class="matrix-cell diff-cell">9</span><span class="matrix-cell">2</span><span class="matrix-cell">3</span><span class="matrix-cell">4</span></div></div><div class="candidate-metrics"><strong>distance 1</strong></div></div><div class="candidate-card"><div class="candidate-title">左上角 (1,0)</div><div class="matrix-card"><div class="matrix-grid compact" style="--cols:2"><span class="matrix-cell diff-cell">3</span><span class="matrix-cell diff-cell">4</span><span class="matrix-cell diff-cell">1</span><span class="matrix-cell diff-cell">2</span></div></div><div class="candidate-metrics"><strong>distance 4</strong></div></div><div class="candidate-card"><div class="candidate-title">左上角 (1,1)</div><div class="matrix-card"><div class="matrix-grid compact" style="--cols:2"><span class="matrix-cell diff-cell">4</span><span class="matrix-cell diff-cell">3</span><span class="matrix-cell diff-cell">2</span><span class="matrix-cell diff-cell">3</span></div></div><div class="candidate-metrics"><strong>distance 4</strong></div></div><div class="candidate-card"><div class="candidate-title">左上角 (1,2)</div><div class="matrix-card"><div class="matrix-grid compact" style="--cols:2"><span class="matrix-cell diff-cell">3</span><span class="matrix-cell diff-cell">4</span><span class="matrix-cell">3</span><span class="matrix-cell diff-cell">0</span></div></div><div class="candidate-metrics"><strong>distance 3</strong></div></div></div><div class="why-card"><span class="why-icon">原因</span><p>例如 (0,2) 取到的是 <code>[[9,2],[3,4]]</code>。只有左上角的 <code>9</code> 和 A 的 <code>1</code> 不同，其餘三格相同，所以它的 distance 是 1。</p></div></section><section class="demo-step" data-demo-step><p>這筆範例的門檻是 <code>r = 1</code>，因此只有 distance 為 0 或 1 的候選符合。</p><div class="threshold-line"><span class="threshold">規則：distance ≤ 1</span><span class="pass">(0,0)：0 ✓</span><span class="pass">(0,2)：1 ✓</span></div><div class="why-card"><span class="why-icon">原因</span><p>(0,0) 完全相同，所以 distance = 0；(0,2) 只有一格不同，所以 distance = 1。其餘四個候選都有 3 或 4 格不同，超過門檻。</p></div><div class="reason-flow"><div class="reason-node good"><strong>符合者</strong><small>(0,0)、(0,2)</small></div><div class="reason-arrow">→</div><div class="reason-node answer"><strong>共 2 個</strong><small>所以輸出 2</small></div></div><pre>2</pre></section></div></div>`,
+  sampleExplain:`<div class="demo-story"><div class="demo-viewport"><section class="demo-step"><p>這筆範例中的 A 是真正的 <code>2 × 2</code> 矩陣，B 是 <code>3 × 4</code> 矩陣。候選區塊也必須是 2 列、2 行，不能只取一整列來比較。</p><div class="visual-row"><div class="matrix-card"><div class="matrix-label">A（2 × 2）</div><div class="matrix-grid" style="--cols:2"><span class="matrix-cell">1</span><span class="matrix-cell">2</span><span class="matrix-cell">3</span><span class="matrix-cell">4</span></div></div><div class="big-arrow">↔</div><div class="matrix-card"><div class="matrix-label">B（3 × 4）</div><div class="matrix-grid" style="--cols:4"><span class="matrix-cell">1</span><span class="matrix-cell">2</span><span class="matrix-cell">9</span><span class="matrix-cell">2</span><span class="matrix-cell">3</span><span class="matrix-cell">4</span><span class="matrix-cell">3</span><span class="matrix-cell">4</span><span class="matrix-cell">1</span><span class="matrix-cell">2</span><span class="matrix-cell">3</span><span class="matrix-cell">0</span></div></div></div><div class="why-card"><p>A 有 2 列、2 行，所以每一個候選也要框出 B 中連續的 2 列、2 行，才能讓四個相對位置一一對應。</p></div></section><section class="demo-step"><p>B 中共有 6 個合法的 2 × 2 候選。下方每張卡都保留二維形狀；紅格代表該位置和 A 的相對位置數值不同。</p><div class="candidate-gallery"><div class="candidate-card"><div class="candidate-title">左上角 (0,0)</div><div class="matrix-card"><div class="matrix-grid compact" style="--cols:2"><span class="matrix-cell">1</span><span class="matrix-cell">2</span><span class="matrix-cell">3</span><span class="matrix-cell">4</span></div></div><div class="candidate-metrics"><strong>distance 0</strong></div></div><div class="candidate-card"><div class="candidate-title">左上角 (0,1)</div><div class="matrix-card"><div class="matrix-grid compact" style="--cols:2"><span class="matrix-cell diff-cell">2</span><span class="matrix-cell diff-cell">9</span><span class="matrix-cell diff-cell">4</span><span class="matrix-cell diff-cell">3</span></div></div><div class="candidate-metrics"><strong>distance 4</strong></div></div><div class="candidate-card"><div class="candidate-title">左上角 (0,2)</div><div class="matrix-card"><div class="matrix-grid compact" style="--cols:2"><span class="matrix-cell diff-cell">9</span><span class="matrix-cell">2</span><span class="matrix-cell">3</span><span class="matrix-cell">4</span></div></div><div class="candidate-metrics"><strong>distance 1</strong></div></div><div class="candidate-card"><div class="candidate-title">左上角 (1,0)</div><div class="matrix-card"><div class="matrix-grid compact" style="--cols:2"><span class="matrix-cell diff-cell">3</span><span class="matrix-cell diff-cell">4</span><span class="matrix-cell diff-cell">1</span><span class="matrix-cell diff-cell">2</span></div></div><div class="candidate-metrics"><strong>distance 4</strong></div></div><div class="candidate-card"><div class="candidate-title">左上角 (1,1)</div><div class="matrix-card"><div class="matrix-grid compact" style="--cols:2"><span class="matrix-cell diff-cell">4</span><span class="matrix-cell diff-cell">3</span><span class="matrix-cell diff-cell">2</span><span class="matrix-cell diff-cell">3</span></div></div><div class="candidate-metrics"><strong>distance 4</strong></div></div><div class="candidate-card"><div class="candidate-title">左上角 (1,2)</div><div class="matrix-card"><div class="matrix-grid compact" style="--cols:2"><span class="matrix-cell diff-cell">3</span><span class="matrix-cell diff-cell">4</span><span class="matrix-cell">3</span><span class="matrix-cell diff-cell">0</span></div></div><div class="candidate-metrics"><strong>distance 3</strong></div></div></div><div class="why-card"><p>例如 (0,2) 取到的是 <code>[[9,2],[3,4]]</code>。只有左上角的 <code>9</code> 和 A 的 <code>1</code> 不同，其餘三格相同，所以它的 distance 是 1。</p></div></section><section class="demo-step"><p>這筆範例的門檻是 <code>r = 1</code>，因此只有 distance 為 0 或 1 的候選符合。</p><div class="threshold-line"><span class="threshold">規則：distance ≤ 1</span><span class="pass">(0,0)：0 ✓</span><span class="pass">(0,2)：1 ✓</span></div><div class="why-card"><p>(0,0) 完全相同，所以 distance = 0；(0,2) 只有一格不同，所以 distance = 1。其餘四個候選都有 3 或 4 格不同，超過門檻。</p></div><div class="reason-flow"><div class="reason-node good"><strong>符合者</strong><small>(0,0)、(0,2)</small></div><div class="reason-arrow">→</div><div class="reason-node answer"><strong>共 2 個</strong><small>所以輸出 2</small></div></div><pre>2</pre></section></div></div>`,
   starter:'',
   answer:`s, t, n, m, r = map(int, input().split())\nA = [list(map(int, input().split())) for _ in range(s)]\nB = [list(map(int, input().split())) for _ in range(n)]\n\ncount = 0\nfor i in range(n - s + 1):\n    for j in range(m - t + 1):\n        dis = 0\n        for x in range(s):\n            for y in range(t):\n                if A[x][y] != B[i + x][j + y]:\n                    dis += 1\n        if dis <= r:\n            count += 1\n\nprint(count)`,
   tests:[
@@ -570,13 +1106,12 @@ const TASKS = [
   id:7,
   title:'符合者的最小總和差',
   difficulty:'進階',
-  focus:'同時維護 distance、sum、min',
   statement:`給定一個 <code>s × t</code> 的整數矩陣 A，以及一個 <code>n × m</code> 的整數矩陣 B。B 中每個可完整取出的 <code>s × t</code> 連續區塊都是候選。候選與 A 在相同相對位置上數值不同的格子數，稱為 <b>distance（距離）</b>；只有 <code>distance ≤ r</code> 的候選才符合條件。對每個符合者，再比較「A 的全部元素總和」與「該候選區塊的全部元素總和」，取兩者差的絕對值。請輸出所有符合者中最小的總和差；若沒有任何符合者，輸出 <code>-1</code>。`,
   input:`第一行有五個整數 <code>s t n m r</code>。A 的大小為 <code>s × t</code>，B 的大小為 <code>n × m</code>，且 <code>s ≤ n</code>、<code>t ≤ m</code>、<code>r ≥ 0</code>。接下來 <code>s</code> 行為 A，再接下來 <code>n</code> 行為 B。`,
   output:`若至少有一個候選滿足 <code>distance ≤ r</code>，輸出這些候選中最小的總和差；若沒有任何符合者，輸出 <code>-1</code>。`,
   sampleIn:`3 3 5 5 2\n1 2 1\n2 4 2\n2 4 5\n1 2 1 2 3\n2 4 2 4 2\n2 4 2 3 5\n3 2 4 2 0\n3 2 4 5 5`,
   sampleOut:`1`,
-  sampleExplain:`<div class="demo-story" data-sample-demo><div class="demo-controls" aria-label="範例計算步驟控制"><button type="button" class="demo-btn" data-demo-prev>上一步</button><button type="button" class="demo-btn" data-demo-play>播放</button><button type="button" class="demo-btn" data-demo-next>下一步</button><span class="demo-status" data-demo-status aria-live="polite"></span></div><div class="demo-viewport"><section class="demo-step is-active" data-demo-step><p>先算 A 的總和，因為後面要比較「A 的總和」和「候選區塊的總和」。</p><div class="visual-row center"><div class="matrix-card"><div class="matrix-label">A</div><div class="matrix-grid" style="--cols:3"><span class="matrix-cell">1</span><span class="matrix-cell">2</span><span class="matrix-cell">1</span><span class="matrix-cell">2</span><span class="matrix-cell">4</span><span class="matrix-cell">2</span><span class="matrix-cell">2</span><span class="matrix-cell">4</span><span class="matrix-cell">5</span></div></div></div><div class="row-sum-grid"><div class="row-sum"><span class="row-tag">第 0 列</span><span>1+2+1</span><strong>=4</strong></div><div class="row-sum"><span class="row-tag">第 1 列</span><span>2+4+2</span><strong>=8</strong></div><div class="row-sum"><span class="row-tag">第 2 列</span><span>2+4+5</span><strong>=11</strong></div></div><div class="absolute-diff"><span>4</span> + <span>8</span> + <span>11</span> <strong>= 23</strong></div></section><section class="demo-step" data-demo-step><p>這筆範例共有 9 個候選位置。先看 distance：只有綠色的三個位置不超過 <code>r = 2</code>。</p><div class="candidate-map"><div class="candidate-pos ok"><strong>(0,0)</strong><small>distance 1 ✓</small></div><div class="candidate-pos no"><strong>(0,1)</strong><small>distance 9</small></div><div class="candidate-pos ok"><strong>(0,2)</strong><small>distance 2 ✓</small></div><div class="candidate-pos no"><strong>(1,0)</strong><small>distance 6</small></div><div class="candidate-pos no"><strong>(1,1)</strong><small>distance 6</small></div><div class="candidate-pos no"><strong>(1,2)</strong><small>distance 8</small></div><div class="candidate-pos no"><strong>(2,0)</strong><small>distance 9</small></div><div class="candidate-pos ok"><strong>(2,1)</strong><small>distance 2 ✓</small></div><div class="candidate-pos no"><strong>(2,2)</strong><small>distance 8</small></div></div><div class="why-card"><span class="why-icon">為什麼</span><p>題目只允許 <code>distance ≤ 2</code> 的候選進入「總和差」比較，因此其餘六個即使總和很接近 A，也不能算進答案。</p></div></section><section class="demo-step" data-demo-step><p>只比較三個符合者的總和差：</p><div class="candidate-gallery"><div class="candidate-card"><div class="candidate-title">(0,0)</div><div class="candidate-metrics"><span>總和 20</span><strong>|23-20| = 3</strong></div></div><div class="candidate-card"><div class="candidate-title">(0,2)</div><div class="candidate-metrics"><span>總和 24</span><strong>|23-24| = 1</strong></div></div><div class="candidate-card"><div class="candidate-title">(2,1)</div><div class="candidate-metrics"><span>總和 28</span><strong>|23-28| = 5</strong></div></div></div><div class="why-card"><span class="why-icon">原因</span><p>「總和差」要取絕對值，所以 24 比 23 大 1，得到的仍是 <code>1</code>；最後在 <code>3、1、5</code> 中取最小值。</p></div><div class="reason-flow"><div class="reason-node"><strong>3</strong><small>(0,0)</small></div><div class="reason-node good"><strong>1</strong><small>(0,2) 最小</small></div><div class="reason-node"><strong>5</strong><small>(2,1)</small></div><div class="reason-arrow">→</div><div class="reason-node answer"><strong>答案 1</strong><small>最小總和差</small></div></div><pre>1</pre></section></div></div>`,
+  sampleExplain:`<div class="demo-story"><div class="demo-viewport"><section class="demo-step"><p>先算 A 的總和，因為後面要比較「A 的總和」和「候選區塊的總和」。</p><div class="visual-row center"><div class="matrix-card"><div class="matrix-label">A</div><div class="matrix-grid" style="--cols:3"><span class="matrix-cell">1</span><span class="matrix-cell">2</span><span class="matrix-cell">1</span><span class="matrix-cell">2</span><span class="matrix-cell">4</span><span class="matrix-cell">2</span><span class="matrix-cell">2</span><span class="matrix-cell">4</span><span class="matrix-cell">5</span></div></div></div><div class="row-sum-grid"><div class="row-sum"><span class="row-tag">第 0 列</span><span>1+2+1</span><strong>=4</strong></div><div class="row-sum"><span class="row-tag">第 1 列</span><span>2+4+2</span><strong>=8</strong></div><div class="row-sum"><span class="row-tag">第 2 列</span><span>2+4+5</span><strong>=11</strong></div></div><div class="absolute-diff"><span>4</span> + <span>8</span> + <span>11</span> <strong>= 23</strong></div></section><section class="demo-step"><p>這筆範例共有 9 個候選位置。先看 distance：只有綠色的三個位置不超過 <code>r = 2</code>。</p><div class="candidate-map"><div class="candidate-pos ok"><strong>(0,0)</strong><small>distance 1 ✓</small></div><div class="candidate-pos no"><strong>(0,1)</strong><small>distance 9</small></div><div class="candidate-pos ok"><strong>(0,2)</strong><small>distance 2 ✓</small></div><div class="candidate-pos no"><strong>(1,0)</strong><small>distance 6</small></div><div class="candidate-pos no"><strong>(1,1)</strong><small>distance 6</small></div><div class="candidate-pos no"><strong>(1,2)</strong><small>distance 8</small></div><div class="candidate-pos no"><strong>(2,0)</strong><small>distance 9</small></div><div class="candidate-pos ok"><strong>(2,1)</strong><small>distance 2 ✓</small></div><div class="candidate-pos no"><strong>(2,2)</strong><small>distance 8</small></div></div><div class="why-card"><p>題目只允許 <code>distance ≤ 2</code> 的候選進入「總和差」比較，因此其餘六個即使總和很接近 A，也不能算進答案。</p></div></section><section class="demo-step"><p>只比較三個符合者的總和差：</p><div class="candidate-gallery"><div class="candidate-card"><div class="candidate-title">(0,0)</div><div class="candidate-metrics"><span>總和 20</span><strong>|23-20| = 3</strong></div></div><div class="candidate-card"><div class="candidate-title">(0,2)</div><div class="candidate-metrics"><span>總和 24</span><strong>|23-24| = 1</strong></div></div><div class="candidate-card"><div class="candidate-title">(2,1)</div><div class="candidate-metrics"><span>總和 28</span><strong>|23-28| = 5</strong></div></div></div><div class="why-card"><p>「總和差」要取絕對值，所以 24 比 23 大 1，得到的仍是 <code>1</code>；最後在 <code>3、1、5</code> 中取最小值。</p></div><div class="reason-flow"><div class="reason-node"><strong>3</strong><small>(0,0)</small></div><div class="reason-node good"><strong>1</strong><small>(0,2) 最小</small></div><div class="reason-node"><strong>5</strong><small>(2,1)</small></div><div class="reason-arrow">→</div><div class="reason-node answer"><strong>答案 1</strong><small>最小總和差</small></div></div><pre>1</pre></section></div></div>`,
   starter:'',
   answer:`s, t, n, m, r = map(int, input().split())\nA = [list(map(int, input().split())) for _ in range(s)]\nB = [list(map(int, input().split())) for _ in range(n)]\n\nsum_a = sum(sum(row) for row in A)\nanswer = None\n\nfor i in range(n - s + 1):\n    for j in range(m - t + 1):\n        dis = 0\n        sum_b = 0\n        for x in range(s):\n            for y in range(t):\n                value = B[i + x][j + y]\n                sum_b += value\n                if A[x][y] != value:\n                    dis += 1\n\n        if dis <= r:\n            diff = abs(sum_a - sum_b)\n            if answer is None or diff < answer:\n                answer = diff\n\nprint(-1 if answer is None else answer)`,
   tests:[
@@ -590,13 +1125,12 @@ const TASKS = [
   id:8,
   title:'完整題：矩陣總和',
   difficulty:'APCS 原題',
-  focus:'完整整合、邊界條件',
   statement:`給定一個 <code>s × t</code> 的整數矩陣 A，以及一個 <code>n × m</code> 的整數矩陣 B。B 中每個可以完整取出 <code>s × t</code> 大小的連續區塊都稱為候選子矩陣。對任一候選，將它和 A 的相同相對位置逐格比較；數值不同的格子總數稱為 <b>distance（距離）</b>。若 <code>distance ≤ r</code>，此候選符合條件。你需要輸出兩個結果：第一，符合條件的候選數量；第二，在所有符合者中，<code>abs(sum(A) - sum(候選))</code> 的最小值。若沒有任何符合者，第二個結果為 <code>-1</code>。`,
   input:`第一行有五個整數 <code>s t n m r</code>，其中 A 的大小為 <code>s × t</code>、B 的大小為 <code>n × m</code>。接著 <code>s</code> 行為 A，再接著 <code>n</code> 行為 B。矩陣元素皆為 <code>0～9</code>；本模擬評測保證 <code>s ≤ n</code>、<code>t ≤ m</code> 且 <code>r ≥ 0</code>。`,
   output:`第一行輸出符合 <code>distance ≤ r</code> 的候選數量。第二行輸出所有符合者中的最小總和差；若沒有符合者，第二行輸出 <code>-1</code>。`,
   sampleIn:`3 3 5 5 2\n1 2 1\n2 4 2\n2 4 5\n1 2 1 2 3\n2 4 2 4 2\n2 4 2 3 5\n3 2 4 2 0\n3 2 4 5 5`,
   sampleOut:`3\n1`,
-  sampleExplain:`<div class="demo-story" data-sample-demo><div class="demo-controls" aria-label="範例計算步驟控制"><button type="button" class="demo-btn" data-demo-prev>上一步</button><button type="button" class="demo-btn" data-demo-play>播放</button><button type="button" class="demo-btn" data-demo-next>下一步</button><span class="demo-status" data-demo-status aria-live="polite"></span></div><div class="demo-viewport"><section class="demo-step is-active" data-demo-step><p>這筆範例中 A 是 3 × 3，總和為 <code>23</code>；B 是 5 × 5，所以每個候選都是 B 裡的一個 3 × 3 連續區塊。</p><div class="visual-row center"><div class="matrix-card"><div class="matrix-label">A</div><div class="matrix-grid" style="--cols:3"><span class="matrix-cell">1</span><span class="matrix-cell">2</span><span class="matrix-cell">1</span><span class="matrix-cell">2</span><span class="matrix-cell">4</span><span class="matrix-cell">2</span><span class="matrix-cell">2</span><span class="matrix-cell">4</span><span class="matrix-cell">5</span></div></div></div><div class="absolute-diff"><span>4</span> + <span>8</span> + <span>11</span> <strong>= 23</strong></div><div class="why-card"><span class="why-icon">為什麼</span><p>第二個輸出要比較候選的總和與 A 的總和，因此先知道 <code>sum(A)=23</code>，後面每個符合者才能計算總和差。</p></div></section><section class="demo-step" data-demo-step><p>第一個輸出先看 distance 門檻 <code>r = 2</code>。9 個候選位置中，只有三個符合：</p><div class="candidate-map"><div class="candidate-pos ok"><strong>(0,0)</strong><small>distance 1 ✓</small></div><div class="candidate-pos no"><strong>(0,1)</strong><small>distance 9</small></div><div class="candidate-pos ok"><strong>(0,2)</strong><small>distance 2 ✓</small></div><div class="candidate-pos no"><strong>(1,0)</strong><small>distance 6</small></div><div class="candidate-pos no"><strong>(1,1)</strong><small>distance 6</small></div><div class="candidate-pos no"><strong>(1,2)</strong><small>distance 8</small></div><div class="candidate-pos no"><strong>(2,0)</strong><small>distance 9</small></div><div class="candidate-pos ok"><strong>(2,1)</strong><small>distance 2 ✓</small></div><div class="candidate-pos no"><strong>(2,2)</strong><small>distance 8</small></div></div><div class="reason-flow"><div class="reason-node"><strong>規則</strong><small>distance ≤ 2</small></div><div class="reason-arrow">→</div><div class="reason-node good"><strong>符合 3 個</strong><small>(0,0)、(0,2)、(2,1)</small></div><div class="reason-arrow">→</div><div class="reason-node answer"><strong>第一行 = 3</strong><small>符合數量</small></div></div></section><section class="demo-step" data-demo-step><p>第二個輸出只看這三個符合者。它們的區塊總和分別是 20、24、28。</p><div class="candidate-gallery"><div class="candidate-card"><div class="candidate-title">(0,0)</div><div class="candidate-metrics"><span>distance 1</span><span>總和 20</span><strong>|23-20| = 3</strong></div></div><div class="candidate-card"><div class="candidate-title">(0,2)</div><div class="candidate-metrics"><span>distance 2</span><span>總和 24</span><strong>|23-24| = 1</strong></div></div><div class="candidate-card"><div class="candidate-title">(2,1)</div><div class="candidate-metrics"><span>distance 2</span><span>總和 28</span><strong>|23-28| = 5</strong></div></div></div><div class="why-card"><span class="why-icon">為什麼</span><p>第二個答案不是「distance 最小」，而是「符合者之中的總和差最小」。三個總和差是 <code>3、1、5</code>，所以最小值是 <code>1</code>。</p></div><div class="reason-flow"><div class="reason-node good"><strong>符合數量 3</strong><small>第一行</small></div><div class="reason-arrow">＋</div><div class="reason-node answer"><strong>最小總和差 1</strong><small>第二行</small></div></div><pre>3
+  sampleExplain:`<div class="demo-story"><div class="demo-viewport"><section class="demo-step"><p>這筆範例中 A 是 3 × 3，總和為 <code>23</code>；B 是 5 × 5，所以每個候選都是 B 裡的一個 3 × 3 連續區塊。</p><div class="visual-row center"><div class="matrix-card"><div class="matrix-label">A</div><div class="matrix-grid" style="--cols:3"><span class="matrix-cell">1</span><span class="matrix-cell">2</span><span class="matrix-cell">1</span><span class="matrix-cell">2</span><span class="matrix-cell">4</span><span class="matrix-cell">2</span><span class="matrix-cell">2</span><span class="matrix-cell">4</span><span class="matrix-cell">5</span></div></div></div><div class="absolute-diff"><span>4</span> + <span>8</span> + <span>11</span> <strong>= 23</strong></div><div class="why-card"><p>第二個輸出要比較候選的總和與 A 的總和，因此先知道 <code>sum(A)=23</code>，後面每個符合者才能計算總和差。</p></div></section><section class="demo-step"><p>第一個輸出先看 distance 門檻 <code>r = 2</code>。9 個候選位置中，只有三個符合：</p><div class="candidate-map"><div class="candidate-pos ok"><strong>(0,0)</strong><small>distance 1 ✓</small></div><div class="candidate-pos no"><strong>(0,1)</strong><small>distance 9</small></div><div class="candidate-pos ok"><strong>(0,2)</strong><small>distance 2 ✓</small></div><div class="candidate-pos no"><strong>(1,0)</strong><small>distance 6</small></div><div class="candidate-pos no"><strong>(1,1)</strong><small>distance 6</small></div><div class="candidate-pos no"><strong>(1,2)</strong><small>distance 8</small></div><div class="candidate-pos no"><strong>(2,0)</strong><small>distance 9</small></div><div class="candidate-pos ok"><strong>(2,1)</strong><small>distance 2 ✓</small></div><div class="candidate-pos no"><strong>(2,2)</strong><small>distance 8</small></div></div><div class="reason-flow"><div class="reason-node"><strong>規則</strong><small>distance ≤ 2</small></div><div class="reason-arrow">→</div><div class="reason-node good"><strong>符合 3 個</strong><small>(0,0)、(0,2)、(2,1)</small></div><div class="reason-arrow">→</div><div class="reason-node answer"><strong>第一行 = 3</strong><small>符合數量</small></div></div></section><section class="demo-step"><p>第二個輸出只看這三個符合者。它們的區塊總和分別是 20、24、28。</p><div class="candidate-gallery"><div class="candidate-card"><div class="candidate-title">(0,0)</div><div class="candidate-metrics"><span>distance 1</span><span>總和 20</span><strong>|23-20| = 3</strong></div></div><div class="candidate-card"><div class="candidate-title">(0,2)</div><div class="candidate-metrics"><span>distance 2</span><span>總和 24</span><strong>|23-24| = 1</strong></div></div><div class="candidate-card"><div class="candidate-title">(2,1)</div><div class="candidate-metrics"><span>distance 2</span><span>總和 28</span><strong>|23-28| = 5</strong></div></div></div><div class="why-card"><p>第二個答案不是「distance 最小」，而是「符合者之中的總和差最小」。三個總和差是 <code>3、1、5</code>，所以最小值是 <code>1</code>。</p></div><div class="reason-flow"><div class="reason-node good"><strong>符合數量 3</strong><small>第一行</small></div><div class="reason-arrow">＋</div><div class="reason-node answer"><strong>最小總和差 1</strong><small>第二行</small></div></div><pre>3
 1</pre></section></div></div>`,
   starter:'',
   answer:`s, t, n, m, r = map(int, input().split())\nA = [list(map(int, input().split())) for _ in range(s)]\nB = [list(map(int, input().split())) for _ in range(n)]\n\nsum_a = sum(sum(row) for row in A)\ncount = 0\nanswer = None\n\nfor i in range(n - s + 1):\n    for j in range(m - t + 1):\n        dis = 0\n        sum_b = 0\n\n        for x in range(s):\n            for y in range(t):\n                value = B[i + x][j + y]\n                sum_b += value\n                if A[x][y] != value:\n                    dis += 1\n\n        if dis <= r:\n            count += 1\n            diff = abs(sum_a - sum_b)\n            if answer is None or diff < answer:\n                answer = diff\n\nprint(count)\nprint(-1 if answer is None else answer)`,
@@ -632,6 +1166,7 @@ const runtimeText = $('#runtimeText');
 const progressBar = $('#progressBar');
 const progressText = $('#progressText');
 const historyList = $('#historyList');
+const hiddenTestsList = $('#hiddenTestsList');
 
 function esc(s){
   return String(s).replace(/[&<>"']/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
@@ -688,87 +1223,12 @@ function renderLevelStrip(){
 }
 
 
-let sampleDemoTimers=[];
-function clearSampleDemoTimers(){
-  sampleDemoTimers.forEach(id=>clearInterval(id));
-  sampleDemoTimers=[];
-}
-function initSampleDemos(){
-  clearSampleDemoTimers();
-  problemPane.querySelectorAll('[data-sample-demo]').forEach(demo=>{
-    const steps=[...demo.querySelectorAll('[data-demo-step]')];
-    const prev=demo.querySelector('[data-demo-prev]');
-    const next=demo.querySelector('[data-demo-next]');
-    const play=demo.querySelector('[data-demo-play]');
-    const status=demo.querySelector('[data-demo-status]');
-    const viewport=demo.querySelector('.demo-viewport');
-    const progressWrap=document.createElement('div');
-    progressWrap.className='demo-progress';
-    progressWrap.innerHTML='<div class="demo-progress-bar" data-demo-progress></div>';
-    const progressBar=progressWrap.firstElementChild;
-    const dots=document.createElement('div');
-    dots.className='demo-dots';
-    const dotButtons=steps.map((step,i)=>{
-      if(!step.querySelector('.demo-step-head')){
-        const head=document.createElement('div');
-        head.className='demo-step-head';
-        head.innerHTML=`<span class="demo-step-kicker">步驟 ${i+1}</span><span class="demo-step-hint">圖解重點</span>`;
-        step.prepend(head);
-      }
-      const firstText=((step.querySelector('p')||{}).textContent||`步驟 ${i+1}`).trim().replace(/\s+/g,' ');
-      const shortText=(firstText.length>18?firstText.slice(0,18)+'…':firstText) || `步驟 ${i+1}`;
-      const btn=document.createElement('button');
-      btn.type='button';
-      btn.className='demo-dot';
-      btn.innerHTML=`<small>${i+1}/${steps.length}</small><span>${esc(shortText)}</span>`;
-      btn.title=firstText;
-      dots.appendChild(btn);
-      return btn;
-    });
-    demo.insertBefore(progressWrap, viewport);
-    demo.insertBefore(dots, viewport);
-    let index=0;
-    let timer=null;
-    const stop=()=>{
-      if(timer!==null){clearInterval(timer);sampleDemoTimers=sampleDemoTimers.filter(x=>x!==timer);timer=null;}
-      play.textContent='播放';
-    };
-    const show=(newIndex)=>{
-      index=Math.max(0,Math.min(steps.length-1,newIndex));
-      steps.forEach((step,i)=>{
-        const active=i===index;
-        step.classList.toggle('is-active',active);
-        step.setAttribute('aria-current',active?'step':'false');
-      });
-      dotButtons.forEach((btn,i)=>btn.classList.toggle('is-active',i===index));
-      prev.disabled=index===0;
-      next.disabled=index===steps.length-1;
-      progressBar.style.width=`${((index+1)/steps.length)*100}%`;
-      status.textContent=`步驟 ${index+1} / ${steps.length}`;
-    };
-    dotButtons.forEach((btn,i)=>btn.addEventListener('click',()=>{stop();show(i)}));
-    prev.addEventListener('click',()=>{stop();show(index-1)});
-    next.addEventListener('click',()=>{stop();show(index+1)});
-    play.addEventListener('click',()=>{
-      if(timer!==null){stop();return;}
-      if(index===steps.length-1) show(0);
-      play.textContent='暫停';
-      timer=setInterval(()=>{
-        if(index>=steps.length-1){stop();return;}
-        show(index+1);
-      },1700);
-      sampleDemoTimers.push(timer);
-    });
-    show(0);
-  });
-}
-
 function renderProblem(){
   const t=TASKS[currentTaskIndex];
   problemPane.innerHTML=`
-    <div class="kicker">Level ${t.id} / ${TASKS.length}</div>
+    <div class="kicker">第 ${t.id} 階 / ${TASKS.length}</div>
     <h1>${esc(t.title)}</h1>
-    <div class="meta"><span class="chip">${esc(t.difficulty)}</span><span class="chip">${esc(t.focus)}</span><span class="chip">Python 3</span></div>
+    <div class="meta"><span>難度：${esc(t.difficulty)}</span><span>Python 3</span></div>
     <div class="section-title">題目</div>
     <p>${t.statement}</p>
     <div class="section-title">輸入</div>
@@ -782,12 +1242,11 @@ function renderProblem(){
     </div>
     <div class="section-title">範例測資講解</div>
     <div class="sample-explanation">
-      <div class="sample-explain-intro"><div><strong>圖解式範例講解</strong><small>以下只說明這筆範例資料如何一步一步得到輸出，搭配高亮、卡片與播放功能協助理解。</small></div><span class="intro-badge">圖示 / 動畫 / 步驟切換</span></div>
+      <div class="sample-explain-intro"><strong>範例說明</strong><small>依照這筆範例資料逐步說明計算過程。</small></div>
       <div class="sample-explanation-body">${t.sampleExplain}</div>
     </div>
-    ${t.id===8?`<div class="note">完整題採原題核心限制與輸出規格。本頁評測用精簡但涵蓋邊界的本機測資；要取得正式 ZeroJudge AC，仍可把同一份程式提交到原題。</div>`:''}
+    ${t.id===8?`<div class="note">本頁測資供練習使用；正式評測請提交至 ZeroJudge 原題。</div>`:''}
   `;
-  initSampleDemos();
 }
 
 function renderCompactTests(state='idle', results=[]){
@@ -842,13 +1301,31 @@ function renderTests(state='idle', results=[]){
   renderCompactTests(state,results);
 }
 
+function renderHiddenTests(){
+  const t=TASKS[currentTaskIndex];
+  const hidden=t.tests
+    .map((test,idx)=>({test,idx}))
+    .filter(item=>!item.test.public);
+  hiddenTestsList.innerHTML='';
+  if(!hidden.length){
+    hiddenTestsList.innerHTML='<div class="hidden-tests-empty">這一階沒有隱藏測資。</div>';
+    return;
+  }
+  hidden.forEach(({test,idx})=>{
+    const item=document.createElement('div');
+    item.className='hidden-test-item';
+    item.innerHTML=`<strong>#${idx+1} 隱藏測資</strong><div class="hidden-test-io"><div class="hidden-test-block"><span class="hidden-test-label">輸入</span><pre>${esc(test.input)}</pre></div><div class="hidden-test-block"><span class="hidden-test-label">輸出</span><pre>${esc(test.output)}</pre></div></div>`;
+    hiddenTestsList.appendChild(item);
+  });
+}
+
 function renderHistory(){
   const items=getHistory();
   historyList.innerHTML=items.length?'':'<div style="color:#777;font-size:.86rem">尚無提交紀錄</div>';
   items.forEach(h=>{
     const div=document.createElement('div');
     div.className='history-item';
-    div.innerHTML=`<span>${esc(h.time)}｜Level ${h.taskId}</span><strong>${esc(h.verdict)} ${h.passed}/${h.total}</strong>`;
+    div.innerHTML=`<span>${esc(h.time)}｜第 ${h.taskId} 階</span><strong>${esc(h.verdict)} ${h.passed}/${h.total}</strong>`;
     historyList.appendChild(div);
   });
 }
@@ -864,6 +1341,7 @@ function switchTask(idx){
   renderLevelStrip();
   renderProblem();
   renderTests();
+  renderHiddenTests();
   overallVerdict.className='status-pill'; overallVerdict.textContent='尚未提交';
   resultSummary.textContent='按右側「執行」會使用公開範例輸入並把 stdout / Python 錯誤顯示在終端機；按「提交」才會評測全部測資，右側 TEST RESULTS 會同步顯示每筆 verdict。';
   const t=TASKS[idx];
@@ -981,6 +1459,37 @@ function deleteTextareaIndentBackspace(textarea){
   return true;
 }
 
+function spacesToNextTabStop(column, tabSize=4){
+  const remainder=column % tabSize;
+  return remainder===0 ? tabSize : tabSize-remainder;
+}
+
+function textareaVisualColumn(text, offset, tabSize=4){
+  let column=0;
+  for(let i=0;i<offset;i++){
+    if(text[i]==='\t') column += spacesToNextTabStop(column,tabSize);
+    else column += 1;
+  }
+  return column;
+}
+
+function indentTextareaSelection(textarea){
+  const value=textarea.value;
+  const start=textarea.selectionStart;
+  const end=textarea.selectionEnd;
+  const lineStart=value.lastIndexOf('\n',Math.max(0,start-1))+1;
+  let blockEnd=end;
+  if(end>start && value[end-1]==='\n') blockEnd=end-1;
+  let lineEnd=value.indexOf('\n',blockEnd);
+  if(lineEnd===-1) lineEnd=value.length;
+  const block=value.slice(lineStart,lineEnd);
+  const indented=block.split('\n').map(line=>'    '+line).join('\n');
+  textarea.value=value.slice(0,lineStart)+indented+value.slice(lineEnd);
+  textarea.selectionStart=lineStart;
+  textarea.selectionEnd=lineStart+indented.length;
+  saveDraft();
+}
+
 function setupEditor(){
   const textarea=$('#codeEditor');
   if(window.CodeMirror){
@@ -1009,8 +1518,15 @@ function setupEditor(){
         'Ctrl-Enter':()=>runCurrentCode(),
         'F9':()=>runCurrentCode(),
         'Tab':cm=>{
-          if(cm.somethingSelected()) cm.indentSelection('add');
-          else cm.replaceSelection('    ','end','+input');
+          if(cm.somethingSelected()){
+            cm.indentSelection('add');
+          }else{
+            const cur=cm.getCursor();
+            const line=cm.getLine(cur.line);
+            const column=CodeMirror.countColumn(line,cur.ch,4);
+            const count=spacesToNextTabStop(column,4);
+            cm.replaceSelection(' '.repeat(count),'end','+input');
+          }
         },
         'Shift-Tab':cm=>cm.indentSelection('subtract')
       }
@@ -1038,8 +1554,19 @@ function setupEditor(){
       }else if(e.key==='Tab'){
         e.preventDefault();
         const start=textarea.selectionStart,end=textarea.selectionEnd;
-        textarea.value=textarea.value.slice(0,start)+'    '+textarea.value.slice(end);
-        textarea.selectionStart=textarea.selectionEnd=start+4;
+        if(start!==end){
+          indentTextareaSelection(textarea);
+        }else{
+          const value=textarea.value;
+          const lineStart=value.lastIndexOf('\n',Math.max(0,start-1))+1;
+          const linePrefix=value.slice(lineStart,start);
+          const column=textareaVisualColumn(linePrefix,linePrefix.length,4);
+          const count=spacesToNextTabStop(column,4);
+          const spaces=' '.repeat(count);
+          textarea.value=value.slice(0,start)+spaces+value.slice(end);
+          textarea.selectionStart=textarea.selectionEnd=start+count;
+          saveDraft();
+        }
       }else if(e.key==='Enter'){
         const start=textarea.selectionStart;
         const before=textarea.value.slice(0,start);
@@ -1057,7 +1584,7 @@ function setupEditor(){
 function updateTerminalMeta(){
   const t=TASKS[currentTaskIndex];
   const sample=t.tests.find(x=>x.public);
-  $('#terminalMeta').textContent=sample?`stdin: Level ${t.id} public sample input`:`stdin: empty`;
+  $('#terminalMeta').textContent=sample?`stdin: 第 ${t.id} 階公開範例輸入`:`stdin: empty`;
 }
 
 function resetTerminal(message='Ready. Press Run, Ctrl+Enter, or F9.'){
@@ -1090,7 +1617,7 @@ No code to run.`);
   }
   setBusy(true);
   writeTerminal(`$ python main.py
-[stdin: Level ${t.id} public sample input]
+[stdin: 第 ${t.id} 階公開範例輸入]
 
 Running...`);
   try{
@@ -1302,7 +1829,7 @@ async function judge(mode){
 
 $('#answerBtn').addEventListener('click',()=>{
   const t=TASKS[currentTaskIndex];
-  $('#answerTitle').textContent=`Level ${t.id} 參考答案｜${t.title}`;
+  $('#answerTitle').textContent=`第 ${t.id} 階參考答案｜${t.title}`;
   $('#answerCode').textContent=t.answer;
   $('#answerDialog').showModal();
 });
@@ -1317,11 +1844,11 @@ $('#resetBtn').addEventListener('click',()=>{
 $('#clearAllBtn').addEventListener('click',()=>{
   if(!confirm('確定清除所有紀錄？\n\n這會刪除 8 題的程式草稿、AC 進度與本機提交紀錄，且無法復原。')) return;
   clearAllLocalRecords();
-  clearSampleDemoTimers();
   currentTaskIndex=0;
   renderLevelStrip();
   renderProblem();
   renderTests();
+  renderHiddenTests();
   renderHistory();
   renderProgress();
   overallVerdict.className='status-pill';
@@ -1340,6 +1867,7 @@ setupEditor();
 renderLevelStrip();
 renderProblem();
 renderTests();
+renderHiddenTests();
 renderHistory();
 renderProgress();
 setCode(localStorage.getItem(draftKey(TASKS[0].id)) ?? TASKS[0].starter);
