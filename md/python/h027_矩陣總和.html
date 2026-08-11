@@ -1,0 +1,1349 @@
+<!doctype html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>h027 矩陣總和｜APCS 階梯式 Online Judge</title>
+<link rel="preconnect" href="https://cdnjs.cloudflare.com">
+<link rel="preconnect" href="https://cdn.jsdelivr.net">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.18/codemirror.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.18/addon/hint/show-hint.min.css">
+<style>
+:root{
+  --bg:#f5f5f3;
+  --paper:#ffffff;
+  --ink:#171717;
+  --muted:#676767;
+  --line:#d8d8d4;
+  --soft:#f0f0ed;
+  --soft2:#fafaf8;
+  --ok:#16734a;
+  --bad:#b42318;
+  --warn:#8a5a00;
+  --focus:#2e5b93;
+  --shadow:0 8px 24px rgba(0,0,0,.06);
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--ink);
+  font-family:"Noto Sans TC","Microsoft JhengHei",system-ui,sans-serif;
+  line-height:1.65;
+}
+button,select{font:inherit}
+button{cursor:pointer}
+header{
+  position:sticky;
+  top:0;
+  z-index:40;
+  background:rgba(255,255,255,.96);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--line);
+}
+.topbar{
+  max-width:1500px;
+  margin:auto;
+  padding:10px 16px;
+  display:flex;
+  align-items:center;
+  gap:12px;
+  flex-wrap:wrap;
+}
+.brand{font-weight:850;letter-spacing:.01em;margin-right:auto}
+.source-link{color:#333;text-decoration:none;border-bottom:1px dotted #777}
+.source-link:hover{color:#000}
+.runtime{
+  display:inline-flex;
+  align-items:center;
+  gap:7px;
+  color:var(--muted);
+  font-size:.9rem;
+}
+.dot{width:9px;height:9px;border-radius:999px;background:#aaa;display:inline-block}
+.dot.ready{background:var(--ok)}
+.dot.busy{background:var(--warn)}
+.dot.error{background:var(--bad)}
+.progress-wrap{display:flex;align-items:center;gap:8px;font-size:.9rem;color:var(--muted)}
+.progress{width:130px;height:8px;border-radius:999px;background:#e5e5e1;overflow:hidden}
+.progress>span{display:block;height:100%;width:0;background:#292929;transition:width .25s ease}
+.app{
+  max-width:1500px;
+  margin:18px auto 50px;
+  padding:0 16px;
+  display:grid;
+  grid-template-columns:minmax(460px,.95fr) minmax(520px,1.05fr);
+  gap:16px;
+  align-items:start;
+}
+.panel{
+  background:var(--paper);
+  border:1px solid var(--line);
+  border-radius:12px;
+  box-shadow:var(--shadow);
+  overflow:hidden;
+}
+.left-panel{min-height:calc(100vh - 100px)}
+.right-panel{position:sticky;top:75px;min-height:calc(100vh - 96px)}
+.level-strip{
+  display:grid;
+  grid-template-columns:repeat(8,1fr);
+  gap:6px;
+  padding:12px;
+  border-bottom:1px solid var(--line);
+  background:var(--soft2);
+}
+.level-btn{
+  border:1px solid #c9c9c4;
+  background:#fff;
+  border-radius:8px;
+  min-height:43px;
+  font-weight:800;
+  color:#333;
+}
+.level-btn:hover{background:#f1f1ee}
+.level-btn.active{background:#222;color:#fff;border-color:#222}
+.level-btn.accepted:not(.active){border-color:#91c9ae;color:var(--ok);background:#f4fbf7}
+.problem{padding:24px}
+.problem h1{font-size:1.45rem;line-height:1.35;margin:0 0 5px}
+.kicker{font-size:.85rem;color:var(--muted);font-weight:750;letter-spacing:.05em;text-transform:uppercase}
+.meta{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 20px}
+.chip{border:1px solid var(--line);background:#fafafa;border-radius:999px;padding:3px 9px;font-size:.82rem;color:#555}
+.section-title{font-weight:850;font-size:1rem;margin:24px 0 8px}
+.problem p{margin:.4rem 0;color:#333}
+.problem code,.dialog-body code{
+  font-family:"Cascadia Mono","Consolas",monospace;
+  background:#f0f0ed;
+  border-radius:4px;
+  padding:.08em .3em;
+}
+pre{
+  margin:9px 0;
+  white-space:pre-wrap;
+  word-break:break-word;
+  background:#f7f7f5;
+  border:1px solid #deded9;
+  border-radius:8px;
+  padding:13px 14px;
+  font-family:"Cascadia Mono","Consolas",monospace;
+  font-size:.91rem;
+  line-height:1.55;
+}
+.sample-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.sample-box h4{font-size:.85rem;margin:0 0 5px;color:var(--muted)}
+.sample-explanation{margin-top:8px;border:1px solid var(--line);border-radius:10px;background:linear-gradient(180deg,#fff 0%,#fcfcfa 100%);padding:12px 14px;color:#3d3d3d;box-shadow:0 10px 22px rgba(0,0,0,.03)}
+.sample-explain-intro{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;flex-wrap:wrap;padding:10px 12px;border:1px dashed #d7d7d1;border-radius:10px;background:#fff;margin-bottom:12px}
+.sample-explain-intro strong{display:block;font-size:.96rem;color:#222}
+.sample-explain-intro small{display:block;color:#666;margin-top:2px;line-height:1.45}
+.sample-explain-intro .intro-badge{border:1px solid #c9d7e7;background:#f4f8fd;color:#35506e;border-radius:999px;padding:4px 10px;font-size:.76rem;font-weight:850;white-space:nowrap}
+.sample-explanation-body{color:#3d3d3d}
+.sample-explanation-body p{margin:.35rem 0 .7rem}
+.sample-explanation-body ol,.sample-explanation-body ul{margin:.4rem 0 .8rem;padding-left:1.5rem}
+.sample-explanation-body li{margin:.25rem 0}
+.sample-explanation-body table{width:100%;border-collapse:collapse;margin:9px 0;font-size:.9rem}
+.sample-explanation-body th,.sample-explanation-body td{border:1px solid #d9d9d4;padding:6px 8px;text-align:left;vertical-align:top}
+.sample-explanation-body th{background:#f5f5f2}
+
+/* 範例測資圖解：只呈現該筆範例的資料與計算，不呈現解題策略。 */
+.demo-story{display:grid;gap:12px}
+.demo-controls{display:flex;align-items:center;gap:7px;flex-wrap:wrap;padding:10px 12px;border:1px solid #e5e5e0;border-radius:10px;background:#fff}
+.demo-btn{border:1px solid #bdbdb8;background:#fff;border-radius:7px;padding:5px 9px;font-size:.82rem;font-weight:750;color:#333}
+.demo-btn:hover{background:#f2f2ef}
+.demo-btn:disabled{opacity:.42;cursor:default}
+.demo-status{margin-left:auto;color:#777;font-size:.82rem;font-variant-numeric:tabular-nums}
+.demo-progress{height:8px;border-radius:999px;background:#ecece7;overflow:hidden}
+.demo-progress-bar{height:100%;width:0%;background:linear-gradient(90deg,#9fb8d3,#6b92bd);transition:width .25s ease}
+.demo-dots{display:grid;grid-template-columns:repeat(auto-fit,minmax(86px,1fr));gap:8px}
+.demo-dot{border:1px solid #d8d8d2;background:#fff;border-radius:9px;padding:8px 10px;text-align:left;cursor:pointer;display:grid;gap:2px;transition:border-color .2s ease,background .2s ease,box-shadow .2s ease}
+.demo-dot:hover{background:#f7f9fc}
+.demo-dot small{font-size:.72rem;color:#6a6a6a;font-family:"Cascadia Mono","Consolas",monospace}
+.demo-dot span{font-size:.78rem;font-weight:800;color:#333;line-height:1.3}
+.demo-dot.is-active{border-color:#9fb8d3;background:#fbfdff;box-shadow:0 0 0 3px rgba(46,91,147,.07)}
+.demo-viewport{display:grid;gap:10px}
+.demo-step{border:1px solid #e3e3de;border-radius:12px;padding:12px 13px;background:linear-gradient(180deg,#fff 0%,#fcfcfa 100%);transition:border-color .2s ease,box-shadow .2s ease,background .2s ease,transform .2s ease;position:relative;overflow:hidden}
+.demo-step::after{content:'';position:absolute;inset:0 auto 0 0;width:4px;background:transparent;transition:background .2s ease}
+.demo-step.is-active{border-color:#9fb8d3;background:#fbfdff;box-shadow:0 0 0 3px rgba(46,91,147,.07),0 12px 24px rgba(18,37,63,.05);transform:translateY(-1px);animation:demoStepIn .3s ease both}
+.demo-step.is-active::after{background:linear-gradient(180deg,#9fb8d3,#6b92bd)}
+.demo-step-head{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap;margin-bottom:8px}
+.demo-step-kicker{display:inline-flex;align-items:center;gap:6px;border:1px solid #c9d7e7;background:#f4f8fd;color:#35506e;border-radius:999px;padding:4px 9px;font-size:.75rem;font-weight:850}
+.demo-step-hint{font-size:.75rem;color:#7a7a7a}
+@keyframes demoStepIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.visual-row{display:flex;gap:14px;align-items:center;justify-content:center;flex-wrap:wrap;margin:12px 0}
+.visual-row.center{justify-content:center}
+.matrix-card{display:inline-grid;gap:6px;justify-items:center}
+.matrix-label{font-size:.82rem;font-weight:800;color:#555}
+.matrix-grid{display:grid;grid-template-columns:repeat(var(--cols),44px);gap:4px;padding:7px;border:1px solid #d4d4ce;border-radius:9px;background:#fff}
+.matrix-grid.compact{grid-template-columns:repeat(var(--cols),32px);gap:3px;padding:5px}
+.matrix-cell{display:grid;place-items:center;min-height:38px;border:1px solid #deded8;border-radius:6px;background:#f8f8f5;font-family:"Cascadia Mono","Consolas",monospace;font-weight:750}
+.matrix-grid.compact .matrix-cell{min-height:29px;font-size:.82rem}
+.matrix-cell.diff-cell{background:#fff0ef;border-color:#dfa49e;animation:diffPulse 1.8s ease-in-out infinite}
+.matrix-cell.focus-cell{background:#eef5ff;border-color:#8cb0db;box-shadow:inset 0 0 0 1px #8cb0db}
+@keyframes diffPulse{0%,100%{box-shadow:none}50%{box-shadow:0 0 0 3px rgba(180,35,24,.12)}}
+.big-arrow{font-size:1.45rem;color:#777;font-weight:800}
+.legend,.difference-list{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin:8px 0}
+.legend span,.difference-list span{border:1px solid #deded9;border-radius:999px;padding:4px 8px;background:#fff;font-size:.82rem}
+.visual-caption{text-align:center;color:#666!important;font-size:.86rem}
+.calc-flow{display:flex;align-items:center;justify-content:center;gap:7px;flex-wrap:wrap;margin:14px 0;font-family:"Cascadia Mono","Consolas",monospace}
+.calc-flow span{background:#fff;border:1px solid #d9d9d4;border-radius:7px;padding:6px 9px;font-weight:800}
+.calc-flow.small span{font-size:.84rem}
+.calc-flow b{color:#777}
+.calc-result{text-align:center;font-weight:900;font-size:1.05rem;margin:8px 0}
+.pulse-soft{animation:softPulse 1.5s ease-in-out infinite}
+@keyframes softPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.035)}}
+.shape-compare{display:flex;justify-content:center;align-items:center;gap:15px;flex-wrap:wrap;margin:14px 0}
+.shape-grid{display:grid;grid-template-columns:repeat(var(--c),28px);grid-template-rows:repeat(var(--r),28px);gap:3px;padding:6px;border:1px solid #d4d4cf;border-radius:8px;background:#fff}
+.shape-grid span{border:1px solid #d9d9d4;border-radius:4px;background:#f4f4f1}
+.shape-grid.mini span{background:#eef5ff;border-color:#a9c2de}
+.coord-map{display:grid;grid-template-columns:repeat(3,minmax(74px,1fr));gap:8px;max-width:420px;margin:12px auto}
+.coord-chip{display:grid;place-items:center;border:1px solid #c9d7e7;background:#f4f8fd;border-radius:8px;padding:10px;font-family:"Cascadia Mono","Consolas",monospace;font-weight:800}
+.stagger{animation:chipIn .45s ease both;animation-delay:var(--delay)}
+@keyframes chipIn{from{opacity:0;transform:scale(.9)}to{opacity:1;transform:scale(1)}}
+.number-strip{display:flex;gap:4px;justify-content:center;flex-wrap:wrap;margin:10px 0}
+.number-strip span{min-width:31px;text-align:center;padding:5px 6px;border:1px solid #d7d7d2;border-radius:6px;background:#fff;font-family:"Cascadia Mono","Consolas",monospace;font-weight:800}
+.window-gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(145px,1fr));gap:8px;margin:12px 0}
+.window-card{border:1px solid #deded8;border-radius:9px;padding:8px;background:#fff;display:grid;gap:6px}
+.window-card.ok-card{border-color:#8bc2a4;background:#f6fbf8;animation:okGlow 2.2s ease-in-out infinite}
+@keyframes okGlow{0%,100%{box-shadow:none}50%{box-shadow:0 0 0 3px rgba(22,115,74,.1)}}
+.window-head,.window-foot{display:flex;justify-content:space-between;gap:6px;font-size:.78rem;color:#666;font-weight:750}
+.window-card .matrix-card{justify-self:center}
+.qualify-row{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin:12px 0}
+.qualify-chip{padding:7px 11px;border:1px solid #8bc2a4;border-radius:999px;background:#f3fbf6;color:#176644;font-weight:850;animation:softPulse 1.8s ease-in-out infinite}
+.candidate-gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(165px,1fr));gap:10px;margin:12px 0}
+.candidate-card{border:1px solid #d8d8d3;border-radius:10px;background:#fff;padding:10px;display:grid;gap:8px}
+.candidate-card .matrix-card{justify-self:center}
+.candidate-title{text-align:center;font-weight:850;font-size:.86rem}
+.candidate-metrics{display:flex;gap:5px;justify-content:center;flex-wrap:wrap;font-size:.76rem}
+.candidate-metrics span,.candidate-metrics strong{border-radius:999px;padding:3px 6px;background:#f3f3f0;border:1px solid #ddd}
+.candidate-metrics strong{background:#eef5ff;border-color:#bdd0e6}
+.difference-bars{display:grid;gap:7px;max-width:420px;margin:12px auto}
+.difference-bars>div{display:grid;grid-template-columns:34px 1fr;align-items:center;gap:8px}
+.difference-bars span{text-align:right;font-family:"Cascadia Mono","Consolas",monospace;font-weight:850}
+.difference-bars i{height:12px;width:var(--w);border-radius:999px;background:#c7c7c1;display:block;animation:barGrow .55s ease both;transform-origin:left}
+.difference-bars .best i{background:#8bc2a4}
+.difference-bars .best span{color:#176644}
+@keyframes barGrow{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+.final-output-visual{display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap;margin:15px 0}
+.final-output-visual>div:not(.big-arrow){min-width:120px;text-align:center;border:1px solid #d7d7d2;border-radius:10px;background:#fff;padding:10px}
+.final-output-visual small{display:block;color:#666}
+.final-output-visual strong{display:block;font-size:1.6rem;margin-top:2px}
+@media (max-width:620px){.matrix-grid{grid-template-columns:repeat(var(--cols),36px)}.matrix-cell{min-height:34px}.coord-map{grid-template-columns:repeat(2,1fr)}.demo-status{width:100%;margin-left:0}.demo-dots{grid-template-columns:1fr 1fr}.window-gallery,.candidate-gallery{grid-template-columns:1fr 1fr}}
+@media (prefers-reduced-motion:reduce){.demo-step.is-active,.matrix-cell.diff-cell,.pulse-soft,.stagger,.window-card.ok-card,.qualify-chip,.difference-bars i{animation:none!important}.demo-progress-bar{transition:none!important}}
+
+/* 原因導向的範例圖解：每個結論都附上「為什麼」。 */
+.why-card{display:grid;grid-template-columns:auto 1fr;gap:9px;align-items:start;margin:10px 0;padding:10px 11px;border:1px solid #d9e1ea;border-radius:10px;background:#f8fbff}
+.why-icon{display:grid;place-items:center;min-width:42px;height:27px;padding:0 7px;border-radius:999px;background:#eaf2fb;color:#35506e;font-size:.75rem;font-weight:900}
+.why-card p{margin:0!important;color:#394a5d}
+.reason-flow{display:flex;align-items:stretch;justify-content:center;gap:7px;flex-wrap:wrap;margin:12px 0}
+.reason-node{min-width:112px;max-width:220px;display:grid;align-content:center;gap:3px;border:1px solid #d9d9d4;border-radius:10px;background:#fff;padding:9px 10px;text-align:center}
+.reason-node strong{font-size:.9rem}.reason-node small{color:#666;font-size:.76rem;line-height:1.35}
+.reason-node.good{border-color:#9ac8ae;background:#f5fbf7}.reason-node.bad{border-color:#e0aaa4;background:#fff7f6}.reason-node.answer{border-color:#a9c2de;background:#f4f8fd}
+.reason-arrow{display:grid;place-items:center;color:#777;font-size:1.2rem;font-weight:900;animation:arrowNudge 1.6s ease-in-out infinite}
+@keyframes arrowNudge{0%,100%{transform:translateX(0)}50%{transform:translateX(3px)}}
+.pair-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(138px,1fr));gap:8px;margin:12px 0}
+.pair-card{border:1px solid #d9d9d4;border-radius:9px;background:#fff;padding:8px;display:grid;gap:6px}
+.pair-card .pair-values{display:flex;align-items:center;justify-content:center;gap:7px;font-family:"Cascadia Mono","Consolas",monospace;font-weight:850}
+.pair-card .pair-score{text-align:center;font-size:.76rem;color:#666}
+.pair-card.diff{border-color:#e0aaa4;background:#fff8f7}.pair-card.same{border-color:#b9d6c5;background:#f8fcfa}
+.pair-mark{font-size:1rem;font-weight:900}.pair-card.diff .pair-mark{color:#9b3027}.pair-card.same .pair-mark{color:#176644}
+.row-sum-grid{display:grid;gap:7px;max-width:480px;margin:12px auto}
+.row-sum{display:grid;grid-template-columns:auto 1fr auto;gap:8px;align-items:center;border:1px solid #ddd;border-radius:9px;background:#fff;padding:8px 10px;font-family:"Cascadia Mono","Consolas",monospace}
+.row-sum .row-tag{font-family:inherit;font-weight:850;color:#555}.row-sum strong{font-size:.95rem}
+.placement-gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(125px,1fr));gap:8px;margin:12px 0}
+.placement-card{border:1px solid #ddd;border-radius:9px;background:#fff;padding:8px;display:grid;gap:6px;justify-items:center}
+.placement-card strong{font-size:.78rem}.placement-grid{display:grid;grid-template-columns:repeat(4,20px);gap:2px;padding:4px;border:1px solid #d7d7d2;border-radius:6px}
+.placement-grid span{width:20px;height:20px;border:1px solid #e0e0db;border-radius:3px;background:#f5f5f2}.placement-grid span.on{background:#dbe9f8;border-color:#8cb0db;animation:focusGlow 1.8s ease-in-out infinite}
+@keyframes focusGlow{0%,100%{box-shadow:none}50%{box-shadow:0 0 0 2px rgba(60,105,155,.12)}}
+.threshold-line{display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap;margin:12px 0}
+.threshold-line .threshold{border:1px solid #a9c2de;background:#f4f8fd;border-radius:999px;padding:6px 10px;font-weight:900}.threshold-line .pass{border:1px solid #9ac8ae;background:#f5fbf7;color:#176644;border-radius:999px;padding:6px 10px;font-weight:850}.threshold-line .fail{border:1px solid #e0aaa4;background:#fff7f6;color:#8a2d25;border-radius:999px;padding:6px 10px;font-weight:850}
+.candidate-map{display:grid;grid-template-columns:repeat(3,minmax(88px,1fr));gap:7px;max-width:520px;margin:12px auto}
+.candidate-map .candidate-pos{border:1px solid #ddd;border-radius:9px;background:#fff;padding:8px;text-align:center;display:grid;gap:3px}
+.candidate-map .candidate-pos strong{font-family:"Cascadia Mono","Consolas",monospace;font-size:.8rem}.candidate-map .candidate-pos small{color:#666}.candidate-map .candidate-pos.ok{border-color:#9ac8ae;background:#f5fbf7}.candidate-map .candidate-pos.no{opacity:.72;background:#fafafa}
+.absolute-diff{display:flex;align-items:center;justify-content:center;gap:7px;flex-wrap:wrap;margin:12px 0;font-family:"Cascadia Mono","Consolas",monospace;font-weight:850}.absolute-diff span{border:1px solid #ddd;border-radius:8px;background:#fff;padding:7px 9px}.absolute-diff strong{font-size:1.05rem}
+@media (max-width:620px){.reason-flow{align-items:center}.reason-arrow{transform:rotate(90deg)}.candidate-map{grid-template-columns:repeat(2,1fr)}.pair-grid{grid-template-columns:1fr 1fr}.placement-gallery{grid-template-columns:1fr 1fr}}
+
+
+.note{margin-top:12px;border-left:3px solid #999;padding:8px 11px;background:#fafaf8;color:#555;font-size:.92rem}
+.results-wrap{border-top:1px solid var(--line);padding:18px 24px 24px}
+.results-head{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.results-head h2{font-size:1.05rem;margin:0;margin-right:auto}
+.status-pill{font-size:.82rem;border-radius:999px;padding:4px 9px;border:1px solid var(--line);background:#fafafa;font-weight:800}
+.status-pill.ok{color:var(--ok);border-color:#9dd0b7;background:#f4fbf7}
+.status-pill.bad{color:var(--bad);border-color:#e4aaa4;background:#fff6f5}
+.status-pill.warn{color:var(--warn);border-color:#dfc58e;background:#fffaf0}
+.result-summary{padding:12px;border:1px dashed #bbb;border-radius:8px;color:#555;background:#fcfcfb;margin-bottom:12px}
+.test-list{display:grid;gap:7px}
+.test-row{display:grid;grid-template-columns:80px 1fr auto;align-items:center;gap:8px;padding:8px 10px;border:1px solid #e3e3df;border-radius:7px;font-size:.9rem}
+.test-row .label{font-weight:800}
+.test-row .detail{color:#666;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.test-row .verdict{font-weight:850}
+.test-row.pass .verdict{color:var(--ok)}
+.test-row.fail .verdict{color:var(--bad)}
+.test-row.wait .verdict{color:#777}
+.submission-history{margin-top:14px}
+.submission-history summary{cursor:pointer;font-weight:800;color:#444}
+.history-list{display:grid;gap:6px;margin-top:9px}
+.history-item{display:flex;justify-content:space-between;gap:10px;padding:6px 8px;border-bottom:1px solid #eee;font-size:.86rem;color:#666}
+.editor-head{
+  padding:12px 14px;
+  border-bottom:1px solid var(--line);
+  display:flex;
+  align-items:center;
+  gap:8px;
+  flex-wrap:wrap;
+  background:var(--soft2);
+}
+.editor-head strong{margin-right:auto}
+.btn{
+  border:1px solid #aaa;
+  background:#fff;
+  color:#181818;
+  border-radius:7px;
+  padding:7px 11px;
+  font-weight:700;
+}
+.btn:hover{background:#eeeeeb}
+.btn.primary{background:#222;color:#fff;border-color:#222}
+.btn.primary:hover{background:#000}
+.btn.danger{color:var(--bad)}
+.editor-shell{height:calc(100vh - 430px);min-height:360px;background:#fff}
+.CodeMirror{height:100%;font-family:"Cascadia Mono","Consolas",monospace;font-size:15px;line-height:1.55}
+.CodeMirror-focused{outline:2px solid rgba(46,91,147,.14);outline-offset:-2px}
+.fallback-editor{width:100%;height:100%;resize:none;border:0;outline:0;padding:16px;font-family:"Cascadia Mono","Consolas",monospace;font-size:15px;line-height:1.55}
+.terminal-workspace{display:grid;grid-template-columns:minmax(0,1fr) 230px;border-top:1px solid var(--line);background:#111}
+.terminal-panel{background:#111;min-width:0}
+.terminal-head{min-height:40px;padding:7px 11px;display:flex;align-items:center;gap:10px;background:#1b1b1b;color:#f2f2f2;border-bottom:1px solid #333;font-size:.86rem}
+.terminal-head strong{font-family:"Cascadia Mono","Consolas",monospace;margin-right:auto}
+.terminal-meta{color:#bdbdbd;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:58%}
+.terminal-clear{border:1px solid #555;background:#242424;color:#eee;border-radius:6px;padding:4px 8px;font-size:.82rem}
+.terminal-clear:hover{background:#333}
+.terminal-output{margin:0;border:0;border-radius:0;background:#111;color:#efefef;min-height:170px;max-height:240px;overflow:auto;padding:12px 14px;white-space:pre-wrap;word-break:break-word;font-family:"Cascadia Mono","Consolas",monospace;font-size:.88rem;line-height:1.5}
+.terminal-output.error{color:#ffd0cc}
+.terminal-output .muted{color:#aaa}
+.submit-tests-panel{background:#151515;border-left:1px solid #333;min-width:0;color:#eee}
+.submit-tests-head{min-height:40px;padding:7px 9px;display:flex;align-items:center;gap:7px;background:#1b1b1b;border-bottom:1px solid #333;font-family:"Cascadia Mono","Consolas",monospace;font-size:.78rem}
+.submit-tests-head strong{margin-right:auto;letter-spacing:.02em}
+.submit-tests-count{color:#aaa;white-space:nowrap}
+.submit-tests-list{height:100%;min-height:170px;max-height:240px;overflow:auto;padding:8px;display:grid;align-content:start;gap:6px}
+.submit-test-row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:7px;align-items:center;border:1px solid #343434;border-radius:6px;padding:6px 7px;background:#1b1b1b;font-family:"Cascadia Mono","Consolas",monospace;font-size:.75rem}
+.submit-test-row .mini-label{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:#d5d5d5}
+.submit-test-row .mini-verdict{font-weight:900;letter-spacing:.02em;color:#999}
+.submit-test-row.pass{border-color:#285d43;background:#14251c}
+.submit-test-row.pass .mini-verdict{color:#71d3a0}
+.submit-test-row.fail{border-color:#63302c;background:#291715}
+.submit-test-row.fail .mini-verdict{color:#ff9289}
+.submit-test-row.wait{border-color:#484848;background:#1c1c1c}
+.submit-test-row.wait .mini-verdict{color:#c7c7c7}
+.editor-foot{padding:9px 13px;border-top:1px solid var(--line);font-size:.83rem;color:#666;display:flex;gap:12px;justify-content:space-between;flex-wrap:wrap}
+dialog{border:0;border-radius:12px;padding:0;width:min(850px,92vw);box-shadow:0 22px 70px rgba(0,0,0,.25)}
+dialog::backdrop{background:rgba(0,0,0,.38)}
+.dialog-head{padding:13px 16px;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:12px;background:#fafaf8}
+.dialog-head strong{margin-right:auto}
+.dialog-body{padding:18px;max-height:72vh;overflow:auto}
+.close-btn{border:1px solid #aaa;background:#fff;border-radius:7px;padding:5px 9px}
+.cm-s-default .cm-keyword{font-weight:700}
+.cm-s-default .cm-builtin{color:#4b3f72}
+.cm-s-default .cm-number{color:#8a4b08}
+.cm-s-default .cm-string{color:#256f3a}
+.CodeMirror-hints{font-family:"Cascadia Mono","Consolas",monospace;font-size:.9rem}
+@media(max-width:1050px){
+  .app{grid-template-columns:1fr}
+  .right-panel{position:relative;top:0}
+  .editor-shell{height:560px;min-height:420px}
+  .terminal-output,.submit-tests-list{max-height:260px}
+}
+@media(max-width:720px){
+  .terminal-workspace{grid-template-columns:1fr}
+  .submit-tests-panel{border-left:0;border-top:1px solid #333}
+  .submit-tests-list{grid-template-columns:repeat(2,minmax(0,1fr));min-height:0;max-height:210px}
+}
+@media(max-width:640px){
+  .app{padding:0 8px;margin-top:8px}
+  .problem,.results-wrap{padding:18px}
+  .sample-grid,.snippet-grid{grid-template-columns:1fr}
+  .level-strip{grid-template-columns:repeat(4,1fr)}
+  .topbar{padding:9px 10px}
+  .progress{width:90px}
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="topbar">
+    <div class="brand">h027 矩陣總和｜APCS 階梯式 Online Judge</div>
+    <div class="progress-wrap"><span id="progressText">0 / 8 AC</span><div class="progress"><span id="progressBar"></span></div></div>
+    <div class="runtime"><span id="runtimeDot" class="dot"></span><span id="runtimeText">Python 尚未載入</span></div>
+    <button class="btn danger" id="clearAllBtn" type="button" title="清除所有題目草稿、AC 進度與提交紀錄">清除所有紀錄</button>
+    <a class="source-link" href="https://zerojudge.tw/ShowProblem?problemid=h027" target="_blank" rel="noopener">原題</a>
+  </div>
+</header>
+
+<main class="app">
+  <section class="panel left-panel">
+    <nav class="level-strip" id="levelStrip" aria-label="題目階段"></nav>
+    <article class="problem" id="problemPane"></article>
+    <section class="results-wrap">
+      <div class="results-head">
+        <h2>提交結果</h2>
+        <span class="status-pill" id="overallVerdict">尚未提交</span>
+      </div>
+      <div class="result-summary" id="resultSummary">按右側「執行」會使用公開範例輸入並把 stdout / Python 錯誤顯示在終端機；按「提交」才會評測全部測資，右側 TEST RESULTS 會同步顯示每筆 verdict。</div>
+      <div class="test-list" id="testList"></div>
+      <details class="submission-history">
+        <summary>本機提交紀錄</summary>
+        <div class="history-list" id="historyList"></div>
+      </details>
+    </section>
+  </section>
+
+  <section class="panel right-panel">
+    <div class="editor-head">
+      <strong>Python 3 編輯器</strong>
+      <button class="btn" id="answerBtn" type="button">參考答案</button>
+      <button class="btn" id="resetBtn" type="button">清空</button>
+      <button class="btn" id="runBtn" type="button" title="Ctrl+Enter / F9">執行</button>
+      <button class="btn primary" id="submitBtn" type="button">提交</button>
+    </div>
+    <div class="editor-shell"><textarea id="codeEditor" spellcheck="false"></textarea></div>
+    <div class="terminal-workspace">
+      <section class="terminal-panel" aria-label="程式執行終端機">
+        <div class="terminal-head">
+          <strong>TERMINAL</strong>
+          <span class="terminal-meta" id="terminalMeta">stdin: public sample input</span>
+          <button class="terminal-clear" id="clearTerminalBtn" type="button">清除</button>
+        </div>
+        <pre class="terminal-output" id="terminalOutput" aria-live="polite">尚未執行。按「執行」、Ctrl+Enter 或 F9。</pre>
+      </section>
+      <aside class="submit-tests-panel" aria-label="所有測資提交結果">
+        <div class="submit-tests-head">
+          <strong>TEST RESULTS</strong>
+          <span class="submit-tests-count" id="submitTestsCount">0 / 0</span>
+        </div>
+        <div class="submit-tests-list" id="submitTestsList" aria-live="polite"></div>
+      </aside>
+    </div>
+    <div class="editor-foot">
+      <span>Tab：4 空白｜Shift+Tab：反縮排｜行首 Backspace：一次刪除 4 空白｜Ctrl+/：切換單行／多行註解｜Ctrl+Space / Alt+/：補全｜Ctrl+Enter / F9：執行</span>
+      <span>執行使用公開範例輸入；提交後右側 TEST RESULTS 顯示所有測資 verdict｜每次上限 2.5 秒</span>
+    </div>
+  </section>
+</main>
+
+<dialog id="answerDialog">
+  <div class="dialog-head"><strong id="answerTitle">參考答案</strong><button class="close-btn" id="closeAnswer">關閉</button></div>
+  <div class="dialog-body"><pre id="answerCode"></pre></div>
+</dialog>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.18/codemirror.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.18/mode/python/python.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.18/addon/edit/closebrackets.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.18/addon/edit/matchbrackets.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.18/addon/hint/show-hint.min.js"></script>
+<script>
+const TASKS = [
+{
+  id:1,
+  title:'矩陣讀取與總和',
+  difficulty:'基礎',
+  focus:'二維 list、輸入、sum',
+  statement:`給定一個 <code>n × m</code> 的整數矩陣。這裡的意思是：矩陣共有 <code>n</code> 個橫列，每一列有 <code>m</code> 個整數。請把矩陣中的每一個元素都算進去，求出全部元素的總和。`,
+  input:`第一行有兩個正整數 <code>n m</code>。接下來有 <code>n</code> 行，每行恰有 <code>m</code> 個整數；這些數字依序就是矩陣的每一個橫列。`,
+  output:`輸出一個整數：矩陣中所有元素的總和。`,
+  sampleIn:`2 3\n1 2 3\n4 5 6`,
+  sampleOut:`21`,
+  sampleExplain:`<div class="demo-story" data-sample-demo><div class="demo-controls" aria-label="範例計算步驟控制"><button type="button" class="demo-btn" data-demo-prev>上一步</button><button type="button" class="demo-btn" data-demo-play>播放</button><button type="button" class="demo-btn" data-demo-next>下一步</button><span class="demo-status" data-demo-status aria-live="polite"></span></div><div class="demo-viewport"><section class="demo-step is-active" data-demo-step><p>第一行是 <code>2 3</code>，所以後面的資料要排成 2 個橫列，每列 3 個數字。</p><div class="visual-row center"><div class="matrix-card"><div class="matrix-label">2 × 3 矩陣</div><div class="matrix-grid" style="--cols:3"><span class="matrix-cell">1</span><span class="matrix-cell">2</span><span class="matrix-cell">3</span><span class="matrix-cell">4</span><span class="matrix-cell">5</span><span class="matrix-cell">6</span></div></div></div><div class="why-card"><span class="why-icon">為什麼</span><p>因為題目要求的是「矩陣全部元素的總和」，所以圖中的 6 個格子都必須算進去，沒有任何一格可以省略。</p></div></section><section class="demo-step" data-demo-step><p>先看每一列各自的總和，再把兩列合起來。</p><div class="row-sum-grid"><div class="row-sum"><span class="row-tag">第 0 列</span><span>1 + 2 + 3</span><strong>= 6</strong></div><div class="row-sum"><span class="row-tag">第 1 列</span><span>4 + 5 + 6</span><strong>= 15</strong></div></div><div class="reason-flow"><div class="reason-node"><strong>第一列</strong><small>總和 6</small></div><div class="reason-arrow">＋</div><div class="reason-node"><strong>第二列</strong><small>總和 15</small></div><div class="reason-arrow">→</div><div class="reason-node answer"><strong>全部元素</strong><small>6 + 15 = 21</small></div></div><div class="why-card"><span class="why-icon">原因</span><p>兩列剛好涵蓋整個矩陣，因此 <code>6 + 15</code> 就是全部 6 格的總和。</p></div></section><section class="demo-step" data-demo-step><p>全部元素相加得到 <code>21</code>，所以這筆範例輸出：</p><pre>21</pre></section></div></div>`,
+  starter:'',
+  answer:`n, m = map(int, input().split())\n\ntotal = 0\nfor _ in range(n):\n    row = list(map(int, input().split()))\n    total += sum(row)\n\nprint(total)`,
+  tests:[
+    {input:`2 3\n1 2 3\n4 5 6\n`,output:`21\n`,public:true},
+    {input:`1 4\n0 9 3 8\n`,output:`20\n`},
+    {input:`3 2\n1 0\n2 4\n9 5\n`,output:`21\n`},
+    {input:`2 2\n0 0\n0 0\n`,output:`0\n`}
+  ]
+},
+{
+  id:2,
+  title:'兩矩陣的距離',
+  difficulty:'基礎',
+  focus:'對應位置比較、計數器',
+  statement:`給定兩個同樣大小的 <code>n × m</code> 整數矩陣 A 與 B。把兩個矩陣放在相同座標系下比較：若某一個座標上的兩個數值不同，這個座標就貢獻 1；若相同則貢獻 0。所有座標的貢獻加總後，稱為 A 與 B 的 <b>distance（距離）</b>。請輸出這個 distance。`,
+  input:`第一行有兩個正整數 <code>n m</code>。接下來 <code>n</code> 行為矩陣 A，每行有 <code>m</code> 個整數；再接下來 <code>n</code> 行為矩陣 B，每行同樣有 <code>m</code> 個整數。`,
+  output:`輸出一個整數：A 與 B 在相同座標上數值不同的位置數量。`,
+  sampleIn:`2 3\n1 2 3\n4 5 6\n1 9 3\n0 5 7`,
+  sampleOut:`3`,
+  sampleExplain:`<div class="demo-story" data-sample-demo><div class="demo-controls" aria-label="範例計算步驟控制"><button type="button" class="demo-btn" data-demo-prev>上一步</button><button type="button" class="demo-btn" data-demo-play>播放</button><button type="button" class="demo-btn" data-demo-next>下一步</button><span class="demo-status" data-demo-status aria-live="polite"></span></div><div class="demo-viewport"><section class="demo-step is-active" data-demo-step><p>A 與 B 都是 2 × 3，因此每一格都有唯一的「同座標」對象。</p><div class="visual-row"><div class="matrix-card"><div class="matrix-label">A</div><div class="matrix-grid" style="--cols:3"><span class="matrix-cell">1</span><span class="matrix-cell diff-cell">2</span><span class="matrix-cell">3</span><span class="matrix-cell diff-cell">4</span><span class="matrix-cell">5</span><span class="matrix-cell diff-cell">6</span></div></div><div class="big-arrow">↔</div><div class="matrix-card"><div class="matrix-label">B</div><div class="matrix-grid" style="--cols:3"><span class="matrix-cell">1</span><span class="matrix-cell diff-cell">9</span><span class="matrix-cell">3</span><span class="matrix-cell diff-cell">0</span><span class="matrix-cell">5</span><span class="matrix-cell diff-cell">7</span></div></div></div><div class="why-card"><span class="why-icon">為什麼</span><p>distance 比較的是「相同座標」是否相等，不是比較兩個矩陣的總和，也不是看兩數相差多少。</p></div></section><section class="demo-step" data-demo-step><p>六組對應位置逐格判斷：相同記 0，不同記 1。</p><div class="pair-grid"><div class="pair-card same"><div class="pair-values">1 <span class="pair-mark">=</span> 1</div><div class="pair-score">貢獻 0</div></div><div class="pair-card diff"><div class="pair-values">2 <span class="pair-mark">≠</span> 9</div><div class="pair-score">貢獻 1</div></div><div class="pair-card same"><div class="pair-values">3 <span class="pair-mark">=</span> 3</div><div class="pair-score">貢獻 0</div></div><div class="pair-card diff"><div class="pair-values">4 <span class="pair-mark">≠</span> 0</div><div class="pair-score">貢獻 1</div></div><div class="pair-card same"><div class="pair-values">5 <span class="pair-mark">=</span> 5</div><div class="pair-score">貢獻 0</div></div><div class="pair-card diff"><div class="pair-values">6 <span class="pair-mark">≠</span> 7</div><div class="pair-score">貢獻 1</div></div></div><div class="absolute-diff"><span>0</span> + <span>1</span> + <span>0</span> + <span>1</span> + <span>0</span> + <span>1</span> <strong>= 3</strong></div></section><section class="demo-step" data-demo-step><div class="reason-flow"><div class="reason-node bad"><strong>不同座標</strong><small>(0,1)、(1,0)、(1,2)</small></div><div class="reason-arrow">→</div><div class="reason-node answer"><strong>共有 3 格</strong><small>distance = 3</small></div></div><p>因此輸出：</p><pre>3</pre></section></div></div>`,
+  starter:'',
+  answer:`n, m = map(int, input().split())\nA = [list(map(int, input().split())) for _ in range(n)]\nB = [list(map(int, input().split())) for _ in range(n)]\n\ndis = 0\nfor i in range(n):\n    for j in range(m):\n        if A[i][j] != B[i][j]:\n            dis += 1\n\nprint(dis)`,
+  tests:[
+    {input:`2 3\n1 2 3\n4 5 6\n1 9 3\n0 5 7\n`,output:`3\n`,public:true},
+    {input:`1 5\n1 2 3 4 5\n1 2 3 4 5\n`,output:`0\n`},
+    {input:`3 2\n1 1\n1 1\n1 1\n0 0\n0 0\n0 0\n`,output:`6\n`},
+    {input:`2 2\n0 9\n8 7\n0 7\n8 9\n`,output:`2\n`}
+  ]
+},
+{
+  id:3,
+  title:'指定子矩陣的總和',
+  difficulty:'基礎+',
+  focus:'索引位移、巢狀迴圈',
+  statement:`給定一個 <code>n × m</code> 的整數矩陣 B，並指定其中一個大小為 <code>s × t</code> 的連續矩形區塊。座標從 <code>0</code> 開始，左上角座標 <code>(x, y)</code> 表示從第 <code>x</code> 個橫列、第 <code>y</code> 個位置開始；區塊向下涵蓋 <code>s</code> 列、向右涵蓋 <code>t</code> 個元素。請輸出這個指定區塊內所有數字的總和。`,
+  input:`第一行有兩個正整數 <code>n m</code>，表示 B 有 <code>n</code> 個橫列、每列 <code>m</code> 個整數。接下來 <code>n</code> 行為矩陣 B。最後一行有四個整數 <code>s t x y</code>：區塊大小是 <code>s × t</code>，左上角是 <code>(x, y)</code>。保證指定區塊不會超出 B。`,
+  output:`輸出一個整數：題目指定的 <code>s × t</code> 區塊內所有元素的總和。`,
+  sampleIn:`3 4\n1 2 3 4\n5 6 7 8\n9 1 2 3\n2 2 1 1`,
+  sampleOut:`16`,
+  sampleExplain:`<div class="demo-story" data-sample-demo><div class="demo-controls" aria-label="範例計算步驟控制"><button type="button" class="demo-btn" data-demo-prev>上一步</button><button type="button" class="demo-btn" data-demo-play>播放</button><button type="button" class="demo-btn" data-demo-next>下一步</button><span class="demo-status" data-demo-status aria-live="polite"></span></div><div class="demo-viewport"><section class="demo-step is-active" data-demo-step><p>最後一行是 <code>2 2 1 1</code>：區塊大小為 2 × 2，左上角在 <code>(1,1)</code>。</p><div class="visual-row center"><div class="matrix-card"><div class="matrix-label">B（藍色為指定區塊）</div><div class="matrix-grid" style="--cols:4"><span class="matrix-cell">1</span><span class="matrix-cell">2</span><span class="matrix-cell">3</span><span class="matrix-cell">4</span><span class="matrix-cell">5</span><span class="matrix-cell focus-cell">6</span><span class="matrix-cell focus-cell">7</span><span class="matrix-cell">8</span><span class="matrix-cell">9</span><span class="matrix-cell focus-cell">1</span><span class="matrix-cell focus-cell">2</span><span class="matrix-cell">3</span></div></div></div><div class="why-card"><span class="why-icon">為什麼</span><p>左上角是第 1 列、第 1 行的位置；大小是 2 × 2，所以會占用第 1、2 列與第 1、2 行交會的四個格子。</p></div></section><section class="demo-step" data-demo-step><p>因此指定區塊就是 <code>6、7、1、2</code>，不是整個 B。</p><div class="reason-flow"><div class="reason-node"><strong>從 (1,1) 開始</strong><small>第一格是 6</small></div><div class="reason-arrow">→</div><div class="reason-node"><strong>向右 2 格</strong><small>6、7</small></div><div class="reason-arrow">→</div><div class="reason-node"><strong>向下 2 列</strong><small>再加入 1、2</small></div></div><div class="visual-row center"><div class="matrix-card"><div class="matrix-label">實際被取出的 2 × 2</div><div class="matrix-grid" style="--cols:2"><span class="matrix-cell focus-cell">6</span><span class="matrix-cell focus-cell">7</span><span class="matrix-cell focus-cell">1</span><span class="matrix-cell focus-cell">2</span></div></div></div></section><section class="demo-step" data-demo-step><p>只把這四格相加：</p><div class="row-sum-grid"><div class="row-sum"><span class="row-tag">上列</span><span>6 + 7</span><strong>= 13</strong></div><div class="row-sum"><span class="row-tag">下列</span><span>1 + 2</span><strong>= 3</strong></div></div><div class="absolute-diff"><span>13</span> + <span>3</span> <strong>= 16</strong></div><div class="why-card"><span class="why-icon">原因</span><p>題目要的是「指定子矩陣」的總和，因此 B 中其他沒有被藍色框到的格子都不計入。</p></div><pre>16</pre></section></div></div>`,
+  starter:'',
+  answer:`n, m = map(int, input().split())\nB = [list(map(int, input().split())) for _ in range(n)]\ns, t, x, y = map(int, input().split())\n\ntotal = 0\nfor i in range(s):\n    for j in range(t):\n        total += B[x + i][y + j]\n\nprint(total)`,
+  tests:[
+    {input:`3 4\n1 2 3 4\n5 6 7 8\n9 1 2 3\n2 2 1 1\n`,output:`16\n`,public:true},
+    {input:`2 5\n1 1 1 1 1\n2 2 2 2 2\n1 3 0 2\n`,output:`3\n`},
+    {input:`4 3\n1 2 3\n4 5 6\n7 8 9\n0 1 2\n3 1 1 2\n`,output:`17\n`},
+    {input:`1 1\n9\n1 1 0 0\n`,output:`9\n`}
+  ]
+},
+{
+  id:4,
+  title:'A 與指定子矩陣的距離',
+  difficulty:'中階',
+  focus:'索引對齊、distance',
+  statement:`給定一個 <code>s × t</code> 的整數矩陣 A，以及一個較大的 <code>n × m</code> 整數矩陣 B。題目另外指定 B 中一個左上角座標 <code>(x, y)</code>；從這個位置向下取 <code>s</code> 列、向右取 <code>t</code> 個元素，可得到一個和 A 同樣大小的區塊。將 A 與這個區塊的相同相對位置逐格比較，數值不同的格子總數就是 <b>distance（距離）</b>。請輸出這個 distance。`,
+  input:`第一行有四個正整數 <code>s t n m</code>。接下來 <code>s</code> 行為矩陣 A，每行 <code>t</code> 個整數；再接下來 <code>n</code> 行為矩陣 B，每行 <code>m</code> 個整數。最後一行有兩個整數 <code>x y</code>，表示從 B 的 <code>(x, y)</code> 開始取出一個 <code>s × t</code> 區塊。保證此區塊完整位於 B 內。`,
+  output:`輸出一個整數：A 與 B 中指定區塊的 distance。`,
+  sampleIn:`2 2 3 4\n1 2\n3 4\n0 1 2 0\n9 1 8 2\n7 3 4 5\n1 1`,
+  sampleOut:`1`,
+  sampleExplain:`<div class="demo-story" data-sample-demo><div class="demo-controls" aria-label="範例計算步驟控制"><button type="button" class="demo-btn" data-demo-prev>上一步</button><button type="button" class="demo-btn" data-demo-play>播放</button><button type="button" class="demo-btn" data-demo-next>下一步</button><span class="demo-status" data-demo-status aria-live="polite"></span></div><div class="demo-viewport"><section class="demo-step is-active" data-demo-step><p>題目指定 B 的左上角 <code>(1,1)</code>，並要求取出和 A 一樣大的 2 × 2 區塊。</p><div class="visual-row"><div class="matrix-card"><div class="matrix-label">A</div><div class="matrix-grid" style="--cols:2"><span class="matrix-cell">1</span><span class="matrix-cell diff-cell">2</span><span class="matrix-cell">3</span><span class="matrix-cell">4</span></div></div><div class="big-arrow">↔</div><div class="matrix-card"><div class="matrix-label">B 中 (1,1) 的 2 × 2</div><div class="matrix-grid" style="--cols:2"><span class="matrix-cell">1</span><span class="matrix-cell diff-cell">8</span><span class="matrix-cell">3</span><span class="matrix-cell">4</span></div></div></div><div class="why-card"><span class="why-icon">為什麼</span><p>兩邊都是 2 × 2，所以左上比左上、右上比右上、左下比左下、右下比右下；每一格只和自己的對應位置比較。</p></div></section><section class="demo-step" data-demo-step><div class="pair-grid"><div class="pair-card same"><div class="pair-values">1 = 1</div><div class="pair-score">貢獻 0</div></div><div class="pair-card diff"><div class="pair-values">2 ≠ 8</div><div class="pair-score">貢獻 1</div></div><div class="pair-card same"><div class="pair-values">3 = 3</div><div class="pair-score">貢獻 0</div></div><div class="pair-card same"><div class="pair-values">4 = 4</div><div class="pair-score">貢獻 0</div></div></div><div class="why-card"><span class="why-icon">原因</span><p>只有右上角這一組不同，因此只有它讓 distance 增加 1；其他三組相同，不增加。</p></div></section><section class="demo-step" data-demo-step><div class="absolute-diff"><span>0</span> + <span>1</span> + <span>0</span> + <span>0</span> <strong>= 1</strong></div><p>所以 distance 是 <code>1</code>，輸出：</p><pre>1</pre></section></div></div>`,
+  starter:'',
+  answer:`s, t, n, m = map(int, input().split())\nA = [list(map(int, input().split())) for _ in range(s)]\nB = [list(map(int, input().split())) for _ in range(n)]\nx, y = map(int, input().split())\n\ndis = 0\nfor i in range(s):\n    for j in range(t):\n        if A[i][j] != B[x + i][y + j]:\n            dis += 1\n\nprint(dis)`,
+  tests:[
+    {input:`2 2 3 4\n1 2\n3 4\n0 1 2 0\n9 1 8 2\n7 3 4 5\n1 1\n`,output:`1\n`,public:true},
+    {input:`1 3 1 5\n7 4 7\n7 4 7 8 8\n0 0\n`,output:`0\n`},
+    {input:`2 3 3 4\n1 1 1\n2 2 2\n1 1 0 9\n2 0 2 9\n9 9 9 9\n0 0\n`,output:`2\n`},
+    {input:`1 1 2 2\n5\n5 5\n5 4\n1 1\n`,output:`1\n`}
+  ]
+},
+{
+  id:5,
+  title:'合法的子矩陣左上角',
+  difficulty:'中階',
+  focus:'合法範圍、雙層枚舉',
+  statement:`有一個大小為 <code>n × m</code> 的大矩陣，以及一個大小為 <code>s × t</code> 的矩形區塊。座標從 <code>0</code> 開始。若把區塊的左上角放在 <code>(i, j)</code> 後，整個 <code>s × t</code> 區塊仍完全位於大矩陣內，則 <code>(i, j)</code> 稱為合法左上角。請依題目指定的順序輸出所有合法左上角：先由上到下，再由左到右。`,
+  input:`一行有四個正整數 <code>s t n m</code>，其中 <code>s × t</code> 是要放入的區塊大小，<code>n × m</code> 是大矩陣大小，並保證 <code>s ≤ n</code>、<code>t ≤ m</code>。本題只需要根據尺寸判斷座標，不提供矩陣元素。`,
+  output:`每個合法左上角輸出一行 <code>i j</code>。順序為先由上到下，再由左到右。`,
+  sampleIn:`2 2 3 4`,
+  sampleOut:`0 0\n0 1\n0 2\n1 0\n1 1\n1 2`,
+  sampleExplain:`<div class="demo-story" data-sample-demo><div class="demo-controls" aria-label="範例計算步驟控制"><button type="button" class="demo-btn" data-demo-prev>上一步</button><button type="button" class="demo-btn" data-demo-play>播放</button><button type="button" class="demo-btn" data-demo-next>下一步</button><span class="demo-status" data-demo-status aria-live="polite"></span></div><div class="demo-viewport"><section class="demo-step is-active" data-demo-step><p>大矩陣是 3 × 4，要放入的區塊是 2 × 2。左上角不能太靠右或太靠下，否則區塊會伸出邊界。</p><div class="shape-compare"><div class="shape-grid" style="--r:3;--c:4"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div><div class="big-arrow">容納</div><div class="shape-grid mini" style="--r:2;--c:2"><span></span><span></span><span></span><span></span></div></div><div class="why-card"><span class="why-icon">為什麼</span><p>若左上角放在第 2 列，2 × 2 區塊還需要下一列，但大矩陣已沒有第 3 列；同理，若放在第 3 行，還需要右邊一行，也會超出。</p></div></section><section class="demo-step" data-demo-step><p>因此合法起點只有列 <code>0、1</code>，以及行 <code>0、1、2</code>。下面六張小圖直接畫出六種放法。</p><div class="placement-gallery"><div class="placement-card"><strong>(0,0)</strong><div class="placement-grid"><span class="on"></span><span class="on"></span><span></span><span></span><span class="on"></span><span class="on"></span><span></span><span></span><span></span><span></span><span></span><span></span></div></div><div class="placement-card"><strong>(0,1)</strong><div class="placement-grid"><span></span><span class="on"></span><span class="on"></span><span></span><span></span><span class="on"></span><span class="on"></span><span></span><span></span><span></span><span></span><span></span></div></div><div class="placement-card"><strong>(0,2)</strong><div class="placement-grid"><span></span><span></span><span class="on"></span><span class="on"></span><span></span><span></span><span class="on"></span><span class="on"></span><span></span><span></span><span></span><span></span></div></div><div class="placement-card"><strong>(1,0)</strong><div class="placement-grid"><span></span><span></span><span></span><span></span><span class="on"></span><span class="on"></span><span></span><span></span><span class="on"></span><span class="on"></span><span></span><span></span></div></div><div class="placement-card"><strong>(1,1)</strong><div class="placement-grid"><span></span><span></span><span></span><span></span><span></span><span class="on"></span><span class="on"></span><span></span><span></span><span class="on"></span><span class="on"></span><span></span></div></div><div class="placement-card"><strong>(1,2)</strong><div class="placement-grid"><span></span><span></span><span></span><span></span><span></span><span></span><span class="on"></span><span class="on"></span><span></span><span></span><span class="on"></span><span class="on"></span></div></div></div><div class="reason-flow"><div class="reason-node"><strong>2 種列位置</strong><small>0、1</small></div><div class="reason-arrow">×</div><div class="reason-node"><strong>3 種行位置</strong><small>0、1、2</small></div><div class="reason-arrow">→</div><div class="reason-node answer"><strong>6 個合法座標</strong><small>全部都沒有超界</small></div></div></section><section class="demo-step" data-demo-step><p>輸出要求先由上到下，再由左到右，所以先列出第 0 列的三個起點，再列第 1 列的三個起點：</p><pre>0 0
+0 1
+0 2
+1 0
+1 1
+1 2</pre></section></div></div>`,
+  starter:'',
+  answer:`s, t, n, m = map(int, input().split())\n\nfor i in range(n - s + 1):\n    for j in range(m - t + 1):\n        print(i, j)`,
+  tests:[
+    {input:`2 2 3 4\n`,output:`0 0\n0 1\n0 2\n1 0\n1 1\n1 2\n`,public:true},
+    {input:`1 3 1 5\n`,output:`0 0\n0 1\n0 2\n`},
+    {input:`2 1 4 1\n`,output:`0 0\n1 0\n2 0\n`},
+    {input:`3 3 3 3\n`,output:`0 0\n`}
+  ]
+},
+{
+  id:6,
+  title:'符合距離條件的數量',
+  difficulty:'中階+',
+  focus:'四層迴圈、條件統計',
+  statement:`給定一個 <code>s × t</code> 的整數矩陣 A，以及一個 <code>n × m</code> 的整數矩陣 B。B 中每一個能完整框出 <code>s × t</code> 大小的連續區塊都視為一個候選。把候選區塊與 A 的相同相對位置逐格比較，數值不同的格子數稱為 <b>distance（距離）</b>。另給非負整數 <code>r</code>；當某候選的 <code>distance ≤ r</code> 時，就稱它符合條件。請輸出符合條件的候選數量。`,
+  input:`第一行有五個整數 <code>s t n m r</code>。A 的大小為 <code>s × t</code>，B 的大小為 <code>n × m</code>，且 <code>s ≤ n</code>、<code>t ≤ m</code>、<code>r ≥ 0</code>。接下來 <code>s</code> 行為 A，再接下來 <code>n</code> 行為 B。`,
+  output:`輸出一個整數：B 中所有候選區塊裡，滿足 <code>distance ≤ r</code> 的數量。`,
+  sampleIn:`2 2 3 4 1\n1 2\n3 4\n1 2 9 2\n3 4 3 4\n1 2 3 0`,
+  sampleOut:`2`,
+  sampleExplain:`<div class="demo-story" data-sample-demo><div class="demo-controls" aria-label="範例計算步驟控制"><button type="button" class="demo-btn" data-demo-prev>上一步</button><button type="button" class="demo-btn" data-demo-play>播放</button><button type="button" class="demo-btn" data-demo-next>下一步</button><span class="demo-status" data-demo-status aria-live="polite"></span></div><div class="demo-viewport"><section class="demo-step is-active" data-demo-step><p>這筆範例中的 A 是真正的 <code>2 × 2</code> 矩陣，B 是 <code>3 × 4</code> 矩陣。候選區塊也必須是 2 列、2 行，不能只取一整列來比較。</p><div class="visual-row"><div class="matrix-card"><div class="matrix-label">A（2 × 2）</div><div class="matrix-grid" style="--cols:2"><span class="matrix-cell">1</span><span class="matrix-cell">2</span><span class="matrix-cell">3</span><span class="matrix-cell">4</span></div></div><div class="big-arrow">↔</div><div class="matrix-card"><div class="matrix-label">B（3 × 4）</div><div class="matrix-grid" style="--cols:4"><span class="matrix-cell">1</span><span class="matrix-cell">2</span><span class="matrix-cell">9</span><span class="matrix-cell">2</span><span class="matrix-cell">3</span><span class="matrix-cell">4</span><span class="matrix-cell">3</span><span class="matrix-cell">4</span><span class="matrix-cell">1</span><span class="matrix-cell">2</span><span class="matrix-cell">3</span><span class="matrix-cell">0</span></div></div></div><div class="why-card"><span class="why-icon">為什麼</span><p>A 有 2 列、2 行，所以每一個候選也要框出 B 中連續的 2 列、2 行，才能讓四個相對位置一一對應。</p></div></section><section class="demo-step" data-demo-step><p>B 中共有 6 個合法的 2 × 2 候選。下方每張卡都保留二維形狀；紅格代表該位置和 A 的相對位置數值不同。</p><div class="candidate-gallery"><div class="candidate-card"><div class="candidate-title">左上角 (0,0)</div><div class="matrix-card"><div class="matrix-grid compact" style="--cols:2"><span class="matrix-cell">1</span><span class="matrix-cell">2</span><span class="matrix-cell">3</span><span class="matrix-cell">4</span></div></div><div class="candidate-metrics"><strong>distance 0</strong></div></div><div class="candidate-card"><div class="candidate-title">左上角 (0,1)</div><div class="matrix-card"><div class="matrix-grid compact" style="--cols:2"><span class="matrix-cell diff-cell">2</span><span class="matrix-cell diff-cell">9</span><span class="matrix-cell diff-cell">4</span><span class="matrix-cell diff-cell">3</span></div></div><div class="candidate-metrics"><strong>distance 4</strong></div></div><div class="candidate-card"><div class="candidate-title">左上角 (0,2)</div><div class="matrix-card"><div class="matrix-grid compact" style="--cols:2"><span class="matrix-cell diff-cell">9</span><span class="matrix-cell">2</span><span class="matrix-cell">3</span><span class="matrix-cell">4</span></div></div><div class="candidate-metrics"><strong>distance 1</strong></div></div><div class="candidate-card"><div class="candidate-title">左上角 (1,0)</div><div class="matrix-card"><div class="matrix-grid compact" style="--cols:2"><span class="matrix-cell diff-cell">3</span><span class="matrix-cell diff-cell">4</span><span class="matrix-cell diff-cell">1</span><span class="matrix-cell diff-cell">2</span></div></div><div class="candidate-metrics"><strong>distance 4</strong></div></div><div class="candidate-card"><div class="candidate-title">左上角 (1,1)</div><div class="matrix-card"><div class="matrix-grid compact" style="--cols:2"><span class="matrix-cell diff-cell">4</span><span class="matrix-cell diff-cell">3</span><span class="matrix-cell diff-cell">2</span><span class="matrix-cell diff-cell">3</span></div></div><div class="candidate-metrics"><strong>distance 4</strong></div></div><div class="candidate-card"><div class="candidate-title">左上角 (1,2)</div><div class="matrix-card"><div class="matrix-grid compact" style="--cols:2"><span class="matrix-cell diff-cell">3</span><span class="matrix-cell diff-cell">4</span><span class="matrix-cell">3</span><span class="matrix-cell diff-cell">0</span></div></div><div class="candidate-metrics"><strong>distance 3</strong></div></div></div><div class="why-card"><span class="why-icon">原因</span><p>例如 (0,2) 取到的是 <code>[[9,2],[3,4]]</code>。只有左上角的 <code>9</code> 和 A 的 <code>1</code> 不同，其餘三格相同，所以它的 distance 是 1。</p></div></section><section class="demo-step" data-demo-step><p>這筆範例的門檻是 <code>r = 1</code>，因此只有 distance 為 0 或 1 的候選符合。</p><div class="threshold-line"><span class="threshold">規則：distance ≤ 1</span><span class="pass">(0,0)：0 ✓</span><span class="pass">(0,2)：1 ✓</span></div><div class="why-card"><span class="why-icon">原因</span><p>(0,0) 完全相同，所以 distance = 0；(0,2) 只有一格不同，所以 distance = 1。其餘四個候選都有 3 或 4 格不同，超過門檻。</p></div><div class="reason-flow"><div class="reason-node good"><strong>符合者</strong><small>(0,0)、(0,2)</small></div><div class="reason-arrow">→</div><div class="reason-node answer"><strong>共 2 個</strong><small>所以輸出 2</small></div></div><pre>2</pre></section></div></div>`,
+  starter:'',
+  answer:`s, t, n, m, r = map(int, input().split())\nA = [list(map(int, input().split())) for _ in range(s)]\nB = [list(map(int, input().split())) for _ in range(n)]\n\ncount = 0\nfor i in range(n - s + 1):\n    for j in range(m - t + 1):\n        dis = 0\n        for x in range(s):\n            for y in range(t):\n                if A[x][y] != B[i + x][j + y]:\n                    dis += 1\n        if dis <= r:\n            count += 1\n\nprint(count)`,
+  tests:[
+    {input:`2 2 3 4 1\n1 2\n3 4\n1 2 9 2\n3 4 3 4\n1 2 3 0\n`,output:`2\n`,public:true},
+    {input:`2 2 3 3 0\n1 2\n3 4\n1 2 9\n3 4 0\n8 8 8\n`,output:`1\n`},
+    {input:`1 1 2 3 1\n5\n0 1 2\n3 4 5\n`,output:`6\n`},
+    {input:`2 2 2 2 1\n1 1\n1 1\n0 0\n0 0\n`,output:`0\n`}
+  ]
+},
+{
+  id:7,
+  title:'符合者的最小總和差',
+  difficulty:'進階',
+  focus:'同時維護 distance、sum、min',
+  statement:`給定一個 <code>s × t</code> 的整數矩陣 A，以及一個 <code>n × m</code> 的整數矩陣 B。B 中每個可完整取出的 <code>s × t</code> 連續區塊都是候選。候選與 A 在相同相對位置上數值不同的格子數，稱為 <b>distance（距離）</b>；只有 <code>distance ≤ r</code> 的候選才符合條件。對每個符合者，再比較「A 的全部元素總和」與「該候選區塊的全部元素總和」，取兩者差的絕對值。請輸出所有符合者中最小的總和差；若沒有任何符合者，輸出 <code>-1</code>。`,
+  input:`第一行有五個整數 <code>s t n m r</code>。A 的大小為 <code>s × t</code>，B 的大小為 <code>n × m</code>，且 <code>s ≤ n</code>、<code>t ≤ m</code>、<code>r ≥ 0</code>。接下來 <code>s</code> 行為 A，再接下來 <code>n</code> 行為 B。`,
+  output:`若至少有一個候選滿足 <code>distance ≤ r</code>，輸出這些候選中最小的總和差；若沒有任何符合者，輸出 <code>-1</code>。`,
+  sampleIn:`3 3 5 5 2\n1 2 1\n2 4 2\n2 4 5\n1 2 1 2 3\n2 4 2 4 2\n2 4 2 3 5\n3 2 4 2 0\n3 2 4 5 5`,
+  sampleOut:`1`,
+  sampleExplain:`<div class="demo-story" data-sample-demo><div class="demo-controls" aria-label="範例計算步驟控制"><button type="button" class="demo-btn" data-demo-prev>上一步</button><button type="button" class="demo-btn" data-demo-play>播放</button><button type="button" class="demo-btn" data-demo-next>下一步</button><span class="demo-status" data-demo-status aria-live="polite"></span></div><div class="demo-viewport"><section class="demo-step is-active" data-demo-step><p>先算 A 的總和，因為後面要比較「A 的總和」和「候選區塊的總和」。</p><div class="visual-row center"><div class="matrix-card"><div class="matrix-label">A</div><div class="matrix-grid" style="--cols:3"><span class="matrix-cell">1</span><span class="matrix-cell">2</span><span class="matrix-cell">1</span><span class="matrix-cell">2</span><span class="matrix-cell">4</span><span class="matrix-cell">2</span><span class="matrix-cell">2</span><span class="matrix-cell">4</span><span class="matrix-cell">5</span></div></div></div><div class="row-sum-grid"><div class="row-sum"><span class="row-tag">第 0 列</span><span>1+2+1</span><strong>=4</strong></div><div class="row-sum"><span class="row-tag">第 1 列</span><span>2+4+2</span><strong>=8</strong></div><div class="row-sum"><span class="row-tag">第 2 列</span><span>2+4+5</span><strong>=11</strong></div></div><div class="absolute-diff"><span>4</span> + <span>8</span> + <span>11</span> <strong>= 23</strong></div></section><section class="demo-step" data-demo-step><p>這筆範例共有 9 個候選位置。先看 distance：只有綠色的三個位置不超過 <code>r = 2</code>。</p><div class="candidate-map"><div class="candidate-pos ok"><strong>(0,0)</strong><small>distance 1 ✓</small></div><div class="candidate-pos no"><strong>(0,1)</strong><small>distance 9</small></div><div class="candidate-pos ok"><strong>(0,2)</strong><small>distance 2 ✓</small></div><div class="candidate-pos no"><strong>(1,0)</strong><small>distance 6</small></div><div class="candidate-pos no"><strong>(1,1)</strong><small>distance 6</small></div><div class="candidate-pos no"><strong>(1,2)</strong><small>distance 8</small></div><div class="candidate-pos no"><strong>(2,0)</strong><small>distance 9</small></div><div class="candidate-pos ok"><strong>(2,1)</strong><small>distance 2 ✓</small></div><div class="candidate-pos no"><strong>(2,2)</strong><small>distance 8</small></div></div><div class="why-card"><span class="why-icon">為什麼</span><p>題目只允許 <code>distance ≤ 2</code> 的候選進入「總和差」比較，因此其餘六個即使總和很接近 A，也不能算進答案。</p></div></section><section class="demo-step" data-demo-step><p>只比較三個符合者的總和差：</p><div class="candidate-gallery"><div class="candidate-card"><div class="candidate-title">(0,0)</div><div class="candidate-metrics"><span>總和 20</span><strong>|23-20| = 3</strong></div></div><div class="candidate-card"><div class="candidate-title">(0,2)</div><div class="candidate-metrics"><span>總和 24</span><strong>|23-24| = 1</strong></div></div><div class="candidate-card"><div class="candidate-title">(2,1)</div><div class="candidate-metrics"><span>總和 28</span><strong>|23-28| = 5</strong></div></div></div><div class="why-card"><span class="why-icon">原因</span><p>「總和差」要取絕對值，所以 24 比 23 大 1，得到的仍是 <code>1</code>；最後在 <code>3、1、5</code> 中取最小值。</p></div><div class="reason-flow"><div class="reason-node"><strong>3</strong><small>(0,0)</small></div><div class="reason-node good"><strong>1</strong><small>(0,2) 最小</small></div><div class="reason-node"><strong>5</strong><small>(2,1)</small></div><div class="reason-arrow">→</div><div class="reason-node answer"><strong>答案 1</strong><small>最小總和差</small></div></div><pre>1</pre></section></div></div>`,
+  starter:'',
+  answer:`s, t, n, m, r = map(int, input().split())\nA = [list(map(int, input().split())) for _ in range(s)]\nB = [list(map(int, input().split())) for _ in range(n)]\n\nsum_a = sum(sum(row) for row in A)\nanswer = None\n\nfor i in range(n - s + 1):\n    for j in range(m - t + 1):\n        dis = 0\n        sum_b = 0\n        for x in range(s):\n            for y in range(t):\n                value = B[i + x][j + y]\n                sum_b += value\n                if A[x][y] != value:\n                    dis += 1\n\n        if dis <= r:\n            diff = abs(sum_a - sum_b)\n            if answer is None or diff < answer:\n                answer = diff\n\nprint(-1 if answer is None else answer)`,
+  tests:[
+    {input:`3 3 5 5 2\n1 2 1\n2 4 2\n2 4 5\n1 2 1 2 3\n2 4 2 4 2\n2 4 2 3 5\n3 2 4 2 0\n3 2 4 5 5\n`,output:`1\n`,public:true},
+    {input:`1 3 1 10 1\n7 4 7\n6 7 7 7 4 5 0 4 4 7\n`,output:`2\n`},
+    {input:`2 2 2 2 1\n1 1\n1 1\n0 0\n0 0\n`,output:`-1\n`},
+    {input:`1 1 2 3 0\n5\n5 9 5\n1 5 0\n`,output:`0\n`}
+  ]
+},
+{
+  id:8,
+  title:'完整題：矩陣總和',
+  difficulty:'APCS 原題',
+  focus:'完整整合、邊界條件',
+  statement:`給定一個 <code>s × t</code> 的整數矩陣 A，以及一個 <code>n × m</code> 的整數矩陣 B。B 中每個可以完整取出 <code>s × t</code> 大小的連續區塊都稱為候選子矩陣。對任一候選，將它和 A 的相同相對位置逐格比較；數值不同的格子總數稱為 <b>distance（距離）</b>。若 <code>distance ≤ r</code>，此候選符合條件。你需要輸出兩個結果：第一，符合條件的候選數量；第二，在所有符合者中，<code>abs(sum(A) - sum(候選))</code> 的最小值。若沒有任何符合者，第二個結果為 <code>-1</code>。`,
+  input:`第一行有五個整數 <code>s t n m r</code>，其中 A 的大小為 <code>s × t</code>、B 的大小為 <code>n × m</code>。接著 <code>s</code> 行為 A，再接著 <code>n</code> 行為 B。矩陣元素皆為 <code>0～9</code>；本模擬評測保證 <code>s ≤ n</code>、<code>t ≤ m</code> 且 <code>r ≥ 0</code>。`,
+  output:`第一行輸出符合 <code>distance ≤ r</code> 的候選數量。第二行輸出所有符合者中的最小總和差；若沒有符合者，第二行輸出 <code>-1</code>。`,
+  sampleIn:`3 3 5 5 2\n1 2 1\n2 4 2\n2 4 5\n1 2 1 2 3\n2 4 2 4 2\n2 4 2 3 5\n3 2 4 2 0\n3 2 4 5 5`,
+  sampleOut:`3\n1`,
+  sampleExplain:`<div class="demo-story" data-sample-demo><div class="demo-controls" aria-label="範例計算步驟控制"><button type="button" class="demo-btn" data-demo-prev>上一步</button><button type="button" class="demo-btn" data-demo-play>播放</button><button type="button" class="demo-btn" data-demo-next>下一步</button><span class="demo-status" data-demo-status aria-live="polite"></span></div><div class="demo-viewport"><section class="demo-step is-active" data-demo-step><p>這筆範例中 A 是 3 × 3，總和為 <code>23</code>；B 是 5 × 5，所以每個候選都是 B 裡的一個 3 × 3 連續區塊。</p><div class="visual-row center"><div class="matrix-card"><div class="matrix-label">A</div><div class="matrix-grid" style="--cols:3"><span class="matrix-cell">1</span><span class="matrix-cell">2</span><span class="matrix-cell">1</span><span class="matrix-cell">2</span><span class="matrix-cell">4</span><span class="matrix-cell">2</span><span class="matrix-cell">2</span><span class="matrix-cell">4</span><span class="matrix-cell">5</span></div></div></div><div class="absolute-diff"><span>4</span> + <span>8</span> + <span>11</span> <strong>= 23</strong></div><div class="why-card"><span class="why-icon">為什麼</span><p>第二個輸出要比較候選的總和與 A 的總和，因此先知道 <code>sum(A)=23</code>，後面每個符合者才能計算總和差。</p></div></section><section class="demo-step" data-demo-step><p>第一個輸出先看 distance 門檻 <code>r = 2</code>。9 個候選位置中，只有三個符合：</p><div class="candidate-map"><div class="candidate-pos ok"><strong>(0,0)</strong><small>distance 1 ✓</small></div><div class="candidate-pos no"><strong>(0,1)</strong><small>distance 9</small></div><div class="candidate-pos ok"><strong>(0,2)</strong><small>distance 2 ✓</small></div><div class="candidate-pos no"><strong>(1,0)</strong><small>distance 6</small></div><div class="candidate-pos no"><strong>(1,1)</strong><small>distance 6</small></div><div class="candidate-pos no"><strong>(1,2)</strong><small>distance 8</small></div><div class="candidate-pos no"><strong>(2,0)</strong><small>distance 9</small></div><div class="candidate-pos ok"><strong>(2,1)</strong><small>distance 2 ✓</small></div><div class="candidate-pos no"><strong>(2,2)</strong><small>distance 8</small></div></div><div class="reason-flow"><div class="reason-node"><strong>規則</strong><small>distance ≤ 2</small></div><div class="reason-arrow">→</div><div class="reason-node good"><strong>符合 3 個</strong><small>(0,0)、(0,2)、(2,1)</small></div><div class="reason-arrow">→</div><div class="reason-node answer"><strong>第一行 = 3</strong><small>符合數量</small></div></div></section><section class="demo-step" data-demo-step><p>第二個輸出只看這三個符合者。它們的區塊總和分別是 20、24、28。</p><div class="candidate-gallery"><div class="candidate-card"><div class="candidate-title">(0,0)</div><div class="candidate-metrics"><span>distance 1</span><span>總和 20</span><strong>|23-20| = 3</strong></div></div><div class="candidate-card"><div class="candidate-title">(0,2)</div><div class="candidate-metrics"><span>distance 2</span><span>總和 24</span><strong>|23-24| = 1</strong></div></div><div class="candidate-card"><div class="candidate-title">(2,1)</div><div class="candidate-metrics"><span>distance 2</span><span>總和 28</span><strong>|23-28| = 5</strong></div></div></div><div class="why-card"><span class="why-icon">為什麼</span><p>第二個答案不是「distance 最小」，而是「符合者之中的總和差最小」。三個總和差是 <code>3、1、5</code>，所以最小值是 <code>1</code>。</p></div><div class="reason-flow"><div class="reason-node good"><strong>符合數量 3</strong><small>第一行</small></div><div class="reason-arrow">＋</div><div class="reason-node answer"><strong>最小總和差 1</strong><small>第二行</small></div></div><pre>3
+1</pre></section></div></div>`,
+  starter:'',
+  answer:`s, t, n, m, r = map(int, input().split())\nA = [list(map(int, input().split())) for _ in range(s)]\nB = [list(map(int, input().split())) for _ in range(n)]\n\nsum_a = sum(sum(row) for row in A)\ncount = 0\nanswer = None\n\nfor i in range(n - s + 1):\n    for j in range(m - t + 1):\n        dis = 0\n        sum_b = 0\n\n        for x in range(s):\n            for y in range(t):\n                value = B[i + x][j + y]\n                sum_b += value\n                if A[x][y] != value:\n                    dis += 1\n\n        if dis <= r:\n            count += 1\n            diff = abs(sum_a - sum_b)\n            if answer is None or diff < answer:\n                answer = diff\n\nprint(count)\nprint(-1 if answer is None else answer)`,
+  tests:[
+    {input:`3 3 5 5 2\n1 2 1\n2 4 2\n2 4 5\n1 2 1 2 3\n2 4 2 4 2\n2 4 2 3 5\n3 2 4 2 0\n3 2 4 5 5\n`,output:`3\n1\n`,public:true},
+    {input:`1 3 1 10 1\n7 4 7\n6 7 7 7 4 5 0 4 4 7\n`,output:`3\n2\n`,public:true},
+    {input:`2 2 2 2 1\n1 1\n1 1\n0 0\n0 0\n`,output:`0\n-1\n`},
+    {input:`1 1 2 3 0\n5\n5 9 5\n1 5 0\n`,output:`3\n0\n`},
+    {input:`2 1 3 2 2\n1\n2\n1 9\n2 8\n3 7\n`,output:`4\n0\n`}
+  ]
+}
+];
+
+const COMPLETIONS = [
+  'abs','all','any','append','break','continue','def','elif','else','enumerate','False','for','if','in','input','int','len','list','map','max','min','None','print','range','return','reversed','set','sorted','str','sum','True','while','zip'
+];
+
+let currentTaskIndex = 0;
+let editor = null;
+let pyWorker = null;
+let workerReadyPromise = null;
+let workerRunSeq = 0;
+let busy = false;
+
+const $ = (s) => document.querySelector(s);
+const levelStrip = $('#levelStrip');
+const problemPane = $('#problemPane');
+const testList = $('#testList');
+const overallVerdict = $('#overallVerdict');
+const resultSummary = $('#resultSummary');
+const runtimeDot = $('#runtimeDot');
+const runtimeText = $('#runtimeText');
+const progressBar = $('#progressBar');
+const progressText = $('#progressText');
+const historyList = $('#historyList');
+
+function esc(s){
+  return String(s).replace(/[&<>"']/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
+}
+
+function normalizeOutput(s){
+  return String(s).replace(/\r\n/g,'\n').trimEnd();
+}
+
+function getAccepted(){
+  try{return JSON.parse(localStorage.getItem('h027_step_oj_accepted') || '{}')}catch{return {}}
+}
+function setAccepted(id){
+  const a=getAccepted(); a[id]=true; localStorage.setItem('h027_step_oj_accepted',JSON.stringify(a));
+}
+function draftKey(id){return `h027_step_oj_v004_code_${id}`}
+function historyKey(){return 'h027_step_oj_history'}
+function getHistory(){try{return JSON.parse(localStorage.getItem(historyKey())||'[]')}catch{return []}}
+function addHistory(taskId, verdict, passed, total){
+  const list=getHistory();
+  list.unshift({time:new Date().toLocaleString('zh-TW',{hour12:false}),taskId,verdict,passed,total});
+  localStorage.setItem(historyKey(),JSON.stringify(list.slice(0,30)));
+  renderHistory();
+}
+
+function clearAllLocalRecords(){
+  const keys=[];
+  for(let i=0;i<localStorage.length;i++){
+    const key=localStorage.key(i);
+    if(key && key.startsWith('h027_step_oj_')) keys.push(key);
+  }
+  keys.forEach(key=>localStorage.removeItem(key));
+}
+
+function renderProgress(){
+  const accepted=getAccepted();
+  const count=TASKS.filter(t=>accepted[t.id]).length;
+  progressText.textContent=`${count} / ${TASKS.length} AC`;
+  progressBar.style.width=`${count/TASKS.length*100}%`;
+}
+
+function renderLevelStrip(){
+  const accepted=getAccepted();
+  levelStrip.innerHTML='';
+  TASKS.forEach((task,idx)=>{
+    const b=document.createElement('button');
+    b.type='button';
+    b.className='level-btn'+(idx===currentTaskIndex?' active':'')+(accepted[task.id]?' accepted':'');
+    b.textContent=accepted[task.id]?`${task.id} ✓`:`${task.id}`;
+    b.title=`第 ${task.id} 階：${task.title}`;
+    b.addEventListener('click',()=>switchTask(idx));
+    levelStrip.appendChild(b);
+  });
+}
+
+
+let sampleDemoTimers=[];
+function clearSampleDemoTimers(){
+  sampleDemoTimers.forEach(id=>clearInterval(id));
+  sampleDemoTimers=[];
+}
+function initSampleDemos(){
+  clearSampleDemoTimers();
+  problemPane.querySelectorAll('[data-sample-demo]').forEach(demo=>{
+    const steps=[...demo.querySelectorAll('[data-demo-step]')];
+    const prev=demo.querySelector('[data-demo-prev]');
+    const next=demo.querySelector('[data-demo-next]');
+    const play=demo.querySelector('[data-demo-play]');
+    const status=demo.querySelector('[data-demo-status]');
+    const viewport=demo.querySelector('.demo-viewport');
+    const progressWrap=document.createElement('div');
+    progressWrap.className='demo-progress';
+    progressWrap.innerHTML='<div class="demo-progress-bar" data-demo-progress></div>';
+    const progressBar=progressWrap.firstElementChild;
+    const dots=document.createElement('div');
+    dots.className='demo-dots';
+    const dotButtons=steps.map((step,i)=>{
+      if(!step.querySelector('.demo-step-head')){
+        const head=document.createElement('div');
+        head.className='demo-step-head';
+        head.innerHTML=`<span class="demo-step-kicker">步驟 ${i+1}</span><span class="demo-step-hint">圖解重點</span>`;
+        step.prepend(head);
+      }
+      const firstText=((step.querySelector('p')||{}).textContent||`步驟 ${i+1}`).trim().replace(/\s+/g,' ');
+      const shortText=(firstText.length>18?firstText.slice(0,18)+'…':firstText) || `步驟 ${i+1}`;
+      const btn=document.createElement('button');
+      btn.type='button';
+      btn.className='demo-dot';
+      btn.innerHTML=`<small>${i+1}/${steps.length}</small><span>${esc(shortText)}</span>`;
+      btn.title=firstText;
+      dots.appendChild(btn);
+      return btn;
+    });
+    demo.insertBefore(progressWrap, viewport);
+    demo.insertBefore(dots, viewport);
+    let index=0;
+    let timer=null;
+    const stop=()=>{
+      if(timer!==null){clearInterval(timer);sampleDemoTimers=sampleDemoTimers.filter(x=>x!==timer);timer=null;}
+      play.textContent='播放';
+    };
+    const show=(newIndex)=>{
+      index=Math.max(0,Math.min(steps.length-1,newIndex));
+      steps.forEach((step,i)=>{
+        const active=i===index;
+        step.classList.toggle('is-active',active);
+        step.setAttribute('aria-current',active?'step':'false');
+      });
+      dotButtons.forEach((btn,i)=>btn.classList.toggle('is-active',i===index));
+      prev.disabled=index===0;
+      next.disabled=index===steps.length-1;
+      progressBar.style.width=`${((index+1)/steps.length)*100}%`;
+      status.textContent=`步驟 ${index+1} / ${steps.length}`;
+    };
+    dotButtons.forEach((btn,i)=>btn.addEventListener('click',()=>{stop();show(i)}));
+    prev.addEventListener('click',()=>{stop();show(index-1)});
+    next.addEventListener('click',()=>{stop();show(index+1)});
+    play.addEventListener('click',()=>{
+      if(timer!==null){stop();return;}
+      if(index===steps.length-1) show(0);
+      play.textContent='暫停';
+      timer=setInterval(()=>{
+        if(index>=steps.length-1){stop();return;}
+        show(index+1);
+      },1700);
+      sampleDemoTimers.push(timer);
+    });
+    show(0);
+  });
+}
+
+function renderProblem(){
+  const t=TASKS[currentTaskIndex];
+  problemPane.innerHTML=`
+    <div class="kicker">Level ${t.id} / ${TASKS.length}</div>
+    <h1>${esc(t.title)}</h1>
+    <div class="meta"><span class="chip">${esc(t.difficulty)}</span><span class="chip">${esc(t.focus)}</span><span class="chip">Python 3</span></div>
+    <div class="section-title">題目</div>
+    <p>${t.statement}</p>
+    <div class="section-title">輸入</div>
+    <p>${t.input}</p>
+    <div class="section-title">輸出</div>
+    <p>${t.output}</p>
+    <div class="section-title">公開範例</div>
+    <div class="sample-grid">
+      <div class="sample-box"><h4>輸入</h4><pre>${esc(t.sampleIn)}</pre></div>
+      <div class="sample-box"><h4>輸出</h4><pre>${esc(t.sampleOut)}</pre></div>
+    </div>
+    <div class="section-title">範例測資講解</div>
+    <div class="sample-explanation">
+      <div class="sample-explain-intro"><div><strong>圖解式範例講解</strong><small>以下只說明這筆範例資料如何一步一步得到輸出，搭配高亮、卡片與播放功能協助理解。</small></div><span class="intro-badge">圖示 / 動畫 / 步驟切換</span></div>
+      <div class="sample-explanation-body">${t.sampleExplain}</div>
+    </div>
+    ${t.id===8?`<div class="note">完整題採原題核心限制與輸出規格。本頁評測用精簡但涵蓋邊界的本機測資；要取得正式 ZeroJudge AC，仍可把同一份程式提交到原題。</div>`:''}
+  `;
+  initSampleDemos();
+}
+
+function renderCompactTests(state='idle', results=[]){
+  const t=TASKS[currentTaskIndex];
+  const list=$('#submitTestsList');
+  const count=$('#submitTestsCount');
+  if(!list || !count) return;
+  let finished=0;
+  let passed=0;
+  list.innerHTML='';
+  t.tests.forEach((test,idx)=>{
+    const r=results[idx];
+    const row=document.createElement('div');
+    let verdict='—';
+    let cls='wait';
+    if(r){
+      finished++;
+      if(r.timeout){verdict='TLE';cls='fail'}
+      else if(r.error){verdict='RE';cls='fail'}
+      else if(r.pass){verdict='AC';cls='pass';passed++}
+      else {verdict='WA';cls='fail'}
+    }else if(state==='running'){
+      verdict='WAIT';
+    }
+    row.className=`submit-test-row ${cls}`;
+    row.innerHTML=`<span class="mini-label">#${idx+1} ${test.public?'PUBLIC':'HIDDEN'}</span><span class="mini-verdict">${verdict}</span>`;
+    list.appendChild(row);
+  });
+  count.textContent=state==='running'?`${finished}/${t.tests.length}`:`AC ${passed}/${t.tests.length}`;
+}
+
+function renderTests(state='idle', results=[]){
+  const t=TASKS[currentTaskIndex];
+  testList.innerHTML='';
+  t.tests.forEach((test,idx)=>{
+    const r=results[idx];
+    const row=document.createElement('div');
+    row.className='test-row '+(r?(r.pass?'pass':'fail'):(state==='running'?'wait':'wait'));
+    const visibility=test.public?'公開':'隱藏';
+    let detail='尚未評測';
+    let verdict='—';
+    if(state==='running' && !r){detail='等待評測'; verdict='…'}
+    if(r){
+      if(r.timeout){detail='執行超過 2.5 秒';verdict='TLE'}
+      else if(r.error){detail=r.error;verdict='RE'}
+      else if(r.pass){detail=`${r.ms} ms`;verdict='AC'}
+      else {detail=test.public?`輸出不符（期望 ${JSON.stringify(normalizeOutput(test.output))}）`:'輸出不符';verdict='WA'}
+    }
+    row.innerHTML=`<span class="label">#${idx+1} ${visibility}</span><span class="detail" title="${esc(detail)}">${esc(detail)}</span><span class="verdict">${verdict}</span>`;
+    testList.appendChild(row);
+  });
+  renderCompactTests(state,results);
+}
+
+function renderHistory(){
+  const items=getHistory();
+  historyList.innerHTML=items.length?'':'<div style="color:#777;font-size:.86rem">尚無提交紀錄</div>';
+  items.forEach(h=>{
+    const div=document.createElement('div');
+    div.className='history-item';
+    div.innerHTML=`<span>${esc(h.time)}｜Level ${h.taskId}</span><strong>${esc(h.verdict)} ${h.passed}/${h.total}</strong>`;
+    historyList.appendChild(div);
+  });
+}
+
+function getCode(){ return editor ? editor.getValue() : $('#codeEditor').value; }
+function setCode(code){ if(editor) editor.setValue(code); else $('#codeEditor').value=code; }
+function saveDraft(){ const t=TASKS[currentTaskIndex]; localStorage.setItem(draftKey(t.id),getCode()); }
+
+function switchTask(idx){
+  if(idx===currentTaskIndex) return;
+  saveDraft();
+  currentTaskIndex=idx;
+  renderLevelStrip();
+  renderProblem();
+  renderTests();
+  overallVerdict.className='status-pill'; overallVerdict.textContent='尚未提交';
+  resultSummary.textContent='按右側「執行」會使用公開範例輸入並把 stdout / Python 錯誤顯示在終端機；按「提交」才會評測全部測資，右側 TEST RESULTS 會同步顯示每筆 verdict。';
+  const t=TASKS[idx];
+  setCode(localStorage.getItem(draftKey(t.id)) ?? t.starter);
+  resetTerminal();
+  updateTerminalMeta();
+  if(editor){ editor.clearHistory(); editor.focus(); }
+}
+
+function getCodeMirrorCommentRange(cm){
+  const from=cm.getCursor('from');
+  const to=cm.getCursor('to');
+  let startLine=from.line;
+  let endLine=to.line;
+  if(from.line!==to.line && to.ch===0) endLine-=1;
+  return {startLine,endLine};
+}
+
+function toggleCodeMirrorComments(cm){
+  const {startLine,endLine}=getCodeMirrorCommentRange(cm);
+  const lines=[];
+  for(let line=startLine; line<=endLine; line++) lines.push(cm.getLine(line));
+  const nonBlank=lines.filter(line=>line.trim()!=='');
+  const shouldUncomment=nonBlank.length>0 && nonBlank.every(line=>/^\s*#/.test(line));
+
+  cm.operation(()=>{
+    for(let line=endLine; line>=startLine; line--){
+      const text=cm.getLine(line);
+      let next=text;
+      if(shouldUncomment){
+        next=text.replace(/^(\s*)# ?/, '$1');
+      }else if(text.trim()===''){
+        next=text;
+      }else{
+        const m=text.match(/^\s*/);
+        const indent=m?m[0]:'';
+        next=indent+'# '+text.slice(indent.length);
+      }
+      if(next!==text){
+        cm.replaceRange(next, CodeMirror.Pos(line,0), CodeMirror.Pos(line,text.length), '+comment');
+      }
+    }
+  });
+}
+
+function toggleTextareaComments(textarea){
+  const value=textarea.value;
+  const originalStart=textarea.selectionStart;
+  const originalEnd=textarea.selectionEnd;
+  const hasSelection=originalStart!==originalEnd;
+  const lineStart=value.lastIndexOf('\n', Math.max(0, originalStart-1))+1;
+  let effectiveEnd=originalEnd;
+  if(hasSelection && effectiveEnd>lineStart && value[effectiveEnd-1]==='\n') effectiveEnd-=1;
+  let lineEnd=value.indexOf('\n', effectiveEnd);
+  if(lineEnd===-1) lineEnd=value.length;
+
+  const block=value.slice(lineStart,lineEnd);
+  const lines=block.split('\n');
+  const nonBlank=lines.filter(line=>line.trim()!=='');
+  const shouldUncomment=nonBlank.length>0 && nonBlank.every(line=>/^\s*#/.test(line));
+  const transformed=lines.map(line=>{
+    if(shouldUncomment) return line.replace(/^(\s*)# ?/, '$1');
+    if(line.trim()==='') return line;
+    const m=line.match(/^\s*/);
+    const indent=m?m[0]:'';
+    return indent+'# '+line.slice(indent.length);
+  }).join('\n');
+
+  textarea.value=value.slice(0,lineStart)+transformed+value.slice(lineEnd);
+  if(hasSelection){
+    textarea.selectionStart=lineStart;
+    textarea.selectionEnd=lineStart+transformed.length;
+  }else{
+    const oldLine=value.slice(lineStart,lineEnd);
+    const oldOffset=originalStart-lineStart;
+    const oldIndent=(oldLine.match(/^\s*/)||[''])[0].length;
+    let delta=0;
+    if(oldLine.trim()!==''){
+      if(shouldUncomment){
+        const prefix=(oldLine.match(/^\s*# ?/)||[''])[0];
+        delta=-Math.max(0,prefix.length-oldIndent);
+      }else if(oldOffset>=oldIndent){
+        delta=2;
+      }
+    }
+    const pos=Math.max(lineStart, originalStart+delta);
+    textarea.selectionStart=textarea.selectionEnd=pos;
+  }
+  saveDraft();
+}
+
+function deleteCodeMirrorIndentBackspace(cm){
+  if(cm.somethingSelected()) return CodeMirror.Pass;
+  const cur=cm.getCursor();
+  if(cur.ch===0) return CodeMirror.Pass;
+  const line=cm.getLine(cur.line);
+  const prefix=line.slice(0,cur.ch);
+  if(!/^ +$/.test(prefix)) return CodeMirror.Pass;
+  const removeCount=Math.min(4,prefix.length);
+  cm.replaceRange('', CodeMirror.Pos(cur.line,cur.ch-removeCount), cur, '+delete');
+}
+
+function deleteTextareaIndentBackspace(textarea){
+  const start=textarea.selectionStart;
+  const end=textarea.selectionEnd;
+  if(start!==end || start===0) return false;
+  const value=textarea.value;
+  const lineStart=value.lastIndexOf('\n',start-1)+1;
+  const prefix=value.slice(lineStart,start);
+  if(!/^ +$/.test(prefix)) return false;
+  const removeCount=Math.min(4,prefix.length);
+  textarea.value=value.slice(0,start-removeCount)+value.slice(start);
+  textarea.selectionStart=textarea.selectionEnd=start-removeCount;
+  saveDraft();
+  return true;
+}
+
+function setupEditor(){
+  const textarea=$('#codeEditor');
+  if(window.CodeMirror){
+    CodeMirror.registerHelper('hint','python-custom',function(cm){
+      const cur=cm.getCursor();
+      const token=cm.getTokenAt(cur);
+      let start=token.start,end=cur.ch,word=token.string.slice(0,end-start);
+      if(!/^[A-Za-z_][A-Za-z0-9_]*$/.test(word)){start=end;word=''}
+      const list=COMPLETIONS.filter(x=>x.startsWith(word) && x!==word);
+      return {list:list.length?list:COMPLETIONS,from:CodeMirror.Pos(cur.line,start),to:CodeMirror.Pos(cur.line,end)};
+    });
+    editor=CodeMirror.fromTextArea(textarea,{
+      mode:'python',
+      lineNumbers:true,
+      indentUnit:4,
+      tabSize:4,
+      indentWithTabs:false,
+      lineWrapping:false,
+      autoCloseBrackets:true,
+      matchBrackets:true,
+      extraKeys:{
+        'Ctrl-Space':cm=>cm.showHint({hint:CodeMirror.hint['python-custom'],completeSingle:false}),
+        'Alt-/':cm=>cm.showHint({hint:CodeMirror.hint['python-custom'],completeSingle:false}),
+        'Ctrl-/':cm=>toggleCodeMirrorComments(cm),
+        'Backspace':cm=>deleteCodeMirrorIndentBackspace(cm),
+        'Ctrl-Enter':()=>runCurrentCode(),
+        'F9':()=>runCurrentCode(),
+        'Tab':cm=>{
+          if(cm.somethingSelected()) cm.indentSelection('add');
+          else cm.replaceSelection('    ','end','+input');
+        },
+        'Shift-Tab':cm=>cm.indentSelection('subtract')
+      }
+    });
+    editor.on('change',()=>saveDraft());
+    editor.on('inputRead',(cm,change)=>{
+      if(change.text && /^[A-Za-z_]$/.test(change.text[0]||'')){
+        const token=cm.getTokenAt(cm.getCursor());
+        if(token.string.length>=3 && !cm.state.completionActive){
+          cm.showHint({hint:CodeMirror.hint['python-custom'],completeSingle:false});
+        }
+      }
+    });
+  }else{
+    textarea.className='fallback-editor';
+    textarea.addEventListener('keydown',e=>{
+      if(e.key==='Backspace' && !e.ctrlKey && !e.altKey && !e.metaKey && deleteTextareaIndentBackspace(textarea)){
+        e.preventDefault();
+      }else if(e.ctrlKey && e.key==='/'){
+        e.preventDefault();
+        toggleTextareaComments(textarea);
+      }else if((e.ctrlKey && e.key==='Enter') || e.key==='F9'){
+        e.preventDefault();
+        runCurrentCode();
+      }else if(e.key==='Tab'){
+        e.preventDefault();
+        const start=textarea.selectionStart,end=textarea.selectionEnd;
+        textarea.value=textarea.value.slice(0,start)+'    '+textarea.value.slice(end);
+        textarea.selectionStart=textarea.selectionEnd=start+4;
+      }else if(e.key==='Enter'){
+        const start=textarea.selectionStart;
+        const before=textarea.value.slice(0,start);
+        const line=before.slice(before.lastIndexOf('\n')+1);
+        const indent=(line.match(/^\s*/)||[''])[0] + (line.trimEnd().endsWith(':')?'    ':'');
+        e.preventDefault();
+        textarea.value=textarea.value.slice(0,start)+'\n'+indent+textarea.value.slice(textarea.selectionEnd);
+        textarea.selectionStart=textarea.selectionEnd=start+1+indent.length;
+      }
+    });
+    textarea.addEventListener('input',saveDraft);
+  }
+}
+
+function updateTerminalMeta(){
+  const t=TASKS[currentTaskIndex];
+  const sample=t.tests.find(x=>x.public);
+  $('#terminalMeta').textContent=sample?`stdin: Level ${t.id} public sample input`:`stdin: empty`;
+}
+
+function resetTerminal(message='Ready. Press Run, Ctrl+Enter, or F9.'){
+  const out=$('#terminalOutput');
+  out.className='terminal-output';
+  out.textContent=message;
+}
+
+function writeTerminal(text,isError=false){
+  const out=$('#terminalOutput');
+  out.className='terminal-output'+(isError?' error':'');
+  out.textContent=text;
+  out.scrollTop=out.scrollHeight;
+}
+
+async function runCurrentCode(){
+  if(busy)return;
+  const t=TASKS[currentTaskIndex];
+  const sample=t.tests.find(x=>x.public);
+  const input=sample?sample.input:'';
+  const code=getCode();
+  saveDraft();
+  updateTerminalMeta();
+  if(!code.trim()){
+    writeTerminal(`$ python main.py
+
+No code to run.`);
+    if(editor)editor.focus();
+    return;
+  }
+  setBusy(true);
+  writeTerminal(`$ python main.py
+[stdin: Level ${t.id} public sample input]
+
+Running...`);
+  try{
+    const r=await runPython(code,input);
+    if(r.timeout){
+      writeTerminal(`$ python main.py
+
+Time Limit Exceeded`,true);
+    }else if(!r.ok){
+      const prefix=r.output?`${r.output}\n`:'';
+      writeTerminal(`$ python main.py
+
+${prefix}${r.error || 'Runtime Error'}`,true);
+    }else{
+      const stdout=r.output || '';
+      const stderr=r.error || '';
+      let body=stdout;
+      if(stderr) body += (body ? '\n' : '') + stderr;
+      if(!body) body='Program finished with no output.';
+      writeTerminal(`$ python main.py
+
+${body}
+
+Process finished in ${r.ms} ms.`,Boolean(stderr));
+    }
+  }catch(err){
+    writeTerminal(`$ python main.py
+
+Python runtime failed to load: ${err.message}`,true);
+    setRuntime('error','Python 載入失敗');
+  }finally{
+    setBusy(false);
+    if(editor) editor.focus();
+  }
+}
+
+function setRuntime(status,text){
+  runtimeDot.className='dot'+(status?' '+status:'');
+  runtimeText.textContent=text;
+}
+
+function makeWorker(){
+  const workerSource=`
+    let pyodide = null;
+    self.onmessage = async (e) => {
+      const msg=e.data;
+      if(msg.type==='init'){
+        try{
+          importScripts('https://cdn.jsdelivr.net/pyodide/v0.27.7/full/pyodide.js');
+          pyodide = await loadPyodide();
+          self.postMessage({type:'ready'});
+        }catch(err){self.postMessage({type:'init-error',error:String(err)});}
+        return;
+      }
+      if(msg.type==='run'){
+        try{
+          pyodide.globals.set('__OJ_CODE__',msg.code);
+          pyodide.globals.set('__OJ_INPUT__',msg.input);
+          const json = await pyodide.runPythonAsync(\`
+import io, sys, json, traceback
+_old_stdin, _old_stdout, _old_stderr = sys.stdin, sys.stdout, sys.stderr
+_buf_out, _buf_err = io.StringIO(), io.StringIO()
+sys.stdin = io.StringIO(__OJ_INPUT__)
+sys.stdout = _buf_out
+sys.stderr = _buf_err
+try:
+    _ns = {"__name__": "__main__"}
+    exec(compile(__OJ_CODE__, "main.py", "exec"), _ns, _ns)
+    _res = {"ok": True, "output": _buf_out.getvalue(), "error": _buf_err.getvalue()}
+except BaseException as _e:
+    _res = {"ok": False, "output": _buf_out.getvalue(), "error": traceback.format_exc().rstrip()}
+finally:
+    sys.stdin, sys.stdout, sys.stderr = _old_stdin, _old_stdout, _old_stderr
+json.dumps(_res)
+          \`);
+          self.postMessage({type:'result',id:msg.id,result:JSON.parse(json)});
+        }catch(err){self.postMessage({type:'result',id:msg.id,result:{ok:false,output:'',error:String(err)}});}
+      }
+    };
+  `;
+  const blob=new Blob([workerSource],{type:'application/javascript'});
+  const w=new Worker(URL.createObjectURL(blob));
+  return w;
+}
+
+function ensureWorker(){
+  if(pyWorker && workerReadyPromise) return workerReadyPromise;
+  setRuntime('busy','載入 Python…');
+  pyWorker=makeWorker();
+  workerReadyPromise=new Promise((resolve,reject)=>{
+    const onMessage=(e)=>{
+      if(e.data.type==='ready'){
+        pyWorker.removeEventListener('message',onMessage);
+        setRuntime('ready','Python 3 已就緒');
+        resolve();
+      }else if(e.data.type==='init-error'){
+        pyWorker.removeEventListener('message',onMessage);
+        setRuntime('error','Python 載入失敗');
+        reject(new Error(e.data.error));
+      }
+    };
+    pyWorker.addEventListener('message',onMessage);
+    pyWorker.postMessage({type:'init'});
+  });
+  return workerReadyPromise;
+}
+
+function killWorker(){
+  if(pyWorker) pyWorker.terminate();
+  pyWorker=null;workerReadyPromise=null;
+  setRuntime('','Python 尚未載入');
+}
+
+async function runPython(code,input,timeoutMs=2500){
+  await ensureWorker();
+  const id=++workerRunSeq;
+  return await new Promise(resolve=>{
+    const start=performance.now();
+    let settled=false;
+    const handler=(e)=>{
+      if(e.data.type==='result' && e.data.id===id){
+        if(settled)return; settled=true;
+        clearTimeout(timer);
+        pyWorker.removeEventListener('message',handler);
+        const ms=Math.max(1,Math.round(performance.now()-start));
+        resolve({...e.data.result,ms});
+      }
+    };
+    pyWorker.addEventListener('message',handler);
+    const timer=setTimeout(()=>{
+      if(settled)return;settled=true;
+      pyWorker.removeEventListener('message',handler);
+      killWorker();
+      resolve({ok:false,output:'',error:'Time Limit Exceeded',timeout:true,ms:timeoutMs});
+    },timeoutMs);
+    pyWorker.postMessage({type:'run',id,code,input});
+  });
+}
+
+function setBusy(v){
+  busy=v;
+  $('#runBtn').disabled=v;
+  $('#submitBtn').disabled=v;
+  $('#resetBtn').disabled=v;
+  $('#answerBtn').disabled=v;
+}
+
+async function judge(mode){
+  if(busy)return;
+  const t=TASKS[currentTaskIndex];
+  const code=getCode();
+  saveDraft();
+  const tests=mode==='sample'?t.tests.filter(x=>x.public).slice(0,1):t.tests;
+  setBusy(true);
+  overallVerdict.className='status-pill warn'; overallVerdict.textContent='評測中';
+  resultSummary.textContent=mode==='sample'?'正在執行公開範例…':'正在執行全部測資…';
+  renderTests('running',[]);
+  const results=[];
+  let passed=0;
+  try{
+    for(let i=0;i<tests.length;i++){
+      const r=await runPython(code,tests[i].input);
+      const pass=r.ok && normalizeOutput(r.output)===normalizeOutput(tests[i].output);
+      const rr={...r,pass,error:r.ok?'':r.error};
+      results.push(rr);
+      if(pass)passed++;
+      if(mode==='sample'){
+        renderTests('idle',[rr]);
+      }else{
+        renderTests('running',results);
+      }
+      if(!pass && r.timeout) break;
+    }
+    if(mode==='sample'){
+      const r=results[0];
+      if(r.pass){
+        overallVerdict.className='status-pill ok';overallVerdict.textContent='範例通過';
+        resultSummary.textContent=`公開範例輸出正確，執行約 ${r.ms} ms。接著可按「提交」測全部測資。`;
+      }else{
+        overallVerdict.className='status-pill bad';overallVerdict.textContent=r.timeout?'TLE':(r.error?'RE':'WA');
+        resultSummary.textContent=r.error?`執行錯誤：${r.error}`:`你的輸出：${JSON.stringify(normalizeOutput(r.output))}`;
+      }
+    }else{
+      renderTests('idle',results);
+      const total=t.tests.length;
+      const allPass=passed===total && results.length===total;
+      if(allPass){
+        setAccepted(t.id);
+        overallVerdict.className='status-pill ok';overallVerdict.textContent='Accepted';
+        resultSummary.textContent=`全部 ${total} 筆測資通過。這一階完成。`;
+        addHistory(t.id,'AC',passed,total);
+        renderProgress();renderLevelStrip();
+      }else{
+        const firstBad=results.find(x=>!x.pass);
+        const verdict=firstBad?.timeout?'TLE':(firstBad?.error?'RE':'WA');
+        overallVerdict.className='status-pill bad';overallVerdict.textContent=verdict;
+        resultSummary.textContent=`通過 ${passed} / ${total}。先修正第一個失敗原因，再重新提交。`;
+        addHistory(t.id,verdict,passed,total);
+      }
+    }
+  }catch(err){
+    overallVerdict.className='status-pill bad';overallVerdict.textContent='環境錯誤';
+    resultSummary.textContent=`無法啟動瀏覽器 Python：${err.message}。請確認網路可連到 jsDelivr CDN 後重試。`;
+    setRuntime('error','Python 載入失敗');
+  }finally{
+    setBusy(false);
+  }
+}
+
+$('#answerBtn').addEventListener('click',()=>{
+  const t=TASKS[currentTaskIndex];
+  $('#answerTitle').textContent=`Level ${t.id} 參考答案｜${t.title}`;
+  $('#answerCode').textContent=t.answer;
+  $('#answerDialog').showModal();
+});
+$('#closeAnswer').addEventListener('click',()=>$('#answerDialog').close());
+$('#answerDialog').addEventListener('click',(e)=>{if(e.target===$('#answerDialog'))$('#answerDialog').close()});
+$('#resetBtn').addEventListener('click',()=>{
+  const t=TASKS[currentTaskIndex];
+  if(confirm('確定清空這一階的程式碼？')){
+    setCode(''); saveDraft(); if(editor)editor.focus();
+  }
+});
+$('#clearAllBtn').addEventListener('click',()=>{
+  if(!confirm('確定清除所有紀錄？\n\n這會刪除 8 題的程式草稿、AC 進度與本機提交紀錄，且無法復原。')) return;
+  clearAllLocalRecords();
+  clearSampleDemoTimers();
+  currentTaskIndex=0;
+  renderLevelStrip();
+  renderProblem();
+  renderTests();
+  renderHistory();
+  renderProgress();
+  overallVerdict.className='status-pill';
+  overallVerdict.textContent='尚未提交';
+  resultSummary.textContent='所有本機紀錄已清除。按右側「執行」可使用公開範例輸入；按「提交」才會評測本階段全部測資。';
+  setCode(TASKS[0].starter);
+  resetTerminal('All local records cleared.');
+  updateTerminalMeta();
+  if(editor){editor.clearHistory();editor.focus();}
+});
+$('#runBtn').addEventListener('click',runCurrentCode);
+$('#clearTerminalBtn').addEventListener('click',()=>resetTerminal('終端機已清除。'));
+$('#submitBtn').addEventListener('click',()=>judge('all'));
+
+setupEditor();
+renderLevelStrip();
+renderProblem();
+renderTests();
+renderHistory();
+renderProgress();
+setCode(localStorage.getItem(draftKey(TASKS[0].id)) ?? TASKS[0].starter);
+updateTerminalMeta();
+</script>
+</body>
+</html>
