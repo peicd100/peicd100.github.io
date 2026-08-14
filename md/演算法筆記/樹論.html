@@ -5486,6 +5486,17 @@ is now available!
 </li>
         
           <li class="md-nav__item">
+  <a href="#a223-q_8_6-樹狀圖的距離總和" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        a223: Q_8_6 樹狀圖的距離總和
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#例題-p-3-1-樹的高度與根-bottom-up-apcs201710-同-p-8-4-1" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -5501,17 +5512,6 @@ is now available!
     <span class="md-ellipsis">
       
         P-8-5. 自動分裝 (APCS202002)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#a223-q_8_6-樹狀圖的距離總和" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        a223: Q_8_6 樹狀圖的距離總和
       
     </span>
   </a>
@@ -8665,6 +8665,17 @@ is now available!
 </li>
         
           <li class="md-nav__item">
+  <a href="#a223-q_8_6-樹狀圖的距離總和" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        a223: Q_8_6 樹狀圖的距離總和
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#例題-p-3-1-樹的高度與根-bottom-up-apcs201710-同-p-8-4-1" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -8680,17 +8691,6 @@ is now available!
     <span class="md-ellipsis">
       
         P-8-5. 自動分裝 (APCS202002)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#a223-q_8_6-樹狀圖的距離總和" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        a223: Q_8_6 樹狀圖的距離總和
       
     </span>
   </a>
@@ -10603,6 +10603,110 @@ n 不超過 50000，每條道路長度是不超過 100 的正整數。     </p>
 </code></pre></div>
 <div class="code-footer"><label class="expand icon-only" for="__collapse16" tabindex="0"><span class="collapse-code__sr-only">expand</span></label><label class="collapse icon-only" for="__collapse16" tabindex="0"><span class="collapse-code__sr-only">collapse</span></label></div>
 </div>
+<h3 id="a223-q_8_6-樹狀圖的距離總和">a223: Q_8_6 樹狀圖的距離總和<a class="headerlink" href="#a223-q_8_6-樹狀圖的距離總和" title="Permanent link"></a></h3>
+<p><a href="https://judge.tcirc.tw/problem/d108">https://judge.tcirc.tw/problem/d108</a></p>
+<p>內容     </p>
+<p>輸入一個樹狀圖，請計算所有點到所有點的距離總和。本題假設編號 1  1 是根節點。     </p>
+<p>輸入說明     </p>
+<p>第一行是正整數 n  𝑛，代表點數，點以 1∼n  1∼𝑛編號，     </p>
+<p>第二行有 n−1  𝑛−1 個正整數， p(2),p(3),…,p(n)  𝑝(2),𝑝(3),…,𝑝(𝑛) ，依序是編號 2∼n  2∼𝑛各點的parent，     </p>
+<p>第三行有 n−1  𝑛−1 個正整數，依序代表 i  𝑖 從 2  2 到 n  𝑛，邊 (i,p(i))  (𝑖,𝑝(𝑖)) 的長度。n  𝑛 不超過 10 5   105，每條邊長度是不超過 1000  1000 的正整數。     </p>
+<p>輸出說明     </p>
+<p>各點到各點的距離總和。請注意 i  𝑖 到 j  𝑗 與 j  𝑗 到 i  𝑖 都要納入總和，如範例。     </p>
+<p>範例輸入 #1     </p>
+<p>4   <br/>
+1 2 3   <br/>
+10 20 30     </p>
+<p>範例輸出 #1     </p>
+<p>400     </p>
+<p>範例輸入 #2     </p>
+<p>5   <br/>
+1 1 1 2   <br/>
+20 20 30 30     </p>
+<p>範例輸出 #2     </p>
+<p>880    </p>
+<div class="collapse-code"><input checked="checked" id="__collapse17" name="__collapse17" type="checkbox"/><div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;bits/stdc++.h&gt;</span>
+
+<span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span>
+<span class="cp">#define int long long</span>
+<span class="cp">#define pii pair&lt;int, int&gt;</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="p">;</span>
+<span class="kt">int</span><span class="w"> </span><span class="n">ans</span><span class="p">;</span>
+<span class="n">vector</span><span class="o">&lt;</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">pii</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">g</span><span class="p">;</span>
+<span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">sub</span><span class="p">;</span>
+<span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">sum</span><span class="p">;</span>
+<span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">d</span><span class="p">;</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">dfs1</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">u</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">p</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">pii</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">g</span><span class="p">[</span><span class="n">u</span><span class="p">])</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">v</span><span class="p">,</span><span class="w"> </span><span class="n">w</span><span class="p">;</span>
+<span class="w">        </span><span class="n">tie</span><span class="p">(</span><span class="n">v</span><span class="p">,</span><span class="w"> </span><span class="n">w</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">i</span><span class="p">;</span>
+
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">v</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">p</span><span class="p">)</span><span class="w"> </span><span class="k">continue</span><span class="p">;</span>
+
+<span class="w">        </span><span class="n">d</span><span class="p">[</span><span class="n">v</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">d</span><span class="p">[</span><span class="n">u</span><span class="p">]</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">w</span><span class="p">;</span>
+
+<span class="w">        </span><span class="n">dfs1</span><span class="p">(</span><span class="n">v</span><span class="p">,</span><span class="w"> </span><span class="n">u</span><span class="p">);</span>
+
+<span class="w">        </span><span class="n">sub</span><span class="p">[</span><span class="n">u</span><span class="p">]</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">sub</span><span class="p">[</span><span class="n">v</span><span class="p">];</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="n">sum</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">d</span><span class="p">[</span><span class="n">u</span><span class="p">];</span>
+<span class="p">}</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">dfs2</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">u</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">p</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">pii</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">g</span><span class="p">[</span><span class="n">u</span><span class="p">])</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">v</span><span class="p">,</span><span class="w"> </span><span class="n">w</span><span class="p">;</span>
+<span class="w">        </span><span class="n">tie</span><span class="p">(</span><span class="n">v</span><span class="p">,</span><span class="w"> </span><span class="n">w</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">i</span><span class="p">;</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">v</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">p</span><span class="p">)</span><span class="w"> </span><span class="k">continue</span><span class="p">;</span>
+
+<span class="w">        </span><span class="n">sum</span><span class="p">[</span><span class="n">v</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sum</span><span class="p">[</span><span class="n">u</span><span class="p">]</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">sub</span><span class="p">[</span><span class="n">v</span><span class="p">]</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">w</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">sub</span><span class="p">[</span><span class="n">v</span><span class="p">])</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">w</span><span class="p">;</span>
+
+<span class="w">        </span><span class="n">dfs2</span><span class="p">(</span><span class="n">v</span><span class="p">,</span><span class="w"> </span><span class="n">u</span><span class="p">);</span>
+<span class="w">        </span><span class="n">ans</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">sum</span><span class="p">[</span><span class="n">v</span><span class="p">];</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kt">signed</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">cin</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">n</span><span class="p">;</span>
+
+<span class="w">    </span><span class="n">g</span><span class="p">.</span><span class="n">resize</span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+<span class="w">    </span><span class="n">sub</span><span class="p">.</span><span class="n">resize</span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+<span class="w">    </span><span class="n">sum</span><span class="p">.</span><span class="n">resize</span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+<span class="w">    </span><span class="n">d</span><span class="p">.</span><span class="n">resize</span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+
+
+<span class="w">    </span><span class="n">vector</span><span class="o">&lt;</span><span class="n">pii</span><span class="o">&gt;</span><span class="w"> </span><span class="n">v</span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">n</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">cin</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">v</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">first</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">n</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">cin</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">v</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">second</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">n</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">f</span><span class="p">,</span><span class="w"> </span><span class="n">s</span><span class="p">;</span>
+<span class="w">        </span><span class="n">tie</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="w"> </span><span class="n">s</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">v</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+
+<span class="w">        </span><span class="n">g</span><span class="p">[</span><span class="n">f</span><span class="p">].</span><span class="n">push_back</span><span class="p">({</span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">s</span><span class="p">});</span>
+<span class="w">        </span><span class="n">g</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">push_back</span><span class="p">({</span><span class="n">f</span><span class="p">,</span><span class="w"> </span><span class="n">s</span><span class="p">});</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="n">dfs1</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">-1</span><span class="p">);</span>
+
+<span class="w">    </span><span class="n">dfs2</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">-1</span><span class="p">);</span>
+
+<span class="w">    </span><span class="n">ans</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">sum</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span>
+
+<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">ans</span><span class="p">;</span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<div class="code-footer"><label class="expand icon-only" for="__collapse17" tabindex="0"><span class="collapse-code__sr-only">expand</span></label><label class="collapse icon-only" for="__collapse17" tabindex="0"><span class="collapse-code__sr-only">collapse</span></label></div>
+</div>
 <h3 id="例題-p-3-1-樹的高度與根-bottom-up-apcs201710-同-p-8-4-1">例題 P-3-1. 樹的高度與根 (bottom-up) (APCS201710) (同 P-8-4-1)<a class="headerlink" href="#例題-p-3-1-樹的高度與根-bottom-up-apcs201710-同-p-8-4-1" title="Permanent link"></a></h3>
 <p><a href="https://judge.tcirc.tw/problem/d025">https://judge.tcirc.tw/problem/d025</a></p>
 <p>內容<br/>
@@ -10638,7 +10742,7 @@ n 不超過 50000，每條道路長度是不超過 100 的正整數。     </p>
 </code></pre></div><br/>
 就是top-down的DP</p>
 </blockquote>
-<div class="collapse-code"><input checked="checked" id="__collapse17" name="__collapse17" type="checkbox"/><div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="cpf">&lt;bits/stdc++.h&gt;</span>
+<div class="collapse-code"><input checked="checked" id="__collapse18" name="__collapse18" type="checkbox"/><div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="cpf">&lt;bits/stdc++.h&gt;</span>
 <span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span>
 <span class="cp">#define nn "\n"</span>
 <span class="cp">#define N 100000</span>
@@ -10691,7 +10795,7 @@ n 不超過 50000，每條道路長度是不超過 100 的正整數。     </p>
 <span class="w">    </span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">ans</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div>
-<div class="code-footer"><label class="expand icon-only" for="__collapse17" tabindex="0"><span class="collapse-code__sr-only">expand</span></label><label class="collapse icon-only" for="__collapse17" tabindex="0"><span class="collapse-code__sr-only">collapse</span></label></div>
+<div class="code-footer"><label class="expand icon-only" for="__collapse18" tabindex="0"><span class="collapse-code__sr-only">expand</span></label><label class="collapse icon-only" for="__collapse18" tabindex="0"><span class="collapse-code__sr-only">collapse</span></label></div>
 </div>
 <h3 id="p-8-5-自動分裝-apcs202002">P-8-5. 自動分裝 (APCS202002)<a class="headerlink" href="#p-8-5-自動分裝-apcs202002" title="Permanent link"></a></h3>
 <p><a href="https://judge.tcirc.tw/problem/d105">https://judge.tcirc.tw/problem/d105</a></p>
@@ -10730,7 +10834,7 @@ n 不超過 50000，每條道路長度是不超過 100 的正整數。     </p>
 4 6 7 5 5     </p>
 <p>範例二：<br/>
 8 7     </p>
-<div class="collapse-code"><input checked="checked" id="__collapse18" name="__collapse18" type="checkbox"/><div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;bits/stdc++.h&gt;</span>
+<div class="collapse-code"><input checked="checked" id="__collapse19" name="__collapse19" type="checkbox"/><div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;bits/stdc++.h&gt;</span>
 <span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span>
 <span class="cp">#define pii pair&lt;int, int&gt;</span>
 <span class="cp">#define int long long</span>
@@ -10822,110 +10926,6 @@ n 不超過 50000，每條道路長度是不超過 100 的正整數。     </p>
 <span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">        </span><span class="n">dfs2</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="p">);</span>
 <span class="w">    </span><span class="p">}</span>
-
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></div>
-<div class="code-footer"><label class="expand icon-only" for="__collapse18" tabindex="0"><span class="collapse-code__sr-only">expand</span></label><label class="collapse icon-only" for="__collapse18" tabindex="0"><span class="collapse-code__sr-only">collapse</span></label></div>
-</div>
-<h3 id="a223-q_8_6-樹狀圖的距離總和">a223: Q_8_6 樹狀圖的距離總和<a class="headerlink" href="#a223-q_8_6-樹狀圖的距離總和" title="Permanent link"></a></h3>
-<p><a href="https://judge.tcirc.tw/problem/d108">https://judge.tcirc.tw/problem/d108</a></p>
-<p>內容     </p>
-<p>輸入一個樹狀圖，請計算所有點到所有點的距離總和。本題假設編號 1  1 是根節點。     </p>
-<p>輸入說明     </p>
-<p>第一行是正整數 n  𝑛，代表點數，點以 1∼n  1∼𝑛編號，     </p>
-<p>第二行有 n−1  𝑛−1 個正整數， p(2),p(3),…,p(n)  𝑝(2),𝑝(3),…,𝑝(𝑛) ，依序是編號 2∼n  2∼𝑛各點的parent，     </p>
-<p>第三行有 n−1  𝑛−1 個正整數，依序代表 i  𝑖 從 2  2 到 n  𝑛，邊 (i,p(i))  (𝑖,𝑝(𝑖)) 的長度。n  𝑛 不超過 10 5   105，每條邊長度是不超過 1000  1000 的正整數。     </p>
-<p>輸出說明     </p>
-<p>各點到各點的距離總和。請注意 i  𝑖 到 j  𝑗 與 j  𝑗 到 i  𝑖 都要納入總和，如範例。     </p>
-<p>範例輸入 #1     </p>
-<p>4   <br/>
-1 2 3   <br/>
-10 20 30     </p>
-<p>範例輸出 #1     </p>
-<p>400     </p>
-<p>範例輸入 #2     </p>
-<p>5   <br/>
-1 1 1 2   <br/>
-20 20 30 30     </p>
-<p>範例輸出 #2     </p>
-<p>880    </p>
-<div class="collapse-code"><input checked="checked" id="__collapse19" name="__collapse19" type="checkbox"/><div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;bits/stdc++.h&gt;</span>
-
-<span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span>
-<span class="cp">#define int long long</span>
-<span class="cp">#define pii pair&lt;int, int&gt;</span>
-
-<span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="p">;</span>
-<span class="kt">int</span><span class="w"> </span><span class="n">ans</span><span class="p">;</span>
-<span class="n">vector</span><span class="o">&lt;</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">pii</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">g</span><span class="p">;</span>
-<span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">sub</span><span class="p">;</span>
-<span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">sum</span><span class="p">;</span>
-<span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">d</span><span class="p">;</span>
-
-<span class="kt">void</span><span class="w"> </span><span class="nf">dfs1</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">u</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">p</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">pii</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">g</span><span class="p">[</span><span class="n">u</span><span class="p">])</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">v</span><span class="p">,</span><span class="w"> </span><span class="n">w</span><span class="p">;</span>
-<span class="w">        </span><span class="n">tie</span><span class="p">(</span><span class="n">v</span><span class="p">,</span><span class="w"> </span><span class="n">w</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">i</span><span class="p">;</span>
-
-<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">v</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">p</span><span class="p">)</span><span class="w"> </span><span class="k">continue</span><span class="p">;</span>
-
-<span class="w">        </span><span class="n">d</span><span class="p">[</span><span class="n">v</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">d</span><span class="p">[</span><span class="n">u</span><span class="p">]</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">w</span><span class="p">;</span>
-
-<span class="w">        </span><span class="n">dfs1</span><span class="p">(</span><span class="n">v</span><span class="p">,</span><span class="w"> </span><span class="n">u</span><span class="p">);</span>
-
-<span class="w">        </span><span class="n">sub</span><span class="p">[</span><span class="n">u</span><span class="p">]</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">sub</span><span class="p">[</span><span class="n">v</span><span class="p">];</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="w">    </span><span class="n">sum</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">d</span><span class="p">[</span><span class="n">u</span><span class="p">];</span>
-<span class="p">}</span>
-
-<span class="kt">void</span><span class="w"> </span><span class="nf">dfs2</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">u</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">p</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">pii</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">g</span><span class="p">[</span><span class="n">u</span><span class="p">])</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">v</span><span class="p">,</span><span class="w"> </span><span class="n">w</span><span class="p">;</span>
-<span class="w">        </span><span class="n">tie</span><span class="p">(</span><span class="n">v</span><span class="p">,</span><span class="w"> </span><span class="n">w</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">i</span><span class="p">;</span>
-<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">v</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">p</span><span class="p">)</span><span class="w"> </span><span class="k">continue</span><span class="p">;</span>
-
-<span class="w">        </span><span class="n">sum</span><span class="p">[</span><span class="n">v</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sum</span><span class="p">[</span><span class="n">u</span><span class="p">]</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">sub</span><span class="p">[</span><span class="n">v</span><span class="p">]</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">w</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">sub</span><span class="p">[</span><span class="n">v</span><span class="p">])</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">w</span><span class="p">;</span>
-
-<span class="w">        </span><span class="n">dfs2</span><span class="p">(</span><span class="n">v</span><span class="p">,</span><span class="w"> </span><span class="n">u</span><span class="p">);</span>
-<span class="w">        </span><span class="n">ans</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">sum</span><span class="p">[</span><span class="n">v</span><span class="p">];</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="p">}</span>
-
-<span class="kt">signed</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="n">cin</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">n</span><span class="p">;</span>
-
-<span class="w">    </span><span class="n">g</span><span class="p">.</span><span class="n">resize</span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
-<span class="w">    </span><span class="n">sub</span><span class="p">.</span><span class="n">resize</span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
-<span class="w">    </span><span class="n">sum</span><span class="p">.</span><span class="n">resize</span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
-<span class="w">    </span><span class="n">d</span><span class="p">.</span><span class="n">resize</span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
-
-
-<span class="w">    </span><span class="n">vector</span><span class="o">&lt;</span><span class="n">pii</span><span class="o">&gt;</span><span class="w"> </span><span class="n">v</span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
-
-<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">n</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="n">cin</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">v</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">first</span><span class="p">;</span>
-<span class="w">    </span><span class="p">}</span>
-
-<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">n</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="n">cin</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">v</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">second</span><span class="p">;</span>
-<span class="w">    </span><span class="p">}</span>
-
-<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">n</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">f</span><span class="p">,</span><span class="w"> </span><span class="n">s</span><span class="p">;</span>
-<span class="w">        </span><span class="n">tie</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="w"> </span><span class="n">s</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">v</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
-
-<span class="w">        </span><span class="n">g</span><span class="p">[</span><span class="n">f</span><span class="p">].</span><span class="n">push_back</span><span class="p">({</span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">s</span><span class="p">});</span>
-<span class="w">        </span><span class="n">g</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">push_back</span><span class="p">({</span><span class="n">f</span><span class="p">,</span><span class="w"> </span><span class="n">s</span><span class="p">});</span>
-<span class="w">    </span><span class="p">}</span>
-
-<span class="w">    </span><span class="n">dfs1</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">-1</span><span class="p">);</span>
-
-<span class="w">    </span><span class="n">dfs2</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">-1</span><span class="p">);</span>
-
-<span class="w">    </span><span class="n">ans</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">sum</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span>
-
-<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">ans</span><span class="p">;</span>
 
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
