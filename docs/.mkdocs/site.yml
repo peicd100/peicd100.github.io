@@ -155,8 +155,8 @@ nav:  # 自定義網站的導航結構
     - 'md/python/競賽偷懶輸入法.md'
     - 'md/python/物件的參照.md'
     - '觀念題練習':
-        - 'Python APCS 官方識讀例題轉 HTML': 'md/python/Python APCS 官方識讀例題轉 HTML.html'
-        - 'Python APCS 官方識讀例題轉 HTML': 'md/python/Python APCS 自編識讀例題轉 HTML.html'
+        - 'Python APCS 官方識讀例題轉 HTML': 'md/python/Python_APCS_官方識讀例題轉_HTML.html'
+        - 'Python APCS 官方識讀例題轉 HTML': 'md/python/Python_APCS_自編識讀例題轉_HTML.html'
     - '實作題':
         - 'h027. 202001_2 矩陣總和(2020/1)': 'md/python/h027_矩陣總和.html'
          

@@ -5634,10 +5634,10 @@ is now available!
 </li>
         
           <li class="md-nav__item">
-  <a href="#18uva-10093-an-easy-problem" class="md-nav__link">
+  <a href="#18n78610093---an-easy-problem" class="md-nav__link">
     <span class="md-ellipsis">
       
-        18.UVA-10093 An Easy Problem!
+        18.n786.10093 - An Easy Problem!
       
     </span>
   </a>
@@ -7424,7 +7424,7 @@ is now available!
   
   
     <li class="md-nav__item">
-      <a href="../python/Python%20APCS%20%E5%AE%98%E6%96%B9%E8%AD%98%E8%AE%80%E4%BE%8B%E9%A1%8C%E8%BD%89%20HTML.html" class="md-nav__link">
+      <a href="../python/Python_APCS_%E5%AE%98%E6%96%B9%E8%AD%98%E8%AE%80%E4%BE%8B%E9%A1%8C%E8%BD%89_HTML.html" class="md-nav__link">
         
   
   
@@ -7452,7 +7452,7 @@ is now available!
   
   
     <li class="md-nav__item">
-      <a href="../python/Python%20APCS%20%E8%87%AA%E7%B7%A8%E8%AD%98%E8%AE%80%E4%BE%8B%E9%A1%8C%E8%BD%89%20HTML.html" class="md-nav__link">
+      <a href="../python/Python_APCS_%E8%87%AA%E7%B7%A8%E8%AD%98%E8%AE%80%E4%BE%8B%E9%A1%8C%E8%BD%89_HTML.html" class="md-nav__link">
         
   
   
@@ -8140,10 +8140,10 @@ is now available!
 </li>
         
           <li class="md-nav__item">
-  <a href="#18uva-10093-an-easy-problem" class="md-nav__link">
+  <a href="#18n78610093---an-easy-problem" class="md-nav__link">
     <span class="md-ellipsis">
       
-        18.UVA-10093 An Easy Problem!
+        18.n786.10093 - An Easy Problem!
       
     </span>
   </a>
@@ -8896,45 +8896,143 @@ is now available!
 </div>
 <h3 id="12e579-10050--hartals">12.<a href="https://zerojudge.tw/ShowProblem?problemid=e579">e579. 10050 – Hartals</a><a class="headerlink" href="#12e579-10050--hartals" title="Permanent link"></a></h3>
 <p><a href="https://vjudge.net/problem/UVA-10050">英文題目網址</a></p>
-<div class="collapse-code"><input checked="checked" id="__collapse11" name="__collapse11" type="checkbox"/><div class="highlight"><pre><span></span><code>
+<div class="collapse-code"><input checked="checked" id="__collapse11" name="__collapse11" type="checkbox"/><div class="highlight"><pre><span></span><code><span class="n">w</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">())</span>
+
+
+<span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">w</span><span class="p">):</span>
+    <span class="n">day</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">())</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">())</span>
+
+    <span class="n">mem</span> <span class="o">=</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">())</span>  <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">)]</span>
+
+    <span class="n">g</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="n">day</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">mem</span><span class="p">:</span>
+        <span class="n">j</span> <span class="o">=</span> <span class="n">i</span>
+        <span class="k">while</span> <span class="n">j</span> <span class="o">&lt;=</span> <span class="n">day</span><span class="p">:</span>
+            <span class="k">if</span> <span class="ow">not</span><span class="p">(</span><span class="n">j</span><span class="o">%</span><span class="mi">7</span> <span class="o">==</span> <span class="mi">6</span> <span class="ow">or</span> <span class="n">j</span><span class="o">%</span><span class="mi">7</span> <span class="o">==</span><span class="mi">0</span><span class="p">):</span>
+                <span class="n">g</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+            <span class="n">j</span><span class="o">+=</span><span class="n">i</span>
+
+    <span class="c1"># print(g)</span>
+    
+    <span class="nb">print</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">g</span><span class="p">))</span>
 </code></pre></div>
 <div class="code-footer"><label class="expand icon-only" for="__collapse11" tabindex="0"><span class="collapse-code__sr-only">expand</span></label><label class="collapse icon-only" for="__collapse11" tabindex="0"><span class="collapse-code__sr-only">collapse</span></label></div>
 </div>
 <h3 id="13a012-10055--hashmat-the-brave-warrior">13.<a href="https://zerojudge.tw/ShowProblem?problemid=a012">a012. 10055 – Hashmat the Brave Warrior</a><a class="headerlink" href="#13a012-10055--hashmat-the-brave-warrior" title="Permanent link"></a></h3>
 <p><a href="https://vjudge.net/problem/UVA-10055">英文題目網址</a></p>
-<div class="collapse-code"><input checked="checked" id="__collapse12" name="__collapse12" type="checkbox"/><div class="highlight"><pre><span></span><code>
+<div class="collapse-code"><input checked="checked" id="__collapse12" name="__collapse12" type="checkbox"/><div class="highlight"><pre><span></span><code><span class="k">while</span><span class="p">(</span><span class="mi">1</span><span class="p">):</span>
+    <span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">a</span><span class="p">,</span><span class="n">b</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="nb">int</span><span class="p">,</span><span class="nb">input</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">())</span>
+    <span class="k">except</span> <span class="ne">EOFError</span><span class="p">:</span>
+        <span class="k">break</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">a</span><span class="o">-</span><span class="n">b</span><span class="p">))</span>
+        
+        
 </code></pre></div>
 <div class="code-footer"><label class="expand icon-only" for="__collapse12" tabindex="0"><span class="collapse-code__sr-only">expand</span></label><label class="collapse icon-only" for="__collapse12" tabindex="0"><span class="collapse-code__sr-only">collapse</span></label></div>
 </div>
+<div class="admonition danger">
+<p class="admonition-title">Danger</p>
 <h3 id="14e510-10056--what-is-the-probability">14.<a href="https://zerojudge.tw/ShowProblem?problemid=e510">e510. 10056 – What is the Probability?</a><a class="headerlink" href="#14e510-10056--what-is-the-probability" title="Permanent link"></a></h3>
 <p><a href="https://vjudge.net/problem/UVA-10056">英文題目網址</a></p>
-<div class="collapse-code"><input checked="checked" id="__collapse13" name="__collapse13" type="checkbox"/><div class="highlight"><pre><span></span><code>
+<div class="collapse-code"><input checked="checked" id="__collapse13" name="__collapse13" type="checkbox"/><div class="highlight"><pre><span></span><code><span class="n">n</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">())</span>
+
+<span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+
+    <span class="n">s</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">input</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">())</span>
+
+    <span class="n">N</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">P</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+    <span class="n">k</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+
+    <span class="n">ans</span> <span class="o">=</span> <span class="p">(((</span><span class="mi">1</span><span class="o">-</span><span class="n">P</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="n">k</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span><span class="o">*</span><span class="n">P</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="p">((</span><span class="mi">1</span><span class="o">-</span><span class="n">P</span><span class="p">)</span><span class="o">**</span><span class="n">N</span><span class="p">))</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">ans</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 </code></pre></div>
 <div class="code-footer"><label class="expand icon-only" for="__collapse13" tabindex="0"><span class="collapse-code__sr-only">expand</span></label><label class="collapse icon-only" for="__collapse13" tabindex="0"><span class="collapse-code__sr-only">collapse</span></label></div>
 </div>
+</div>
+<div class="admonition danger">
+<p class="admonition-title">Danger</p>
 <h3 id="15e606-10057--a-mid-summer-nights-dream">15.<a href="https://zerojudge.tw/ShowProblem?problemid=e606">e606. 10057 – A mid-summer nights dream</a><a class="headerlink" href="#15e606-10057--a-mid-summer-nights-dream" title="Permanent link"></a></h3>
 <p><a href="https://vjudge.net/problem/UVA-10057">英文題目網址</a></p>
-<div class="collapse-code"><input checked="checked" id="__collapse14" name="__collapse14" type="checkbox"/><div class="highlight"><pre><span></span><code>
+<div class="collapse-code"><input checked="checked" id="__collapse14" name="__collapse14" type="checkbox"/><div class="highlight"><pre><span></span><code><span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">n</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">())</span>
+
+        <span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">())</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">)]</span>
+
+        <span class="n">a</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
+
+        <span class="n">L</span> <span class="o">=</span> <span class="n">a</span><span class="p">[(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span><span class="p">]</span>
+        <span class="n">R</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="n">n</span> <span class="o">//</span> <span class="mi">2</span><span class="p">]</span>
+
+        <span class="n">cnt</span> <span class="o">=</span> <span class="mi">0</span>
+
+        <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">a</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">x</span> <span class="o">==</span> <span class="n">L</span> <span class="ow">or</span> <span class="n">x</span> <span class="o">==</span> <span class="n">R</span><span class="p">:</span>
+                <span class="n">cnt</span> <span class="o">+=</span> <span class="mi">1</span>
+
+        <span class="nb">print</span><span class="p">(</span><span class="n">L</span><span class="p">,</span> <span class="n">cnt</span><span class="p">,</span> <span class="n">R</span> <span class="o">-</span> <span class="n">L</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+
+    <span class="k">except</span> <span class="ne">EOFError</span><span class="p">:</span>
+        <span class="k">break</span>
 </code></pre></div>
 <div class="code-footer"><label class="expand icon-only" for="__collapse14" tabindex="0"><span class="collapse-code__sr-only">expand</span></label><label class="collapse icon-only" for="__collapse14" tabindex="0"><span class="collapse-code__sr-only">collapse</span></label></div>
 </div>
+</div>
 <h3 id="16c012-10062--tell-me-the-frequencies">16.<a href="https://zerojudge.tw/ShowProblem?problemid=c012">c012. 10062 – Tell me the frequencies!</a><a class="headerlink" href="#16c012-10062--tell-me-the-frequencies" title="Permanent link"></a></h3>
 <p><a href="https://vjudge.net/problem/UVA-10062">英文題目網址</a></p>
-<div class="collapse-code"><input checked="checked" id="__collapse15" name="__collapse15" type="checkbox"/><div class="highlight"><pre><span></span><code>
+<div class="collapse-code"><input checked="checked" id="__collapse15" name="__collapse15" type="checkbox"/><div class="highlight"><pre><span></span><code><span class="k">while</span> <span class="mi">1</span> <span class="p">:</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">s</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">input</span><span class="p">())</span>
+    <span class="k">except</span> <span class="ne">EOFError</span> <span class="p">:</span>
+        <span class="k">break</span>
+
+    <span class="n">g</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="mi">1000</span>
+        
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">s</span><span class="p">:</span>
+        <span class="n">g</span><span class="p">[</span><span class="nb">ord</span><span class="p">(</span><span class="n">i</span><span class="p">)]</span> <span class="o">+=</span> <span class="mi">1</span>
+
+
+    <span class="n">ans</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">999</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">g</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="p">:</span>
+            <span class="n">ans</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">g</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="o">-</span><span class="n">i</span><span class="p">])</span>
+
+    <span class="n">ans</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">ans</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="o">-</span><span class="n">i</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">i</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="nb">print</span><span class="p">()</span>
 </code></pre></div>
 <div class="code-footer"><label class="expand icon-only" for="__collapse15" tabindex="0"><span class="collapse-code__sr-only">expand</span></label><label class="collapse icon-only" for="__collapse15" tabindex="0"><span class="collapse-code__sr-only">collapse</span></label></div>
 </div>
 <h3 id="17d226-10071--back-to-high-school-physics">17.<a href="https://zerojudge.tw/ShowProblem?problemid=d226">d226. 10071 – Back to High School Physics</a><a class="headerlink" href="#17d226-10071--back-to-high-school-physics" title="Permanent link"></a></h3>
 <p><a href="https://vjudge.net/problem/UVA-10071">英文題目網址</a></p>
-<div class="collapse-code"><input checked="checked" id="__collapse16" name="__collapse16" type="checkbox"/><div class="highlight"><pre><span></span><code>
+<div class="collapse-code"><input checked="checked" id="__collapse16" name="__collapse16" type="checkbox"/><div class="highlight"><pre><span></span><code><span class="k">while</span> <span class="mi">1</span><span class="p">:</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">v</span><span class="p">,</span><span class="n">t</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="nb">int</span><span class="p">,</span><span class="nb">input</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">())</span>
+    <span class="k">except</span> <span class="ne">EOFError</span><span class="p">:</span>
+        <span class="k">break</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="n">v</span><span class="o">*</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">t</span><span class="p">))</span>
 </code></pre></div>
 <div class="code-footer"><label class="expand icon-only" for="__collapse16" tabindex="0"><span class="collapse-code__sr-only">expand</span></label><label class="collapse icon-only" for="__collapse16" tabindex="0"><span class="collapse-code__sr-only">collapse</span></label></div>
 </div>
-<h3 id="18uva-10093-an-easy-problem">18.<a href="https://vjudge.net/problem/UVA-10093">UVA-10093 An Easy Problem!</a><a class="headerlink" href="#18uva-10093-an-easy-problem" title="Permanent link"></a></h3>
+<div class="admonition danger">
+<p class="admonition-title">Danger</p>
+<h3 id="18n78610093---an-easy-problem">18.<a href="https://zerojudge.tw/ShowProblem?problemid=n786">n786.10093 - An Easy Problem!</a><a class="headerlink" href="#18n78610093---an-easy-problem" title="Permanent link"></a></h3>
 <p><a href="https://vjudge.net/problem/UVA-10093">英文題目網址</a></p>
 <div class="collapse-code"><input checked="checked" id="__collapse17" name="__collapse17" type="checkbox"/><div class="highlight"><pre><span></span><code>
 </code></pre></div>
 <div class="code-footer"><label class="expand icon-only" for="__collapse17" tabindex="0"><span class="collapse-code__sr-only">expand</span></label><label class="collapse icon-only" for="__collapse17" tabindex="0"><span class="collapse-code__sr-only">collapse</span></label></div>
+</div>
 </div>
 <h3 id="19a741-10101--bangla-numbers">19.<a href="https://zerojudge.tw/ShowProblem?problemid=a741">a741. 10101 – Bangla Numbers</a><a class="headerlink" href="#19a741-10101--bangla-numbers" title="Permanent link"></a></h3>
 <p><a href="https://vjudge.net/problem/UVA-10101">英文題目網址</a></p>

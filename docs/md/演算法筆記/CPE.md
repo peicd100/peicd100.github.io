@@ -466,7 +466,27 @@ while it < len(data):
 /// collapse-code
 
 ```py
+w = int(input())
 
+
+for _ in range(w):
+    day = int(input())
+    n = int(input())
+
+    mem = [int(input())  for i in range(n)]
+
+    g = [0]*(day+1)
+
+    for i in mem:
+        j = i
+        while j <= day:
+            if not(j%7 == 6 or j%7 ==0):
+                g[j] = 1
+            j+=i
+
+    # print(g)
+    
+    print(sum(g))
 ```
 
 ///
@@ -478,10 +498,21 @@ while it < len(data):
 /// collapse-code
 
 ```py
+while(1):
+    a,b=0,0
+    try:
+        a,b = map(int,input().split())
+    except EOFError:
+        break
 
+    print(abs(a-b))
+        
+        
 ```
 
 ///
+
+/// danger
 
 ### 14.[e510. 10056 – What is the Probability?](https://zerojudge.tw/ShowProblem?problemid=e510)
 
@@ -489,12 +520,29 @@ while it < len(data):
 
 /// collapse-code
 
-```py
 
+
+```py
+n = int(input())
+
+for _ in range(n):
+
+    s = list(input().split())
+    
+    N = int(s[0])
+    P = float(s[1])
+    k = int(s[2])
+
+    ans = (((1-P)**(k-1))*P)/(1-((1-P)**N))
+
+    print(f"{ans:.4f}")
 ```
 
 ///
 
+///
+
+/// danger
 ### 15.[e606. 10057 – A mid-summer nights dream](https://zerojudge.tw/ShowProblem?problemid=e606)
 
 [英文題目網址](https://vjudge.net/problem/UVA-10057)
@@ -502,9 +550,30 @@ while it < len(data):
 /// collapse-code
 
 ```py
+while True:
+    try:
+        n = int(input())
 
+        a = [int(input()) for _ in range(n)]
+
+        a.sort()
+
+        L = a[(n - 1) // 2]
+        R = a[n // 2]
+
+        cnt = 0
+
+        for x in a:
+            if x == L or x == R:
+                cnt += 1
+
+        print(L, cnt, R - L + 1)
+
+    except EOFError:
+        break
 ```
 
+///
 ///
 
 ### 16.[c012. 10062 – Tell me the frequencies!](https://zerojudge.tw/ShowProblem?problemid=c012)
@@ -514,7 +583,29 @@ while it < len(data):
 /// collapse-code
 
 ```py
+while 1 :
+    try:
+        s = list(input())
+    except EOFError :
+        break
 
+    g = [0]*1000
+        
+    for i in s:
+        g[ord(i)] += 1
+
+
+    ans = []
+
+    for i in range(999,0,-1):
+        if g[i] :
+            ans.append([g[i],-i])
+
+    ans.sort()
+
+    for i in ans:
+        print(-i[1],i[0])
+    print()
 ```
 
 ///
@@ -526,12 +617,21 @@ while it < len(data):
 /// collapse-code
 
 ```py
+while 1:
+    try:
+        v,t = map(int,input().split())
+    except EOFError:
+        break
 
+    print(v*(2*t))
 ```
 
 ///
 
-### 18.[UVA-10093 An Easy Problem!](https://vjudge.net/problem/UVA-10093)
+
+/// danger
+
+### 18.[n786.10093 - An Easy Problem!](https://zerojudge.tw/ShowProblem?problemid=n786)
 
 [英文題目網址](https://vjudge.net/problem/UVA-10093)
 
@@ -540,6 +640,8 @@ while it < len(data):
 ```py
 
 ```
+
+///
 
 ///
 
