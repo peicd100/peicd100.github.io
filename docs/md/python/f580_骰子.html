@@ -1,0 +1,1214 @@
+<!doctype html>
+<html lang="zh-Hant-TW" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<script>
+(()=>{const key='step_oj_framework:theme:v1';let theme='light';try{const saved=localStorage.getItem(key);if(saved==='light'||saved==='dark')theme=saved;}catch{}document.documentElement.dataset.theme=theme;})();
+</script>
+<title>f580 骰子｜APCS 階梯式 Online Judge</title>
+<link rel="preconnect" href="https://cdnjs.cloudflare.com">
+<link rel="preconnect" href="https://cdn.jsdelivr.net">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.18/codemirror.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.18/addon/hint/show-hint.min.css">
+<style>
+
+*{box-sizing:border-box;}
+html,body{height:100%;}
+
+button,select{font:inherit;}
+button{cursor:pointer;}
+
+.dot.ready{background:var(--ok);}
+.dot.busy{background:var(--warn);}
+.dot.error{background:var(--bad);}
+
+.chip{border:1px solid var(--line);background:#fafafa;border-radius:999px;padding:3px 9px;font-size:.82rem;color:#555;}
+
+.sample-explanation-body{color:#3d3d3d;}
+.sample-explanation-body p{margin:.35rem 0 .7rem;}
+.sample-explanation-body ol,.sample-explanation-body ul{margin:.4rem 0 .8rem;padding-left:1.5rem;}
+.sample-explanation-body li{margin:.25rem 0;}
+.sample-explanation-body table{width:100%;border-collapse:collapse;margin:9px 0;font-size:.9rem;}
+.sample-explanation-body th,.sample-explanation-body td{border:1px solid #d9d9d4;padding:6px 8px;text-align:left;vertical-align:top;}
+.sample-explanation-body th{background:#f5f5f2;}
+
+/* Consolidated Online Judge visual system */
+:root{--focus:#2e5b93;--bg:#f3f5f7;--paper:#ffffff;--ink:#18212f;--muted:#697386;--line:#dce2e8;--line-strong:#c8d0d9;--soft:#f7f9fb;--soft2:#f9fafb;--accent:#315b7d;--accent-strong:#244762;--accent-soft:#edf3f8;--ok:#18794e;--ok-soft:#edf8f2;--bad:#b42318;--bad-soft:#fff2f0;--warn:#9a5b13;--warn-soft:#fff8e8;--terminal:#111827;--terminal-soft:#182235;--shadow:0 1px 2px rgba(15,23,42,.04),0 10px 28px rgba(15,23,42,.045);}
+html{background:var(--bg);}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Noto Sans TC","PingFang TC","Microsoft JhengHei",system-ui,-apple-system,sans-serif;line-height:1.68;letter-spacing:.005em;}
+::selection{background:#dceaf5;color:#142235;}
+button,a,summary{-webkit-tap-highlight-color:transparent ;}
+button:focus-visible,a:focus-visible,summary:focus-visible{outline:3px solid rgba(49,91,125,.18);outline-offset:2px;}
+
+/* Header */
+header{position:sticky;top:0;z-index:40;background:rgba(255,255,255,.97);backdrop-filter:saturate(120%) blur(10px);border-bottom:1px solid var(--line);box-shadow:0 1px 0 rgba(15,23,42,.025);}
+.topbar{margin:auto;display:flex;align-items:center;flex-wrap:wrap;max-width:1560px;min-height:60px;padding:9px 20px;gap:14px;}
+.brand{font-weight:850;letter-spacing:.01em;margin-right:auto;display:flex;align-items:baseline;gap:9px;min-width:0;white-space:nowrap;}
+.brand-code{font-family:"Cascadia Mono","SFMono-Regular",Consolas,monospace;color:var(--accent);font-size:.82rem;font-weight:800;letter-spacing:.035em;}
+.brand-title{font-weight:800;font-size:1.02rem;color:#17202c;}
+.brand-subtitle{font-size:.8rem;color:#7a8494;font-weight:600;}
+.progress-wrap{display:flex;align-items:center;gap:9px;font-size:.8rem;color:#697386;font-weight:700;}
+.progress{overflow:hidden;width:116px;height:6px;background:#e7ebef;border-radius:999px;}
+.progress>span{display:block;height:100%;width:0;transition:width .25s ease;background:var(--accent);border-radius:999px;}
+.runtime{display:inline-flex;align-items:center;gap:7px;min-height:32px;padding:0 10px;border:1px solid var(--line);border-radius:6px;background:#fff;font-size:.79rem;color:#647083;}
+.dot{border-radius:999px;background:#aaa;display:inline-block;width:7px;height:7px;}
+.source-link{border-bottom:1px dotted #777;display:inline-flex;align-items:center;min-height:34px;padding:0 10px;color:#445064;border:1px solid var(--line);border-radius:6px;text-decoration:none;font-size:.82rem;font-weight:700;transition:.16s ease;}
+.source-link:hover{color:var(--accent-strong);background:var(--soft);border-color:var(--line-strong);}
+
+/* Main layout */
+.app{display:grid;align-items:start;max-width:1560px;margin:20px auto 54px;padding:0 20px;grid-template-columns:minmax(470px,.94fr) minmax(560px,1.06fr);gap:20px;}
+.panel{background:var(--paper);border:1px solid var(--line);border-radius:9px;box-shadow:var(--shadow);overflow:hidden;}
+.left-panel{min-height:calc(100vh - 102px);}
+.right-panel{position:sticky;top:78px;min-height:calc(100vh - 100px);}
+
+/* Level navigation */
+.level-strip{display:grid;grid-template-columns:repeat(7,minmax(42px,1fr));gap:6px;padding:10px 12px;background:#f8fafb;border-bottom:1px solid var(--line);}
+.level-btn{min-height:38px;border:1px solid var(--line);border-radius:6px;background:#fff;color:#596579;font-size:.82rem;font-weight:750;transition:background .15s ease,border-color .15s ease,color .15s ease,transform .15s ease;}
+.level-btn:hover{background:#f4f7fa;border-color:#bdc8d2;color:#29384a;}
+.level-btn:active{transform:translateY(1px);}
+.level-btn.active{background:var(--accent);border-color:var(--accent);color:#fff;box-shadow:0 1px 2px rgba(49,91,125,.2);}
+.level-btn.accepted:not(.active){background:var(--ok-soft);border-color:#b7dfca;color:var(--ok);}
+
+/* Problem content */
+.problem{padding:27px 30px 30px;}
+.kicker{margin-bottom:5px;color:#7b8796;font-size:.76rem;font-weight:750;letter-spacing:.035em;text-transform:none;}
+.problem h1{margin:0;color:#17202c;font-size:1.48rem;line-height:1.35;font-weight:800;letter-spacing:-.015em;}
+.meta{display:flex;flex-wrap:wrap;margin:7px 0 24px;gap:0;color:#7a8492;font-size:.8rem;}
+.meta span+span::before{content:"·";margin:0 8px;color:#b1b8c1;}
+.section-title{position:relative;margin:27px 0 10px;padding:0 0 8px 13px;border-bottom:1px solid #e7ebef;color:#273345;font-size:.92rem;font-weight:800;}
+.section-title::before{content:"";position:absolute;left:0;top:.25em;width:3px;height:1.05em;border-radius:2px;background:var(--accent);}
+.problem p{margin:.45rem 0;color:#374151;font-size:.95rem;}
+.problem code,.dialog-body code{font-family:"Cascadia Mono","Consolas",monospace;background:#f1f4f7;color:#25364a;border:1px solid #e5e9ee;border-radius:4px;padding:.06em .28em;}
+pre{white-space:pre-wrap;word-break:break-word;margin:9px 0;padding:13px 15px;background:#f8fafb;color:#273345;border:1px solid #e1e6eb;border-radius:6px;font-family:"Cascadia Mono","SFMono-Regular",Consolas,monospace;font-size:.88rem;line-height:1.62;}
+.sample-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.sample-box{min-width:0;padding:0;}
+.sample-box h4{margin:0 0 6px;color:#7a8492;font-size:.75rem;font-weight:800;letter-spacing:.025em;}
+.sample-box pre{height:calc(100% - 25px);min-height:64px;background:#f9fafb;}
+
+/* Sample explanation */
+.sample-explanation{margin-top:9px;padding:16px;border:1px solid #dfe5ea;border-radius:7px;background:#f8fafb;color:#364152;box-shadow:none;}
+.sample-explain-intro{justify-content:space-between;flex-wrap:wrap;margin-bottom:12px;display:flex;align-items:baseline;gap:9px;margin:0 0 14px;padding:0 0 10px;border:0;border-bottom:1px solid #e2e7ec;border-radius:0;background:transparent;}
+.sample-explain-intro strong{display:block;font-size:.88rem;color:#273345;font-weight:800;}
+.sample-explain-intro small{margin-top:2px;line-height:1.45;display:inline;margin:0;color:#7a8492;font-size:.78rem;}
+.sample-explain-intro .intro-badge{border:1px solid #c9d7e7;background:#f4f8fd;color:#35506e;border-radius:999px;padding:4px 10px;font-size:.76rem;font-weight:850;white-space:nowrap;display:none;}
+.demo-story,.demo-viewport{gap:12px;}
+.demo-step{position:relative;overflow:hidden;padding:14px 15px;border:1px solid #e3e8ed;border-radius:6px;background:#fff;box-shadow:none;transform:none;transition:none;}
+.demo-step p:first-child{margin-top:0;}
+.demo-step:last-child{margin-bottom:0;}
+.why-card{grid-template-columns:auto 1fr;gap:9px;align-items:start;display:block;margin:11px 0 4px;padding:9px 11px;border:0;border-left:3px solid #91a9bc;border-radius:0;background:#f5f8fa;}
+.why-card p{margin:0!important;color:#4b596a!important;font-size:.88rem;}
+.why-icon{place-items:center;min-width:42px;height:27px;padding:0 7px;border-radius:999px;background:#eaf2fb;color:#35506e;font-size:.75rem;font-weight:900;display:none;}
+.reason-node{min-width:112px;max-width:220px;display:grid;align-content:center;gap:3px;border:1px solid #d9d9d4;border-radius:10px;background:#fff;text-align:center;padding:9px 11px;}
+.reason-node.good{background:var(--ok-soft);border-color:#b9ddca;animation:none;}
+.reason-node.bad{background:var(--bad-soft);border-color:#efc1bc;}
+.reason-node.answer{background:var(--accent-soft);border-color:#c5d5e2;}
+.reason-arrow{display:grid;place-items:center;font-size:1.2rem;font-weight:900;color:#8691a0;animation:none;}
+
+.sample-explanation-body{color:#3d3d3d}.sample-explanation-body p{margin:.35rem 0 .7rem}.demo-story{display:grid;gap:12px}.big-arrow{font-size:1.35rem;color:#777;font-weight:800}.reason-flow{display:flex;align-items:stretch;justify-content:center;gap:7px;flex-wrap:wrap;margin:12px 0}
+/* Results */
+.results-wrap{padding:20px 30px 28px;border-top:1px solid var(--line);}
+.results-head{display:flex;align-items:center;gap:10px;margin-bottom:12px;}
+.results-head h2{margin:0;margin-right:auto;font-size:1rem;color:#273345;font-weight:800;}
+.status-pill{min-width:74px;padding:4px 9px;border-radius:5px;background:#f7f9fb;border:1px solid var(--line);color:#697386;text-align:center;font-size:.76rem;font-weight:800;}
+.status-pill.ok{color:var(--ok);border-color:#b5dec8;background:var(--ok-soft);}
+.status-pill.bad{color:var(--bad);border-color:#efc0ba;background:var(--bad-soft);}
+.status-pill.warn{color:var(--warn);border-color:#ead3a5;background:var(--warn-soft);}
+.result-summary{margin-bottom:12px;padding:11px 13px;border:1px solid #dfe5ea;border-radius:6px;background:#f8fafb;color:#5d697b;font-size:.86rem;}
+
+.hidden-tests,.submission-history{margin-top:14px;padding-top:0;border-top:0;}
+.hidden-tests summary,.submission-history summary{position:relative;list-style:none;padding:10px 12px;border:1px solid #e1e6ea;border-radius:5px;background:#f9fafb;color:#485568;font-size:.84rem;font-weight:750;cursor:pointer;}
+.hidden-tests summary::-webkit-details-marker,.submission-history summary::-webkit-details-marker{display:none;}
+.hidden-tests summary::after,.submission-history summary::after{content:"＋";position:absolute;right:12px;top:50%;transform:translateY(-50%);color:#8b95a3;font-size:1rem;font-weight:500;}
+.hidden-tests[open] summary::after,.submission-history[open] summary::after{content:"−";}
+.hidden-tests[open] summary,.submission-history[open] summary{background:#f4f7f9;border-color:#d5dde4;color:#2f3e50;}
+.hidden-tests-list,.history-list{gap:8px;margin-top:8px;}
+.hidden-test-item{padding:11px;border:1px solid #e1e6ea;border-radius:5px;background:#fff;}
+.hidden-test-item strong{display:block;margin-bottom:8px;color:#405064;font-size:.8rem;}
+.hidden-test-io{display:grid;grid-template-columns:minmax(0,1fr) minmax(150px,.45fr);gap:10px;}
+.hidden-test-label{display:block;margin:0 0 4px;font-weight:800;margin-bottom:5px;color:#7a8492;font-size:.72rem;letter-spacing:.03em;}
+.hidden-test-item pre{margin:0;overflow:auto;background:#f8fafb;max-height:220px;}
+.history-item{display:flex;justify-content:space-between;gap:10px;border-bottom:1px solid #eee;padding:8px 10px;border:1px solid #e7ebef;border-radius:4px;background:#fff;font-size:.8rem;color:#657184;}
+
+/* Editor */
+.editor-head{display:flex;align-items:center;gap:8px;flex-wrap:wrap;min-height:50px;padding:8px 11px 8px 14px;background:#f8fafb;border-bottom:1px solid var(--line);}
+.editor-head strong{margin-right:auto;color:#273345;font-size:.88rem;font-weight:800;}
+.btn{min-height:34px;padding:6px 11px;border:1px solid #cfd6de;border-radius:5px;background:#fff;color:#3f4b5d;font-size:.8rem;font-weight:750;box-shadow:0 1px 1px rgba(15,23,42,.02);transition:background .14s ease,border-color .14s ease,color .14s ease,transform .14s ease;}
+.btn:hover{background:#f4f7f9;border-color:#b9c3cd;color:#253447;}
+.btn:active{transform:translateY(1px);}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:#fff;box-shadow:0 1px 2px rgba(49,91,125,.2);}
+.btn.primary:hover{background:var(--accent-strong);border-color:var(--accent-strong);}
+.btn.danger{color:#9e3a33;border-color:#e0c9c7;background:#fff;}
+.btn.danger:hover{background:#fff5f4;border-color:#d9b2ae;color:#8f2e27;}
+.btn:disabled{opacity:.5;cursor:not-allowed;transform:none;}
+.editor-shell{height:calc(100vh - 427px);min-height:370px;background:#fbfcfd;}
+.CodeMirror{height:100%;background:#fbfcfd;color:#263548;font-family:"Cascadia Mono","SFMono-Regular",Consolas,monospace;font-size:14.5px;line-height:1.62;}
+.CodeMirror-gutters{background:#f6f8fa;border-right:1px solid #e1e6ea;}
+.CodeMirror-linenumber{color:#9aa4b2;padding:0 9px 0 7px;}
+.CodeMirror-cursor{border-left:2px solid #315b7d;}
+.CodeMirror-selected{background:#dce8f2!important;}
+.CodeMirror-focused{outline-offset:-2px;outline:none;box-shadow:inset 0 0 0 1px rgba(49,91,125,.18);}
+.cm-s-default .cm-keyword{color:#315b7d;font-weight:700;}
+.cm-s-default .cm-builtin{color:#7256a3;}
+.cm-s-default .cm-number{color:#a05a16;}
+.cm-s-default .cm-string{color:#28724a;}
+.cm-s-default .cm-comment{color:#8792a1;font-style:italic;}
+.cm-s-default .cm-def{color:#2e627d;}
+.cm-s-default .cm-variable-2{color:#3d556e;}
+.CodeMirror-hints{font-family:"Cascadia Mono","Consolas",monospace;border:1px solid #cfd7df;border-radius:6px;box-shadow:0 12px 30px rgba(15,23,42,.12);font-size:.84rem;padding:4px;}
+.CodeMirror-hint{padding:4px 8px;border-radius:4px;}
+li.CodeMirror-hint-active{background:#e8f0f6;color:#22364b;}
+.fallback-editor{width:100%;height:100%;resize:none;border:0;outline:0;font-family:"Cascadia Mono","Consolas",monospace;font-size:15px;line-height:1.55;background:#fbfcfd;color:#263548;padding:16px 18px;}
+
+/* Terminal and compact test results */
+.terminal-workspace{display:grid;grid-template-columns:minmax(0,1fr) 232px;background:var(--terminal);border-top:1px solid #0b1220;}
+.terminal-panel{min-width:0;background:var(--terminal);}
+.terminal-head,.submit-tests-head{min-height:39px;background:var(--terminal-soft);border-bottom:1px solid #2b3649;color:#eef2f7;}
+.terminal-head{min-height:40px;display:flex;align-items:center;gap:10px;background:#1b1b1b;color:#f2f2f2;border-bottom:1px solid #333;font-size:.86rem;padding:7px 12px;}
+.terminal-head strong,.submit-tests-head strong{font-size:.76rem;letter-spacing:.045em;}
+.terminal-meta{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:58%;color:#9da8b8;font-size:.75rem;}
+.terminal-clear{padding:4px 8px;border:1px solid #3a4659;background:#202b3d;color:#cbd3df;border-radius:4px;font-size:.74rem;}
+.terminal-clear:hover{background:#283449;color:#fff;}
+.terminal-output{margin:0;border:0;border-radius:0;overflow:auto;white-space:pre-wrap;word-break:break-word;font-family:"Cascadia Mono","Consolas",monospace;min-height:178px;max-height:246px;padding:13px 15px;background:var(--terminal);color:#e7ebf0;font-size:.82rem;line-height:1.58;}
+.terminal-output.error{color:#ffb8b2;}
+.submit-tests-panel{min-width:0;color:#eee;background:#121a29;border-left:1px solid #2b3649;}
+.submit-tests-list{height:100%;overflow:auto;display:grid;align-content:start;min-height:178px;max-height:246px;padding:8px;gap:5px;}
+.submit-test-row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:7px;align-items:center;font-family:"Cascadia Mono","Consolas",monospace;min-height:32px;padding:5px 7px;border:1px solid #303b4e;border-radius:4px;background:#182235;font-size:.7rem;}
+.submit-test-row .mini-label{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:#c8d0db;}
+.submit-test-row .mini-verdict{font-weight:900;letter-spacing:.02em;color:#999;font-size:.68rem;}
+.submit-test-row.pass{border-color:#2f6d50;background:#162a22;}
+.submit-test-row.pass .mini-verdict{color:#72d7a5;}
+.submit-test-row.fail{border-color:#713936;background:#2c1d20;}
+.submit-test-row.fail .mini-verdict{color:#ff9992;}
+.submit-test-row.wait{border-color:#354054;background:#182235;}
+.submit-tests-count{white-space:nowrap;color:#97a3b4;}
+.editor-foot{display:flex;gap:12px;justify-content:space-between;flex-wrap:wrap;padding:8px 12px;background:#f8fafb;border-top:1px solid var(--line);color:#7b8695;font-size:.74rem;line-height:1.5;}
+
+.level-btn:disabled{cursor:default;opacity:.62;transform:none;}
+.level-btn.active:disabled{opacity:.82;}
+.extra-samples{display:grid;gap:12px;}
+.extra-sample-card{border:1px solid #e1e6ea;border-radius:6px;background:#fff;padding:12px;}
+.extra-sample-card>strong{display:block;margin-bottom:8px;color:#405064;font-size:.8rem;}
+.terminal-sample-select{max-width:102px;min-height:27px;border:1px solid #3a4659;border-radius:4px;background:#202b3d;color:#dce3ec;padding:2px 6px;font-family:"Cascadia Mono","SFMono-Regular",Consolas,monospace;font-size:.72rem;}
+.terminal-sample-select:focus-visible{outline:2px solid rgba(151,181,210,.45);outline-offset:1px;}
+.terminal-sample-select:disabled{opacity:.55;}
+
+/* Dialog */
+dialog{padding:0;width:min(840px,92vw);border:1px solid #d7dee5;border-radius:8px;box-shadow:0 24px 70px rgba(15,23,42,.22);}
+dialog::backdrop{background:rgba(15,23,42,.4);}
+.dialog-head{display:flex;align-items:center;gap:12px;padding:12px 15px;background:#f8fafb;border-bottom:1px solid var(--line);}
+.dialog-head strong{margin-right:auto;color:#273345;font-size:.9rem;}
+.dialog-body{max-height:72vh;overflow:auto;padding:17px;background:#fff;}
+.close-btn{padding:5px 9px;min-height:32px;border:1px solid #cfd6de;border-radius:5px;background:#fff;color:#4b586a;font-size:.79rem;}
+
+/* Responsive */
+@media(max-width:1120px){
+  .app{grid-template-columns:1fr;max-width:980px}
+  .right-panel{position:relative;top:0}
+  .editor-shell{height:560px;min-height:430px}
+  .brand-subtitle{display:none}
+}
+@media(max-width:720px){
+  .topbar{padding:8px 12px;gap:8px}
+  .brand{width:100%;margin-right:0}
+  .progress-wrap{margin-right:auto}
+  .app{padding:0 10px;margin-top:10px;gap:12px}
+  .problem,.results-wrap{padding:20px}
+  .terminal-workspace{grid-template-columns:1fr}
+  .submit-tests-panel{border-left:0;border-top:1px solid #2b3649}
+  .submit-tests-list{grid-template-columns:repeat(2,minmax(0,1fr));min-height:0;max-height:210px}
+  .sample-grid{grid-template-columns:1fr}
+  .hidden-test-io{grid-template-columns:1fr}
+}
+@media(max-width:520px){
+  .level-strip{grid-template-columns:repeat(4,1fr)}
+  .problem,.results-wrap{padding:17px 15px}
+  .problem h1{font-size:1.32rem}
+  .section-title{margin-top:24px}
+  .sample-explanation{padding:12px}
+  .demo-step{padding:12px}
+  .editor-head{align-items:center}
+  .editor-head strong{width:100%;margin-bottom:2px}
+  .btn{flex:1;min-width:64px;padding-left:8px;padding-right:8px}
+  .editor-shell{height:500px;min-height:380px}
+.runtime{padding:0 8px}
+  .source-link{min-height:32px}
+}
+@media(prefers-reduced-motion:reduce){
+  *{scroll-behavior:auto!important;transition:none!important;animation:none!important}
+}
+
+
+/* Canonical v0.1.12 theme + stdin + learning visual additions */
+.theme-control{display:inline-flex;align-items:center;gap:6px}.theme-control label{font-size:.75rem;color:var(--muted);font-weight:800}.theme-control select{min-height:34px;border:1px solid var(--line-strong);border-radius:6px;background:var(--paper);color:var(--ink);padding:4px 28px 4px 9px}
+.learning-guide{display:grid;gap:10px}.learn-card{padding:12px 14px;border:1px solid var(--line);border-radius:7px;background:var(--paper)}.learn-card>strong{display:block;margin-bottom:6px}.learn-recap{background:var(--soft);border-left:3px solid #9ba6b4}.learn-new{background:var(--accent-soft);border-left:3px solid #6f98bb}.learn-plan{background:#f7fbf8;border-left:3px solid #79ab8f}.learn-pitfall{background:#fffaf2;border-left:3px solid #d1a04e}.learn-card ol,.learn-card ul{margin:.45rem 0 .2rem;padding-left:1.4rem}.learn-card li{margin:.28rem 0}.learn-visual{margin:10px 0;padding:12px;border:1px solid var(--line);border-radius:7px;background:var(--paper)}.learn-step-flow{display:flex;gap:8px;align-items:center;justify-content:center;flex-wrap:wrap}.learn-step-node{padding:8px 10px;border:1px solid var(--line);border-radius:6px;background:var(--soft);text-align:center}.learn-step-node small{display:block;color:var(--muted)}
+.terminal-workspace.has-custom-input{grid-template-columns:minmax(168px,.9fr) minmax(190px,1.1fr) minmax(168px,232px)}.custom-input-panel{min-width:0;background:var(--terminal);color:#e7ebf0;border-right:1px solid #2b3649}.custom-input-head{min-height:40px;display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:6px;padding:7px 8px;background:#1b1b1b;border-bottom:1px solid #333;color:#f2f2f2;font-family:"Cascadia Mono",Consolas,monospace;overflow:hidden}.custom-input-head strong{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:.74rem;letter-spacing:.04em}.custom-input-textarea{display:block;width:100%;min-height:178px;max-height:246px;resize:vertical;border:0;outline:0;padding:13px;background:var(--terminal);color:#e7ebf0;font:400 .8rem/1.55 "Cascadia Mono",Consolas,monospace}.custom-input-textarea:focus-visible{box-shadow:inset 0 0 0 2px rgba(80,190,220,.45)}.input-source-switch{position:relative;display:inline-flex;align-items:center;justify-content:flex-end;gap:4px;min-width:0;max-width:100%;white-space:nowrap;font-size:.68rem;cursor:pointer}.input-source-switch input{position:absolute;inline-size:1px;block-size:1px;opacity:0;pointer-events:none}.switch-label{font-size:.64rem}.switch-track{position:relative;display:inline-block;width:34px;height:20px;flex:0 0 34px;border:1px solid #3a4659;border-radius:999px;background:#202b3d}.switch-track::after{content:"";position:absolute;left:2px;top:2px;width:14px;height:14px;border-radius:999px;background:#e7ebf0;transition:transform .15s ease}.input-source-switch input:checked + .switch-track{background:var(--accent);border-color:var(--accent)}.input-source-switch input:checked + .switch-track::after{transform:translateX(14px);background:#001014}.input-source-switch input:focus-visible + .switch-track{outline:2px solid var(--accent);outline-offset:2px}.switch-state{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important}
+.dice-state{display:grid;gap:7px;justify-items:center;min-width:220px}.dice-state>strong{font-size:.82rem;color:var(--muted)}.dice-net{display:grid;grid-template-columns:repeat(4,54px);grid-template-rows:repeat(3,44px);gap:4px;justify-content:center}.dice-net span:not(.blank){display:grid;place-items:center;border:1px solid #bfcbd6;border-radius:6px;background:#f8fafc;font:800 .74rem "Cascadia Mono",Consolas,monospace}.dice-net [data-face="top"]{background:#e9f5f8;border-color:#70aebd}.dice-net [data-face="front"]{background:#f4f8fd}.dice-net .blank{visibility:hidden}.state-transition{display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;margin:10px 0}.mapping-row{display:flex;gap:7px;justify-content:center;flex-wrap:wrap;margin:9px 0}.mapping-row span{padding:6px 8px;border:1px solid var(--line);border-radius:6px;background:var(--soft);font:750 .78rem "Cascadia Mono",Consolas,monospace}.dice-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:8px;margin:10px 0}.dice-row>div,.swap-visual>div:not(.big-arrow){padding:9px;border:1px solid var(--line);border-radius:7px;background:var(--paper);text-align:center}.dice-row b{display:block;font:750 .75rem "Cascadia Mono",Consolas,monospace;overflow-wrap:anywhere}.dice-row .active{border-color:#70aebd;background:#eef8fb}.swap-visual{display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;margin:10px 0}
+html[data-theme="light"]{color-scheme:light}html[data-theme="dark"]{color-scheme:dark;--bg:#000000;--paper:#080808;--ink:#f4f7fb;--muted:#a2aab8;--line:#242424;--line-strong:#3a3a3a;--soft:#0d0d0d;--soft2:#0b0b0b;--accent:#22d3ee;--accent-strong:#06b6d4;--accent-soft:#06181d;--ok:#4ade80;--ok-soft:#07170d;--bad:#fb7185;--bad-soft:#1a090d;--warn:#fbbf24;--warn-soft:#1a1304;--terminal:#000000;--terminal-soft:#080808;--shadow:none}
+html[data-theme="dark"] body{background:#000;color:var(--ink)}html[data-theme="dark"] header{background:rgba(0,0,0,.97);border-color:#222}html[data-theme="dark"] .panel,html[data-theme="dark"] .problem,html[data-theme="dark"] .results-wrap,html[data-theme="dark"] .editor-shell,html[data-theme="dark"] .dialog-body{background:#080808;color:var(--ink);border-color:#242424}html[data-theme="dark"] .editor-head,html[data-theme="dark"] .editor-foot,html[data-theme="dark"] .dialog-head,html[data-theme="dark"] .sample-explanation,html[data-theme="dark"] .demo-step,html[data-theme="dark"] .learn-card,html[data-theme="dark"] .learn-visual,html[data-theme="dark"] .learn-step-node,html[data-theme="dark"] .sample-box,html[data-theme="dark"] .extra-sample-card,html[data-theme="dark"] .hidden-test-item,html[data-theme="dark"] .history-item,html[data-theme="dark"] .reason-node,html[data-theme="dark"] .dice-row>div,html[data-theme="dark"] .swap-visual>div:not(.big-arrow){background:#090909!important;color:#e7ebf0;border-color:#292929}html[data-theme="dark"] .learn-new{background:#06181d!important;border-left-color:#155e75}html[data-theme="dark"] .learn-plan{background:#07170d!important;border-left-color:#1f5b36}html[data-theme="dark"] .learn-pitfall{background:#1a1304!important;border-left-color:#6b5213}html[data-theme="dark"] .btn,html[data-theme="dark"] .theme-control select,html[data-theme="dark"] .level-btn{background:#0b0b0b;color:#dbe1e8;border-color:#303030}html[data-theme="dark"] .btn.primary,html[data-theme="dark"] .level-btn.active{background:var(--accent);color:#001014;border-color:var(--accent)}html[data-theme="dark"] .btn.danger{color:#fda4af}html[data-theme="dark"] .CodeMirror,html[data-theme="dark"] .fallback-editor{background:#020202;color:#e5e7eb}html[data-theme="dark"] .CodeMirror-gutters{background:#080808;border-color:#242424}html[data-theme="dark"] .CodeMirror-selected{background:#12343b!important}html[data-theme="dark"] .cm-s-default .cm-keyword{color:#67e8f9}html[data-theme="dark"] .cm-s-default .cm-builtin{color:#c4b5fd}html[data-theme="dark"] .cm-s-default .cm-number{color:#fbbf24}html[data-theme="dark"] .cm-s-default .cm-string{color:#86efac}html[data-theme="dark"] .cm-s-default .cm-comment{color:#8b949e}html[data-theme="dark"] .terminal-workspace,html[data-theme="dark"] .custom-input-panel,html[data-theme="dark"] .terminal-panel,html[data-theme="dark"] .terminal-output,html[data-theme="dark"] .custom-input-textarea,html[data-theme="dark"] .submit-tests-panel{background:#000}html[data-theme="dark"] .custom-input-head,html[data-theme="dark"] .terminal-head,html[data-theme="dark"] .submit-tests-head{background:#080808;border-color:#242424}html[data-theme="dark"] .submit-test-row{background:#0a0a0a;border-color:#2a2a2a}html[data-theme="dark"] .sample-explanation-body,html[data-theme="dark"] .sample-explanation-body p,html[data-theme="dark"] .sample-explanation-body small,html[data-theme="dark"] .reason-node small{color:#c6cbd2}html[data-theme="dark"] .sample-explanation-body pre,html[data-theme="dark"] .hidden-test-item pre,html[data-theme="dark"] pre{background:#020202;color:#e5e7eb;border-color:#242424}html[data-theme="dark"] .result-summary,html[data-theme="dark"] .hidden-tests summary,html[data-theme="dark"] .submission-history summary{background:#0b0b0b;color:#cfd5dd;border-color:#292929}html[data-theme="dark"] .dice-net span:not(.blank){background:#0b0b0b;color:#e8edf3;border-color:#303030}html[data-theme="dark"] .dice-net [data-face="top"]{background:#06242b;border-color:#16879d}html[data-theme="dark"] .dice-row .active{background:#06181d!important;border-color:#16879d}
+html[data-theme="dark"] .brand-title,html[data-theme="dark"] .problem h1,html[data-theme="dark"] .section-title,html[data-theme="dark"] .results-head h2,html[data-theme="dark"] .editor-head strong,html[data-theme="dark"] .dialog-head strong,html[data-theme="dark"] .sample-explain-intro strong{color:var(--ink)}html[data-theme="dark"] .brand-subtitle,html[data-theme="dark"] .progress-wrap,html[data-theme="dark"] .runtime,html[data-theme="dark"] .source-link,html[data-theme="dark"] .kicker,html[data-theme="dark"] .meta,html[data-theme="dark"] .sample-box h4,html[data-theme="dark"] .sample-explain-intro small,html[data-theme="dark"] .editor-foot,html[data-theme="dark"] .hidden-test-label,html[data-theme="dark"] .history-item{color:var(--muted)}html[data-theme="dark"] .problem p{color:#d8dde5}html[data-theme="dark"] .problem code,html[data-theme="dark"] .dialog-body code{background:#101010;color:#dff9ff;border-color:#2c2c2c}html[data-theme="dark"] .level-strip,html[data-theme="dark"] .editor-head,html[data-theme="dark"] .editor-foot{background:#080808;border-color:#242424}html[data-theme="dark"] .status-pill{background:#0d0d0d;color:#cbd2dc;border-color:#303030}
+@media(max-width:720px){.terminal-workspace.has-custom-input{grid-template-columns:1fr}.custom-input-panel,.terminal-panel{border-right:0;border-bottom:1px solid #2b3649}.custom-input-head{grid-template-columns:minmax(0,1fr) auto}.theme-control{max-width:100%}.dice-net{grid-template-columns:repeat(4,48px)}}
+@media(max-width:390px){.topbar{align-items:flex-start}.theme-control{margin-left:0}.theme-control label{display:none}.custom-input-head{padding-inline:7px}.switch-label{display:none}.terminal-head{gap:6px}.terminal-meta{max-width:45%}}
+
+</style>
+</head>
+<body>
+<header>
+  <div class="topbar">
+    <div class="brand">
+      <span class="brand-code">f580</span>
+      <span class="brand-title">骰子</span>
+      <span class="brand-subtitle">2020 年 7 月 APCS 階梯式 Online Judge</span>
+    </div>
+    <div class="progress-wrap"><span id="progressText">0 / 7 AC</span><div class="progress"><span id="progressBar"></span></div></div>
+    <div class="runtime"><span id="runtimeDot" class="dot"></span><span id="runtimeText">Python 尚未載入</span></div>
+    <div class="theme-control"><label for="themeSelect">主題</label><select id="themeSelect" aria-label="選擇介面主題"><option value="light">淺色</option><option value="dark">深色</option></select></div>
+    <button class="btn danger" id="clearAllBtn" type="button" title="清除所有題目草稿、AC 進度與提交紀錄">清除所有紀錄</button>
+    <a class="source-link" href="https://zerojudge.tw/ShowProblem?problemid=f580" target="_blank" rel="noopener">原題</a>
+  </div>
+</header>
+
+<main class="app">
+  <section class="panel left-panel">
+    <nav class="level-strip" id="levelStrip" aria-label="題目階段"></nav>
+    <article class="problem" id="problemPane"></article>
+    <section class="results-wrap">
+      <div class="results-head">
+        <h2>提交結果</h2>
+        <span class="status-pill" id="overallVerdict">尚未提交</span>
+      </div>
+      <div class="result-summary" id="resultSummary">F9／「執行」會依 CUSTOM INPUT 開關選擇 stdin：OFF 使用公開範例、ON 使用自訂輸入；「提交」永遠評測正式 Public + Hidden + Generated tests。</div>
+      <details class="hidden-tests" id="hiddenTestsDetails">
+        <summary id="hiddenTestsSummary">隱藏測資（AC 後解鎖）</summary>
+        <div class="hidden-tests-list" id="hiddenTestsList"></div>
+      </details>
+      <details class="submission-history">
+        <summary>本機提交紀錄</summary>
+        <div class="history-list" id="historyList"></div>
+      </details>
+    </section>
+  </section>
+
+  <section class="panel right-panel">
+    <div class="editor-head">
+      <strong>Python 3 編輯器</strong>
+      <button class="btn" id="answerBtn" type="button">參考答案</button>
+      <button class="btn" id="resetBtn" type="button">清空</button>
+      <button class="btn" id="runBtn" type="button" title="F9：執行公開範例">執行</button>
+      <button class="btn primary" id="submitBtn" type="button" title="Ctrl+Enter：提交全部測資">提交</button>
+    </div>
+    <div class="editor-shell"><textarea id="codeEditor" spellcheck="false"></textarea></div>
+    <div class="terminal-workspace has-custom-input" id="terminalWorkspace">
+      <section class="custom-input-panel" id="customInputPanel" aria-label="自訂標準輸入">
+        <div class="custom-input-head"><strong>CUSTOM INPUT</strong><label class="input-source-switch" for="customInputOverride" title="開啟後 F9 使用 CUSTOM INPUT"><span class="switch-label">F9</span><input id="customInputOverride" type="checkbox" role="switch" aria-describedby="customInputModeState"><span class="switch-track" aria-hidden="true"></span><span class="switch-state" id="customInputModeState">OFF</span></label></div>
+        <textarea class="custom-input-textarea" id="customInput" spellcheck="false" aria-label="自訂 stdin 輸入"></textarea>
+      </section>
+      <section class="terminal-panel" aria-label="程式執行終端機">
+        <div class="terminal-head">
+          <strong>TERMINAL</strong>
+          <select class="terminal-sample-select" id="sampleSelect" aria-label="選擇執行用公開範例"></select>
+          <span class="terminal-meta" id="terminalMeta">stdin: public sample input</span>
+          <button class="terminal-clear" id="clearTerminalBtn" type="button">清除</button>
+        </div>
+        <pre class="terminal-output" id="terminalOutput" aria-live="polite">尚未執行。F9 依 CUSTOM INPUT 開關選擇 stdin；Ctrl+Enter 提交全部正式測資。</pre>
+      </section>
+      <aside class="submit-tests-panel" aria-label="所有測資提交結果">
+        <div class="submit-tests-head">
+          <strong>TEST RESULTS</strong>
+          <span class="submit-tests-count" id="submitTestsCount">0 / 0</span>
+        </div>
+        <div class="submit-tests-list" id="submitTestsList" aria-live="polite"></div>
+      </aside>
+    </div>
+    <div class="editor-foot">
+      <span>Tab：下一個 4 欄定位點｜Shift+Tab：最多反縮排 4 spaces｜行首 Backspace：最多刪除 4 spaces｜Enter：尊重目前實際縮排｜Ctrl+/：切換單行／多行註解｜Ctrl+Space / Alt+/：補全｜F9：執行｜Ctrl+Enter：提交</span>
+      <span>F9：CUSTOM INPUT OFF=公開範例、ON=自訂 raw stdin（空字串合法）｜提交固定使用正式測資｜ZeroJudge Tolerant：忽略空白行與每行前後空白｜每筆上限 2.5 秒</span>
+    </div>
+  </section>
+</main>
+
+<dialog id="answerDialog">
+  <div class="dialog-head"><strong id="answerTitle">參考答案</strong><button class="close-btn" id="closeAnswer">關閉</button></div>
+  <div class="dialog-body"><pre id="answerCode"></pre></div>
+</dialog>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.18/codemirror.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.18/mode/python/python.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.18/addon/edit/closebrackets.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.18/addon/edit/matchbrackets.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.18/addon/hint/show-hint.min.js"></script>
+<script>
+const TASKS = [{"id":1,"title":"把骰子變成可更新的 state（狀態）","difficulty":"入門","statement":"本階使用的初始骰子六面<strong>直接固定</strong>為：<strong>上=1、下=6、前=4、後=3、左=5、右=2</strong>。這些點數位置就是本題給定條件，不需要自行從「標準骰子」推導。方向編號與初始點數完整對照為：<code>d=1 → 上 → 1</code>、<code>d=2 → 下 → 6</code>、<code>d=3 → 前 → 4</code>、<code>d=4 → 後 → 3</code>、<code>d=5 → 左 → 5</code>、<code>d=6 → 右 → 2</code>。本階先不旋轉骰子；讀入一個方向編號 <code>d</code>，輸出該方向的點數。","input":"一行一個整數 <code>d</code>，且 <code>1 ≤ d ≤ 6</code>。方向依序為上、下、前、後、左、右。","output":"輸出該方向在初始骰子上的點數。","sampleIn":"3","sampleOut":"4","sampleExplain":"<div class=\"demo-story\"><section class=\"demo-step\"><p><code>d = 3</code> 代表查詢「前面」。初始狀態明確指定前面是點數 4。</p><div class=\"dice-state\"><strong>初始骰子</strong><div class=\"dice-net\"><span class=\"blank\"></span><span data-face=\"back\">後 3</span><span class=\"blank\"></span><span class=\"blank\"></span><span data-face=\"left\">左 5</span><span data-face=\"top\">上 1</span><span data-face=\"right\">右 2</span><span data-face=\"bottom\">下 6</span><span class=\"blank\"></span><span data-face=\"front\">前 4</span><span class=\"blank\"></span><span class=\"blank\"></span></div></div><div class=\"reason-flow\"><div class=\"reason-node\"><strong>d = 3</strong><small>前面</small></div><div class=\"reason-arrow\">→</div><div class=\"reason-node answer\"><strong>4</strong><small>輸出</small></div></div></section></div>","learningGuide":"<div class=\"learning-guide\">\n      <div class=\"learn-card learn-recap\"><strong>本題目標 / 快速回顧</strong><p>這階只處理「如何記住一顆骰子」，先不碰旋轉與多顆骰子。</p></div>\n      <div class=\"learn-card learn-new\"><strong>本題新概念</strong><p>simulation（模擬）的第一步，是決定 state（狀態）要保存哪些資訊。這題最直觀的 state 是六個方向：</p><div class=\"dice-state\"><strong>固定順序：上、下、前、後、左、右</strong><div class=\"dice-net\"><span class=\"blank\"></span><span data-face=\"back\">後 3</span><span class=\"blank\"></span><span class=\"blank\"></span><span data-face=\"left\">左 5</span><span data-face=\"top\">上 1</span><span data-face=\"right\">右 2</span><span data-face=\"bottom\">下 6</span><span class=\"blank\"></span><span data-face=\"front\">前 4</span><span class=\"blank\"></span><span class=\"blank\"></span></div></div><p>只要固定順序，例如 <code>[top, bottom, front, back, left, right]</code>，之後每次旋轉就只是把這 6 個位置重新排列。初始值是 <code>[1, 6, 4, 3, 5, 2]</code>。</p></div>\n      <div class=\"learn-card learn-plan\"><strong>怎麼開始解（Solution Plan）</strong><ol><li>建立一個長度 6 的 list，依固定順序放六個面。</li><li>讀入 d。</li><li>把 1-based 的方向編號轉成 list index。</li><li>輸出對應元素。</li></ol></div>\n      <div class=\"learn-card learn-pitfall\"><strong>常見錯誤 / 驗證方法</strong><ul><li>不要把「右=2」誤寫成「左=2」。</li><li>你的 state 必須六面都能描述；後面交換整顆骰子時會需要完整狀態。</li><li>自我檢查：上/下、前/後、左/右三組對面應分別是 1/6、4/3、5/2。</li></ul></div>\n    </div>","starter":"","answer":"faces = [1, 6, 4, 3, 5, 2]\nd = int(input())\nprint(faces[d - 1])","tests":[{"input":"3\n","output":"4\n","public":true},{"input":"1\n","output":"1\n"},{"input":"4\n","output":"3\n"},{"input":"5\n","output":"5\n"},{"input":"6\n","output":"2\n"}]},{"id":2,"title":"只向前滾：四個面循環","difficulty":"基礎","statement":"一顆骰子初始為上=1、下=6、前=4、後=3、左=5、右=2。輸入整數 <code>m</code>，把這顆骰子連續「向前旋轉」 <code>m</code> 次。向前旋轉時：原本的上面會到前面、前面到底面、底面到後面、後面到上面。最後輸出朝上的點數。","input":"一行一個整數 <code>m</code>，<code>1 ≤ m ≤ 100</code>。","output":"輸出旋轉完成後朝上的點數。","sampleIn":"1","sampleOut":"3","sampleExplain":"<div class=\"demo-story\"><section class=\"demo-step\"><p>只轉 1 次。原本後面的 3 會移到上面。</p><div class=\"state-transition\"><div class=\"dice-state\"><strong>旋轉前</strong><div class=\"dice-net\"><span class=\"blank\"></span><span data-face=\"back\">後 3</span><span class=\"blank\"></span><span class=\"blank\"></span><span data-face=\"left\">左 5</span><span data-face=\"top\">上 1</span><span data-face=\"right\">右 2</span><span data-face=\"bottom\">下 6</span><span class=\"blank\"></span><span data-face=\"front\">前 4</span><span class=\"blank\"></span><span class=\"blank\"></span></div></div><div class=\"big-arrow\">向前 →</div><div class=\"dice-state\"><strong>旋轉後</strong><div class=\"dice-net\"><span class=\"blank\"></span><span data-face=\"back\">後 6</span><span class=\"blank\"></span><span class=\"blank\"></span><span data-face=\"left\">左 5</span><span data-face=\"top\">上 3</span><span data-face=\"right\">右 2</span><span data-face=\"bottom\">下 4</span><span class=\"blank\"></span><span data-face=\"front\">前 1</span><span class=\"blank\"></span><span class=\"blank\"></span></div></div></div><p>因此最上面是 <code>3</code>。</p></section></div>","learningGuide":"<div class=\"learning-guide\">\n      <div class=\"learn-card learn-recap\"><strong>本題目標 / 快速回顧</strong><p>延續第 1 階：仍然用六個固定欄位保存一顆骰子的 state。</p></div>\n      <div class=\"learn-card learn-new\"><strong>本題新概念</strong><p>向前旋轉的 invariant（不變量）是：左、右兩面不動；只有「上、前、下、後」四個位置循環。</p><div class=\"learn-visual\"><div class=\"mapping-row\"><span>舊後 → 新上</span><span>舊上 → 新前</span><span>舊前 → 新下</span><span>舊下 → 新後</span></div><div class=\"state-transition\"><div class=\"dice-state\"><strong>before</strong><div class=\"dice-net\"><span class=\"blank\"></span><span data-face=\"back\">後 3</span><span class=\"blank\"></span><span class=\"blank\"></span><span data-face=\"left\">左 5</span><span data-face=\"top\">上 1</span><span data-face=\"right\">右 2</span><span data-face=\"bottom\">下 6</span><span class=\"blank\"></span><span data-face=\"front\">前 4</span><span class=\"blank\"></span><span class=\"blank\"></span></div></div><div class=\"big-arrow\">→</div><div class=\"dice-state\"><strong>after 1 次向前</strong><div class=\"dice-net\"><span class=\"blank\"></span><span data-face=\"back\">後 6</span><span class=\"blank\"></span><span class=\"blank\"></span><span data-face=\"left\">左 5</span><span data-face=\"top\">上 3</span><span data-face=\"right\">右 2</span><span data-face=\"bottom\">下 4</span><span class=\"blank\"></span><span data-face=\"front\">前 1</span><span class=\"blank\"></span><span class=\"blank\"></span></div></div></div></div><p>更新時要先保存舊 state，避免第一個 assignment 覆蓋後，後面的計算拿到已經改過的值。</p></div>\n      <div class=\"learn-card learn-plan\"><strong>怎麼開始解（Solution Plan）</strong><ol><li>建立初始六面 state。</li><li>重複 m 次。</li><li>每次用舊 state 同時計算新上、新下、新前、新後。</li><li>最後輸出 top。</li></ol></div>\n      <div class=\"learn-card learn-pitfall\"><strong>常見錯誤 / 驗證方法</strong><ul><li>最常見方向錯誤：把「舊前」直接放到新上；正確是「舊後 → 新上」。</li><li>若原地逐格改值，要小心覆蓋舊資料；Python 可以一次 tuple assignment 或建立新 list。</li><li>自我檢查：連續向前 4 次一定回到原狀，上面重新是 1。</li></ul></div>\n    </div>","starter":"","answer":"m = int(input())\ndie = [1, 6, 4, 3, 5, 2]\n\nfor _ in range(m):\n    top, bottom, front, back, left, right = die\n    die = [back, front, top, bottom, left, right]\n\nprint(die[0])","tests":[{"input":"1\n","output":"3\n","public":true},{"input":"2\n","output":"6\n"},{"input":"3\n","output":"4\n"},{"input":"4\n","output":"1\n"},{"input":"9\n","output":"3\n"}]},{"id":3,"title":"只向右滾：另一組四面循環","difficulty":"基礎","statement":"一顆骰子初始為上=1、下=6、前=4、後=3、左=5、右=2。輸入整數 <code>m</code>，把骰子連續「向右旋轉」 <code>m</code> 次。向右旋轉時：原本的上面到右面、右面到底面、底面到左面、左面到上面。最後輸出朝上的點數。","input":"一行一個整數 <code>m</code>，<code>1 ≤ m ≤ 100</code>。","output":"輸出旋轉完成後朝上的點數。","sampleIn":"1","sampleOut":"5","sampleExplain":"<div class=\"demo-story\"><section class=\"demo-step\"><p>向右 1 次時，原本左面的 5 來到上面。</p><div class=\"state-transition\"><div class=\"dice-state\"><strong>旋轉前</strong><div class=\"dice-net\"><span class=\"blank\"></span><span data-face=\"back\">後 3</span><span class=\"blank\"></span><span class=\"blank\"></span><span data-face=\"left\">左 5</span><span data-face=\"top\">上 1</span><span data-face=\"right\">右 2</span><span data-face=\"bottom\">下 6</span><span class=\"blank\"></span><span data-face=\"front\">前 4</span><span class=\"blank\"></span><span class=\"blank\"></span></div></div><div class=\"big-arrow\">向右 →</div><div class=\"dice-state\"><strong>旋轉後</strong><div class=\"dice-net\"><span class=\"blank\"></span><span data-face=\"back\">後 3</span><span class=\"blank\"></span><span class=\"blank\"></span><span data-face=\"left\">左 6</span><span data-face=\"top\">上 5</span><span data-face=\"right\">右 1</span><span data-face=\"bottom\">下 2</span><span class=\"blank\"></span><span data-face=\"front\">前 4</span><span class=\"blank\"></span><span class=\"blank\"></span></div></div></div><p>所以輸出 <code>5</code>。</p></section></div>","learningGuide":"<div class=\"learning-guide\">\n      <div class=\"learn-card learn-recap\"><strong>本題目標 / 快速回顧</strong><p>第 2 階已經學會「先固定六面順序，再用舊 state 產生新 state」。這階只換旋轉軸。</p></div>\n      <div class=\"learn-card learn-new\"><strong>本題新概念</strong><p>向右旋轉時，前、後兩面不動；「左、上、右、下」形成循環。</p><div class=\"learn-visual\"><div class=\"mapping-row\"><span>舊左 → 新上</span><span>舊上 → 新右</span><span>舊右 → 新下</span><span>舊下 → 新左</span></div><div class=\"state-transition\"><div class=\"dice-state\"><strong>before</strong><div class=\"dice-net\"><span class=\"blank\"></span><span data-face=\"back\">後 3</span><span class=\"blank\"></span><span class=\"blank\"></span><span data-face=\"left\">左 5</span><span data-face=\"top\">上 1</span><span data-face=\"right\">右 2</span><span data-face=\"bottom\">下 6</span><span class=\"blank\"></span><span data-face=\"front\">前 4</span><span class=\"blank\"></span><span class=\"blank\"></span></div></div><div class=\"big-arrow\">→</div><div class=\"dice-state\"><strong>after 1 次向右</strong><div class=\"dice-net\"><span class=\"blank\"></span><span data-face=\"back\">後 3</span><span class=\"blank\"></span><span class=\"blank\"></span><span data-face=\"left\">左 6</span><span data-face=\"top\">上 5</span><span data-face=\"right\">右 1</span><span data-face=\"bottom\">下 2</span><span class=\"blank\"></span><span data-face=\"front\">前 4</span><span class=\"blank\"></span><span class=\"blank\"></span></div></div></div></div></div>\n      <div class=\"learn-card learn-plan\"><strong>怎麼開始解（Solution Plan）</strong><ol><li>沿用六面 state。</li><li>重複 m 次。</li><li>每次只重排 top/bottom/left/right，front/back 保持。</li><li>輸出 top。</li></ol></div>\n      <div class=\"learn-card learn-pitfall\"><strong>常見錯誤 / 驗證方法</strong><ul><li>不要把「向右滾」理解成右面到上面；實體上是左面抬到上面。</li><li>自我檢查：向右 4 次也必須回到原狀。</li><li>可用兩組「4 次回原狀」測試分別驗證前滾與右滾。</li></ul></div>\n    </div>","starter":"","answer":"m = int(input())\ndie = [1, 6, 4, 3, 5, 2]\n\nfor _ in range(m):\n    top, bottom, front, back, left, right = die\n    die = [left, right, front, back, bottom, top]\n\nprint(die[0])","tests":[{"input":"1\n","output":"5\n","public":true},{"input":"2\n","output":"6\n"},{"input":"3\n","output":"2\n"},{"input":"4\n","output":"1\n"},{"input":"11\n","output":"2\n"}]},{"id":4,"title":"混合旋轉：每一步都更新同一個 state","difficulty":"基礎＋","statement":"一顆骰子初始為上=1、下=6、前=4、後=3、左=5、右=2。第一行輸入操作次數 <code>m</code>（<code>1 ≤ m ≤ 100</code>）；接下來 <code>m</code> 行每行是一個操作碼。<code>-1</code> 代表向前旋轉：原本的上面到前面、前面到底面、底面到後面、後面到上面，左面與右面不變。<code>-2</code> 代表向右旋轉：原本的上面到右面、右面到底面、底面到左面、左面到上面，前面與後面不變。請依輸入順序更新同一顆骰子的完整六面狀態，最後輸出朝上的點數。","input":"第一行為 <code>m</code>。接下來 <code>m</code> 行每行為 <code>-1</code> 或 <code>-2</code>。","output":"輸出最後朝上的點數。","sampleIn":"2\n-2\n-1","sampleOut":"3","sampleExplain":"<div class=\"demo-story\"><section class=\"demo-step\"><p>先做 <code>-2</code>（向右）：上面從 1 變成 5。</p><div class=\"dice-state\"><strong>step 1：向右後</strong><div class=\"dice-net\"><span class=\"blank\"></span><span data-face=\"back\">後 3</span><span class=\"blank\"></span><span class=\"blank\"></span><span data-face=\"left\">左 6</span><span data-face=\"top\">上 5</span><span data-face=\"right\">右 1</span><span data-face=\"bottom\">下 2</span><span class=\"blank\"></span><span data-face=\"front\">前 4</span><span class=\"blank\"></span><span class=\"blank\"></span></div></div></section><section class=\"demo-step\"><p>再做 <code>-1</code>（向前）：此時要用「step 1 的完整 state」繼續更新；後面仍是 3，所以新上面變成 3。</p><div class=\"dice-state\"><strong>step 2：再向前</strong><div class=\"dice-net\"><span class=\"blank\"></span><span data-face=\"back\">後 2</span><span class=\"blank\"></span><span class=\"blank\"></span><span data-face=\"left\">左 6</span><span data-face=\"top\">上 3</span><span data-face=\"right\">右 1</span><span data-face=\"bottom\">下 4</span><span class=\"blank\"></span><span data-face=\"front\">前 5</span><span class=\"blank\"></span><span class=\"blank\"></span></div></div><div class=\"reason-flow\"><div class=\"reason-node\"><strong>-2</strong><small>top 1 → 5</small></div><div class=\"reason-arrow\">→</div><div class=\"reason-node\"><strong>-1</strong><small>top 5 → 3</small></div><div class=\"reason-arrow\">→</div><div class=\"reason-node answer\"><strong>3</strong><small>最後輸出</small></div></div></section></div>","learningGuide":"<div class=\"learning-guide\">\n      <div class=\"learn-card learn-recap\"><strong>本題目標 / 快速回顧</strong><p>你已經有兩個合法 transition（狀態轉移）：forward 與 right。現在要做的是依輸入順序套用。</p></div>\n      <div class=\"learn-card learn-new\"><strong>本題新概念</strong><p>關鍵不是「每個操作單獨算上面」，而是把完整 state 一直傳到下一步。</p><div class=\"learn-visual\"><div class=\"learn-step-flow\"><div class=\"learn-step-node\"><strong>初始</strong><small>[1,6,4,3,5,2]</small></div><div class=\"reason-arrow\">-2</div><div class=\"learn-step-node\"><strong>完整 state</strong><small>[5,2,4,3,6,1]</small></div><div class=\"reason-arrow\">-1</div><div class=\"learn-step-node\"><strong>完整 state</strong><small>[3,4,5,2,6,1]</small></div></div></div><p>即使目前只要求輸出 top，仍不能只追 top，因為下一次旋轉可能把 left/back 等其他面轉到 top。</p></div>\n      <div class=\"learn-card learn-plan\"><strong>怎麼開始解（Solution Plan）</strong><ol><li>寫出 forward 與 right 兩個更新邏輯。</li><li>讀入 m。</li><li>逐行讀 op；-1 套 forward，-2 套 right。</li><li>所有操作完成後才輸出 top。</li></ol></div>\n      <div class=\"learn-card learn-pitfall\"><strong>常見錯誤 / 驗證方法</strong><ul><li>只記錄 top 會失去下一步所需資訊。</li><li>操作順序不可交換；rotation（旋轉）通常不具交換律。</li><li>驗證：對同一組操作，手動畫前兩步 state，比對程式的六面值。</li></ul></div>\n    </div>","starter":"","answer":"m = int(input())\ndie = [1, 6, 4, 3, 5, 2]\n\nfor _ in range(m):\n    op = int(input())\n    top, bottom, front, back, left, right = die\n    if op == -1:\n        die = [back, front, top, bottom, left, right]\n    else:\n        die = [left, right, front, back, bottom, top]\n\nprint(die[0])","tests":[{"input":"2\n-2\n-1\n","output":"3\n","public":true},{"input":"3\n-1\n-2\n-1\n","output":"6\n"},{"input":"4\n-2\n-2\n-1\n-1\n","output":"1\n"},{"input":"5\n-1\n-1\n-2\n-2\n-1\n","output":"4\n"},{"input":"8\n-2\n-2\n-2\n-2\n-1\n-1\n-1\n-1\n","output":"1\n"}]},{"id":5,"title":"多顆骰子：每個位置都有自己的 state","difficulty":"中等","statement":"現在有 <code>n</code> 顆骰子排成一列，每顆初始都是上=1、下=6、前=4、後=3、左=5、右=2。接下來有 <code>m</code> 次旋轉操作，每次輸入 <code>a b</code>；本階保證 <code>b</code> 只會是 <code>-1</code> 或 <code>-2</code>。若 <code>b=-1</code>，將第 <code>a</code> 顆向前旋轉：上→前、前→下、下→後、後→上，左/右不變。若 <code>b=-2</code>，將第 <code>a</code> 顆向右旋轉：上→右、右→下、下→左、左→上，前/後不變。每顆骰子都要保留自己的完整六面狀態；最後輸出第 1 到第 n 顆目前朝上的點數。","input":"第一行 <code>n m</code>，<code>1 ≤ n ≤ 20</code>、<code>1 ≤ m ≤ 100</code>。接下來 m 行為 <code>a b</code>，其中 <code>1 ≤ a ≤ n</code> 且 <code>b ∈ {-1,-2}</code>。","output":"輸出 n 個整數，以空格分隔，依序是每個位置最後的上方面。","sampleIn":"3 3\n2 -1\n3 -2\n3 -1","sampleOut":"1 3 3","sampleExplain":"<div class=\"demo-story\"><section class=\"demo-step\"><p>三顆骰子一開始都一樣，但每次只修改指定的第 <code>a</code> 顆。</p><div class=\"dice-row\"><div>位置 1<br><b>top 1</b></div><div>位置 2<br><b>top 1</b></div><div>位置 3<br><b>top 1</b></div></div></section><section class=\"demo-step\"><p><code>2 -1</code>：只更新位置 2，top 變 3。<br><code>3 -2</code>：只更新位置 3，top 變 5。<br><code>3 -1</code>：位置 3 再從自己的完整 state 往前滾，top 變 3。</p><div class=\"dice-row\"><div>位置 1<br><b>1</b></div><div>位置 2<br><b>3</b></div><div>位置 3<br><b>3</b></div></div><pre>1 3 3</pre></section></div>","learningGuide":"<div class=\"learning-guide\">\n      <div class=\"learn-card learn-recap\"><strong>本題目標 / 快速回顧</strong><p>單顆骰子的 transition 已經完成。新問題只是在外面多一層「第幾顆」。</p></div>\n      <div class=\"learn-card learn-new\"><strong>本題新概念</strong><p>把 <code>dices[i]</code> 看成第 i 個位置的完整六面 state。每個操作只取出 <code>dices[a-1]</code>，更新後放回去；其他位置不應改變。</p><div class=\"learn-visual\"><div class=\"dice-row\"><div><small>dices[0]</small><b>[1,6,4,3,5,2]</b></div><div class=\"active\"><small>dices[1]</small><b>[1,6,4,3,5,2]</b></div><div><small>dices[2]</small><b>[1,6,4,3,5,2]</b></div></div><div class=\"mapping-row\"><span>操作 2 -1</span><span>只更新 dices[1]</span><span>其餘保持</span></div></div></div>\n      <div class=\"learn-card learn-plan\"><strong>怎麼開始解（Solution Plan）</strong><ol><li>建立 n 份彼此獨立的六面 list。</li><li>每次讀 a,b，將 a 轉成 0-based index。</li><li>只對該顆套 forward/right。</li><li>最後取每顆的 top 並以空格連接。</li></ol></div>\n      <div class=\"learn-card learn-pitfall\"><strong>常見錯誤 / 驗證方法</strong><ul><li>Python 若用 <code>[[...]] * n</code> 且之後原地修改內層 list，可能造成多顆共享同一物件；用 comprehension 建立獨立 state 較安全。</li><li>位置編號是 1-based，list index 是 0-based。</li><li>驗證：只操作第 2 顆時，第 1、3 顆必須仍是初始 top=1。</li></ul></div>\n    </div>","starter":"","answer":"n, m = map(int, input().split())\ndices = [[1, 6, 4, 3, 5, 2] for _ in range(n)]\n\nfor _ in range(m):\n    a, b = map(int, input().split())\n    i = a - 1\n    top, bottom, front, back, left, right = dices[i]\n    if b == -1:\n        dices[i] = [back, front, top, bottom, left, right]\n    else:\n        dices[i] = [left, right, front, back, bottom, top]\n\nprint(' '.join(str(die[0]) for die in dices))","tests":[{"input":"3 3\n2 -1\n3 -2\n3 -1\n","output":"1 3 3\n","public":true},{"input":"1 3\n1 -1\n1 -2\n1 -1\n","output":"6\n"},{"input":"4 5\n1 -2\n4 -1\n1 -2\n2 -1\n4 -1\n","output":"6 3 1 6\n"},{"input":"5 6\n5 -2\n5 -2\n3 -1\n2 -2\n3 -1\n1 -1\n","output":"3 5 6 1 6\n"}]},{"id":6,"title":"加入交換：交換的是整顆骰子的完整 state","difficulty":"中等＋","statement":"有 <code>n</code> 顆骰子排成一列，每顆初始都是上=1、下=6、前=4、後=3、左=5、右=2。本階有 <code>m</code> 次操作（<code>1 ≤ n ≤ 5</code>、<code>1 ≤ m ≤ 20</code>），每次輸入 <code>a b</code>。若 <code>a,b</code> 都是正整數（且都在 <code>1..n</code>），交換位置 <code>a</code> 與位置 <code>b</code> 的<strong>整顆骰子完整六面狀態</strong>。若 <code>b=-1</code>，將位置 <code>a</code> 的骰子向前旋轉：上→前、前→下、下→後、後→上，左/右不變。若 <code>b=-2</code>，將位置 <code>a</code> 的骰子向右旋轉：上→右、右→下、下→左、左→上，前/後不變。全部操作完成後，依序輸出每個位置朝上的點數。","input":"第一行 <code>n m</code>。接下來 m 行每行兩個整數 <code>a b</code>，規則如題目敘述。","output":"一行輸出 n 個整數，以空格分隔。","sampleIn":"3 3\n2 -1\n3 -2\n3 1","sampleOut":"5 3 1","sampleExplain":"<div class=\"demo-story\"><section class=\"demo-step\"><p>先把位置 2 向前滾，所以它的 top 變 3；位置 3 向右滾，所以它的 top 變 5。</p><div class=\"dice-row\"><div>位置 1<br><b>top 1</b></div><div>位置 2<br><b>top 3</b></div><div>位置 3<br><b>top 5</b></div></div></section><section class=\"demo-step\"><p><code>3 1</code> 不是旋轉，而是交換位置 3 與位置 1 的「整顆 state」。因此最後 top 依序是 5、3、1。</p><div class=\"swap-visual\"><div>位置 1<br><b>state A</b></div><div class=\"big-arrow\">⇄</div><div>位置 3<br><b>state C</b></div></div><pre>5 3 1</pre></section></div>","learningGuide":"<div class=\"learning-guide\">\n      <div class=\"learn-card learn-recap\"><strong>本題目標 / 快速回顧</strong><p>第 5 階已經有 <code>dices</code>：每個元素就是一顆骰子的完整六面 state。</p></div>\n      <div class=\"learn-card learn-new\"><strong>本題新概念</strong><p>swap（交換）的 invariant 是：骰子的朝向跟著骰子一起移到新位置。不是「只交換 top」。</p><div class=\"learn-visual\"><div class=\"dice-row\"><div class=\"active\"><small>位置 1</small><b>[1,6,4,3,5,2]</b></div><div><small>位置 2</small><b>[3,4,1,6,5,2]</b></div></div><div class=\"mapping-row\"><span>先把位置 1 轉過</span><span>交換 1 ↔ 2</span><span>六個欄位整包移動</span></div></div><p>在 Python 中，若每顆骰子用一個 list 表示，<code>dices[a], dices[b] = dices[b], dices[a]</code> 就能交換兩個完整 state。</p></div>\n      <div class=\"learn-card learn-plan\"><strong>怎麼開始解（Solution Plan）</strong><ol><li>先判斷 b 是否為正數。</li><li>b&gt;0 時直接交換兩個完整 state。</li><li>否則依 b=-1/-2 更新第 a 顆。</li><li>完成所有 m 次操作後輸出所有 top。</li></ol></div>\n      <div class=\"learn-card learn-pitfall\"><strong>常見錯誤 / 驗證方法</strong><ul><li>只交換 <code>dices[a][0]</code> 會錯：之後若再旋轉，其他五面沒有跟著移動。</li><li>判斷順序要避免把正整數 b 誤當旋轉碼。</li><li>驗證：先旋轉 A、再交換 A/B、最後旋轉交換後的位置；這種測資能抓出「只換 top」的錯解。</li></ul></div>\n    </div>","starter":"","answer":"n, m = map(int, input().split())\ndices = [[1, 6, 4, 3, 5, 2] for _ in range(n)]\n\nfor _ in range(m):\n    a, b = map(int, input().split())\n    a -= 1\n\n    if b > 0:\n        b -= 1\n        dices[a], dices[b] = dices[b], dices[a]\n    elif b == -1:\n        top, bottom, front, back, left, right = dices[a]\n        dices[a] = [back, front, top, bottom, left, right]\n    else:\n        top, bottom, front, back, left, right = dices[a]\n        dices[a] = [left, right, front, back, bottom, top]\n\nprint(' '.join(str(die[0]) for die in dices))","tests":[{"input":"3 3\n2 -1\n3 -2\n3 1\n","output":"5 3 1\n","public":true},{"input":"2 3\n1 -1\n1 2\n2 -1\n","output":"1 6\n"},{"input":"4 6\n1 -2\n2 -1\n1 4\n4 -1\n2 3\n3 -2\n","output":"1 1 5 3\n"},{"input":"5 7\n1 5\n2 -1\n5 -2\n2 4\n4 -2\n3 1\n1 -1\n","output":"3 1 1 5 5\n"}]},{"id":7,"title":"f580 骰子（原題）","difficulty":"APCS 原題","statement":"給定 <code>n</code> 顆骰子排成一列。每顆骰子的初始六面固定為：上=1、下=6、前=4、後=3、左=5、右=2。接著有 <code>m</code> 次操作，每次給兩個整數 <code>a,b</code>：若 <code>a,b</code> 都是正整數，交換位置 <code>a</code> 與位置 <code>b</code> 的整顆骰子；若 <code>b=-1</code>，將位置 <code>a</code> 的骰子向前旋轉，規則為上→前、前→下、下→後、後→上，左/右不變；若 <code>b=-2</code>，將位置 <code>a</code> 的骰子向右旋轉，規則為上→右、右→下、下→左、左→上，前/後不變。所有位置採 1-based；全部操作完成後，依序輸出位置 1 到位置 n 的朝上點數。","input":"第一行包含 <code>n m</code>，其中 <code>1 ≤ n ≤ 20</code>、<code>1 ≤ m ≤ 100</code>。接下來 m 行每行包含兩個整數 <code>a b</code>，依題目規則表示交換或旋轉操作；位置編號採 1-based。","output":"在一行輸出 n 個數字，以空格分隔；第 i 個數字代表位置 i 的骰子最後朝上的點數。","sampleIn":"1 2\n1 -2\n1 -1","sampleOut":"3","sampleExplain":"<div class=\"demo-story\"><section class=\"demo-step\"><p>第一筆操作 <code>1 -2</code>：第 1 顆向右滾，state 變為：</p><div class=\"dice-state\"><strong>向右後</strong><div class=\"dice-net\"><span class=\"blank\"></span><span data-face=\"back\">後 3</span><span class=\"blank\"></span><span class=\"blank\"></span><span data-face=\"left\">左 6</span><span data-face=\"top\">上 5</span><span data-face=\"right\">右 1</span><span data-face=\"bottom\">下 2</span><span class=\"blank\"></span><span data-face=\"front\">前 4</span><span class=\"blank\"></span><span class=\"blank\"></span></div></div></section><section class=\"demo-step\"><p>第二筆操作 <code>1 -1</code>：以剛才的完整 state 再向前滾：</p><div class=\"dice-state\"><strong>再向前後</strong><div class=\"dice-net\"><span class=\"blank\"></span><span data-face=\"back\">後 2</span><span class=\"blank\"></span><span class=\"blank\"></span><span data-face=\"left\">左 6</span><span data-face=\"top\">上 3</span><span data-face=\"right\">右 1</span><span data-face=\"bottom\">下 4</span><span class=\"blank\"></span><span data-face=\"front\">前 5</span><span class=\"blank\"></span><span class=\"blank\"></span></div></div><p>最上面是 3，因此輸出：</p><pre>3</pre></section></div>","learningGuide":"<div class=\"learning-guide\">\n      <div class=\"learn-card learn-recap\"><strong>本題目標 / 快速回顧</strong><p>這是整合階。需要的能力只有三件：六面 state、兩種 rotation transition、整顆 state 的 swap。題目規格在本階重新完整列出，不必回頭看前題。</p></div>\n      <div class=\"learn-card learn-new\"><strong>本題新概念</strong><p>最後實作可維持單一 invariant：<strong>任何時刻，<code>dices[i]</code> 都完整代表目前位在 i 的那顆骰子六面方向。</strong></p><div class=\"learn-visual\"><div class=\"learn-step-flow\"><div class=\"learn-step-node\"><strong>讀 a,b</strong><small>判斷操作型別</small></div><div class=\"reason-arrow\">→</div><div class=\"learn-step-node\"><strong>b &gt; 0</strong><small>swap 兩個 state</small></div><div class=\"learn-step-node\"><strong>b = -1</strong><small>forward transition</small></div><div class=\"learn-step-node\"><strong>b = -2</strong><small>right transition</small></div><div class=\"reason-arrow\">→</div><div class=\"learn-step-node\"><strong>m 次後</strong><small>讀每顆 top</small></div></div></div></div>\n      <div class=\"learn-card learn-plan\"><strong>怎麼開始解（Solution Plan）</strong><ol><li>建立 n 顆相同初始 state。</li><li>依序處理 m 筆操作：先判斷 swap 或 rotation。</li><li>rotation 每次用舊六面產生新六面；swap 交換完整 list。</li><li>最後一次性輸出所有位置的 top。</li></ol></div>\n      <div class=\"learn-card learn-pitfall\"><strong>常見錯誤 / 驗證方法</strong><ul><li>原題是 Tolerant 比對，但仍建議用單一空格輸出，避免不必要格式問題。</li><li>n 最大 20、m 最大 100，直接模擬每次 O(1)，總時間 O(m)，不需要複雜演算法。</li><li>最後自測至少包含：四次前滾回原狀、四次右滾回原狀、先旋轉再交換再旋轉。</li></ul></div>\n    </div>","starter":"","answer":"n, m = map(int, input().split())\ndices = [[1, 6, 4, 3, 5, 2] for _ in range(n)]\n\nfor _ in range(m):\n    a, b = map(int, input().split())\n    a -= 1\n\n    if b > 0:\n        b -= 1\n        dices[a], dices[b] = dices[b], dices[a]\n    elif b == -1:\n        top, bottom, front, back, left, right = dices[a]\n        dices[a] = [back, front, top, bottom, left, right]\n    else:\n        top, bottom, front, back, left, right = dices[a]\n        dices[a] = [left, right, front, back, bottom, top]\n\nprint(' '.join(str(die[0]) for die in dices))","tests":[{"input":"1 2\n1 -2\n1 -1\n","output":"3\n","public":true},{"input":"3 3\n2 -1\n3 -2\n3 1\n","output":"5 3 1\n","public":true},{"input":"1 4\n1 -1\n1 -1\n1 -1\n1 -1\n","output":"1\n"},{"input":"1 4\n1 -2\n1 -2\n1 -2\n1 -2\n","output":"1\n"},{"input":"2 6\n1 -1\n1 2\n2 -2\n1 -1\n2 1\n1 -2\n","output":"4 3\n"},{"input":"6 11\n1 -2\n2 -1\n3 -2\n4 -1\n5 -2\n6 -1\n1 6\n2 5\n3 4\n6 -2\n5 -1\n","output":"3 5 3 5 6 6\n"}]}];
+
+const GENERATED_TEST_CACHE = new Map();
+function seededRandom(seed){
+  let a=seed>>>0;
+  return function(){
+    a|=0; a=(a+0x6D2B79F5)|0;
+    let t=Math.imul(a^(a>>>15),1|a);
+    t=(t+Math.imul(t^(t>>>7),61|t))^t;
+    return ((t^(t>>>14))>>>0)/4294967296;
+  };
+}
+function randInt(rng,min,max){return Math.floor(rng()*(max-min+1))+min}
+const INITIAL_DIE=[1,6,4,3,5,2];
+function oracleForward(d){const [t,b,f,k,l,r]=d;return [k,f,t,b,l,r]}
+function oracleRight(d){const [t,b,f,k,l,r]=d;return [l,r,f,k,b,t]}
+function oracleSimulate(n,ops){
+  const dices=Array.from({length:n},()=>INITIAL_DIE.slice());
+  for(const [a,b] of ops){
+    const i=a-1;
+    if(b>0){const j=b-1;[dices[i],dices[j]]=[dices[j],dices[i]];}
+    else if(b===-1) dices[i]=oracleForward(dices[i]);
+    else dices[i]=oracleRight(dices[i]);
+  }
+  return dices;
+}
+function oracleTopLine(dices){return dices.map(d=>d[0]).join(' ')+'\n'}
+function generatedFullInput(n,ops){return `${n} ${ops.length}\n${ops.map(([a,b])=>`${a} ${b}`).join('\n')}\n`}
+function generateOneHiddenTest(taskId,variant){
+  const rng=seededRandom(0xF5802020 + taskId*1009 + variant*7919);
+  if(taskId===1){
+    const d=randInt(rng,1,6);
+    return {input:`${d}\n`,output:`${INITIAL_DIE[d-1]}\n`,generated:true};
+  }
+  if(taskId===2 || taskId===3){
+    const m=randInt(rng,5,37);
+    let die=INITIAL_DIE.slice();
+    for(let i=0;i<m;i++) die=taskId===2?oracleForward(die):oracleRight(die);
+    return {input:`${m}\n`,output:`${die[0]}\n`,generated:true};
+  }
+  if(taskId===4){
+    const m=randInt(rng,6,24),ops=[];let die=INITIAL_DIE.slice();
+    for(let i=0;i<m;i++){const op=rng()<.5?-1:-2;ops.push(op);die=op===-1?oracleForward(die):oracleRight(die);}
+    return {input:`${m}\n${ops.join('\n')}\n`,output:`${die[0]}\n`,generated:true};
+  }
+  const n=taskId===7?randInt(rng,8,20):randInt(rng,2,Math.min(taskId===6?5:8,20));
+  const maxM=taskId===7?100:(taskId===6?20:35);
+  const m=taskId===7?(variant===1?100:randInt(rng,35,80)):randInt(rng,8,maxM);
+  const ops=[];
+  for(let i=0;i<m;i++){
+    const a=randInt(rng,1,n);
+    if(taskId===5){ops.push([a,rng()<.5?-1:-2]);continue;}
+    const roll=rng();
+    if(roll<.36) ops.push([a,-1]);
+    else if(roll<.72) ops.push([a,-2]);
+    else {let b=randInt(rng,1,n);if(n>1)while(b===a)b=randInt(rng,1,n);ops.push([a,b]);}
+  }
+  // Force a rotate -> swap -> rotate pattern that catches swapping only top values.
+  if(taskId>=6 && n>=2 && ops.length>=3){ops[0]=[1,-1];ops[1]=[1,2];ops[2]=[2,-2];}
+  const dices=oracleSimulate(n,ops);
+  return {input:generatedFullInput(n,ops),output:oracleTopLine(dices),generated:true};
+}
+function getGeneratedTests(task){
+  if(!GENERATED_TEST_CACHE.has(task.id)) GENERATED_TEST_CACHE.set(task.id,[0,1].map(v=>generateOneHiddenTest(task.id,v)).filter(Boolean));
+  return GENERATED_TEST_CACHE.get(task.id);
+}
+function getTaskTests(task){return [...task.tests,...getGeneratedTests(task)]}
+function getPublicTests(task){return task.tests.filter(test=>test.public)}
+
+const COMPLETIONS = [
+  'abs','all','any','append','break','continue','def','elif','else','enumerate','False','for','if','in','input','int','len','list','map','max','min','None','print','range','return','reversed','set','sorted','str','sum','True','while','zip'
+];
+
+let currentTaskIndex = 0;
+let editor = null;
+let pyWorker = null;
+let workerReadyPromise = null;
+let workerRunSeq = 0;
+let busy = false;
+let pyWorkerBlobUrl = null;
+let operationSeq = 0;
+let activeOperationToken = 0;
+let selectedPublicSampleIndex = 0;
+
+const STORAGE_SCHEMA = 1;
+const STORAGE_PREFIX = `f580_step_oj:v${STORAGE_SCHEMA}`;
+const ACCEPTED_KEY = `${STORAGE_PREFIX}:accepted`;
+const HISTORY_KEY = `${STORAGE_PREFIX}:history`;
+const MIGRATION_KEY = `${STORAGE_PREFIX}:migrated`;
+const LEGACY_ACCEPTED_KEY = null;
+const LEGACY_HISTORY_KEY = null;
+const PYODIDE_VERSION = '0.27.7';
+const PYODIDE_BASE_URL = `https://cdn.jsdelivr.net/pyodide/v${PYODIDE_VERSION}/full/`;
+const PYODIDE_INIT_TIMEOUT_MS = 20000;
+const RUN_TIMEOUT_MS = 2500;
+
+const $ = (s) => document.querySelector(s);
+const levelStrip = $('#levelStrip');
+const problemPane = $('#problemPane');
+const overallVerdict = $('#overallVerdict');
+const resultSummary = $('#resultSummary');
+const runtimeDot = $('#runtimeDot');
+const runtimeText = $('#runtimeText');
+const progressBar = $('#progressBar');
+const progressText = $('#progressText');
+const historyList = $('#historyList');
+const hiddenTestsList = $('#hiddenTestsList');
+
+function esc(s){
+  return String(s).replace(/[&<>"']/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
+}
+
+function normalizeOutput(s){
+  return String(s)
+    .replace(/\r\n?/g,'\n')
+    .split('\n')
+    .map(line=>line.trim())
+    .filter(line=>line!=='')
+    .join('\n');
+}
+
+function safeJsonParse(raw,fallback){
+  try{return JSON.parse(raw)}catch{return fallback}
+}
+
+function migrateStorage(){
+  try{if(localStorage.getItem(MIGRATION_KEY)!=='1') localStorage.setItem(MIGRATION_KEY,'1');}catch(err){console.warn('Local storage unavailable:',err);}
+}
+
+function getAccepted(){
+  return safeJsonParse(localStorage.getItem(ACCEPTED_KEY)||'{}',{});
+}
+function setAccepted(id){
+  const a=getAccepted();
+  a[id]=true;
+  localStorage.setItem(ACCEPTED_KEY,JSON.stringify(a));
+  if(TASKS[currentTaskIndex]?.id===id) updateAnswerButtonState();
+}
+
+function isTaskAccepted(task=TASKS[currentTaskIndex]){
+  return Boolean(task && getAccepted()[task.id]);
+}
+
+function updateAnswerButtonState(){
+  const btn=$('#answerBtn');
+  if(!btn) return;
+  const t=TASKS[currentTaskIndex];
+  const unlocked=isTaskAccepted(t);
+  btn.disabled=busy || !unlocked;
+  btn.textContent=unlocked?'參考答案':'參考答案（AC 後解鎖）';
+  btn.title=unlocked
+    ? `查看第 ${t.id} 階參考答案`
+    : `第 ${t.id} 階需先提交並取得 Accepted 才能查看參考答案`;
+  btn.setAttribute('aria-disabled',String(btn.disabled));
+}
+function draftKey(id){return `${STORAGE_PREFIX}:code:${id}`}
+function customInputKey(id){return `${STORAGE_PREFIX}:custom-input:${id}`}
+const CUSTOM_OVERRIDE_KEY=`${STORAGE_PREFIX}:custom-override`;
+function getCustomOverride(){try{return localStorage.getItem(CUSTOM_OVERRIDE_KEY)==='1'}catch{return false}}
+function setCustomOverride(value){try{localStorage.setItem(CUSTOM_OVERRIDE_KEY,value?'1':'0')}catch{}}
+function historyKey(){return HISTORY_KEY}
+function getHistory(){return safeJsonParse(localStorage.getItem(historyKey())||'[]',[])}
+function addHistory(taskId, verdict, passed, total){
+  const list=getHistory();
+  list.unshift({time:new Date().toLocaleString('zh-TW',{hour12:false}),taskId,verdict,passed,total});
+  localStorage.setItem(historyKey(),JSON.stringify(list.slice(0,30)));
+  renderHistory();
+}
+
+function clearAllLocalRecords(){
+  const keys=[];
+  for(let i=0;i<localStorage.length;i++){const key=localStorage.key(i);if(key && key.startsWith('f580_step_oj')) keys.push(key);}
+  keys.forEach(key=>localStorage.removeItem(key));
+}
+
+function renderProgress(){
+  const accepted=getAccepted();
+  const count=TASKS.filter(t=>accepted[t.id]).length;
+  progressText.textContent=`${count} / ${TASKS.length} AC`;
+  progressBar.style.width=`${count/TASKS.length*100}%`;
+}
+
+function renderLevelStrip(){
+  const accepted=getAccepted();
+  levelStrip.innerHTML='';
+  TASKS.forEach((task,idx)=>{
+    const b=document.createElement('button');
+    b.type='button';
+    b.disabled=busy;
+    b.className='level-btn'+(idx===currentTaskIndex?' active':'')+(accepted[task.id]?' accepted':'');
+    b.textContent=accepted[task.id]?`${task.id} ✓`:`${task.id}`;
+    b.title=`第 ${task.id} 階：${task.title}`;
+    b.addEventListener('click',()=>switchTask(idx));
+    levelStrip.appendChild(b);
+  });
+  updateAnswerButtonState();
+}
+
+
+function renderProblem(){
+  const t=TASKS[currentTaskIndex];
+  const extraPublic=getPublicTests(t).slice(1);
+  const extraSamples=extraPublic.length?`
+    <div class="section-title">額外公開範例</div>
+    <div class="extra-samples">
+      ${extraPublic.map((test,idx)=>`<div class="extra-sample-card"><strong>公開範例 #${idx+2}</strong><div class="sample-grid"><div class="sample-box"><h4>輸入</h4><pre>${esc(test.input.trimEnd())}</pre></div><div class="sample-box"><h4>輸出</h4><pre>${esc(test.output.trimEnd())}</pre></div></div></div>`).join('')}
+    </div>`:'';
+  problemPane.innerHTML=`
+    <div class="kicker">第 ${t.id} 階 / ${TASKS.length}</div>
+    <h1>${esc(t.title)}</h1>
+    <div class="meta"><span>難度：${esc(t.difficulty)}</span><span>Python 3</span></div>
+    <div class="section-title">題目</div>
+    <p>${t.statement}</p>
+    <div class="section-title">輸入</div>
+    <p>${t.input}</p>
+    <div class="section-title">輸出</div>
+    <p>${t.output}</p>
+    <div class="section-title">公開範例</div>
+    <div class="sample-grid">
+      <div class="sample-box"><h4>輸入</h4><pre>${esc(t.sampleIn)}</pre></div>
+      <div class="sample-box"><h4>輸出</h4><pre>${esc(t.sampleOut)}</pre></div>
+    </div>
+    <div class="section-title">範例測資講解</div>
+    <div class="sample-explanation">
+      <div class="sample-explain-intro"><strong>範例說明</strong><small>依照這筆範例資料逐步說明計算過程。</small></div>
+      <div class="sample-explanation-body">${t.sampleExplain}</div>
+    </div>
+    <div class="section-title">學習指南</div>
+    ${t.learningGuide}
+    ${extraSamples}
+    ${t.id===7?`<div class="note">本階忠實對應 ZeroJudge f580：n ≤ 20、m ≤ 100；原題標示 Tolerant 比對。本頁為單檔前端教學 Judge，正式成績仍以 ZeroJudge 為準。</div>`:''}
+  `;
+}
+
+function renderCompactTests(state='idle', results=[]){
+  const t=TASKS[currentTaskIndex];
+  const tests=getTaskTests(t);
+  const list=$('#submitTestsList');
+  const count=$('#submitTestsCount');
+  if(!list || !count) return;
+  let finished=0;
+  let passed=0;
+  list.innerHTML='';
+  tests.forEach((test,idx)=>{
+    const r=results[idx];
+    const row=document.createElement('div');
+    let verdict='—';
+    let cls='wait';
+    if(r){
+      finished++;
+      if(r.environmentError){verdict='JE';cls='fail'}
+      else if(r.timeout){verdict='TLE';cls='fail'}
+      else if(r.error){verdict='RE';cls='fail'}
+      else if(r.pass){verdict='AC';cls='pass';passed++}
+      else {verdict='WA';cls='fail'}
+    }else if(state==='running'){
+      verdict='WAIT';
+    }
+    const kind=test.public?'PUBLIC':(test.generated?'HIDDEN*':'HIDDEN');
+    row.className=`submit-test-row ${cls}`;
+    row.innerHTML=`<span class="mini-label">#${idx+1} ${kind}</span><span class="mini-verdict">${verdict}</span>`;
+    list.appendChild(row);
+  });
+  count.textContent=state==='running'?`${finished}/${tests.length}`:`AC ${passed}/${tests.length}`;
+}
+
+function renderTests(state='idle',results=[]){
+  renderCompactTests(state,results);
+}
+
+function renderHiddenTests(){
+  const t=TASKS[currentTaskIndex];
+  const hidden=getTaskTests(t).map((test,idx)=>({test,idx})).filter(item=>!item.test.public);
+  const accepted=Boolean(getAccepted()[t.id]);
+  const details=$('#hiddenTestsDetails');
+  const summary=$('#hiddenTestsSummary');
+  hiddenTestsList.innerHTML='';
+  if(!hidden.length){
+    summary.textContent='隱藏測資';
+    hiddenTestsList.innerHTML='<div class="hidden-tests-empty">這一階沒有隱藏測資。</div>';
+    return;
+  }
+  if(!accepted){
+    if(details) details.open=false;
+    summary.textContent=`隱藏測資 ${hidden.length} 筆（AC 後解鎖）`;
+    hiddenTestsList.innerHTML=`<div class="hidden-tests-empty">為避免練習時直接看到答案，介面不顯示隱藏測資的 input / output；提交時仍會在右側 TEST RESULTS 顯示每筆 AC、WA、RE 或 TLE。<br><br>本頁是單檔前端模擬 Judge，測資與產生器仍存在於 HTML 原始碼，因此不具伺服器 Online Judge 的真正保密性。</div>`;
+    return;
+  }
+  summary.textContent=`解題後測資回顧（${hidden.length} 筆）`;
+  hidden.forEach(({test,idx})=>{
+    const item=document.createElement('div');
+    item.className='hidden-test-item';
+    item.innerHTML=`<strong>#${idx+1} ${test.generated?'生成隱藏測資':'隱藏測資'}</strong><div class="hidden-test-io"><div class="hidden-test-block"><span class="hidden-test-label">輸入</span><pre>${esc(test.input)}</pre></div><div class="hidden-test-block"><span class="hidden-test-label">輸出</span><pre>${esc(test.output)}</pre></div></div>`;
+    hiddenTestsList.appendChild(item);
+  });
+}
+
+function renderHistory(){
+  const items=getHistory();
+  historyList.innerHTML=items.length?'':'<div style="color:#777;font-size:.86rem">尚無提交紀錄</div>';
+  items.forEach(h=>{
+    const div=document.createElement('div');
+    div.className='history-item';
+    div.innerHTML=`<span>${esc(h.time)}｜第 ${h.taskId} 階</span><strong>${esc(h.verdict)} ${h.passed}/${h.total}</strong>`;
+    historyList.appendChild(div);
+  });
+}
+
+function getCode(){ return editor ? editor.getValue() : $('#codeEditor').value; }
+function setCode(code){ if(editor) editor.setValue(code); else $('#codeEditor').value=code; }
+function saveDraft(){ const t=TASKS[currentTaskIndex]; localStorage.setItem(draftKey(t.id),getCode()); }
+
+function switchTask(idx){
+  if(busy || idx===currentTaskIndex) return;
+  saveDraft();
+  currentTaskIndex=idx;
+  selectedPublicSampleIndex=0;
+  renderLevelStrip();
+  renderProblem();
+  renderTests();
+  renderHiddenTests();
+  overallVerdict.className='status-pill'; overallVerdict.textContent='尚未提交';
+  resultSummary.textContent='按右側「執行」會使用選定的公開範例輸入；按「提交」才會評測全部測資，逐筆 verdict 請看右側 TEST RESULTS。';
+  const t=TASKS[idx];
+  setCode(localStorage.getItem(draftKey(t.id)) ?? t.starter);
+  renderSampleSelector();
+  restoreCustomInputForTask();
+  resetTerminal();
+  updateInputSourceUI();
+  if(editor){ editor.clearHistory(); editor.focus(); }
+}
+
+function getCodeMirrorCommentRange(cm){
+  const from=cm.getCursor('from');
+  const to=cm.getCursor('to');
+  let startLine=from.line;
+  let endLine=to.line;
+  if(from.line!==to.line && to.ch===0) endLine-=1;
+  return {startLine,endLine};
+}
+
+function toggleCodeMirrorComments(cm){
+  const {startLine,endLine}=getCodeMirrorCommentRange(cm);
+  const lines=[];
+  for(let line=startLine; line<=endLine; line++) lines.push(cm.getLine(line));
+  const nonBlank=lines.filter(line=>line.trim()!=='');
+  const shouldUncomment=nonBlank.length>0 && nonBlank.every(line=>/^\s*#/.test(line));
+
+  cm.operation(()=>{
+    for(let line=endLine; line>=startLine; line--){
+      const text=cm.getLine(line);
+      let next=text;
+      if(shouldUncomment){
+        next=text.replace(/^(\s*)# ?/, '$1');
+      }else if(text.trim()===''){
+        next=text;
+      }else{
+        const m=text.match(/^\s*/);
+        const indent=m?m[0]:'';
+        next=indent+'# '+text.slice(indent.length);
+      }
+      if(next!==text){
+        cm.replaceRange(next, CodeMirror.Pos(line,0), CodeMirror.Pos(line,text.length), '+comment');
+      }
+    }
+  });
+}
+
+function toggleTextareaComments(textarea){
+  const value=textarea.value;
+  const originalStart=textarea.selectionStart;
+  const originalEnd=textarea.selectionEnd;
+  const hasSelection=originalStart!==originalEnd;
+  const lineStart=value.lastIndexOf('\n', Math.max(0, originalStart-1))+1;
+  let effectiveEnd=originalEnd;
+  if(hasSelection && effectiveEnd>lineStart && value[effectiveEnd-1]==='\n') effectiveEnd-=1;
+  let lineEnd=value.indexOf('\n', effectiveEnd);
+  if(lineEnd===-1) lineEnd=value.length;
+
+  const block=value.slice(lineStart,lineEnd);
+  const lines=block.split('\n');
+  const nonBlank=lines.filter(line=>line.trim()!=='');
+  const shouldUncomment=nonBlank.length>0 && nonBlank.every(line=>/^\s*#/.test(line));
+  const transformed=lines.map(line=>{
+    if(shouldUncomment) return line.replace(/^(\s*)# ?/, '$1');
+    if(line.trim()==='') return line;
+    const m=line.match(/^\s*/);
+    const indent=m?m[0]:'';
+    return indent+'# '+line.slice(indent.length);
+  }).join('\n');
+
+  textarea.value=value.slice(0,lineStart)+transformed+value.slice(lineEnd);
+  if(hasSelection){
+    textarea.selectionStart=lineStart;
+    textarea.selectionEnd=lineStart+transformed.length;
+  }else{
+    const oldLine=value.slice(lineStart,lineEnd);
+    const oldOffset=originalStart-lineStart;
+    const oldIndent=(oldLine.match(/^\s*/)||[''])[0].length;
+    let delta=0;
+    if(oldLine.trim()!==''){
+      if(shouldUncomment){
+        const prefix=(oldLine.match(/^\s*# ?/)||[''])[0];
+        delta=-Math.max(0,prefix.length-oldIndent);
+      }else if(oldOffset>=oldIndent){
+        delta=2;
+      }
+    }
+    const pos=Math.max(lineStart, originalStart+delta);
+    textarea.selectionStart=textarea.selectionEnd=pos;
+  }
+  saveDraft();
+}
+
+function deleteCodeMirrorIndentBackspace(cm){
+  if(cm.somethingSelected()) return CodeMirror.Pass;
+  const cur=cm.getCursor(); if(cur.ch===0) return CodeMirror.Pass;
+  const line=cm.getLine(cur.line),prefix=line.slice(0,cur.ch);
+  if(!/^ +$/.test(prefix)) return CodeMirror.Pass;
+  const removeCount=Math.min(4,prefix.length);
+  cm.replaceRange('',CodeMirror.Pos(cur.line,cur.ch-removeCount),cur,'+delete');
+}
+function deleteTextareaIndentBackspace(textarea){
+  const start=textarea.selectionStart,end=textarea.selectionEnd;if(start!==end||start===0)return false;
+  const value=textarea.value,lineStart=value.lastIndexOf('\n',start-1)+1,prefix=value.slice(lineStart,start);
+  if(!/^ +$/.test(prefix))return false;
+  const removeCount=Math.min(4,prefix.length);
+  textarea.value=value.slice(0,start-removeCount)+value.slice(start);textarea.selectionStart=textarea.selectionEnd=start-removeCount;saveDraft();return true;
+}
+function spacesToNextTabStop(column,tabSize=4){const remainder=column%tabSize;return remainder===0?tabSize:tabSize-remainder}
+function textareaVisualColumn(text,offset,tabSize=4){let column=0;for(let i=0;i<offset;i++)column+=text[i]==='\t'?spacesToNextTabStop(column,tabSize):1;return column}
+function leadingSpaces(text){const m=text.match(/^ */);return m?m[0].length:0}
+function codeMirrorSelectionSpansMultipleLines(cm){const a=cm.getCursor('from'),b=cm.getCursor('to');return a.line!==b.line}
+function indentCodeMirrorTab(cm){
+  const from=cm.getCursor('from'),to=cm.getCursor('to');
+  if(cm.somethingSelected() && from.line!==to.line){
+    let endLine=to.line;if(to.ch===0)endLine--;
+    cm.operation(()=>{for(let line=from.line;line<=endLine;line++)cm.replaceRange('    ',CodeMirror.Pos(line,0),null,'+input');});
+    return;
+  }
+  const line=cm.getLine(from.line),column=CodeMirror.countColumn(line,from.ch,4),count=spacesToNextTabStop(column,4),spaces=' '.repeat(count);
+  if(cm.somethingSelected()){
+    cm.replaceRange(spaces,from,from,'+input');
+    cm.setSelection(CodeMirror.Pos(from.line,from.ch+count),CodeMirror.Pos(to.line,to.ch+count));
+  }else cm.replaceRange(spaces,from,null,'+input');
+}
+function unindentCodeMirror(cm){
+  const from=cm.getCursor('from'),to=cm.getCursor('to'),has=cm.somethingSelected();
+  let startLine=from.line,endLine=to.line;if(has&&from.line!==to.line&&to.ch===0)endLine--;
+  const cursor=cm.getCursor();
+  const removed=[];
+  cm.operation(()=>{for(let line=endLine;line>=startLine;line--){const text=cm.getLine(line),n=Math.min(4,leadingSpaces(text));removed[line]=n;if(n)cm.replaceRange('',CodeMirror.Pos(line,0),CodeMirror.Pos(line,n),'+delete');}});
+  if(!has){const n=removed[cursor.line]||0;cm.setCursor(CodeMirror.Pos(cursor.line,Math.max(0,cursor.ch-n)));}
+}
+function enterCodeMirror(cm){
+  const from=cm.getCursor('from'),to=cm.getCursor('to'),line=cm.getLine(from.line),prefix=line.slice(0,from.ch);
+  const base=(prefix.match(/^ */)||[''])[0];
+  const extra=prefix.trimEnd().endsWith(':')?'    ':'';
+  cm.replaceRange('\n'+base+extra,from,to,'+input');
+}
+function selectedTextareaLines(textarea){
+  const value=textarea.value,start=textarea.selectionStart,end=textarea.selectionEnd,lineStart=value.lastIndexOf('\n',Math.max(0,start-1))+1;
+  let effectiveEnd=end;if(end>start&&value[end-1]==='\n')effectiveEnd--;
+  let lineEnd=value.indexOf('\n',effectiveEnd);if(lineEnd===-1)lineEnd=value.length;
+  return {value,start,end,lineStart,lineEnd,block:value.slice(lineStart,lineEnd)};
+}
+function tabTextarea(textarea){
+  const {value,start,end,lineStart,lineEnd,block}=selectedTextareaLines(textarea);
+  if(start!==end && block.includes('\n')){
+    const lines=block.split('\n'),next=lines.map(x=>'    '+x).join('\n');
+    textarea.value=value.slice(0,lineStart)+next+value.slice(lineEnd);textarea.selectionStart=lineStart;textarea.selectionEnd=lineStart+next.length;saveDraft();return;
+  }
+  const linePrefix=value.slice(lineStart,start),column=textareaVisualColumn(linePrefix,linePrefix.length,4),count=spacesToNextTabStop(column,4),spaces=' '.repeat(count);
+  textarea.value=value.slice(0,start)+spaces+value.slice(start);
+  if(start!==end){textarea.selectionStart=start+count;textarea.selectionEnd=end+count;}else textarea.selectionStart=textarea.selectionEnd=start+count;
+  saveDraft();
+}
+function unindentTextarea(textarea){
+  const {value,start,end,lineStart,lineEnd,block}=selectedTextareaLines(textarea),has=start!==end;
+  const lines=block.split('\n'),removed=lines.map(x=>Math.min(4,leadingSpaces(x))),next=lines.map((x,i)=>x.slice(removed[i])).join('\n');
+  textarea.value=value.slice(0,lineStart)+next+value.slice(lineEnd);
+  if(has){textarea.selectionStart=lineStart;textarea.selectionEnd=lineStart+next.length;}else{const row=value.slice(lineStart,start).split('\n').length-1;const n=removed[row]||0;const pos=Math.max(lineStart,start-n);textarea.selectionStart=textarea.selectionEnd=pos;}
+  saveDraft();
+}
+function enterTextarea(textarea){
+  const start=textarea.selectionStart,end=textarea.selectionEnd,value=textarea.value,before=value.slice(0,start),line=before.slice(before.lastIndexOf('\n')+1);
+  const base=(line.match(/^ */)||[''])[0],extra=line.trimEnd().endsWith(':')?'    ':'';
+  textarea.value=value.slice(0,start)+'\n'+base+extra+value.slice(end);textarea.selectionStart=textarea.selectionEnd=start+1+base.length+extra.length;saveDraft();
+}
+function setupEditor(){
+  const textarea=$('#codeEditor');
+  if(window.CodeMirror){
+    CodeMirror.registerHelper('hint','python-custom',function(cm){const cur=cm.getCursor(),token=cm.getTokenAt(cur);let start=token.start,end=cur.ch,word=token.string.slice(0,end-start);if(!/^[A-Za-z_][A-Za-z0-9_]*$/.test(word)){start=end;word=''}const list=COMPLETIONS.filter(x=>x.startsWith(word)&&x!==word);return {list:list.length?list:COMPLETIONS,from:CodeMirror.Pos(cur.line,start),to:CodeMirror.Pos(cur.line,end)}});
+    editor=CodeMirror.fromTextArea(textarea,{mode:'python',lineNumbers:true,indentUnit:4,tabSize:4,indentWithTabs:false,lineWrapping:false,autoCloseBrackets:true,matchBrackets:true,extraKeys:{
+      'Ctrl-Space':cm=>cm.showHint({hint:CodeMirror.hint['python-custom'],completeSingle:false}),'Alt-/':cm=>cm.showHint({hint:CodeMirror.hint['python-custom'],completeSingle:false}),'Ctrl-/':cm=>toggleCodeMirrorComments(cm),'Backspace':cm=>deleteCodeMirrorIndentBackspace(cm),'Enter':cm=>enterCodeMirror(cm),'Ctrl-Enter':()=>judge(),'F9':()=>runCurrentCode(),'Tab':cm=>indentCodeMirrorTab(cm),'Shift-Tab':cm=>unindentCodeMirror(cm)
+    }});
+    editor.on('change',()=>saveDraft());
+  }else{
+    textarea.className='fallback-editor';
+    textarea.addEventListener('keydown',e=>{
+      if(e.key==='Backspace'&&!e.ctrlKey&&!e.altKey&&!e.metaKey&&deleteTextareaIndentBackspace(textarea)){e.preventDefault();}
+      else if(e.ctrlKey&&e.key==='/'){e.preventDefault();toggleTextareaComments(textarea);}
+      else if(e.ctrlKey&&e.key==='Enter'){e.preventDefault();judge();}
+      else if(e.key==='F9'){e.preventDefault();runCurrentCode();}
+      else if(e.key==='Tab'){e.preventDefault();e.shiftKey?unindentTextarea(textarea):tabTextarea(textarea);}
+      else if(e.key==='Enter'){e.preventDefault();enterTextarea(textarea);}
+    });
+    textarea.addEventListener('input',saveDraft);
+  }
+}
+
+function renderSampleSelector(){
+  const t=TASKS[currentTaskIndex];
+  const samples=getPublicTests(t);
+  const select=$('#sampleSelect');
+  if(!select) return;
+  if(selectedPublicSampleIndex>=samples.length) selectedPublicSampleIndex=0;
+  select.innerHTML=samples.map((_,idx)=>`<option value="${idx}">範例 #${idx+1}</option>`).join('');
+  select.value=String(selectedPublicSampleIndex);
+  select.hidden=samples.length<=1;
+  select.disabled=busy || getCustomOverride() || samples.length<=1;
+}
+
+function getSelectedPublicSample(){
+  const samples=getPublicTests(TASKS[currentTaskIndex]);
+  if(!samples.length) return null;
+  return samples[Math.min(selectedPublicSampleIndex,samples.length-1)];
+}
+
+function restoreCustomInputForTask(){
+  const area=$('#customInput');if(!area)return;try{area.value=localStorage.getItem(customInputKey(TASKS[currentTaskIndex].id))??''}catch{area.value=''}
+}
+function saveCustomInput(){const area=$('#customInput');if(!area)return;try{localStorage.setItem(customInputKey(TASKS[currentTaskIndex].id),area.value)}catch{}}
+function updateInputSourceUI(){
+  const override=getCustomOverride(),state=$('#customInputModeState'),sw=$('#customInputOverride'),select=$('#sampleSelect');
+  if(sw)sw.checked=override;if(state)state.textContent=override?'ON':'OFF';
+  if(select)select.disabled=busy||override||getPublicTests(TASKS[currentTaskIndex]).length<=1;
+  updateTerminalMeta();
+}
+function updateTerminalMeta(){
+  const override=getCustomOverride(),t=TASKS[currentTaskIndex];
+  if(override){$('#terminalMeta').textContent=`stdin: 第 ${t.id} 階 CUSTOM INPUT`;return;}
+  const sample=getSelectedPublicSample(),samples=getPublicTests(t),label=samples.length>1?`公開範例 #${selectedPublicSampleIndex+1}`:'公開範例';
+  $('#terminalMeta').textContent=sample?`stdin: 第 ${t.id} 階${label}輸入`:'stdin: empty';
+}
+function getRunInput(){
+  if(getCustomOverride()) return {input:$('#customInput').value,source:'custom'};
+  const sample=getSelectedPublicSample();return {input:sample?sample.input:'',source:'public'};
+}
+function resetTerminal(message='Ready. Press F9 to run, or Ctrl+Enter to submit.'){
+  const out=$('#terminalOutput');
+  out.className='terminal-output';
+  out.textContent=message;
+}
+
+function writeTerminal(text,isError=false){
+  const out=$('#terminalOutput');
+  out.className='terminal-output'+(isError?' error':'');
+  out.textContent=text;
+  out.scrollTop=out.scrollHeight;
+}
+
+function beginOperation(){
+  const op={token:++operationSeq,taskIndex:currentTaskIndex,taskId:TASKS[currentTaskIndex].id};
+  activeOperationToken=op.token;
+  setBusy(true);
+  return op;
+}
+function isOperationCurrent(op){
+  return activeOperationToken===op.token && currentTaskIndex===op.taskIndex && TASKS[currentTaskIndex].id===op.taskId;
+}
+function endOperation(op){
+  if(activeOperationToken===op.token){
+    activeOperationToken=0;
+    setBusy(false);
+  }
+}
+
+async function runCurrentCode(){
+  if(busy)return;
+  const code=getCode();saveDraft();saveCustomInput();
+  const {input,source}=getRunInput();
+  const op=beginOperation();
+  const sourceLabel=source==='custom'?'CUSTOM INPUT':'selected Public sample';
+  writeTerminal(`$ python main.py\n\nRunning with ${sourceLabel}...`);
+  try{
+    const r=await runPython(code,input);
+    if(!isOperationCurrent(op))return;
+    if(r.timeout){writeTerminal(`$ python main.py\n\nTime Limit Exceeded (${RUN_TIMEOUT_MS} ms).`,true);}
+    else if(r.environmentError){writeTerminal(`$ python main.py\n\nEnvironment Error: ${r.error}`,true);}
+    else if(!r.ok){const body=[r.output,r.error].filter(Boolean).join('\n');writeTerminal(`$ python main.py\n\n${body}\n\nProcess finished with error in ${r.ms} ms.`,true);}
+    else{const stdout=r.output||'',stderr=r.error||'';let body=stdout;if(stderr)body+=(body?'\n':'')+stderr;if(!body)body='Program finished with no output.';writeTerminal(`$ python main.py\n\n${body}\n\nProcess finished in ${r.ms} ms.` ,Boolean(stderr));}
+  }catch(err){if(isOperationCurrent(op))writeTerminal(`$ python main.py\n\nEnvironment Error: ${err.message}\nRun again to retry.`,true);}
+  finally{endOperation(op);if(editor)editor.focus();}
+}
+
+function setRuntime(status,text){
+  runtimeDot.className='dot'+(status?' '+status:'');
+  runtimeText.textContent=text;
+}
+
+function makeWorker(){
+  const workerSource=`
+    let pyodide = null;
+    self.onmessage = async (e) => {
+      const msg=e.data;
+      if(msg.type==='init'){
+        try{
+          importScripts('${PYODIDE_BASE_URL}pyodide.js');
+          pyodide = await loadPyodide({indexURL:'${PYODIDE_BASE_URL}'});
+          self.postMessage({type:'ready'});
+        }catch(err){self.postMessage({type:'init-error',error:String(err)});}
+        return;
+      }
+      if(msg.type==='run'){
+        try{
+          pyodide.globals.set('__OJ_CODE__',msg.code);
+          pyodide.globals.set('__OJ_INPUT__',msg.input);
+          const json = await pyodide.runPythonAsync(\`
+import io, sys, json, traceback
+_old_stdin, _old_stdout, _old_stderr = sys.stdin, sys.stdout, sys.stderr
+_buf_out, _buf_err = io.StringIO(), io.StringIO()
+sys.stdin = io.StringIO(__OJ_INPUT__)
+sys.stdout = _buf_out
+sys.stderr = _buf_err
+try:
+    _ns = {"__name__": "__main__"}
+    exec(compile(__OJ_CODE__, "main.py", "exec"), _ns, _ns)
+    _res = {"ok": True, "output": _buf_out.getvalue(), "error": _buf_err.getvalue()}
+except SystemExit as _e:
+    _exit_code = _e.code
+    if _exit_code is None or _exit_code == 0:
+        _res = {"ok": True, "output": _buf_out.getvalue(), "error": _buf_err.getvalue()}
+    else:
+        _res = {"ok": False, "output": _buf_out.getvalue(), "error": f"SystemExit: {_exit_code}"}
+except Exception:
+    _res = {"ok": False, "output": _buf_out.getvalue(), "error": traceback.format_exc().rstrip()}
+except BaseException:
+    _res = {"ok": False, "output": _buf_out.getvalue(), "error": traceback.format_exc().rstrip()}
+finally:
+    sys.stdin, sys.stdout, sys.stderr = _old_stdin, _old_stdout, _old_stderr
+json.dumps(_res)
+          \`);
+          self.postMessage({type:'result',id:msg.id,result:JSON.parse(json)});
+        }catch(err){self.postMessage({type:'result',id:msg.id,result:{ok:false,output:'',error:String(err),environmentError:true}});}
+      }
+    };
+  `;
+  const blob=new Blob([workerSource],{type:'application/javascript'});
+  const url=URL.createObjectURL(blob);
+  return {worker:new Worker(url),url};
+}
+
+function disposeWorker(runtimeStatus='',runtimeMessage='Python 尚未載入'){
+  if(pyWorker) pyWorker.terminate();
+  if(pyWorkerBlobUrl) URL.revokeObjectURL(pyWorkerBlobUrl);
+  pyWorker=null;
+  pyWorkerBlobUrl=null;
+  workerReadyPromise=null;
+  setRuntime(runtimeStatus,runtimeMessage);
+}
+
+function ensureWorker(){
+  if(pyWorker && workerReadyPromise) return workerReadyPromise;
+  setRuntime('busy','載入 Python…');
+  const created=makeWorker();
+  pyWorker=created.worker;
+  pyWorkerBlobUrl=created.url;
+  const workerRef=pyWorker;
+  workerReadyPromise=new Promise((resolve,reject)=>{
+    let settled=false;
+    const cleanup=()=>{
+      clearTimeout(timer);
+      workerRef.removeEventListener('message',onMessage);
+      workerRef.removeEventListener('error',onError);
+    };
+    const fail=(message)=>{
+      if(settled)return;
+      settled=true;
+      cleanup();
+      if(pyWorker===workerRef) disposeWorker('error','Python 載入失敗');
+      else workerRef.terminate();
+      reject(new Error(message));
+    };
+    const onMessage=(e)=>{
+      if(e.data.type==='ready'){
+        if(settled)return;
+        settled=true;
+        cleanup();
+        setRuntime('ready',`Python 3 已就緒 · Pyodide ${PYODIDE_VERSION}`);
+        resolve();
+      }else if(e.data.type==='init-error'){
+        fail(e.data.error || 'Pyodide initialization failed.');
+      }
+    };
+    const onError=(e)=>fail(e.message || 'Python worker failed.');
+    const timer=setTimeout(()=>fail(`Python runtime initialization exceeded ${PYODIDE_INIT_TIMEOUT_MS/1000} seconds.`),PYODIDE_INIT_TIMEOUT_MS);
+    workerRef.addEventListener('message',onMessage);
+    workerRef.addEventListener('error',onError);
+    workerRef.postMessage({type:'init'});
+  });
+  return workerReadyPromise;
+}
+
+function killWorker(){
+  disposeWorker('','Python 尚未載入');
+}
+
+async function runPython(code,input,timeoutMs=RUN_TIMEOUT_MS){
+  await ensureWorker();
+  const workerRef=pyWorker;
+  if(!workerRef) throw new Error('Python worker is not available.');
+  const id=++workerRunSeq;
+  return await new Promise(resolve=>{
+    const start=performance.now();
+    let settled=false;
+    const handler=(e)=>{
+      if(e.data.type==='result' && e.data.id===id){
+        if(settled)return; settled=true;
+        clearTimeout(timer);
+        workerRef.removeEventListener('message',handler);
+        const ms=Math.max(1,Math.round(performance.now()-start));
+        resolve({...e.data.result,ms});
+      }
+    };
+    workerRef.addEventListener('message',handler);
+    const timer=setTimeout(()=>{
+      if(settled)return; settled=true;
+      workerRef.removeEventListener('message',handler);
+      if(pyWorker===workerRef) killWorker(); else workerRef.terminate();
+      resolve({ok:false,output:'',error:'Time Limit Exceeded',timeout:true,ms:timeoutMs});
+    },timeoutMs);
+    workerRef.postMessage({type:'run',id,code,input});
+  });
+}
+
+function setBusy(v){
+  busy=v;
+  $('#runBtn').disabled=v;
+  $('#submitBtn').disabled=v;
+  $('#resetBtn').disabled=v;
+  $('#clearAllBtn').disabled=v;
+  updateAnswerButtonState();
+  const sampleSelect=$('#sampleSelect');
+  if(sampleSelect) sampleSelect.disabled=v || getCustomOverride() || getPublicTests(TASKS[currentTaskIndex]).length<=1;
+  const custom=$('#customInput'),override=$('#customInputOverride');if(custom)custom.disabled=v;if(override)override.disabled=v;
+  document.querySelectorAll('.level-btn').forEach(btn=>btn.disabled=v);
+}
+
+async function judge(){
+  if(busy)return;
+  const t=TASKS[currentTaskIndex];
+  const code=getCode();
+  saveDraft();
+  const tests=getTaskTests(t);
+  const op=beginOperation();
+  overallVerdict.className='status-pill warn'; overallVerdict.textContent='評測中';
+  resultSummary.textContent=`正在執行全部 ${tests.length} 筆測資…`;
+  renderTests('running',[]);
+  const results=[];
+  let passed=0;
+  try{
+    for(let i=0;i<tests.length;i++){
+      const r=await runPython(code,tests[i].input);
+      if(!isOperationCurrent(op)) return;
+      const pass=!r.environmentError && r.ok && normalizeOutput(r.output)===normalizeOutput(tests[i].output);
+      const rr={...r,pass,error:r.ok?'':r.error};
+      results.push(rr);
+      if(pass)passed++;
+      renderTests('running',results);
+      if(!pass && (r.timeout || r.environmentError)) break;
+    }
+    if(!isOperationCurrent(op)) return;
+    renderTests('idle',results);
+    const total=tests.length;
+    const allPass=passed===total && results.length===total;
+    if(allPass){
+      setAccepted(t.id);
+      overallVerdict.className='status-pill ok';overallVerdict.textContent='Accepted';
+      resultSummary.textContent=`全部 ${total} 筆測資通過（含 ${getGeneratedTests(t).length} 筆生成隱藏測資）。這一階完成。`;
+      addHistory(t.id,'AC',passed,total);
+      renderProgress();renderLevelStrip();renderHiddenTests();
+    }else{
+      const firstBad=results.find(x=>!x.pass);
+      const verdict=firstBad?.environmentError?'JE':(firstBad?.timeout?'TLE':(firstBad?.error?'RE':'WA'));
+      overallVerdict.className='status-pill bad';overallVerdict.textContent=verdict;
+      resultSummary.textContent=`通過 ${passed} / ${total}。${verdict==='WA'?'輸出採 Tolerant 風格比對；請先檢查內容與行結構。':(verdict==='JE'?'Judge / Runtime 環境失敗；這不是學生程式 RE，可重新嘗試。':'先修正第一個失敗原因，再重新提交。')}`;
+      addHistory(t.id,verdict,passed,total);
+    }
+  }catch(err){
+    if(isOperationCurrent(op)){
+      overallVerdict.className='status-pill bad';overallVerdict.textContent='JE';
+      resultSummary.textContent=`無法啟動瀏覽器 Python：${err.message}。再次提交會重新嘗試載入 Pyodide。`;
+    }
+  }finally{
+    endOperation(op);
+  }
+}
+
+$('#answerBtn').addEventListener('click',()=>{
+  const t=TASKS[currentTaskIndex];
+  if(busy || !isTaskAccepted(t)){
+    updateAnswerButtonState();
+    return;
+  }
+  $('#answerTitle').textContent=`第 ${t.id} 階參考答案｜${t.title}`;
+  $('#answerCode').textContent=t.answer;
+  $('#answerDialog').showModal();
+});
+$('#closeAnswer').addEventListener('click',()=>$('#answerDialog').close());
+$('#answerDialog').addEventListener('click',(e)=>{if(e.target===$('#answerDialog'))$('#answerDialog').close()});
+$('#resetBtn').addEventListener('click',()=>{
+  const t=TASKS[currentTaskIndex];
+  if(confirm('確定清空這一階的程式碼？')){
+    setCode(''); saveDraft(); if(editor)editor.focus();
+  }
+});
+$('#clearAllBtn').addEventListener('click',()=>{
+  if(busy) return;
+  if(!confirm('確定清除所有紀錄？\n\n這會刪除 7 題的程式草稿、CUSTOM INPUT、F9 override、AC 進度與本機提交紀錄，且無法復原。')) return;
+  clearAllLocalRecords();
+  currentTaskIndex=0;
+  renderLevelStrip();
+  renderProblem();
+  renderTests();
+  renderHiddenTests();
+  renderHistory();
+  renderProgress();
+  updateAnswerButtonState();
+  overallVerdict.className='status-pill';
+  overallVerdict.textContent='尚未提交';
+  resultSummary.textContent='所有本機紀錄已清除。按右側「執行」可使用公開範例輸入；按「提交」才會評測本階段全部測資。';
+  selectedPublicSampleIndex=0;
+  setCode(TASKS[0].starter);
+  setCustomOverride(false);restoreCustomInputForTask();
+  renderSampleSelector();
+  resetTerminal('All f580 local records cleared. Theme preference preserved.');
+  updateInputSourceUI();
+  if(editor){editor.clearHistory();editor.focus();}
+});
+$('#runBtn').addEventListener('click',runCurrentCode);
+$('#clearTerminalBtn').addEventListener('click',()=>resetTerminal('終端機已清除。'));
+$('#sampleSelect').addEventListener('change',(e)=>{
+  selectedPublicSampleIndex=Number(e.target.value)||0;
+  updateTerminalMeta();
+  resetTerminal(`Ready. Public sample #${selectedPublicSampleIndex+1} selected.`);
+  if(editor) editor.focus();
+});
+$('#customInput').addEventListener('input',saveCustomInput);
+$('#customInput').addEventListener('keydown',e=>{if(e.key==='F9'){e.preventDefault();runCurrentCode();}});
+$('#customInputOverride').addEventListener('change',e=>{if(busy)return;setCustomOverride(Boolean(e.target.checked));updateInputSourceUI();resetTerminal(e.target.checked?'Ready. F9 uses raw CUSTOM INPUT.':'Ready. F9 uses selected Public sample.');});
+const THEME_STORAGE_KEY='step_oj_framework:theme:v1';
+function applyTheme(theme,{persist=true}={}){const next=theme==='dark'?'dark':'light';document.documentElement.dataset.theme=next;$('#themeSelect').value=next;if(persist){try{localStorage.setItem(THEME_STORAGE_KEY,next)}catch{}}}
+function initializeTheme(){const current=document.documentElement.dataset.theme==='dark'?'dark':'light';$('#themeSelect').value=current;$('#themeSelect').addEventListener('change',e=>applyTheme(e.target.value));}
+$('#submitBtn').addEventListener('click',judge);
+
+migrateStorage();
+initializeTheme();
+setupEditor();
+renderLevelStrip();
+renderProblem();
+renderTests();
+renderHiddenTests();
+renderHistory();
+renderProgress();
+updateAnswerButtonState();
+setCode(localStorage.getItem(draftKey(TASKS[0].id)) ?? TASKS[0].starter);
+restoreCustomInputForTask();
+renderSampleSelector();
+updateInputSourceUI();
+</script>
+</body>
+</html>

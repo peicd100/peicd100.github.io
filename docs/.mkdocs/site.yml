@@ -159,6 +159,7 @@ nav:  # 自定義網站的導航結構
         - 'Python APCS 官方識讀例題轉 HTML': 'md/python/Python_APCS_自編識讀例題轉_HTML.html'
     - '實作題':
         - 'h027. 202001_2 矩陣總和(2020/1)': 'md/python/h027_矩陣總和.html'
+        - 'f580. 2. 骰子(2020/7)': 'md/python/f580_骰子.html'
          
       
     #   - '變數': 'md/python/變數.md'
