@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="zh-Hant-TW">
+<html lang="zh-Hant-TW" data-theme="light">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -382,6 +382,23 @@ dialog::backdrop{background:rgba(15,23,42,.4);}
   *{scroll-behavior:auto!important;transition:none!important;animation:none!important}
 }
 
+
+/* Canonical v0.1.14 shared UI additions: Theme + CUSTOM INPUT + Learning Guide */
+.theme-control{display:inline-flex;align-items:center;gap:6px}.theme-control label{font-size:.75rem;color:var(--muted);font-weight:800}.theme-control select{min-height:34px;border:1px solid var(--line-strong);border-radius:6px;background:var(--paper);color:var(--ink);padding:4px 28px 4px 9px}
+.learning-guide{display:grid;gap:10px}.learn-card{padding:12px 14px;border:1px solid var(--line);border-radius:7px;background:var(--paper)}.learn-card>strong{display:block;margin-bottom:6px}.learn-recap{background:var(--soft);border-left:3px solid #9ba6b4}.learn-new{background:var(--accent-soft);border-left:3px solid #6f98bb}.learn-plan{background:#f7fbf8;border-left:3px solid #79ab8f}.learn-pitfall{background:#fffaf2;border-left:3px solid #d1a04e}.learn-card ol,.learn-card ul{margin:.45rem 0 .2rem;padding-left:1.4rem}.learn-card li{margin:.28rem 0}.learn-visual{margin:10px 0;padding:12px;border:1px solid var(--line);border-radius:7px;background:var(--paper)}.learn-visual-title{margin-bottom:8px;color:#344256;font-size:.82rem;font-weight:850}.learn-step-flow{display:flex;gap:8px;align-items:center;justify-content:center;flex-wrap:wrap}.learn-step-node{padding:8px 10px;border:1px solid var(--line);border-radius:6px;background:var(--soft);text-align:center}.learn-step-node small{display:block;color:var(--muted)}
+.terminal-workspace.has-custom-input{grid-template-columns:minmax(168px,.9fr) minmax(190px,1.1fr) minmax(168px,232px)}.custom-input-panel{min-width:0;background:var(--terminal);color:#e7ebf0;border-right:1px solid #2b3649}.custom-input-head{min-height:40px;display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:6px;padding:7px 8px;background:#1b1b1b;border-bottom:1px solid #333;color:#f2f2f2;font-family:"Cascadia Mono",Consolas,monospace;overflow:hidden}.custom-input-head strong{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:.74rem;letter-spacing:.04em}.custom-input-textarea{display:block;width:100%;min-height:178px;max-height:246px;resize:vertical;border:0;outline:0;padding:13px;background:var(--terminal);color:#e7ebf0;font:400 .8rem/1.55 "Cascadia Mono",Consolas,monospace}.custom-input-textarea:focus-visible{box-shadow:inset 0 0 0 2px rgba(80,190,220,.45)}.input-source-switch{position:relative;display:inline-flex;align-items:center;justify-content:flex-end;gap:4px;min-width:0;max-width:100%;white-space:nowrap;font-size:.68rem;cursor:pointer}.input-source-switch input{position:absolute;inline-size:1px;block-size:1px;opacity:0;pointer-events:none}.switch-label{font-size:.64rem}.switch-track{position:relative;display:inline-block;width:34px;height:20px;flex:0 0 34px;border:1px solid #3a4659;border-radius:999px;background:#202b3d}.switch-track::after{content:"";position:absolute;left:2px;top:2px;width:14px;height:14px;border-radius:999px;background:#e7ebf0;transition:transform .15s ease}.input-source-switch input:checked + .switch-track{background:var(--accent);border-color:var(--accent)}.input-source-switch input:checked + .switch-track::after{transform:translateX(14px);background:#001014}.input-source-switch input:focus-visible + .switch-track{outline:2px solid var(--accent);outline-offset:2px}.switch-state{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important}
+html[data-theme="light"]{color-scheme:light}html[data-theme="dark"]{color-scheme:dark;--bg:#000000;--paper:#080808;--ink:#f4f7fb;--muted:#a2aab8;--line:#242424;--line-strong:#3a3a3a;--soft:#0d0d0d;--soft2:#0b0b0b;--accent:#22d3ee;--accent-strong:#06b6d4;--accent-soft:#06181d;--ok:#4ade80;--ok-soft:#07170d;--bad:#fb7185;--bad-soft:#1a090d;--warn:#fbbf24;--warn-soft:#1a1304;--terminal:#000000;--terminal-soft:#080808;--shadow:none;background:#000}
+html[data-theme="dark"] body{background:#000;color:var(--ink)}html[data-theme="dark"] header{background:rgba(0,0,0,.97);border-color:#222}html[data-theme="dark"] .panel,html[data-theme="dark"] .problem,html[data-theme="dark"] .results-wrap,html[data-theme="dark"] .editor-shell,html[data-theme="dark"] .dialog-body{background:#080808;color:var(--ink);border-color:#242424}
+html[data-theme="dark"] .editor-head,html[data-theme="dark"] .editor-foot,html[data-theme="dark"] .dialog-head,html[data-theme="dark"] .sample-explanation,html[data-theme="dark"] .demo-step,html[data-theme="dark"] .learn-card,html[data-theme="dark"] .learn-visual,html[data-theme="dark"] .learn-step-node,html[data-theme="dark"] .sample-box,html[data-theme="dark"] .extra-sample-card,html[data-theme="dark"] .hidden-test-item,html[data-theme="dark"] .history-item,html[data-theme="dark"] .reason-node,html[data-theme="dark"] .pair-card,html[data-theme="dark"] .placement-card,html[data-theme="dark"] .window-card,html[data-theme="dark"] .candidate-card,html[data-theme="dark"] .candidate-map .candidate-pos,html[data-theme="dark"] .shape-grid,html[data-theme="dark"] .coord-chip,html[data-theme="dark"] .final-output-visual>div:not(.big-arrow){background:#090909!important;color:#e7ebf0;border-color:#292929}
+html[data-theme="dark"] .learn-new{background:#06181d!important;border-left-color:#155e75}html[data-theme="dark"] .learn-plan{background:#07170d!important;border-left-color:#1f5b36}html[data-theme="dark"] .learn-pitfall{background:#1a1304!important;border-left-color:#6b5213}html[data-theme="dark"] .btn,html[data-theme="dark"] .theme-control select,html[data-theme="dark"] .level-btn{background:#0b0b0b;color:#dbe1e8;border-color:#303030}html[data-theme="dark"] .btn.primary,html[data-theme="dark"] .level-btn.active{background:var(--accent);color:#001014;border-color:var(--accent)}html[data-theme="dark"] .btn.danger{color:#fda4af}
+html[data-theme="dark"] .CodeMirror,html[data-theme="dark"] .fallback-editor{background:#020202;color:#e5e7eb}html[data-theme="dark"] .CodeMirror-gutters{background:#080808;border-color:#242424}html[data-theme="dark"] .CodeMirror-selected{background:#12343b!important}html[data-theme="dark"] .cm-s-default .cm-keyword{color:#67e8f9}html[data-theme="dark"] .cm-s-default .cm-builtin{color:#c4b5fd}html[data-theme="dark"] .cm-s-default .cm-number{color:#fbbf24}html[data-theme="dark"] .cm-s-default .cm-string{color:#86efac}html[data-theme="dark"] .cm-s-default .cm-comment{color:#8b949e}
+html[data-theme="dark"] .terminal-workspace,html[data-theme="dark"] .custom-input-panel,html[data-theme="dark"] .terminal-panel,html[data-theme="dark"] .terminal-output,html[data-theme="dark"] .custom-input-textarea,html[data-theme="dark"] .submit-tests-panel{background:#000}html[data-theme="dark"] .custom-input-head,html[data-theme="dark"] .terminal-head,html[data-theme="dark"] .submit-tests-head{background:#080808;border-color:#242424}html[data-theme="dark"] .submit-test-row{background:#0a0a0a;border-color:#2a2a2a}
+html[data-theme="dark"] .sample-explanation-body,html[data-theme="dark"] .sample-explanation-body p,html[data-theme="dark"] .sample-explanation-body small,html[data-theme="dark"] .reason-node small,html[data-theme="dark"] .visual-caption{color:#c6cbd2}html[data-theme="dark"] .sample-explanation-body pre,html[data-theme="dark"] .hidden-test-item pre,html[data-theme="dark"] pre{background:#020202;color:#e5e7eb;border-color:#242424}html[data-theme="dark"] .result-summary,html[data-theme="dark"] .hidden-tests summary,html[data-theme="dark"] .submission-history summary{background:#0b0b0b;color:#cfd5dd;border-color:#292929}
+html[data-theme="dark"] .matrix-grid,html[data-theme="dark"] .matrix-cell,html[data-theme="dark"] .number-strip span,html[data-theme="dark"] .calc-flow span{background:#0b0b0b;color:#e8edf3;border-color:#303030}html[data-theme="dark"] .matrix-cell.focus-cell{background:#06242b;border-color:#16879d;box-shadow:inset 0 0 0 1px #16879d}html[data-theme="dark"] .matrix-cell.diff-cell,html[data-theme="dark"] .pair-card.diff{background:#1a090d;border-color:#6b2733}html[data-theme="dark"] .pair-card.same,html[data-theme="dark"] .candidate-pos.ok,html[data-theme="dark"] .window-card.ok-card{background:#07170d;border-color:#1f5b36}
+html[data-theme="dark"] .brand-title,html[data-theme="dark"] .problem h1,html[data-theme="dark"] .section-title,html[data-theme="dark"] .results-head h2,html[data-theme="dark"] .editor-head strong,html[data-theme="dark"] .dialog-head strong,html[data-theme="dark"] .sample-explain-intro strong,html[data-theme="dark"] .learn-visual-title{color:var(--ink)}html[data-theme="dark"] .brand-subtitle,html[data-theme="dark"] .progress-wrap,html[data-theme="dark"] .runtime,html[data-theme="dark"] .source-link,html[data-theme="dark"] .kicker,html[data-theme="dark"] .meta,html[data-theme="dark"] .sample-box h4,html[data-theme="dark"] .sample-explain-intro small,html[data-theme="dark"] .editor-foot,html[data-theme="dark"] .hidden-test-label,html[data-theme="dark"] .history-item{color:var(--muted)}html[data-theme="dark"] .problem p{color:#d8dde5}html[data-theme="dark"] .problem code,html[data-theme="dark"] .dialog-body code{background:#101010;color:#dff9ff;border-color:#2c2c2c}html[data-theme="dark"] .level-strip,html[data-theme="dark"] .editor-head,html[data-theme="dark"] .editor-foot{background:#080808;border-color:#242424}html[data-theme="dark"] .status-pill{background:#0d0d0d;color:#cbd2dc;border-color:#303030}
+@media(max-width:720px){.terminal-workspace.has-custom-input{grid-template-columns:1fr}.custom-input-panel,.terminal-panel{border-right:0;border-bottom:1px solid #2b3649}.custom-input-head{grid-template-columns:minmax(0,1fr) auto}.theme-control{max-width:100%}}
+@media(max-width:390px){.topbar{align-items:flex-start}.theme-control{margin-left:0}.theme-control label{display:none}.custom-input-head{padding-inline:7px}.switch-label{display:none}.terminal-head{gap:6px}.terminal-meta{max-width:45%}}
+
 </style>
 </head>
 <body>
@@ -394,6 +411,7 @@ dialog::backdrop{background:rgba(15,23,42,.4);}
     </div>
     <div class="progress-wrap"><span id="progressText">0 / 8 AC</span><div class="progress"><span id="progressBar"></span></div></div>
     <div class="runtime"><span id="runtimeDot" class="dot"></span><span id="runtimeText">Python 尚未載入</span></div>
+    <div class="theme-control"><label for="themeSelect">主題</label><select id="themeSelect" aria-label="選擇介面主題"><option value="light">淺色</option><option value="dark">深色</option></select></div>
     <button class="btn danger" id="clearAllBtn" type="button" title="清除所有題目草稿、AC 進度與提交紀錄">清除所有紀錄</button>
     <a class="source-link" href="https://zerojudge.tw/ShowProblem?problemid=h027" target="_blank" rel="noopener">原題</a>
   </div>
@@ -408,7 +426,7 @@ dialog::backdrop{background:rgba(15,23,42,.4);}
         <h2>提交結果</h2>
         <span class="status-pill" id="overallVerdict">尚未提交</span>
       </div>
-      <div class="result-summary" id="resultSummary">按右側「執行」會使用選定的公開範例輸入並把 stdout / Python 錯誤顯示在終端機；按「提交」才會評測全部測資，逐筆 verdict 統一顯示在右側 TEST RESULTS。</div>
+      <div class="result-summary" id="resultSummary">F9／「執行」會依 CUSTOM INPUT 開關選擇 stdin：OFF 使用公開範例、ON 使用自訂輸入；「提交」永遠評測正式 Public + Hidden + Generated tests。</div>
       <details class="hidden-tests" id="hiddenTestsDetails">
         <summary id="hiddenTestsSummary">隱藏測資（AC 後解鎖）</summary>
         <div class="hidden-tests-list" id="hiddenTestsList"></div>
@@ -425,11 +443,15 @@ dialog::backdrop{background:rgba(15,23,42,.4);}
       <strong>Python 3 編輯器</strong>
       <button class="btn" id="answerBtn" type="button">參考答案</button>
       <button class="btn" id="resetBtn" type="button">清空</button>
-      <button class="btn" id="runBtn" type="button" title="F9：執行公開範例">執行</button>
+      <button class="btn" id="runBtn" type="button" title="F9：執行（依 CUSTOM INPUT 開關選擇輸入）">執行</button>
       <button class="btn primary" id="submitBtn" type="button" title="Ctrl+Enter：提交全部測資">提交</button>
     </div>
     <div class="editor-shell"><textarea id="codeEditor" spellcheck="false"></textarea></div>
-    <div class="terminal-workspace">
+    <div class="terminal-workspace has-custom-input" id="terminalWorkspace">
+      <section class="custom-input-panel" id="customInputPanel" aria-label="自訂標準輸入">
+        <div class="custom-input-head"><strong>CUSTOM INPUT</strong><label class="input-source-switch" for="customInputOverride" title="開啟後 F9 使用 CUSTOM INPUT"><span class="switch-label">F9</span><input id="customInputOverride" type="checkbox" role="switch" aria-describedby="customInputModeState"><span class="switch-track" aria-hidden="true"></span><span class="switch-state" id="customInputModeState">OFF</span></label></div>
+        <textarea class="custom-input-textarea" id="customInput" spellcheck="false" aria-label="自訂 stdin 輸入"></textarea>
+      </section>
       <section class="terminal-panel" aria-label="程式執行終端機">
         <div class="terminal-head">
           <strong>TERMINAL</strong>
@@ -437,7 +459,7 @@ dialog::backdrop{background:rgba(15,23,42,.4);}
           <span class="terminal-meta" id="terminalMeta">stdin: public sample input</span>
           <button class="terminal-clear" id="clearTerminalBtn" type="button">清除</button>
         </div>
-        <pre class="terminal-output" id="terminalOutput" aria-live="polite">尚未執行。按「執行」或 F9 執行公開範例；按 Ctrl+Enter 提交全部測資。</pre>
+        <pre class="terminal-output" id="terminalOutput" aria-live="polite">尚未執行。F9 依 CUSTOM INPUT 開關選擇 stdin；Ctrl+Enter 提交全部正式測資。</pre>
       </section>
       <aside class="submit-tests-panel" aria-label="所有測資提交結果">
         <div class="submit-tests-head">
@@ -449,7 +471,7 @@ dialog::backdrop{background:rgba(15,23,42,.4);}
     </div>
     <div class="editor-foot">
       <span>Tab：移到下一個 4 欄定位點｜Shift+Tab：反縮排｜行首 Backspace：一次刪除 4 空白｜Ctrl+/：切換單行／多行註解｜Ctrl+Space / Alt+/：補全｜F9：執行｜Ctrl+Enter：提交</span>
-      <span>執行使用選定公開範例；提交採 ZeroJudge Tolerant 風格比對（忽略空白行、每行前後空白）｜每筆上限 2.5 秒</span>
+      <span>F9：CUSTOM INPUT OFF=公開範例、ON=自訂 raw stdin（空字串合法）｜提交固定使用正式測資｜ZeroJudge Tolerant：忽略空白行與每行前後空白｜每筆上限 2.5 秒</span>
     </div>
   </section>
 </main>
@@ -476,6 +498,7 @@ const TASKS = [
   sampleIn:`2 3\n1 2 3\n4 5 6`,
   sampleOut:`21`,
   sampleExplain:`<div class="demo-story"><div class="demo-viewport"><section class="demo-step"><p>第一行是 <code>2 3</code>，所以後面的資料要排成 2 個橫列，每列 3 個數字。</p><div class="visual-row center"><div class="matrix-card"><div class="matrix-label">2 × 3 矩陣</div><div class="matrix-grid" style="--cols:3"><span class="matrix-cell">1</span><span class="matrix-cell">2</span><span class="matrix-cell">3</span><span class="matrix-cell">4</span><span class="matrix-cell">5</span><span class="matrix-cell">6</span></div></div></div><div class="why-card"><p>因為題目要求的是「矩陣全部元素的總和」，所以圖中的 6 個格子都必須算進去，沒有任何一格可以省略。</p></div></section><section class="demo-step"><p>先看每一列各自的總和，再把兩列合起來。</p><div class="row-sum-grid"><div class="row-sum"><span class="row-tag">第 0 列</span><span>1 + 2 + 3</span><strong>= 6</strong></div><div class="row-sum"><span class="row-tag">第 1 列</span><span>4 + 5 + 6</span><strong>= 15</strong></div></div><div class="reason-flow"><div class="reason-node"><strong>第一列</strong><small>總和 6</small></div><div class="reason-arrow">＋</div><div class="reason-node"><strong>第二列</strong><small>總和 15</small></div><div class="reason-arrow">→</div><div class="reason-node answer"><strong>全部元素</strong><small>6 + 15 = 21</small></div></div><div class="why-card"><p>兩列剛好涵蓋整個矩陣，因此 <code>6 + 15</code> 就是全部 6 格的總和。</p></div></section><section class="demo-step"><p>全部元素相加得到 <code>21</code>，所以這筆範例輸出：</p><pre>21</pre></section></div></div>`,
+  learningGuide:`<div class="learning-guide"><div class="learn-card learn-recap"><strong>本題目標 / 快速回顧</strong><p>先把二維輸入讀成「一列一列的數字」，這階只練習完整走訪矩陣。</p></div><div class="learn-card learn-new"><strong>本題新概念</strong><p>矩陣有 <code>n</code> 列、每列 <code>m</code> 個元素。要算全部元素總和，就要確保每一列、每一格都恰好被加一次。</p><div class="learn-visual"><div class="learn-visual-title">公開範例的資料流</div><div class="learn-step-flow"><div class="learn-step-node"><strong>1 2 3</strong><small>第一列 → 6</small></div><div class="reason-arrow">＋</div><div class="learn-step-node"><strong>4 5 6</strong><small>第二列 → 15</small></div><div class="reason-arrow">→</div><div class="learn-step-node"><strong>21</strong><small>全部元素</small></div></div></div></div><div class="learn-card learn-plan"><strong>怎麼開始解（Solution Plan）</strong><ol><li>讀入 <code>n, m</code>。</li><li>準備累加器 <code>total</code>。</li><li>重複讀取 <code>n</code> 列，每列把所有元素加進 <code>total</code>。</li><li>輸出 <code>total</code>。</li></ol></div><div class="learn-card learn-pitfall"><strong>常見錯誤 / 驗證方法</strong><ul><li>不要只算每列第一個或最後一個元素。</li><li>可以用全 0 矩陣驗證答案應為 0。</li></ul></div></div>`,
   starter:'',
   answer:`n, m = map(int, input().split())\n\ntotal = 0\nfor _ in range(n):\n    row = list(map(int, input().split()))\n    total += sum(row)\n\nprint(total)`,
   tests:[
@@ -495,6 +518,7 @@ const TASKS = [
   sampleIn:`2 3\n1 2 3\n4 5 6\n1 9 3\n0 5 7`,
   sampleOut:`3`,
   sampleExplain:`<div class="demo-story"><div class="demo-viewport"><section class="demo-step"><p>A 與 B 都是 2 × 3，因此每一格都有唯一的「同座標」對象。</p><div class="visual-row"><div class="matrix-card"><div class="matrix-label">A</div><div class="matrix-grid" style="--cols:3"><span class="matrix-cell">1</span><span class="matrix-cell diff-cell">2</span><span class="matrix-cell">3</span><span class="matrix-cell diff-cell">4</span><span class="matrix-cell">5</span><span class="matrix-cell diff-cell">6</span></div></div><div class="big-arrow">↔</div><div class="matrix-card"><div class="matrix-label">B</div><div class="matrix-grid" style="--cols:3"><span class="matrix-cell">1</span><span class="matrix-cell diff-cell">9</span><span class="matrix-cell">3</span><span class="matrix-cell diff-cell">0</span><span class="matrix-cell">5</span><span class="matrix-cell diff-cell">7</span></div></div></div><div class="why-card"><p>distance 比較的是「相同座標」是否相等，不是比較兩個矩陣的總和，也不是看兩數相差多少。</p></div></section><section class="demo-step"><p>六組對應位置逐格判斷：相同記 0，不同記 1。</p><div class="pair-grid"><div class="pair-card same"><div class="pair-values">1 <span class="pair-mark">=</span> 1</div><div class="pair-score">貢獻 0</div></div><div class="pair-card diff"><div class="pair-values">2 <span class="pair-mark">≠</span> 9</div><div class="pair-score">貢獻 1</div></div><div class="pair-card same"><div class="pair-values">3 <span class="pair-mark">=</span> 3</div><div class="pair-score">貢獻 0</div></div><div class="pair-card diff"><div class="pair-values">4 <span class="pair-mark">≠</span> 0</div><div class="pair-score">貢獻 1</div></div><div class="pair-card same"><div class="pair-values">5 <span class="pair-mark">=</span> 5</div><div class="pair-score">貢獻 0</div></div><div class="pair-card diff"><div class="pair-values">6 <span class="pair-mark">≠</span> 7</div><div class="pair-score">貢獻 1</div></div></div><div class="absolute-diff"><span>0</span> + <span>1</span> + <span>0</span> + <span>1</span> + <span>0</span> + <span>1</span> <strong>= 3</strong></div></section><section class="demo-step"><div class="reason-flow"><div class="reason-node bad"><strong>不同座標</strong><small>(0,1)、(1,0)、(1,2)</small></div><div class="reason-arrow">→</div><div class="reason-node answer"><strong>共有 3 格</strong><small>distance = 3</small></div></div><p>因此輸出：</p><pre>3</pre></section></div></div>`,
+  learningGuide:`<div class="learning-guide"><div class="learn-card learn-recap"><strong>本題目標 / 快速回顧</strong><p>仍然是完整走訪矩陣，但現在每個座標要同時看 A 與 B。</p></div><div class="learn-card learn-new"><strong>本題新概念</strong><p><b>distance（距離）</b>不是數值差的大小，而是「相同座標的值是否不同」。不同就加 1，相同就加 0。</p><div class="learn-visual"><div class="learn-step-flow"><div class="learn-step-node"><strong>A[0][1] = 2</strong><small>同一座標</small></div><div class="reason-arrow">↔</div><div class="learn-step-node"><strong>B[0][1] = 9</strong><small>2 ≠ 9</small></div><div class="reason-arrow">→</div><div class="learn-step-node"><strong>distance + 1</strong><small>只計一次</small></div></div></div></div><div class="learn-card learn-plan"><strong>怎麼開始解（Solution Plan）</strong><ol><li>讀入 A、B。</li><li>用兩層迴圈走過每個 <code>(i,j)</code>。</li><li>若 <code>A[i][j] != B[i][j]</code> 就累加。</li><li>輸出累加結果。</li></ol></div><div class="learn-card learn-pitfall"><strong>常見錯誤 / 驗證方法</strong><ul><li>不要使用 <code>abs(A[i][j]-B[i][j])</code> 當作 distance。</li><li>兩矩陣完全相同時答案必須是 0。</li></ul></div></div>`,
   starter:'',
   answer:`n, m = map(int, input().split())\nA = [list(map(int, input().split())) for _ in range(n)]\nB = [list(map(int, input().split())) for _ in range(n)]\n\ndis = 0\nfor i in range(n):\n    for j in range(m):\n        if A[i][j] != B[i][j]:\n            dis += 1\n\nprint(dis)`,
   tests:[
@@ -514,6 +538,7 @@ const TASKS = [
   sampleIn:`3 4\n1 2 3 4\n5 6 7 8\n9 1 2 3\n2 2 1 1`,
   sampleOut:`16`,
   sampleExplain:`<div class="demo-story"><div class="demo-viewport"><section class="demo-step"><p>最後一行是 <code>2 2 1 1</code>：區塊大小為 2 × 2，左上角在 <code>(1,1)</code>。</p><div class="visual-row center"><div class="matrix-card"><div class="matrix-label">B（藍色為指定區塊）</div><div class="matrix-grid" style="--cols:4"><span class="matrix-cell">1</span><span class="matrix-cell">2</span><span class="matrix-cell">3</span><span class="matrix-cell">4</span><span class="matrix-cell">5</span><span class="matrix-cell focus-cell">6</span><span class="matrix-cell focus-cell">7</span><span class="matrix-cell">8</span><span class="matrix-cell">9</span><span class="matrix-cell focus-cell">1</span><span class="matrix-cell focus-cell">2</span><span class="matrix-cell">3</span></div></div></div><div class="why-card"><p>左上角是第 1 列、第 1 行的位置；大小是 2 × 2，所以會占用第 1、2 列與第 1、2 行交會的四個格子。</p></div></section><section class="demo-step"><p>因此指定區塊就是 <code>6、7、1、2</code>，不是整個 B。</p><div class="reason-flow"><div class="reason-node"><strong>從 (1,1) 開始</strong><small>第一格是 6</small></div><div class="reason-arrow">→</div><div class="reason-node"><strong>向右 2 格</strong><small>6、7</small></div><div class="reason-arrow">→</div><div class="reason-node"><strong>向下 2 列</strong><small>再加入 1、2</small></div></div><div class="visual-row center"><div class="matrix-card"><div class="matrix-label">實際被取出的 2 × 2</div><div class="matrix-grid" style="--cols:2"><span class="matrix-cell focus-cell">6</span><span class="matrix-cell focus-cell">7</span><span class="matrix-cell focus-cell">1</span><span class="matrix-cell focus-cell">2</span></div></div></div></section><section class="demo-step"><p>只把這四格相加：</p><div class="row-sum-grid"><div class="row-sum"><span class="row-tag">上列</span><span>6 + 7</span><strong>= 13</strong></div><div class="row-sum"><span class="row-tag">下列</span><span>1 + 2</span><strong>= 3</strong></div></div><div class="absolute-diff"><span>13</span> + <span>3</span> <strong>= 16</strong></div><div class="why-card"><p>題目要的是「指定子矩陣」的總和，因此 B 中其他沒有被藍色框到的格子都不計入。</p></div><pre>16</pre></section></div></div>`,
+  learningGuide:`<div class="learning-guide"><div class="learn-card learn-recap"><strong>本題目標 / 快速回顧</strong><p>這階從「整張矩陣」縮小成只處理指定的連續矩形區塊。</p></div><div class="learn-card learn-new"><strong>本題新概念</strong><p>左上角是 <code>(x,y)</code>、大小是 <code>s × t</code>，所以實際存取的座標為 <code>B[x+i][y+j]</code>，其中 <code>0 ≤ i &lt; s</code>、<code>0 ≤ j &lt; t</code>。</p><div class="learn-visual"><div class="learn-step-flow"><div class="learn-step-node"><strong>(x,y)=(1,1)</strong><small>起點</small></div><div class="reason-arrow">→</div><div class="learn-step-node"><strong>i=0..1</strong><small>向下 2 列</small></div><div class="learn-step-node"><strong>j=0..1</strong><small>向右 2 行</small></div><div class="reason-arrow">→</div><div class="learn-step-node"><strong>6,7,1,2</strong><small>指定區塊</small></div></div></div></div><div class="learn-card learn-plan"><strong>怎麼開始解（Solution Plan）</strong><ol><li>讀入 B 與 <code>s,t,x,y</code>。</li><li>用 <code>i</code> 跑 0 到 <code>s-1</code>。</li><li>用 <code>j</code> 跑 0 到 <code>t-1</code>。</li><li>把 <code>B[x+i][y+j]</code> 加總。</li></ol></div><div class="learn-card learn-pitfall"><strong>常見錯誤 / 驗證方法</strong><ul><li><code>x,y</code> 已是 0-based，不要再減 1。</li><li>迴圈範圍應是 <code>s</code> 與 <code>t</code>，不是整個 <code>n,m</code>。</li></ul></div></div>`,
   starter:'',
   answer:`n, m = map(int, input().split())\nB = [list(map(int, input().split())) for _ in range(n)]\ns, t, x, y = map(int, input().split())\n\ntotal = 0\nfor i in range(s):\n    for j in range(t):\n        total += B[x + i][y + j]\n\nprint(total)`,
   tests:[
@@ -533,6 +558,7 @@ const TASKS = [
   sampleIn:`2 2 3 4\n1 2\n3 4\n0 1 2 0\n9 1 8 2\n7 3 4 5\n1 1`,
   sampleOut:`1`,
   sampleExplain:`<div class="demo-story"><div class="demo-viewport"><section class="demo-step"><p>題目指定 B 的左上角 <code>(1,1)</code>，並要求取出和 A 一樣大的 2 × 2 區塊。</p><div class="visual-row"><div class="matrix-card"><div class="matrix-label">A</div><div class="matrix-grid" style="--cols:2"><span class="matrix-cell">1</span><span class="matrix-cell diff-cell">2</span><span class="matrix-cell">3</span><span class="matrix-cell">4</span></div></div><div class="big-arrow">↔</div><div class="matrix-card"><div class="matrix-label">B 中 (1,1) 的 2 × 2</div><div class="matrix-grid" style="--cols:2"><span class="matrix-cell">1</span><span class="matrix-cell diff-cell">8</span><span class="matrix-cell">3</span><span class="matrix-cell">4</span></div></div></div><div class="why-card"><p>兩邊都是 2 × 2，所以左上比左上、右上比右上、左下比左下、右下比右下；每一格只和自己的對應位置比較。</p></div></section><section class="demo-step"><div class="pair-grid"><div class="pair-card same"><div class="pair-values">1 = 1</div><div class="pair-score">貢獻 0</div></div><div class="pair-card diff"><div class="pair-values">2 ≠ 8</div><div class="pair-score">貢獻 1</div></div><div class="pair-card same"><div class="pair-values">3 = 3</div><div class="pair-score">貢獻 0</div></div><div class="pair-card same"><div class="pair-values">4 = 4</div><div class="pair-score">貢獻 0</div></div></div><div class="why-card"><p>只有右上角這一組不同，因此只有它讓 distance 增加 1；其他三組相同，不增加。</p></div></section><section class="demo-step"><div class="absolute-diff"><span>0</span> + <span>1</span> + <span>0</span> + <span>0</span> <strong>= 1</strong></div><p>所以 distance 是 <code>1</code>，輸出：</p><pre>1</pre></section></div></div>`,
+  learningGuide:`<div class="learning-guide"><div class="learn-card learn-recap"><strong>本題目標 / 快速回顧</strong><p>把第 2 階的逐格 distance 與第 3 階的子矩陣座標合在一起。</p></div><div class="learn-card learn-new"><strong>本題新概念</strong><p>A 的相對座標 <code>(i,j)</code> 要對到 B 區塊中的 <code>(x+i,y+j)</code>。兩邊索引不同，但代表候選區塊內同一個相對位置。</p><div class="learn-visual"><div class="learn-step-flow"><div class="learn-step-node"><strong>A[i][j]</strong><small>模板位置</small></div><div class="reason-arrow">↔</div><div class="learn-step-node"><strong>B[x+i][y+j]</strong><small>候選中的同位置</small></div><div class="reason-arrow">→</div><div class="learn-step-node"><strong>相異就 +1</strong><small>distance</small></div></div></div></div><div class="learn-card learn-plan"><strong>怎麼開始解（Solution Plan）</strong><ol><li>讀入 A、B 與指定起點 <code>x,y</code>。</li><li>走過 A 的 <code>s × t</code> 個位置。</li><li>逐格比較 A 與 B 對應位置。</li><li>輸出不同格數。</li></ol></div><div class="learn-card learn-pitfall"><strong>常見錯誤 / 驗證方法</strong><ul><li>B 的索引一定要加上偏移 <code>x,y</code>。</li><li>候選完全等於 A 時 distance 應為 0。</li></ul></div></div>`,
   starter:'',
   answer:`s, t, n, m = map(int, input().split())\nA = [list(map(int, input().split())) for _ in range(s)]\nB = [list(map(int, input().split())) for _ in range(n)]\nx, y = map(int, input().split())\n\ndis = 0\nfor i in range(s):\n    for j in range(t):\n        if A[i][j] != B[x + i][y + j]:\n            dis += 1\n\nprint(dis)`,
   tests:[
@@ -557,6 +583,7 @@ const TASKS = [
 1 0
 1 1
 1 2</pre></section></div></div>`,
+  learningGuide:`<div class="learning-guide"><div class="learn-card learn-recap"><strong>本題目標 / 快速回顧</strong><p>這階不看矩陣數值，只先找出一個 <code>s × t</code> 視窗可以放在哪些左上角。</p></div><div class="learn-card learn-new"><strong>本題新概念</strong><p>左上角列 <code>i</code> 最多只能到 <code>n-s</code>，行 <code>j</code> 最多只能到 <code>m-t</code>，因此合法範圍是 <code>0..n-s</code> 與 <code>0..m-t</code>。</p><div class="learn-visual"><div class="learn-step-flow"><div class="learn-step-node"><strong>n=3, s=2</strong><small>i = 0..1</small></div><div class="learn-step-node"><strong>m=4, t=2</strong><small>j = 0..2</small></div><div class="reason-arrow">→</div><div class="learn-step-node"><strong>2 × 3 = 6</strong><small>合法起點</small></div></div></div></div><div class="learn-card learn-plan"><strong>怎麼開始解（Solution Plan）</strong><ol><li>算出最大合法列 <code>n-s</code>。</li><li>算出最大合法行 <code>m-t</code>。</li><li>外層由上到下跑 <code>i</code>。</li><li>內層由左到右跑 <code>j</code> 並輸出。</li></ol></div><div class="learn-card learn-pitfall"><strong>常見錯誤 / 驗證方法</strong><ul><li>範圍要包含最後一個合法位置，所以 Python 常寫 <code>range(n-s+1)</code>。</li><li>當區塊和大矩陣一樣大時只能輸出 <code>0 0</code>。</li></ul></div></div>`,
   starter:'',
   answer:`s, t, n, m = map(int, input().split())\n\nfor i in range(n - s + 1):\n    for j in range(m - t + 1):\n        print(i, j)`,
   tests:[
@@ -576,6 +603,7 @@ const TASKS = [
   sampleIn:`2 2 3 4 1\n1 2\n3 4\n1 2 9 2\n3 4 3 4\n1 2 3 0`,
   sampleOut:`2`,
   sampleExplain:`<div class="demo-story"><div class="demo-viewport"><section class="demo-step"><p>這筆範例中的 A 是真正的 <code>2 × 2</code> 矩陣，B 是 <code>3 × 4</code> 矩陣。候選區塊也必須是 2 列、2 行，不能只取一整列來比較。</p><div class="visual-row"><div class="matrix-card"><div class="matrix-label">A（2 × 2）</div><div class="matrix-grid" style="--cols:2"><span class="matrix-cell">1</span><span class="matrix-cell">2</span><span class="matrix-cell">3</span><span class="matrix-cell">4</span></div></div><div class="big-arrow">↔</div><div class="matrix-card"><div class="matrix-label">B（3 × 4）</div><div class="matrix-grid" style="--cols:4"><span class="matrix-cell">1</span><span class="matrix-cell">2</span><span class="matrix-cell">9</span><span class="matrix-cell">2</span><span class="matrix-cell">3</span><span class="matrix-cell">4</span><span class="matrix-cell">3</span><span class="matrix-cell">4</span><span class="matrix-cell">1</span><span class="matrix-cell">2</span><span class="matrix-cell">3</span><span class="matrix-cell">0</span></div></div></div><div class="why-card"><p>A 有 2 列、2 行，所以每一個候選也要框出 B 中連續的 2 列、2 行，才能讓四個相對位置一一對應。</p></div></section><section class="demo-step"><p>B 中共有 6 個合法的 2 × 2 候選。下方每張卡都保留二維形狀；紅格代表該位置和 A 的相對位置數值不同。</p><div class="candidate-gallery"><div class="candidate-card"><div class="candidate-title">左上角 (0,0)</div><div class="matrix-card"><div class="matrix-grid compact" style="--cols:2"><span class="matrix-cell">1</span><span class="matrix-cell">2</span><span class="matrix-cell">3</span><span class="matrix-cell">4</span></div></div><div class="candidate-metrics"><strong>distance 0</strong></div></div><div class="candidate-card"><div class="candidate-title">左上角 (0,1)</div><div class="matrix-card"><div class="matrix-grid compact" style="--cols:2"><span class="matrix-cell diff-cell">2</span><span class="matrix-cell diff-cell">9</span><span class="matrix-cell diff-cell">4</span><span class="matrix-cell diff-cell">3</span></div></div><div class="candidate-metrics"><strong>distance 4</strong></div></div><div class="candidate-card"><div class="candidate-title">左上角 (0,2)</div><div class="matrix-card"><div class="matrix-grid compact" style="--cols:2"><span class="matrix-cell diff-cell">9</span><span class="matrix-cell">2</span><span class="matrix-cell">3</span><span class="matrix-cell">4</span></div></div><div class="candidate-metrics"><strong>distance 1</strong></div></div><div class="candidate-card"><div class="candidate-title">左上角 (1,0)</div><div class="matrix-card"><div class="matrix-grid compact" style="--cols:2"><span class="matrix-cell diff-cell">3</span><span class="matrix-cell diff-cell">4</span><span class="matrix-cell diff-cell">1</span><span class="matrix-cell diff-cell">2</span></div></div><div class="candidate-metrics"><strong>distance 4</strong></div></div><div class="candidate-card"><div class="candidate-title">左上角 (1,1)</div><div class="matrix-card"><div class="matrix-grid compact" style="--cols:2"><span class="matrix-cell diff-cell">4</span><span class="matrix-cell diff-cell">3</span><span class="matrix-cell diff-cell">2</span><span class="matrix-cell diff-cell">3</span></div></div><div class="candidate-metrics"><strong>distance 4</strong></div></div><div class="candidate-card"><div class="candidate-title">左上角 (1,2)</div><div class="matrix-card"><div class="matrix-grid compact" style="--cols:2"><span class="matrix-cell diff-cell">3</span><span class="matrix-cell diff-cell">4</span><span class="matrix-cell">3</span><span class="matrix-cell diff-cell">0</span></div></div><div class="candidate-metrics"><strong>distance 3</strong></div></div></div><div class="why-card"><p>例如 (0,2) 取到的是 <code>[[9,2],[3,4]]</code>。只有左上角的 <code>9</code> 和 A 的 <code>1</code> 不同，其餘三格相同，所以它的 distance 是 1。</p></div></section><section class="demo-step"><p>這筆範例的門檻是 <code>r = 1</code>，因此只有 distance 為 0 或 1 的候選符合。</p><div class="threshold-line"><span class="threshold">規則：distance ≤ 1</span><span class="pass">(0,0)：0 ✓</span><span class="pass">(0,2)：1 ✓</span></div><div class="why-card"><p>(0,0) 完全相同，所以 distance = 0；(0,2) 只有一格不同，所以 distance = 1。其餘四個候選都有 3 或 4 格不同，超過門檻。</p></div><div class="reason-flow"><div class="reason-node good"><strong>符合者</strong><small>(0,0)、(0,2)</small></div><div class="reason-arrow">→</div><div class="reason-node answer"><strong>共 2 個</strong><small>所以輸出 2</small></div></div><pre>2</pre></section></div></div>`,
+  learningGuide:`<div class="learning-guide"><div class="learn-card learn-recap"><strong>本題目標 / 快速回顧</strong><p>現在把「所有合法左上角」逐一拿來做 distance 比較。</p></div><div class="learn-card learn-new"><strong>本題新概念</strong><p>這就是 sliding window（滑動視窗）的直接模擬：每個合法 <code>(i,j)</code> 都代表 B 中一個 <code>s × t</code> 候選；算完它的 distance，再判斷是否 <code>≤ r</code>。</p><div class="learn-visual"><div class="learn-step-flow"><div class="learn-step-node"><strong>候選 (0,0)</strong><small>distance 0</small></div><div class="learn-step-node"><strong>候選 (0,1)</strong><small>distance 4</small></div><div class="learn-step-node"><strong>候選 (0,2)</strong><small>distance 1</small></div><div class="reason-arrow">→</div><div class="learn-step-node"><strong>r=1</strong><small>留下 0、1</small></div></div></div></div><div class="learn-card learn-plan"><strong>怎麼開始解（Solution Plan）</strong><ol><li>列舉所有合法左上角。</li><li>對每個候選用兩層小迴圈計算 distance。</li><li>若 <code>distance ≤ r</code>，答案加 1。</li><li>最後輸出符合數量。</li></ol></div><div class="learn-card learn-pitfall"><strong>常見錯誤 / 驗證方法</strong><ul><li>distance 每換一個候選都要重新歸零。</li><li>條件是 <code>≤ r</code>，不是 <code>&lt; r</code>。</li></ul></div></div>`,
   starter:'',
   answer:`s, t, n, m, r = map(int, input().split())\nA = [list(map(int, input().split())) for _ in range(s)]\nB = [list(map(int, input().split())) for _ in range(n)]\n\ncount = 0\nfor i in range(n - s + 1):\n    for j in range(m - t + 1):\n        dis = 0\n        for x in range(s):\n            for y in range(t):\n                if A[x][y] != B[i + x][j + y]:\n                    dis += 1\n        if dis <= r:\n            count += 1\n\nprint(count)`,
   tests:[
@@ -595,6 +623,7 @@ const TASKS = [
   sampleIn:`3 3 5 5 2\n1 2 1\n2 4 2\n2 4 5\n1 2 1 2 3\n2 4 2 4 2\n2 4 2 3 5\n3 2 4 2 0\n3 2 4 5 5`,
   sampleOut:`1`,
   sampleExplain:`<div class="demo-story"><div class="demo-viewport"><section class="demo-step"><p>先算 A 的總和，因為後面要比較「A 的總和」和「候選區塊的總和」。</p><div class="visual-row center"><div class="matrix-card"><div class="matrix-label">A</div><div class="matrix-grid" style="--cols:3"><span class="matrix-cell">1</span><span class="matrix-cell">2</span><span class="matrix-cell">1</span><span class="matrix-cell">2</span><span class="matrix-cell">4</span><span class="matrix-cell">2</span><span class="matrix-cell">2</span><span class="matrix-cell">4</span><span class="matrix-cell">5</span></div></div></div><div class="row-sum-grid"><div class="row-sum"><span class="row-tag">第 0 列</span><span>1+2+1</span><strong>=4</strong></div><div class="row-sum"><span class="row-tag">第 1 列</span><span>2+4+2</span><strong>=8</strong></div><div class="row-sum"><span class="row-tag">第 2 列</span><span>2+4+5</span><strong>=11</strong></div></div><div class="absolute-diff"><span>4</span> + <span>8</span> + <span>11</span> <strong>= 23</strong></div></section><section class="demo-step"><p>這筆範例共有 9 個候選位置。先看 distance：只有綠色的三個位置不超過 <code>r = 2</code>。</p><div class="candidate-map"><div class="candidate-pos ok"><strong>(0,0)</strong><small>distance 1 ✓</small></div><div class="candidate-pos no"><strong>(0,1)</strong><small>distance 9</small></div><div class="candidate-pos ok"><strong>(0,2)</strong><small>distance 2 ✓</small></div><div class="candidate-pos no"><strong>(1,0)</strong><small>distance 6</small></div><div class="candidate-pos no"><strong>(1,1)</strong><small>distance 6</small></div><div class="candidate-pos no"><strong>(1,2)</strong><small>distance 8</small></div><div class="candidate-pos no"><strong>(2,0)</strong><small>distance 9</small></div><div class="candidate-pos ok"><strong>(2,1)</strong><small>distance 2 ✓</small></div><div class="candidate-pos no"><strong>(2,2)</strong><small>distance 8</small></div></div><div class="why-card"><p>題目只允許 <code>distance ≤ 2</code> 的候選進入「總和差」比較，因此其餘六個即使總和很接近 A，也不能算進答案。</p></div></section><section class="demo-step"><p>只比較三個符合者的總和差：</p><div class="candidate-gallery"><div class="candidate-card"><div class="candidate-title">(0,0)</div><div class="candidate-metrics"><span>總和 20</span><strong>|23-20| = 3</strong></div></div><div class="candidate-card"><div class="candidate-title">(0,2)</div><div class="candidate-metrics"><span>總和 24</span><strong>|23-24| = 1</strong></div></div><div class="candidate-card"><div class="candidate-title">(2,1)</div><div class="candidate-metrics"><span>總和 28</span><strong>|23-28| = 5</strong></div></div></div><div class="why-card"><p>「總和差」要取絕對值，所以 24 比 23 大 1，得到的仍是 <code>1</code>；最後在 <code>3、1、5</code> 中取最小值。</p></div><div class="reason-flow"><div class="reason-node"><strong>3</strong><small>(0,0)</small></div><div class="reason-node good"><strong>1</strong><small>(0,2) 最小</small></div><div class="reason-node"><strong>5</strong><small>(2,1)</small></div><div class="reason-arrow">→</div><div class="reason-node answer"><strong>答案 1</strong><small>最小總和差</small></div></div><pre>1</pre></section></div></div>`,
+  learningGuide:`<div class="learning-guide"><div class="learn-card learn-recap"><strong>本題目標 / 快速回顧</strong><p>候選仍先用 distance 篩選；新工作是在符合者中再比較總和差。</p></div><div class="learn-card learn-new"><strong>本題新概念</strong><p>這是兩階段條件：先判斷 <code>distance ≤ r</code>，只有符合者才能計算並競爭 <code>abs(sum(A)-sum(candidate))</code> 的最小值。</p><div class="learn-visual"><div class="learn-step-flow"><div class="learn-step-node"><strong>distance</strong><small>先過濾</small></div><div class="reason-arrow">→</div><div class="learn-step-node"><strong>sum candidate</strong><small>只算符合者</small></div><div class="reason-arrow">→</div><div class="learn-step-node"><strong>|23-sum|</strong><small>3、1、5</small></div><div class="reason-arrow">→</div><div class="learn-step-node"><strong>1</strong><small>最小值</small></div></div></div></div><div class="learn-card learn-plan"><strong>怎麼開始解（Solution Plan）</strong><ol><li>先算一次 <code>sum(A)</code>。</li><li>列舉候選，同時算 distance 與候選總和。</li><li>只在 distance 合格時更新最小總和差。</li><li>從未有符合者就輸出 <code>-1</code>。</li></ol></div><div class="learn-card learn-pitfall"><strong>常見錯誤 / 驗證方法</strong><ul><li>不要讓 distance 不合格的候選參與最小值。</li><li>記得取絕對值；沒有符合者時要處理 <code>-1</code>。</li></ul></div></div>`,
   starter:'',
   answer:`s, t, n, m, r = map(int, input().split())\nA = [list(map(int, input().split())) for _ in range(s)]\nB = [list(map(int, input().split())) for _ in range(n)]\n\nsum_a = sum(sum(row) for row in A)\nanswer = None\n\nfor i in range(n - s + 1):\n    for j in range(m - t + 1):\n        dis = 0\n        sum_b = 0\n        for x in range(s):\n            for y in range(t):\n                value = B[i + x][j + y]\n                sum_b += value\n                if A[x][y] != value:\n                    dis += 1\n\n        if dis <= r:\n            diff = abs(sum_a - sum_b)\n            if answer is None or diff < answer:\n                answer = diff\n\nprint(-1 if answer is None else answer)`,
   tests:[
@@ -615,6 +644,7 @@ const TASKS = [
   sampleOut:`3\n1`,
   sampleExplain:`<div class="demo-story"><div class="demo-viewport"><section class="demo-step"><p>這筆範例中 A 是 3 × 3，總和為 <code>23</code>；B 是 5 × 5，所以每個候選都是 B 裡的一個 3 × 3 連續區塊。</p><div class="visual-row center"><div class="matrix-card"><div class="matrix-label">A</div><div class="matrix-grid" style="--cols:3"><span class="matrix-cell">1</span><span class="matrix-cell">2</span><span class="matrix-cell">1</span><span class="matrix-cell">2</span><span class="matrix-cell">4</span><span class="matrix-cell">2</span><span class="matrix-cell">2</span><span class="matrix-cell">4</span><span class="matrix-cell">5</span></div></div></div><div class="absolute-diff"><span>4</span> + <span>8</span> + <span>11</span> <strong>= 23</strong></div><div class="why-card"><p>第二個輸出要比較候選的總和與 A 的總和，因此先知道 <code>sum(A)=23</code>，後面每個符合者才能計算總和差。</p></div></section><section class="demo-step"><p>第一個輸出先看 distance 門檻 <code>r = 2</code>。9 個候選位置中，只有三個符合：</p><div class="candidate-map"><div class="candidate-pos ok"><strong>(0,0)</strong><small>distance 1 ✓</small></div><div class="candidate-pos no"><strong>(0,1)</strong><small>distance 9</small></div><div class="candidate-pos ok"><strong>(0,2)</strong><small>distance 2 ✓</small></div><div class="candidate-pos no"><strong>(1,0)</strong><small>distance 6</small></div><div class="candidate-pos no"><strong>(1,1)</strong><small>distance 6</small></div><div class="candidate-pos no"><strong>(1,2)</strong><small>distance 8</small></div><div class="candidate-pos no"><strong>(2,0)</strong><small>distance 9</small></div><div class="candidate-pos ok"><strong>(2,1)</strong><small>distance 2 ✓</small></div><div class="candidate-pos no"><strong>(2,2)</strong><small>distance 8</small></div></div><div class="reason-flow"><div class="reason-node"><strong>規則</strong><small>distance ≤ 2</small></div><div class="reason-arrow">→</div><div class="reason-node good"><strong>符合 3 個</strong><small>(0,0)、(0,2)、(2,1)</small></div><div class="reason-arrow">→</div><div class="reason-node answer"><strong>第一行 = 3</strong><small>符合數量</small></div></div></section><section class="demo-step"><p>第二個輸出只看這三個符合者。它們的區塊總和分別是 20、24、28。</p><div class="candidate-gallery"><div class="candidate-card"><div class="candidate-title">(0,0)</div><div class="candidate-metrics"><span>distance 1</span><span>總和 20</span><strong>|23-20| = 3</strong></div></div><div class="candidate-card"><div class="candidate-title">(0,2)</div><div class="candidate-metrics"><span>distance 2</span><span>總和 24</span><strong>|23-24| = 1</strong></div></div><div class="candidate-card"><div class="candidate-title">(2,1)</div><div class="candidate-metrics"><span>distance 2</span><span>總和 28</span><strong>|23-28| = 5</strong></div></div></div><div class="why-card"><p>第二個答案不是「distance 最小」，而是「符合者之中的總和差最小」。三個總和差是 <code>3、1、5</code>，所以最小值是 <code>1</code>。</p></div><div class="reason-flow"><div class="reason-node good"><strong>符合數量 3</strong><small>第一行</small></div><div class="reason-arrow">＋</div><div class="reason-node answer"><strong>最小總和差 1</strong><small>第二行</small></div></div><pre>3
 1</pre></section></div></div>`,
+  learningGuide:`<div class="learning-guide"><div class="learn-card learn-recap"><strong>本題目標 / 快速回顧</strong><p>完整題整合前面能力：合法視窗、逐格 distance、符合數量，以及符合者的最小總和差。</p></div><div class="learn-card learn-new"><strong>整合時的不變量</strong><p>對每個候選只需要完成一次完整掃描，就能同時得到 <code>distance</code> 與 <code>sum_b</code>；掃描結束後再依 <code>distance ≤ r</code> 決定是否更新兩個答案。</p><div class="learn-visual"><div class="learn-step-flow"><div class="learn-step-node"><strong>列舉 (i,j)</strong><small>合法候選</small></div><div class="reason-arrow">→</div><div class="learn-step-node"><strong>掃 s×t</strong><small>distance + sum_b</small></div><div class="reason-arrow">→</div><div class="learn-step-node"><strong>distance ≤ r?</strong><small>篩選</small></div><div class="reason-arrow">→</div><div class="learn-step-node"><strong>count / best</strong><small>更新答案</small></div></div></div></div><div class="learn-card learn-plan"><strong>怎麼開始解（Solution Plan）</strong><ol><li>讀入 A、B，先算 <code>sum_a</code>。</li><li>用兩層外迴圈列舉所有候選左上角。</li><li>用兩層內迴圈算該候選的 distance 與總和。</li><li>符合門檻時更新 count 與最小差。</li><li>輸出 count；沒有符合者則第二行輸出 -1。</li></ol></div><div class="learn-card learn-pitfall"><strong>常見錯誤 / 驗證方法</strong><ul><li>第一個答案是符合者數量，第二個才是最小總和差。</li><li>最後合法起點一定要包含 <code>n-s</code>、<code>m-t</code>。</li><li>以「沒有符合者」、「剛好 distance=r」、「A 與候選完全相同」三種案例自測。</li></ul></div></div>`,
   starter:'',
   answer:`s, t, n, m, r = map(int, input().split())\nA = [list(map(int, input().split())) for _ in range(s)]\nB = [list(map(int, input().split())) for _ in range(n)]\n\nsum_a = sum(sum(row) for row in A)\ncount = 0\nanswer = None\n\nfor i in range(n - s + 1):\n    for j in range(m - t + 1):\n        dis = 0\n        sum_b = 0\n\n        for x in range(s):\n            for y in range(t):\n                value = B[i + x][j + y]\n                sum_b += value\n                if A[x][y] != value:\n                    dis += 1\n\n        if dis <= r:\n            count += 1\n            diff = abs(sum_a - sum_b)\n            if answer is None or diff < answer:\n                answer = diff\n\nprint(count)\nprint(-1 if answer is None else answer)`,
   tests:[
@@ -848,6 +878,10 @@ function updateAnswerButtonState(){
   btn.setAttribute('aria-disabled',String(btn.disabled));
 }
 function draftKey(id){return `${STORAGE_PREFIX}:code:${id}`}
+function customInputKey(id){return `${STORAGE_PREFIX}:custom-input:${id}`}
+const CUSTOM_OVERRIDE_KEY=`${STORAGE_PREFIX}:custom-override`;
+function getCustomOverride(){try{return localStorage.getItem(CUSTOM_OVERRIDE_KEY)==='1'}catch{return false}}
+function setCustomOverride(value){try{localStorage.setItem(CUSTOM_OVERRIDE_KEY,value?'1':'0')}catch{}}
 function historyKey(){return HISTORY_KEY}
 function getHistory(){return safeJsonParse(localStorage.getItem(historyKey())||'[]',[])}
 function addHistory(taskId, verdict, passed, total){
@@ -918,6 +952,8 @@ function renderProblem(){
       <div class="sample-explain-intro"><strong>範例說明</strong><small>依照這筆範例資料逐步說明計算過程。</small></div>
       <div class="sample-explanation-body">${t.sampleExplain}</div>
     </div>
+    <div class="section-title">學習指南</div>
+    ${t.learningGuide}
     ${extraSamples}
     ${t.id===8?`<div class="note">本階依 ZeroJudge h027 正式限制設計；本頁測資供練習使用，正式評測仍請提交至 ZeroJudge 原題。</div>`:''}
   `;
@@ -980,7 +1016,7 @@ function renderHiddenTests(){
   hidden.forEach(({test,idx})=>{
     const item=document.createElement('div');
     item.className='hidden-test-item';
-    item.innerHTML=`<strong>#${idx+1} ${test.generated?'動態隱藏測資':'隱藏測資'}</strong><div class="hidden-test-io"><div class="hidden-test-block"><span class="hidden-test-label">輸入</span><pre>${esc(test.input)}</pre></div><div class="hidden-test-block"><span class="hidden-test-label">輸出</span><pre>${esc(test.output)}</pre></div></div>`;
+    item.innerHTML=`<strong>#${idx+1} ${test.generated?'生成隱藏測資':'隱藏測資'}</strong><div class="hidden-test-io"><div class="hidden-test-block"><span class="hidden-test-label">輸入</span><pre>${esc(test.input)}</pre></div><div class="hidden-test-block"><span class="hidden-test-label">輸出</span><pre>${esc(test.output)}</pre></div></div>`;
     hiddenTestsList.appendChild(item);
   });
 }
@@ -1003,6 +1039,7 @@ function saveDraft(){ const t=TASKS[currentTaskIndex]; localStorage.setItem(draf
 function switchTask(idx){
   if(busy || idx===currentTaskIndex) return;
   saveDraft();
+  saveCustomInput();
   currentTaskIndex=idx;
   selectedPublicSampleIndex=0;
   renderLevelStrip();
@@ -1010,12 +1047,13 @@ function switchTask(idx){
   renderTests();
   renderHiddenTests();
   overallVerdict.className='status-pill'; overallVerdict.textContent='尚未提交';
-  resultSummary.textContent='按右側「執行」會使用選定的公開範例輸入；按「提交」才會評測全部測資，逐筆 verdict 請看右側 TEST RESULTS。';
+  resultSummary.textContent='F9／「執行」依 CUSTOM INPUT 開關選擇 stdin；「提交」固定評測正式測資，逐筆 verdict 請看右側 TEST RESULTS。';
   const t=TASKS[idx];
   setCode(localStorage.getItem(draftKey(t.id)) ?? t.starter);
+  restoreCustomInputForTask();
   renderSampleSelector();
   resetTerminal();
-  updateTerminalMeta();
+  updateInputSourceUI();
   if(editor){ editor.clearHistory(); editor.focus(); }
 }
 
@@ -1103,170 +1141,93 @@ function toggleTextareaComments(textarea){
 
 function deleteCodeMirrorIndentBackspace(cm){
   if(cm.somethingSelected()) return CodeMirror.Pass;
-  const cur=cm.getCursor();
-  if(cur.ch===0) return CodeMirror.Pass;
-  const line=cm.getLine(cur.line);
-  const prefix=line.slice(0,cur.ch);
+  const cur=cm.getCursor(); if(cur.ch===0) return CodeMirror.Pass;
+  const line=cm.getLine(cur.line),prefix=line.slice(0,cur.ch);
   if(!/^ +$/.test(prefix)) return CodeMirror.Pass;
   const removeCount=Math.min(4,prefix.length);
-  cm.replaceRange('', CodeMirror.Pos(cur.line,cur.ch-removeCount), cur, '+delete');
+  cm.replaceRange('',CodeMirror.Pos(cur.line,cur.ch-removeCount),cur,'+delete');
 }
-
 function deleteTextareaIndentBackspace(textarea){
-  const start=textarea.selectionStart;
-  const end=textarea.selectionEnd;
-  if(start!==end || start===0) return false;
-  const value=textarea.value;
-  const lineStart=value.lastIndexOf('\n',start-1)+1;
-  const prefix=value.slice(lineStart,start);
-  if(!/^ +$/.test(prefix)) return false;
+  const start=textarea.selectionStart,end=textarea.selectionEnd;if(start!==end||start===0)return false;
+  const value=textarea.value,lineStart=value.lastIndexOf('\n',start-1)+1,prefix=value.slice(lineStart,start);
+  if(!/^ +$/.test(prefix))return false;
   const removeCount=Math.min(4,prefix.length);
-  textarea.value=value.slice(0,start-removeCount)+value.slice(start);
-  textarea.selectionStart=textarea.selectionEnd=start-removeCount;
-  saveDraft();
-  return true;
+  textarea.value=value.slice(0,start-removeCount)+value.slice(start);textarea.selectionStart=textarea.selectionEnd=start-removeCount;saveDraft();return true;
 }
-
-function spacesToNextTabStop(column, tabSize=4){
-  const remainder=column % tabSize;
-  return remainder===0 ? tabSize : tabSize-remainder;
-}
-
-function textareaVisualColumn(text, offset, tabSize=4){
-  let column=0;
-  for(let i=0;i<offset;i++){
-    if(text[i]==='\t') column += spacesToNextTabStop(column,tabSize);
-    else column += 1;
+function spacesToNextTabStop(column,tabSize=4){const remainder=column%tabSize;return remainder===0?tabSize:tabSize-remainder}
+function textareaVisualColumn(text,offset,tabSize=4){let column=0;for(let i=0;i<offset;i++)column+=text[i]==='\t'?spacesToNextTabStop(column,tabSize):1;return column}
+function leadingSpaces(text){const m=text.match(/^ */);return m?m[0].length:0}
+function indentCodeMirrorTab(cm){
+  const from=cm.getCursor('from'),to=cm.getCursor('to');
+  if(cm.somethingSelected() && from.line!==to.line){
+    let endLine=to.line;if(to.ch===0)endLine--;
+    cm.operation(()=>{for(let line=from.line;line<=endLine;line++)cm.replaceRange('    ',CodeMirror.Pos(line,0),null,'+input');});
+    return;
   }
-  return column;
+  const line=cm.getLine(from.line),column=CodeMirror.countColumn(line,from.ch,4),count=spacesToNextTabStop(column,4),spaces=' '.repeat(count);
+  if(cm.somethingSelected()){
+    cm.replaceRange(spaces,from,from,'+input');
+    cm.setSelection(CodeMirror.Pos(from.line,from.ch+count),CodeMirror.Pos(to.line,to.ch+count));
+  }else cm.replaceRange(spaces,from,null,'+input');
 }
-
-function indentTextareaSelection(textarea){
-  const value=textarea.value;
-  const start=textarea.selectionStart;
-  const end=textarea.selectionEnd;
-  const lineStart=value.lastIndexOf('\n',Math.max(0,start-1))+1;
-  let blockEnd=end;
-  if(end>start && value[end-1]==='\n') blockEnd=end-1;
-  let lineEnd=value.indexOf('\n',blockEnd);
-  if(lineEnd===-1) lineEnd=value.length;
-  const block=value.slice(lineStart,lineEnd);
-  const indented=block.split('\n').map(line=>'    '+line).join('\n');
-  textarea.value=value.slice(0,lineStart)+indented+value.slice(lineEnd);
-  textarea.selectionStart=lineStart;
-  textarea.selectionEnd=lineStart+indented.length;
+function unindentCodeMirror(cm){
+  const from=cm.getCursor('from'),to=cm.getCursor('to'),has=cm.somethingSelected();
+  let startLine=from.line,endLine=to.line;if(has&&from.line!==to.line&&to.ch===0)endLine--;
+  const cursor=cm.getCursor(),removed=[];
+  cm.operation(()=>{for(let line=endLine;line>=startLine;line--){const text=cm.getLine(line),n=Math.min(4,leadingSpaces(text));removed[line]=n;if(n)cm.replaceRange('',CodeMirror.Pos(line,0),CodeMirror.Pos(line,n),'+delete');}});
+  if(!has){const n=removed[cursor.line]||0;cm.setCursor(CodeMirror.Pos(cursor.line,Math.max(0,cursor.ch-n)));}
+}
+function enterCodeMirror(cm){
+  const from=cm.getCursor('from'),to=cm.getCursor('to'),line=cm.getLine(from.line),prefix=line.slice(0,from.ch);
+  const base=(prefix.match(/^ */)||[''])[0],extra=prefix.trimEnd().endsWith(':')?'    ':'';
+  cm.replaceRange('\n'+base+extra,from,to,'+input');
+}
+function selectedTextareaLines(textarea){
+  const value=textarea.value,start=textarea.selectionStart,end=textarea.selectionEnd,lineStart=value.lastIndexOf('\n',Math.max(0,start-1))+1;
+  let effectiveEnd=end;if(end>start&&value[end-1]==='\n')effectiveEnd--;
+  let lineEnd=value.indexOf('\n',effectiveEnd);if(lineEnd===-1)lineEnd=value.length;
+  return {value,start,end,lineStart,lineEnd,block:value.slice(lineStart,lineEnd)};
+}
+function tabTextarea(textarea){
+  const {value,start,end,lineStart,lineEnd,block}=selectedTextareaLines(textarea);
+  if(start!==end && block.includes('\n')){
+    const lines=block.split('\n'),next=lines.map(x=>'    '+x).join('\n');
+    textarea.value=value.slice(0,lineStart)+next+value.slice(lineEnd);textarea.selectionStart=lineStart;textarea.selectionEnd=lineStart+next.length;saveDraft();return;
+  }
+  const linePrefix=value.slice(lineStart,start),column=textareaVisualColumn(linePrefix,linePrefix.length,4),count=spacesToNextTabStop(column,4),spaces=' '.repeat(count);
+  textarea.value=value.slice(0,start)+spaces+value.slice(start);
+  if(start!==end){textarea.selectionStart=start+count;textarea.selectionEnd=end+count;}else textarea.selectionStart=textarea.selectionEnd=start+count;
   saveDraft();
 }
-
-function unindentTextareaSelection(textarea){
-  const value=textarea.value;
-  const start=textarea.selectionStart;
-  const end=textarea.selectionEnd;
-  const lineStart=value.lastIndexOf('\n',Math.max(0,start-1))+1;
-  let blockEnd=end;
-  if(end>start && value[end-1]==='\n') blockEnd=end-1;
-  let lineEnd=value.indexOf('\n',blockEnd);
-  if(lineEnd===-1) lineEnd=value.length;
-  const block=value.slice(lineStart,lineEnd);
-  const unindented=block.split('\n').map(line=>line.replace(/^ {1,4}/,'')).join('\n');
-  textarea.value=value.slice(0,lineStart)+unindented+value.slice(lineEnd);
-  textarea.selectionStart=lineStart;
-  textarea.selectionEnd=lineStart+unindented.length;
+function unindentTextarea(textarea){
+  const {value,start,end,lineStart,lineEnd,block}=selectedTextareaLines(textarea),has=start!==end;
+  const lines=block.split('\n'),removed=lines.map(x=>Math.min(4,leadingSpaces(x))),next=lines.map((x,i)=>x.slice(removed[i])).join('\n');
+  textarea.value=value.slice(0,lineStart)+next+value.slice(lineEnd);
+  if(has){textarea.selectionStart=lineStart;textarea.selectionEnd=lineStart+next.length;}else{const row=value.slice(lineStart,start).split('\n').length-1;const n=removed[row]||0;const pos=Math.max(lineStart,start-n);textarea.selectionStart=textarea.selectionEnd=pos;}
   saveDraft();
 }
-
+function enterTextarea(textarea){
+  const start=textarea.selectionStart,end=textarea.selectionEnd,value=textarea.value,before=value.slice(0,start),line=before.slice(before.lastIndexOf('\n')+1);
+  const base=(line.match(/^ */)||[''])[0],extra=line.trimEnd().endsWith(':')?'    ':'';
+  textarea.value=value.slice(0,start)+'\n'+base+extra+value.slice(end);textarea.selectionStart=textarea.selectionEnd=start+1+base.length+extra.length;saveDraft();
+}
 function setupEditor(){
   const textarea=$('#codeEditor');
   if(window.CodeMirror){
-    CodeMirror.registerHelper('hint','python-custom',function(cm){
-      const cur=cm.getCursor();
-      const token=cm.getTokenAt(cur);
-      let start=token.start,end=cur.ch,word=token.string.slice(0,end-start);
-      if(!/^[A-Za-z_][A-Za-z0-9_]*$/.test(word)){start=end;word=''}
-      const list=COMPLETIONS.filter(x=>x.startsWith(word) && x!==word);
-      return {list:list.length?list:COMPLETIONS,from:CodeMirror.Pos(cur.line,start),to:CodeMirror.Pos(cur.line,end)};
-    });
-    editor=CodeMirror.fromTextArea(textarea,{
-      mode:'python',
-      lineNumbers:true,
-      indentUnit:4,
-      tabSize:4,
-      indentWithTabs:false,
-      lineWrapping:false,
-      autoCloseBrackets:true,
-      matchBrackets:true,
-      extraKeys:{
-        'Ctrl-Space':cm=>cm.showHint({hint:CodeMirror.hint['python-custom'],completeSingle:false}),
-        'Alt-/':cm=>cm.showHint({hint:CodeMirror.hint['python-custom'],completeSingle:false}),
-        'Ctrl-/':cm=>toggleCodeMirrorComments(cm),
-        'Backspace':cm=>deleteCodeMirrorIndentBackspace(cm),
-        'Ctrl-Enter':()=>judge('all'),
-        'F9':()=>runCurrentCode(),
-        'Tab':cm=>{
-          if(cm.somethingSelected()){
-            cm.indentSelection('add');
-          }else{
-            const cur=cm.getCursor();
-            const line=cm.getLine(cur.line);
-            const column=CodeMirror.countColumn(line,cur.ch,4);
-            const count=spacesToNextTabStop(column,4);
-            cm.replaceSelection(' '.repeat(count),'end','+input');
-          }
-        },
-        'Shift-Tab':cm=>cm.indentSelection('subtract')
-      }
-    });
+    CodeMirror.registerHelper('hint','python-custom',function(cm){const cur=cm.getCursor(),token=cm.getTokenAt(cur);let start=token.start,end=cur.ch,word=token.string.slice(0,end-start);if(!/^[A-Za-z_][A-Za-z0-9_]*$/.test(word)){start=end;word=''}const list=COMPLETIONS.filter(x=>x.startsWith(word)&&x!==word);return {list:list.length?list:COMPLETIONS,from:CodeMirror.Pos(cur.line,start),to:CodeMirror.Pos(cur.line,end)}});
+    editor=CodeMirror.fromTextArea(textarea,{mode:'python',lineNumbers:true,indentUnit:4,tabSize:4,indentWithTabs:false,lineWrapping:false,autoCloseBrackets:true,matchBrackets:true,extraKeys:{
+      'Ctrl-Space':cm=>cm.showHint({hint:CodeMirror.hint['python-custom'],completeSingle:false}),'Alt-/':cm=>cm.showHint({hint:CodeMirror.hint['python-custom'],completeSingle:false}),'Ctrl-/':cm=>toggleCodeMirrorComments(cm),'Backspace':cm=>deleteCodeMirrorIndentBackspace(cm),'Enter':cm=>enterCodeMirror(cm),'Ctrl-Enter':()=>judge(),'F9':()=>runCurrentCode(),'Tab':cm=>indentCodeMirrorTab(cm),'Shift-Tab':cm=>unindentCodeMirror(cm)
+    }});
     editor.on('change',()=>saveDraft());
-    editor.on('inputRead',(cm,change)=>{
-      if(change.text && /^[A-Za-z_]$/.test(change.text[0]||'')){
-        const token=cm.getTokenAt(cm.getCursor());
-        if(token.string.length>=3 && !cm.state.completionActive){
-          cm.showHint({hint:CodeMirror.hint['python-custom'],completeSingle:false});
-        }
-      }
-    });
   }else{
     textarea.className='fallback-editor';
     textarea.addEventListener('keydown',e=>{
-      if(e.key==='Backspace' && !e.ctrlKey && !e.altKey && !e.metaKey && deleteTextareaIndentBackspace(textarea)){
-        e.preventDefault();
-      }else if(e.ctrlKey && e.key==='/'){
-        e.preventDefault();
-        toggleTextareaComments(textarea);
-      }else if(e.ctrlKey && e.key==='Enter'){
-        e.preventDefault();
-        judge('all');
-      }else if(e.key==='F9'){
-        e.preventDefault();
-        runCurrentCode();
-      }else if(e.key==='Tab'){
-        e.preventDefault();
-        const start=textarea.selectionStart,end=textarea.selectionEnd;
-        if(e.shiftKey){
-          unindentTextareaSelection(textarea);
-        }else if(start!==end){
-          indentTextareaSelection(textarea);
-        }else{
-          const value=textarea.value;
-          const lineStart=value.lastIndexOf('\n',Math.max(0,start-1))+1;
-          const linePrefix=value.slice(lineStart,start);
-          const column=textareaVisualColumn(linePrefix,linePrefix.length,4);
-          const count=spacesToNextTabStop(column,4);
-          const spaces=' '.repeat(count);
-          textarea.value=value.slice(0,start)+spaces+value.slice(end);
-          textarea.selectionStart=textarea.selectionEnd=start+count;
-          saveDraft();
-        }
-      }else if(e.key==='Enter'){
-        const start=textarea.selectionStart;
-        const before=textarea.value.slice(0,start);
-        const line=before.slice(before.lastIndexOf('\n')+1);
-        const indent=(line.match(/^\s*/)||[''])[0] + (line.trimEnd().endsWith(':')?'    ':'');
-        e.preventDefault();
-        textarea.value=textarea.value.slice(0,start)+'\n'+indent+textarea.value.slice(textarea.selectionEnd);
-        textarea.selectionStart=textarea.selectionEnd=start+1+indent.length;
-        saveDraft();
-      }
+      if(e.key==='Backspace'&&!e.ctrlKey&&!e.altKey&&!e.metaKey&&deleteTextareaIndentBackspace(textarea)){e.preventDefault();}
+      else if(e.ctrlKey&&e.key==='/'){e.preventDefault();toggleTextareaComments(textarea);}
+      else if(e.ctrlKey&&e.key==='Enter'){e.preventDefault();judge();}
+      else if(e.key==='F9'){e.preventDefault();runCurrentCode();}
+      else if(e.key==='Tab'){e.preventDefault();e.shiftKey?unindentTextarea(textarea):tabTextarea(textarea);}
+      else if(e.key==='Enter'){e.preventDefault();enterTextarea(textarea);}
     });
     textarea.addEventListener('input',saveDraft);
   }
@@ -1281,7 +1242,7 @@ function renderSampleSelector(){
   select.innerHTML=samples.map((_,idx)=>`<option value="${idx}">範例 #${idx+1}</option>`).join('');
   select.value=String(selectedPublicSampleIndex);
   select.hidden=samples.length<=1;
-  select.disabled=busy || samples.length<=1;
+  select.disabled=busy || getCustomOverride() || samples.length<=1;
 }
 
 function getSelectedPublicSample(){
@@ -1290,12 +1251,25 @@ function getSelectedPublicSample(){
   return samples[Math.min(selectedPublicSampleIndex,samples.length-1)];
 }
 
+function restoreCustomInputForTask(){
+  const area=$('#customInput');if(!area)return;try{area.value=localStorage.getItem(customInputKey(TASKS[currentTaskIndex].id))??''}catch{area.value=''}
+}
+function saveCustomInput(){const area=$('#customInput');if(!area)return;try{localStorage.setItem(customInputKey(TASKS[currentTaskIndex].id),area.value)}catch{}}
+function updateInputSourceUI(){
+  const override=getCustomOverride(),state=$('#customInputModeState'),sw=$('#customInputOverride'),select=$('#sampleSelect');
+  if(sw)sw.checked=override;if(state)state.textContent=override?'ON':'OFF';
+  if(select)select.disabled=busy||override||getPublicTests(TASKS[currentTaskIndex]).length<=1;
+  updateTerminalMeta();
+}
 function updateTerminalMeta(){
-  const t=TASKS[currentTaskIndex];
-  const sample=getSelectedPublicSample();
-  const samples=getPublicTests(t);
-  const label=samples.length>1?`公開範例 #${selectedPublicSampleIndex+1}`:'公開範例';
+  const override=getCustomOverride(),t=TASKS[currentTaskIndex];
+  if(override){$('#terminalMeta').textContent=`stdin: 第 ${t.id} 階 CUSTOM INPUT`;return;}
+  const sample=getSelectedPublicSample(),samples=getPublicTests(t),label=samples.length>1?`公開範例 #${selectedPublicSampleIndex+1}`:'公開範例';
   $('#terminalMeta').textContent=sample?`stdin: 第 ${t.id} 階${label}輸入`:'stdin: empty';
+}
+function getRunInput(){
+  if(getCustomOverride()) return {input:$('#customInput').value,source:'custom'};
+  const sample=getSelectedPublicSample();return {input:sample?sample.input:'',source:'public'};
 }
 
 function resetTerminal(message='Ready. Press F9 to run, or Ctrl+Enter to submit.'){
@@ -1329,43 +1303,20 @@ function endOperation(op){
 
 async function runCurrentCode(){
   if(busy)return;
-  const t=TASKS[currentTaskIndex];
-  const sample=getSelectedPublicSample();
-  const input=sample?sample.input:'';
-  const code=getCode();
-  saveDraft();
-  updateTerminalMeta();
-  if(!code.trim()){
-    writeTerminal(`$ python main.py\n\nNo code to run.`);
-    if(editor)editor.focus();
-    return;
-  }
+  const code=getCode();saveDraft();saveCustomInput();
+  const {input,source}=getRunInput();
   const op=beginOperation();
-  writeTerminal(`$ python main.py\n[stdin: 第 ${t.id} 階公開範例 #${selectedPublicSampleIndex+1}]\n\nRunning...`);
+  const sourceLabel=source==='custom'?'CUSTOM INPUT':'selected Public sample';
+  writeTerminal(`$ python main.py\n\nRunning with ${sourceLabel}...`);
   try{
     const r=await runPython(code,input);
-    if(!isOperationCurrent(op)) return;
-    if(r.timeout){
-      writeTerminal(`$ python main.py\n\nTime Limit Exceeded`,true);
-    }else if(!r.ok){
-      const prefix=r.output?`${r.output}\n`:'';
-      writeTerminal(`$ python main.py\n\n${prefix}${r.error || 'Runtime Error'}`,true);
-    }else{
-      const stdout=r.output || '';
-      const stderr=r.error || '';
-      let body=stdout;
-      if(stderr) body += (body ? '\n' : '') + stderr;
-      if(!body) body='Program finished with no output.';
-      writeTerminal(`$ python main.py\n\n${body}\n\nProcess finished in ${r.ms} ms.`,Boolean(stderr));
-    }
-  }catch(err){
-    if(isOperationCurrent(op)){
-      writeTerminal(`$ python main.py\n\nPython runtime failed to load: ${err.message}\nRun again to retry.`,true);
-    }
-  }finally{
-    endOperation(op);
-    if(editor) editor.focus();
-  }
+    if(!isOperationCurrent(op))return;
+    if(r.timeout){writeTerminal(`$ python main.py\n\nTime Limit Exceeded (${RUN_TIMEOUT_MS} ms).`,true);}
+    else if(r.environmentError){writeTerminal(`$ python main.py\n\nEnvironment Error: ${r.error}`,true);}
+    else if(!r.ok){const body=[r.output,r.error].filter(Boolean).join('\n');writeTerminal(`$ python main.py\n\n${body}\n\nProcess finished with error in ${r.ms} ms.`,true);}
+    else{const stdout=r.output||'',stderr=r.error||'';let body=stdout;if(stderr)body+=(body?'\n':'')+stderr;if(!body)body='Program finished with no output.';writeTerminal(`$ python main.py\n\n${body}\n\nProcess finished in ${r.ms} ms.` ,Boolean(stderr));}
+  }catch(err){if(isOperationCurrent(op))writeTerminal(`$ python main.py\n\nEnvironment Error: ${err.message}\nRun again to retry.`,true);}
+  finally{endOperation(op);if(editor)editor.focus();}
 }
 
 function setRuntime(status,text){
@@ -1416,7 +1367,7 @@ finally:
 json.dumps(_res)
           \`);
           self.postMessage({type:'result',id:msg.id,result:JSON.parse(json)});
-        }catch(err){self.postMessage({type:'result',id:msg.id,result:{ok:false,output:'',error:String(err)}});}
+        }catch(err){self.postMessage({type:'result',id:msg.id,result:{ok:false,output:'',error:String(err),environmentError:true}});}
       }
     };
   `;
@@ -1516,7 +1467,8 @@ function setBusy(v){
   $('#clearAllBtn').disabled=v;
   updateAnswerButtonState();
   const sampleSelect=$('#sampleSelect');
-  if(sampleSelect) sampleSelect.disabled=v || getPublicTests(TASKS[currentTaskIndex]).length<=1;
+  if(sampleSelect) sampleSelect.disabled=v || getCustomOverride() || getPublicTests(TASKS[currentTaskIndex]).length<=1;
+  const custom=$('#customInput'),override=$('#customInputOverride');if(custom)custom.disabled=v;if(override)override.disabled=v;
   document.querySelectorAll('.level-btn').forEach(btn=>btn.disabled=v);
 }
 
@@ -1536,12 +1488,12 @@ async function judge(){
     for(let i=0;i<tests.length;i++){
       const r=await runPython(code,tests[i].input);
       if(!isOperationCurrent(op)) return;
-      const pass=r.ok && normalizeOutput(r.output)===normalizeOutput(tests[i].output);
+      const pass=!r.environmentError && r.ok && normalizeOutput(r.output)===normalizeOutput(tests[i].output);
       const rr={...r,pass,error:r.ok?'':r.error};
       results.push(rr);
       if(pass)passed++;
       renderTests('running',results);
-      if(!pass && r.timeout) break;
+      if(!pass && (r.timeout || r.environmentError)) break;
     }
     if(!isOperationCurrent(op)) return;
     renderTests('idle',results);
@@ -1550,19 +1502,19 @@ async function judge(){
     if(allPass){
       setAccepted(t.id);
       overallVerdict.className='status-pill ok';overallVerdict.textContent='Accepted';
-      resultSummary.textContent=`全部 ${total} 筆測資通過（含 ${getGeneratedTests(t).length} 筆動態隱藏測資）。這一階完成。`;
+      resultSummary.textContent=`全部 ${total} 筆測資通過（含 ${getGeneratedTests(t).length} 筆生成隱藏測資）。這一階完成。`;
       addHistory(t.id,'AC',passed,total);
       renderProgress();renderLevelStrip();renderHiddenTests();
     }else{
       const firstBad=results.find(x=>!x.pass);
-      const verdict=firstBad?.timeout?'TLE':(firstBad?.error?'RE':'WA');
+      const verdict=firstBad?.environmentError?'JE':(firstBad?.timeout?'TLE':(firstBad?.error?'RE':'WA'));
       overallVerdict.className='status-pill bad';overallVerdict.textContent=verdict;
-      resultSummary.textContent=`通過 ${passed} / ${total}。${verdict==='WA'?'輸出採 Tolerant 風格比對；請先檢查內容與行結構。':'先修正第一個失敗原因，再重新提交。'}`;
+      resultSummary.textContent=`通過 ${passed} / ${total}。${verdict==='WA'?'輸出採 Tolerant 風格比對；請先檢查內容與行結構。':(verdict==='JE'?'Judge / Runtime 環境失敗；這不是學生程式 RE，可重新嘗試。':'先修正第一個失敗原因，再重新提交。')}`;
       addHistory(t.id,verdict,passed,total);
     }
   }catch(err){
     if(isOperationCurrent(op)){
-      overallVerdict.className='status-pill bad';overallVerdict.textContent='環境錯誤';
+      overallVerdict.className='status-pill bad';overallVerdict.textContent='JE';
       resultSummary.textContent=`無法啟動瀏覽器 Python：${err.message}。再次提交會重新嘗試載入 Pyodide。`;
     }
   }finally{
@@ -1590,7 +1542,7 @@ $('#resetBtn').addEventListener('click',()=>{
 });
 $('#clearAllBtn').addEventListener('click',()=>{
   if(busy) return;
-  if(!confirm('確定清除所有紀錄？\n\n這會刪除 8 題的程式草稿、AC 進度與本機提交紀錄，且無法復原。')) return;
+  if(!confirm('確定清除所有紀錄？\n\n這會刪除 8 題的程式草稿、CUSTOM INPUT、F9 override、AC 進度與本機提交紀錄，且無法復原。')) return;
   clearAllLocalRecords();
   currentTaskIndex=0;
   renderLevelStrip();
@@ -1602,25 +1554,33 @@ $('#clearAllBtn').addEventListener('click',()=>{
   updateAnswerButtonState();
   overallVerdict.className='status-pill';
   overallVerdict.textContent='尚未提交';
-  resultSummary.textContent='所有本機紀錄已清除。按右側「執行」可使用公開範例輸入；按「提交」才會評測本階段全部測資。';
+  resultSummary.textContent='所有本機紀錄已清除。F9 依 CUSTOM INPUT 開關選擇 stdin；「提交」固定評測本階段全部正式測資。';
   selectedPublicSampleIndex=0;
   setCode(TASKS[0].starter);
+  setCustomOverride(false);restoreCustomInputForTask();
   renderSampleSelector();
-  resetTerminal('All local records cleared.');
-  updateTerminalMeta();
+  resetTerminal('All h027 local records cleared. Theme preference preserved.');
+  updateInputSourceUI();
   if(editor){editor.clearHistory();editor.focus();}
 });
 $('#runBtn').addEventListener('click',runCurrentCode);
 $('#clearTerminalBtn').addEventListener('click',()=>resetTerminal('終端機已清除。'));
 $('#sampleSelect').addEventListener('change',(e)=>{
   selectedPublicSampleIndex=Number(e.target.value)||0;
-  updateTerminalMeta();
+  updateInputSourceUI();
   resetTerminal(`Ready. Public sample #${selectedPublicSampleIndex+1} selected.`);
   if(editor) editor.focus();
 });
+$('#customInput').addEventListener('input',saveCustomInput);
+$('#customInput').addEventListener('keydown',e=>{if(e.key==='F9'){e.preventDefault();runCurrentCode();}});
+$('#customInputOverride').addEventListener('change',e=>{if(busy)return;setCustomOverride(Boolean(e.target.checked));updateInputSourceUI();resetTerminal(e.target.checked?'Ready. F9 uses raw CUSTOM INPUT.':'Ready. F9 uses selected Public sample.');});
+const THEME_STORAGE_KEY='step_oj_framework:theme:v1';
+function applyTheme(theme,{persist=true}={}){const next=theme==='dark'?'dark':'light';document.documentElement.dataset.theme=next;$('#themeSelect').value=next;if(persist){try{localStorage.setItem(THEME_STORAGE_KEY,next)}catch{}}}
+function initializeTheme(){let saved='light';try{saved=localStorage.getItem(THEME_STORAGE_KEY)||'light'}catch{}applyTheme(saved,{persist:false});$('#themeSelect').addEventListener('change',e=>applyTheme(e.target.value));}
 $('#submitBtn').addEventListener('click',judge);
 
 migrateStorage();
+initializeTheme();
 setupEditor();
 renderLevelStrip();
 renderProblem();
@@ -1630,8 +1590,9 @@ renderHistory();
 renderProgress();
 updateAnswerButtonState();
 setCode(localStorage.getItem(draftKey(TASKS[0].id)) ?? TASKS[0].starter);
+restoreCustomInputForTask();
 renderSampleSelector();
-updateTerminalMeta();
+updateInputSourceUI();
 </script>
 </body>
 </html>
