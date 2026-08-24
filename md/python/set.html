@@ -1978,6 +1978,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#apcs-寫題最重要的-4-種-set-用法" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -6622,6 +6627,26 @@ is now available!
       <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
       
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Set
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
       
       <a href="set.html" class="md-nav__link md-nav__link--active">
         
@@ -6639,6 +6664,69 @@ is now available!
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#第一種去重複" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        第一種：去重複
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#第二種算有幾種" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        第二種：算有幾種
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#第三種判斷以前有沒有出現" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        第三種：判斷以前有沒有出現
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#第四種找兩群共同的東西" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        第四種：找兩群共同的東西
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -7387,6 +7475,60 @@ is now available!
   
   
   
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#第一種去重複" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        第一種：去重複
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#第二種算有幾種" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        第二種：算有幾種
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#第三種判斷以前有沒有出現" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        第三種：判斷以前有沒有出現
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#第四種找兩群共同的東西" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        第四種：找兩群共同的東西
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -7404,22 +7546,59 @@ is now available!
 
 
 
-  <h1>Set</h1>
-
 <p>Python 的 <code>set</code> 是個資料結構，類似的還有 <code>dictionary</code>。這裡的 <code>set</code> 與中學數學學到的集合是一樣的，她可以 0 個或多個元素，但不可重複，沒有順序。</p>
-<p>```python<br/>
-s0 = set()  # 空集合，不可用 s0={}<br/>
-s1 = {3, 1, 4, 8}<br/>
-s2 = {x + 1 for x in s1 if x &lt; 5}  # {2,4,5}<br/>
-a = [1, 3, 1, 4, 2, 3, 3]<br/>
-s3 = set(a)  # {1,2,3,4} 把 list 中的元素放入 s3 集合</p>
-<p>s1 - s2  # 差集<br/>
-s1 &amp; s2  # 交集<br/>
-s1 | s2  # 聯集<br/>
-s1 ^ s2  # 對稱差（s1 | s2）-（s1 &amp; s2）</p>
-<p>3 in s1  # 元素檢查是否在<br/>
-s1.add(9)  # 加入一個元素，已存在則無變化<br/>
-s1.remove(9)  # 移除一個元素，不存在會錯誤</p>
+<div class="highlight"><pre><span></span><code><span class="n">s0</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>  <span class="c1"># 空集合，不可用 s0={}</span>
+<span class="n">s1</span> <span class="o">=</span> <span class="p">{</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">8</span><span class="p">}</span>
+<span class="n">s2</span> <span class="o">=</span> <span class="p">{</span><span class="n">x</span> <span class="o">+</span> <span class="mi">1</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">s1</span> <span class="k">if</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="mi">5</span><span class="p">}</span>  <span class="c1"># {2,4,5}</span>
+<span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+<span class="n">s3</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>  <span class="c1"># {1,2,3,4} 把 list 中的元素放入 s3 集合</span>
+
+<span class="n">s1</span> <span class="o">-</span> <span class="n">s2</span>  <span class="c1"># 差集</span>
+<span class="n">s1</span> <span class="o">&amp;</span> <span class="n">s2</span>  <span class="c1"># 交集</span>
+<span class="n">s1</span> <span class="o">|</span> <span class="n">s2</span>  <span class="c1"># 聯集</span>
+<span class="n">s1</span> <span class="o">^</span> <span class="n">s2</span>  <span class="c1"># 對稱差（s1 | s2）-（s1 &amp; s2）</span>
+
+<span class="mi">3</span> <span class="ow">in</span> <span class="n">s1</span>  <span class="c1"># 元素檢查是否在</span>
+<span class="n">s1</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="mi">9</span><span class="p">)</span>  <span class="c1"># 加入一個元素，已存在則無變化</span>
+<span class="n">s1</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="mi">9</span><span class="p">)</span>  <span class="c1"># 移除一個元素，不存在會錯誤</span>
+</code></pre></div>
+<h1 id="apcs-寫題最重要的-4-種-set-用法">APCS 寫題最重要的 4 種 <code>set</code> 用法<a class="headerlink" href="#apcs-寫題最重要的-4-種-set-用法" title="Permanent link"></a></h1>
+<h3 id="第一種去重複">第一種：去重複<a class="headerlink" href="#第一種去重複" title="Permanent link"></a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+
+<span class="n">a</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+</code></pre></div>
+<hr/>
+<h3 id="第二種算有幾種">第二種：算有幾種<a class="headerlink" href="#第二種算有幾種" title="Permanent link"></a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+
+<span class="n">ans</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">a</span><span class="p">))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">ans</span><span class="p">)</span>
+</code></pre></div>
+<p>得到：</p>
+<div class="highlight"><pre><span></span><code><span class="mi">3</span>
+</code></pre></div>
+<hr/>
+<h3 id="第三種判斷以前有沒有出現">第三種：判斷以前有沒有出現<a class="headerlink" href="#第三種判斷以前有沒有出現" title="Permanent link"></a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">seen</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+
+<span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">a</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">seen</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"重複"</span><span class="p">)</span>
+
+    <span class="n">seen</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</code></pre></div>
+<hr/>
+<h3 id="第四種找兩群共同的東西">第四種：找兩群共同的東西<a class="headerlink" href="#第四種找兩群共同的東西" title="Permanent link"></a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">a</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">}</span>
+<span class="n">b</span> <span class="o">=</span> <span class="p">{</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">}</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span> <span class="o">&amp;</span> <span class="n">b</span><span class="p">)</span>
+</code></pre></div>
+<p>得到：</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">}</span>
+</code></pre></div>
 
 
 
