@@ -158,9 +158,9 @@ nav:  # 自定義網站的導航結構
         - 'Python APCS 官方識讀例題轉 HTML': 'md/python/Python_APCS_官方識讀例題轉_HTML.html'
         - 'Python APCS 官方識讀例題轉 HTML': 'md/python/Python_APCS_自編識讀例題轉_HTML.html'
     - '實作題':
-        - 'md/python/h027_矩陣總和.html'
-        - 'md/python/f580_骰子.html'
-        - 'md/python/m932_蜜蜂觀察.html'
+        - 'h027_矩陣總和': 'md/python/h027_矩陣總和.html'
+        - 'f580_骰子': 'md/python/f580_骰子.html'
+        - 'm932_蜜蜂觀察': 'md/python/m932_蜜蜂觀察.html'
          
       
     #   - '變數': 'md/python/變數.md'
