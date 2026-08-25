@@ -162,6 +162,7 @@ nav:  # 自定義網站的導航結構
         - 'h027_矩陣總和': 'md/python/h027_矩陣總和.html'
         - 'f580_骰子': 'md/python/f580_骰子.html'
         - 'm932_蜜蜂觀察': 'md/python/m932_蜜蜂觀察.html'
+        - 'q837_轉盤得分': 'md/python/q837_轉盤得分.html'
          
       
     #   - '變數': 'md/python/變數.md'
