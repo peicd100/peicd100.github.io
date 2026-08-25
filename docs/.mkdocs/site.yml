@@ -144,6 +144,7 @@ nav:  # 自定義網站的導航結構
     - 'md/python/控制程式流程—分支選擇指令.md'
     - 'md/python/控制程式流程—for 迴圈.md'
     - 'md/python/再探 List(串列)與字串操作.md'
+    - 'md/python/切片和_range_的記法.md'
     - 'md/python/list of list 實作二維陣列.md'
     - 'md/python/控制程式流程—自訂函數.md'
     - 'md/python/控制程式流程—while 迴圈.md'
