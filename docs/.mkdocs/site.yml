@@ -158,7 +158,12 @@ nav:  # 自定義網站的導航結構
     - '觀念題練習':
         - 'Python APCS 官方識讀例題轉 HTML': 'md/python/Python_APCS_官方識讀例題轉_HTML.html'
         - 'Python APCS 官方識讀例題轉 HTML': 'md/python/Python_APCS_自編識讀例題轉_HTML.html'
-    - '實作題':
+    - '實作題':        
+        - 'j606_造字程式': 'md/python/j606_造字程式.html'
+        - 'o077_電子畫布': 'md/python/o077_電子畫布.html'
+        - 'c291_小群體': 'md/python/c291_小群體.html'
+        - 'q182_字串操作': 'md/python/q182_字串操作.html'
+        - 'o712_蒐集寶石': 'md/python/o712_蒐集寶石.html'
         - 'h027_矩陣總和': 'md/python/h027_矩陣總和.html'
         - 'f580_骰子': 'md/python/f580_骰子.html'
         - 'm932_蜜蜂觀察': 'md/python/m932_蜜蜂觀察.html'
