@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- Generated from shared canonical Python OJ template. template_sha256=d6de4b8258701ad26290709948647b681b0b691ff2eb09ab4131dedd87a7195c -->
+<!-- Generated from shared canonical Python OJ template. template_sha256=4b053999dbdb137e493b8646660baf426a54163a5738be2d4538ae19c3814a25 -->
 <html lang="zh-Hant-TW" data-theme="dark">
 <head>
 <meta charset="utf-8">
@@ -538,6 +538,25 @@ const TASKS = [{"id":1,"title":"一次排列：舊位置搬到新位置","diffic
 
 
 
+// Shared test accessors belong to the canonical template. Optional generator_js may
+// provide generateOneHiddenTest(), but formal-stage rendering/Judge must never depend
+// on payload-specific helper wrappers existing.
+const SHARED_GENERATED_TEST_CACHE = new Map();
+function getGeneratedTestsForTask(task){
+  if(!SHARED_GENERATED_TEST_CACHE.has(task.id)){
+    let tests=[];
+    if(Array.isArray(task.generatedTests) && task.generatedTests.length){
+      tests=task.generatedTests.map(test=>({...test,generated:true}));
+    }else if(typeof generateOneHiddenTest==='function'){
+      tests=[0,1].map(variant=>generateOneHiddenTest(task.id,variant)).filter(Boolean).map(test=>({...test,generated:true}));
+    }
+    SHARED_GENERATED_TEST_CACHE.set(task.id,tests);
+  }
+  return SHARED_GENERATED_TEST_CACHE.get(task.id);
+}
+function getTaskTestsForTask(task){return [...task.tests,...getGeneratedTestsForTask(task)]}
+function getPublicTestsForTask(task){return task.tests.filter(test=>test.public)}
+
 
 const COMPLETIONS = [
   'abs','all','any','append','break','continue','def','elif','else','enumerate','False','for','if','in','input','int','len','list','map','max','min','None','print','range','return','reversed','set','sorted','str','sum','True','while','zip'
@@ -932,7 +951,7 @@ function renderProblem(){
   if(sourceStageActive){renderSourceStage();return;}
   document.body.classList.remove('source-view');
   const t=TASKS[currentTaskIndex];
-  const publicSamples=getPublicTests(t);
+  const publicSamples=getPublicTestsForTask(t);
   const sampleOriginLabel=(sample)=>({official:'官方',task:'本階',supplemental:'補充',special:'特殊'}[sample?.sampleOrigin]||'公開');
   const sampleOriginClass=(sample)=>sample?.sampleOrigin==='official'?' official':(sample?.sampleOrigin==='special'?' special':'');
   const extraSamples=publicSamples.slice(1).map((sample,offset)=>{
@@ -978,7 +997,7 @@ function renderProblem(){
 
 function renderCompactTests(state='idle', results=[]){
   const t=TASKS[currentTaskIndex];
-  const tests=getTaskTests(t);
+  const tests=getTaskTestsForTask(t);
   const list=$('#submitTestsList');
   const count=$('#submitTestsCount');
   if(!list || !count) return;
@@ -1014,7 +1033,7 @@ function renderTests(state='idle',results=[]){
 
 function renderHiddenTests(){
   const t=TASKS[currentTaskIndex];
-  const hidden=getTaskTests(t).map((test,idx)=>({test,idx})).filter(item=>!item.test.public);
+  const hidden=getTaskTestsForTask(t).map((test,idx)=>({test,idx})).filter(item=>!item.test.public);
   const accepted=Boolean(getAccepted()[t.id]);
   const details=$('#hiddenTestsDetails');
   const summary=$('#hiddenTestsSummary');
@@ -1649,7 +1668,7 @@ async function judge(){
   const t=TASKS[currentTaskIndex];
   const code=getCode();
   saveDraft();
-  const tests=getTaskTests(t);
+  const tests=getTaskTestsForTask(t);
   const op=beginOperation();
   overallVerdict.className='status-pill warn'; overallVerdict.textContent='評測中';
   resultSummary.textContent=`正在執行全部 ${tests.length} 筆測資…`;
