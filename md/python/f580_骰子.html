@@ -1,12 +1,12 @@
 <!doctype html>
-<!-- Generated from shared canonical Python OJ template. template_sha256=bc7150f5b78fc58fb9bb3eb03c265be07ea0b9d912dd1a1e24130a9b8d128ac5 -->
-<html lang="zh-Hant-TW" data-theme="light">
+<!-- Generated from shared canonical Python OJ template. template_sha256=d6de4b8258701ad26290709948647b681b0b691ff2eb09ab4131dedd87a7195c -->
+<html lang="zh-Hant-TW" data-theme="dark">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="light dark">
 <script>
-(()=>{const key='step_oj_framework:theme:v1';let theme='light';try{const saved=localStorage.getItem(key);if(saved==='light'||saved==='dark')theme=saved;}catch{}document.documentElement.dataset.theme=theme;})();
+(()=>{const key='step_oj_framework:theme:v1';let theme='dark';try{const saved=localStorage.getItem(key);if(saved==='light'||saved==='dark')theme=saved;}catch{}document.documentElement.dataset.theme=theme;})();
 </script>
 <title>f580 骰子｜APCS 階梯式 Online Judge</title>
 <link rel="preconnect" href="https://cdnjs.cloudflare.com">
@@ -27,13 +27,13 @@ button{cursor:pointer;}
 
 .chip{border:1px solid var(--line);background:#fafafa;border-radius:999px;padding:3px 9px;font-size:.82rem;color:#555;}
 
-.sample-explanation-body{color:#3d3d3d;}
+.sample-explanation-body{color:var(--ink);}
 .sample-explanation-body p{margin:.35rem 0 .7rem;}
 .sample-explanation-body ol,.sample-explanation-body ul{margin:.4rem 0 .8rem;padding-left:1.5rem;}
 .sample-explanation-body li{margin:.25rem 0;}
-.sample-explanation-body table{width:100%;border-collapse:collapse;margin:9px 0;font-size:.9rem;}
-.sample-explanation-body th,.sample-explanation-body td{border:1px solid #d9d9d4;padding:6px 8px;text-align:left;vertical-align:top;}
-.sample-explanation-body th{background:#f5f5f2;}
+.sample-explanation-body table,.tutorial-content table{width:100%;border-collapse:collapse;margin:9px 0;font-size:.9rem;color:var(--ink);}
+.sample-explanation-body th,.sample-explanation-body td,.tutorial-content th,.tutorial-content td{border:1px solid var(--line-strong);padding:6px 8px;text-align:left;vertical-align:top;background:var(--paper);color:var(--ink);}
+.sample-explanation-body th,.tutorial-content th{background:var(--soft);font-weight:800;}
 
 /* Sample explanation */
 .demo-story{display:grid;gap:12px;}
@@ -49,14 +49,14 @@ button{cursor:pointer;}
 .matrix-grid.compact .matrix-cell{min-height:29px;font-size:.82rem;}
 
 @keyframes diffPulse{0%,100%{box-shadow:none}50%{box-shadow:0 0 0 3px rgba(180,35,24,.12)}}
-.big-arrow{font-size:1.45rem;color:#777;font-weight:800;}
+.big-arrow{font-size:1.45rem;color:var(--muted);font-weight:800;}
 .legend,.difference-list{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin:8px 0;}
 .legend span,.difference-list span{border:1px solid #deded9;border-radius:999px;padding:4px 8px;background:#fff;font-size:.82rem;}
 .visual-caption{text-align:center;color:#666!important;font-size:.86rem;}
 .calc-flow{display:flex;align-items:center;justify-content:center;gap:7px;flex-wrap:wrap;margin:14px 0;font-family:"Cascadia Mono","Consolas",monospace;}
 .calc-flow span{background:#fff;border:1px solid #d9d9d4;border-radius:7px;padding:6px 9px;font-weight:800;}
 .calc-flow.small span{font-size:.84rem;}
-.calc-flow b{color:#777;}
+.calc-flow b{color:var(--muted);}
 .calc-result{text-align:center;font-weight:900;font-size:1.05rem;margin:8px 0;}
 .pulse-soft{animation:softPulse 1.5s ease-in-out infinite;}
 @keyframes softPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.035)}}
@@ -137,7 +137,8 @@ button{cursor:pointer;}
 .hidden-test-block{min-width:0;}
 
 @media(max-width:640px){.hidden-test-io{grid-template-columns:1fr}}
-.hidden-tests-empty{color:#777;font-size:.88rem;padding:4px 0;}
+.hidden-tests-empty{color:var(--muted);font-size:.88rem;padding:4px 0;}
+.history-empty{color:var(--muted);font-size:.86rem;}
 .submission-history{margin-top:14px;}
 .history-list{display:grid;gap:6px;margin-top:9px;}
 
@@ -184,7 +185,7 @@ header{position:sticky;top:0;z-index:40;background:rgba(255,255,255,.97);backdro
 .brand{font-weight:850;letter-spacing:.01em;margin-right:auto;display:flex;align-items:baseline;gap:9px;min-width:0;white-space:nowrap;}
 .brand-code{font-family:"Cascadia Mono","SFMono-Regular",Consolas,monospace;color:var(--accent);font-size:.82rem;font-weight:800;letter-spacing:.035em;}
 .brand-title{font-weight:800;font-size:1.02rem;color:#17202c;}
-.brand-subtitle{font-size:.8rem;color:#7a8494;font-weight:600;}
+.brand-subtitle{font-size:.8rem;color:var(--muted);font-weight:600;}
 .progress-wrap{display:flex;align-items:center;gap:9px;font-size:.8rem;color:#697386;font-weight:700;}
 .progress{overflow:hidden;width:116px;height:6px;background:#e7ebef;border-radius:999px;}
 .progress>span{display:block;height:100%;width:0;transition:width .25s ease;background:var(--accent);border-radius:999px;}
@@ -209,9 +210,9 @@ header{position:sticky;top:0;z-index:40;background:rgba(255,255,255,.97);backdro
 
 /* Problem content */
 .problem{padding:27px 30px 30px;}
-.kicker{margin-bottom:5px;color:#7b8796;font-size:.76rem;font-weight:750;letter-spacing:.035em;text-transform:none;}
+.kicker{margin-bottom:5px;color:var(--muted);font-size:.76rem;font-weight:750;letter-spacing:.035em;text-transform:none;}
 .problem h1{margin:0;color:#17202c;font-size:1.48rem;line-height:1.35;font-weight:800;letter-spacing:-.015em;}
-.meta{display:flex;flex-wrap:wrap;margin:7px 0 24px;gap:0;color:#7a8492;font-size:.8rem;}
+.meta{display:flex;flex-wrap:wrap;margin:7px 0 24px;gap:0;color:var(--muted);font-size:.8rem;}
 .meta span+span::before{content:"·";margin:0 8px;color:#b1b8c1;}
 .section-title{position:relative;margin:27px 0 10px;padding:0 0 8px 13px;border-bottom:1px solid #e7ebef;color:#273345;font-size:.92rem;font-weight:800;}
 .section-title::before{content:"";position:absolute;left:0;top:.25em;width:3px;height:1.05em;border-radius:2px;background:var(--accent);}
@@ -220,21 +221,27 @@ header{position:sticky;top:0;z-index:40;background:rgba(255,255,255,.97);backdro
 pre{white-space:pre-wrap;word-break:break-word;margin:9px 0;padding:13px 15px;background:#f8fafb;color:#273345;border:1px solid #e1e6eb;border-radius:6px;font-family:"Cascadia Mono","SFMono-Regular",Consolas,monospace;font-size:.88rem;line-height:1.62;}
 .sample-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
 .sample-box{min-width:0;padding:0;}
-.sample-box h4{margin:0 0 6px;color:#7a8492;font-size:.75rem;font-weight:800;letter-spacing:.025em;}
-.sample-box pre{height:calc(100% - 25px);min-height:64px;background:#f9fafb;}
+.sample-box h4{margin:0 0 6px;color:var(--muted);font-size:.75rem;font-weight:800;letter-spacing:.025em;}
+.sample-box-head{display:flex;align-items:center;gap:8px;margin:0 0 6px;}
+.sample-box-head h4{margin:0;}
+.sample-copy-btn{margin-left:auto;min-height:28px;padding:3px 8px;border:1px solid var(--line-strong);border-radius:5px;background:var(--paper);color:var(--muted);font-size:.72rem;font-weight:800;}
+.sample-copy-btn:hover{background:var(--soft);color:var(--ink);}
+.sample-copy-btn.success{border-color:#8bc2a4;color:var(--ok);background:var(--ok-soft);}
+.sample-copy-btn:disabled{cursor:default;opacity:.8;}
+.sample-box pre{height:calc(100% - 34px);min-height:64px;background:#f9fafb;}
 
 /* Sample explanation */
 .sample-explanation{margin-top:9px;padding:16px;border:1px solid #dfe5ea;border-radius:7px;background:#f8fafb;color:#364152;box-shadow:none;}
 .sample-explain-intro{justify-content:space-between;flex-wrap:wrap;margin-bottom:12px;display:flex;align-items:baseline;gap:9px;margin:0 0 14px;padding:0 0 10px;border:0;border-bottom:1px solid #e2e7ec;border-radius:0;background:transparent;}
 .sample-explain-intro strong{display:block;font-size:.88rem;color:#273345;font-weight:800;}
-.sample-explain-intro small{margin-top:2px;line-height:1.45;display:inline;margin:0;color:#7a8492;font-size:.78rem;}
+.sample-explain-intro small{margin-top:2px;line-height:1.45;display:inline;margin:0;color:var(--muted);font-size:.78rem;}
 .sample-explain-intro .intro-badge{border:1px solid #c9d7e7;background:#f4f8fd;color:#35506e;border-radius:999px;padding:4px 10px;font-size:.76rem;font-weight:850;white-space:nowrap;display:none;}
 .demo-story,.demo-viewport{gap:12px;}
 .demo-step{position:relative;overflow:hidden;padding:14px 15px;border:1px solid #e3e8ed;border-radius:6px;background:#fff;box-shadow:none;transform:none;transition:none;}
 .demo-step p:first-child{margin-top:0;}
 .demo-step:last-child{margin-bottom:0;}
-.why-card{grid-template-columns:auto 1fr;gap:9px;align-items:start;display:block;margin:11px 0 4px;padding:9px 11px;border:0;border-left:3px solid #91a9bc;border-radius:0;background:#f5f8fa;}
-.why-card p{margin:0!important;color:#4b596a!important;font-size:.88rem;}
+.why-card{grid-template-columns:auto 1fr;gap:9px;align-items:start;display:block;margin:11px 0 4px;padding:9px 11px;border:0;border-left:3px solid var(--accent);border-radius:0;background:var(--soft);color:var(--ink);}
+.why-card p{margin:0!important;color:var(--ink)!important;font-size:.88rem;}
 .why-icon{place-items:center;min-width:42px;height:27px;padding:0 7px;border-radius:999px;background:#eaf2fb;color:#35506e;font-size:.75rem;font-weight:900;display:none;}
 .reason-node,.pair-card,.placement-card,.window-card,.candidate-card,.candidate-map .candidate-pos{border-color:#dde3e8;border-radius:5px;box-shadow:none;}
 .reason-node{min-width:112px;max-width:220px;display:grid;align-content:center;gap:3px;border:1px solid #d9d9d4;border-radius:10px;background:#fff;text-align:center;padding:9px 11px;}
@@ -275,7 +282,7 @@ pre{white-space:pre-wrap;word-break:break-word;margin:9px 0;padding:13px 15px;ba
 .hidden-test-item{padding:11px;border:1px solid #e1e6ea;border-radius:5px;background:#fff;}
 .hidden-test-item strong{display:block;margin-bottom:8px;color:#405064;font-size:.8rem;}
 .hidden-test-io{display:grid;grid-template-columns:minmax(0,1fr) minmax(150px,.45fr);gap:10px;}
-.hidden-test-label{display:block;margin:0 0 4px;font-weight:800;margin-bottom:5px;color:#7a8492;font-size:.72rem;letter-spacing:.03em;}
+.hidden-test-label{display:block;margin:0 0 4px;font-weight:800;margin-bottom:5px;color:var(--muted);font-size:.72rem;letter-spacing:.03em;}
 .hidden-test-item pre{margin:0;overflow:auto;background:#f8fafb;max-height:220px;}
 .history-item{display:flex;justify-content:space-between;gap:10px;border-bottom:1px solid #eee;padding:8px 10px;border:1px solid #e7ebef;border-radius:4px;background:#fff;font-size:.8rem;color:#657184;}
 
@@ -315,11 +322,17 @@ li.CodeMirror-hint-active{background:#e8f0f6;color:#22364b;}
 .terminal-head,.submit-tests-head{min-height:39px;background:var(--terminal-soft);border-bottom:1px solid #2b3649;color:#eef2f7;}
 .terminal-head{min-height:40px;display:flex;align-items:center;gap:10px;background:#1b1b1b;color:#f2f2f2;border-bottom:1px solid #333;font-size:.86rem;padding:7px 12px;}
 .terminal-head strong,.submit-tests-head strong{font-size:.76rem;letter-spacing:.045em;}
-.terminal-meta{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:58%;color:#9da8b8;font-size:.75rem;}
 .terminal-clear{padding:4px 8px;border:1px solid #3a4659;background:#202b3d;color:#cbd3df;border-radius:4px;font-size:.74rem;}
-.terminal-clear:hover{background:#283449;color:#fff;}
-.terminal-output{margin:0;border:0;border-radius:0;overflow:auto;white-space:pre-wrap;word-break:break-word;font-family:"Cascadia Mono","Consolas",monospace;min-height:178px;max-height:246px;padding:13px 15px;background:var(--terminal);color:#e7ebf0;font-size:.82rem;line-height:1.58;}
+.terminal-clear:hover:not(:disabled){background:#283449;color:#fff;}
+.terminal-clear:disabled{opacity:.42;cursor:not-allowed;}
+.terminal-run{border-color:#2c6470;color:#c7f8ff;}
+.terminal-stop{border-color:#714047;color:#ffd7dc;}
+.terminal-console{min-height:178px;max-height:246px;overflow:auto;padding:13px 15px;background:var(--terminal);color:#e7ebf0;font-family:"Cascadia Mono","Consolas",monospace;font-size:.82rem;line-height:1.58;white-space:pre-wrap;word-break:break-word;cursor:text;}
+.terminal-output{white-space:pre-wrap;word-break:break-word;}
 .terminal-output.error{color:#ffb8b2;}
+.terminal-input{display:none;vertical-align:baseline;width:min(70%,520px);min-width:72px;height:1.65em;min-height:1.65em;max-height:5.2em;resize:none;overflow:hidden;margin:0 0 -0.35em 0;padding:0 2px;border:0;border-bottom:1px solid #607086;outline:0;background:transparent;color:#f4f7fb;caret-color:#67e8f9;font:inherit;line-height:inherit;white-space:pre;}
+.terminal-input.awaiting{display:inline-block;}
+.terminal-input:focus{border-bottom-color:#67e8f9;box-shadow:0 1px 0 rgba(103,232,249,.35);}
 .submit-tests-panel{min-width:0;color:#eee;background:#121a29;border-left:1px solid #2b3649;}
 .submit-tests-list{height:100%;overflow:auto;display:grid;align-content:start;min-height:178px;max-height:246px;padding:8px;gap:5px;}
 .submit-test-row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:7px;align-items:center;font-family:"Cascadia Mono","Consolas",monospace;min-height:32px;padding:5px 7px;border:1px solid #303b4e;border-radius:4px;background:#182235;font-size:.7rem;}
@@ -331,7 +344,7 @@ li.CodeMirror-hint-active{background:#e8f0f6;color:#22364b;}
 .submit-test-row.fail .mini-verdict{color:#ff9992;}
 .submit-test-row.wait{border-color:#354054;background:#182235;}
 .submit-tests-count{white-space:nowrap;color:#97a3b4;}
-.editor-foot{display:flex;gap:12px;justify-content:space-between;flex-wrap:wrap;padding:8px 12px;background:#f8fafb;border-top:1px solid var(--line);color:#7b8695;font-size:.74rem;line-height:1.5;}
+.editor-foot{display:flex;gap:12px;justify-content:space-between;flex-wrap:wrap;padding:8px 12px;background:#f8fafb;border-top:1px solid var(--line);color:var(--muted);font-size:.74rem;line-height:1.5;}
 
 .level-btn:disabled{cursor:default;opacity:.62;transform:none;}
 .level-btn.active:disabled{opacity:.82;}
@@ -339,16 +352,22 @@ li.CodeMirror-hint-active{background:#e8f0f6;color:#22364b;}
 .extra-sample-card{border:1px solid #e1e6ea;border-radius:6px;background:#fff;padding:12px;}
 .extra-sample-card>strong{display:block;margin-bottom:8px;color:#405064;font-size:.8rem;}
 .sample-observe-note{margin:9px 0 0!important;color:var(--muted)!important;font-size:.82rem!important;}
-.terminal-sample-select{max-width:102px;min-height:27px;border:1px solid #3a4659;border-radius:4px;background:#202b3d;color:#dce3ec;padding:2px 6px;font-family:"Cascadia Mono","SFMono-Regular",Consolas,monospace;font-size:.72rem;}
-.terminal-sample-select:focus-visible{outline:2px solid rgba(151,181,210,.45);outline-offset:1px;}
-.terminal-sample-select:disabled{opacity:.55;}
+.sample-section-title{display:flex;align-items:center;gap:8px;flex-wrap:wrap}.sample-origin-badge{display:inline-flex;align-items:center;min-height:22px;padding:1px 7px;border:1px solid var(--line-strong);border-radius:999px;background:var(--soft);color:var(--muted);font-size:.68rem;font-weight:850;line-height:1.2}.sample-origin-badge.official{background:var(--accent-soft);color:var(--accent);border-color:#b8ccd9}.sample-origin-badge.special{background:var(--warn-soft);color:var(--warn);border-color:#ead3a5}
 
 /* Dialog */
 dialog{padding:0;width:min(840px,92vw);border:1px solid #d7dee5;border-radius:8px;box-shadow:0 24px 70px rgba(15,23,42,.22);}
+#answerDialog.multi-answer{width:min(1220px,96vw);}
 dialog::backdrop{background:rgba(15,23,42,.4);}
 .dialog-head{display:flex;align-items:center;gap:12px;padding:12px 15px;background:#f8fafb;border-bottom:1px solid var(--line);}
 .dialog-head strong{margin-right:auto;color:#273345;font-size:.9rem;}
 .dialog-body{max-height:72vh;overflow:auto;padding:17px;background:#fff;}
+.answer-variants{min-width:0;}
+.answer-variants.multi{display:grid;grid-template-columns:repeat(var(--answer-count),minmax(360px,1fr));gap:14px;overflow-x:auto;overscroll-behavior-inline:contain;padding-bottom:4px;}
+.answer-variant{min-width:0;border:1px solid var(--line);border-radius:7px;background:var(--paper);overflow:hidden;}
+.answer-variants.single .answer-variant{border:0;border-radius:0;background:transparent;}
+.answer-variant-title{margin:0;padding:10px 12px;border-bottom:1px solid var(--line);background:var(--soft);color:var(--ink);font-size:.84rem;}
+.answer-variants.single .answer-variant-title{display:none;}
+.answer-variant pre{margin:0;border:0;border-radius:0;min-height:100%;overflow:auto;white-space:pre;word-break:normal;}
 .close-btn{padding:5px 9px;min-height:32px;border:1px solid #cfd6de;border-radius:5px;background:#fff;color:#4b586a;font-size:.79rem;}
 
 /* Responsive */
@@ -389,21 +408,22 @@ dialog::backdrop{background:rgba(15,23,42,.4);}
 }
 
 
-/* Shared UI / visual primitives: Theme + CUSTOM INPUT + Detailed Tutorial */
+/* Shared UI / visual primitives: Theme + Interactive Terminal + Detailed Tutorial */
 .theme-control{display:inline-flex;align-items:center;gap:6px}.theme-control label{font-size:.75rem;color:var(--muted);font-weight:800}.theme-control select{min-height:34px;border:1px solid var(--line-strong);border-radius:6px;background:var(--paper);color:var(--ink);padding:4px 28px 4px 9px}
 .learning-guide{display:grid;gap:10px}.learn-card{padding:12px 14px;border:1px solid var(--line);border-radius:7px;background:var(--paper)}.learn-card>strong{display:block;margin-bottom:6px}.learn-recap{background:var(--soft);border-left:3px solid #9ba6b4}.learn-new{background:var(--accent-soft);border-left:3px solid #6f98bb}.learn-plan{background:#f7fbf8;border-left:3px solid #79ab8f}.learn-pitfall{background:#fffaf2;border-left:3px solid #d1a04e}.learn-card ol,.learn-card ul{margin:.45rem 0 .2rem;padding-left:1.4rem}.learn-card li{margin:.28rem 0}.learn-visual{margin:10px 0;padding:12px;border:1px solid var(--line);border-radius:7px;background:var(--paper)}.learn-visual-title{margin-bottom:8px;color:#344256;font-size:.82rem;font-weight:850}.learn-step-flow{display:flex;gap:8px;align-items:center;justify-content:center;flex-wrap:wrap}.learn-step-node{padding:8px 10px;border:1px solid var(--line);border-radius:6px;background:var(--soft);text-align:center}.learn-step-node small{display:block;color:var(--muted)}
-.terminal-workspace.has-custom-input{grid-template-columns:minmax(168px,.9fr) minmax(190px,1.1fr) minmax(168px,232px)}.custom-input-panel{min-width:0;background:var(--terminal);color:#e7ebf0;border-right:1px solid #2b3649}.custom-input-head{min-height:40px;display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:6px;padding:7px 8px;background:#1b1b1b;border-bottom:1px solid #333;color:#f2f2f2;font-family:"Cascadia Mono",Consolas,monospace;overflow:hidden}.custom-input-head strong{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:.74rem;letter-spacing:.04em}.custom-input-textarea{display:block;width:100%;min-height:178px;max-height:246px;resize:vertical;border:0;outline:0;padding:13px;background:var(--terminal);color:#e7ebf0;font:400 .8rem/1.55 "Cascadia Mono",Consolas,monospace}.custom-input-textarea:focus-visible{box-shadow:inset 0 0 0 2px rgba(80,190,220,.45)}.input-source-switch{position:relative;display:inline-flex;align-items:center;justify-content:flex-end;gap:4px;min-width:0;max-width:100%;white-space:nowrap;font-size:.68rem;cursor:pointer}.input-source-switch input{position:absolute;inline-size:1px;block-size:1px;opacity:0;pointer-events:none}.switch-label{font-size:.64rem}.switch-track{position:relative;display:inline-block;width:34px;height:20px;flex:0 0 34px;border:1px solid #3a4659;border-radius:999px;background:#202b3d}.switch-track::after{content:"";position:absolute;left:2px;top:2px;width:14px;height:14px;border-radius:999px;background:#e7ebf0;transition:transform .15s ease}.input-source-switch input:checked + .switch-track{background:var(--accent);border-color:var(--accent)}.input-source-switch input:checked + .switch-track::after{transform:translateX(14px);background:#001014}.input-source-switch input:focus-visible + .switch-track{outline:2px solid var(--accent);outline-offset:2px}.switch-state{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important}
 html[data-theme="light"]{color-scheme:light}html[data-theme="dark"]{color-scheme:dark;--bg:#000000;--paper:#080808;--ink:#f4f7fb;--muted:#a2aab8;--line:#242424;--line-strong:#3a3a3a;--soft:#0d0d0d;--soft2:#0b0b0b;--accent:#22d3ee;--accent-strong:#06b6d4;--accent-soft:#06181d;--ok:#4ade80;--ok-soft:#07170d;--bad:#fb7185;--bad-soft:#1a090d;--warn:#fbbf24;--warn-soft:#1a1304;--terminal:#000000;--terminal-soft:#080808;--shadow:none;background:#000}
 html[data-theme="dark"] body{background:#000;color:var(--ink)}html[data-theme="dark"] header{background:rgba(0,0,0,.97);border-color:#222}html[data-theme="dark"] .panel,html[data-theme="dark"] .problem,html[data-theme="dark"] .results-wrap,html[data-theme="dark"] .editor-shell,html[data-theme="dark"] .dialog-body{background:#080808;color:var(--ink);border-color:#242424}
-html[data-theme="dark"] .editor-head,html[data-theme="dark"] .editor-foot,html[data-theme="dark"] .dialog-head,html[data-theme="dark"] .sample-explanation,html[data-theme="dark"] .demo-step,html[data-theme="dark"] .learn-card,html[data-theme="dark"] .learn-visual,html[data-theme="dark"] .learn-step-node,html[data-theme="dark"] .sample-box,html[data-theme="dark"] .extra-sample-card,html[data-theme="dark"] .hidden-test-item,html[data-theme="dark"] .history-item,html[data-theme="dark"] .reason-node,html[data-theme="dark"] .pair-card,html[data-theme="dark"] .placement-card,html[data-theme="dark"] .window-card,html[data-theme="dark"] .candidate-card,html[data-theme="dark"] .candidate-map .candidate-pos,html[data-theme="dark"] .shape-grid,html[data-theme="dark"] .coord-chip,html[data-theme="dark"] .final-output-visual>div:not(.big-arrow){background:#090909!important;color:#e7ebf0;border-color:#292929}
+html[data-theme="dark"] .editor-head,html[data-theme="dark"] .editor-foot,html[data-theme="dark"] .dialog-head,html[data-theme="dark"] .answer-variant,html[data-theme="dark"] .answer-variant-title,html[data-theme="dark"] .sample-explanation,html[data-theme="dark"] .demo-step,html[data-theme="dark"] .learn-card,html[data-theme="dark"] .learn-visual,html[data-theme="dark"] .learn-step-node,html[data-theme="dark"] .sample-box,html[data-theme="dark"] .extra-sample-card,html[data-theme="dark"] .hidden-test-item,html[data-theme="dark"] .history-item,html[data-theme="dark"] .reason-node,html[data-theme="dark"] .pair-card,html[data-theme="dark"] .placement-card,html[data-theme="dark"] .window-card,html[data-theme="dark"] .candidate-card,html[data-theme="dark"] .candidate-map .candidate-pos,html[data-theme="dark"] .shape-grid,html[data-theme="dark"] .coord-chip,html[data-theme="dark"] .final-output-visual>div:not(.big-arrow){background:#090909!important;color:#e7ebf0;border-color:#292929}
 html[data-theme="dark"] .learn-new{background:#06181d!important;border-left-color:#155e75}html[data-theme="dark"] .learn-plan{background:#07170d!important;border-left-color:#1f5b36}html[data-theme="dark"] .learn-pitfall{background:#1a1304!important;border-left-color:#6b5213}html[data-theme="dark"] .btn,html[data-theme="dark"] .theme-control select,html[data-theme="dark"] .level-btn{background:#0b0b0b;color:#dbe1e8;border-color:#303030}html[data-theme="dark"] .btn.primary,html[data-theme="dark"] .level-btn.active{background:var(--accent);color:#001014;border-color:var(--accent)}html[data-theme="dark"] .btn.danger{color:#fda4af}
 html[data-theme="dark"] .CodeMirror,html[data-theme="dark"] .fallback-editor{background:#020202;color:#e5e7eb}html[data-theme="dark"] .CodeMirror-gutters{background:#080808;border-color:#242424}html[data-theme="dark"] .CodeMirror-selected{background:#12343b!important}html[data-theme="dark"] .cm-s-default .cm-keyword{color:#67e8f9}html[data-theme="dark"] .cm-s-default .cm-builtin{color:#c4b5fd}html[data-theme="dark"] .cm-s-default .cm-number{color:#fbbf24}html[data-theme="dark"] .cm-s-default .cm-string{color:#86efac}html[data-theme="dark"] .cm-s-default .cm-comment{color:#8b949e}
-html[data-theme="dark"] .terminal-workspace,html[data-theme="dark"] .custom-input-panel,html[data-theme="dark"] .terminal-panel,html[data-theme="dark"] .terminal-output,html[data-theme="dark"] .custom-input-textarea,html[data-theme="dark"] .submit-tests-panel{background:#000}html[data-theme="dark"] .custom-input-head,html[data-theme="dark"] .terminal-head,html[data-theme="dark"] .submit-tests-head{background:#080808;border-color:#242424}html[data-theme="dark"] .submit-test-row{background:#0a0a0a;border-color:#2a2a2a}
+html[data-theme="dark"] .terminal-workspace,html[data-theme="dark"] .terminal-panel,html[data-theme="dark"] .terminal-console,html[data-theme="dark"] .submit-tests-panel{background:#000}html[data-theme="dark"] .terminal-head,html[data-theme="dark"] .submit-tests-head{background:#080808;border-color:#242424}html[data-theme="dark"] .submit-test-row{background:#0a0a0a;border-color:#2a2a2a}
 html[data-theme="dark"] .sample-explanation-body,html[data-theme="dark"] .sample-explanation-body p,html[data-theme="dark"] .sample-explanation-body small,html[data-theme="dark"] .reason-node small,html[data-theme="dark"] .visual-caption{color:#c6cbd2}html[data-theme="dark"] .sample-explanation-body pre,html[data-theme="dark"] .hidden-test-item pre,html[data-theme="dark"] pre{background:#020202;color:#e5e7eb;border-color:#242424}html[data-theme="dark"] .result-summary,html[data-theme="dark"] .hidden-tests summary,html[data-theme="dark"] .submission-history summary{background:#0b0b0b;color:#cfd5dd;border-color:#292929}
 html[data-theme="dark"] .matrix-grid,html[data-theme="dark"] .matrix-cell,html[data-theme="dark"] .number-strip span,html[data-theme="dark"] .calc-flow span{background:#0b0b0b;color:#e8edf3;border-color:#303030}html[data-theme="dark"] .matrix-cell.focus-cell{background:#06242b;border-color:#16879d;box-shadow:inset 0 0 0 1px #16879d}html[data-theme="dark"] .matrix-cell.diff-cell,html[data-theme="dark"] .pair-card.diff{background:#1a090d;border-color:#6b2733}html[data-theme="dark"] .pair-card.same,html[data-theme="dark"] .candidate-pos.ok,html[data-theme="dark"] .window-card.ok-card{background:#07170d;border-color:#1f5b36}
-html[data-theme="dark"] .brand-title,html[data-theme="dark"] .problem h1,html[data-theme="dark"] .section-title,html[data-theme="dark"] .results-head h2,html[data-theme="dark"] .editor-head strong,html[data-theme="dark"] .dialog-head strong,html[data-theme="dark"] .sample-explain-intro strong,html[data-theme="dark"] .learn-visual-title{color:var(--ink)}html[data-theme="dark"] .brand-subtitle,html[data-theme="dark"] .progress-wrap,html[data-theme="dark"] .runtime,html[data-theme="dark"] .source-link,html[data-theme="dark"] .kicker,html[data-theme="dark"] .meta,html[data-theme="dark"] .sample-box h4,html[data-theme="dark"] .sample-explain-intro small,html[data-theme="dark"] .editor-foot,html[data-theme="dark"] .hidden-test-label,html[data-theme="dark"] .history-item{color:var(--muted)}html[data-theme="dark"] .problem p{color:#d8dde5}html[data-theme="dark"] .problem code,html[data-theme="dark"] .dialog-body code{background:#101010;color:#dff9ff;border-color:#2c2c2c}html[data-theme="dark"] .level-strip,html[data-theme="dark"] .editor-head,html[data-theme="dark"] .editor-foot{background:#080808;border-color:#242424}html[data-theme="dark"] .status-pill{background:#0d0d0d;color:#cbd2dc;border-color:#303030}
-@media(max-width:720px){.terminal-workspace.has-custom-input{grid-template-columns:1fr}.custom-input-panel,.terminal-panel{border-right:0;border-bottom:1px solid #2b3649}.custom-input-head{grid-template-columns:minmax(0,1fr) auto}.theme-control{max-width:100%}}
-@media(max-width:390px){.topbar{align-items:flex-start}.theme-control{margin-left:0}.theme-control label{display:none}.custom-input-head{padding-inline:7px}.switch-label{display:none}.terminal-head{gap:6px}.terminal-meta{max-width:45%}}
+html[data-theme="dark"] .sample-copy-btn{background:#0b0b0b;color:#c6cbd2;border-color:#303030}html[data-theme="dark"] .sample-copy-btn:hover{background:#101010;color:#e7ebf0}html[data-theme="dark"] .sample-copy-btn.success{background:#07170d;color:#86efac;border-color:#1f5b36}html[data-theme="dark"] .sample-origin-badge{background:#0d0d0d;color:#cbd2dc;border-color:#303030}html[data-theme="dark"] .sample-origin-badge.official{background:#06181d;color:#67e8f9;border-color:#155e75}html[data-theme="dark"] .sample-origin-badge.special{background:#1a1304;color:#fbbf24;border-color:#6b5213}
+html[data-theme="dark"] .brand-title,html[data-theme="dark"] .problem h1,html[data-theme="dark"] .section-title,html[data-theme="dark"] .results-head h2,html[data-theme="dark"] .editor-head strong,html[data-theme="dark"] .dialog-head strong,html[data-theme="dark"] .sample-explain-intro strong,html[data-theme="dark"] .learn-visual-title{color:var(--ink)}html[data-theme="dark"] .brand-subtitle,html[data-theme="dark"] .progress-wrap,html[data-theme="dark"] .runtime,html[data-theme="dark"] .source-link,html[data-theme="dark"] .kicker,html[data-theme="dark"] .meta,html[data-theme="dark"] .sample-box h4,html[data-theme="dark"] .sample-explain-intro small,html[data-theme="dark"] .editor-foot,html[data-theme="dark"] .hidden-test-label,html[data-theme="dark"] .history-item,html[data-theme="dark"] .hidden-tests-empty,html[data-theme="dark"] .history-empty{color:var(--muted)}html[data-theme="dark"] .runtime{background:#0b0b0b;border-color:#303030}html[data-theme="dark"] .problem p{color:#d8dde5}html[data-theme="dark"] .problem code,html[data-theme="dark"] .dialog-body code{background:#101010;color:#dff9ff;border-color:#2c2c2c}html[data-theme="dark"] .level-strip,html[data-theme="dark"] .editor-head,html[data-theme="dark"] .editor-foot{background:#080808;border-color:#242424}html[data-theme="dark"] .status-pill{background:#0d0d0d;color:#cbd2dc;border-color:#303030}
+@media(max-width:720px){.terminal-workspace{grid-template-columns:1fr}.terminal-panel{border-right:0;border-bottom:1px solid #2b3649}.theme-control{max-width:100%}}
+@media(max-width:390px){.topbar{align-items:flex-start}.theme-control{margin-left:0}.theme-control label{display:none}.terminal-head{gap:6px}}
+@media(max-width:520px){.answer-variants.multi{grid-template-columns:repeat(var(--answer-count),minmax(300px,82vw));}}
 
 
 /* Stage 0 official-source entry: source website is opened directly because ZeroJudge denies cross-origin framing. */
@@ -434,6 +454,9 @@ html[data-theme="dark"] .tutorial-details,html[data-theme="dark"] .tutorial-cont
     <div class="progress-wrap"><span id="progressText">0 / 7 AC</span><div class="progress"><span id="progressBar"></span></div></div>
     <div class="runtime"><span id="runtimeDot" class="dot"></span><span id="runtimeText">Python 尚未載入</span></div>
     <div class="theme-control"><label for="themeSelect">主題</label><select id="themeSelect" aria-label="選擇介面主題"><option value="light">淺色</option><option value="dark">深色</option></select></div>
+    <button class="btn" id="exportRecordsBtn" type="button" title="匯出本題草稿、AC 進度與提交紀錄">匯出作答紀錄</button>
+    <button class="btn" id="importRecordsBtn" type="button" title="從 JSON 匯入本題作答紀錄">匯入作答紀錄</button>
+    <input id="importRecordsInput" type="file" accept="application/json,.json" hidden aria-label="選擇作答紀錄 JSON 檔案">
     <button class="btn danger" id="clearAllBtn" type="button" title="清除所有題目草稿、AC 進度與提交紀錄">清除所有紀錄</button>
     <a class="source-link" href="https://zerojudge.tw/ShowProblem?problemid=f580" target="_blank" rel="noopener">原題</a>
   </div>
@@ -448,7 +471,7 @@ html[data-theme="dark"] .tutorial-details,html[data-theme="dark"] .tutorial-cont
         <h2>提交結果</h2>
         <span class="status-pill" id="overallVerdict">尚未提交</span>
       </div>
-      <div class="result-summary" id="resultSummary">F9／「執行」會依 CUSTOM INPUT 開關選擇輸入：OFF 使用公開範例、ON 使用自訂輸入；「提交」會評測本階全部測資。</div>
+      <div class="result-summary" id="resultSummary">F9／「執行」會啟動互動式 Python TERMINAL，遇到 <code>input()</code> 時由你手動輸入；「提交」會自動評測本階全部正式測資。</div>
       <details class="hidden-tests" id="hiddenTestsDetails">
         <summary id="hiddenTestsSummary">隱藏測資（AC 後解鎖）</summary>
         <div class="hidden-tests-list" id="hiddenTestsList"></div>
@@ -465,23 +488,22 @@ html[data-theme="dark"] .tutorial-details,html[data-theme="dark"] .tutorial-cont
       <strong>Python 3 編輯器</strong>
       <button class="btn" id="answerBtn" type="button">參考答案</button>
       <button class="btn" id="resetBtn" type="button">清空</button>
-      <button class="btn" id="runBtn" type="button" title="F9：執行（依 CUSTOM INPUT 開關選擇輸入）">執行</button>
+      <button class="btn" id="runBtn" type="button" title="F9：啟動互動式 Python TERMINAL">執行</button>
       <button class="btn primary" id="submitBtn" type="button" title="Ctrl+Enter：提交全部測資">提交</button>
     </div>
     <div class="editor-shell"><textarea id="codeEditor" spellcheck="false"></textarea></div>
-    <div class="terminal-workspace has-custom-input" id="terminalWorkspace">
-      <section class="custom-input-panel" id="customInputPanel" aria-label="自訂標準輸入">
-        <div class="custom-input-head"><strong>CUSTOM INPUT</strong><label class="input-source-switch" for="customInputOverride" title="開啟後 F9 使用 CUSTOM INPUT"><span class="switch-label">F9</span><input id="customInputOverride" type="checkbox" role="switch" aria-describedby="customInputModeState"><span class="switch-track" aria-hidden="true"></span><span class="switch-state" id="customInputModeState">OFF</span></label></div>
-        <textarea class="custom-input-textarea" id="customInput" spellcheck="false" aria-label="自訂標準輸入"></textarea>
-      </section>
-      <section class="terminal-panel" aria-label="程式執行終端機">
+    <div class="terminal-workspace" id="terminalWorkspace">
+      <section class="terminal-panel" aria-label="互動式 Python 程式執行終端機">
         <div class="terminal-head">
           <strong>TERMINAL</strong>
-          <select class="terminal-sample-select" id="sampleSelect" aria-label="選擇執行用公開範例"></select>
-          <span class="terminal-meta" id="terminalMeta">輸入：公開範例</span>
+          <button class="terminal-clear terminal-run" id="terminalRunBtn" type="button" title="執行目前編輯器中的 Python 程式（F9）">執行</button>
+          <button class="terminal-clear terminal-stop" id="terminalStopBtn" type="button" disabled title="停止目前互動式 Python 程式（Ctrl+C）">停止</button>
+          <button class="terminal-clear" id="terminalEofBtn" type="button" disabled title="送出 EOF（Ctrl+D）">EOF</button>
           <button class="terminal-clear" id="clearTerminalBtn" type="button">清除</button>
         </div>
-        <pre class="terminal-output" id="terminalOutput" aria-live="polite">尚未執行。F9 依 CUSTOM INPUT 開關選擇輸入；Ctrl+Enter 提交全部正式測資。</pre>
+        <div class="terminal-console" id="terminalConsole" role="log" aria-live="polite" aria-label="Python 終端機輸出與輸入">
+          <span class="terminal-output" id="terminalOutput">尚未執行。按 F9 啟動新的互動式 Python 程式；遇到 input() 時在這裡輸入後按 Enter。</span><textarea class="terminal-input" id="terminalInput" rows="1" spellcheck="false" aria-label="Python 標準輸入" disabled></textarea>
+        </div>
       </section>
       <aside class="submit-tests-panel" aria-label="所有測資提交結果">
         <div class="submit-tests-head">
@@ -493,14 +515,14 @@ html[data-theme="dark"] .tutorial-details,html[data-theme="dark"] .tutorial-cont
     </div>
     <div class="editor-foot">
       <span>Tab：移到下一個 4 欄定位點｜Shift+Tab：反縮排｜行首 Backspace：一次刪除 4 空白｜Ctrl+/：切換單行／多行註解｜Ctrl+Space / Alt+/：補全｜F9：執行｜Ctrl+Enter：提交</span>
-      <span>F9：CUSTOM INPUT OFF=公開範例、ON=自訂輸入（空字串合法）｜提交固定使用正式測資｜ZeroJudge Tolerant：忽略空白行與每行前後空白｜每筆上限 2.5 秒</span>
+      <span>F9：互動式 TERMINAL，input() 需要手動輸入｜Ctrl+D / EOF：結束 stdin｜執行中按「停止」可終止｜提交固定使用正式測資｜ZeroJudge Tolerant：忽略空白行與每行前後空白｜提交每筆上限 2.5 秒</span>
     </div>
   </section>
 </main>
 
 <dialog id="answerDialog">
   <div class="dialog-head"><strong id="answerTitle">參考答案</strong><button class="close-btn" id="closeAnswer">關閉</button></div>
-  <div class="dialog-body"><pre id="answerCode"></pre></div>
+  <div class="dialog-body"><div id="answerVariants" class="answer-variants single"></div></div>
 </dialog>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.18/codemirror.min.js"></script>
@@ -512,93 +534,9 @@ html[data-theme="dark"] .tutorial-details,html[data-theme="dark"] .tutorial-cont
 const OJ_META={"source":{"url":"https://zerojudge.tw/ShowProblem?problemid=f580","platform":"ZeroJudge","problemId":"f580"},"storage":{"schema":1,"namespace":"f580_step_oj","legacyAcceptedKey":null,"legacyHistoryKey":null,"legacyDraftPrefix":null}};
 const OFFICIAL_SOURCE=OJ_META.source;
 let sourceStageActive=true;
-const TASKS = [{"id":1,"title":"把骰子變成可更新的 state（狀態）","difficulty":"入門","statement":"本階使用的初始骰子六面<strong>直接固定</strong>為：<strong>上=1、下=6、前=4、後=3、左=5、右=2</strong>。這些點數位置就是本題給定條件，不需要自行從「標準骰子」推導。方向編號與初始點數完整對照為：<code>d=1 → 上 → 1</code>、<code>d=2 → 下 → 6</code>、<code>d=3 → 前 → 4</code>、<code>d=4 → 後 → 3</code>、<code>d=5 → 左 → 5</code>、<code>d=6 → 右 → 2</code>。本階先不旋轉骰子；讀入一個方向編號 <code>d</code>，輸出該方向的點數。","input":"一行一個整數 <code>d</code>，且 <code>1 ≤ d ≤ 6</code>。方向依序為上、下、前、後、左、右。","output":"輸出該方向在初始骰子上的點數。","sampleIn":"3","sampleOut":"4","sampleExplain":"<div class=\"demo-story\"><section class=\"demo-step\"><p><code>d = 3</code> 代表查詢「前面」。初始狀態明確指定前面是點數 4。</p><div class=\"dice-state\"><strong>初始骰子</strong><div class=\"dice-net\"><span class=\"blank\"></span><span data-face=\"back\">後 3</span><span class=\"blank\"></span><span class=\"blank\"></span><span data-face=\"left\">左 5</span><span data-face=\"top\">上 1</span><span data-face=\"right\">右 2</span><span data-face=\"bottom\">下 6</span><span class=\"blank\"></span><span data-face=\"front\">前 4</span><span class=\"blank\"></span><span class=\"blank\"></span></div></div><div class=\"reason-flow\"><div class=\"reason-node\"><strong>d = 3</strong><small>前面</small></div><div class=\"reason-arrow\">→</div><div class=\"reason-node answer\"><strong>4</strong><small>輸出</small></div></div></section></div>","starter":"","answer":"# 六個位置固定依序是：上、下、前、後、左、右。\nfaces = [1, 6, 4, 3, 5, 2]\n\nd = int(input())\nindex = d - 1\nprint(faces[index])","tests":[{"input":"3\n","output":"4\n","public":true,"sampleRole":"primary"},{"input":"1\n","output":"1\n"},{"input":"4\n","output":"3\n"},{"input":"5\n","output":"5\n"},{"input":"6\n","output":"2\n","public":true,"sampleRole":"edge","qaPurpose":"last direction index d=6"}],"tutorial":"<div class=\"tutorial-body\">\n<section class=\"tutorial-card tutorial-goal\"><h3>1. 先知道這題在練什麼</h3><p>這題先不旋轉。目標是學會用一個固定順序保存骰子的六個面，因為之後所有旋轉與交換都會依賴這個完整 state（狀態）。</p></section>\n<section class=\"tutorial-card tutorial-core\"><h3>2. 核心觀念與圖解</h3><p>固定順序可以選 <code>[上, 下, 前, 後, 左, 右]</code>。題目給的初始值因此是 <code>[1,6,4,3,5,2]</code>。</p><p>為什麼一開始就要存六面？因為「目前 top 是多少」只描述眼前輸出，卻不能決定下一次旋轉。下一步的新 top 可能來自後、左或其他面；只有完整六面 state 才包含足夠資訊，能唯一決定下一個 state。</p><div class=\"tutorial-visual\"><div class=\"tutorial-visual-title\">六面 state 與方向編號</div><div class=\"dice-state\"><strong>初始骰子</strong><div class=\"dice-net\"><span class=\"blank\"></span><span data-face=\"back\">後 3</span><span class=\"blank\"></span><span class=\"blank\"></span><span data-face=\"left\">左 5</span><span data-face=\"top\">上 1</span><span data-face=\"right\">右 2</span><span data-face=\"bottom\">下 6</span><span class=\"blank\"></span><span data-face=\"front\">前 4</span><span class=\"blank\"></span><span class=\"blank\"></span></div></div><div class=\"mapping-row\"><span>d=1 → 上 → 1</span><span>d=2 → 下 → 6</span><span>d=3 → 前 → 4</span><span>d=4 → 後 → 3</span><span>d=5 → 左 → 5</span><span>d=6 → 右 → 2</span></div></div></section>\n<section class=\"tutorial-card tutorial-worked\"><h3>3. 跟著做一個小例子</h3><p>若輸入 d=5，你查的是「左面」，初始左面是 5，所以輸出 5。若使用 list 存六面，d 是 1-based，而 Python index 是 0-based，因此位置會是 <code>d-1</code>。</p></section>\n<section class=\"tutorial-card tutorial-plan\"><h3>4. 先固定一個六面順序</h3><p>用 list 保存六面時，最重要的是順序永遠不變。這裡固定 <code>[上,下,前,後,左,右]</code>，所以 index 0..5 各有明確意思。輸入 d 是 1..6，因此只要做一次 <code>d-1</code> 轉成 Python index。</p><ol><li>建立 faces list。</li><li>讀 d。</li><li>算 index=d-1。</li><li>輸出 faces[index]。</li></ol></section>\n<section class=\"tutorial-card tutorial-code\"><h3>5. Python 一段一段怎麼寫</h3><p>這題先把「1-based 題目編號 → 0-based list index」寫熟。</p><div class=\"tutorial-code-step\"><strong>步驟 A：建立六面資料</strong><p>直接把題目給的六個點數按固定順序放進 list；不要自己猜標準骰子。</p><pre class=\"tutorial-code-snippet\">faces = [1, 6, 4, 3, 5, 2]</pre></div><div class=\"tutorial-code-step\"><strong>步驟 B：把 d 轉成 index</strong><p>例如 d=1 應該讀 faces[0]，所以公式是 d-1。</p><pre class=\"tutorial-code-snippet\">d = int(input())\nindex = d - 1\n# 接著讀 faces[index]</pre></div><p class=\"tutorial-code-note\">把上面的片段依題目流程接起來，再自己補上最後需要的輸出或尚未填入的分支。詳細教學會教你每一塊怎麼寫，但完整可提交答案集中在獨立的「參考答案」視窗；詳細教學本身不直接複製整份答案。</p></section>\n<section class=\"tutorial-card tutorial-check\"><h3>6. 常見錯誤與自我檢查</h3><ul><li>不要只存目前朝上的值，後面旋轉會需要其他五面。</li><li>不要把右=2 與左=5 寫反。</li><li>檢查三組對面：1/6、4/3、5/2。</li></ul></section>\n</div>"},{"id":2,"title":"只向前滾：四個面循環","difficulty":"基礎","statement":"一顆骰子初始為上=1、下=6、前=4、後=3、左=5、右=2。輸入整數 <code>m</code>，把這顆骰子連續「向前旋轉」 <code>m</code> 次。向前旋轉時：原本的上面會到前面、前面到底面、底面到後面、後面到上面。最後輸出朝上的點數。","input":"一行一個整數 <code>m</code>，<code>1 ≤ m ≤ 100</code>。","output":"輸出旋轉完成後朝上的點數。","sampleIn":"1","sampleOut":"3","sampleExplain":"<div class=\"demo-story\"><section class=\"demo-step\"><p>只轉 1 次。原本後面的 3 會移到上面。</p><div class=\"state-transition\"><div class=\"dice-state\"><strong>旋轉前</strong><div class=\"dice-net\"><span class=\"blank\"></span><span data-face=\"back\">後 3</span><span class=\"blank\"></span><span class=\"blank\"></span><span data-face=\"left\">左 5</span><span data-face=\"top\">上 1</span><span data-face=\"right\">右 2</span><span data-face=\"bottom\">下 6</span><span class=\"blank\"></span><span data-face=\"front\">前 4</span><span class=\"blank\"></span><span class=\"blank\"></span></div></div><div class=\"big-arrow\">向前 →</div><div class=\"dice-state\"><strong>旋轉後</strong><div class=\"dice-net\"><span class=\"blank\"></span><span data-face=\"back\">後 6</span><span class=\"blank\"></span><span class=\"blank\"></span><span data-face=\"left\">左 5</span><span data-face=\"top\">上 3</span><span data-face=\"right\">右 2</span><span data-face=\"bottom\">下 4</span><span class=\"blank\"></span><span data-face=\"front\">前 1</span><span class=\"blank\"></span><span class=\"blank\"></span></div></div></div><p>因此最上面是 <code>3</code>。</p></section></div>","starter":"","answer":"m = int(input())\ndie = [1, 6, 4, 3, 5, 2]\n\nfor _ in range(m):\n    # 先保存旋轉前的六面；向前滾時，原本的後面會來到上面。\n    top, bottom, front, back, left, right = die\n\n    die = [back, front, top, bottom, left, right]\n\nprint(die[0])","tests":[{"input":"1\n","output":"3\n","public":true,"sampleRole":"primary"},{"input":"2\n","output":"6\n"},{"input":"3\n","output":"4\n"},{"input":"4\n","output":"1\n","public":true,"sampleRole":"edge","qaPurpose":"four forward rolls return to initial orientation"},{"input":"9\n","output":"3\n"}],"tutorial":"<div class=\"tutorial-body\">\n<section class=\"tutorial-card tutorial-goal\"><h3>1. 先知道這題在練什麼</h3><p>第一次學 rotation（旋轉）。向前滾時只有上、前、下、後四面循環；左、右保持不動。</p><p>把骰子想成沿著「左右方向的軸」往前翻：因為軸穿過左、右兩面，所以這兩面不會換位置；其餘四面會沿著上→前→下→後→上的方向循環。先理解這個物理關係，就不必硬背四個 assignment。</p></section>\n<section class=\"tutorial-card tutorial-core\"><h3>2. 核心觀念與圖解</h3><div class=\"tutorial-visual\"><div class=\"tutorial-visual-title\">向前 1 次的完整狀態轉移</div><div class=\"mapping-row\"><span>舊後 → 新上</span><span>舊上 → 新前</span><span>舊前 → 新下</span><span>舊下 → 新後</span></div><div class=\"state-transition\"><div class=\"dice-state\"><strong>before</strong><div class=\"dice-net\"><span class=\"blank\"></span><span>後 3</span><span class=\"blank\"></span><span class=\"blank\"></span><span>左 5</span><span data-face=\"top\">上 1</span><span>右 2</span><span>下 6</span><span class=\"blank\"></span><span>前 4</span><span class=\"blank\"></span><span class=\"blank\"></span></div></div><div class=\"big-arrow\">→</div><div class=\"dice-state\"><strong>after</strong><div class=\"dice-net\"><span class=\"blank\"></span><span>後 6</span><span class=\"blank\"></span><span class=\"blank\"></span><span>左 5</span><span data-face=\"top\">上 3</span><span>右 2</span><span>下 4</span><span class=\"blank\"></span><span>前 1</span><span class=\"blank\"></span><span class=\"blank\"></span></div></div></div><p class=\"tutorial-caption\">新上面來自「舊後面」，所以一次向前後 top=3。</p></div></section>\n<section class=\"tutorial-card tutorial-worked\"><h3>3. 跟著做一個小例子</h3><p>再向前一次時，不能回去使用初始骰子，而要用第一次旋轉後的完整 state。第一次後是 [上3,下4,前1,後6,左5,右2]；第二次的新上面就會是舊後 6。</p><p>因此 top 依序會是 1 → 3 → 6 → 4 → 1，四次回到原狀。</p></section>\n<section class=\"tutorial-card tutorial-plan\"><h3>4. 把一次旋轉先寫對，再放進 m 次迴圈</h3><p>六個面有固定順序，所以直接用 tuple unpacking 把它們取成 <code>top/bottom/front/back/left/right</code> 是常規而清楚的 Python 寫法；接著建立新的 list，讓程式碼直接對應圖上的「舊後→新上」等 mapping。</p><ol><li><code>for</code> 迴圈重複 m 次。</li><li>每次先用拆包取出 top/bottom/front/back/left/right。</li><li>依 mapping 建立新的 die list。</li><li>m 次後輸出 die[0]。</li></ol></section>\n<section class=\"tutorial-card tutorial-code\"><h3>5. Python 一段一段怎麼寫</h3><p>六面順序固定後，Python 很適合用 tuple unpacking（拆包）把六個位置一次取成有名字的變數。這是常規語法，比連寫六次 <code>die[0]</code>、<code>die[1]</code> 更短也更容易核對。</p><div class=\"tutorial-code-step\"><strong>步驟 A：一次把六個舊面拆出來</strong><p>左邊變數順序必須和 state 的 <code>[上,下,前,後,左,右]</code> 完全一致。</p><pre class=\"tutorial-code-snippet\">top, bottom, front, back, left, right = die</pre></div><div class=\"tutorial-code-step\"><strong>步驟 B：按照 mapping 建立下一個 state</strong><p>新 list 仍使用同一個六面順序；右邊每個舊面都能直接對回圖解。</p><pre class=\"tutorial-code-snippet\">die = [\n    back,    # 新上 &lt;- 舊後\n    front,   # 新下 &lt;- 舊前\n    top,     # 新前 &lt;- 舊上\n    bottom,  # 新後 &lt;- 舊下\n    left,\n    right\n]</pre></div><div class=\"tutorial-code-step\"><strong>步驟 C：把 A、B 放進 m 次迴圈</strong><p>每次都先拆「目前的 die」，再建立新的 die，所以 state 會一輪一輪接下去。</p><pre class=\"tutorial-code-snippet\">for _ in range(m):\n    top, bottom, front, back, left, right = die\n    # 接著建立新的 die</pre></div><p class=\"tutorial-code-note\">tuple unpacking 是正常 Python 寫法；這裡使用它是因為六個位置本來就有固定結構，而不是為了炫技縮行。</p></section>\n<section class=\"tutorial-card tutorial-check\"><h3>6. 常見錯誤與自我檢查</h3><ul><li>最常見方向錯誤是把「舊前 → 新上」；那其實是反方向。</li><li>若逐行原地改變六面，前面的 assignment 可能破壞後面需要的舊值。</li><li>四次向前必須回到完全相同的六面 state。</li></ul></section>\n</div>"},{"id":3,"title":"只向右滾：另一組四面循環","difficulty":"基礎","statement":"一顆骰子初始為上=1、下=6、前=4、後=3、左=5、右=2。輸入整數 <code>m</code>，把骰子連續「向右旋轉」 <code>m</code> 次。向右旋轉時：原本的上面到右面、右面到底面、底面到左面、左面到上面。最後輸出朝上的點數。","input":"一行一個整數 <code>m</code>，<code>1 ≤ m ≤ 100</code>。","output":"輸出旋轉完成後朝上的點數。","sampleIn":"1","sampleOut":"5","sampleExplain":"<div class=\"demo-story\"><section class=\"demo-step\"><p>向右 1 次時，原本左面的 5 來到上面。</p><div class=\"state-transition\"><div class=\"dice-state\"><strong>旋轉前</strong><div class=\"dice-net\"><span class=\"blank\"></span><span data-face=\"back\">後 3</span><span class=\"blank\"></span><span class=\"blank\"></span><span data-face=\"left\">左 5</span><span data-face=\"top\">上 1</span><span data-face=\"right\">右 2</span><span data-face=\"bottom\">下 6</span><span class=\"blank\"></span><span data-face=\"front\">前 4</span><span class=\"blank\"></span><span class=\"blank\"></span></div></div><div class=\"big-arrow\">向右 →</div><div class=\"dice-state\"><strong>旋轉後</strong><div class=\"dice-net\"><span class=\"blank\"></span><span data-face=\"back\">後 3</span><span class=\"blank\"></span><span class=\"blank\"></span><span data-face=\"left\">左 6</span><span data-face=\"top\">上 5</span><span data-face=\"right\">右 1</span><span data-face=\"bottom\">下 2</span><span class=\"blank\"></span><span data-face=\"front\">前 4</span><span class=\"blank\"></span><span class=\"blank\"></span></div></div></div><p>所以輸出 <code>5</code>。</p></section></div>","starter":"","answer":"m = int(input())\ndie = [1, 6, 4, 3, 5, 2]\n\nfor _ in range(m):\n    # 先保存旋轉前的六面；向右滾時，原本的左面會來到上面。\n    top, bottom, front, back, left, right = die\n\n    die = [left, right, front, back, bottom, top]\n\nprint(die[0])","tests":[{"input":"1\n","output":"5\n","public":true,"sampleRole":"primary"},{"input":"2\n","output":"6\n"},{"input":"3\n","output":"2\n"},{"input":"4\n","output":"1\n","public":true,"sampleRole":"edge","qaPurpose":"four right rolls return to initial orientation"},{"input":"11\n","output":"2\n"}],"tutorial":"<div class=\"tutorial-body\">\n<section class=\"tutorial-card tutorial-goal\"><h3>1. 先知道這題在練什麼</h3><p>這階學另一個旋轉軸。向右滾時前、後不動；左、上、右、下四面循環。</p><p>這次旋轉軸穿過前、後兩面，因此前、後保持原位。骰子往右倒時，左面會被抬到上方，上面會倒到右方；用這個實體動作判斷方向，比只記『新上=舊左』更不容易寫反。</p></section>\n<section class=\"tutorial-card tutorial-core\"><h3>2. 核心觀念與圖解</h3><div class=\"tutorial-visual\"><div class=\"tutorial-visual-title\">向右 1 次</div><div class=\"mapping-row\"><span>舊左 → 新上</span><span>舊上 → 新右</span><span>舊右 → 新下</span><span>舊下 → 新左</span></div><div class=\"state-transition\"><div class=\"dice-state\"><strong>before</strong><div class=\"dice-net\"><span class=\"blank\"></span><span>後 3</span><span class=\"blank\"></span><span class=\"blank\"></span><span>左 5</span><span data-face=\"top\">上 1</span><span>右 2</span><span>下 6</span><span class=\"blank\"></span><span>前 4</span><span class=\"blank\"></span><span class=\"blank\"></span></div></div><div class=\"big-arrow\">→</div><div class=\"dice-state\"><strong>after</strong><div class=\"dice-net\"><span class=\"blank\"></span><span>後 3</span><span class=\"blank\"></span><span class=\"blank\"></span><span>左 6</span><span data-face=\"top\">上 5</span><span>右 1</span><span>下 2</span><span class=\"blank\"></span><span>前 4</span><span class=\"blank\"></span><span class=\"blank\"></span></div></div></div></div></section>\n<section class=\"tutorial-card tutorial-worked\"><h3>3. 跟著做一個小例子</h3><p>向右兩次：第一次 top=5；第二次時「舊左」已經是 6，所以新 top=6。top 序列是 1 → 5 → 6 → 2 → 1。</p><p>這個序列可以直接拿來驗證你是否把左右方向寫反。</p></section>\n<section class=\"tutorial-card tutorial-plan\"><h3>4. 沿用同一個 state 寫法，只換 mapping</h3><p>向右時前、後不動，會循環的是左、上、右、下。程式結構和向前完全相同：先保存舊六面，再按新位置順序建立 list。</p><ol><li>保留 die=[上,下,前,後,左,右]。</li><li>每次先把六個舊值取出。</li><li>依舊左→新上、舊右→新下等 mapping 建新 list。</li><li>重複 m 次。</li></ol></section>\n<section class=\"tutorial-card tutorial-code\"><h3>5. Python 一段一段怎麼寫</h3><p>向右旋轉沿用同一個常規模式：先把固定六面 state 拆成有名字的變數，再依 mapping 建新的 list。</p><div class=\"tutorial-code-step\"><strong>步驟 A：拆出目前六面</strong><p>這一行和向前旋轉完全相同，所以不用重複六行 index assignment。</p><pre class=\"tutorial-code-snippet\">top, bottom, front, back, left, right = die</pre></div><div class=\"tutorial-code-step\"><strong>步驟 B：填出向右後的新 state</strong><p>新上來自舊左、新下來自舊右；前後保持不變。</p><pre class=\"tutorial-code-snippet\">die = [\n    left,    # 新上 &lt;- 舊左\n    right,   # 新下 &lt;- 舊右\n    front,\n    back,\n    bottom,  # 新左 &lt;- 舊下\n    top      # 新右 &lt;- 舊上\n]</pre></div><p class=\"tutorial-code-note\">這樣既保留六面 mapping 的可追蹤性，又不需要為了「初學」刻意寫六個重複的取值敘述。</p></section>\n<section class=\"tutorial-card tutorial-check\"><h3>6. 常見錯誤與自我檢查</h3><ul><li>向右滾不是「右面抬到上面」；實體上是左面移到上面。</li><li>前、後如果被你改動，代表旋轉軸寫錯了。</li><li>四次向右必須回到原狀。</li></ul></section>\n</div>"},{"id":4,"title":"混合旋轉：每一步都更新同一個 state","difficulty":"基礎＋","statement":"一顆骰子初始為上=1、下=6、前=4、後=3、左=5、右=2。第一行輸入操作次數 <code>m</code>（<code>1 ≤ m ≤ 100</code>）；接下來 <code>m</code> 行每行是一個操作碼。<code>-1</code> 代表向前旋轉：原本的上面到前面、前面到底面、底面到後面、後面到上面，左面與右面不變。<code>-2</code> 代表向右旋轉：原本的上面到右面、右面到底面、底面到左面、左面到上面，前面與後面不變。請依輸入順序更新同一顆骰子的完整六面狀態，最後輸出朝上的點數。","input":"第一行為 <code>m</code>。接下來 <code>m</code> 行每行為 <code>-1</code> 或 <code>-2</code>。","output":"輸出最後朝上的點數。","sampleIn":"2\n-2\n-1","sampleOut":"3","sampleExplain":"<div class=\"demo-story\"><section class=\"demo-step\"><p>先做 <code>-2</code>（向右）：上面從 1 變成 5。</p><div class=\"dice-state\"><strong>step 1：向右後</strong><div class=\"dice-net\"><span class=\"blank\"></span><span data-face=\"back\">後 3</span><span class=\"blank\"></span><span class=\"blank\"></span><span data-face=\"left\">左 6</span><span data-face=\"top\">上 5</span><span data-face=\"right\">右 1</span><span data-face=\"bottom\">下 2</span><span class=\"blank\"></span><span data-face=\"front\">前 4</span><span class=\"blank\"></span><span class=\"blank\"></span></div></div></section><section class=\"demo-step\"><p>再做 <code>-1</code>（向前）：此時要用「step 1 的完整 state」繼續更新；後面仍是 3，所以新上面變成 3。</p><div class=\"dice-state\"><strong>step 2：再向前</strong><div class=\"dice-net\"><span class=\"blank\"></span><span data-face=\"back\">後 2</span><span class=\"blank\"></span><span class=\"blank\"></span><span data-face=\"left\">左 6</span><span data-face=\"top\">上 3</span><span data-face=\"right\">右 1</span><span data-face=\"bottom\">下 4</span><span class=\"blank\"></span><span data-face=\"front\">前 5</span><span class=\"blank\"></span><span class=\"blank\"></span></div></div><div class=\"reason-flow\"><div class=\"reason-node\"><strong>-2</strong><small>top 1 → 5</small></div><div class=\"reason-arrow\">→</div><div class=\"reason-node\"><strong>-1</strong><small>top 5 → 3</small></div><div class=\"reason-arrow\">→</div><div class=\"reason-node answer\"><strong>3</strong><small>最後輸出</small></div></div></section></div>","starter":"","answer":"m = int(input())\ndie = [1, 6, 4, 3, 5, 2]\n\nfor _ in range(m):\n    op = int(input())\n\n    # 每一步都要保留完整六面 state，下一次旋轉才知道哪一面會轉到上方。\n    top, bottom, front, back, left, right = die\n\n    if op == -1:\n        die = [back, front, top, bottom, left, right]\n    else:\n        die = [left, right, front, back, bottom, top]\n\nprint(die[0])","tests":[{"input":"2\n-2\n-1\n","output":"3\n","public":true,"sampleRole":"primary"},{"input":"3\n-1\n-2\n-1\n","output":"6\n"},{"input":"4\n-2\n-2\n-1\n-1\n","output":"1\n"},{"input":"5\n-1\n-1\n-2\n-2\n-1\n","output":"4\n"},{"input":"8\n-2\n-2\n-2\n-2\n-1\n-1\n-1\n-1\n","output":"1\n","public":true,"sampleRole":"edge","qaPurpose":"full 4+4 rotation cycles return to initial orientation"}],"tutorial":"<div class=\"tutorial-body\">\n<section class=\"tutorial-card tutorial-goal\"><h3>1. 先知道這題在練什麼</h3><p>你已經會兩種 transition。現在要學的是：操作必須依輸入順序作用在<strong>同一個持續更新的 state</strong>，不能每一步都從初始骰子重算。</p><p>這就是 simulation（模擬）的基本模式：輸入一個操作，拿「目前 state」算出「下一個 state」，再把下一個 state 當成新的目前 state。只要這個 invariant 一直成立，不管操作有 2 次或 100 次，處理方式都完全相同。</p></section>\n<section class=\"tutorial-card tutorial-core\"><h3>2. 核心觀念與圖解</h3><div class=\"tutorial-visual\"><div class=\"tutorial-visual-title\">混合操作的 state 接力</div><div class=\"learn-step-flow\"><div class=\"learn-step-node\"><strong>初始</strong><small>[1,6,4,3,5,2]</small></div><div class=\"reason-arrow\">-2</div><div class=\"learn-step-node\"><strong>向右後</strong><small>[5,2,4,3,6,1]</small></div><div class=\"reason-arrow\">-1</div><div class=\"learn-step-node\"><strong>再向前</strong><small>[3,4,5,2,6,1]</small></div></div><p class=\"tutorial-caption\">第二步的輸入 state 是第一步的輸出 state；這就是 simulation 的核心。</p></div></section>\n<section class=\"tutorial-card tutorial-worked\"><h3>3. 跟著做一個小例子</h3><p>操作 <code>-2, -1</code>：先向右，top 變 5，但其他五面也一起改變；接著向前時，新 top 取的是「此時的後面 3」，所以結果是 3。只記 top=5 的話，你根本不知道下一步的新 top 應該是誰。</p></section>\n<section class=\"tutorial-card tutorial-plan\"><h3>4. 先寫「讀操作 → 分支」外框</h3><p>這階多的只有 if 分支。每次讀到 op 後，先把目前六面保存成變數；<code>op==-1</code> 使用向前 mapping，否則題目保證是 -2，就使用向右 mapping。不要每個分支重新從初始骰子開始。</p><ol><li>建立初始 die。</li><li>重複 m 次讀 op。</li><li>每次取出目前六面。</li><li>用 if/else 選正確 mapping。</li><li>把結果存回 die。</li></ol></section>\n<section class=\"tutorial-card tutorial-code\"><h3>5. Python 一段一段怎麼寫</h3><p>混合旋轉時，一樣先用拆包取得目前 state，再讓 <code>if/else</code> 選擇下一個 state。</p><div class=\"tutorial-code-step\"><strong>步驟 A：每次操作先讀取並拆出目前六面</strong><p>拆包放在分支前，兩個旋轉分支都能共用同一組舊值。</p><pre class=\"tutorial-code-snippet\">for _ in range(m):\n    op = int(input())\n    top, bottom, front, back, left, right = die</pre></div><div class=\"tutorial-code-step\"><strong>步驟 B：兩個分支直接建立新 state</strong><p><code>-1</code> 與 <code>-2</code> 各自只負責自己的 mapping，不需要額外旗標或多層暫存。</p><pre class=\"tutorial-code-snippet\">if op == -1:\n    die = [back, front, top, bottom, left, right]\nelse:\n    die = [left, right, front, back, bottom, top]</pre></div><p class=\"tutorial-code-note\">這是一般、直接的 Python 控制流程：共用的工作放分支前，不同的 state update 留在各自分支。</p></section>\n<section class=\"tutorial-card tutorial-check\"><h3>6. 常見錯誤與自我檢查</h3><ul><li>不要只追蹤 top。</li><li>不要交換操作順序；旋轉通常不具交換律。</li><li>手算前兩步的六面 state，和程式輸出/除錯內容比對。</li></ul></section>\n</div>"},{"id":5,"title":"多顆骰子：每個位置都有自己的 state","difficulty":"中等","statement":"現在有 <code>n</code> 顆骰子排成一列，每顆初始都是上=1、下=6、前=4、後=3、左=5、右=2。接下來有 <code>m</code> 次旋轉操作，每次輸入 <code>a b</code>；本階保證 <code>b</code> 只會是 <code>-1</code> 或 <code>-2</code>。若 <code>b=-1</code>，將第 <code>a</code> 顆向前旋轉：上→前、前→下、下→後、後→上，左/右不變。若 <code>b=-2</code>，將第 <code>a</code> 顆向右旋轉：上→右、右→下、下→左、左→上，前/後不變。每顆骰子都要保留自己的完整六面狀態；最後輸出第 1 到第 n 顆目前朝上的點數。","input":"第一行 <code>n m</code>，<code>1 ≤ n ≤ 20</code>、<code>1 ≤ m ≤ 100</code>。接下來 m 行為 <code>a b</code>，其中 <code>1 ≤ a ≤ n</code> 且 <code>b ∈ {-1,-2}</code>。","output":"輸出 n 個整數，以空格分隔，依序是每個位置最後的上方面。","sampleIn":"3 3\n2 -1\n3 -2\n3 -1","sampleOut":"1 3 3","sampleExplain":"<div class=\"demo-story\"><section class=\"demo-step\"><p>三顆骰子一開始都一樣，但每次只修改指定的第 <code>a</code> 顆。</p><div class=\"dice-row\"><div>位置 1<br><b>top 1</b></div><div>位置 2<br><b>top 1</b></div><div>位置 3<br><b>top 1</b></div></div></section><section class=\"demo-step\"><p><code>2 -1</code>：只更新位置 2，top 變 3。<br><code>3 -2</code>：只更新位置 3，top 變 5。<br><code>3 -1</code>：位置 3 再從自己的完整 state 往前滾，top 變 3。</p><div class=\"dice-row\"><div>位置 1<br><b>1</b></div><div>位置 2<br><b>3</b></div><div>位置 3<br><b>3</b></div></div><pre>1 3 3</pre></section></div>","starter":"","answer":"n, m = map(int, input().split())\ndie = [[1, 6, 4, 3, 5, 2]] * n\n\nfor _ in range(m):\n    a, b = map(int, input().split())\n    index = a - 1\n\n    # 每次只更新第 a 顆骰子的完整六面 state，其他位置保持不變。\n    top, bottom, front, back, left, right = die[index]\n\n    if b == -1:\n        die[index] = [back, front, top, bottom, left, right]\n    else:\n        die[index] = [left, right, front, back, bottom, top]\n\n# 這份寫法每次都是整個替換 die[index]，沒有原地修改共用的內層 list。\nfor i in range(n):\n    print(die[i][0], end=' ')","tests":[{"input":"3 3\n2 -1\n3 -2\n3 -1\n","output":"1 3 3\n","public":true,"sampleRole":"primary"},{"input":"1 3\n1 -1\n1 -2\n1 -1\n","output":"6\n","public":true,"sampleRole":"edge","qaPurpose":"minimum n=1 multi-die boundary"},{"input":"4 5\n1 -2\n4 -1\n1 -2\n2 -1\n4 -1\n","output":"6 3 1 6\n"},{"input":"5 6\n5 -2\n5 -2\n3 -1\n2 -2\n3 -1\n1 -1\n","output":"3 5 6 1 6\n"}],"tutorial":"<div class=\"tutorial-body\">\n<section class=\"tutorial-card tutorial-goal\"><h3>1. 先知道這題在練什麼</h3><p>現在從一顆骰子擴充成 n 顆。核心想法是：每個位置都要有自己獨立的完整 state，一次操作只修改指定位置。</p><p>可以把 <code>dices</code> 想成「一列盒子」：外層 index 決定位置，內層六個值描述那個位置目前的骰子朝向。這兩層意義要分清楚：換位置是改外層元素；旋轉是改某個內層 state。</p></section>\n<section class=\"tutorial-card tutorial-core\"><h3>2. 核心觀念與圖解</h3><div class=\"tutorial-visual\"><div class=\"tutorial-visual-title\">dices 是「多個完整 state」的集合</div><div class=\"dice-row\"><div><small>位置 1</small><b>[1,6,4,3,5,2]</b></div><div class=\"active\"><small>位置 2：本次操作</small><b>[1,6,4,3,5,2]</b></div><div><small>位置 3</small><b>[1,6,4,3,5,2]</b></div></div><div class=\"mapping-row\"><span>輸入 2 -1</span><span>只取 dices[1]</span><span>向前更新</span><span>放回 dices[1]</span></div><p class=\"tutorial-caption\">位置 1、3 完全不應被改動。</p></div></section>\n<section class=\"tutorial-card tutorial-worked\"><h3>3. 跟著做一個小例子</h3><p>三顆骰子中只對第 2 顆向前：結果應是 top = [1,3,1]。再對第 3 顆向右：變成 [1,3,5]。每顆都延續自己的歷史。</p></section>\n<section class=\"tutorial-card tutorial-plan\"><h3>4. 先把「一顆 state」外面再包一層 list</h3><p><code>dices</code> 是多顆骰子的容器；<code>dices[i]</code> 才是一顆六面 state。建立 n 顆時要真的新增 n 個獨立 list。每次操作只拿出指定的那一顆、旋轉後放回同一位置。</p><ol><li>用單層 comprehension 建立 n 顆獨立初始骰子。</li><li>讀 a,b 後把 a 轉成 index=a-1。</li><li>只旋轉 dices[index]。</li><li>最後整理每顆 top。</li></ol></section>\n<section class=\"tutorial-card tutorial-code\"><h3>5. Python 一段一段怎麼寫</h3><p>這階可以學一個很常見、而且剛好適合的簡單 list comprehension：同樣的六面初始 list 要建立 n 次。只有「單一迴圈、沒有複雜條件」時，這種寫法通常比三行 append 更清楚。</p><div class=\"tutorial-code-step\"><strong>步驟 A：建立 n 顆彼此獨立的骰子</strong><p>每跑一次 <code>for _ in range(n)</code>，右邊的 list literal 都會重新建立一份，所以每顆都有自己的 state。</p><pre class=\"tutorial-code-snippet\">dices = [[1, 6, 4, 3, 5, 2] for _ in range(n)]</pre></div><div class=\"tutorial-code-step\"><strong>步驟 B：找到並旋轉指定骰子</strong><p>題目位置是 1-based，所以先轉成 index；固定六面可以直接拆包。</p><pre class=\"tutorial-code-snippet\">index = a - 1\ntop, bottom, front, back, left, right = dices[index]\n\nif b == -1:\n    dices[index] = [back, front, top, bottom, left, right]\nelse:\n    dices[index] = [left, right, front, back, bottom, top]</pre></div><div class=\"tutorial-code-step\"><strong>步驟 C：整理所有 top，再一次輸出</strong><p>前面已經學過簡單 comprehension；這裡每顆骰子都只做一件事：取 <code>die[0]</code>，所以用一行收集 top 很自然。<code>print(*tops)</code> 會用空格輸出這些整數，不需要先轉成字串再 <code>join</code>。</p><pre class=\"tutorial-code-snippet\">tops = [die[0] for die in dices]\nprint(*tops)</pre></div><p class=\"tutorial-code-note\">這裡只使用簡單、常見的 comprehension；如果一個 comprehension 開始出現多層迴圈或很多條件，就應改回一般 for 讓流程更清楚。</p></section>\n<section class=\"tutorial-card tutorial-check\"><h3>6. 常見錯誤與自我檢查</h3><ul><li>Python 若用同一個可變 list 物件複製 n 份，可能造成多顆一起被改；用 comprehension 建立獨立 list 較安全。</li><li>忘記 <code>a-1</code> 會操作錯位置。</li><li>只操作第 2 顆時，其餘所有 top 應保持 1。</li></ul></section>\n</div>"},{"id":6,"title":"交換完整 state：六個面要一起移動","difficulty":"中等＋","statement":"有 <code>n</code> 顆骰子排成一列。這一階不再從固定初始方向開始，而是<strong>直接給你每個位置目前的完整六面 state</strong>。每顆骰子的六個數字依序代表 <code>上、下、前、後、左、右</code>。接著有 <code>m</code> 次交換操作，每次給兩個正整數 <code>a b</code>，表示交換位置 <code>a</code> 與位置 <code>b</code> 的<strong>整顆骰子</strong>；也就是六個面的資料必須一起移動。全部交換完成後，請依位置 1 到位置 n，逐行輸出每顆骰子的六面 state。","input":"第一行有兩個整數 <code>n m</code>，其中 <code>1 ≤ n ≤ 6</code>、<code>1 ≤ m ≤ 20</code>。接下來 <code>n</code> 行，每行六個整數，依序是該位置骰子的 <code>上 下 前 後 左 右</code>。再接下來 <code>m</code> 行，每行兩個整數 <code>a b</code>（<code>1 ≤ a,b ≤ n</code>），表示交換位置 a 與 b；允許 <code>a=b</code>，此時 state 不變。","output":"輸出 <code>n</code> 行。第 i 行輸出位置 i 最後的六個面，順序固定為 <code>上 下 前 後 左 右</code>，六個整數以空格分隔。","sampleIn":"3 2\n3 4 1 6 5 2\n5 2 4 3 6 1\n1 6 4 3 5 2\n1 3\n2 3","sampleOut":"1 6 4 3 5 2\n3 4 1 6 5 2\n5 2 4 3 6 1","sampleExplain":"<div class=\"demo-story\"><section class=\"demo-step\"><p>一開始三個位置的完整 state 分別是 A、B、C：</p><div class=\"dice-row\"><div><small>位置 1</small><b>A = [3,4,1,6,5,2]</b></div><div><small>位置 2</small><b>B = [5,2,4,3,6,1]</b></div><div><small>位置 3</small><b>C = [1,6,4,3,5,2]</b></div></div></section><section class=\"demo-step\"><p>先做 <code>1 3</code>，所以位置排列變成 C、B、A；再做 <code>2 3</code>，變成 C、A、B。</p><div class=\"swap-visual\"><div>C<br><b>[1,6,4,3,5,2]</b></div><div class=\"big-arrow\">｜</div><div>A<br><b>[3,4,1,6,5,2]</b></div><div class=\"big-arrow\">｜</div><div>B<br><b>[5,2,4,3,6,1]</b></div></div><p>注意：每次搬動的是六個面的整包資料，不是只搬第一個 top。</p><pre>1 6 4 3 5 2\n3 4 1 6 5 2\n5 2 4 3 6 1</pre></section></div>","starter":"","answer":"n, m = map(int, input().split())\ndie = []\n\n# 每一列輸入就是一顆骰子的完整 state，順序固定為上、下、前、後、左、右。\nfor _ in range(n):\n    state = list(map(int, input().split()))\n    die.append(state)\n\nfor _ in range(m):\n    a, b = map(int, input().split())\n    a -= 1\n    b -= 1\n\n    # 交換整個 list，六個面的方向才會一起移到另一個位置。\n    die[a], die[b] = die[b], die[a]\n\nfor state in die:\n    print(*state)","tests":[{"input":"3 2\n3 4 1 6 5 2\n5 2 4 3 6 1\n1 6 4 3 5 2\n1 3\n2 3\n","output":"1 6 4 3 5 2\n3 4 1 6 5 2\n5 2 4 3 6 1\n","public":true,"sampleRole":"primary"},{"input":"2 3\n3 4 1 6 5 2\n5 2 4 3 6 1\n1 1\n1 2\n1 2\n","output":"3 4 1 6 5 2\n5 2 4 3 6 1\n","public":true,"sampleRole":"edge","qaPurpose":"self-swap and double-swap should preserve the original complete states"},{"input":"4 4\n3 4 1 6 5 2\n5 2 4 3 6 1\n1 6 4 3 5 2\n6 1 3 4 5 2\n1 4\n2 3\n1 2\n3 4\n","output":"1 6 4 3 5 2\n6 1 3 4 5 2\n3 4 1 6 5 2\n5 2 4 3 6 1\n"},{"input":"1 2\n5 2 4 3 6 1\n1 1\n1 1\n","output":"5 2 4 3 6 1\n"}],"tutorial":"<div class=\"tutorial-body\">\n<section class=\"tutorial-card tutorial-goal\"><h3>1. 先知道這題在練什麼</h3><p>這階只練一個新能力：<strong>swap（交換）完整 state</strong>。旋轉規則先全部拿掉，讓你專心看懂「位置變了之後，六個面也要整包跟著走」。</p><p>每個 <code>die[i]</code> 都是一個長度 6 的 list，順序固定是 <code>[上, 下, 前, 後, 左, 右]</code>。因此位置交換，其實就是交換兩個完整 list。</p></section>\n<section class=\"tutorial-card tutorial-core\"><h3>2. 核心觀念與圖解</h3><div class=\"tutorial-visual\"><div class=\"tutorial-visual-title\">位置裡放的是「完整骰子」，不是只有 top</div><div class=\"dice-row\"><div class=\"active\"><small>位置 1</small><b>[3,4,1,6,5,2]</b></div><div><small>位置 2</small><b>[5,2,4,3,6,1]</b></div></div><div class=\"swap-visual\"><div>6 個欄位整包</div><div class=\"big-arrow\">⇄</div><div>6 個欄位整包</div></div><p class=\"tutorial-caption\">交換之後，原本位置 1 的 top、bottom、front、back、left、right 都一起到位置 2。</p></div></section>\n<section class=\"tutorial-card tutorial-worked\"><h3>3. 跟著做一個小例子</h3><p>假設 <code>die[0] = [3,4,1,6,5,2]</code>、<code>die[1] = [5,2,4,3,6,1]</code>。執行交換位置 1、2 之後，兩個 list 要整個互換：</p><div class=\"mapping-row\"><span>交換前：A｜B</span><span>操作：1 2</span><span>交換後：B｜A</span></div><p>如果只交換 <code>die[0][0]</code> 和 <code>die[1][0]</code>，其他五面仍留在原位置，輸出完整六面時會立刻看出錯誤。</p></section>\n<section class=\"tutorial-card tutorial-plan\"><h3>4. 程式要準備哪些東西</h3><ol><li>用一個二維 list <code>die</code> 保存 n 顆骰子的完整六面。</li><li>讀每筆 <code>a, b</code> 後先把 1-based 位置轉成 0-based index。</li><li>用 Python 常規的 simultaneous assignment 交換 <code>die[a]</code>、<code>die[b]</code>。</li><li>最後逐顆用 <code>print(*state)</code> 輸出六個面。</li></ol></section>\n<section class=\"tutorial-card tutorial-code\"><h3>5. Python 一段一段怎麼寫</h3><div class=\"tutorial-code-step\"><strong>步驟 A：先把每顆完整 state 讀進二維 list</strong><p>每一行本身就是一顆骰子的六面，所以讀成一個 list，再 append 到外層。</p><pre class=\"tutorial-code-snippet\">die = []\nfor _ in range(n):\n    state = list(map(int, input().split()))\n    die.append(state)</pre></div><div class=\"tutorial-code-step\"><strong>步驟 B：把題目的位置編號轉成 list index 再交換</strong><p>題目從 1 開始編號，Python list 從 0 開始，所以兩個位置都要減 1。交換的是 <code>die[a]</code> 這整個 list。</p><pre class=\"tutorial-code-snippet\">a, b = map(int, input().split())\na -= 1\nb -= 1\ndie[a], die[b] = die[b], die[a]</pre></div><div class=\"tutorial-code-step\"><strong>步驟 C：輸出完整六面</strong><p><code>print(*state)</code> 會把 list 裡六個整數用空格分開輸出，是這裡很常規的寫法。</p><pre class=\"tutorial-code-snippet\">for state in die:\n    print(*state)</pre></div><p class=\"tutorial-code-note\">這階故意不處理旋轉；等你確定完整 state 的交換沒問題，第 7 階才把 swap 和 rotation 合起來。</p></section>\n<section class=\"tutorial-card tutorial-check\"><h3>6. 常見錯誤與自我檢查</h3><ul><li>只交換 <code>die[a][0]</code>：只換了 top，其他五面沒有跟著移動。</li><li>忘記把 a、b 各減 1：會交換錯位置或超出範圍。</li><li><code>a=b</code> 時不需要特殊處理；一個 list 和自己交換，結果自然不變。</li><li>自測可用「交換同一位置」與「同一對位置連續交換兩次」，最後都應回到原本 state。</li></ul></section>\n</div>"},{"id":7,"title":"f580 骰子（原題）","difficulty":"APCS 原題","statement":"給定 <code>n</code> 顆骰子排成一列。每顆骰子的初始六面固定為：上=1、下=6、前=4、後=3、左=5、右=2。接著有 <code>m</code> 次操作，每次給兩個整數 <code>a,b</code>：若 <code>a,b</code> 都是正整數，交換位置 <code>a</code> 與位置 <code>b</code> 的整顆骰子；若 <code>b=-1</code>，將位置 <code>a</code> 的骰子向前旋轉，規則為上→前、前→下、下→後、後→上，左/右不變；若 <code>b=-2</code>，將位置 <code>a</code> 的骰子向右旋轉，規則為上→右、右→下、下→左、左→上，前/後不變。所有位置採 1-based；全部操作完成後，依序輸出位置 1 到位置 n 的朝上點數。","input":"第一行包含 <code>n m</code>，其中 <code>1 ≤ n ≤ 20</code>、<code>1 ≤ m ≤ 100</code>。接下來 m 行每行包含兩個整數 <code>a b</code>，依題目規則表示交換或旋轉操作；位置編號採 1-based。","output":"在一行輸出 n 個數字，以空格分隔；第 i 個數字代表位置 i 的骰子最後朝上的點數。","sampleIn":"1 2\n1 -2\n1 -1","sampleOut":"3","sampleExplain":"<div class=\"demo-story\"><section class=\"demo-step\"><p>第一筆操作 <code>1 -2</code>：第 1 顆向右滾，state 變為：</p><div class=\"dice-state\"><strong>向右後</strong><div class=\"dice-net\"><span class=\"blank\"></span><span data-face=\"back\">後 3</span><span class=\"blank\"></span><span class=\"blank\"></span><span data-face=\"left\">左 6</span><span data-face=\"top\">上 5</span><span data-face=\"right\">右 1</span><span data-face=\"bottom\">下 2</span><span class=\"blank\"></span><span data-face=\"front\">前 4</span><span class=\"blank\"></span><span class=\"blank\"></span></div></div></section><section class=\"demo-step\"><p>第二筆操作 <code>1 -1</code>：以剛才的完整 state 再向前滾：</p><div class=\"dice-state\"><strong>再向前後</strong><div class=\"dice-net\"><span class=\"blank\"></span><span data-face=\"back\">後 2</span><span class=\"blank\"></span><span class=\"blank\"></span><span data-face=\"left\">左 6</span><span data-face=\"top\">上 3</span><span data-face=\"right\">右 1</span><span data-face=\"bottom\">下 4</span><span class=\"blank\"></span><span data-face=\"front\">前 5</span><span class=\"blank\"></span><span class=\"blank\"></span></div></div><p>最上面是 3，因此輸出：</p><pre>3</pre></section></div>","starter":"","answer":"n, m = map(int, input().split())\ndie = [[1, 6, 4, 3, 5, 2]] * n\n\nfor _ in range(m):\n    a, b = map(int, input().split())\n    a -= 1\n\n    # 六面順序固定為上、下、前、後、左、右；旋轉時都用操作前的 state 重新排列。\n    top, bottom, front, back, left, right = die[a]\n\n    # b > 0 是交換兩顆完整 state；負數才代表旋轉。\n    if b > 0:\n        b -= 1\n        die[a], die[b] = die[b], die[a]\n    elif b == -1:\n        die[a] = [back, front, top, bottom, left, right]\n    else:\n        die[a] = [left, right, front, back, bottom, top]\n\nfor i in range(n):\n    print(die[i][0], end=' ')","tests":[{"input":"1 2\n1 -2\n1 -1\n","output":"3\n","public":true,"sampleRole":"primary"},{"input":"3 3\n2 -1\n3 -2\n3 1\n","output":"5 3 1\n","public":true,"sampleRole":"edge","qaPurpose":"official multi-die swap sample"},{"input":"1 4\n1 -1\n1 -1\n1 -1\n1 -1\n","output":"1\n"},{"input":"1 4\n1 -2\n1 -2\n1 -2\n1 -2\n","output":"1\n"},{"input":"2 6\n1 -1\n1 2\n2 -2\n1 -1\n2 1\n1 -2\n","output":"4 3\n"},{"input":"6 11\n1 -2\n2 -1\n3 -2\n4 -1\n5 -2\n6 -1\n1 6\n2 5\n3 4\n6 -2\n5 -1\n","output":"3 5 3 5 6 6\n"}],"tutorial":"<div class=\"tutorial-body\">\n<section class=\"tutorial-card tutorial-goal\"><h3>1. 先知道這題在練什麼</h3><p>完整題沒有新的骰子規則；你要把「多顆 state、兩種 rotation、完整 swap」整理成一個穩定的 simulation。只要維持一個不變量：<strong>dices[i] 永遠完整描述目前位在位置 i 的骰子</strong>。</p></section>\n<section class=\"tutorial-card tutorial-core\"><h3>2. 核心觀念與圖解</h3><div class=\"tutorial-visual\"><div class=\"tutorial-visual-title\">每筆操作只做一次分類</div><div class=\"learn-step-flow\"><div class=\"learn-step-node\"><strong>讀 a,b</strong><small>位置採 1-based</small></div><div class=\"reason-arrow\">→</div><div class=\"learn-step-node\"><strong>b &gt; 0</strong><small>交換兩個完整 state</small></div><div class=\"learn-step-node\"><strong>b = -1</strong><small>位置 a 向前</small></div><div class=\"learn-step-node\"><strong>b = -2</strong><small>位置 a 向右</small></div><div class=\"reason-arrow\">→</div><div class=\"learn-step-node\"><strong>m 次後</strong><small>讀每個 top</small></div></div></div></section>\n<section class=\"tutorial-card tutorial-worked\"><h3>3. 跟著做一個小例子</h3><p>例如 n=2：先 <code>1 -1</code>，位置 1 變成向前後的 state；再 <code>1 2</code>，兩顆完整交換；最後 <code>2 -2</code>，現在位置 2 上的是原本那顆已旋轉過的骰子，所以必須從交換後的完整 state 再向右。</p><p>只要每一步都維持不變量，操作再多也只是重複 O(1) 更新。</p></section>\n<section class=\"tutorial-card tutorial-plan\"><h3>4. 完整題用「先分類、再更新」保持簡單</h3><p>這題不需要新技巧。沿用前面已學過的正常 Python 寫法：簡單 comprehension 建立重複資料、tuple unpacking 讀固定六面、直接 swap 交換兩個完整 state；而真正的操作分類與 rotation mapping 仍保持明確。</p><ol><li>建立 n 顆獨立骰子。</li><li>重複 m 次讀 a,b。</li><li>b&gt;0 直接 swap；否則處理兩種 rotation。</li><li>最後用簡單 comprehension 收集 top，再 <code>print(*tops)</code>。</li></ol></section>\n<section class=\"tutorial-card tutorial-code\"><h3>5. Python 一段一段怎麼寫</h3><p>完整題採用前面已學過的正常 Python idiom：簡單 comprehension 建初始資料、tuple unpacking 讀固定 state、直接 swap 交換兩顆骰子；真正的操作分類與 rotation mapping 仍保持明確。</p><div class=\"tutorial-code-step\"><strong>步驟 A：建立骰子並分類操作</strong><p>建立 n 顆相同初始 state 後，每筆操作先把 a 轉成 0-based，再分成 swap 或 rotation。</p><pre class=\"tutorial-code-snippet\">dices = [[1, 6, 4, 3, 5, 2] for _ in range(n)]\n\nfor _ in range(m):\n    a, b = map(int, input().split())\n    a -= 1\n    if b &gt; 0:\n        # swap\n    else:\n        # rotation</pre></div><div class=\"tutorial-code-step\"><strong>步驟 B：交換用 Python 標準 swap</strong><p>這行就完整表達「位置 a 與 b 的整顆 state 交換」。</p><pre class=\"tutorial-code-snippet\">b -= 1\ndices[a], dices[b] = dices[b], dices[a]</pre></div><div class=\"tutorial-code-step\"><strong>步驟 C：旋轉用拆包 + 清楚 mapping</strong><p>不要把 mapping 壓成 index trick；固定六面先取名字，再建立下一個 state 最容易核對。</p><pre class=\"tutorial-code-snippet\">top, bottom, front, back, left, right = dices[a]\nif b == -1:\n    dices[a] = [back, front, top, bottom, left, right]\nelse:\n    dices[a] = [left, right, front, back, bottom, top]</pre></div><div class=\"tutorial-code-step\"><strong>步驟 D：最後輸出所有 top</strong><p>每顆只取 <code>die[0]</code>，所以用已學過的單層 comprehension 收集，再直接 <code>print(*tops)</code>。</p><pre class=\"tutorial-code-snippet\">tops = [die[0] for die in dices]\nprint(*tops)</pre></div><p class=\"tutorial-code-note\">這份寫法的重點不是最短，而是符合一般 Python 習慣：常用 idiom 減少樣板程式，核心 simulation 還是能逐步 trace。</p></section>\n<section class=\"tutorial-card tutorial-check\"><h3>6. 常見錯誤與自我檢查</h3><ul><li>四次向前、四次向右都應回原狀。</li><li>交換後再旋轉是檢查「完整 state swap」最重要的案例。</li><li>n≤20、m≤100，直接模擬已非常快，不需要額外資料結構或最佳化。</li></ul></section>\n</div>"}];
+const TASKS = [{"id":1,"title":"把骰子變成可更新的 state（狀態）","difficulty":"入門","statement":"本階使用的初始骰子六面<strong>直接固定</strong>為：<strong>上=1、下=6、前=4、後=3、左=5、右=2</strong>。這些點數位置就是本題給定條件，不需要自行從「標準骰子」推導。方向編號與初始點數完整對照為：<code>d=1 → 上 → 1</code>、<code>d=2 → 下 → 6</code>、<code>d=3 → 前 → 4</code>、<code>d=4 → 後 → 3</code>、<code>d=5 → 左 → 5</code>、<code>d=6 → 右 → 2</code>。本階先不旋轉骰子；讀入一個方向編號 <code>d</code>，輸出該方向的點數。","input":"一行一個整數 <code>d</code>，且 <code>1 ≤ d ≤ 6</code>。方向依序為上、下、前、後、左、右。","output":"輸出該方向在初始骰子上的點數。","sampleIn":"3","sampleOut":"4","sampleExplain":"<div class=\"demo-story\"><section class=\"demo-step\"><p><code>d = 3</code> 代表查詢「前面」。初始狀態明確指定前面是點數 4。</p><div class=\"dice-state\"><strong>初始骰子</strong><div class=\"dice-net\"><span class=\"blank\"></span><span data-face=\"back\">後 3</span><span class=\"blank\"></span><span class=\"blank\"></span><span data-face=\"left\">左 5</span><span data-face=\"top\">上 1</span><span data-face=\"right\">右 2</span><span data-face=\"bottom\">下 6</span><span class=\"blank\"></span><span data-face=\"front\">前 4</span><span class=\"blank\"></span><span class=\"blank\"></span></div></div><div class=\"reason-flow\"><div class=\"reason-node\"><strong>d = 3</strong><small>前面</small></div><div class=\"reason-arrow\">→</div><div class=\"reason-node answer\"><strong>4</strong><small>輸出</small></div></div></section></div>","starter":"","answer":"# PEICD100 寫的\n# 六個位置固定依序是：上、下、前、後、左、右。\nfaces = [1, 6, 4, 3, 5, 2]\n\nd = int(input())\nindex = d - 1\nprint(faces[index])","tests":[{"input":"3\n","output":"4\n","public":true,"sampleRole":"primary","sampleOrigin":"task","qaPurpose":"本階主要公開範例"},{"input":"1\n","output":"1\n","public":true,"sampleRole":"secondary","sampleOrigin":"task","qaPurpose":"本階第二公開案例"},{"input":"6\n","output":"2\n","qaPurpose":"last direction index d=6","public":true,"sampleRole":"special","sampleOrigin":"special"},{"input":"4\n","output":"3\n"},{"input":"5\n","output":"5\n"}],"tutorial":"<div class=\"tutorial-body\">\n<section class=\"tutorial-card tutorial-goal\"><h3>1. 先知道這題在練什麼</h3><p>這題先不旋轉。目標是學會用一個固定順序保存骰子的六個面，因為之後所有旋轉與交換都會依賴這個完整 state（狀態）。</p></section>\n<section class=\"tutorial-card tutorial-core\"><h3>2. 核心觀念與圖解</h3><p>固定順序可以選 <code>[上, 下, 前, 後, 左, 右]</code>。題目給的初始值因此是 <code>[1,6,4,3,5,2]</code>。</p><p>為什麼一開始就要存六面？因為「目前 top 是多少」只描述眼前輸出，卻不能決定下一次旋轉。下一步的新 top 可能來自後、左或其他面；只有完整六面 state 才包含足夠資訊，能唯一決定下一個 state。</p><div class=\"tutorial-visual\"><div class=\"tutorial-visual-title\">六面 state 與方向編號</div><div class=\"dice-state\"><strong>初始骰子</strong><div class=\"dice-net\"><span class=\"blank\"></span><span data-face=\"back\">後 3</span><span class=\"blank\"></span><span class=\"blank\"></span><span data-face=\"left\">左 5</span><span data-face=\"top\">上 1</span><span data-face=\"right\">右 2</span><span data-face=\"bottom\">下 6</span><span class=\"blank\"></span><span data-face=\"front\">前 4</span><span class=\"blank\"></span><span class=\"blank\"></span></div></div><div class=\"mapping-row\"><span>d=1 → 上 → 1</span><span>d=2 → 下 → 6</span><span>d=3 → 前 → 4</span><span>d=4 → 後 → 3</span><span>d=5 → 左 → 5</span><span>d=6 → 右 → 2</span></div></div></section>\n<section class=\"tutorial-card tutorial-worked\"><h3>3. 跟著做一個小例子</h3><p>若輸入 d=5，你查的是「左面」，初始左面是 5，所以輸出 5。若使用 list 存六面，d 是 1-based，而 Python index 是 0-based，因此位置會是 <code>d-1</code>。</p></section>\n<section class=\"tutorial-card tutorial-plan\"><h3>4. 先固定一個六面順序</h3><p>用 list 保存六面時，最重要的是順序永遠不變。這裡固定 <code>[上,下,前,後,左,右]</code>，所以 index 0..5 各有明確意思。輸入 d 是 1..6，因此只要做一次 <code>d-1</code> 轉成 Python index。</p><ol><li>建立 faces list。</li><li>讀 d。</li><li>算 index=d-1。</li><li>輸出 faces[index]。</li></ol></section>\n<section class=\"tutorial-card tutorial-code\"><h3>5. Python 一段一段怎麼寫</h3><p>這題先把「1-based 題目編號 → 0-based list index」寫熟。</p><div class=\"tutorial-code-step\"><strong>步驟 A：建立六面資料</strong><p>直接把題目給的六個點數按固定順序放進 list；不要自己猜標準骰子。</p><pre class=\"tutorial-code-snippet\">faces = [1, 6, 4, 3, 5, 2]</pre></div><div class=\"tutorial-code-step\"><strong>步驟 B：把 d 轉成 index</strong><p>例如 d=1 應該讀 faces[0]，所以公式是 d-1。</p><pre class=\"tutorial-code-snippet\">d = int(input())\nindex = d - 1\n# 接著讀 faces[index]</pre></div><p class=\"tutorial-code-note\">把上面的片段依題目流程接起來，再自己補上最後需要的輸出或尚未填入的分支。詳細教學會教你每一塊怎麼寫，但完整可提交答案集中在獨立的「參考答案」視窗；詳細教學本身不直接複製整份答案。</p></section>\n<section class=\"tutorial-card tutorial-check\"><h3>6. 常見錯誤與自我檢查</h3><ul><li>不要只存目前朝上的值，後面旋轉會需要其他五面。</li><li>不要把右=2 與左=5 寫反。</li><li>檢查三組對面：1/6、4/3、5/2。</li></ul></section>\n</div>","referenceOwner":"PEICD100"},{"id":2,"title":"只向前滾：四個面循環","difficulty":"基礎","statement":"一顆骰子初始為上=1、下=6、前=4、後=3、左=5、右=2。輸入整數 <code>m</code>，把這顆骰子連續「向前旋轉」 <code>m</code> 次。向前旋轉時：原本的上面會到前面、前面到底面、底面到後面、後面到上面。最後輸出朝上的點數。","input":"一行一個整數 <code>m</code>，<code>1 ≤ m ≤ 100</code>。","output":"輸出旋轉完成後朝上的點數。","sampleIn":"1","sampleOut":"3","sampleExplain":"<div class=\"demo-story\"><section class=\"demo-step\"><p>只轉 1 次。原本後面的 3 會移到上面。</p><div class=\"state-transition\"><div class=\"dice-state\"><strong>旋轉前</strong><div class=\"dice-net\"><span class=\"blank\"></span><span data-face=\"back\">後 3</span><span class=\"blank\"></span><span class=\"blank\"></span><span data-face=\"left\">左 5</span><span data-face=\"top\">上 1</span><span data-face=\"right\">右 2</span><span data-face=\"bottom\">下 6</span><span class=\"blank\"></span><span data-face=\"front\">前 4</span><span class=\"blank\"></span><span class=\"blank\"></span></div></div><div class=\"big-arrow\">向前 →</div><div class=\"dice-state\"><strong>旋轉後</strong><div class=\"dice-net\"><span class=\"blank\"></span><span data-face=\"back\">後 6</span><span class=\"blank\"></span><span class=\"blank\"></span><span data-face=\"left\">左 5</span><span data-face=\"top\">上 3</span><span data-face=\"right\">右 2</span><span data-face=\"bottom\">下 4</span><span class=\"blank\"></span><span data-face=\"front\">前 1</span><span class=\"blank\"></span><span class=\"blank\"></span></div></div></div><p>因此最上面是 <code>3</code>。</p></section></div>","starter":"","answer":"# PEICD100 寫的\nm = int(input())\ndie = [1, 6, 4, 3, 5, 2]\n\nfor _ in range(m):\n    # 先保存旋轉前的六面；向前滾時，原本的後面會來到上面。\n    top, bottom, front, back, left, right = die\n\n    die = [back, front, top, bottom, left, right]\n\nprint(die[0])","tests":[{"input":"1\n","output":"3\n","public":true,"sampleRole":"primary","sampleOrigin":"task","qaPurpose":"本階主要公開範例"},{"input":"2\n","output":"6\n","public":true,"sampleRole":"secondary","sampleOrigin":"task","qaPurpose":"本階第二公開案例"},{"input":"4\n","output":"1\n","qaPurpose":"four forward rolls return to initial orientation","public":true,"sampleRole":"special","sampleOrigin":"special"},{"input":"3\n","output":"4\n"},{"input":"9\n","output":"3\n"}],"tutorial":"<div class=\"tutorial-body\">\n<section class=\"tutorial-card tutorial-goal\"><h3>1. 先知道這題在練什麼</h3><p>第一次學 rotation（旋轉）。向前滾時只有上、前、下、後四面循環；左、右保持不動。</p><p>把骰子想成沿著「左右方向的軸」往前翻：因為軸穿過左、右兩面，所以這兩面不會換位置；其餘四面會沿著上→前→下→後→上的方向循環。先理解這個物理關係，就不必硬背四個 assignment。</p></section>\n<section class=\"tutorial-card tutorial-core\"><h3>2. 核心觀念與圖解</h3><div class=\"tutorial-visual\"><div class=\"tutorial-visual-title\">向前 1 次的完整狀態轉移</div><div class=\"mapping-row\"><span>舊後 → 新上</span><span>舊上 → 新前</span><span>舊前 → 新下</span><span>舊下 → 新後</span></div><div class=\"state-transition\"><div class=\"dice-state\"><strong>before</strong><div class=\"dice-net\"><span class=\"blank\"></span><span>後 3</span><span class=\"blank\"></span><span class=\"blank\"></span><span>左 5</span><span data-face=\"top\">上 1</span><span>右 2</span><span>下 6</span><span class=\"blank\"></span><span>前 4</span><span class=\"blank\"></span><span class=\"blank\"></span></div></div><div class=\"big-arrow\">→</div><div class=\"dice-state\"><strong>after</strong><div class=\"dice-net\"><span class=\"blank\"></span><span>後 6</span><span class=\"blank\"></span><span class=\"blank\"></span><span>左 5</span><span data-face=\"top\">上 3</span><span>右 2</span><span>下 4</span><span class=\"blank\"></span><span>前 1</span><span class=\"blank\"></span><span class=\"blank\"></span></div></div></div><p class=\"tutorial-caption\">新上面來自「舊後面」，所以一次向前後 top=3。</p></div></section>\n<section class=\"tutorial-card tutorial-worked\"><h3>3. 跟著做一個小例子</h3><p>再向前一次時，不能回去使用初始骰子，而要用第一次旋轉後的完整 state。第一次後是 [上3,下4,前1,後6,左5,右2]；第二次的新上面就會是舊後 6。</p><p>因此 top 依序會是 1 → 3 → 6 → 4 → 1，四次回到原狀。</p></section>\n<section class=\"tutorial-card tutorial-plan\"><h3>4. 把一次旋轉先寫對，再放進 m 次迴圈</h3><p>六個面有固定順序，所以直接用 tuple unpacking 把它們取成 <code>top/bottom/front/back/left/right</code> 是常規而清楚的 Python 寫法；接著建立新的 list，讓程式碼直接對應圖上的「舊後→新上」等 mapping。</p><ol><li><code>for</code> 迴圈重複 m 次。</li><li>每次先用拆包取出 top/bottom/front/back/left/right。</li><li>依 mapping 建立新的 die list。</li><li>m 次後輸出 die[0]。</li></ol></section>\n<section class=\"tutorial-card tutorial-code\"><h3>5. Python 一段一段怎麼寫</h3><p>六面順序固定後，Python 很適合用 tuple unpacking（拆包）把六個位置一次取成有名字的變數。這是常規語法，比連寫六次 <code>die[0]</code>、<code>die[1]</code> 更短也更容易核對。</p><div class=\"tutorial-code-step\"><strong>步驟 A：一次把六個舊面拆出來</strong><p>左邊變數順序必須和 state 的 <code>[上,下,前,後,左,右]</code> 完全一致。</p><pre class=\"tutorial-code-snippet\">top, bottom, front, back, left, right = die</pre></div><div class=\"tutorial-code-step\"><strong>步驟 B：按照 mapping 建立下一個 state</strong><p>新 list 仍使用同一個六面順序；右邊每個舊面都能直接對回圖解。</p><pre class=\"tutorial-code-snippet\">die = [\n    back,    # 新上 &lt;- 舊後\n    front,   # 新下 &lt;- 舊前\n    top,     # 新前 &lt;- 舊上\n    bottom,  # 新後 &lt;- 舊下\n    left,\n    right\n]</pre></div><div class=\"tutorial-code-step\"><strong>步驟 C：把 A、B 放進 m 次迴圈</strong><p>每次都先拆「目前的 die」，再建立新的 die，所以 state 會一輪一輪接下去。</p><pre class=\"tutorial-code-snippet\">for _ in range(m):\n    top, bottom, front, back, left, right = die\n    # 接著建立新的 die</pre></div><p class=\"tutorial-code-note\">tuple unpacking 是正常 Python 寫法；這裡使用它是因為六個位置本來就有固定結構，而不是為了炫技縮行。</p></section>\n<section class=\"tutorial-card tutorial-check\"><h3>6. 常見錯誤與自我檢查</h3><ul><li>最常見方向錯誤是把「舊前 → 新上」；那其實是反方向。</li><li>若逐行原地改變六面，前面的 assignment 可能破壞後面需要的舊值。</li><li>四次向前必須回到完全相同的六面 state。</li></ul></section>\n</div>","referenceOwner":"PEICD100"},{"id":3,"title":"只向右滾：另一組四面循環","difficulty":"基礎","statement":"一顆骰子初始為上=1、下=6、前=4、後=3、左=5、右=2。輸入整數 <code>m</code>，把骰子連續「向右旋轉」 <code>m</code> 次。向右旋轉時：原本的上面到右面、右面到底面、底面到左面、左面到上面。最後輸出朝上的點數。","input":"一行一個整數 <code>m</code>，<code>1 ≤ m ≤ 100</code>。","output":"輸出旋轉完成後朝上的點數。","sampleIn":"1","sampleOut":"5","sampleExplain":"<div class=\"demo-story\"><section class=\"demo-step\"><p>向右 1 次時，原本左面的 5 來到上面。</p><div class=\"state-transition\"><div class=\"dice-state\"><strong>旋轉前</strong><div class=\"dice-net\"><span class=\"blank\"></span><span data-face=\"back\">後 3</span><span class=\"blank\"></span><span class=\"blank\"></span><span data-face=\"left\">左 5</span><span data-face=\"top\">上 1</span><span data-face=\"right\">右 2</span><span data-face=\"bottom\">下 6</span><span class=\"blank\"></span><span data-face=\"front\">前 4</span><span class=\"blank\"></span><span class=\"blank\"></span></div></div><div class=\"big-arrow\">向右 →</div><div class=\"dice-state\"><strong>旋轉後</strong><div class=\"dice-net\"><span class=\"blank\"></span><span data-face=\"back\">後 3</span><span class=\"blank\"></span><span class=\"blank\"></span><span data-face=\"left\">左 6</span><span data-face=\"top\">上 5</span><span data-face=\"right\">右 1</span><span data-face=\"bottom\">下 2</span><span class=\"blank\"></span><span data-face=\"front\">前 4</span><span class=\"blank\"></span><span class=\"blank\"></span></div></div></div><p>所以輸出 <code>5</code>。</p></section></div>","starter":"","answer":"# PEICD100 寫的\nm = int(input())\ndie = [1, 6, 4, 3, 5, 2]\n\nfor _ in range(m):\n    # 先保存旋轉前的六面；向右滾時，原本的左面會來到上面。\n    top, bottom, front, back, left, right = die\n\n    die = [left, right, front, back, bottom, top]\n\nprint(die[0])","tests":[{"input":"1\n","output":"5\n","public":true,"sampleRole":"primary","sampleOrigin":"task","qaPurpose":"本階主要公開範例"},{"input":"2\n","output":"6\n","public":true,"sampleRole":"secondary","sampleOrigin":"task","qaPurpose":"本階第二公開案例"},{"input":"4\n","output":"1\n","qaPurpose":"four right rolls return to initial orientation","public":true,"sampleRole":"special","sampleOrigin":"special"},{"input":"3\n","output":"2\n"},{"input":"11\n","output":"2\n"}],"tutorial":"<div class=\"tutorial-body\">\n<section class=\"tutorial-card tutorial-goal\"><h3>1. 先知道這題在練什麼</h3><p>這階學另一個旋轉軸。向右滾時前、後不動；左、上、右、下四面循環。</p><p>這次旋轉軸穿過前、後兩面，因此前、後保持原位。骰子往右倒時，左面會被抬到上方，上面會倒到右方；用這個實體動作判斷方向，比只記『新上=舊左』更不容易寫反。</p></section>\n<section class=\"tutorial-card tutorial-core\"><h3>2. 核心觀念與圖解</h3><div class=\"tutorial-visual\"><div class=\"tutorial-visual-title\">向右 1 次</div><div class=\"mapping-row\"><span>舊左 → 新上</span><span>舊上 → 新右</span><span>舊右 → 新下</span><span>舊下 → 新左</span></div><div class=\"state-transition\"><div class=\"dice-state\"><strong>before</strong><div class=\"dice-net\"><span class=\"blank\"></span><span>後 3</span><span class=\"blank\"></span><span class=\"blank\"></span><span>左 5</span><span data-face=\"top\">上 1</span><span>右 2</span><span>下 6</span><span class=\"blank\"></span><span>前 4</span><span class=\"blank\"></span><span class=\"blank\"></span></div></div><div class=\"big-arrow\">→</div><div class=\"dice-state\"><strong>after</strong><div class=\"dice-net\"><span class=\"blank\"></span><span>後 3</span><span class=\"blank\"></span><span class=\"blank\"></span><span>左 6</span><span data-face=\"top\">上 5</span><span>右 1</span><span>下 2</span><span class=\"blank\"></span><span>前 4</span><span class=\"blank\"></span><span class=\"blank\"></span></div></div></div></div></section>\n<section class=\"tutorial-card tutorial-worked\"><h3>3. 跟著做一個小例子</h3><p>向右兩次：第一次 top=5；第二次時「舊左」已經是 6，所以新 top=6。top 序列是 1 → 5 → 6 → 2 → 1。</p><p>這個序列可以直接拿來驗證你是否把左右方向寫反。</p></section>\n<section class=\"tutorial-card tutorial-plan\"><h3>4. 沿用同一個 state 寫法，只換 mapping</h3><p>向右時前、後不動，會循環的是左、上、右、下。程式結構和向前完全相同：先保存舊六面，再按新位置順序建立 list。</p><ol><li>保留 die=[上,下,前,後,左,右]。</li><li>每次先把六個舊值取出。</li><li>依舊左→新上、舊右→新下等 mapping 建新 list。</li><li>重複 m 次。</li></ol></section>\n<section class=\"tutorial-card tutorial-code\"><h3>5. Python 一段一段怎麼寫</h3><p>向右旋轉沿用同一個常規模式：先把固定六面 state 拆成有名字的變數，再依 mapping 建新的 list。</p><div class=\"tutorial-code-step\"><strong>步驟 A：拆出目前六面</strong><p>這一行和向前旋轉完全相同，所以不用重複六行 index assignment。</p><pre class=\"tutorial-code-snippet\">top, bottom, front, back, left, right = die</pre></div><div class=\"tutorial-code-step\"><strong>步驟 B：填出向右後的新 state</strong><p>新上來自舊左、新下來自舊右；前後保持不變。</p><pre class=\"tutorial-code-snippet\">die = [\n    left,    # 新上 &lt;- 舊左\n    right,   # 新下 &lt;- 舊右\n    front,\n    back,\n    bottom,  # 新左 &lt;- 舊下\n    top      # 新右 &lt;- 舊上\n]</pre></div><p class=\"tutorial-code-note\">這樣既保留六面 mapping 的可追蹤性，又不需要為了「初學」刻意寫六個重複的取值敘述。</p></section>\n<section class=\"tutorial-card tutorial-check\"><h3>6. 常見錯誤與自我檢查</h3><ul><li>向右滾不是「右面抬到上面」；實體上是左面移到上面。</li><li>前、後如果被你改動，代表旋轉軸寫錯了。</li><li>四次向右必須回到原狀。</li></ul></section>\n</div>","referenceOwner":"PEICD100"},{"id":4,"title":"混合旋轉：每一步都更新同一個 state","difficulty":"基礎＋","statement":"一顆骰子初始為上=1、下=6、前=4、後=3、左=5、右=2。第一行輸入操作次數 <code>m</code>（<code>1 ≤ m ≤ 100</code>）；接下來 <code>m</code> 行每行是一個操作碼。<code>-1</code> 代表向前旋轉：原本的上面到前面、前面到底面、底面到後面、後面到上面，左面與右面不變。<code>-2</code> 代表向右旋轉：原本的上面到右面、右面到底面、底面到左面、左面到上面，前面與後面不變。請依輸入順序更新同一顆骰子的完整六面狀態，最後輸出朝上的點數。","input":"第一行為 <code>m</code>。接下來 <code>m</code> 行每行為 <code>-1</code> 或 <code>-2</code>。","output":"輸出最後朝上的點數。","sampleIn":"2\n-2\n-1","sampleOut":"3","sampleExplain":"<div class=\"demo-story\"><section class=\"demo-step\"><p>先做 <code>-2</code>（向右）：上面從 1 變成 5。</p><div class=\"dice-state\"><strong>step 1：向右後</strong><div class=\"dice-net\"><span class=\"blank\"></span><span data-face=\"back\">後 3</span><span class=\"blank\"></span><span class=\"blank\"></span><span data-face=\"left\">左 6</span><span data-face=\"top\">上 5</span><span data-face=\"right\">右 1</span><span data-face=\"bottom\">下 2</span><span class=\"blank\"></span><span data-face=\"front\">前 4</span><span class=\"blank\"></span><span class=\"blank\"></span></div></div></section><section class=\"demo-step\"><p>再做 <code>-1</code>（向前）：此時要用「step 1 的完整 state」繼續更新；後面仍是 3，所以新上面變成 3。</p><div class=\"dice-state\"><strong>step 2：再向前</strong><div class=\"dice-net\"><span class=\"blank\"></span><span data-face=\"back\">後 2</span><span class=\"blank\"></span><span class=\"blank\"></span><span data-face=\"left\">左 6</span><span data-face=\"top\">上 3</span><span data-face=\"right\">右 1</span><span data-face=\"bottom\">下 4</span><span class=\"blank\"></span><span data-face=\"front\">前 5</span><span class=\"blank\"></span><span class=\"blank\"></span></div></div><div class=\"reason-flow\"><div class=\"reason-node\"><strong>-2</strong><small>top 1 → 5</small></div><div class=\"reason-arrow\">→</div><div class=\"reason-node\"><strong>-1</strong><small>top 5 → 3</small></div><div class=\"reason-arrow\">→</div><div class=\"reason-node answer\"><strong>3</strong><small>最後輸出</small></div></div></section></div>","starter":"","answer":"# PEICD100 寫的\nm = int(input())\ndie = [1, 6, 4, 3, 5, 2]\n\nfor _ in range(m):\n    op = int(input())\n\n    # 每一步都要保留完整六面 state，下一次旋轉才知道哪一面會轉到上方。\n    top, bottom, front, back, left, right = die\n\n    if op == -1:\n        die = [back, front, top, bottom, left, right]\n    else:\n        die = [left, right, front, back, bottom, top]\n\nprint(die[0])","tests":[{"input":"2\n-2\n-1\n","output":"3\n","public":true,"sampleRole":"primary","sampleOrigin":"task","qaPurpose":"本階主要公開範例"},{"input":"3\n-1\n-2\n-1\n","output":"6\n","public":true,"sampleRole":"secondary","sampleOrigin":"task","qaPurpose":"本階第二公開案例"},{"input":"8\n-2\n-2\n-2\n-2\n-1\n-1\n-1\n-1\n","output":"1\n","qaPurpose":"full 4+4 rotation cycles return to initial orientation","public":true,"sampleRole":"special","sampleOrigin":"special"},{"input":"4\n-2\n-2\n-1\n-1\n","output":"1\n"},{"input":"5\n-1\n-1\n-2\n-2\n-1\n","output":"4\n"}],"tutorial":"<div class=\"tutorial-body\">\n<section class=\"tutorial-card tutorial-goal\"><h3>1. 先知道這題在練什麼</h3><p>你已經會兩種 transition。現在要學的是：操作必須依輸入順序作用在<strong>同一個持續更新的 state</strong>，不能每一步都從初始骰子重算。</p><p>這就是 simulation（模擬）的基本模式：輸入一個操作，拿「目前 state」算出「下一個 state」，再把下一個 state 當成新的目前 state。只要這個 invariant 一直成立，不管操作有 2 次或 100 次，處理方式都完全相同。</p></section>\n<section class=\"tutorial-card tutorial-core\"><h3>2. 核心觀念與圖解</h3><div class=\"tutorial-visual\"><div class=\"tutorial-visual-title\">混合操作的 state 接力</div><div class=\"learn-step-flow\"><div class=\"learn-step-node\"><strong>初始</strong><small>[1,6,4,3,5,2]</small></div><div class=\"reason-arrow\">-2</div><div class=\"learn-step-node\"><strong>向右後</strong><small>[5,2,4,3,6,1]</small></div><div class=\"reason-arrow\">-1</div><div class=\"learn-step-node\"><strong>再向前</strong><small>[3,4,5,2,6,1]</small></div></div><p class=\"tutorial-caption\">第二步的輸入 state 是第一步的輸出 state；這就是 simulation 的核心。</p></div></section>\n<section class=\"tutorial-card tutorial-worked\"><h3>3. 跟著做一個小例子</h3><p>操作 <code>-2, -1</code>：先向右，top 變 5，但其他五面也一起改變；接著向前時，新 top 取的是「此時的後面 3」，所以結果是 3。只記 top=5 的話，你根本不知道下一步的新 top 應該是誰。</p></section>\n<section class=\"tutorial-card tutorial-plan\"><h3>4. 先寫「讀操作 → 分支」外框</h3><p>這階多的只有 if 分支。每次讀到 op 後，先把目前六面保存成變數；<code>op==-1</code> 使用向前 mapping，否則題目保證是 -2，就使用向右 mapping。不要每個分支重新從初始骰子開始。</p><ol><li>建立初始 die。</li><li>重複 m 次讀 op。</li><li>每次取出目前六面。</li><li>用 if/else 選正確 mapping。</li><li>把結果存回 die。</li></ol></section>\n<section class=\"tutorial-card tutorial-code\"><h3>5. Python 一段一段怎麼寫</h3><p>混合旋轉時，一樣先用拆包取得目前 state，再讓 <code>if/else</code> 選擇下一個 state。</p><div class=\"tutorial-code-step\"><strong>步驟 A：每次操作先讀取並拆出目前六面</strong><p>拆包放在分支前，兩個旋轉分支都能共用同一組舊值。</p><pre class=\"tutorial-code-snippet\">for _ in range(m):\n    op = int(input())\n    top, bottom, front, back, left, right = die</pre></div><div class=\"tutorial-code-step\"><strong>步驟 B：兩個分支直接建立新 state</strong><p><code>-1</code> 與 <code>-2</code> 各自只負責自己的 mapping，不需要額外旗標或多層暫存。</p><pre class=\"tutorial-code-snippet\">if op == -1:\n    die = [back, front, top, bottom, left, right]\nelse:\n    die = [left, right, front, back, bottom, top]</pre></div><p class=\"tutorial-code-note\">這是一般、直接的 Python 控制流程：共用的工作放分支前，不同的 state update 留在各自分支。</p></section>\n<section class=\"tutorial-card tutorial-check\"><h3>6. 常見錯誤與自我檢查</h3><ul><li>不要只追蹤 top。</li><li>不要交換操作順序；旋轉通常不具交換律。</li><li>手算前兩步的六面 state，和程式輸出/除錯內容比對。</li></ul></section>\n</div>","referenceOwner":"PEICD100"},{"id":5,"title":"多顆骰子：每個位置都有自己的 state","difficulty":"中等","statement":"現在有 <code>n</code> 顆骰子排成一列，每顆初始都是上=1、下=6、前=4、後=3、左=5、右=2。接下來有 <code>m</code> 次旋轉操作，每次輸入 <code>a b</code>；本階保證 <code>b</code> 只會是 <code>-1</code> 或 <code>-2</code>。若 <code>b=-1</code>，將第 <code>a</code> 顆向前旋轉：上→前、前→下、下→後、後→上，左/右不變。若 <code>b=-2</code>，將第 <code>a</code> 顆向右旋轉：上→右、右→下、下→左、左→上，前/後不變。每顆骰子都要保留自己的完整六面狀態；最後輸出第 1 到第 n 顆目前朝上的點數。","input":"第一行 <code>n m</code>，<code>1 ≤ n ≤ 20</code>、<code>1 ≤ m ≤ 100</code>。接下來 m 行為 <code>a b</code>，其中 <code>1 ≤ a ≤ n</code> 且 <code>b ∈ {-1,-2}</code>。","output":"輸出 n 個整數，以空格分隔，依序是每個位置最後的上方面。","sampleIn":"3 3\n2 -1\n3 -2\n3 -1","sampleOut":"1 3 3","sampleExplain":"<div class=\"demo-story\"><section class=\"demo-step\"><p>三顆骰子一開始都一樣，但每次只修改指定的第 <code>a</code> 顆。</p><div class=\"dice-row\"><div>位置 1<br><b>top 1</b></div><div>位置 2<br><b>top 1</b></div><div>位置 3<br><b>top 1</b></div></div></section><section class=\"demo-step\"><p><code>2 -1</code>：只更新位置 2，top 變 3。<br><code>3 -2</code>：只更新位置 3，top 變 5。<br><code>3 -1</code>：位置 3 再從自己的完整 state 往前滾，top 變 3。</p><div class=\"dice-row\"><div>位置 1<br><b>1</b></div><div>位置 2<br><b>3</b></div><div>位置 3<br><b>3</b></div></div><pre>1 3 3</pre></section></div>","starter":"","answer":"# PEICD100 寫的\nn, m = map(int, input().split())\ndie = [[1, 6, 4, 3, 5, 2]] * n\n\nfor _ in range(m):\n    a, b = map(int, input().split())\n    index = a - 1\n\n    # 每次只更新第 a 顆骰子的完整六面 state，其他位置保持不變。\n    top, bottom, front, back, left, right = die[index]\n\n    if b == -1:\n        die[index] = [back, front, top, bottom, left, right]\n    else:\n        die[index] = [left, right, front, back, bottom, top]\n\n# 這份寫法每次都是整個替換 die[index]，沒有原地修改共用的內層 list。\nfor i in range(n):\n    print(die[i][0], end=' ')","tests":[{"input":"3 3\n2 -1\n3 -2\n3 -1\n","output":"1 3 3\n","public":true,"sampleRole":"primary","sampleOrigin":"task","qaPurpose":"本階主要公開範例"},{"input":"4 5\n1 -2\n4 -1\n1 -2\n2 -1\n4 -1\n","output":"6 3 1 6\n","public":true,"sampleRole":"secondary","sampleOrigin":"task","qaPurpose":"本階第二公開案例"},{"input":"1 3\n1 -1\n1 -2\n1 -1\n","output":"6\n","qaPurpose":"minimum n=1 multi-die boundary","public":true,"sampleRole":"special","sampleOrigin":"special"},{"input":"5 6\n5 -2\n5 -2\n3 -1\n2 -2\n3 -1\n1 -1\n","output":"3 5 6 1 6\n"}],"tutorial":"<div class=\"tutorial-body\">\n<section class=\"tutorial-card tutorial-goal\"><h3>1. 先知道這題在練什麼</h3><p>現在從一顆骰子擴充成 n 顆。核心想法是：每個位置都要有自己獨立的完整 state，一次操作只修改指定位置。</p><p>可以把 <code>dices</code> 想成「一列盒子」：外層 index 決定位置，內層六個值描述那個位置目前的骰子朝向。這兩層意義要分清楚：換位置是改外層元素；旋轉是改某個內層 state。</p></section>\n<section class=\"tutorial-card tutorial-core\"><h3>2. 核心觀念與圖解</h3><div class=\"tutorial-visual\"><div class=\"tutorial-visual-title\">dices 是「多個完整 state」的集合</div><div class=\"dice-row\"><div><small>位置 1</small><b>[1,6,4,3,5,2]</b></div><div class=\"active\"><small>位置 2：本次操作</small><b>[1,6,4,3,5,2]</b></div><div><small>位置 3</small><b>[1,6,4,3,5,2]</b></div></div><div class=\"mapping-row\"><span>輸入 2 -1</span><span>只取 dices[1]</span><span>向前更新</span><span>放回 dices[1]</span></div><p class=\"tutorial-caption\">位置 1、3 完全不應被改動。</p></div></section>\n<section class=\"tutorial-card tutorial-worked\"><h3>3. 跟著做一個小例子</h3><p>三顆骰子中只對第 2 顆向前：結果應是 top = [1,3,1]。再對第 3 顆向右：變成 [1,3,5]。每顆都延續自己的歷史。</p></section>\n<section class=\"tutorial-card tutorial-plan\"><h3>4. 先把「一顆 state」外面再包一層 list</h3><p><code>dices</code> 是多顆骰子的容器；<code>dices[i]</code> 才是一顆六面 state。建立 n 顆時要真的新增 n 個獨立 list。每次操作只拿出指定的那一顆、旋轉後放回同一位置。</p><ol><li>用單層 comprehension 建立 n 顆獨立初始骰子。</li><li>讀 a,b 後把 a 轉成 index=a-1。</li><li>只旋轉 dices[index]。</li><li>最後整理每顆 top。</li></ol></section>\n<section class=\"tutorial-card tutorial-code\"><h3>5. Python 一段一段怎麼寫</h3><p>這階可以學一個很常見、而且剛好適合的簡單 list comprehension：同樣的六面初始 list 要建立 n 次。只有「單一迴圈、沒有複雜條件」時，這種寫法通常比三行 append 更清楚。</p><div class=\"tutorial-code-step\"><strong>步驟 A：建立 n 顆彼此獨立的骰子</strong><p>每跑一次 <code>for _ in range(n)</code>，右邊的 list literal 都會重新建立一份，所以每顆都有自己的 state。</p><pre class=\"tutorial-code-snippet\">dices = [[1, 6, 4, 3, 5, 2] for _ in range(n)]</pre></div><div class=\"tutorial-code-step\"><strong>步驟 B：找到並旋轉指定骰子</strong><p>題目位置是 1-based，所以先轉成 index；固定六面可以直接拆包。</p><pre class=\"tutorial-code-snippet\">index = a - 1\ntop, bottom, front, back, left, right = dices[index]\n\nif b == -1:\n    dices[index] = [back, front, top, bottom, left, right]\nelse:\n    dices[index] = [left, right, front, back, bottom, top]</pre></div><div class=\"tutorial-code-step\"><strong>步驟 C：整理所有 top，再一次輸出</strong><p>前面已經學過簡單 comprehension；這裡每顆骰子都只做一件事：取 <code>die[0]</code>，所以用一行收集 top 很自然。<code>print(*tops)</code> 會用空格輸出這些整數，不需要先轉成字串再 <code>join</code>。</p><pre class=\"tutorial-code-snippet\">tops = [die[0] for die in dices]\nprint(*tops)</pre></div><p class=\"tutorial-code-note\">這裡只使用簡單、常見的 comprehension；如果一個 comprehension 開始出現多層迴圈或很多條件，就應改回一般 for 讓流程更清楚。</p></section>\n<section class=\"tutorial-card tutorial-check\"><h3>6. 常見錯誤與自我檢查</h3><ul><li>Python 若用同一個可變 list 物件複製 n 份，可能造成多顆一起被改；用 comprehension 建立獨立 list 較安全。</li><li>忘記 <code>a-1</code> 會操作錯位置。</li><li>只操作第 2 顆時，其餘所有 top 應保持 1。</li></ul></section>\n</div>","referenceOwner":"PEICD100"},{"id":6,"title":"交換完整 state：六個面要一起移動","difficulty":"中等＋","statement":"有 <code>n</code> 顆骰子排成一列。這一階不再從固定初始方向開始，而是<strong>直接給你每個位置目前的完整六面 state</strong>。每顆骰子的六個數字依序代表 <code>上、下、前、後、左、右</code>。接著有 <code>m</code> 次交換操作，每次給兩個正整數 <code>a b</code>，表示交換位置 <code>a</code> 與位置 <code>b</code> 的<strong>整顆骰子</strong>；也就是六個面的資料必須一起移動。全部交換完成後，請依位置 1 到位置 n，逐行輸出每顆骰子的六面 state。","input":"第一行有兩個整數 <code>n m</code>，其中 <code>1 ≤ n ≤ 6</code>、<code>1 ≤ m ≤ 20</code>。接下來 <code>n</code> 行，每行六個整數，依序是該位置骰子的 <code>上 下 前 後 左 右</code>。再接下來 <code>m</code> 行，每行兩個整數 <code>a b</code>（<code>1 ≤ a,b ≤ n</code>），表示交換位置 a 與 b；允許 <code>a=b</code>，此時 state 不變。","output":"輸出 <code>n</code> 行。第 i 行輸出位置 i 最後的六個面，順序固定為 <code>上 下 前 後 左 右</code>，六個整數以空格分隔。","sampleIn":"3 2\n3 4 1 6 5 2\n5 2 4 3 6 1\n1 6 4 3 5 2\n1 3\n2 3","sampleOut":"1 6 4 3 5 2\n3 4 1 6 5 2\n5 2 4 3 6 1","sampleExplain":"<div class=\"demo-story\"><section class=\"demo-step\"><p>一開始三個位置的完整 state 分別是 A、B、C：</p><div class=\"dice-row\"><div><small>位置 1</small><b>A = [3,4,1,6,5,2]</b></div><div><small>位置 2</small><b>B = [5,2,4,3,6,1]</b></div><div><small>位置 3</small><b>C = [1,6,4,3,5,2]</b></div></div></section><section class=\"demo-step\"><p>先做 <code>1 3</code>，所以位置排列變成 C、B、A；再做 <code>2 3</code>，變成 C、A、B。</p><div class=\"swap-visual\"><div>C<br><b>[1,6,4,3,5,2]</b></div><div class=\"big-arrow\">｜</div><div>A<br><b>[3,4,1,6,5,2]</b></div><div class=\"big-arrow\">｜</div><div>B<br><b>[5,2,4,3,6,1]</b></div></div><p>注意：每次搬動的是六個面的整包資料，不是只搬第一個 top。</p><pre>1 6 4 3 5 2\n3 4 1 6 5 2\n5 2 4 3 6 1</pre></section></div>","starter":"","answer":"# PEICD100 寫的\nn, m = map(int, input().split())\ndie = []\n\n# 每一列輸入就是一顆骰子的完整 state，順序固定為上、下、前、後、左、右。\nfor _ in range(n):\n    state = list(map(int, input().split()))\n    die.append(state)\n\nfor _ in range(m):\n    a, b = map(int, input().split())\n    a -= 1\n    b -= 1\n\n    # 交換整個 list，六個面的方向才會一起移到另一個位置。\n    die[a], die[b] = die[b], die[a]\n\nfor state in die:\n    print(*state)","tests":[{"input":"3 2\n3 4 1 6 5 2\n5 2 4 3 6 1\n1 6 4 3 5 2\n1 3\n2 3\n","output":"1 6 4 3 5 2\n3 4 1 6 5 2\n5 2 4 3 6 1\n","public":true,"sampleRole":"primary","sampleOrigin":"task","qaPurpose":"本階主要公開範例"},{"input":"4 4\n3 4 1 6 5 2\n5 2 4 3 6 1\n1 6 4 3 5 2\n6 1 3 4 5 2\n1 4\n2 3\n1 2\n3 4\n","output":"1 6 4 3 5 2\n6 1 3 4 5 2\n3 4 1 6 5 2\n5 2 4 3 6 1\n","public":true,"sampleRole":"secondary","sampleOrigin":"task","qaPurpose":"本階第二公開案例"},{"input":"2 3\n3 4 1 6 5 2\n5 2 4 3 6 1\n1 1\n1 2\n1 2\n","output":"3 4 1 6 5 2\n5 2 4 3 6 1\n","qaPurpose":"self-swap and double-swap should preserve the original complete states","public":true,"sampleRole":"special","sampleOrigin":"special"},{"input":"1 2\n5 2 4 3 6 1\n1 1\n1 1\n","output":"5 2 4 3 6 1\n"}],"tutorial":"<div class=\"tutorial-body\">\n<section class=\"tutorial-card tutorial-goal\"><h3>1. 先知道這題在練什麼</h3><p>這階只練一個新能力：<strong>swap（交換）完整 state</strong>。旋轉規則先全部拿掉，讓你專心看懂「位置變了之後，六個面也要整包跟著走」。</p><p>每個 <code>die[i]</code> 都是一個長度 6 的 list，順序固定是 <code>[上, 下, 前, 後, 左, 右]</code>。因此位置交換，其實就是交換兩個完整 list。</p></section>\n<section class=\"tutorial-card tutorial-core\"><h3>2. 核心觀念與圖解</h3><div class=\"tutorial-visual\"><div class=\"tutorial-visual-title\">位置裡放的是「完整骰子」，不是只有 top</div><div class=\"dice-row\"><div class=\"active\"><small>位置 1</small><b>[3,4,1,6,5,2]</b></div><div><small>位置 2</small><b>[5,2,4,3,6,1]</b></div></div><div class=\"swap-visual\"><div>6 個欄位整包</div><div class=\"big-arrow\">⇄</div><div>6 個欄位整包</div></div><p class=\"tutorial-caption\">交換之後，原本位置 1 的 top、bottom、front、back、left、right 都一起到位置 2。</p></div></section>\n<section class=\"tutorial-card tutorial-worked\"><h3>3. 跟著做一個小例子</h3><p>假設 <code>die[0] = [3,4,1,6,5,2]</code>、<code>die[1] = [5,2,4,3,6,1]</code>。執行交換位置 1、2 之後，兩個 list 要整個互換：</p><div class=\"mapping-row\"><span>交換前：A｜B</span><span>操作：1 2</span><span>交換後：B｜A</span></div><p>如果只交換 <code>die[0][0]</code> 和 <code>die[1][0]</code>，其他五面仍留在原位置，輸出完整六面時會立刻看出錯誤。</p></section>\n<section class=\"tutorial-card tutorial-plan\"><h3>4. 程式要準備哪些東西</h3><ol><li>用一個二維 list <code>die</code> 保存 n 顆骰子的完整六面。</li><li>讀每筆 <code>a, b</code> 後先把 1-based 位置轉成 0-based index。</li><li>用 Python 常規的 simultaneous assignment 交換 <code>die[a]</code>、<code>die[b]</code>。</li><li>最後逐顆用 <code>print(*state)</code> 輸出六個面。</li></ol></section>\n<section class=\"tutorial-card tutorial-code\"><h3>5. Python 一段一段怎麼寫</h3><div class=\"tutorial-code-step\"><strong>步驟 A：先把每顆完整 state 讀進二維 list</strong><p>每一行本身就是一顆骰子的六面，所以讀成一個 list，再 append 到外層。</p><pre class=\"tutorial-code-snippet\">die = []\nfor _ in range(n):\n    state = list(map(int, input().split()))\n    die.append(state)</pre></div><div class=\"tutorial-code-step\"><strong>步驟 B：把題目的位置編號轉成 list index 再交換</strong><p>題目從 1 開始編號，Python list 從 0 開始，所以兩個位置都要減 1。交換的是 <code>die[a]</code> 這整個 list。</p><pre class=\"tutorial-code-snippet\">a, b = map(int, input().split())\na -= 1\nb -= 1\ndie[a], die[b] = die[b], die[a]</pre></div><div class=\"tutorial-code-step\"><strong>步驟 C：輸出完整六面</strong><p><code>print(*state)</code> 會把 list 裡六個整數用空格分開輸出，是這裡很常規的寫法。</p><pre class=\"tutorial-code-snippet\">for state in die:\n    print(*state)</pre></div><p class=\"tutorial-code-note\">這階故意不處理旋轉；等你確定完整 state 的交換沒問題，第 7 階才把 swap 和 rotation 合起來。</p></section>\n<section class=\"tutorial-card tutorial-check\"><h3>6. 常見錯誤與自我檢查</h3><ul><li>只交換 <code>die[a][0]</code>：只換了 top，其他五面沒有跟著移動。</li><li>忘記把 a、b 各減 1：會交換錯位置或超出範圍。</li><li><code>a=b</code> 時不需要特殊處理；一個 list 和自己交換，結果自然不變。</li><li>自測可用「交換同一位置」與「同一對位置連續交換兩次」，最後都應回到原本 state。</li></ul></section>\n</div>","referenceOwner":"PEICD100"},{"id":7,"title":"f580 骰子（原題）","difficulty":"APCS 原題","statement":"給定 <code>n</code> 顆骰子排成一列。每顆骰子的初始六面固定為：上=1、下=6、前=4、後=3、左=5、右=2。接著有 <code>m</code> 次操作，每次給兩個整數 <code>a,b</code>：若 <code>a,b</code> 都是正整數，交換位置 <code>a</code> 與位置 <code>b</code> 的整顆骰子；若 <code>b=-1</code>，將位置 <code>a</code> 的骰子向前旋轉，規則為上→前、前→下、下→後、後→上，左/右不變；若 <code>b=-2</code>，將位置 <code>a</code> 的骰子向右旋轉，規則為上→右、右→下、下→左、左→上，前/後不變。所有位置採 1-based；全部操作完成後，依序輸出位置 1 到位置 n 的朝上點數。","input":"第一行包含 <code>n m</code>，其中 <code>1 ≤ n ≤ 20</code>、<code>1 ≤ m ≤ 100</code>。接下來 m 行每行包含兩個整數 <code>a b</code>，依題目規則表示交換或旋轉操作；位置編號採 1-based。","output":"在一行輸出 n 個數字，以空格分隔；第 i 個數字代表位置 i 的骰子最後朝上的點數。","sampleIn":"1 2\n1 -2\n1 -1","sampleOut":"3","sampleExplain":"<div class=\"demo-story\"><section class=\"demo-step\"><p>第一筆操作 <code>1 -2</code>：第 1 顆向右滾，state 變為：</p><div class=\"dice-state\"><strong>向右後</strong><div class=\"dice-net\"><span class=\"blank\"></span><span data-face=\"back\">後 3</span><span class=\"blank\"></span><span class=\"blank\"></span><span data-face=\"left\">左 6</span><span data-face=\"top\">上 5</span><span data-face=\"right\">右 1</span><span data-face=\"bottom\">下 2</span><span class=\"blank\"></span><span data-face=\"front\">前 4</span><span class=\"blank\"></span><span class=\"blank\"></span></div></div></section><section class=\"demo-step\"><p>第二筆操作 <code>1 -1</code>：以剛才的完整 state 再向前滾：</p><div class=\"dice-state\"><strong>再向前後</strong><div class=\"dice-net\"><span class=\"blank\"></span><span data-face=\"back\">後 2</span><span class=\"blank\"></span><span class=\"blank\"></span><span data-face=\"left\">左 6</span><span data-face=\"top\">上 3</span><span data-face=\"right\">右 1</span><span data-face=\"bottom\">下 4</span><span class=\"blank\"></span><span data-face=\"front\">前 5</span><span class=\"blank\"></span><span class=\"blank\"></span></div></div><p>最上面是 3，因此輸出：</p><pre>3</pre></section></div>","starter":"","answer":"# PEICD100 寫的\nn, m = map(int, input().split())\ndie = [[1, 6, 4, 3, 5, 2]] * n\n\nfor _ in range(m):\n    a, b = map(int, input().split())\n    a -= 1\n\n    # 六面順序固定為上、下、前、後、左、右；旋轉時都用操作前的 state 重新排列。\n    top, bottom, front, back, left, right = die[a]\n\n    # b > 0 是交換兩顆完整 state；負數才代表旋轉。\n    if b > 0:\n        b -= 1\n        die[a], die[b] = die[b], die[a]\n    elif b == -1:\n        die[a] = [back, front, top, bottom, left, right]\n    else:\n        die[a] = [left, right, front, back, bottom, top]\n\nfor i in range(n):\n    print(die[i][0], end=' ')","tests":[{"input":"1 2\n1 -2\n1 -1\n","output":"3\n","public":true,"sampleRole":"primary","sampleOrigin":"official","qaPurpose":"官方公開範例 #1"},{"input":"3 3\n2 -1\n3 -2\n3 1\n","output":"5 3 1\n","qaPurpose":"official multi-die swap sample","public":true,"sampleRole":"secondary","sampleOrigin":"official"},{"input":"1 4\n1 -1\n1 -1\n1 -1\n1 -1\n","output":"1\n","public":true,"sampleRole":"special","sampleOrigin":"special","qaPurpose":"第三公開範例：邊界／特殊值／不同狀態路徑"},{"input":"1 4\n1 -2\n1 -2\n1 -2\n1 -2\n","output":"1\n"},{"input":"2 6\n1 -1\n1 2\n2 -2\n1 -1\n2 1\n1 -2\n","output":"4 3\n"},{"input":"6 11\n1 -2\n2 -1\n3 -2\n4 -1\n5 -2\n6 -1\n1 6\n2 5\n3 4\n6 -2\n5 -1\n","output":"3 5 3 5 6 6\n"}],"tutorial":"<div class=\"tutorial-body\">\n<section class=\"tutorial-card tutorial-goal\"><h3>1. 先知道這題在練什麼</h3><p>完整題沒有新的骰子規則；你要把「多顆 state、兩種 rotation、完整 swap」整理成一個穩定的 simulation。只要維持一個不變量：<strong>dices[i] 永遠完整描述目前位在位置 i 的骰子</strong>。</p></section>\n<section class=\"tutorial-card tutorial-core\"><h3>2. 核心觀念與圖解</h3><div class=\"tutorial-visual\"><div class=\"tutorial-visual-title\">每筆操作只做一次分類</div><div class=\"learn-step-flow\"><div class=\"learn-step-node\"><strong>讀 a,b</strong><small>位置採 1-based</small></div><div class=\"reason-arrow\">→</div><div class=\"learn-step-node\"><strong>b &gt; 0</strong><small>交換兩個完整 state</small></div><div class=\"learn-step-node\"><strong>b = -1</strong><small>位置 a 向前</small></div><div class=\"learn-step-node\"><strong>b = -2</strong><small>位置 a 向右</small></div><div class=\"reason-arrow\">→</div><div class=\"learn-step-node\"><strong>m 次後</strong><small>讀每個 top</small></div></div></div></section>\n<section class=\"tutorial-card tutorial-worked\"><h3>3. 跟著做一個小例子</h3><p>例如 n=2：先 <code>1 -1</code>，位置 1 變成向前後的 state；再 <code>1 2</code>，兩顆完整交換；最後 <code>2 -2</code>，現在位置 2 上的是原本那顆已旋轉過的骰子，所以必須從交換後的完整 state 再向右。</p><p>只要每一步都維持不變量，操作再多也只是重複 O(1) 更新。</p></section>\n<section class=\"tutorial-card tutorial-plan\"><h3>4. 完整題用「先分類、再更新」保持簡單</h3><p>這題不需要新技巧。沿用前面已學過的正常 Python 寫法：簡單 comprehension 建立重複資料、tuple unpacking 讀固定六面、直接 swap 交換兩個完整 state；而真正的操作分類與 rotation mapping 仍保持明確。</p><ol><li>建立 n 顆獨立骰子。</li><li>重複 m 次讀 a,b。</li><li>b&gt;0 直接 swap；否則處理兩種 rotation。</li><li>最後用簡單 comprehension 收集 top，再 <code>print(*tops)</code>。</li></ol></section>\n<section class=\"tutorial-card tutorial-code\"><h3>5. Python 一段一段怎麼寫</h3><p>完整題採用前面已學過的正常 Python idiom：簡單 comprehension 建初始資料、tuple unpacking 讀固定 state、直接 swap 交換兩顆骰子；真正的操作分類與 rotation mapping 仍保持明確。</p><div class=\"tutorial-code-step\"><strong>步驟 A：建立骰子並分類操作</strong><p>建立 n 顆相同初始 state 後，每筆操作先把 a 轉成 0-based，再分成 swap 或 rotation。</p><pre class=\"tutorial-code-snippet\">dices = [[1, 6, 4, 3, 5, 2] for _ in range(n)]\n\nfor _ in range(m):\n    a, b = map(int, input().split())\n    a -= 1\n    if b &gt; 0:\n        # swap\n    else:\n        # rotation</pre></div><div class=\"tutorial-code-step\"><strong>步驟 B：交換用 Python 標準 swap</strong><p>這行就完整表達「位置 a 與 b 的整顆 state 交換」。</p><pre class=\"tutorial-code-snippet\">b -= 1\ndices[a], dices[b] = dices[b], dices[a]</pre></div><div class=\"tutorial-code-step\"><strong>步驟 C：旋轉用拆包 + 清楚 mapping</strong><p>不要把 mapping 壓成 index trick；固定六面先取名字，再建立下一個 state 最容易核對。</p><pre class=\"tutorial-code-snippet\">top, bottom, front, back, left, right = dices[a]\nif b == -1:\n    dices[a] = [back, front, top, bottom, left, right]\nelse:\n    dices[a] = [left, right, front, back, bottom, top]</pre></div><div class=\"tutorial-code-step\"><strong>步驟 D：最後輸出所有 top</strong><p>每顆只取 <code>die[0]</code>，所以用已學過的單層 comprehension 收集，再直接 <code>print(*tops)</code>。</p><pre class=\"tutorial-code-snippet\">tops = [die[0] for die in dices]\nprint(*tops)</pre></div><p class=\"tutorial-code-note\">這份寫法的重點不是最短，而是符合一般 Python 習慣：常用 idiom 減少樣板程式，核心 simulation 還是能逐步 trace。</p></section>\n<section class=\"tutorial-card tutorial-check\"><h3>6. 常見錯誤與自我檢查</h3><ul><li>四次向前、四次向右都應回原狀。</li><li>交換後再旋轉是檢查「完整 state swap」最重要的案例。</li><li>n≤20、m≤100，直接模擬已非常快，不需要額外資料結構或最佳化。</li></ul></section>\n</div>","referenceOwner":"PEICD100"}];
 
-const GENERATED_TEST_CACHE = new Map();
-function seededRandom(seed){
-  let a=seed>>>0;
-  return function(){
-    a|=0; a=(a+0x6D2B79F5)|0;
-    let t=Math.imul(a^(a>>>15),1|a);
-    t=(t+Math.imul(t^(t>>>7),61|t))^t;
-    return ((t^(t>>>14))>>>0)/4294967296;
-  };
-}
-function randInt(rng,min,max){return Math.floor(rng()*(max-min+1))+min}
-const INITIAL_DIE=[1,6,4,3,5,2];
-function oracleForward(d){const [t,b,f,k,l,r]=d;return [k,f,t,b,l,r]}
-function oracleRight(d){const [t,b,f,k,l,r]=d;return [l,r,f,k,b,t]}
-function oracleSimulate(n,ops){
-  const dices=Array.from({length:n},()=>INITIAL_DIE.slice());
-  for(const [a,b] of ops){
-    const i=a-1;
-    if(b>0){const j=b-1;[dices[i],dices[j]]=[dices[j],dices[i]];}
-    else if(b===-1) dices[i]=oracleForward(dices[i]);
-    else dices[i]=oracleRight(dices[i]);
-  }
-  return dices;
-}
-function oracleTopLine(dices){return dices.map(d=>d[0]).join(' ')+'\n'}
-function generatedFullInput(n,ops){return `${n} ${ops.length}\n${ops.map(([a,b])=>`${a} ${b}`).join('\n')}\n`}
-function generateOneHiddenTest(taskId,variant){
-  const rng=seededRandom(0xF5802020 + taskId*1009 + variant*7919);
-  if(taskId===1){
-    const d=randInt(rng,1,6);
-    return {input:`${d}\n`,output:`${INITIAL_DIE[d-1]}\n`,generated:true};
-  }
-  if(taskId===2 || taskId===3){
-    const m=randInt(rng,5,37);
-    let die=INITIAL_DIE.slice();
-    for(let i=0;i<m;i++) die=taskId===2?oracleForward(die):oracleRight(die);
-    return {input:`${m}\n`,output:`${die[0]}\n`,generated:true};
-  }
-  if(taskId===4){
-    const m=randInt(rng,6,24),ops=[];let die=INITIAL_DIE.slice();
-    for(let i=0;i<m;i++){const op=rng()<.5?-1:-2;ops.push(op);die=op===-1?oracleForward(die):oracleRight(die);}
-    return {input:`${m}\n${ops.join('\n')}\n`,output:`${die[0]}\n`,generated:true};
-  }
-  if(taskId===6){
-    const n=randInt(rng,2,6),m=randInt(rng,6,20);
-    const dices=[];
-    for(let i=0;i<n;i++){
-      let state=INITIAL_DIE.slice();
-      const turns=randInt(rng,1,8);
-      for(let k=0;k<turns;k++) state=rng()<.5?oracleForward(state):oracleRight(state);
-      dices.push(state);
-    }
-    const initial=dices.map(d=>d.slice()),ops=[];
-    for(let i=0;i<m;i++){
-      const a=randInt(rng,1,n);
-      const b=rng()<.18?a:randInt(rng,1,n);
-      ops.push([a,b]);
-      const x=a-1,y=b-1;
-      [dices[x],dices[y]]=[dices[y],dices[x]];
-    }
-    const input=`${n} ${m}\n${initial.map(d=>d.join(' ')).join('\n')}\n${ops.map(([a,b])=>`${a} ${b}`).join('\n')}\n`;
-    const output=dices.map(d=>d.join(' ')).join('\n')+'\n';
-    return {input,output,generated:true};
-  }
-  const n=taskId===7?randInt(rng,8,20):randInt(rng,2,8);
-  const m=taskId===7?(variant===1?100:randInt(rng,35,80)):randInt(rng,8,35);
-  const ops=[];
-  for(let i=0;i<m;i++){
-    const a=randInt(rng,1,n);
-    if(taskId===5){ops.push([a,rng()<.5?-1:-2]);continue;}
-    const roll=rng();
-    if(roll<.36) ops.push([a,-1]);
-    else if(roll<.72) ops.push([a,-2]);
-    else {let b=randInt(rng,1,n);if(n>1)while(b===a)b=randInt(rng,1,n);ops.push([a,b]);}
-  }
-  if(taskId===7 && n>=2 && ops.length>=3){ops[0]=[1,-1];ops[1]=[1,2];ops[2]=[2,-2];}
-  const dices=oracleSimulate(n,ops);
-  return {input:generatedFullInput(n,ops),output:oracleTopLine(dices),generated:true};
-}
-function getGeneratedTests(task){
-  if(!GENERATED_TEST_CACHE.has(task.id)) GENERATED_TEST_CACHE.set(task.id,[0,1].map(v=>generateOneHiddenTest(task.id,v)).filter(Boolean));
-  return GENERATED_TEST_CACHE.get(task.id);
-}
-function getTaskTests(task){return [...task.tests,...getGeneratedTests(task)]}
-function getPublicTests(task){return task.tests.filter(test=>test.public)}
+
 
 
 const COMPLETIONS = [
@@ -614,7 +552,10 @@ let busy = false;
 let pyWorkerBlobUrl = null;
 let operationSeq = 0;
 let activeOperationToken = 0;
-let selectedPublicSampleIndex = 0;
+let pyWorkerSupportsJspi = false;
+let interactiveSession = null;
+let terminalQueuedLines = [];
+let terminalEof = false;
 
 const STORAGE_SCHEMA = OJ_META.storage.schema;
 const STORAGE_PREFIX = `${OJ_META.storage.namespace}:v${STORAGE_SCHEMA}`;
@@ -627,6 +568,10 @@ const PYODIDE_VERSION = '0.27.7';
 const PYODIDE_BASE_URL = `https://cdn.jsdelivr.net/pyodide/v${PYODIDE_VERSION}/full/`;
 const PYODIDE_INIT_TIMEOUT_MS = 20000;
 const RUN_TIMEOUT_MS = 2500;
+const PORTABLE_RECORD_FORMAT = 'peicd_oj_progress';
+const PORTABLE_RECORD_SCHEMA = 1;
+const PORTABLE_RECORD_MAX_BYTES = 2 * 1024 * 1024;
+const PORTABLE_RECORD_MAX_CODE_CHARS = 300000;
 
 const $ = (s) => document.querySelector(s);
 const levelStrip = $('#levelStrip');
@@ -655,6 +600,44 @@ function normalizeOutput(s){
 
 function safeJsonParse(raw,fallback){
   try{return JSON.parse(raw)}catch{return fallback}
+}
+
+function legacyCopyText(text){
+  const previous=document.activeElement;
+  const ta=document.createElement('textarea');
+  ta.value=String(text);
+  ta.setAttribute('readonly','');
+  ta.setAttribute('aria-hidden','true');
+  ta.style.position='fixed';ta.style.left='-9999px';ta.style.top='0';ta.style.opacity='0';
+  document.body.appendChild(ta);
+  ta.focus();ta.select();ta.setSelectionRange(0,ta.value.length);
+  let ok=false;
+  try{ok=Boolean(typeof document.execCommand==='function' && document.execCommand('copy'));}catch{}
+  ta.remove();
+  if(previous && typeof previous.focus==='function') previous.focus();
+  return ok;
+}
+async function copyTextToClipboard(text){
+  const value=String(text);
+  if(navigator.clipboard && typeof navigator.clipboard.writeText==='function'){
+    try{await navigator.clipboard.writeText(value);return true;}catch{}
+  }
+  return legacyCopyText(value);
+}
+function bindPublicSampleCopyButtons(publicSamples){
+  problemPane.querySelectorAll('[data-copy-public-input]').forEach(btn=>{
+    btn.addEventListener('click',async()=>{
+      const idx=Number(btn.dataset.copyPublicInput);
+      const sample=publicSamples[idx];
+      if(!sample)return;
+      const original=btn.textContent;
+      btn.disabled=true;
+      const ok=await copyTextToClipboard(sample.input);
+      btn.textContent=ok?'已複製':'複製失敗';
+      btn.classList.toggle('success',ok);
+      window.setTimeout(()=>{if(btn.isConnected){btn.textContent=original;btn.classList.remove('success');btn.disabled=false;}},1200);
+    });
+  });
 }
 
 function migrateStorage(){
@@ -689,11 +672,34 @@ function updateAnswerButtonState(){
   btn.title=`查看第 ${t.id} 階參考答案`;
   btn.setAttribute('aria-disabled',String(btn.disabled));
 }
+function getReferenceVariants(task){
+  if(Array.isArray(task?.referenceAnswers) && task.referenceAnswers.length){
+    return task.referenceAnswers.map((item,index)=>({
+      title:String(item?.title||`方法 ${index+1}`),
+      code:String(item?.code||'')
+    }));
+  }
+  return [{title:'參考答案',code:String(task?.answer||'')}];
+}
+
+function renderReferenceAnswers(task){
+  const variants=getReferenceVariants(task);
+  const dialog=$('#answerDialog');
+  const host=$('#answerVariants');
+  const multi=variants.length>1;
+  dialog.classList.toggle('multi-answer',multi);
+  host.className=`answer-variants ${multi?'multi':'single'}`;
+  host.style.setProperty('--answer-count',String(variants.length));
+  host.replaceChildren();
+  for(const variant of variants){
+    const section=document.createElement('section');section.className='answer-variant';
+    const title=document.createElement('h3');title.className='answer-variant-title';title.textContent=variant.title;
+    const pre=document.createElement('pre');pre.textContent=variant.code;
+    section.append(title,pre);host.append(section);
+  }
+}
+
 function draftKey(id){return `${STORAGE_PREFIX}:code:${id}`}
-function customInputKey(id){return `${STORAGE_PREFIX}:custom-input:${id}`}
-const CUSTOM_OVERRIDE_KEY=`${STORAGE_PREFIX}:custom-override`;
-function getCustomOverride(){try{return localStorage.getItem(CUSTOM_OVERRIDE_KEY)==='1'}catch{return false}}
-function setCustomOverride(value){try{localStorage.setItem(CUSTOM_OVERRIDE_KEY,value?'1':'0')}catch{}}
 function historyKey(){return HISTORY_KEY}
 function getHistory(){return safeJsonParse(localStorage.getItem(historyKey())||'[]',[])}
 function addHistory(taskId, verdict, passed, total){
@@ -710,6 +716,156 @@ function clearAllLocalRecords(){
     if(key && key.startsWith(OJ_META.storage.namespace)) keys.push(key);
   }
   keys.forEach(key=>localStorage.removeItem(key));
+}
+
+function portableRecordKeys(){
+  return [ACCEPTED_KEY,HISTORY_KEY,MIGRATION_KEY,...TASKS.map(t=>draftKey(t.id))];
+}
+function snapshotPortableStorage(){
+  return portableRecordKeys().map(key=>[key,localStorage.getItem(key)]);
+}
+function restorePortableStorage(snapshot){
+  for(const [key] of snapshot) localStorage.removeItem(key);
+  for(const [key,value] of snapshot) if(value!==null) localStorage.setItem(key,value);
+}
+function buildPortableRecord(){
+  saveDraft();
+  const accepted=getAccepted();
+  return {
+    format:PORTABLE_RECORD_FORMAT,
+    schemaVersion:PORTABLE_RECORD_SCHEMA,
+    exportedAt:new Date().toISOString(),
+    oj:{
+      problemId:String(OJ_META.source.problemId),
+      sourceUrl:String(OJ_META.source.url),
+      storageNamespace:String(OJ_META.storage.namespace),
+      storageSchema:STORAGE_SCHEMA,
+      language:'python3'
+    },
+    view:{sourceStageActive:Boolean(sourceStageActive),currentTaskId:TASKS[currentTaskIndex]?.id??null},
+    stages:TASKS.map(t=>({
+      id:t.id,
+      title:t.title,
+      code:localStorage.getItem(draftKey(t.id)) ?? t.starter ?? '',
+      accepted:Boolean(accepted[t.id])
+    })),
+    history:getHistory().map(h=>({time:String(h.time??''),taskId:h.taskId,verdict:String(h.verdict??''),passed:Number(h.passed??0),total:Number(h.total??0)}))
+  };
+}
+function portableFilename(){
+  const d=new Date();
+  const pad=n=>String(n).padStart(2,'0');
+  const stamp=`${d.getFullYear()}${pad(d.getMonth()+1)}${pad(d.getDate())}_${pad(d.getHours())}${pad(d.getMinutes())}${pad(d.getSeconds())}`;
+  const id=String(OJ_META.source.problemId||'OJ').replace(/[<>:"/\|?*\x00-\x1F]/g,'_');
+  return `${id}_作答紀錄_${stamp}.json`;
+}
+function flashHeaderButton(button,text){
+  if(!button)return;
+  const original=button.textContent;
+  button.textContent=text;
+  window.setTimeout(()=>{if(button.isConnected)button.textContent=original;},1400);
+}
+function exportPortableRecords(){
+  if(busy)return;
+  try{
+    const record=buildPortableRecord();
+    const blob=new Blob([JSON.stringify(record,null,2)+'\n'],{type:'application/json;charset=utf-8'});
+    const url=URL.createObjectURL(blob);
+    const a=document.createElement('a');
+    a.href=url;a.download=portableFilename();a.hidden=true;
+    document.body.appendChild(a);a.click();a.remove();
+    window.setTimeout(()=>URL.revokeObjectURL(url),1000);
+    flashHeaderButton($('#exportRecordsBtn'),'已匯出');
+  }catch(err){
+    console.error(err);
+    alert('無法匯出作答紀錄。請確認瀏覽器允許下載檔案後再試一次。');
+  }
+}
+function readFileAsText(file){
+  return new Promise((resolve,reject)=>{
+    const reader=new FileReader();
+    reader.addEventListener('load',()=>resolve(String(reader.result??'')),{once:true});
+    reader.addEventListener('error',()=>reject(reader.error||new Error('FileReader failed')),{once:true});
+    reader.readAsText(file,'UTF-8');
+  });
+}
+function validatePortableRecord(data){
+  if(!data || typeof data!=='object' || Array.isArray(data)) throw new Error('檔案不是有效的作答紀錄物件。');
+  if(data.format!==PORTABLE_RECORD_FORMAT || data.schemaVersion!==PORTABLE_RECORD_SCHEMA) throw new Error('作答紀錄格式或版本不支援。');
+  const oj=data.oj;
+  if(!oj || typeof oj!=='object') throw new Error('作答紀錄缺少題目資訊。');
+  if(String(oj.problemId)!==String(OJ_META.source.problemId) || String(oj.storageNamespace)!==String(OJ_META.storage.namespace) || Number(oj.storageSchema)!==Number(STORAGE_SCHEMA) || oj.language!=='python3') throw new Error('這份作答紀錄不是目前這一題的相容資料。');
+  if(!Array.isArray(data.stages) || data.stages.length!==TASKS.length) throw new Error('作答紀錄的階段數量與目前題目不一致。');
+  const known=new Map(TASKS.map(t=>[String(t.id),t]));
+  const seen=new Set();
+  const stages=[];
+  let totalCodeChars=0;
+  for(const raw of data.stages){
+    if(!raw || typeof raw!=='object') throw new Error('階段資料格式錯誤。');
+    const id=String(raw.id);
+    if(!known.has(id)) throw new Error(`作答紀錄包含目前題目不存在的第 ${id} 階。`);
+    if(seen.has(id)) throw new Error(`作答紀錄重複包含第 ${id} 階。`);
+    if(typeof raw.code!=='string' || raw.code.length>PORTABLE_RECORD_MAX_CODE_CHARS) throw new Error(`第 ${id} 階程式碼格式或大小不合法。`);
+    if(typeof raw.accepted!=='boolean') throw new Error(`第 ${id} 階 AC 狀態格式不合法。`);
+    totalCodeChars+=raw.code.length;if(totalCodeChars>PORTABLE_RECORD_MAX_BYTES) throw new Error('作答紀錄中的程式碼總量過大。');
+    seen.add(id);stages.push({id:known.get(id).id,code:raw.code,accepted:raw.accepted});
+  }
+  if(seen.size!==known.size) throw new Error('作答紀錄缺少目前題目的階段資料。');
+  if(!Array.isArray(data.history) || data.history.length>30) throw new Error('提交紀錄格式或筆數不合法。');
+  const allowedVerdicts=new Set(['AC','WA','RE','TLE','JE','CE']);
+  const history=data.history.map((raw,index)=>{
+    if(!raw || typeof raw!=='object') throw new Error(`第 ${index+1} 筆提交紀錄格式錯誤。`);
+    const id=String(raw.taskId);
+    const verdict=String(raw.verdict||'');
+    const passed=Number(raw.passed),total=Number(raw.total);
+    if(!known.has(id) || !allowedVerdicts.has(verdict) || !Number.isInteger(passed) || !Number.isInteger(total) || passed<0 || total<0 || passed>total) throw new Error(`第 ${index+1} 筆提交紀錄內容不合法。`);
+    const time=String(raw.time??'');if(time.length>120) throw new Error(`第 ${index+1} 筆提交時間格式不合法。`);
+    return {time,taskId:known.get(id).id,verdict,passed,total};
+  });
+  const view=data.view;
+  if(!view || typeof view!=='object' || typeof view.sourceStageActive!=='boolean') throw new Error('作答紀錄缺少目前階段資訊。');
+  const viewId=view.currentTaskId===null?null:String(view.currentTaskId);
+  if(viewId!==null && !known.has(viewId)) throw new Error('作答紀錄的目前階段不存在。');
+  return {stages,history,view:{sourceStageActive:view.sourceStageActive,currentTaskId:viewId===null?TASKS[0].id:known.get(viewId).id}};
+}
+function applyPortableRecord(record){
+  const snapshot=snapshotPortableStorage();
+  try{
+    for(const key of portableRecordKeys()) localStorage.removeItem(key);
+    const accepted={};
+    for(const stage of record.stages){
+      localStorage.setItem(draftKey(stage.id),stage.code);
+      if(stage.accepted) accepted[stage.id]=true;
+    }
+    localStorage.setItem(ACCEPTED_KEY,JSON.stringify(accepted));
+    localStorage.setItem(HISTORY_KEY,JSON.stringify(record.history));
+    localStorage.setItem(MIGRATION_KEY,'1');
+  }catch(err){
+    try{restorePortableStorage(snapshot);}catch(rollbackErr){console.error('Import rollback failed:',rollbackErr);}
+    throw err;
+  }
+
+  const idx=Math.max(0,TASKS.findIndex(t=>String(t.id)===String(record.view.currentTaskId)));
+  currentTaskIndex=idx;sourceStageActive=record.view.sourceStageActive;
+  document.body.classList.toggle('source-view',sourceStageActive);
+  renderLevelStrip();renderProblem();renderTests();renderHiddenTests();renderHistory();renderProgress();updateAnswerButtonState();
+  const t=TASKS[currentTaskIndex];
+  setCode(localStorage.getItem(draftKey(t.id)) ?? t.starter);
+  overallVerdict.className='status-pill';overallVerdict.textContent='尚未提交';
+  resultSummary.textContent='作答紀錄已匯入。草稿、AC 進度與本機提交紀錄已更新。';
+  resetTerminal('作答紀錄已匯入。按 F9 啟動新的互動式 Python 程式。');
+  if(editor){editor.clearHistory();if(!sourceStageActive)refreshEditorLayout({focus:true});}
+}
+async function importPortableRecords(file){
+  if(busy || !file)return;
+  if(file.size>PORTABLE_RECORD_MAX_BYTES) throw new Error('作答紀錄檔案過大。');
+  const text=await readFileAsText(file);
+  let raw;try{raw=JSON.parse(text);}catch{throw new Error('作答紀錄不是有效的 JSON。');}
+  const record=validatePortableRecord(raw);
+  const acceptedCount=record.stages.filter(s=>s.accepted).length;
+  if(!confirm(`確定匯入「${file.name}」？\n\n將匯入 ${record.stages.length} 個階段的草稿、${acceptedCount} 個 AC 狀態與 ${record.history.length} 筆提交紀錄，並取代目前這一題的對應本機紀錄。`))return;
+  applyPortableRecord(record);
+  flashHeaderButton($('#importRecordsBtn'),'已匯入');
 }
 
 function renderProgress(){
@@ -766,7 +922,6 @@ function renderSourceStage(){
 function switchToSourceStage({openSource=false}={}){
   if(busy)return;
   saveDraft();
-  if(typeof saveCustomInput==='function') saveCustomInput();
   sourceStageActive=true;
   renderLevelStrip();
   renderProblem();
@@ -778,13 +933,20 @@ function renderProblem(){
   document.body.classList.remove('source-view');
   const t=TASKS[currentTaskIndex];
   const publicSamples=getPublicTests(t);
-  const secondPublic=publicSamples[1];
-  const secondSample=secondPublic?`
-    <div class="section-title">公開範例 #2</div>
+  const sampleOriginLabel=(sample)=>({official:'官方',task:'本階',supplemental:'補充',special:'特殊'}[sample?.sampleOrigin]||'公開');
+  const sampleOriginClass=(sample)=>sample?.sampleOrigin==='official'?' official':(sample?.sampleOrigin==='special'?' special':'');
+  const extraSamples=publicSamples.slice(1).map((sample,offset)=>{
+    const idx=offset+2;
+    const note=idx===3
+      ? '這筆刻意挑選邊界、特殊值或容易出錯的分支；不提供逐步講解，請先自己觀察。'
+      : '這筆不提供逐步講解。先自己比較它和公開範例 #1 的差異。';
+    return `
+    <div class="section-title sample-section-title"><span>公開範例 #${idx}</span><span class="sample-origin-badge${sampleOriginClass(sample)}">${sampleOriginLabel(sample)}</span></div>
     <div class="extra-sample-card">
-      <div class="sample-grid"><div class="sample-box"><h4>輸入</h4><pre>${esc(secondPublic.input.trimEnd())}</pre></div><div class="sample-box"><h4>輸出</h4><pre>${esc(secondPublic.output.trimEnd())}</pre></div></div>
-      <p class="sample-observe-note">這筆不提供講解。先自己比較它和公開範例 #1 的差異，看看是否出現邊界或特殊情況。</p>
-    </div>`:'';
+      <div class="sample-grid"><div class="sample-box"><div class="sample-box-head"><h4>輸入</h4><button class="sample-copy-btn" type="button" data-copy-public-input="${idx-1}" title="複製公開範例 #${idx} 輸入">複製</button></div><pre>${esc(sample.input.trimEnd())}</pre></div><div class="sample-box"><h4>輸出</h4><pre>${esc(sample.output.trimEnd())}</pre></div></div>
+      <p class="sample-observe-note">${note}</p>
+    </div>`;
+  }).join('');
   problemPane.innerHTML=`
     <div class="kicker">第 ${t.id} 階 / ${TASKS.length}</div>
     <h1>${esc(t.title)}</h1>
@@ -795,15 +957,15 @@ function renderProblem(){
     <p>${t.input}</p>
     <div class="section-title">輸出</div>
     <p>${t.output}</p>
-    <div class="section-title">公開範例 #1</div>
+    <div class="section-title sample-section-title"><span>公開範例 #1</span><span class="sample-origin-badge${sampleOriginClass(publicSamples[0])}">${sampleOriginLabel(publicSamples[0])}</span></div>
     <div class="sample-grid">
-      <div class="sample-box"><h4>輸入</h4><pre>${esc(t.sampleIn)}</pre></div>
+      <div class="sample-box"><div class="sample-box-head"><h4>輸入</h4><button class="sample-copy-btn" type="button" data-copy-public-input="0" title="複製公開範例 #1 輸入">複製</button></div><pre>${esc(t.sampleIn)}</pre></div>
       <div class="sample-box"><h4>輸出</h4><pre>${esc(t.sampleOut)}</pre></div>
     </div>
-    ${secondSample}
+    ${extraSamples}
     <div class="section-title">範例測資講解（公開範例 #1）</div>
     <div class="sample-explanation">
-      <div class="sample-explain-intro"><strong>範例 #1 說明</strong><small>只講解第一筆公開範例；第二筆保留給你自己觀察。</small></div>
+      <div class="sample-explain-intro"><strong>範例 #1 說明</strong><small>只講解第一筆公開範例；第二、第三筆保留給你自己觀察。</small></div>
       <div class="sample-explanation-body">${t.sampleExplain}</div>
     </div>
     <details class="tutorial-details">
@@ -811,6 +973,7 @@ function renderProblem(){
       <div class="tutorial-content">${t.tutorial}</div>
     </details>
   `;
+  bindPublicSampleCopyButtons(publicSamples);
 }
 
 function renderCompactTests(state='idle', results=[]){
@@ -878,7 +1041,7 @@ function renderHiddenTests(){
 
 function renderHistory(){
   const items=getHistory();
-  historyList.innerHTML=items.length?'':'<div style="color:#777;font-size:.86rem">尚無提交紀錄</div>';
+  historyList.innerHTML=items.length?'':'<div class="history-empty">尚無提交紀錄</div>';
   items.forEach(h=>{
     const div=document.createElement('div');
     div.className='history-item';
@@ -891,6 +1054,22 @@ function getCode(){ return editor ? editor.getValue() : $('#codeEditor').value; 
 function setCode(code){ if(editor) editor.setValue(code); else $('#codeEditor').value=code; }
 function saveDraft(){ const t=TASKS[currentTaskIndex]; localStorage.setItem(draftKey(t.id),getCode()); }
 
+function ensureCodeMirrorCursorVisible(cm=editor,marginLines=2){
+  if(!cm) return;
+  const lineHeight=typeof cm.defaultTextHeight==='function'?cm.defaultTextHeight():22;
+  cm.scrollIntoView(null,Math.max(0,lineHeight*marginLines));
+}
+function ensureTextareaCursorVisible(textarea,marginLines=2){
+  if(!textarea) return;
+  const style=getComputedStyle(textarea);
+  let lineHeight=parseFloat(style.lineHeight);
+  if(!Number.isFinite(lineHeight)) lineHeight=(parseFloat(style.fontSize)||15)*1.55;
+  const lineIndex=textarea.value.slice(0,textarea.selectionEnd).split('\n').length-1;
+  const caretTop=lineIndex*lineHeight;
+  const margin=lineHeight*marginLines;
+  if(caretTop<textarea.scrollTop+margin) textarea.scrollTop=Math.max(0,caretTop-margin);
+  else if(caretTop+lineHeight>textarea.scrollTop+textarea.clientHeight-margin) textarea.scrollTop=Math.max(0,caretTop+lineHeight-textarea.clientHeight+margin);
+}
 function refreshEditorLayout({focus=false}={}){
   if(!editor || document.body.classList.contains('source-view')) return;
   const refresh=()=>{
@@ -911,21 +1090,16 @@ function switchTask(idx){
   const wasSourceStageActive=sourceStageActive;
   sourceStageActive=false;
   document.body.classList.remove('source-view');
-  saveCustomInput();
   currentTaskIndex=idx;
-  selectedPublicSampleIndex=0;
   renderLevelStrip();
   renderProblem();
   renderTests();
   renderHiddenTests();
   overallVerdict.className='status-pill'; overallVerdict.textContent='尚未提交';
-  resultSummary.textContent='F9／「執行」依 CUSTOM INPUT 開關選擇輸入；「提交」會評測本階全部測資，逐筆結果請看右側 TEST RESULTS。';
+  resultSummary.textContent='F9／「執行」會啟動新的互動式 TERMINAL；遇到 input() 時手動輸入。「提交」會評測本階全部正式測資，逐筆結果請看右側 TEST RESULTS。';
   const t=TASKS[idx];
   setCode(localStorage.getItem(draftKey(t.id)) ?? t.starter);
-  restoreCustomInputForTask();
-  renderSampleSelector();
   resetTerminal();
-  updateInputSourceUI();
   if(editor){
     editor.clearHistory();
     if(wasSourceStageActive) refreshEditorLayout({focus:true});
@@ -967,6 +1141,7 @@ function toggleCodeMirrorComments(cm){
       }
     }
   });
+  ensureCodeMirrorCursorVisible(cm);
 }
 
 function toggleTextareaComments(textarea){
@@ -1013,6 +1188,7 @@ function toggleTextareaComments(textarea){
     textarea.selectionStart=textarea.selectionEnd=pos;
   }
   saveDraft();
+  ensureTextareaCursorVisible(textarea);
 }
 
 function deleteCodeMirrorIndentBackspace(cm){
@@ -1022,13 +1198,14 @@ function deleteCodeMirrorIndentBackspace(cm){
   if(!/^ +$/.test(prefix)) return CodeMirror.Pass;
   const removeCount=Math.min(4,prefix.length);
   cm.replaceRange('',CodeMirror.Pos(cur.line,cur.ch-removeCount),cur,'+delete');
+  ensureCodeMirrorCursorVisible(cm);
 }
 function deleteTextareaIndentBackspace(textarea){
   const start=textarea.selectionStart,end=textarea.selectionEnd;if(start!==end||start===0)return false;
   const value=textarea.value,lineStart=value.lastIndexOf('\n',start-1)+1,prefix=value.slice(lineStart,start);
   if(!/^ +$/.test(prefix))return false;
   const removeCount=Math.min(4,prefix.length);
-  textarea.value=value.slice(0,start-removeCount)+value.slice(start);textarea.selectionStart=textarea.selectionEnd=start-removeCount;saveDraft();return true;
+  textarea.value=value.slice(0,start-removeCount)+value.slice(start);textarea.selectionStart=textarea.selectionEnd=start-removeCount;saveDraft();ensureTextareaCursorVisible(textarea);return true;
 }
 function spacesToNextTabStop(column,tabSize=4){const remainder=column%tabSize;return remainder===0?tabSize:tabSize-remainder}
 function textareaVisualColumn(text,offset,tabSize=4){let column=0;for(let i=0;i<offset;i++)column+=text[i]==='\t'?spacesToNextTabStop(column,tabSize):1;return column}
@@ -1038,6 +1215,7 @@ function indentCodeMirrorTab(cm){
   if(cm.somethingSelected() && from.line!==to.line){
     let endLine=to.line;if(to.ch===0)endLine--;
     cm.operation(()=>{for(let line=from.line;line<=endLine;line++)cm.replaceRange('    ',CodeMirror.Pos(line,0),null,'+input');});
+    ensureCodeMirrorCursorVisible(cm);
     return;
   }
   const line=cm.getLine(from.line),column=CodeMirror.countColumn(line,from.ch,4),count=spacesToNextTabStop(column,4),spaces=' '.repeat(count);
@@ -1045,6 +1223,7 @@ function indentCodeMirrorTab(cm){
     cm.replaceRange(spaces,from,from,'+input');
     cm.setSelection(CodeMirror.Pos(from.line,from.ch+count),CodeMirror.Pos(to.line,to.ch+count));
   }else cm.replaceRange(spaces,from,null,'+input');
+  ensureCodeMirrorCursorVisible(cm);
 }
 function unindentCodeMirror(cm){
   const from=cm.getCursor('from'),to=cm.getCursor('to'),has=cm.somethingSelected();
@@ -1052,11 +1231,13 @@ function unindentCodeMirror(cm){
   const cursor=cm.getCursor(),removed=[];
   cm.operation(()=>{for(let line=endLine;line>=startLine;line--){const text=cm.getLine(line),n=Math.min(4,leadingSpaces(text));removed[line]=n;if(n)cm.replaceRange('',CodeMirror.Pos(line,0),CodeMirror.Pos(line,n),'+delete');}});
   if(!has){const n=removed[cursor.line]||0;cm.setCursor(CodeMirror.Pos(cursor.line,Math.max(0,cursor.ch-n)));}
+  ensureCodeMirrorCursorVisible(cm);
 }
 function enterCodeMirror(cm){
   const from=cm.getCursor('from'),to=cm.getCursor('to'),line=cm.getLine(from.line),prefix=line.slice(0,from.ch);
   const base=(prefix.match(/^ */)||[''])[0],extra=prefix.trimEnd().endsWith(':')?'    ':'';
   cm.replaceRange('\n'+base+extra,from,to,'+input');
+  ensureCodeMirrorCursorVisible(cm);
 }
 function selectedTextareaLines(textarea){
   const value=textarea.value,start=textarea.selectionStart,end=textarea.selectionEnd,lineStart=value.lastIndexOf('\n',Math.max(0,start-1))+1;
@@ -1068,24 +1249,24 @@ function tabTextarea(textarea){
   const {value,start,end,lineStart,lineEnd,block}=selectedTextareaLines(textarea);
   if(start!==end && block.includes('\n')){
     const lines=block.split('\n'),next=lines.map(x=>'    '+x).join('\n');
-    textarea.value=value.slice(0,lineStart)+next+value.slice(lineEnd);textarea.selectionStart=lineStart;textarea.selectionEnd=lineStart+next.length;saveDraft();return;
+    textarea.value=value.slice(0,lineStart)+next+value.slice(lineEnd);textarea.selectionStart=lineStart;textarea.selectionEnd=lineStart+next.length;saveDraft();ensureTextareaCursorVisible(textarea);return;
   }
   const linePrefix=value.slice(lineStart,start),column=textareaVisualColumn(linePrefix,linePrefix.length,4),count=spacesToNextTabStop(column,4),spaces=' '.repeat(count);
   textarea.value=value.slice(0,start)+spaces+value.slice(start);
   if(start!==end){textarea.selectionStart=start+count;textarea.selectionEnd=end+count;}else textarea.selectionStart=textarea.selectionEnd=start+count;
-  saveDraft();
+  saveDraft();ensureTextareaCursorVisible(textarea);
 }
 function unindentTextarea(textarea){
   const {value,start,end,lineStart,lineEnd,block}=selectedTextareaLines(textarea),has=start!==end;
   const lines=block.split('\n'),removed=lines.map(x=>Math.min(4,leadingSpaces(x))),next=lines.map((x,i)=>x.slice(removed[i])).join('\n');
   textarea.value=value.slice(0,lineStart)+next+value.slice(lineEnd);
   if(has){textarea.selectionStart=lineStart;textarea.selectionEnd=lineStart+next.length;}else{const row=value.slice(lineStart,start).split('\n').length-1;const n=removed[row]||0;const pos=Math.max(lineStart,start-n);textarea.selectionStart=textarea.selectionEnd=pos;}
-  saveDraft();
+  saveDraft();ensureTextareaCursorVisible(textarea);
 }
 function enterTextarea(textarea){
   const start=textarea.selectionStart,end=textarea.selectionEnd,value=textarea.value,before=value.slice(0,start),line=before.slice(before.lastIndexOf('\n')+1);
   const base=(line.match(/^ */)||[''])[0],extra=line.trimEnd().endsWith(':')?'    ':'';
-  textarea.value=value.slice(0,start)+'\n'+base+extra+value.slice(end);textarea.selectionStart=textarea.selectionEnd=start+1+base.length+extra.length;saveDraft();
+  textarea.value=value.slice(0,start)+'\n'+base+extra+value.slice(end);textarea.selectionStart=textarea.selectionEnd=start+1+base.length+extra.length;saveDraft();ensureTextareaCursorVisible(textarea);
 }
 function setupEditor(){
   const textarea=$('#codeEditor');
@@ -1094,7 +1275,7 @@ function setupEditor(){
     editor=CodeMirror.fromTextArea(textarea,{mode:'python',lineNumbers:true,indentUnit:4,tabSize:4,indentWithTabs:false,lineWrapping:false,autoCloseBrackets:true,matchBrackets:true,extraKeys:{
       'Ctrl-Space':cm=>cm.showHint({hint:CodeMirror.hint['python-custom'],completeSingle:false}),'Alt-/':cm=>cm.showHint({hint:CodeMirror.hint['python-custom'],completeSingle:false}),'Ctrl-/':cm=>toggleCodeMirrorComments(cm),'Backspace':cm=>deleteCodeMirrorIndentBackspace(cm),'Enter':cm=>enterCodeMirror(cm),'Ctrl-Enter':()=>judge(),'F9':()=>runCurrentCode(),'Tab':cm=>indentCodeMirrorTab(cm),'Shift-Tab':cm=>unindentCodeMirror(cm)
     }});
-    editor.on('change',()=>saveDraft());
+    editor.on('change',saveDraft);
   }else{
     textarea.className='fallback-editor';
     textarea.addEventListener('keydown',e=>{
@@ -1109,90 +1290,104 @@ function setupEditor(){
   }
 }
 
-function renderSampleSelector(){
-  const t=TASKS[currentTaskIndex];
-  const samples=getPublicTests(t);
-  const select=$('#sampleSelect');
-  if(!select) return;
-  if(selectedPublicSampleIndex>=samples.length) selectedPublicSampleIndex=0;
-  select.innerHTML=samples.map((_,idx)=>`<option value="${idx}">範例 #${idx+1}</option>`).join('');
-  select.value=String(selectedPublicSampleIndex);
-  select.hidden=samples.length<=1;
-  select.disabled=busy || getCustomOverride() || samples.length<=1;
-}
-
-function getSelectedPublicSample(){
-  const samples=getPublicTests(TASKS[currentTaskIndex]);
-  if(!samples.length) return null;
-  return samples[Math.min(selectedPublicSampleIndex,samples.length-1)];
-}
-
-function restoreCustomInputForTask(){
-  const area=$('#customInput');if(!area)return;try{area.value=localStorage.getItem(customInputKey(TASKS[currentTaskIndex].id))??''}catch{area.value=''}
-}
-function saveCustomInput(){const area=$('#customInput');if(!area)return;try{localStorage.setItem(customInputKey(TASKS[currentTaskIndex].id),area.value)}catch{}}
-function updateInputSourceUI(){
-  const override=getCustomOverride(),state=$('#customInputModeState'),sw=$('#customInputOverride'),select=$('#sampleSelect');
-  if(sw)sw.checked=override;if(state)state.textContent=override?'ON':'OFF';
-  if(select)select.disabled=busy||override||getPublicTests(TASKS[currentTaskIndex]).length<=1;
-  updateTerminalMeta();
-}
-function updateTerminalMeta(){
-  const override=getCustomOverride(),t=TASKS[currentTaskIndex];
-  if(override){$('#terminalMeta').textContent=`輸入：第 ${t.id} 階 CUSTOM INPUT`;return;}
-  const sample=getSelectedPublicSample(),samples=getPublicTests(t),label=samples.length>1?`公開範例 #${selectedPublicSampleIndex+1}`:'公開範例';
-  $('#terminalMeta').textContent=sample?`輸入：第 ${t.id} 階${label}`:'輸入：空白';
-}
-function getRunInput(){
-  if(getCustomOverride()) return {input:$('#customInput').value,source:'custom'};
-  const sample=getSelectedPublicSample();return {input:sample?sample.input:'',source:'public'};
-}
-
-function resetTerminal(message='Ready. 按 F9 執行，或 Ctrl+Enter 提交。'){
-  const out=$('#terminalOutput');
+function resetTerminal(message='Ready. 按 F9 啟動互動式 Python，或 Ctrl+Enter 提交。'){
+  terminalQueuedLines=[];
+  terminalEof=false;
+  const out=$('#terminalOutput'),input=$('#terminalInput'),consoleEl=$('#terminalConsole');
   out.className='terminal-output';
   out.textContent=message;
+  input.value='';input.disabled=true;input.classList.remove('awaiting');
+  $('#terminalEofBtn').disabled=true;
+  if(consoleEl) consoleEl.scrollTop=consoleEl.scrollHeight;
+}
+function terminalScrollToEnd(){const el=$('#terminalConsole');if(el) el.scrollTop=el.scrollHeight;}
+function setTerminalText(text,isError=false){
+  const out=$('#terminalOutput');out.className='terminal-output'+(isError?' error':'');out.textContent=text;terminalScrollToEnd();
+}
+function appendTerminalText(text,{error=false}={}){
+  const out=$('#terminalOutput');out.textContent+=text;terminalScrollToEnd();
+}
+function setTerminalAwaitingInput(awaiting){
+  const input=$('#terminalInput');
+  if(!input)return;
+  input.disabled=!awaiting;
+  input.classList.toggle('awaiting',awaiting);
+  $('#terminalEofBtn').disabled=!interactiveSession || terminalEof;
+  if(awaiting){input.value='';requestAnimationFrame(()=>{input.focus();terminalScrollToEnd();});}
+}
+function syncTerminalRunControls(){
+  const terminalRunBtn=$('#terminalRunBtn');
+  const terminalStopBtn=$('#terminalStopBtn');
+  if(terminalRunBtn)terminalRunBtn.disabled=busy;
+  if(terminalStopBtn)terminalStopBtn.disabled=!interactiveSession;
+}
+function finishInteractiveUi(){
+  setTerminalAwaitingInput(false);
+  $('#terminalEofBtn').disabled=true;
+  const runBtn=$('#runBtn');runBtn.textContent='執行';runBtn.title='F9：啟動互動式 Python TERMINAL';
+  syncTerminalRunControls();
+}
+function queueOrSendTerminalInput(raw){
+  if(!interactiveSession || terminalEof)return;
+  const normalized=String(raw).replace(/\r\n?/g,'\n');
+  const lines=normalized.split('\n');
+  if(lines.length && lines[lines.length-1]==='') lines.pop();
+  if(!lines.length) lines.push('');
+  const first=lines.shift();terminalQueuedLines.push(...lines);
+  appendTerminalText(normalized.endsWith('\n')?normalized:normalized+'\n');
+  setTerminalAwaitingInput(false);
+  interactiveSession.worker.postMessage({type:'stdin-response',id:interactiveSession.id,value:first,eof:false});
+}
+function sendTerminalEof(){
+  if(!interactiveSession || terminalEof)return;
+  terminalEof=true;terminalQueuedLines=[];setTerminalAwaitingInput(false);appendTerminalText('^D\n');
+  interactiveSession.worker.postMessage({type:'stdin-response',id:interactiveSession.id,eof:true});
+  $('#terminalEofBtn').disabled=true;
+}
+function handleInteractiveStdinRequest(session){
+  if(!interactiveSession || interactiveSession!==session)return;
+  if(terminalEof){session.worker.postMessage({type:'stdin-response',id:session.id,eof:true});return;}
+  if(terminalQueuedLines.length){
+    const value=terminalQueuedLines.shift();
+    session.worker.postMessage({type:'stdin-response',id:session.id,value,eof:false});
+    return;
+  }
+  setTerminalAwaitingInput(true);
+}
+function stopInteractiveRun(){
+  const session=interactiveSession;if(!session)return;
+  interactiveSession=null;
+  syncTerminalRunControls();
+  try{session.worker.removeEventListener('message',session.handler)}catch{}
+  appendTerminalText('\nProgram terminated by user.\n',{error:true});
+  session.resolve({ok:false,stopped:true,error:'Program terminated by user.'});
+  if(pyWorker===session.worker)killWorker();else session.worker.terminate();
+  finishInteractiveUi();
 }
 
-function writeTerminal(text,isError=false){
-  const out=$('#terminalOutput');
-  out.className='terminal-output'+(isError?' error':'');
-  out.textContent=text;
-  out.scrollTop=out.scrollHeight;
-}
-
-function beginOperation(){
-  const op={token:++operationSeq,taskIndex:currentTaskIndex,taskId:TASKS[currentTaskIndex].id};
+function beginOperation(kind='judge'){
+  const op={token:++operationSeq,taskIndex:currentTaskIndex,taskId:TASKS[currentTaskIndex].id,kind};
   activeOperationToken=op.token;
-  setBusy(true);
+  setBusy(true,kind);
   return op;
 }
-function isOperationCurrent(op){
-  return activeOperationToken===op.token && currentTaskIndex===op.taskIndex && TASKS[currentTaskIndex].id===op.taskId;
-}
-function endOperation(op){
-  if(activeOperationToken===op.token){
-    activeOperationToken=0;
-    setBusy(false);
-  }
-}
+function isOperationCurrent(op){return activeOperationToken===op.token && currentTaskIndex===op.taskIndex && TASKS[currentTaskIndex].id===op.taskId;}
+function endOperation(op){if(activeOperationToken===op.token){activeOperationToken=0;setBusy(false,op.kind);}}
 
 async function runCurrentCode(){
-  if(busy)return;
-  const code=getCode();saveDraft();saveCustomInput();
-  const {input,source}=getRunInput();
-  const op=beginOperation();
-  const sourceLabel=source==='custom'?'CUSTOM INPUT':'公開範例';
-  writeTerminal(`$ python main.py\n\n使用 ${sourceLabel} 執行中...`);
+  if(busy){if(interactiveSession)stopInteractiveRun();return;}
+  const code=getCode();saveDraft();
+  const op=beginOperation('interactive');
+  setTerminalText('$ python main.py\n');
   try{
-    const r=await runPython(code,input);
+    const r=await runPythonInteractive(code);
     if(!isOperationCurrent(op))return;
-    if(r.timeout){writeTerminal(`$ python main.py\n\nTime Limit Exceeded (${RUN_TIMEOUT_MS} ms).`,true);}
-    else if(r.environmentError){writeTerminal(`$ python main.py\n\n執行環境暫時無法使用，請重新執行。`,true);}
-    else if(!r.ok){const body=[r.output,r.error].filter(Boolean).join('\n');writeTerminal(`$ python main.py\n\n${body}\n\n程式執行失敗（${r.ms} ms）。`,true);}
-    else{const stdout=r.output||'',stderr=r.error||'';let body=stdout;if(stderr)body+=(body?'\n':'')+stderr;if(!body)body='程式已結束，沒有輸出。';writeTerminal(`$ python main.py\n\n${body}\n\n程式執行完成（${r.ms} ms）。` ,Boolean(stderr));}
-  }catch(err){console.error(err);if(isOperationCurrent(op))writeTerminal(`$ python main.py\n\n執行環境暫時無法使用，請重新執行。`,true);}
-  finally{endOperation(op);if(editor)editor.focus();}
+    if(r.environmentError){appendTerminalText('\n執行環境暫時無法使用。互動式 stdin 需要支援 JSPI 的新版瀏覽器（建議最新版 Chrome / Edge / Firefox）。\n',{error:true});}
+    else if(r.stopped){}
+    else if(!r.ok){if(r.error && !String($('#terminalOutput').textContent).includes(r.error))appendTerminalText(`${r.error}\n`,{error:true});}
+    else appendTerminalText(`\nProcess finished in ${r.ms} ms.\n`);
+  }catch(err){console.error(err);if(isOperationCurrent(op))appendTerminalText('\n執行環境暫時無法使用，請重新執行。\n',{error:true});}
+  finally{finishInteractiveUi();endOperation(op);if(editor)ensureCodeMirrorCursorVisible(editor);}
 }
 
 function setRuntime(status,text){
@@ -1202,25 +1397,139 @@ function setRuntime(status,text){
 
 function makeWorker(){
   const workerSource=`
-    let pyodide = null;
-    self.onmessage = async (e) => {
+    let pyodide=null;
+    let activeInteractiveId=0;
+    let pendingInputResolve=null;
+    const stdoutDecoder=new TextDecoder();
+    const stderrDecoder=new TextDecoder();
+    function jspiAvailable(){return typeof WebAssembly.Suspending==='function' && typeof WebAssembly.promising==='function';}
+    function readLineAsync(){
+      return new Promise(resolve=>{
+        pendingInputResolve=resolve;
+        self.postMessage({type:'stdin-request',id:activeInteractiveId});
+      });
+    }
+    function emitStream(stream,text){if(text)self.postMessage({type:'stream',id:activeInteractiveId,stream,text});}
+    function configureStreams(){
+      pyodide.setStdout({isatty:true,write(buffer){emitStream('stdout',stdoutDecoder.decode(buffer,{stream:true}));return buffer.length;}});
+      pyodide.setStderr({isatty:true,write(buffer){emitStream('stderr',stderrDecoder.decode(buffer,{stream:true}));return buffer.length;}});
+      pyodide.globals.set('__OJ_READLINE_ASYNC__',readLineAsync);
+    }
+    self.onmessage=async(e)=>{
       const msg=e.data;
       if(msg.type==='init'){
         try{
           importScripts('${PYODIDE_BASE_URL}pyodide.js');
-          pyodide = await loadPyodide({indexURL:'${PYODIDE_BASE_URL}'});
-          self.postMessage({type:'ready'});
+          pyodide=await loadPyodide({indexURL:'${PYODIDE_BASE_URL}'});
+          configureStreams();
+          self.postMessage({type:'ready',jspi:jspiAvailable()});
         }catch(err){self.postMessage({type:'init-error',error:String(err)});}
+        return;
+      }
+      if(msg.type==='stdin-response'){
+        if(msg.id===activeInteractiveId && pendingInputResolve){
+          const resolve=pendingInputResolve;pendingInputResolve=null;resolve(msg.eof?null:String(msg.value??''));
+        }
+        return;
+      }
+      if(msg.type==='interactive-run'){
+        activeInteractiveId=msg.id;pendingInputResolve=null;
+        if(!jspiAvailable()){
+          self.postMessage({type:'interactive-result',id:msg.id,result:{ok:false,error:'JSPI is not supported in this browser.',environmentError:true}});
+          return;
+        }
+        try{
+          pyodide.globals.set('__OJ_CODE__',msg.code);
+          const json=await pyodide.runPythonAsync(\`
+import io, sys, json, traceback, linecache
+from pyodide.ffi import run_sync
+_old_stdin = sys.stdin
+linecache.cache["main.py"] = (len(__OJ_CODE__), None, __OJ_CODE__.splitlines(True), "main.py")
+
+def _format_student_exception(exc):
+    tb = exc.__traceback__
+    while tb is not None and tb.tb_frame.f_code.co_filename != "main.py":
+        tb = tb.tb_next
+    return "".join(traceback.format_exception(type(exc), exc, tb)).rstrip()
+
+class _InteractiveStdin(io.TextIOBase):
+    def __init__(self):
+        self._buffer = ""
+        self._eof = False
+    def readable(self):
+        return True
+    def isatty(self):
+        return True
+    def _next_line(self):
+        if self._eof:
+            return ""
+        value = run_sync(__OJ_READLINE_ASYNC__())
+        if value is None:
+            self._eof = True
+            return ""
+        text = str(value)
+        return text if text.endswith(chr(10)) else text + chr(10)
+    def readline(self, size=-1):
+        while chr(10) not in self._buffer and not self._eof:
+            self._buffer += self._next_line()
+        if not self._buffer:
+            return ""
+        newline = self._buffer.find(chr(10))
+        take = len(self._buffer) if newline < 0 else newline + 1
+        if size is not None and size >= 0:
+            take = min(take, size)
+        out, self._buffer = self._buffer[:take], self._buffer[take:]
+        return out
+    def read(self, size=-1):
+        if size == 0:
+            return ""
+        if size is None or size < 0:
+            chunks = [self._buffer]
+            self._buffer = ""
+            while not self._eof:
+                chunks.append(self._next_line())
+            return "".join(chunks)
+        while len(self._buffer) < size and not self._eof:
+            self._buffer += self._next_line()
+        out, self._buffer = self._buffer[:size], self._buffer[size:]
+        return out
+
+sys.stdin = _InteractiveStdin()
+try:
+    _ns = {"__name__": "__main__"}
+    exec(compile(__OJ_CODE__, "main.py", "exec"), _ns, _ns)
+    _res = {"ok": True, "error": ""}
+except SystemExit as _e:
+    if _e.code is None or _e.code == 0:
+        _res = {"ok": True, "error": ""}
+    else:
+        _res = {"ok": False, "error": _format_student_exception(_e)}
+except BaseException as _e:
+    _res = {"ok": False, "error": _format_student_exception(_e)}
+finally:
+    sys.stdin = _old_stdin
+json.dumps(_res)
+          \`);
+          self.postMessage({type:'interactive-result',id:msg.id,result:JSON.parse(json)});
+        }catch(err){self.postMessage({type:'interactive-result',id:msg.id,result:{ok:false,error:String(err),environmentError:true}});}
         return;
       }
       if(msg.type==='run'){
         try{
           pyodide.globals.set('__OJ_CODE__',msg.code);
           pyodide.globals.set('__OJ_INPUT__',msg.input);
-          const json = await pyodide.runPythonAsync(\`
-import io, sys, json, traceback
+          const json=await pyodide.runPythonAsync(\`
+import io, sys, json, traceback, linecache
 _old_stdin, _old_stdout, _old_stderr = sys.stdin, sys.stdout, sys.stderr
 _buf_out, _buf_err = io.StringIO(), io.StringIO()
+linecache.cache["main.py"] = (len(__OJ_CODE__), None, __OJ_CODE__.splitlines(True), "main.py")
+
+def _format_student_exception(exc):
+    tb = exc.__traceback__
+    while tb is not None and tb.tb_frame.f_code.co_filename != "main.py":
+        tb = tb.tb_next
+    return "".join(traceback.format_exception(type(exc), exc, tb)).rstrip()
+
 sys.stdin = io.StringIO(__OJ_INPUT__)
 sys.stdout = _buf_out
 sys.stderr = _buf_err
@@ -1229,15 +1538,12 @@ try:
     exec(compile(__OJ_CODE__, "main.py", "exec"), _ns, _ns)
     _res = {"ok": True, "output": _buf_out.getvalue(), "error": _buf_err.getvalue()}
 except SystemExit as _e:
-    _exit_code = _e.code
-    if _exit_code is None or _exit_code == 0:
+    if _e.code is None or _e.code == 0:
         _res = {"ok": True, "output": _buf_out.getvalue(), "error": _buf_err.getvalue()}
     else:
-        _res = {"ok": False, "output": _buf_out.getvalue(), "error": f"SystemExit: {_exit_code}"}
-except Exception:
-    _res = {"ok": False, "output": _buf_out.getvalue(), "error": traceback.format_exc().rstrip()}
-except BaseException:
-    _res = {"ok": False, "output": _buf_out.getvalue(), "error": traceback.format_exc().rstrip()}
+        _res = {"ok": False, "output": _buf_out.getvalue(), "error": _format_student_exception(_e)}
+except BaseException as _e:
+    _res = {"ok": False, "output": _buf_out.getvalue(), "error": _format_student_exception(_e)}
 finally:
     sys.stdin, sys.stdout, sys.stderr = _old_stdin, _old_stdout, _old_stderr
 json.dumps(_res)
@@ -1253,98 +1559,88 @@ json.dumps(_res)
 }
 
 function disposeWorker(runtimeStatus='',runtimeMessage='Python 尚未載入'){
-  if(pyWorker) pyWorker.terminate();
-  if(pyWorkerBlobUrl) URL.revokeObjectURL(pyWorkerBlobUrl);
-  pyWorker=null;
-  pyWorkerBlobUrl=null;
-  workerReadyPromise=null;
+  if(interactiveSession && interactiveSession.worker===pyWorker){
+    const session=interactiveSession;interactiveSession=null;
+    syncTerminalRunControls();
+    try{session.worker.removeEventListener('message',session.handler)}catch{}
+    session.resolve({ok:false,stopped:true,error:'Python worker stopped.'});
+  }
+  if(pyWorker)pyWorker.terminate();
+  if(pyWorkerBlobUrl)URL.revokeObjectURL(pyWorkerBlobUrl);
+  pyWorker=null;pyWorkerBlobUrl=null;workerReadyPromise=null;pyWorkerSupportsJspi=false;
   setRuntime(runtimeStatus,runtimeMessage);
 }
 
 function ensureWorker(){
-  if(pyWorker && workerReadyPromise) return workerReadyPromise;
+  if(pyWorker && workerReadyPromise)return workerReadyPromise;
   setRuntime('busy','載入 Python…');
-  const created=makeWorker();
-  pyWorker=created.worker;
-  pyWorkerBlobUrl=created.url;
-  const workerRef=pyWorker;
+  const created=makeWorker();pyWorker=created.worker;pyWorkerBlobUrl=created.url;const workerRef=pyWorker;
   workerReadyPromise=new Promise((resolve,reject)=>{
     let settled=false;
-    const cleanup=()=>{
-      clearTimeout(timer);
-      workerRef.removeEventListener('message',onMessage);
-      workerRef.removeEventListener('error',onError);
-    };
-    const fail=(message)=>{
-      if(settled)return;
-      settled=true;
-      cleanup();
-      if(pyWorker===workerRef) disposeWorker('error','Python 載入失敗');
-      else workerRef.terminate();
-      reject(new Error(message));
-    };
+    const cleanup=()=>{clearTimeout(timer);workerRef.removeEventListener('message',onMessage);workerRef.removeEventListener('error',onError);};
+    const fail=(message)=>{if(settled)return;settled=true;cleanup();if(pyWorker===workerRef)disposeWorker('error','Python 載入失敗');else workerRef.terminate();reject(new Error(message));};
     const onMessage=(e)=>{
       if(e.data.type==='ready'){
-        if(settled)return;
-        settled=true;
-        cleanup();
-        setRuntime('ready','Python 3 已就緒');
-        resolve();
-      }else if(e.data.type==='init-error'){
-        fail(e.data.error || 'Pyodide initialization failed.');
-      }
+        if(settled)return;settled=true;cleanup();pyWorkerSupportsJspi=Boolean(e.data.jspi);setRuntime('ready',pyWorkerSupportsJspi?'Python 3 已就緒':'Python 3 已就緒（互動 stdin 不支援）');resolve();
+      }else if(e.data.type==='init-error')fail(e.data.error||'Pyodide initialization failed.');
     };
-    const onError=(e)=>fail(e.message || 'Python worker failed.');
+    const onError=(e)=>fail(e.message||'Python worker failed.');
     const timer=setTimeout(()=>fail(`Python runtime initialization exceeded ${PYODIDE_INIT_TIMEOUT_MS/1000} seconds.`),PYODIDE_INIT_TIMEOUT_MS);
-    workerRef.addEventListener('message',onMessage);
-    workerRef.addEventListener('error',onError);
-    workerRef.postMessage({type:'init'});
+    workerRef.addEventListener('message',onMessage);workerRef.addEventListener('error',onError);workerRef.postMessage({type:'init'});
   });
   return workerReadyPromise;
 }
+function killWorker(){disposeWorker('','Python 尚未載入');}
 
-function killWorker(){
-  disposeWorker('','Python 尚未載入');
+async function runPythonInteractive(code){
+  await ensureWorker();
+  const workerRef=pyWorker;if(!workerRef)throw new Error('Python worker is not available.');
+  if(!pyWorkerSupportsJspi)return {ok:false,error:'JSPI is not supported in this browser.',environmentError:true,ms:0};
+  const id=++workerRunSeq,start=performance.now();terminalQueuedLines=[];terminalEof=false;
+  return await new Promise(resolve=>{
+    const session={id,worker:workerRef,resolve,handler:null};
+    const finish=(result)=>{
+      if(interactiveSession===session)interactiveSession=null;
+      syncTerminalRunControls();
+      workerRef.removeEventListener('message',handler);
+      const ms=Math.max(1,Math.round(performance.now()-start));resolve({...result,ms});
+    };
+    const handler=(e)=>{
+      if(e.data.id!==id)return;
+      if(e.data.type==='stream'){appendTerminalText(e.data.text,{error:e.data.stream==='stderr'});return;}
+      if(e.data.type==='stdin-request'){handleInteractiveStdinRequest(session);return;}
+      if(e.data.type==='interactive-result')finish(e.data.result);
+    };
+    session.handler=handler;interactiveSession=session;syncTerminalRunControls();workerRef.addEventListener('message',handler);workerRef.postMessage({type:'interactive-run',id,code});
+  });
 }
 
 async function runPython(code,input,timeoutMs=RUN_TIMEOUT_MS){
   await ensureWorker();
-  const workerRef=pyWorker;
-  if(!workerRef) throw new Error('Python worker is not available.');
+  const workerRef=pyWorker;if(!workerRef)throw new Error('Python worker is not available.');
   const id=++workerRunSeq;
   return await new Promise(resolve=>{
-    const start=performance.now();
-    let settled=false;
-    const handler=(e)=>{
-      if(e.data.type==='result' && e.data.id===id){
-        if(settled)return; settled=true;
-        clearTimeout(timer);
-        workerRef.removeEventListener('message',handler);
-        const ms=Math.max(1,Math.round(performance.now()-start));
-        resolve({...e.data.result,ms});
-      }
-    };
+    const start=performance.now();let settled=false;
+    const handler=(e)=>{if(e.data.type==='result'&&e.data.id===id){if(settled)return;settled=true;clearTimeout(timer);workerRef.removeEventListener('message',handler);const ms=Math.max(1,Math.round(performance.now()-start));resolve({...e.data.result,ms});}};
     workerRef.addEventListener('message',handler);
-    const timer=setTimeout(()=>{
-      if(settled)return; settled=true;
-      workerRef.removeEventListener('message',handler);
-      if(pyWorker===workerRef) killWorker(); else workerRef.terminate();
-      resolve({ok:false,output:'',error:'Time Limit Exceeded',timeout:true,ms:timeoutMs});
-    },timeoutMs);
+    const timer=setTimeout(()=>{if(settled)return;settled=true;workerRef.removeEventListener('message',handler);if(pyWorker===workerRef)killWorker();else workerRef.terminate();resolve({ok:false,output:'',error:'Time Limit Exceeded',timeout:true,ms:timeoutMs});},timeoutMs);
     workerRef.postMessage({type:'run',id,code,input});
   });
 }
 
-function setBusy(v){
+function setBusy(v,kind='judge'){
   busy=v;
-  $('#runBtn').disabled=v;
+  const runBtn=$('#runBtn');
+  runBtn.disabled=v && kind!=='interactive';
+  if(v && kind==='interactive'){runBtn.textContent='停止';runBtn.title='停止目前互動式 Python 程式';}
+  else if(!v){runBtn.textContent='執行';runBtn.title='F9：啟動互動式 Python TERMINAL';}
   $('#submitBtn').disabled=v;
   $('#resetBtn').disabled=v;
   $('#clearAllBtn').disabled=v;
+  $('#exportRecordsBtn').disabled=v;
+  $('#importRecordsBtn').disabled=v;
+  syncTerminalRunControls();
   updateAnswerButtonState();
-  const sampleSelect=$('#sampleSelect');
-  if(sampleSelect) sampleSelect.disabled=v || getCustomOverride() || getPublicTests(TASKS[currentTaskIndex]).length<=1;
-  const custom=$('#customInput'),override=$('#customInputOverride');if(custom)custom.disabled=v;if(override)override.disabled=v;
   document.querySelectorAll('.level-btn').forEach(btn=>btn.disabled=v);
 }
 
@@ -1406,7 +1702,7 @@ $('#answerBtn').addEventListener('click',()=>{
     return;
   }
   $('#answerTitle').textContent=`第 ${t.id} 階參考答案｜${t.title}`;
-  $('#answerCode').textContent=t.answer;
+  renderReferenceAnswers(t);
   $('#answerDialog').showModal();
 });
 $('#closeAnswer').addEventListener('click',()=>$('#answerDialog').close());
@@ -1417,9 +1713,16 @@ $('#resetBtn').addEventListener('click',()=>{
     setCode(''); saveDraft(); if(editor)editor.focus();
   }
 });
+$('#exportRecordsBtn').addEventListener('click',exportPortableRecords);
+$('#importRecordsBtn').addEventListener('click',()=>{if(!busy)$('#importRecordsInput').click();});
+$('#importRecordsInput').addEventListener('change',async e=>{
+  const input=e.currentTarget;const file=input.files?.[0]||null;input.value='';
+  if(!file)return;
+  try{await importPortableRecords(file);}catch(err){console.error(err);alert(err?.message||'無法匯入作答紀錄。');}
+});
 $('#clearAllBtn').addEventListener('click',()=>{
   if(busy) return;
-  if(!confirm(`確定清除所有紀錄？\n\n這會刪除 ${TASKS.length} 題的程式草稿、CUSTOM INPUT、F9 override、AC 進度與本機提交紀錄，且無法復原。`)) return;
+  if(!confirm(`確定清除所有紀錄？\n\n這會刪除 ${TASKS.length} 題的程式草稿、AC 進度與本機提交紀錄，且無法復原。`)) return;
   clearAllLocalRecords();
   currentTaskIndex=0;
   sourceStageActive=true;
@@ -1433,26 +1736,22 @@ $('#clearAllBtn').addEventListener('click',()=>{
   updateAnswerButtonState();
   overallVerdict.className='status-pill';
   overallVerdict.textContent='尚未提交';
-  resultSummary.textContent='所有本機紀錄已清除。F9 依 CUSTOM INPUT 開關選擇輸入；「提交」會評測本階全部測資。';
-  selectedPublicSampleIndex=0;
+  resultSummary.textContent='所有本機紀錄已清除。F9 會啟動互動式 TERMINAL；「提交」會評測本階全部正式測資。';
   setCode(TASKS[0].starter);
-  setCustomOverride(false);restoreCustomInputForTask();
-  renderSampleSelector();
   resetTerminal('紀錄已清除。');
-  updateInputSourceUI();
   if(editor) editor.clearHistory();
 });
-$('#runBtn').addEventListener('click',runCurrentCode);
-$('#clearTerminalBtn').addEventListener('click',()=>resetTerminal('終端機已清除。'));
-$('#sampleSelect').addEventListener('change',(e)=>{
-  selectedPublicSampleIndex=Number(e.target.value)||0;
-  updateInputSourceUI();
-  resetTerminal(`Ready. 已選擇公開範例 #${selectedPublicSampleIndex+1}。`);
-  if(editor) editor.focus();
+$('#runBtn').addEventListener('click',()=>{if(interactiveSession)stopInteractiveRun();else runCurrentCode();});
+$('#terminalRunBtn').addEventListener('click',()=>{if(!busy)runCurrentCode();});
+$('#terminalStopBtn').addEventListener('click',()=>{if(interactiveSession)stopInteractiveRun();});
+$('#clearTerminalBtn').addEventListener('click',()=>{const wasAwaiting=Boolean(interactiveSession && !$('#terminalInput').disabled);setTerminalText('');if(wasAwaiting)setTerminalAwaitingInput(true);});
+$('#terminalEofBtn').addEventListener('click',sendTerminalEof);
+$('#terminalInput').addEventListener('keydown',e=>{
+  if(e.ctrlKey && !e.shiftKey && !e.altKey && !e.metaKey && (e.key==='d'||e.key==='D')){e.preventDefault();sendTerminalEof();return;}
+  if(e.ctrlKey && !e.shiftKey && !e.altKey && !e.metaKey && (e.key==='c'||e.key==='C')){e.preventDefault();stopInteractiveRun();return;}
+  if(e.key==='Enter' && !e.shiftKey){e.preventDefault();const value=e.currentTarget.value;e.currentTarget.value='';queueOrSendTerminalInput(value);}
 });
-$('#customInput').addEventListener('input',saveCustomInput);
-$('#customInput').addEventListener('keydown',e=>{if(e.key==='F9'){e.preventDefault();runCurrentCode();}});
-$('#customInputOverride').addEventListener('change',e=>{if(busy)return;setCustomOverride(Boolean(e.target.checked));updateInputSourceUI();resetTerminal(e.target.checked?'Ready. F9 使用 CUSTOM INPUT。':'Ready. F9 使用公開範例。');});
+$('#terminalInput').addEventListener('input',e=>{const ta=e.currentTarget;ta.style.height='1.65em';ta.style.height=Math.min(ta.scrollHeight,84)+'px';});
 const THEME_STORAGE_KEY='step_oj_framework:theme:v1';
 function applyTheme(theme,{persist=true}={}){const next=theme==='dark'?'dark':'light';document.documentElement.dataset.theme=next;$('#themeSelect').value=next;if(persist){try{localStorage.setItem(THEME_STORAGE_KEY,next)}catch{}}}
 function initializeTheme(){const current=document.documentElement.dataset.theme==='dark'?'dark':'light';$('#themeSelect').value=current;$('#themeSelect').addEventListener('change',e=>applyTheme(e.target.value));}
@@ -1469,9 +1768,6 @@ renderHistory();
 renderProgress();
 updateAnswerButtonState();
 setCode(localStorage.getItem(draftKey(TASKS[0].id)) ?? TASKS[0].starter);
-restoreCustomInputForTask();
-renderSampleSelector();
-updateInputSourceUI();
 </script>
 </body>
 </html>
