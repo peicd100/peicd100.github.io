@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- Generated from shared canonical Python OJ template. template_sha256=4b053999dbdb137e493b8646660baf426a54163a5738be2d4538ae19c3814a25 -->
+<!-- Generated from shared canonical Python OJ template. template_sha256=f760757f34c6a0157c0147a809b6d54cefbf8219a2d6564c4b69d7a4e378301a -->
 <html lang="zh-Hant-TW" data-theme="dark">
 <head>
 <meta charset="utf-8">
@@ -353,6 +353,14 @@ li.CodeMirror-hint-active{background:#e8f0f6;color:#22364b;}
 .extra-sample-card>strong{display:block;margin-bottom:8px;color:#405064;font-size:.8rem;}
 .sample-observe-note{margin:9px 0 0!important;color:var(--muted)!important;font-size:.82rem!important;}
 .sample-section-title{display:flex;align-items:center;gap:8px;flex-wrap:wrap}.sample-origin-badge{display:inline-flex;align-items:center;min-height:22px;padding:1px 7px;border:1px solid var(--line-strong);border-radius:999px;background:var(--soft);color:var(--muted);font-size:.68rem;font-weight:850;line-height:1.2}.sample-origin-badge.official{background:var(--accent-soft);color:var(--accent);border-color:#b8ccd9}.sample-origin-badge.special{background:var(--warn-soft);color:var(--warn);border-color:#ead3a5}
+
+/* Comprehension-first pre-code notice */
+.pre-code-notice{display:flex;align-items:flex-start;gap:12px;margin:20px 0 5px;padding:14px 16px;border:1px solid #d97706;border-left:5px solid #d97706;border-radius:7px;background:#fff7ed;color:#7c2d12;}
+.pre-code-notice::before{content:"!";display:grid;place-items:center;flex:0 0 30px;width:30px;height:30px;border-radius:999px;background:#b45309;color:#fff;font:900 1rem/1 system-ui,sans-serif;}
+.pre-code-notice strong{display:block;padding-top:1px;font-size:.95rem;line-height:1.68;font-weight:900;}
+html[data-theme="dark"] .pre-code-notice{background:#1a1304;color:#fef3c7;border-color:#fbbf24;}
+html[data-theme="dark"] .pre-code-notice::before{background:#fbbf24;color:#1a1304;}
+@media(max-width:520px){.pre-code-notice{gap:10px;margin:17px 0 4px;padding:12px 13px}.pre-code-notice::before{flex-basis:27px;width:27px;height:27px}.pre-code-notice strong{font-size:.9rem}}
 
 /* Dialog */
 dialog{padding:0;width:min(840px,92vw);border:1px solid #d7dee5;border-radius:8px;box-shadow:0 24px 70px rgba(15,23,42,.22);}
@@ -1086,6 +1094,9 @@ function renderProblem(){
     <p>${t.input}</p>
     <div class="section-title">輸出</div>
     <p>${t.output}</p>
+    <div class="pre-code-notice" data-pre-code-notice="true">
+      <strong>在你用紙筆自己計算、畫出「範例輸入」如何變成「範例輸出」之前，請勿開始寫任何程式碼。</strong>
+    </div>
     <div class="section-title sample-section-title"><span>公開範例 #1</span><span class="sample-origin-badge${sampleOriginClass(publicSamples[0])}">${sampleOriginLabel(publicSamples[0])}</span></div>
     <div class="sample-grid">
       <div class="sample-box"><div class="sample-box-head"><h4>輸入</h4><button class="sample-copy-btn" type="button" data-copy-public-input="0" title="複製公開範例 #1 輸入">複製</button></div><pre>${esc(t.sampleIn)}</pre></div>
