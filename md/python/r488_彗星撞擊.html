@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- Generated from shared canonical Python OJ template. template_sha256=c9e31ee044a98bfe91c5e993b67a0c7bfac1dab9828d9b9340f21eaede5676f7 -->
+<!-- Generated from shared canonical Python OJ template. template_sha256=00a426a43459b70b17c73519809800caec10a03026ea698d82019d984c096b37 -->
 <html lang="zh-Hant-TW" data-theme="dark">
 <head>
 <meta charset="utf-8">
@@ -11,8 +11,8 @@
 <title>r488 彗星撞擊｜APCS 階梯式 Online Judge</title>
 <link rel="preconnect" href="https://cdnjs.cloudflare.com">
 <link rel="preconnect" href="https://cdn.jsdelivr.net">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.18/codemirror.min.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.18/addon/hint/show-hint.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.21/codemirror.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.21/addon/hint/show-hint.min.css">
 <style>
 
 *{box-sizing:border-box;}
@@ -217,9 +217,7 @@ header{position:sticky;top:0;z-index:40;background:rgba(255,255,255,.97);backdro
 .section-title{position:relative;margin:27px 0 10px;padding:0 0 8px 13px;border-bottom:1px solid #e7ebef;color:#273345;font-size:.92rem;font-weight:800;}
 .section-title::before{content:"";position:absolute;left:0;top:.25em;width:3px;height:1.05em;border-radius:2px;background:var(--accent);}
 .problem p{margin:.45rem 0;color:#374151;font-size:.95rem;}
-.formal-input-list{display:grid;gap:8px;margin:.35rem 0 .15rem;}
-.formal-input-item{position:relative;margin:0!important;padding:9px 11px 9px 14px;border:1px solid var(--line);border-radius:6px;background:var(--soft2);color:#374151;font-size:.95rem;line-height:1.68;}
-.formal-input-item::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;border-radius:6px 0 0 6px;background:var(--line-strong);}
+.formal-input-prose{margin:.45rem 0!important;color:#374151;font-size:.95rem;line-height:1.68;}
 .problem code,.dialog-body code{font-family:"Cascadia Mono","Consolas",monospace;background:#f1f4f7;color:#25364a;border:1px solid #e5e9ee;border-radius:4px;padding:.06em .28em;}
 pre{white-space:pre-wrap;word-break:break-word;margin:9px 0;padding:13px 15px;background:#f8fafb;color:#273345;border:1px solid #e1e6eb;border-radius:6px;font-family:"Cascadia Mono","SFMono-Regular",Consolas,monospace;font-size:.88rem;line-height:1.62;}
 .sample-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
@@ -423,6 +421,7 @@ dialog::backdrop{background:rgba(15,23,42,.4);}
 
 /* Shared UI / visual primitives: Theme + Interactive Terminal + Detailed Tutorial */
 .theme-control{display:inline-flex;align-items:center;gap:6px}.theme-control label{font-size:.75rem;color:var(--muted);font-weight:800}.theme-control select{min-height:34px;border:1px solid var(--line-strong);border-radius:6px;background:var(--paper);color:var(--ink);padding:4px 28px 4px 9px}
+.storage-warning{display:inline-flex;align-items:center;min-height:32px;padding:4px 9px;border:1px solid #d4a24d;border-radius:6px;background:#fff8e8;color:#7a4b0d;font-size:.75rem;font-weight:800}.storage-warning[hidden]{display:none}
 .learning-guide{display:grid;gap:10px}.learn-card{padding:12px 14px;border:1px solid var(--line);border-radius:7px;background:var(--paper)}.learn-card>strong{display:block;margin-bottom:6px}.learn-recap{background:var(--soft);border-left:3px solid #9ba6b4}.learn-new{background:var(--accent-soft);border-left:3px solid #6f98bb}.learn-plan{background:#f7fbf8;border-left:3px solid #79ab8f}.learn-pitfall{background:#fffaf2;border-left:3px solid #d1a04e}.learn-card ol,.learn-card ul{margin:.45rem 0 .2rem;padding-left:1.4rem}.learn-card li{margin:.28rem 0}.learn-visual{margin:10px 0;padding:12px;border:1px solid var(--line);border-radius:7px;background:var(--paper)}.learn-visual-title{margin-bottom:8px;color:#344256;font-size:.82rem;font-weight:850}.learn-step-flow{display:flex;gap:8px;align-items:center;justify-content:center;flex-wrap:wrap}.learn-step-node{padding:8px 10px;border:1px solid var(--line);border-radius:6px;background:var(--soft);text-align:center}.learn-step-node small{display:block;color:var(--muted)}
 html[data-theme="light"]{color-scheme:light}html[data-theme="dark"]{color-scheme:dark;--bg:#000000;--paper:#080808;--ink:#f4f7fb;--muted:#a2aab8;--line:#242424;--line-strong:#3a3a3a;--soft:#0d0d0d;--soft2:#0b0b0b;--accent:#22d3ee;--accent-strong:#06b6d4;--accent-soft:#06181d;--ok:#4ade80;--ok-soft:#07170d;--bad:#fb7185;--bad-soft:#1a090d;--warn:#fbbf24;--warn-soft:#1a1304;--terminal:#000000;--terminal-soft:#080808;--shadow:none;background:#000}
 html[data-theme="dark"] body{background:#000;color:var(--ink)}html[data-theme="dark"] header{background:rgba(0,0,0,.97);border-color:#222}html[data-theme="dark"] .panel,html[data-theme="dark"] .problem,html[data-theme="dark"] .results-wrap,html[data-theme="dark"] .editor-shell,html[data-theme="dark"] .dialog-body{background:#080808;color:var(--ink);border-color:#242424}
@@ -433,7 +432,7 @@ html[data-theme="dark"] .terminal-workspace,html[data-theme="dark"] .terminal-pa
 html[data-theme="dark"] .sample-explanation-body,html[data-theme="dark"] .sample-explanation-body p,html[data-theme="dark"] .sample-explanation-body small,html[data-theme="dark"] .reason-node small,html[data-theme="dark"] .visual-caption{color:#c6cbd2}html[data-theme="dark"] .sample-explanation-body pre,html[data-theme="dark"] .hidden-test-item pre,html[data-theme="dark"] pre{background:#020202;color:#e5e7eb;border-color:#242424}html[data-theme="dark"] .result-summary,html[data-theme="dark"] .hidden-tests summary,html[data-theme="dark"] .submission-history summary{background:#0b0b0b;color:#cfd5dd;border-color:#292929}
 html[data-theme="dark"] .matrix-grid,html[data-theme="dark"] .matrix-cell,html[data-theme="dark"] .number-strip span,html[data-theme="dark"] .calc-flow span{background:#0b0b0b;color:#e8edf3;border-color:#303030}html[data-theme="dark"] .matrix-cell.focus-cell{background:#06242b;border-color:#16879d;box-shadow:inset 0 0 0 1px #16879d}html[data-theme="dark"] .matrix-cell.diff-cell,html[data-theme="dark"] .pair-card.diff{background:#1a090d;border-color:#6b2733}html[data-theme="dark"] .pair-card.same,html[data-theme="dark"] .candidate-pos.ok,html[data-theme="dark"] .window-card.ok-card{background:#07170d;border-color:#1f5b36}
 html[data-theme="dark"] .sample-copy-btn{background:#0b0b0b;color:#c6cbd2;border-color:#303030}html[data-theme="dark"] .sample-copy-btn:hover{background:#101010;color:#e7ebf0}html[data-theme="dark"] .sample-copy-btn.success{background:#07170d;color:#86efac;border-color:#1f5b36}html[data-theme="dark"] .sample-origin-badge{background:#0d0d0d;color:#cbd2dc;border-color:#303030}html[data-theme="dark"] .sample-origin-badge.official{background:#06181d;color:#67e8f9;border-color:#155e75}html[data-theme="dark"] .sample-origin-badge.special{background:#1a1304;color:#fbbf24;border-color:#6b5213}
-html[data-theme="dark"] .brand-title,html[data-theme="dark"] .problem h1,html[data-theme="dark"] .section-title,html[data-theme="dark"] .results-head h2,html[data-theme="dark"] .editor-head strong,html[data-theme="dark"] .dialog-head strong,html[data-theme="dark"] .sample-explain-intro strong,html[data-theme="dark"] .learn-visual-title{color:var(--ink)}html[data-theme="dark"] .brand-subtitle,html[data-theme="dark"] .progress-wrap,html[data-theme="dark"] .runtime,html[data-theme="dark"] .source-link,html[data-theme="dark"] .kicker,html[data-theme="dark"] .meta,html[data-theme="dark"] .sample-box h4,html[data-theme="dark"] .sample-explain-intro small,html[data-theme="dark"] .editor-foot,html[data-theme="dark"] .hidden-test-label,html[data-theme="dark"] .history-item,html[data-theme="dark"] .hidden-tests-empty,html[data-theme="dark"] .history-empty{color:var(--muted)}html[data-theme="dark"] .runtime{background:#0b0b0b;border-color:#303030}html[data-theme="dark"] .problem p{color:#d8dde5}html[data-theme="dark"] .formal-input-item{background:#0b0b0b;color:#d8dde5;border-color:#292929}html[data-theme="dark"] .formal-input-item::before{background:#3a3a3a}html[data-theme="dark"] .problem code,html[data-theme="dark"] .dialog-body code{background:#101010;color:#dff9ff;border-color:#2c2c2c}html[data-theme="dark"] .level-strip,html[data-theme="dark"] .editor-head,html[data-theme="dark"] .editor-foot{background:#080808;border-color:#242424}html[data-theme="dark"] .status-pill{background:#0d0d0d;color:#cbd2dc;border-color:#303030}
+html[data-theme="dark"] .brand-title,html[data-theme="dark"] .problem h1,html[data-theme="dark"] .section-title,html[data-theme="dark"] .results-head h2,html[data-theme="dark"] .editor-head strong,html[data-theme="dark"] .dialog-head strong,html[data-theme="dark"] .sample-explain-intro strong,html[data-theme="dark"] .learn-visual-title{color:var(--ink)}html[data-theme="dark"] .brand-subtitle,html[data-theme="dark"] .progress-wrap,html[data-theme="dark"] .runtime,html[data-theme="dark"] .source-link,html[data-theme="dark"] .kicker,html[data-theme="dark"] .meta,html[data-theme="dark"] .sample-box h4,html[data-theme="dark"] .sample-explain-intro small,html[data-theme="dark"] .editor-foot,html[data-theme="dark"] .hidden-test-label,html[data-theme="dark"] .history-item,html[data-theme="dark"] .hidden-tests-empty,html[data-theme="dark"] .history-empty{color:var(--muted)}html[data-theme="dark"] .runtime{background:#0b0b0b;border-color:#303030}html[data-theme="dark"] .storage-warning{background:#1a1304;color:#f7d477;border-color:#6b5213}html[data-theme="dark"] .problem p{color:#d8dde5}html[data-theme="dark"] .problem code,html[data-theme="dark"] .dialog-body code{background:#101010;color:#dff9ff;border-color:#2c2c2c}html[data-theme="dark"] .level-strip,html[data-theme="dark"] .editor-head,html[data-theme="dark"] .editor-foot{background:#080808;border-color:#242424}html[data-theme="dark"] .status-pill{background:#0d0d0d;color:#cbd2dc;border-color:#303030}
 @media(max-width:720px){.terminal-workspace{grid-template-columns:1fr}.terminal-panel{border-right:0;border-bottom:1px solid #2b3649}.theme-control{max-width:100%}}
 @media(max-width:390px){.topbar{align-items:flex-start}.theme-control{margin-left:0}.theme-control label{display:none}.terminal-head{gap:6px}}
 @media(max-width:520px){.answer-variants.multi{grid-template-columns:repeat(var(--answer-count),minmax(300px,82vw));}}
@@ -469,6 +468,7 @@ html[data-theme="dark"] .tutorial-details,html[data-theme="dark"] .tutorial-cont
     <div class="theme-control"><label for="themeSelect">主題</label><select id="themeSelect" aria-label="選擇介面主題"><option value="light">淺色</option><option value="dark">深色</option></select></div>
     <button class="btn" id="exportRecordsBtn" type="button" title="匯出本題草稿、AC 進度與提交紀錄">匯出作答紀錄</button>
     <button class="btn" id="importRecordsBtn" type="button" title="從 JSON 匯入本題作答紀錄">匯入作答紀錄</button>
+    <span class="storage-warning" id="storageWarning" hidden>進度只保存在本次開啟；請匯出作答紀錄備份。</span>
     <input id="importRecordsInput" type="file" accept="application/json,.json" hidden aria-label="選擇作答紀錄 JSON 檔案">
     <button class="btn danger" id="clearAllBtn" type="button" title="清除所有題目草稿、AC 進度與提交紀錄">清除所有紀錄</button>
     <a class="source-link" href="https://zerojudge.tw/ShowProblem?problemid=r488" target="_blank" rel="noopener">原題</a>
@@ -528,7 +528,7 @@ html[data-theme="dark"] .tutorial-details,html[data-theme="dark"] .tutorial-cont
     </div>
     <div class="editor-foot">
       <span>Tab：移到下一個 4 欄定位點｜Shift+Tab：反縮排｜行首 Backspace：一次刪除 4 空白｜Ctrl+/：切換單行／多行註解｜Ctrl+Space / Alt+/：補全｜F9：執行｜Ctrl+Enter：提交</span>
-      <span>F9：互動式 TERMINAL，input() 需要手動輸入｜Ctrl+D / EOF：結束 stdin｜執行中按「停止」可終止｜提交固定使用正式測資｜ZeroJudge Tolerant：忽略空白行與每行前後空白｜提交每筆上限 2.5 秒</span>
+      <span>F9：互動式 TERMINAL，input() 需要手動輸入｜Ctrl+D / EOF：結束 stdin｜執行中按「停止」可終止｜提交固定使用正式測資｜輸出比對方式依本題設定｜提交每筆上限 2.5 秒</span>
     </div>
   </section>
 </main>
@@ -538,16 +538,16 @@ html[data-theme="dark"] .tutorial-details,html[data-theme="dark"] .tutorial-cont
   <div class="dialog-body"><div id="answerVariants" class="answer-variants single"></div></div>
 </dialog>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.18/codemirror.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.18/mode/python/python.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.18/addon/edit/closebrackets.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.18/addon/edit/matchbrackets.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.18/addon/hint/show-hint.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.21/codemirror.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.21/mode/python/python.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.21/addon/edit/closebrackets.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.21/addon/edit/matchbrackets.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.21/addon/hint/show-hint.min.js"></script>
 <script>
-const OJ_META={"source":{"url":"https://zerojudge.tw/ShowProblem?problemid=r488","platform":"ZeroJudge","problemId":"r488"},"storage":{"schema":22,"namespace":"r488_step_oj","legacyAcceptedKey":"r488_step_oj_accepted","legacyHistoryKey":"r488_step_oj_history","legacyDraftPrefix":"r488_step_oj_v001_code_"}};
+const OJ_META={"source":{"url":"https://zerojudge.tw/ShowProblem?problemid=r488","platform":"ZeroJudge","problemId":"r488"},"storage":{"schema":22,"namespace":"r488_step_oj","legacyAcceptedKey":"r488_step_oj_accepted","legacyHistoryKey":"r488_step_oj_history","legacyDraftPrefix":"r488_step_oj_v001_code_"},"judge":{"compareMode":"tolerant"}};
 const OFFICIAL_SOURCE=OJ_META.source;
 let sourceStageActive=true;
-const TASKS = [{"id":1,"title":"裁切彗星撞擊正方形","difficulty":"入門","statement":"R×C 地圖座標從 0 開始。一次撞擊中心為 (a,b)，邊長 S 為奇數。影響範圍是以中心為正中央的 S×S 正方形，再與地圖邊界取交集。請輸出實際範圍左上 (r0,c0) 與右下 (r1,c1)。","input":"第一行有兩個正整數 R、C，表示地圖列數與欄數；列座標為 0 到 R-1，欄座標為 0 到 C-1。第二行有 a、b、S，其中 (a,b) 是合法撞擊中心座標，S 是正奇數邊長。","output":"輸出 r0 c0 r1 c1，邊界皆包含。","sampleIn":"5 6\n2 3 3","sampleOut":"1 2 3 4","sampleExplain":"    <div class=\"demo-story\"><div class=\"demo-viewport\">\n      <section class=\"demo-step\"><p>中心 (2,3)、S=3。</p><pre>S=3 → h=1\n(a-1,b-1) ... (a+1,b+1)\n超出 0..R-1 / 0..C-1 的部分裁掉</pre></section>\n      <section class=\"demo-step\"><p>上下左右各延伸 1。</p></section><section class=\"demo-step\"><p>得到 (1,2) 到 (3,4)。</p></section>\n    </div></div>","starter":"","answer":"R, C = map(int, input().split())\na, b, S = map(int, input().split())\nh = S // 2\n\n# 正方形以 (a,b) 為中心，再和地圖邊界取交集。\nr0 = max(0, a - h)\nr1 = min(R - 1, a + h)\nc0 = max(0, b - h)\nc1 = min(C - 1, b + h)\nprint(r0, c0, r1, c1)","tests":[{"input":"5 6\n2 3 3\n","output":"1 2 3 4\n","public":true,"sampleRole":"primary","sampleOrigin":"task","qaPurpose":"本階主要公開範例"},{"input":"10 10\n9 5 7\n","output":"6 2 9 8\n","public":true,"sampleRole":"secondary","sampleOrigin":"task","qaPurpose":"本階第二公開案例"},{"input":"3 4\n0 0 5\n","output":"0 0 2 2\n","qaPurpose":"中心在角落且 S 超出地圖，需要裁切","public":true,"sampleRole":"special","sampleOrigin":"special"},{"input":"1 10\n0 3 9\n","output":"0 0 0 7\n"}],"generatedTests":[{"input":"4 4\n1 2 1\n","output":"1 2 1 2\n","generated":true},{"input":"8 5\n7 4 19\n","output":"0 0 7 4\n","generated":true}],"tutorial":"    <div class=\"tutorial-body\">\n      <section class=\"tutorial-card tutorial-goal\"><h3>1. 先知道這題在練什麼</h3>\n        <p>先正確取得每次撞擊真正會掃描的格子範圍。</p><p><strong>先備：</strong>會使用基本輸入、list、for 與 if。</p>\n      </section>\n      <section class=\"tutorial-card tutorial-core\"><h3>2. 核心觀念與圖解</h3>\n        <p>S 是奇數，所以中心左右／上下各延伸 h=S//2。靠近邊界時用 max/min 把範圍裁回合法座標。</p>\n        <div class=\"tutorial-visual\"><div class=\"tutorial-visual-title\">本階實際資料怎麼變</div><pre>S=3 → h=1\n(a-1,b-1) ... (a+1,b+1)\n超出 0..R-1 / 0..C-1 的部分裁掉</pre></div>\n      </section>\n      <section class=\"tutorial-card tutorial-worked\"><h3>3. 跟著做一個小例子</h3><p>中心 (0,0)、S=5 原本想延伸到 -2..2，但負座標不存在，因此左上仍是 (0,0)。</p></section>\n      <section class=\"tutorial-card tutorial-plan\"><h3>4. 先把程式拆成幾塊</h3><ol><li>算 h=S//2。</li><li>r0/c0 用 max(0,...)。</li><li>r1/c1 用 min(上界,...)。</li><li>輸出四個邊界。</li></ol></section>\n      <section class=\"tutorial-card tutorial-code\"><h3>5. Python 一段一段怎麼寫</h3><div class=\"tutorial-code-step\"><strong>步驟 A：半徑</strong><p>奇數邊長的中心兩側格數相同。</p><pre class=\"tutorial-code-snippet\">h = S // 2</pre></div><div class=\"tutorial-code-step\"><strong>步驟 B：裁切</strong><p>兩端分別用 max/min。</p><pre class=\"tutorial-code-snippet\">r0 = max(0, a - h)\nr1 = min(R - 1, a + h)</pre></div>\n        <p class=\"tutorial-code-note\">這些片段只示範本階核心寫法；請依照前面的資料流自行把輸入、處理與輸出接成完整程式。</p>\n      </section>\n      <section class=\"tutorial-card tutorial-check\"><h3>6. 常見錯誤與自我檢查</h3><ul><li>範圍包含 r1、c1，所以後續 range 要 +1。</li><li>S 是正方形邊長，不是半徑。</li></ul></section>\n    </div>"},{"id":2,"title":"沒有恐龍時造成地面凹陷","difficulty":"基礎","statement":"R×C 地面每格初始高度都是 D，本階沒有恐龍。一次撞擊以 0 起算中心座標 (a,b)、奇數邊長 S、深度 d 表示。令 h=(S-1)/2；未裁切的影響列為 a-h 到 a+h、欄為 b-h 到 b+h，真正影響範圍只保留仍位於地圖內的格子。 此次撞擊影響範圍內每一格高度都減少 d，高度允許變成負數；範圍外高度不變。請輸出撞擊後全地圖最高高度與最低高度。","input":"第一行有三個整數 R、C、D，分別表示地圖列數、欄數與所有格子的初始高度；列、欄座標從 0 開始。第二行有 a、b、S、d，(a,b) 是撞擊中心，S 是正奇數邊長，d≥0 是凹陷深度。","output":"輸出兩個整數：最高高度、最低高度。","sampleIn":"3 4 5\n1 2 3 2","sampleOut":"5 3","sampleExplain":"    <div class=\"demo-story\"><div class=\"demo-viewport\">\n      <section class=\"demo-step\"><p>3×4 地面高 5，中心附近 3×3 減 2。</p><pre>初始：全部 D\n撞擊 square：每格 -d\n未覆蓋：仍 D\n最後找 max/min</pre></section>\n      <section class=\"demo-step\"><p>受影響格變 3，未影響格仍 5。</p></section><section class=\"demo-step\"><p>所以最高 5、最低 3。</p></section>\n    </div></div>","starter":"","answer":"# 依照本階題意分段處理資料，最後再整理並輸出指定結果。\nR, C, D = map(int, input().split())\na, b, S, d = map(int, input().split())\nheight = [[D] * C for _ in range(R)]\nh = S // 2\nr0 = max(0, a - h)\nr1 = min(R - 1, a + h)\nc0 = max(0, b - h)\nc1 = min(C - 1, b + h)\n\n# 本階沒有恐龍，所以撞擊範圍一定會凹陷 d。\nfor r in range(r0, r1 + 1):\n    for c in range(c0, c1 + 1):\n        height[r][c] -= d\nvalues = []\nfor row in height:\n    values += row\nprint(max(values), min(values))","tests":[{"input":"3 4 5\n1 2 3 2\n","output":"5 3\n","public":true,"sampleRole":"primary","sampleOrigin":"task","qaPurpose":"本階主要公開範例"},{"input":"2 3 10\n0 0 5 4\n","output":"6 6\n","public":true,"sampleRole":"secondary","sampleOrigin":"task","qaPurpose":"本階第二公開案例"},{"input":"1 1 3\n0 0 1 7\n","output":"-4 -4\n","qaPurpose":"高度可以變負數","public":true,"sampleRole":"special","sampleOrigin":"special"},{"input":"4 4 8\n3 3 3 1\n","output":"8 7\n"}],"generatedTests":[{"input":"5 5 2\n2 2 5 2\n","output":"0 0\n","generated":true},{"input":"1 10 5\n0 9 7 3\n","output":"5 2\n","generated":true}],"tutorial":"    <div class=\"tutorial-body\">\n      <section class=\"tutorial-card tutorial-goal\"><h3>1. 先知道這題在練什麼</h3>\n        <p>先練沒有分支時的地形更新。</p><p><strong>先備：</strong>會使用基本輸入、list、for 與 if。</p>\n      </section>\n      <section class=\"tutorial-card tutorial-core\"><h3>2. 核心觀念與圖解</h3>\n        <p>初始 height 全是 D。範圍內每格減 d，範圍外不變；若撞擊覆蓋全圖，最高與最低可能相同。</p>\n        <div class=\"tutorial-visual\"><div class=\"tutorial-visual-title\">本階實際資料怎麼變</div><pre>初始：全部 D\n撞擊 square：每格 -d\n未覆蓋：仍 D\n最後找 max/min</pre></div>\n      </section>\n      <section class=\"tutorial-card tutorial-worked\"><h3>3. 跟著做一個小例子</h3><p>D=3、d=7 時受撞格變 -4，這是合法高度。</p></section>\n      <section class=\"tutorial-card tutorial-plan\"><h3>4. 先把程式拆成幾塊</h3><ol><li>建立 height。</li><li>算裁切範圍。</li><li>雙迴圈每格減 d。</li><li>掃全圖找 max/min。</li></ol></section>\n      <section class=\"tutorial-card tutorial-code\"><h3>5. Python 一段一段怎麼寫</h3><div class=\"tutorial-code-step\"><strong>步驟 A：初始化地面</strong><p>每格起點相同。</p><pre class=\"tutorial-code-snippet\">height = [[D] * C for _ in range(R)]</pre></div><div class=\"tutorial-code-step\"><strong>步驟 B：凹陷</strong><p>題目允許低於 0，不需 clamp。</p><pre class=\"tutorial-code-snippet\">height[r][c] -= d</pre></div>\n        <p class=\"tutorial-code-note\">這些片段只示範本階核心寫法；請依照前面的資料流自行把輸入、處理與輸出接成完整程式。</p>\n      </section>\n      <section class=\"tutorial-card tutorial-check\"><h3>6. 常見錯誤與自我檢查</h3><ul><li>不要把負高度強制改成 0。</li><li>只更新裁切後範圍。</li></ul></section>\n    </div>"},{"id":3,"title":"一次撞擊的恐龍／凹陷二選一","difficulty":"中等","statement":"R×C 地面每格初始高度都是 D，K 隻恐龍一開始都清醒，同一格可有多隻。一次撞擊以 0 起算中心座標 (a,b)、奇數邊長 S、深度 d 表示。令 h=(S-1)/2；未裁切的影響列為 a-h 到 a+h、欄為 b-h 到 b+h，真正影響範圍只保留仍位於地圖內的格子。 若此次真正影響範圍內至少有一隻仍清醒恐龍，就把範圍內所有清醒恐龍改為暈眩，而且本次地面完全不凹陷；若範圍內沒有清醒恐龍，才把範圍內每格高度減少 d。請輸出處理後最高高度、最低高度與仍清醒恐龍的隻數。","input":"第一行有 R、C、D，分別表示地圖列數、欄數與初始統一高度，座標從 0 開始。下一行有非負整數 K，表示清醒恐龍隻數。接下來 K 行各有 r、c，表示一隻恐龍的合法座標，同一座標可重複。最後一行有 a、b、S、d，表示撞擊中心、正奇數邊長與深度。","output":"輸出三個整數：最高高度、最低高度、醒著的恐龍數量。","sampleIn":"1 5 5\n3\n0 2\n0 2\n0 4\n0 2 3 2","sampleOut":"5 5 1","sampleExplain":"    <div class=\"demo-story\"><div class=\"demo-viewport\">\n      <section class=\"demo-step\"><p>中心範圍內有兩隻位在同格的清醒恐龍。</p><pre>先問：範圍有任何 awake 嗎？\nYES → 全部 awake=0，height 不變\nNO  → height 全部 -= d</pre></section>\n      <section class=\"demo-step\"><p>has_awake=True。</p></section><section class=\"demo-step\"><p>範圍內恐龍全部暈眩，高度維持原值。</p></section>\n    </div></div>","starter":"","answer":"# 依照本階題意分段處理資料，最後再整理並輸出指定結果。\nR, C, D = map(int, input().split())\nK = int(input())\nawake = [[0] * C for _ in range(R)]\nfor _ in range(K):\n    r, c = map(int, input().split())\n    awake[r][c] += 1\na, b, S, d = map(int, input().split())\nheight = [[D] * C for _ in range(R)]\nh = S // 2\nr0, r1 = max(0, a - h), min(R - 1, a + h)\nc0, c1 = max(0, b - h), min(C - 1, b + h)\nhas_awake = False\n\n# 相同座標可有多隻恐龍，所以 awake 存「隻數」而不是 True/False。\nfor r in range(r0, r1 + 1):\n    for c in range(c0, c1 + 1):\n        if awake[r][c] > 0:\n            has_awake = True\nif has_awake:\n    for r in range(r0, r1 + 1):\n        for c in range(c0, c1 + 1):\n            awake[r][c] = 0\nelse:\n    for r in range(r0, r1 + 1):\n        for c in range(c0, c1 + 1):\n            height[r][c] -= d\nawake_count = 0\nfor row in awake:\n    awake_count += sum(row)\nvalues = []\nfor row in height:\n    values += row\nprint(max(values), min(values), awake_count)","tests":[{"input":"1 5 5\n3\n0 2\n0 2\n0 4\n0 2 3 2\n","output":"5 5 1\n","public":true,"sampleRole":"primary","sampleOrigin":"task","qaPurpose":"本階主要公開範例"},{"input":"3 3 10\n2\n0 0\n2 2\n1 1 1 4\n","output":"10 6 2\n","public":true,"sampleRole":"secondary","sampleOrigin":"task","qaPurpose":"本階第二公開案例"},{"input":"2 2 3\n0\n0 0 3 5\n","output":"-2 -2 0\n","qaPurpose":"沒有恐龍時整個範圍凹陷且可為負","public":true,"sampleRole":"special","sampleOrigin":"special"},{"input":"2 4 6\n4\n0 1\n0 1\n1 3\n1 0\n0 0 3 2\n","output":"6 6 1\n"}],"generatedTests":[{"input":"1 4 8\n2\n0 0\n0 3\n0 1 3 9\n","output":"8 8 1\n","generated":true},{"input":"4 4 5\n1\n2 2\n0 0 3 1\n","output":"5 4 1\n","generated":true}],"tutorial":"    <div class=\"tutorial-body\">\n      <section class=\"tutorial-card tutorial-goal\"><h3>1. 先知道這題在練什麼</h3>\n        <p>加入題目關鍵 if：恐龍與凹陷不能同一次發生。</p><p><strong>先備：</strong>會使用基本輸入、list、for 與 if。</p>\n      </section>\n      <section class=\"tutorial-card tutorial-core\"><h3>2. 核心觀念與圖解</h3>\n        <p>先完整掃範圍決定 <code>has_awake</code>，再選「全部恐龍暈眩」或「全部高度下降」其中一條。不能一邊掃一邊遇到恐龍才改變之前已做的凹陷。</p>\n        <div class=\"tutorial-visual\"><div class=\"tutorial-visual-title\">本階實際資料怎麼變</div><pre>先問：範圍有任何 awake 嗎？\nYES → 全部 awake=0，height 不變\nNO  → height 全部 -= d</pre></div>\n      </section>\n      <section class=\"tutorial-card tutorial-worked\"><h3>3. 跟著做一個小例子</h3><p>同格兩隻恐龍都用 awake=2 保存；若撞擊涵蓋該格，一次就把兩隻都暈眩。</p></section>\n      <section class=\"tutorial-card tutorial-plan\"><h3>4. 先把程式拆成幾塊</h3><ol><li>awake 用整數計數矩陣。</li><li>先掃範圍找 has_awake。</li><li>依 bool 選一種完整更新。</li><li>最後 sum awake 與找高度 max/min。</li></ol></section>\n      <section class=\"tutorial-card tutorial-code\"><h3>5. Python 一段一段怎麼寫</h3><div class=\"tutorial-code-step\"><strong>步驟 A：同格累計</strong><p>不能用 Boolean，否則會漏算重複恐龍。</p><pre class=\"tutorial-code-snippet\">awake[r][c] += 1</pre></div><div class=\"tutorial-code-step\"><strong>步驟 B：先判斷再更新</strong><p>分支決定後才做第二次掃描。</p><pre class=\"tutorial-code-snippet\">if has_awake:\n    awake[r][c] = 0\nelse:\n    height[r][c] -= d</pre></div>\n        <p class=\"tutorial-code-note\">這些片段只示範本階核心寫法；請依照前面的資料流自行把輸入、處理與輸出接成完整程式。</p>\n      </section>\n      <section class=\"tutorial-card tutorial-check\"><h3>6. 常見錯誤與自我檢查</h3><ul><li>同座標多隻恐龍要逐隻計入最後數量。</li><li>有恐龍時本次「完全不凹陷」。</li></ul></section>\n    </div>"},{"id":4,"title":"一維地圖處理多次撞擊","difficulty":"中等","statement":"本階地圖只有一列、共有 C 欄，欄座標為 0 到 C-1；每格初始高度都是 D，同一欄可有多隻清醒恐龍。每次撞擊給中心欄 b、正奇數邊長 S、深度 d；令 h=(S-1)/2，真正影響欄位是 b-h 到 b+h 與 0 到 C-1 的交集。若範圍內至少有一隻清醒恐龍，就讓範圍內所有清醒恐龍暈眩且本次不改高度；否則範圍內每格高度減 d。依序處理 M 次撞擊後，輸出最高高度、最低高度與仍清醒恐龍隻數。","input":"第一行有 C、D，分別表示地圖欄數與所有格子的初始高度。下一行有非負整數 K。接下來 K 行各有一個欄座標 c（0≤c<C），表示一隻清醒恐龍位置，同欄可重複。下一行有正整數 M，表示撞擊次數。接下來 M 行各有 b、S、d，分別表示中心欄、正奇數影響邊長與凹陷深度。","output":"輸出三個整數：最高高度、最低高度、醒著的恐龍數量。","sampleIn":"10 5\n5\n5\n4\n4\n1\n1\n2\n0 1 4\n3 3 1","sampleOut":"5 1 3","sampleExplain":"    <div class=\"demo-story\"><div class=\"demo-viewport\">\n      <section class=\"demo-step\"><p>官方範例可完整看成一條長度 10 的地圖。</p><pre>impact 1 → 更新 awake 或 height\nimpact 2 讀更新後狀態\n...\nimpact M\n最後 max/min/sum awake</pre></section>\n      <section class=\"demo-step\"><p>第一次撞擊使一格從 5 降到 1。</p></section><section class=\"demo-step\"><p>第二次撞擊暈眩 c=4 的兩隻，最後最高 5、最低 1、清醒 3。</p></section>\n    </div></div>","starter":"","answer":"# 依照本階題意分段處理資料，最後再整理並輸出指定結果。\nC, D = map(int, input().split())\nK = int(input())\nawake = [0] * C\nfor _ in range(K):\n    c = int(input())\n    awake[c] += 1\nM = int(input())\nheight = [D] * C\n\n# 一維子題仍套相同規則，只把正方形範圍退化成欄區間。\nfor _ in range(M):\n    b, S, d = map(int, input().split())\n    h = S // 2\n    c0 = max(0, b - h)\n    c1 = min(C - 1, b + h)\n    has_awake = False\n    for c in range(c0, c1 + 1):\n        if awake[c] > 0:\n            has_awake = True\n    if has_awake:\n        for c in range(c0, c1 + 1):\n            awake[c] = 0\n    else:\n        for c in range(c0, c1 + 1):\n            height[c] -= d\nprint(max(height), min(height), sum(awake))","tests":[{"input":"10 5\n5\n5\n4\n4\n1\n1\n2\n0 1 4\n3 3 1\n","output":"5 1 3\n","public":true,"sampleRole":"primary","sampleOrigin":"task","qaPurpose":"本階主要公開範例"},{"input":"5 10\n2\n2\n2\n3\n0 1 2\n2 3 4\n4 1 3\n","output":"10 7 0\n","public":true,"sampleRole":"secondary","sampleOrigin":"task","qaPurpose":"本階第二公開案例"},{"input":"3 2\n0\n2\n0 3 1\n2 3 5\n","output":"1 -4 0\n","qaPurpose":"連續兩次無恐龍凹陷會累積","public":true,"sampleRole":"special","sampleOrigin":"special"},{"input":"1 5\n1\n0\n2\n0 1 7\n0 1 2\n","output":"3 3 0\n"}],"generatedTests":[{"input":"6 8\n3\n0\n3\n5\n4\n2 5 1\n5 1 4\n0 3 2\n3 3 2\n","output":"8 6 0\n","generated":true},{"input":"4 3\n2\n1\n1\n3\n1 1 5\n1 3 2\n3 1 1\n","output":"2 1 0\n","generated":true}],"tutorial":"    <div class=\"tutorial-body\">\n      <section class=\"tutorial-card tutorial-goal\"><h3>1. 先知道這題在練什麼</h3>\n        <p>先完成官方 60% 的 R=1 多事件版本，確認狀態會跨撞擊保留。</p><p><strong>先備：</strong>會使用基本輸入、list、for 與 if。</p>\n      </section>\n      <section class=\"tutorial-card tutorial-core\"><h3>2. 核心觀念與圖解</h3>\n        <p>暈眩後的恐龍不會恢復；高度凹陷也會累積。每次事件都基於目前 awake/height，而不是初始狀態。</p>\n        <div class=\"tutorial-visual\"><div class=\"tutorial-visual-title\">本階實際資料怎麼變</div><pre>impact 1 → 更新 awake 或 height\nimpact 2 讀更新後狀態\n...\nimpact M\n最後 max/min/sum awake</pre></div>\n      </section>\n      <section class=\"tutorial-card tutorial-worked\"><h3>3. 跟著做一個小例子</h3><p>官方範例正是一維：第一次 c=0 沒恐龍所以凹陷 4；第二次範圍含 c=4 兩隻恐龍，因此只暈眩、不凹陷。</p></section>\n      <section class=\"tutorial-card tutorial-plan\"><h3>4. 先把程式拆成幾塊</h3><ol><li>awake/height 只初始化一次。</li><li>逐事件算欄範圍。</li><li>先找是否有 awake。</li><li>二選一更新。</li><li>最後輸出三值。</li></ol></section>\n      <section class=\"tutorial-card tutorial-code\"><h3>5. Python 一段一段怎麼寫</h3><div class=\"tutorial-code-step\"><strong>步驟 A：事件狀態延續</strong><p>迴圈內不重建 height/awake。</p><pre class=\"tutorial-code-snippet\">for _ in range(M):\n    b, S, d = map(int, input().split())</pre></div><div class=\"tutorial-code-step\"><strong>步驟 B：清醒總隻數</strong><p>每格存 count，最後直接 sum。</p><pre class=\"tutorial-code-snippet\">awake_count = sum(awake)</pre></div>\n        <p class=\"tutorial-code-note\">這些片段只示範本階核心寫法；請依照前面的資料流自行把輸入、處理與輸出接成完整程式。</p>\n      </section>\n      <section class=\"tutorial-card tutorial-check\"><h3>6. 常見錯誤與自我檢查</h3><ul><li>暈眩恐龍之後不再算清醒。</li><li>地面高度減少是累積的。</li></ul></section>\n    </div>"},{"id":5,"title":"原題：彗星撞擊","difficulty":"完整","statement":"R×C 地面每格初始高度都是 D，K 隻恐龍一開始都清醒，同一座標可有多隻。一次撞擊以 0 起算中心座標 (a,b)、奇數邊長 S、深度 d 表示。令 h=(S-1)/2；未裁切的影響列為 a-h 到 a+h、欄為 b-h 到 b+h，真正影響範圍只保留仍位於地圖內的格子。 依輸入順序處理 M 次撞擊：若當次真正影響範圍內至少有一隻仍清醒恐龍，就讓範圍內所有清醒恐龍暈眩且本次完全不凹陷；否則範圍內每格高度減 d，高度可為負數。最後輸出最高高度、最低高度與仍清醒恐龍隻數。","input":"第一行有 R、C、D（R、C 皆為 1 到 100），分別表示地圖列數、欄數與初始統一高度；列、欄座標從 0 開始。第二行有 K（0≤K≤100）。接下來 K 行各有恐龍座標 r、c，同一座標可重複。下一行有 M（1≤M≤100）。接下來 M 行各有 a、b、S、d，(a,b) 是撞擊中心，S≤19 且為正奇數，d≤10 是深度。","output":"輸出三個整數：最高高度、最低高度、醒著的恐龍數量。","sampleIn":"1 10 5\n5\n0 5\n0 4\n0 4\n0 1\n0 1\n2\n0 0 1 4\n0 3 3 1","sampleOut":"5 1 3","sampleExplain":"    <div class=\"demo-story\"><div class=\"demo-viewport\">\n      <section class=\"demo-step\"><p>官方範例特別包含同格重複恐龍。</p><pre>impact square（clipped）\n↓ scan awake counts\nany &gt;0 ?\nYES → awake=0\nNO  → height-=d\n↓ next impact</pre></section>\n      <section class=\"demo-step\"><p>第一次無恐龍範圍凹陷到最低 1。</p></section><section class=\"demo-step\"><p>第二次有恐龍，只暈眩兩隻；最終仍清醒 3 隻。</p></section>\n    </div></div>","starter":"","answer":"R, C, D = map(int, input().split())\nK = int(input())\nawake = [[0] * C for _ in range(R)]\nfor _ in range(K):\n    r, c = map(int, input().split())\n    awake[r][c] += 1\nM = int(input())\nheight = [[D] * C for _ in range(R)]\n\n# 每次撞擊先完整判定範圍內是否還有清醒恐龍，再決定暈眩或凹陷。\nfor _ in range(M):\n    a, b, S, d = map(int, input().split())\n    h = S // 2\n    r0 = max(0, a - h)\n    r1 = min(R - 1, a + h)\n    c0 = max(0, b - h)\n    c1 = min(C - 1, b + h)\n    has_awake = False\n    for r in range(r0, r1 + 1):\n        for c in range(c0, c1 + 1):\n            if awake[r][c] > 0:\n                has_awake = True\n    if has_awake:\n        for r in range(r0, r1 + 1):\n            for c in range(c0, c1 + 1):\n                awake[r][c] = 0\n    else:\n        for r in range(r0, r1 + 1):\n            for c in range(c0, c1 + 1):\n                height[r][c] -= d\n\n# 最後統計地形極值與仍清醒的「恐龍隻數」。\nmx = height[0][0]\nmn = height[0][0]\nawake_count = 0\nfor r in range(R):\n    for c in range(C):\n        mx = max(mx, height[r][c])\n        mn = min(mn, height[r][c])\n        awake_count += awake[r][c]\nprint(mx, mn, awake_count)","tests":[{"input":"1 10 5\n5\n0 5\n0 4\n0 4\n0 1\n0 1\n2\n0 0 1 4\n0 3 3 1\n","output":"5 1 3\n","public":true,"sampleRole":"primary","sampleOrigin":"official","qaPurpose":"官方公開範例 #1"},{"input":"3 3 10\n3\n1 1\n1 1\n0 0\n3\n1 1 1 4\n0 0 3 2\n2 2 1 7\n","output":"10 3 0\n","public":true,"sampleRole":"secondary","sampleOrigin":"supplemental","qaPurpose":"官方僅一筆範例；此為補充公開案例"},{"input":"2 2 1\n0\n2\n0 0 3 2\n1 1 1 5\n","output":"-1 -6 0\n","qaPurpose":"無恐龍，重疊凹陷可使不同格高度不同且為負","public":true,"sampleRole":"special","sampleOrigin":"special"},{"input":"1 1 5\n2\n0 0\n0 0\n2\n0 0 1 9\n0 0 1 2\n","output":"3 3 0\n"}],"generatedTests":[{"input":"4 5 8\n4\n0 0\n3 4\n2 2\n2 2\n4\n1 1 3 2\n2 3 3 4\n0 4 1 9\n3 0 5 1\n","output":"8 -1 0\n","generated":true},{"input":"2 6 3\n3\n0 1\n0 1\n1 5\n3\n0 0 3 1\n1 4 3 2\n0 3 5 3\n","output":"3 0 0\n","generated":true}],"tutorial":"    <div class=\"tutorial-body\">\n      <section class=\"tutorial-card tutorial-goal\"><h3>1. 先知道這題在練什麼</h3>\n        <p>完整整合二維裁切、重複恐龍計數、暈眩／凹陷互斥分支與跨事件狀態。</p><p><strong>先備：</strong>會使用基本輸入、list、for 與 if。</p>\n      </section>\n      <section class=\"tutorial-card tutorial-core\"><h3>2. 核心觀念與圖解</h3>\n        <p>每次撞擊都做「判斷 phase → 更新 phase」。awake 用 count matrix，才能保留同格多隻資訊；一旦有任何清醒恐龍，這次整個範圍都不改地形。</p>\n        <div class=\"tutorial-visual\"><div class=\"tutorial-visual-title\">本階實際資料怎麼變</div><pre>impact square（clipped）\n↓ scan awake counts\nany &gt;0 ?\nYES → awake=0\nNO  → height-=d\n↓ next impact</pre></div>\n      </section>\n      <section class=\"tutorial-card tutorial-worked\"><h3>3. 跟著做一個小例子</h3><p>官方範例第一次撞擊 c=0 無恐龍，所以高度 5→1；第二次涵蓋 c=4 的兩隻恐龍，兩隻暈眩且不凹陷，剩下 c=1 兩隻與 c=5 一隻共 3 隻清醒。</p></section>\n      <section class=\"tutorial-card tutorial-plan\"><h3>4. 先把程式拆成幾塊</h3><ol><li>初始化 height 與 awake counts。</li><li>逐撞擊算裁切範圍。</li><li>先掃 has_awake。</li><li>依結果做暈眩或凹陷。</li><li>最後掃整圖取 max/min 並加總 awake。</li></ol></section>\n      <section class=\"tutorial-card tutorial-code\"><h3>5. Python 一段一段怎麼寫</h3><div class=\"tutorial-code-step\"><strong>步驟 A：先確認整個範圍</strong><p>只要一格 count>0，就選恐龍分支。</p><pre class=\"tutorial-code-snippet\">has_awake = False\nfor r in range(r0, r1 + 1):\n    for c in range(c0, c1 + 1):\n        if awake[r][c] &gt; 0:\n            has_awake = True</pre></div><div class=\"tutorial-code-step\"><strong>步驟 B：同格多隻都算</strong><p>最終不是算有恐龍的格子數，而是 count 總和。</p><pre class=\"tutorial-code-snippet\">awake_count += awake[r][c]</pre></div>\n        <p class=\"tutorial-code-note\">這些片段只示範本階核心寫法；請依照前面的資料流自行把輸入、處理與輸出接成完整程式。</p>\n      </section>\n      <section class=\"tutorial-card tutorial-check\"><h3>6. 常見錯誤與自我檢查</h3><ul><li>同一座標可能有多隻，Boolean 會算少。</li><li>有任何清醒恐龍時，本次所有受影響格都不能凹陷。</li><li>暈眩狀態永久不再視為清醒。</li></ul></section>\n    </div>"}];
+const TASKS = [{"id":1,"title":"裁切彗星撞擊正方形","difficulty":"入門","statement":"R×C 地圖座標從 0 開始。一次撞擊中心為 (a,b)，邊長 S 為奇數。影響範圍是以中心為正中央的 S×S 正方形，再與地圖邊界取交集。請輸出實際範圍左上 (r0,c0) 與右下 (r1,c1)。","input":"第一行有兩個正整數 R、C，表示地圖列數與欄數；列座標為 0 到 R-1，欄座標為 0 到 C-1。第二行有 a、b、S，其中 (a,b) 是合法撞擊中心座標，S 是正奇數邊長。","output":"輸出 r0 c0 r1 c1，邊界皆包含。","sampleIn":"5 6\n2 3 3","sampleOut":"1 2 3 4","sampleExplain":"    <div class=\"demo-story\"><div class=\"demo-viewport\">\n      <section class=\"demo-step\"><p>中心 (2,3)、S=3。</p><pre>S=3 → h=1\n(a-1,b-1) ... (a+1,b+1)\n超出 0..R-1 / 0..C-1 的部分裁掉</pre></section>\n      <section class=\"demo-step\"><p>上下左右各延伸 1。</p></section><section class=\"demo-step\"><p>得到 (1,2) 到 (3,4)。</p></section>\n    </div></div>","starter":"","answer":"R, C = map(int, input().split())\na, b, S = map(int, input().split())\nh = S // 2\n\n# 正方形以 (a,b) 為中心，再和地圖邊界取交集。\nr0 = max(0, a - h)\nr1 = min(R - 1, a + h)\nc0 = max(0, b - h)\nc1 = min(C - 1, b + h)\nprint(r0, c0, r1, c1)","tests":[{"input":"5 6\n2 3 3\n","output":"1 2 3 4\n","public":true,"sampleRole":"primary","sampleOrigin":"task","qaPurpose":"本階主要公開範例"},{"input":"10 10\n9 5 7\n","output":"6 2 9 8\n","public":true,"sampleRole":"secondary","sampleOrigin":"task","qaPurpose":"本階第二公開案例"},{"input":"3 4\n0 0 5\n","output":"0 0 2 2\n","qaPurpose":"中心在角落且 S 超出地圖，需要裁切","public":true,"sampleRole":"special","sampleOrigin":"special"},{"input":"1 10\n0 3 9\n","output":"0 0 0 7\n"}],"generatedTests":[{"input":"4 4\n1 2 1\n","output":"1 2 1 2\n","generated":true},{"input":"8 5\n7 4 19\n","output":"0 0 7 4\n","generated":true}],"tutorial":"    <div class=\"tutorial-body\">\n      <section class=\"tutorial-card tutorial-goal\"><h3>1. 先知道這題在練什麼</h3>\n        <p>先正確取得每次撞擊真正會掃描的格子範圍。</p><p><strong>先備：</strong>會使用基本輸入、list、for 與 if。</p>\n      </section>\n      <section class=\"tutorial-card tutorial-core\"><h3>2. 核心觀念與圖解</h3>\n        <p>S 是奇數，所以中心左右／上下各延伸 h=S//2。靠近邊界時用 max/min 把範圍裁回合法座標。</p>\n        <div class=\"tutorial-visual\"><div class=\"tutorial-visual-title\">本階實際資料怎麼變</div><pre>S=3 → h=1\n(a-1,b-1) ... (a+1,b+1)\n超出 0..R-1 / 0..C-1 的部分裁掉</pre></div>\n      </section>\n      <section class=\"tutorial-card tutorial-worked\"><h3>3. 跟著做一個小例子</h3><p>中心 (0,0)、S=5 原本想延伸到 -2..2，但負座標不存在，因此左上仍是 (0,0)。</p></section>\n      <section class=\"tutorial-card tutorial-plan\"><h3>4. 先把程式拆成幾塊</h3><ol><li>算 h=S//2。</li><li>r0/c0 用 max(0,...)。</li><li>r1/c1 用 min(上界,...)。</li><li>輸出四個邊界。</li></ol></section>\n      <section class=\"tutorial-card tutorial-code\"><h3>5. Python 一段一段怎麼寫</h3><div class=\"tutorial-code-step\"><strong>步驟 A：半徑</strong><p>奇數邊長的中心兩側格數相同。</p><pre class=\"tutorial-code-snippet\">h = S // 2</pre></div><div class=\"tutorial-code-step\"><strong>步驟 B：裁切</strong><p>兩端分別用 max/min。</p><pre class=\"tutorial-code-snippet\">r0 = max(0, a - h)\nr1 = min(R - 1, a + h)</pre></div>\n        <p class=\"tutorial-code-note\">這些片段只示範本階核心寫法；請依照前面的資料流自行把輸入、處理與輸出接成完整程式。</p>\n      </section>\n      <section class=\"tutorial-card tutorial-check\"><h3>6. 常見錯誤與自我檢查</h3><ul><li>範圍包含 r1、c1，所以後續 range 要 +1。</li><li>S 是正方形邊長，不是半徑。</li></ul></section>\n    </div>","stageKey":"r488.da53d297309d","inputItems":[{"key":"in1","text":"第一行有兩個正整數 R、C，表示地圖列數與欄數；列座標為 0 到 R-1，欄座標為 0 到 C-1。","meaningAndUseReviewed":true},{"key":"in2","text":"第二行有 a、b、S，其中 (a,b) 是合法撞擊中心座標，S 是正奇數邊長。","meaningAndUseReviewed":true}],"outputItems":[{"key":"out1","text":"輸出 r0 c0 r1 c1，邊界皆包含。","meaningReviewed":true}]},{"id":2,"title":"沒有恐龍時造成地面凹陷","difficulty":"基礎","statement":"R×C 地面每格初始高度都是 D，本階沒有恐龍。一次撞擊以 0 起算中心座標 (a,b)、奇數邊長 S、深度 d 表示。令 h=(S-1)/2；未裁切的影響列為 a-h 到 a+h、欄為 b-h 到 b+h，真正影響範圍只保留仍位於地圖內的格子。 此次撞擊影響範圍內每一格高度都減少 d，高度允許變成負數；範圍外高度不變。請輸出撞擊後全地圖最高高度與最低高度。","input":"第一行有三個整數 R、C、D，分別表示地圖列數、欄數與所有格子的初始高度；列、欄座標從 0 開始。第二行有 a、b、S、d，(a,b) 是撞擊中心，S 是正奇數邊長，d≥0 是凹陷深度。","output":"輸出兩個整數：最高高度、最低高度。","sampleIn":"3 4 5\n1 2 3 2","sampleOut":"5 3","sampleExplain":"    <div class=\"demo-story\"><div class=\"demo-viewport\">\n      <section class=\"demo-step\"><p>3×4 地面高 5，中心附近 3×3 減 2。</p><pre>初始：全部 D\n撞擊 square：每格 -d\n未覆蓋：仍 D\n最後找 max/min</pre></section>\n      <section class=\"demo-step\"><p>受影響格變 3，未影響格仍 5。</p></section><section class=\"demo-step\"><p>所以最高 5、最低 3。</p></section>\n    </div></div>","starter":"","answer":"# 依照本階題意分段處理資料，最後再整理並輸出指定結果。\nR, C, D = map(int, input().split())\na, b, S, d = map(int, input().split())\nheight = [[D] * C for _ in range(R)]\nh = S // 2\nr0 = max(0, a - h)\nr1 = min(R - 1, a + h)\nc0 = max(0, b - h)\nc1 = min(C - 1, b + h)\n\n# 本階沒有恐龍，所以撞擊範圍一定會凹陷 d。\nfor r in range(r0, r1 + 1):\n    for c in range(c0, c1 + 1):\n        height[r][c] -= d\nvalues = []\nfor row in height:\n    values += row\nprint(max(values), min(values))","tests":[{"input":"3 4 5\n1 2 3 2\n","output":"5 3\n","public":true,"sampleRole":"primary","sampleOrigin":"task","qaPurpose":"本階主要公開範例"},{"input":"2 3 10\n0 0 5 4\n","output":"6 6\n","public":true,"sampleRole":"secondary","sampleOrigin":"task","qaPurpose":"本階第二公開案例"},{"input":"1 1 3\n0 0 1 7\n","output":"-4 -4\n","qaPurpose":"高度可以變負數","public":true,"sampleRole":"special","sampleOrigin":"special"},{"input":"4 4 8\n3 3 3 1\n","output":"8 7\n"}],"generatedTests":[{"input":"5 5 2\n2 2 5 2\n","output":"0 0\n","generated":true},{"input":"1 10 5\n0 9 7 3\n","output":"5 2\n","generated":true}],"tutorial":"    <div class=\"tutorial-body\">\n      <section class=\"tutorial-card tutorial-goal\"><h3>1. 先知道這題在練什麼</h3>\n        <p>先練沒有分支時的地形更新。</p><p><strong>先備：</strong>會使用基本輸入、list、for 與 if。</p>\n      </section>\n      <section class=\"tutorial-card tutorial-core\"><h3>2. 核心觀念與圖解</h3>\n        <p>初始 height 全是 D。範圍內每格減 d，範圍外不變；若撞擊覆蓋全圖，最高與最低可能相同。</p>\n        <div class=\"tutorial-visual\"><div class=\"tutorial-visual-title\">本階實際資料怎麼變</div><pre>初始：全部 D\n撞擊 square：每格 -d\n未覆蓋：仍 D\n最後找 max/min</pre></div>\n      </section>\n      <section class=\"tutorial-card tutorial-worked\"><h3>3. 跟著做一個小例子</h3><p>D=3、d=7 時受撞格變 -4，這是合法高度。</p></section>\n      <section class=\"tutorial-card tutorial-plan\"><h3>4. 先把程式拆成幾塊</h3><ol><li>建立 height。</li><li>算裁切範圍。</li><li>雙迴圈每格減 d。</li><li>掃全圖找 max/min。</li></ol></section>\n      <section class=\"tutorial-card tutorial-code\"><h3>5. Python 一段一段怎麼寫</h3><div class=\"tutorial-code-step\"><strong>步驟 A：初始化地面</strong><p>每格起點相同。</p><pre class=\"tutorial-code-snippet\">height = [[D] * C for _ in range(R)]</pre></div><div class=\"tutorial-code-step\"><strong>步驟 B：凹陷</strong><p>題目允許低於 0，不需 clamp。</p><pre class=\"tutorial-code-snippet\">height[r][c] -= d</pre></div>\n        <p class=\"tutorial-code-note\">這些片段只示範本階核心寫法；請依照前面的資料流自行把輸入、處理與輸出接成完整程式。</p>\n      </section>\n      <section class=\"tutorial-card tutorial-check\"><h3>6. 常見錯誤與自我檢查</h3><ul><li>不要把負高度強制改成 0。</li><li>只更新裁切後範圍。</li></ul></section>\n    </div>","stageKey":"r488.82cd5b999abb","inputItems":[{"key":"in1","text":"第一行有三個整數 R、C、D，分別表示地圖列數、欄數與所有格子的初始高度；列、欄座標從 0 開始。","meaningAndUseReviewed":true},{"key":"in2","text":"第二行有 a、b、S、d，(a,b) 是撞擊中心，S 是正奇數邊長，d≥0 是凹陷深度。","meaningAndUseReviewed":true}],"outputItems":[{"key":"out1","text":"輸出兩個整數：最高高度、最低高度。","meaningReviewed":true}]},{"id":3,"title":"一次撞擊的恐龍／凹陷二選一","difficulty":"中等","statement":"R×C 地面每格初始高度都是 D，K 隻恐龍一開始都清醒，同一格可有多隻。一次撞擊以 0 起算中心座標 (a,b)、奇數邊長 S、深度 d 表示。令 h=(S-1)/2；未裁切的影響列為 a-h 到 a+h、欄為 b-h 到 b+h，真正影響範圍只保留仍位於地圖內的格子。 若此次真正影響範圍內至少有一隻仍清醒恐龍，就把範圍內所有清醒恐龍改為暈眩，而且本次地面完全不凹陷；若範圍內沒有清醒恐龍，才把範圍內每格高度減少 d。請輸出處理後最高高度、最低高度與仍清醒恐龍的隻數。","input":"第一行有 R、C、D，分別表示地圖列數、欄數與初始統一高度，座標從 0 開始。下一行有非負整數 K，表示清醒恐龍隻數。接下來 K 行各有 r、c，表示一隻恐龍的合法座標，同一座標可重複。最後一行有 a、b、S、d，表示撞擊中心、正奇數邊長與深度。","output":"輸出三個整數：最高高度、最低高度、醒著的恐龍數量。","sampleIn":"1 5 5\n3\n0 2\n0 2\n0 4\n0 2 3 2","sampleOut":"5 5 1","sampleExplain":"    <div class=\"demo-story\"><div class=\"demo-viewport\">\n      <section class=\"demo-step\"><p>中心範圍內有兩隻位在同格的清醒恐龍。</p><pre>先問：範圍有任何 awake 嗎？\nYES → 全部 awake=0，height 不變\nNO  → height 全部 -= d</pre></section>\n      <section class=\"demo-step\"><p>has_awake=True。</p></section><section class=\"demo-step\"><p>範圍內恐龍全部暈眩，高度維持原值。</p></section>\n    </div></div>","starter":"","answer":"# 依照本階題意分段處理資料，最後再整理並輸出指定結果。\nR, C, D = map(int, input().split())\nK = int(input())\nawake = [[0] * C for _ in range(R)]\nfor _ in range(K):\n    r, c = map(int, input().split())\n    awake[r][c] += 1\na, b, S, d = map(int, input().split())\nheight = [[D] * C for _ in range(R)]\nh = S // 2\nr0, r1 = max(0, a - h), min(R - 1, a + h)\nc0, c1 = max(0, b - h), min(C - 1, b + h)\nhas_awake = False\n\n# 相同座標可有多隻恐龍，所以 awake 存「隻數」而不是 True/False。\nfor r in range(r0, r1 + 1):\n    for c in range(c0, c1 + 1):\n        if awake[r][c] > 0:\n            has_awake = True\nif has_awake:\n    for r in range(r0, r1 + 1):\n        for c in range(c0, c1 + 1):\n            awake[r][c] = 0\nelse:\n    for r in range(r0, r1 + 1):\n        for c in range(c0, c1 + 1):\n            height[r][c] -= d\nawake_count = 0\nfor row in awake:\n    awake_count += sum(row)\nvalues = []\nfor row in height:\n    values += row\nprint(max(values), min(values), awake_count)","tests":[{"input":"1 5 5\n3\n0 2\n0 2\n0 4\n0 2 3 2\n","output":"5 5 1\n","public":true,"sampleRole":"primary","sampleOrigin":"task","qaPurpose":"本階主要公開範例"},{"input":"3 3 10\n2\n0 0\n2 2\n1 1 1 4\n","output":"10 6 2\n","public":true,"sampleRole":"secondary","sampleOrigin":"task","qaPurpose":"本階第二公開案例"},{"input":"2 2 3\n0\n0 0 3 5\n","output":"-2 -2 0\n","qaPurpose":"沒有恐龍時整個範圍凹陷且可為負","public":true,"sampleRole":"special","sampleOrigin":"special"},{"input":"2 4 6\n4\n0 1\n0 1\n1 3\n1 0\n0 0 3 2\n","output":"6 6 1\n"}],"generatedTests":[{"input":"1 4 8\n2\n0 0\n0 3\n0 1 3 9\n","output":"8 8 1\n","generated":true},{"input":"4 4 5\n1\n2 2\n0 0 3 1\n","output":"5 4 1\n","generated":true}],"tutorial":"    <div class=\"tutorial-body\">\n      <section class=\"tutorial-card tutorial-goal\"><h3>1. 先知道這題在練什麼</h3>\n        <p>加入題目關鍵 if：恐龍與凹陷不能同一次發生。</p><p><strong>先備：</strong>會使用基本輸入、list、for 與 if。</p>\n      </section>\n      <section class=\"tutorial-card tutorial-core\"><h3>2. 核心觀念與圖解</h3>\n        <p>先完整掃範圍決定 <code>has_awake</code>，再選「全部恐龍暈眩」或「全部高度下降」其中一條。不能一邊掃一邊遇到恐龍才改變之前已做的凹陷。</p>\n        <div class=\"tutorial-visual\"><div class=\"tutorial-visual-title\">本階實際資料怎麼變</div><pre>先問：範圍有任何 awake 嗎？\nYES → 全部 awake=0，height 不變\nNO  → height 全部 -= d</pre></div>\n      </section>\n      <section class=\"tutorial-card tutorial-worked\"><h3>3. 跟著做一個小例子</h3><p>同格兩隻恐龍都用 awake=2 保存；若撞擊涵蓋該格，一次就把兩隻都暈眩。</p></section>\n      <section class=\"tutorial-card tutorial-plan\"><h3>4. 先把程式拆成幾塊</h3><ol><li>awake 用整數計數矩陣。</li><li>先掃範圍找 has_awake。</li><li>依 bool 選一種完整更新。</li><li>最後 sum awake 與找高度 max/min。</li></ol></section>\n      <section class=\"tutorial-card tutorial-code\"><h3>5. Python 一段一段怎麼寫</h3><div class=\"tutorial-code-step\"><strong>步驟 A：同格累計</strong><p>不能用 Boolean，否則會漏算重複恐龍。</p><pre class=\"tutorial-code-snippet\">awake[r][c] += 1</pre></div><div class=\"tutorial-code-step\"><strong>步驟 B：先判斷再更新</strong><p>分支決定後才做第二次掃描。</p><pre class=\"tutorial-code-snippet\">if has_awake:\n    awake[r][c] = 0\nelse:\n    height[r][c] -= d</pre></div>\n        <p class=\"tutorial-code-note\">這些片段只示範本階核心寫法；請依照前面的資料流自行把輸入、處理與輸出接成完整程式。</p>\n      </section>\n      <section class=\"tutorial-card tutorial-check\"><h3>6. 常見錯誤與自我檢查</h3><ul><li>同座標多隻恐龍要逐隻計入最後數量。</li><li>有恐龍時本次「完全不凹陷」。</li></ul></section>\n    </div>","stageKey":"r488.40ad93069e17","inputItems":[{"key":"in1","text":"第一行有 R、C、D，分別表示地圖列數、欄數與初始統一高度，座標從 0 開始。","meaningAndUseReviewed":true},{"key":"in2","text":"下一行有非負整數 K，表示清醒恐龍隻數。","meaningAndUseReviewed":true},{"key":"in3","text":"接下來 K 行各有 r、c，表示一隻恐龍的合法座標，同一座標可重複。","meaningAndUseReviewed":true},{"key":"in4","text":"最後一行有 a、b、S、d，表示撞擊中心、正奇數邊長與深度。","meaningAndUseReviewed":true}],"outputItems":[{"key":"out1","text":"輸出三個整數：最高高度、最低高度、醒著的恐龍數量。","meaningReviewed":true}]},{"id":4,"title":"一維地圖處理多次撞擊","difficulty":"中等","statement":"本階地圖只有一列、共有 C 欄，欄座標為 0 到 C-1；每格初始高度都是 D，同一欄可有多隻清醒恐龍。每次撞擊給中心欄 b、正奇數邊長 S、深度 d；令 h=(S-1)/2，真正影響欄位是 b-h 到 b+h 與 0 到 C-1 的交集。若範圍內至少有一隻清醒恐龍，就讓範圍內所有清醒恐龍暈眩且本次不改高度；否則範圍內每格高度減 d。依序處理 M 次撞擊後，輸出最高高度、最低高度與仍清醒恐龍隻數。","input":"第一行有 C、D，分別表示地圖欄數與所有格子的初始高度。下一行有非負整數 K，表示目前仍清醒的恐龍數量，也是接下來要提供的恐龍位置筆數。接下來 K 行各有一個欄座標 c（0≤c<C），表示一隻清醒恐龍位置，同欄可重複。下一行有正整數 M，表示接下來要依序處理的撞擊次數。接下來 M 行各有 b、S、d，分別表示中心欄、正奇數影響邊長與凹陷深度。","output":"輸出三個整數：最高高度、最低高度、醒著的恐龍數量。","sampleIn":"10 5\n5\n5\n4\n4\n1\n1\n2\n0 1 4\n3 3 1","sampleOut":"5 1 3","sampleExplain":"    <div class=\"demo-story\"><div class=\"demo-viewport\">\n      <section class=\"demo-step\"><p>官方範例可完整看成一條長度 10 的地圖。</p><pre>impact 1 → 更新 awake 或 height\nimpact 2 讀更新後狀態\n...\nimpact M\n最後 max/min/sum awake</pre></section>\n      <section class=\"demo-step\"><p>第一次撞擊使一格從 5 降到 1。</p></section><section class=\"demo-step\"><p>第二次撞擊暈眩 c=4 的兩隻，最後最高 5、最低 1、清醒 3。</p></section>\n    </div></div>","starter":"","answer":"# 依照本階題意分段處理資料，最後再整理並輸出指定結果。\nC, D = map(int, input().split())\nK = int(input())\nawake = [0] * C\nfor _ in range(K):\n    c = int(input())\n    awake[c] += 1\nM = int(input())\nheight = [D] * C\n\n# 一維子題仍套相同規則，只把正方形範圍退化成欄區間。\nfor _ in range(M):\n    b, S, d = map(int, input().split())\n    h = S // 2\n    c0 = max(0, b - h)\n    c1 = min(C - 1, b + h)\n    has_awake = False\n    for c in range(c0, c1 + 1):\n        if awake[c] > 0:\n            has_awake = True\n    if has_awake:\n        for c in range(c0, c1 + 1):\n            awake[c] = 0\n    else:\n        for c in range(c0, c1 + 1):\n            height[c] -= d\nprint(max(height), min(height), sum(awake))","tests":[{"input":"10 5\n5\n5\n4\n4\n1\n1\n2\n0 1 4\n3 3 1\n","output":"5 1 3\n","public":true,"sampleRole":"primary","sampleOrigin":"task","qaPurpose":"本階主要公開範例"},{"input":"5 10\n2\n2\n2\n3\n0 1 2\n2 3 4\n4 1 3\n","output":"10 7 0\n","public":true,"sampleRole":"secondary","sampleOrigin":"task","qaPurpose":"本階第二公開案例"},{"input":"3 2\n0\n2\n0 3 1\n2 3 5\n","output":"1 -4 0\n","qaPurpose":"連續兩次無恐龍凹陷會累積","public":true,"sampleRole":"special","sampleOrigin":"special"},{"input":"1 5\n1\n0\n2\n0 1 7\n0 1 2\n","output":"3 3 0\n"}],"generatedTests":[{"input":"6 8\n3\n0\n3\n5\n4\n2 5 1\n5 1 4\n0 3 2\n3 3 2\n","output":"8 6 0\n","generated":true},{"input":"4 3\n2\n1\n1\n3\n1 1 5\n1 3 2\n3 1 1\n","output":"2 1 0\n","generated":true}],"tutorial":"    <div class=\"tutorial-body\">\n      <section class=\"tutorial-card tutorial-goal\"><h3>1. 先知道這題在練什麼</h3>\n        <p>先完成官方 60% 的 R=1 多事件版本，確認狀態會跨撞擊保留。</p><p><strong>先備：</strong>會使用基本輸入、list、for 與 if。</p>\n      </section>\n      <section class=\"tutorial-card tutorial-core\"><h3>2. 核心觀念與圖解</h3>\n        <p>暈眩後的恐龍不會恢復；高度凹陷也會累積。每次事件都基於目前 awake/height，而不是初始狀態。</p>\n        <div class=\"tutorial-visual\"><div class=\"tutorial-visual-title\">本階實際資料怎麼變</div><pre>impact 1 → 更新 awake 或 height\nimpact 2 讀更新後狀態\n...\nimpact M\n最後 max/min/sum awake</pre></div>\n      </section>\n      <section class=\"tutorial-card tutorial-worked\"><h3>3. 跟著做一個小例子</h3><p>官方範例正是一維：第一次 c=0 沒恐龍所以凹陷 4；第二次範圍含 c=4 兩隻恐龍，因此只暈眩、不凹陷。</p></section>\n      <section class=\"tutorial-card tutorial-plan\"><h3>4. 先把程式拆成幾塊</h3><ol><li>awake/height 只初始化一次。</li><li>逐事件算欄範圍。</li><li>先找是否有 awake。</li><li>二選一更新。</li><li>最後輸出三值。</li></ol></section>\n      <section class=\"tutorial-card tutorial-code\"><h3>5. Python 一段一段怎麼寫</h3><div class=\"tutorial-code-step\"><strong>步驟 A：事件狀態延續</strong><p>迴圈內不重建 height/awake。</p><pre class=\"tutorial-code-snippet\">for _ in range(M):\n    b, S, d = map(int, input().split())</pre></div><div class=\"tutorial-code-step\"><strong>步驟 B：清醒總隻數</strong><p>每格存 count，最後直接 sum。</p><pre class=\"tutorial-code-snippet\">awake_count = sum(awake)</pre></div>\n        <p class=\"tutorial-code-note\">這些片段只示範本階核心寫法；請依照前面的資料流自行把輸入、處理與輸出接成完整程式。</p>\n      </section>\n      <section class=\"tutorial-card tutorial-check\"><h3>6. 常見錯誤與自我檢查</h3><ul><li>暈眩恐龍之後不再算清醒。</li><li>地面高度減少是累積的。</li></ul></section>\n    </div>","stageKey":"r488.aad286b891b8","inputItems":[{"key":"in1","text":"第一行有 C、D，分別表示地圖欄數與所有格子的初始高度。","meaningAndUseReviewed":true},{"key":"in2","text":"下一行有非負整數 K，表示目前仍清醒的恐龍數量，也是接下來要提供的恐龍位置筆數。","meaningAndUseReviewed":true},{"key":"in3","text":"接下來 K 行各有一個欄座標 c（0≤c<C），表示一隻清醒恐龍位置，同欄可重複。","meaningAndUseReviewed":true},{"key":"in4","text":"下一行有正整數 M，表示接下來要依序處理的撞擊次數。","meaningAndUseReviewed":true},{"key":"in5","text":"接下來 M 行各有 b、S、d，分別表示中心欄、正奇數影響邊長與凹陷深度。","meaningAndUseReviewed":true}],"outputItems":[{"key":"out1","text":"輸出三個整數：最高高度、最低高度、醒著的恐龍數量。","meaningReviewed":true}]},{"id":5,"title":"原題：彗星撞擊","difficulty":"完整","statement":"R×C 地面每格初始高度都是 D，K 隻恐龍一開始都清醒，同一座標可有多隻。一次撞擊以 0 起算中心座標 (a,b)、奇數邊長 S、深度 d 表示。令 h=(S-1)/2；未裁切的影響列為 a-h 到 a+h、欄為 b-h 到 b+h，真正影響範圍只保留仍位於地圖內的格子。 依輸入順序處理 M 次撞擊：若當次真正影響範圍內至少有一隻仍清醒恐龍，就讓範圍內所有清醒恐龍暈眩且本次完全不凹陷；否則範圍內每格高度減 d，高度可為負數。最後輸出最高高度、最低高度與仍清醒恐龍隻數。","input":"第一行有 R、C、D（R、C 皆為 1 到 100），分別表示地圖列數、欄數與初始統一高度；列、欄座標從 0 開始。第二行有 K（0≤K≤100），表示一開始仍清醒的恐龍數量，也是接下來要提供的恐龍座標筆數。接下來 K 行各有恐龍座標 r、c，同一座標可重複。下一行有 M（1≤M≤100），表示接下來要依序處理的撞擊次數。接下來 M 行各有 a、b、S、d，(a,b) 是撞擊中心，S≤19 且為正奇數，d≤10 是深度。","output":"輸出三個整數：最高高度、最低高度、醒著的恐龍數量。","sampleIn":"1 10 5\n5\n0 5\n0 4\n0 4\n0 1\n0 1\n2\n0 0 1 4\n0 3 3 1","sampleOut":"5 1 3","sampleExplain":"    <div class=\"demo-story\"><div class=\"demo-viewport\">\n      <section class=\"demo-step\"><p>官方範例特別包含同格重複恐龍。</p><pre>impact square（clipped）\n↓ scan awake counts\nany &gt;0 ?\nYES → awake=0\nNO  → height-=d\n↓ next impact</pre></section>\n      <section class=\"demo-step\"><p>第一次無恐龍範圍凹陷到最低 1。</p></section><section class=\"demo-step\"><p>第二次有恐龍，只暈眩兩隻；最終仍清醒 3 隻。</p></section>\n    </div></div>","starter":"","answer":"R, C, D = map(int, input().split())\nK = int(input())\nawake = [[0] * C for _ in range(R)]\nfor _ in range(K):\n    r, c = map(int, input().split())\n    awake[r][c] += 1\nM = int(input())\nheight = [[D] * C for _ in range(R)]\n\n# 每次撞擊先完整判定範圍內是否還有清醒恐龍，再決定暈眩或凹陷。\nfor _ in range(M):\n    a, b, S, d = map(int, input().split())\n    h = S // 2\n    r0 = max(0, a - h)\n    r1 = min(R - 1, a + h)\n    c0 = max(0, b - h)\n    c1 = min(C - 1, b + h)\n    has_awake = False\n    for r in range(r0, r1 + 1):\n        for c in range(c0, c1 + 1):\n            if awake[r][c] > 0:\n                has_awake = True\n    if has_awake:\n        for r in range(r0, r1 + 1):\n            for c in range(c0, c1 + 1):\n                awake[r][c] = 0\n    else:\n        for r in range(r0, r1 + 1):\n            for c in range(c0, c1 + 1):\n                height[r][c] -= d\n\n# 最後統計地形極值與仍清醒的「恐龍隻數」。\nmx = height[0][0]\nmn = height[0][0]\nawake_count = 0\nfor r in range(R):\n    for c in range(C):\n        mx = max(mx, height[r][c])\n        mn = min(mn, height[r][c])\n        awake_count += awake[r][c]\nprint(mx, mn, awake_count)","tests":[{"input":"1 10 5\n5\n0 5\n0 4\n0 4\n0 1\n0 1\n2\n0 0 1 4\n0 3 3 1\n","output":"5 1 3\n","public":true,"sampleRole":"primary","sampleOrigin":"official","qaPurpose":"官方公開範例 #1"},{"input":"3 3 10\n3\n1 1\n1 1\n0 0\n3\n1 1 1 4\n0 0 3 2\n2 2 1 7\n","output":"10 3 0\n","public":true,"sampleRole":"secondary","sampleOrigin":"supplemental","qaPurpose":"官方僅一筆範例；此為補充公開案例"},{"input":"2 2 1\n0\n2\n0 0 3 2\n1 1 1 5\n","output":"-1 -6 0\n","qaPurpose":"無恐龍，重疊凹陷可使不同格高度不同且為負","public":true,"sampleRole":"special","sampleOrigin":"special"},{"input":"1 1 5\n2\n0 0\n0 0\n2\n0 0 1 9\n0 0 1 2\n","output":"3 3 0\n"}],"generatedTests":[{"input":"4 5 8\n4\n0 0\n3 4\n2 2\n2 2\n4\n1 1 3 2\n2 3 3 4\n0 4 1 9\n3 0 5 1\n","output":"8 -1 0\n","generated":true},{"input":"2 6 3\n3\n0 1\n0 1\n1 5\n3\n0 0 3 1\n1 4 3 2\n0 3 5 3\n","output":"3 0 0\n","generated":true}],"tutorial":"    <div class=\"tutorial-body\">\n      <section class=\"tutorial-card tutorial-goal\"><h3>1. 先知道這題在練什麼</h3>\n        <p>完整整合二維裁切、重複恐龍計數、暈眩／凹陷互斥分支與跨事件狀態。</p><p><strong>先備：</strong>會使用基本輸入、list、for 與 if。</p>\n      </section>\n      <section class=\"tutorial-card tutorial-core\"><h3>2. 核心觀念與圖解</h3>\n        <p>每次撞擊都做「判斷 phase → 更新 phase」。awake 用 count matrix，才能保留同格多隻資訊；一旦有任何清醒恐龍，這次整個範圍都不改地形。</p>\n        <div class=\"tutorial-visual\"><div class=\"tutorial-visual-title\">本階實際資料怎麼變</div><pre>impact square（clipped）\n↓ scan awake counts\nany &gt;0 ?\nYES → awake=0\nNO  → height-=d\n↓ next impact</pre></div>\n      </section>\n      <section class=\"tutorial-card tutorial-worked\"><h3>3. 跟著做一個小例子</h3><p>官方範例第一次撞擊 c=0 無恐龍，所以高度 5→1；第二次涵蓋 c=4 的兩隻恐龍，兩隻暈眩且不凹陷，剩下 c=1 兩隻與 c=5 一隻共 3 隻清醒。</p></section>\n      <section class=\"tutorial-card tutorial-plan\"><h3>4. 先把程式拆成幾塊</h3><ol><li>初始化 height 與 awake counts。</li><li>逐撞擊算裁切範圍。</li><li>先掃 has_awake。</li><li>依結果做暈眩或凹陷。</li><li>最後掃整圖取 max/min 並加總 awake。</li></ol></section>\n      <section class=\"tutorial-card tutorial-code\"><h3>5. Python 一段一段怎麼寫</h3><div class=\"tutorial-code-step\"><strong>步驟 A：先確認整個範圍</strong><p>只要一格 count>0，就選恐龍分支。</p><pre class=\"tutorial-code-snippet\">has_awake = False\nfor r in range(r0, r1 + 1):\n    for c in range(c0, c1 + 1):\n        if awake[r][c] &gt; 0:\n            has_awake = True</pre></div><div class=\"tutorial-code-step\"><strong>步驟 B：同格多隻都算</strong><p>最終不是算有恐龍的格子數，而是 count 總和。</p><pre class=\"tutorial-code-snippet\">awake_count += awake[r][c]</pre></div>\n        <p class=\"tutorial-code-note\">這些片段只示範本階核心寫法；請依照前面的資料流自行把輸入、處理與輸出接成完整程式。</p>\n      </section>\n      <section class=\"tutorial-card tutorial-check\"><h3>6. 常見錯誤與自我檢查</h3><ul><li>同一座標可能有多隻，Boolean 會算少。</li><li>有任何清醒恐龍時，本次所有受影響格都不能凹陷。</li><li>暈眩狀態永久不再視為清醒。</li></ul></section>\n    </div>","stageKey":"r488.d75de321010b","inputItems":[{"key":"in1","text":"第一行有 R、C、D（R、C 皆為 1 到 100），分別表示地圖列數、欄數與初始統一高度；列、欄座標從 0 開始。","meaningAndUseReviewed":true},{"key":"in2","text":"第二行有 K（0≤K≤100），表示一開始仍清醒的恐龍數量，也是接下來要提供的恐龍座標筆數。","meaningAndUseReviewed":true},{"key":"in3","text":"接下來 K 行各有恐龍座標 r、c，同一座標可重複。","meaningAndUseReviewed":true},{"key":"in4","text":"下一行有 M（1≤M≤100），表示接下來要依序處理的撞擊次數。","meaningAndUseReviewed":true},{"key":"in5","text":"接下來 M 行各有 a、b、S、d，(a,b) 是撞擊中心，S≤19 且為正奇數，d≤10 是深度。","meaningAndUseReviewed":true}],"outputItems":[{"key":"out1","text":"輸出三個整數：最高高度、最低高度、醒著的恐龍數量。","meaningReviewed":true}]}];
 
 // Shared test accessors belong to the canonical template. Optional generator_js may
 // provide generateOneHiddenTest(), but formal-stage rendering/Judge must never depend
@@ -596,6 +596,7 @@ const STORAGE_PREFIX = `${OJ_META.storage.namespace}:v${STORAGE_SCHEMA}`;
 const ACCEPTED_KEY = `${STORAGE_PREFIX}:accepted`;
 const HISTORY_KEY = `${STORAGE_PREFIX}:history`;
 const MIGRATION_KEY = `${STORAGE_PREFIX}:migrated`;
+const STAGE_KEY_MIGRATION_KEY = `${STORAGE_PREFIX}:stage-key-migrated:v1`;
 const LEGACY_ACCEPTED_KEY = OJ_META.storage.legacyAcceptedKey;
 const LEGACY_HISTORY_KEY = OJ_META.storage.legacyHistoryKey;
 const PYODIDE_VERSION = '0.27.7';
@@ -606,6 +607,45 @@ const PORTABLE_RECORD_FORMAT = 'peicd_oj_progress';
 const PORTABLE_RECORD_SCHEMA = 1;
 const PORTABLE_RECORD_MAX_BYTES = 2 * 1024 * 1024;
 const PORTABLE_RECORD_MAX_CODE_CHARS = 300000;
+
+const STORAGE=(()=>{
+  const memory=new Map();
+  let backend=null;
+  let persistent=false;
+  try{
+    backend=window.localStorage;
+    const probe=`__peicd_storage_probe__${Math.random().toString(36).slice(2)}`;
+    backend.setItem(probe,'1');
+    persistent=backend.getItem(probe)==='1';
+    backend.removeItem(probe);
+  }catch(err){backend=null;persistent=false;}
+  return {
+    get persistent(){return persistent;},
+    getItem(key){
+      const k=String(key);
+      if(backend){try{return backend.getItem(k)}catch(err){backend=null;persistent=false;}}
+      return memory.has(k)?memory.get(k):null;
+    },
+    setItem(key,value){
+      const k=String(key),v=String(value);
+      if(backend){try{backend.setItem(k,v);return}catch(err){backend=null;persistent=false;}}
+      memory.set(k,v);
+    },
+    removeItem(key){
+      const k=String(key);
+      if(backend){try{backend.removeItem(k)}catch(err){backend=null;persistent=false;}}
+      memory.delete(k);
+    },
+    keys(){
+      const out=[];
+      if(backend){
+        try{for(let i=0;i<backend.length;i++){const key=backend.key(i);if(key!==null)out.push(key)}return out}
+        catch(err){backend=null;persistent=false;}
+      }
+      return Array.from(memory.keys());
+    }
+  };
+})();
 
 const $ = (s) => document.querySelector(s);
 const levelStrip = $('#levelStrip');
@@ -618,18 +658,32 @@ const progressBar = $('#progressBar');
 const progressText = $('#progressText');
 const historyList = $('#historyList');
 const hiddenTestsList = $('#hiddenTestsList');
+const storageWarning = $('#storageWarning');
 
 function esc(s){
   return String(s).replace(/[&<>"']/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
 }
 
+function normalizeLineEndings(s){return String(s).replace(/\r\n?/g,'\n');}
 function normalizeOutput(s){
-  return String(s)
-    .replace(/\r\n?/g,'\n')
+  return normalizeLineEndings(s)
     .split('\n')
     .map(line=>line.trim())
     .filter(line=>line!=='')
     .join('\n');
+}
+function compareMode(){return OJ_META.judge?.compareMode||'tolerant';}
+function outputsEqual(actual,expected){
+  const mode=compareMode();
+  if(mode==='tolerant') return normalizeOutput(actual)===normalizeOutput(expected);
+  if(mode==='exact') return normalizeLineEndings(actual)===normalizeLineEndings(expected);
+  return false;
+}
+function compareModeDescription(){
+  const mode=compareMode();
+  if(mode==='exact') return '嚴格比對';
+  if(mode==='special') return 'Special Judge';
+  return '寬鬆比對';
 }
 
 function safeJsonParse(raw,fallback){
@@ -674,28 +728,76 @@ function bindPublicSampleCopyButtons(publicSamples){
   });
 }
 
+function stageKeyForTask(task){return String(task?.stageKey||task?.id||'');}
+function taskFromId(id){return TASKS.find(t=>String(t.id)===String(id))||null;}
+function legacyCurrentDraftKey(id){return `${STORAGE_PREFIX}:code:${id}`;}
+function draftKey(id){const task=taskFromId(id);return `${STORAGE_PREFIX}:code:${task?stageKeyForTask(task):String(id)}`;}
+function loadDraft(task){
+  const next=STORAGE.getItem(draftKey(task.id));
+  if(next!==null)return next;
+  const legacy=STORAGE.getItem(legacyCurrentDraftKey(task.id));
+  if(legacy!==null){STORAGE.setItem(draftKey(task.id),legacy);return legacy;}
+  return null;
+}
+function acceptedForTask(map,task){return Boolean(map[stageKeyForTask(task)]||map[String(task.id)]);}
+
 function migrateStorage(){
-  if(localStorage.getItem(MIGRATION_KEY)==='1') return;
   try{
-    if(LEGACY_ACCEPTED_KEY && localStorage.getItem(ACCEPTED_KEY)===null){const legacy=localStorage.getItem(LEGACY_ACCEPTED_KEY);if(legacy!==null)localStorage.setItem(ACCEPTED_KEY,legacy);}
-    if(LEGACY_HISTORY_KEY && localStorage.getItem(HISTORY_KEY)===null){const legacy=localStorage.getItem(LEGACY_HISTORY_KEY);if(legacy!==null)localStorage.setItem(HISTORY_KEY,legacy);}
-    if(OJ_META.storage.legacyDraftPrefix){for(const task of TASKS){const nextKey=draftKey(task.id),legacyKey=`${OJ_META.storage.legacyDraftPrefix}${task.id}`;if(localStorage.getItem(nextKey)===null){const legacy=localStorage.getItem(legacyKey);if(legacy!==null)localStorage.setItem(nextKey,legacy);}}}
-    localStorage.setItem(MIGRATION_KEY,'1');
-  }catch(err){console.warn('Local storage migration skipped:',err);}
+    // Legacy namespace/schema migration from older OJ generations.
+    if(STORAGE.getItem(MIGRATION_KEY)!=='1'){
+      if(LEGACY_ACCEPTED_KEY && STORAGE.getItem(ACCEPTED_KEY)===null){const legacy=STORAGE.getItem(LEGACY_ACCEPTED_KEY);if(legacy!==null)STORAGE.setItem(ACCEPTED_KEY,legacy);}
+      if(LEGACY_HISTORY_KEY && STORAGE.getItem(HISTORY_KEY)===null){const legacy=STORAGE.getItem(LEGACY_HISTORY_KEY);if(legacy!==null)STORAGE.setItem(HISTORY_KEY,legacy);}
+      for(const task of TASKS){
+        const nextKey=draftKey(task.id);
+        if(STORAGE.getItem(nextKey)!==null)continue;
+        let legacy=null;
+        if(OJ_META.storage.legacyDraftPrefix)legacy=STORAGE.getItem(`${OJ_META.storage.legacyDraftPrefix}${task.id}`);
+        if(legacy!==null)STORAGE.setItem(nextKey,legacy);
+      }
+      STORAGE.setItem(MIGRATION_KEY,'1');
+    }
+
+    // v0.1.52 stable-stage identity migration is intentionally a separate marker.
+    // Existing users may already have MIGRATION_KEY=1 from older releases, so reusing
+    // that marker would skip id -> stageKey promotion and weaken future reorder safety.
+    if(STORAGE.getItem(STAGE_KEY_MIGRATION_KEY)!=='1'){
+      for(const task of TASKS){
+        const nextKey=draftKey(task.id);
+        if(STORAGE.getItem(nextKey)===null){
+          const oldIdValue=STORAGE.getItem(legacyCurrentDraftKey(task.id));
+          if(oldIdValue!==null)STORAGE.setItem(nextKey,oldIdValue);
+        }
+      }
+      const accepted=safeJsonParse(STORAGE.getItem(ACCEPTED_KEY)||'{}',{});
+      let acceptedChanged=false;
+      for(const task of TASKS){
+        if(accepted[String(task.id)] && !accepted[stageKeyForTask(task)]){
+          accepted[stageKeyForTask(task)]=true;acceptedChanged=true;
+        }
+      }
+      if(acceptedChanged)STORAGE.setItem(ACCEPTED_KEY,JSON.stringify(accepted));
+
+      const history=safeJsonParse(STORAGE.getItem(HISTORY_KEY)||'[]',[]);
+      let historyChanged=false;
+      if(Array.isArray(history)){
+        for(const item of history){
+          if(!item || item.stageKey)continue;
+          const task=taskFromId(item.taskId);
+          if(task){item.stageKey=stageKeyForTask(task);historyChanged=true;}
+        }
+        if(historyChanged)STORAGE.setItem(HISTORY_KEY,JSON.stringify(history));
+      }
+      STORAGE.setItem(STAGE_KEY_MIGRATION_KEY,'1');
+    }
+  }catch(err){console.warn('Storage migration skipped:',err);}
 }
 
-function getAccepted(){
-  return safeJsonParse(localStorage.getItem(ACCEPTED_KEY)||'{}',{});
-}
+function getAccepted(){return safeJsonParse(STORAGE.getItem(ACCEPTED_KEY)||'{}',{});}
 function setAccepted(id){
-  const a=getAccepted();
-  a[id]=true;
-  localStorage.setItem(ACCEPTED_KEY,JSON.stringify(a));
+  const task=taskFromId(id);if(!task)return;
+  const a=getAccepted();a[stageKeyForTask(task)]=true;STORAGE.setItem(ACCEPTED_KEY,JSON.stringify(a));
 }
-
-function isTaskAccepted(task=TASKS[currentTaskIndex]){
-  return Boolean(task && getAccepted()[task.id]);
-}
+function isTaskAccepted(task=TASKS[currentTaskIndex]){return Boolean(task && acceptedForTask(getAccepted(),task));}
 
 function updateAnswerButtonState(){
   const btn=$('#answerBtn');
@@ -708,14 +810,10 @@ function updateAnswerButtonState(){
 }
 function getReferenceVariants(task){
   if(Array.isArray(task?.referenceAnswers) && task.referenceAnswers.length){
-    return task.referenceAnswers.map((item,index)=>({
-      title:String(item?.title||`方法 ${index+1}`),
-      code:String(item?.code||'')
-    }));
+    return task.referenceAnswers.map((item,index)=>({title:String(item?.title||`方法 ${index+1}`),code:String(item?.code||'')}));
   }
   return [{title:'參考答案',code:String(task?.answer||'')}];
 }
-
 function renderReferenceAnswers(task){
   const variants=getReferenceVariants(task);
   const dialog=$('#answerDialog');
@@ -733,57 +831,30 @@ function renderReferenceAnswers(task){
   }
 }
 
-function draftKey(id){return `${STORAGE_PREFIX}:code:${id}`}
-function historyKey(){return HISTORY_KEY}
-function getHistory(){return safeJsonParse(localStorage.getItem(historyKey())||'[]',[])}
+function historyKey(){return HISTORY_KEY;}
+function getHistory(){return safeJsonParse(STORAGE.getItem(historyKey())||'[]',[]);}
 function addHistory(taskId, verdict, passed, total){
-  const list=getHistory();
-  list.unshift({time:new Date().toLocaleString('zh-TW',{hour12:false}),taskId,verdict,passed,total});
-  localStorage.setItem(historyKey(),JSON.stringify(list.slice(0,30)));
-  renderHistory();
+  const task=taskFromId(taskId);const list=getHistory();
+  list.unshift({time:new Date().toLocaleString('zh-TW',{hour12:false}),taskId,stageKey:task?stageKeyForTask(task):'',verdict,passed,total});
+  STORAGE.setItem(historyKey(),JSON.stringify(list.slice(0,30)));renderHistory();
 }
-
-function clearAllLocalRecords(){
-  const keys=[];
-  for(let i=0;i<localStorage.length;i++){
-    const key=localStorage.key(i);
-    if(key && key.startsWith(OJ_META.storage.namespace)) keys.push(key);
-  }
-  keys.forEach(key=>localStorage.removeItem(key));
-}
-
+function clearAllLocalRecords(){for(const key of STORAGE.keys()){if(key.startsWith(OJ_META.storage.namespace))STORAGE.removeItem(key);}}
 function portableRecordKeys(){
-  return [ACCEPTED_KEY,HISTORY_KEY,MIGRATION_KEY,...TASKS.map(t=>draftKey(t.id))];
+  return [ACCEPTED_KEY,HISTORY_KEY,MIGRATION_KEY,STAGE_KEY_MIGRATION_KEY,...TASKS.map(t=>draftKey(t.id)),...TASKS.map(t=>legacyCurrentDraftKey(t.id))];
 }
-function snapshotPortableStorage(){
-  return portableRecordKeys().map(key=>[key,localStorage.getItem(key)]);
-}
+function snapshotPortableStorage(){return portableRecordKeys().map(key=>[key,STORAGE.getItem(key)]);}
 function restorePortableStorage(snapshot){
-  for(const [key] of snapshot) localStorage.removeItem(key);
-  for(const [key,value] of snapshot) if(value!==null) localStorage.setItem(key,value);
+  for(const [key] of snapshot)STORAGE.removeItem(key);
+  for(const [key,value] of snapshot)if(value!==null)STORAGE.setItem(key,value);
 }
 function buildPortableRecord(){
-  saveDraft();
-  const accepted=getAccepted();
+  saveDraft();const accepted=getAccepted();const current=TASKS[currentTaskIndex];
   return {
-    format:PORTABLE_RECORD_FORMAT,
-    schemaVersion:PORTABLE_RECORD_SCHEMA,
-    exportedAt:new Date().toISOString(),
-    oj:{
-      problemId:String(OJ_META.source.problemId),
-      sourceUrl:String(OJ_META.source.url),
-      storageNamespace:String(OJ_META.storage.namespace),
-      storageSchema:STORAGE_SCHEMA,
-      language:'python3'
-    },
-    view:{sourceStageActive:Boolean(sourceStageActive),currentTaskId:TASKS[currentTaskIndex]?.id??null},
-    stages:TASKS.map(t=>({
-      id:t.id,
-      title:t.title,
-      code:localStorage.getItem(draftKey(t.id)) ?? t.starter ?? '',
-      accepted:Boolean(accepted[t.id])
-    })),
-    history:getHistory().map(h=>({time:String(h.time??''),taskId:h.taskId,verdict:String(h.verdict??''),passed:Number(h.passed??0),total:Number(h.total??0)}))
+    format:PORTABLE_RECORD_FORMAT,schemaVersion:PORTABLE_RECORD_SCHEMA,exportedAt:new Date().toISOString(),
+    oj:{problemId:String(OJ_META.source.problemId),sourceUrl:String(OJ_META.source.url),storageNamespace:String(OJ_META.storage.namespace),storageSchema:STORAGE_SCHEMA,language:'python3'},
+    view:{sourceStageActive:Boolean(sourceStageActive),currentTaskId:current?.id??null,currentStageKey:current?stageKeyForTask(current):null},
+    stages:TASKS.map(t=>({id:t.id,stageKey:stageKeyForTask(t),title:t.title,code:loadDraft(t)??t.starter??'',accepted:acceptedForTask(accepted,t)})),
+    history:getHistory().map(h=>({time:String(h.time??''),taskId:h.taskId,stageKey:String(h.stageKey??''),verdict:String(h.verdict??''),passed:Number(h.passed??0),total:Number(h.total??0)}))
   };
 }
 function portableFilename(){
@@ -830,65 +901,53 @@ function validatePortableRecord(data){
   if(!oj || typeof oj!=='object') throw new Error('作答紀錄缺少題目資訊。');
   if(String(oj.problemId)!==String(OJ_META.source.problemId) || String(oj.storageNamespace)!==String(OJ_META.storage.namespace) || Number(oj.storageSchema)!==Number(STORAGE_SCHEMA) || oj.language!=='python3') throw new Error('這份作答紀錄不是目前這一題的相容資料。');
   if(!Array.isArray(data.stages) || data.stages.length!==TASKS.length) throw new Error('作答紀錄的階段數量與目前題目不一致。');
-  const known=new Map(TASKS.map(t=>[String(t.id),t]));
-  const seen=new Set();
-  const stages=[];
-  let totalCodeChars=0;
+  const byId=new Map(TASKS.map(t=>[String(t.id),t]));
+  const byStage=new Map(TASKS.map(t=>[stageKeyForTask(t),t]));
+  const seen=new Set(),stages=[];let totalCodeChars=0;
   for(const raw of data.stages){
     if(!raw || typeof raw!=='object') throw new Error('階段資料格式錯誤。');
-    const id=String(raw.id);
-    if(!known.has(id)) throw new Error(`作答紀錄包含目前題目不存在的第 ${id} 階。`);
-    if(seen.has(id)) throw new Error(`作答紀錄重複包含第 ${id} 階。`);
-    if(typeof raw.code!=='string' || raw.code.length>PORTABLE_RECORD_MAX_CODE_CHARS) throw new Error(`第 ${id} 階程式碼格式或大小不合法。`);
-    if(typeof raw.accepted!=='boolean') throw new Error(`第 ${id} 階 AC 狀態格式不合法。`);
-    totalCodeChars+=raw.code.length;if(totalCodeChars>PORTABLE_RECORD_MAX_BYTES) throw new Error('作答紀錄中的程式碼總量過大。');
-    seen.add(id);stages.push({id:known.get(id).id,code:raw.code,accepted:raw.accepted});
+    const key=String(raw.stageKey||'');const id=String(raw.id);
+    const task=(key&&byStage.get(key))||byId.get(id);
+    if(!task) throw new Error(`作答紀錄包含目前題目不存在的階段 ${key||id}。`);
+    const stable=stageKeyForTask(task);if(seen.has(stable))throw new Error('作答紀錄重複包含同一階段。');
+    if(typeof raw.code!=='string'||raw.code.length>PORTABLE_RECORD_MAX_CODE_CHARS)throw new Error(`第 ${task.id} 階程式碼格式或大小不合法。`);
+    if(typeof raw.accepted!=='boolean')throw new Error(`第 ${task.id} 階 AC 狀態格式不合法。`);
+    totalCodeChars+=raw.code.length;if(totalCodeChars>PORTABLE_RECORD_MAX_BYTES)throw new Error('作答紀錄中的程式碼總量過大。');
+    seen.add(stable);stages.push({id:task.id,stageKey:stable,code:raw.code,accepted:raw.accepted});
   }
-  if(seen.size!==known.size) throw new Error('作答紀錄缺少目前題目的階段資料。');
-  if(!Array.isArray(data.history) || data.history.length>30) throw new Error('提交紀錄格式或筆數不合法。');
+  if(seen.size!==TASKS.length)throw new Error('作答紀錄缺少目前題目的階段資料。');
+  if(!Array.isArray(data.history)||data.history.length>30)throw new Error('提交紀錄格式或筆數不合法。');
   const allowedVerdicts=new Set(['AC','WA','RE','TLE','JE','CE']);
   const history=data.history.map((raw,index)=>{
-    if(!raw || typeof raw!=='object') throw new Error(`第 ${index+1} 筆提交紀錄格式錯誤。`);
-    const id=String(raw.taskId);
-    const verdict=String(raw.verdict||'');
-    const passed=Number(raw.passed),total=Number(raw.total);
-    if(!known.has(id) || !allowedVerdicts.has(verdict) || !Number.isInteger(passed) || !Number.isInteger(total) || passed<0 || total<0 || passed>total) throw new Error(`第 ${index+1} 筆提交紀錄內容不合法。`);
-    const time=String(raw.time??'');if(time.length>120) throw new Error(`第 ${index+1} 筆提交時間格式不合法。`);
-    return {time,taskId:known.get(id).id,verdict,passed,total};
+    if(!raw||typeof raw!=='object')throw new Error(`第 ${index+1} 筆提交紀錄格式錯誤。`);
+    const task=(raw.stageKey&&byStage.get(String(raw.stageKey)))||byId.get(String(raw.taskId));
+    const verdict=String(raw.verdict||''),passed=Number(raw.passed),total=Number(raw.total);
+    if(!task||!allowedVerdicts.has(verdict)||!Number.isInteger(passed)||!Number.isInteger(total)||passed<0||total<0||passed>total)throw new Error(`第 ${index+1} 筆提交紀錄內容不合法。`);
+    const time=String(raw.time??'');if(time.length>120)throw new Error(`第 ${index+1} 筆提交時間格式不合法。`);
+    return {time,taskId:task.id,stageKey:stageKeyForTask(task),verdict,passed,total};
   });
   const view=data.view;
-  if(!view || typeof view!=='object' || typeof view.sourceStageActive!=='boolean') throw new Error('作答紀錄缺少目前階段資訊。');
-  const viewId=view.currentTaskId===null?null:String(view.currentTaskId);
-  if(viewId!==null && !known.has(viewId)) throw new Error('作答紀錄的目前階段不存在。');
-  return {stages,history,view:{sourceStageActive:view.sourceStageActive,currentTaskId:viewId===null?TASKS[0].id:known.get(viewId).id}};
+  if(!view||typeof view!=='object'||typeof view.sourceStageActive!=='boolean')throw new Error('作答紀錄缺少目前階段資訊。');
+  const task=(view.currentStageKey&&byStage.get(String(view.currentStageKey)))||byId.get(String(view.currentTaskId));
+  return {stages,history,view:{sourceStageActive:view.sourceStageActive,currentTaskId:(task||TASKS[0]).id,currentStageKey:stageKeyForTask(task||TASKS[0])}};
 }
 function applyPortableRecord(record){
   const snapshot=snapshotPortableStorage();
   try{
-    for(const key of portableRecordKeys()) localStorage.removeItem(key);
+    for(const key of portableRecordKeys())STORAGE.removeItem(key);
     const accepted={};
     for(const stage of record.stages){
-      localStorage.setItem(draftKey(stage.id),stage.code);
-      if(stage.accepted) accepted[stage.id]=true;
+      const task=TASKS.find(t=>stageKeyForTask(t)===stage.stageKey)||taskFromId(stage.id);if(!task)continue;
+      STORAGE.setItem(draftKey(task.id),stage.code);if(stage.accepted)accepted[stageKeyForTask(task)]=true;
     }
-    localStorage.setItem(ACCEPTED_KEY,JSON.stringify(accepted));
-    localStorage.setItem(HISTORY_KEY,JSON.stringify(record.history));
-    localStorage.setItem(MIGRATION_KEY,'1');
-  }catch(err){
-    try{restorePortableStorage(snapshot);}catch(rollbackErr){console.error('Import rollback failed:',rollbackErr);}
-    throw err;
-  }
-
-  const idx=Math.max(0,TASKS.findIndex(t=>String(t.id)===String(record.view.currentTaskId)));
-  currentTaskIndex=idx;sourceStageActive=record.view.sourceStageActive;
-  document.body.classList.toggle('source-view',sourceStageActive);
+    STORAGE.setItem(ACCEPTED_KEY,JSON.stringify(accepted));STORAGE.setItem(HISTORY_KEY,JSON.stringify(record.history));STORAGE.setItem(MIGRATION_KEY,'1');
+  }catch(err){try{restorePortableStorage(snapshot)}catch(rollbackErr){console.error('Import rollback failed:',rollbackErr)}throw err;}
+  const idx=Math.max(0,TASKS.findIndex(t=>stageKeyForTask(t)===record.view.currentStageKey||String(t.id)===String(record.view.currentTaskId)));
+  currentTaskIndex=idx;sourceStageActive=record.view.sourceStageActive;document.body.classList.toggle('source-view',sourceStageActive);
   renderLevelStrip();renderProblem();renderTests();renderHiddenTests();renderHistory();renderProgress();updateAnswerButtonState();
-  const t=TASKS[currentTaskIndex];
-  setCode(localStorage.getItem(draftKey(t.id)) ?? t.starter);
-  overallVerdict.className='status-pill';overallVerdict.textContent='尚未提交';
-  resultSummary.textContent='作答紀錄已匯入。草稿、AC 進度與本機提交紀錄已更新。';
-  resetTerminal('作答紀錄已匯入。按 F9 啟動新的互動式 Python 程式。');
-  if(editor){editor.clearHistory();if(!sourceStageActive)refreshEditorLayout({focus:true});}
+  const t=TASKS[currentTaskIndex];setCode(loadDraft(t)??t.starter);
+  overallVerdict.className='status-pill';overallVerdict.textContent='尚未提交';resultSummary.textContent='作答紀錄已匯入。草稿、AC 進度與本機提交紀錄已更新。';
+  resetTerminal('作答紀錄已匯入。按 F9 啟動新的互動式 Python 程式。');if(editor){editor.clearHistory();if(!sourceStageActive)refreshEditorLayout({focus:true});}
 }
 async function importPortableRecords(file){
   if(busy || !file)return;
@@ -904,7 +963,7 @@ async function importPortableRecords(file){
 
 function renderProgress(){
   const accepted=getAccepted();
-  const count=TASKS.filter(t=>accepted[t.id]).length;
+  const count=TASKS.filter(t=>acceptedForTask(accepted,t)).length;
   progressText.textContent=`${count} / ${TASKS.length} AC`;
   progressBar.style.width=`${count/TASKS.length*100}%`;
 }
@@ -924,8 +983,8 @@ function renderLevelStrip(){
     const b=document.createElement('button');
     b.type='button';
     b.disabled=busy;
-    b.className='level-btn'+(!sourceStageActive&&idx===currentTaskIndex?' active':'')+(accepted[task.id]?' accepted':'');
-    b.textContent=accepted[task.id]?`${task.id} ✓`:`${task.id}`;
+    b.className='level-btn'+(!sourceStageActive&&idx===currentTaskIndex?' active':'')+(acceptedForTask(accepted,task)?' accepted':'');
+    b.textContent=acceptedForTask(accepted,task)?`${task.id} ✓`:`${task.id}`;
     b.title=`第 ${task.id} 階：${task.title}`;
     b.addEventListener('click',()=>switchTask(idx));
     levelStrip.appendChild(b);
@@ -962,13 +1021,8 @@ function switchToSourceStage({openSource=false}={}){
   if(openSource) window.open(OFFICIAL_SOURCE.url,'_blank','noopener,noreferrer');
 }
 
-function formalInputParts(text){
-  const parts=String(text??'').trim().match(/[^。]+(?:。|$)/g)||[];
-  return parts.map(part=>part.trim()).filter(Boolean);
-}
-function renderFormalInput(text){
-  const parts=formalInputParts(text);
-  return `<div class="formal-input-list" data-formal-input-list="true">${parts.map(part=>`<p class="formal-input-item">${esc(part)}</p>`).join('')}</div>`;
+function renderFormalInput(task){
+  return `<p class="formal-input-prose" data-formal-input="true">${task?.input??''}</p>`;
 }
 
 function renderProblem(){
@@ -997,7 +1051,7 @@ function renderProblem(){
     <div class="section-title">題目</div>
     <p>${t.statement}</p>
     <div class="section-title">輸入</div>
-    ${renderFormalInput(t.input)}
+    ${renderFormalInput(t)}
     <div class="section-title">輸出</div>
     <p>${t.output}</p>
     <div class="pre-code-notice" data-pre-code-notice="true">
@@ -1098,7 +1152,7 @@ function renderHistory(){
 
 function getCode(){ return editor ? editor.getValue() : $('#codeEditor').value; }
 function setCode(code){ if(editor) editor.setValue(code); else $('#codeEditor').value=code; }
-function saveDraft(){ const t=TASKS[currentTaskIndex]; localStorage.setItem(draftKey(t.id),getCode()); }
+function saveDraft(){ const t=TASKS[currentTaskIndex]; STORAGE.setItem(draftKey(t.id),getCode()); }
 
 function ensureCodeMirrorCursorVisible(cm=editor,marginLines=2){
   if(!cm) return;
@@ -1144,7 +1198,7 @@ function switchTask(idx){
   overallVerdict.className='status-pill'; overallVerdict.textContent='尚未提交';
   resultSummary.textContent='F9／「執行」會啟動新的互動式 TERMINAL；遇到 input() 時手動輸入。「提交」會評測本階全部正式測資，逐筆結果請看右側 TEST RESULTS。';
   const t=TASKS[idx];
-  setCode(localStorage.getItem(draftKey(t.id)) ?? t.starter);
+  setCode(loadDraft(t) ?? t.starter);
   resetTerminal();
   if(editor){
     editor.clearHistory();
@@ -1696,6 +1750,7 @@ async function judge(){
   const code=getCode();
   saveDraft();
   const tests=getTaskTestsForTask(t);
+  if(compareMode()==='special'){overallVerdict.className='status-pill warn';overallVerdict.textContent='SPJ';resultSummary.textContent='此題使用 Special Judge，本機不模擬正式判定；可用執行功能檢查程式輸出，正式結果請以原題平台為準。';return;}
   const op=beginOperation();
   overallVerdict.className='status-pill warn'; overallVerdict.textContent='評測中';
   resultSummary.textContent=`正在執行全部 ${tests.length} 筆測資…`;
@@ -1706,7 +1761,7 @@ async function judge(){
     for(let i=0;i<tests.length;i++){
       const r=await runPython(code,tests[i].input);
       if(!isOperationCurrent(op)) return;
-      const pass=!r.environmentError && r.ok && normalizeOutput(r.output)===normalizeOutput(tests[i].output);
+      const pass=!r.environmentError && r.ok && compareMode()!=='special' && outputsEqual(r.output,tests[i].output);
       const rr={...r,pass,error:r.ok?'':r.error};
       results.push(rr);
       if(pass)passed++;
@@ -1727,7 +1782,7 @@ async function judge(){
       const firstBad=results.find(x=>!x.pass);
       const verdict=firstBad?.environmentError?'JE':(firstBad?.timeout?'TLE':(firstBad?.error?'RE':'WA'));
       overallVerdict.className='status-pill bad';overallVerdict.textContent=verdict;
-      resultSummary.textContent=`通過 ${passed} / ${total}。${verdict==='WA'?'輸出採 Tolerant 風格比對；請先檢查內容與行結構。':(verdict==='JE'?'評測環境暫時無法使用，請重新提交。':'先修正第一個失敗原因，再重新提交。')}`;
+      resultSummary.textContent=`通過 ${passed} / ${total}。${verdict==='WA'?`目前採${compareModeDescription()}；請檢查輸出內容與格式。`:(verdict==='JE'?'評測環境暫時無法使用，請重新提交。':'先修正第一個失敗原因，再重新提交。')}`;
       addHistory(t.id,verdict,passed,total);
     }
   }catch(err){
@@ -1799,10 +1854,11 @@ $('#terminalInput').addEventListener('keydown',e=>{
 });
 $('#terminalInput').addEventListener('input',e=>{const ta=e.currentTarget;ta.style.height='1.65em';ta.style.height=Math.min(ta.scrollHeight,84)+'px';});
 const THEME_STORAGE_KEY='step_oj_framework:theme:v1';
-function applyTheme(theme,{persist=true}={}){const next=theme==='dark'?'dark':'light';document.documentElement.dataset.theme=next;$('#themeSelect').value=next;if(persist){try{localStorage.setItem(THEME_STORAGE_KEY,next)}catch{}}}
+function applyTheme(theme,{persist=true}={}){const next=theme==='dark'?'dark':'light';document.documentElement.dataset.theme=next;$('#themeSelect').value=next;if(persist){try{STORAGE.setItem(THEME_STORAGE_KEY,next)}catch{}}}
 function initializeTheme(){const current=document.documentElement.dataset.theme==='dark'?'dark':'light';$('#themeSelect').value=current;$('#themeSelect').addEventListener('change',e=>applyTheme(e.target.value));}
 $('#submitBtn').addEventListener('click',judge);
 
+if(storageWarning)storageWarning.hidden=STORAGE.persistent;
 migrateStorage();
 initializeTheme();
 setupEditor();
@@ -1813,7 +1869,7 @@ renderHiddenTests();
 renderHistory();
 renderProgress();
 updateAnswerButtonState();
-setCode(localStorage.getItem(draftKey(TASKS[0].id)) ?? TASKS[0].starter);
+setCode(loadDraft(TASKS[0]) ?? TASKS[0].starter);
 </script>
 </body>
 </html>

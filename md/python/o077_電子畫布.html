@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- Generated from shared canonical Python OJ template. template_sha256=c9e31ee044a98bfe91c5e993b67a0c7bfac1dab9828d9b9340f21eaede5676f7 -->
+<!-- Generated from shared canonical Python OJ template. template_sha256=00a426a43459b70b17c73519809800caec10a03026ea698d82019d984c096b37 -->
 <html lang="zh-Hant-TW" data-theme="dark">
 <head>
 <meta charset="utf-8">
@@ -11,8 +11,8 @@
 <title>o077 電子畫布｜APCS 階梯式 Online Judge</title>
 <link rel="preconnect" href="https://cdnjs.cloudflare.com">
 <link rel="preconnect" href="https://cdn.jsdelivr.net">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.18/codemirror.min.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.18/addon/hint/show-hint.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.21/codemirror.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.21/addon/hint/show-hint.min.css">
 <style>
 
 *{box-sizing:border-box;}
@@ -217,9 +217,7 @@ header{position:sticky;top:0;z-index:40;background:rgba(255,255,255,.97);backdro
 .section-title{position:relative;margin:27px 0 10px;padding:0 0 8px 13px;border-bottom:1px solid #e7ebef;color:#273345;font-size:.92rem;font-weight:800;}
 .section-title::before{content:"";position:absolute;left:0;top:.25em;width:3px;height:1.05em;border-radius:2px;background:var(--accent);}
 .problem p{margin:.45rem 0;color:#374151;font-size:.95rem;}
-.formal-input-list{display:grid;gap:8px;margin:.35rem 0 .15rem;}
-.formal-input-item{position:relative;margin:0!important;padding:9px 11px 9px 14px;border:1px solid var(--line);border-radius:6px;background:var(--soft2);color:#374151;font-size:.95rem;line-height:1.68;}
-.formal-input-item::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;border-radius:6px 0 0 6px;background:var(--line-strong);}
+.formal-input-prose{margin:.45rem 0!important;color:#374151;font-size:.95rem;line-height:1.68;}
 .problem code,.dialog-body code{font-family:"Cascadia Mono","Consolas",monospace;background:#f1f4f7;color:#25364a;border:1px solid #e5e9ee;border-radius:4px;padding:.06em .28em;}
 pre{white-space:pre-wrap;word-break:break-word;margin:9px 0;padding:13px 15px;background:#f8fafb;color:#273345;border:1px solid #e1e6eb;border-radius:6px;font-family:"Cascadia Mono","SFMono-Regular",Consolas,monospace;font-size:.88rem;line-height:1.62;}
 .sample-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
@@ -423,6 +421,7 @@ dialog::backdrop{background:rgba(15,23,42,.4);}
 
 /* Shared UI / visual primitives: Theme + Interactive Terminal + Detailed Tutorial */
 .theme-control{display:inline-flex;align-items:center;gap:6px}.theme-control label{font-size:.75rem;color:var(--muted);font-weight:800}.theme-control select{min-height:34px;border:1px solid var(--line-strong);border-radius:6px;background:var(--paper);color:var(--ink);padding:4px 28px 4px 9px}
+.storage-warning{display:inline-flex;align-items:center;min-height:32px;padding:4px 9px;border:1px solid #d4a24d;border-radius:6px;background:#fff8e8;color:#7a4b0d;font-size:.75rem;font-weight:800}.storage-warning[hidden]{display:none}
 .learning-guide{display:grid;gap:10px}.learn-card{padding:12px 14px;border:1px solid var(--line);border-radius:7px;background:var(--paper)}.learn-card>strong{display:block;margin-bottom:6px}.learn-recap{background:var(--soft);border-left:3px solid #9ba6b4}.learn-new{background:var(--accent-soft);border-left:3px solid #6f98bb}.learn-plan{background:#f7fbf8;border-left:3px solid #79ab8f}.learn-pitfall{background:#fffaf2;border-left:3px solid #d1a04e}.learn-card ol,.learn-card ul{margin:.45rem 0 .2rem;padding-left:1.4rem}.learn-card li{margin:.28rem 0}.learn-visual{margin:10px 0;padding:12px;border:1px solid var(--line);border-radius:7px;background:var(--paper)}.learn-visual-title{margin-bottom:8px;color:#344256;font-size:.82rem;font-weight:850}.learn-step-flow{display:flex;gap:8px;align-items:center;justify-content:center;flex-wrap:wrap}.learn-step-node{padding:8px 10px;border:1px solid var(--line);border-radius:6px;background:var(--soft);text-align:center}.learn-step-node small{display:block;color:var(--muted)}
 html[data-theme="light"]{color-scheme:light}html[data-theme="dark"]{color-scheme:dark;--bg:#000000;--paper:#080808;--ink:#f4f7fb;--muted:#a2aab8;--line:#242424;--line-strong:#3a3a3a;--soft:#0d0d0d;--soft2:#0b0b0b;--accent:#22d3ee;--accent-strong:#06b6d4;--accent-soft:#06181d;--ok:#4ade80;--ok-soft:#07170d;--bad:#fb7185;--bad-soft:#1a090d;--warn:#fbbf24;--warn-soft:#1a1304;--terminal:#000000;--terminal-soft:#080808;--shadow:none;background:#000}
 html[data-theme="dark"] body{background:#000;color:var(--ink)}html[data-theme="dark"] header{background:rgba(0,0,0,.97);border-color:#222}html[data-theme="dark"] .panel,html[data-theme="dark"] .problem,html[data-theme="dark"] .results-wrap,html[data-theme="dark"] .editor-shell,html[data-theme="dark"] .dialog-body{background:#080808;color:var(--ink);border-color:#242424}
@@ -433,7 +432,7 @@ html[data-theme="dark"] .terminal-workspace,html[data-theme="dark"] .terminal-pa
 html[data-theme="dark"] .sample-explanation-body,html[data-theme="dark"] .sample-explanation-body p,html[data-theme="dark"] .sample-explanation-body small,html[data-theme="dark"] .reason-node small,html[data-theme="dark"] .visual-caption{color:#c6cbd2}html[data-theme="dark"] .sample-explanation-body pre,html[data-theme="dark"] .hidden-test-item pre,html[data-theme="dark"] pre{background:#020202;color:#e5e7eb;border-color:#242424}html[data-theme="dark"] .result-summary,html[data-theme="dark"] .hidden-tests summary,html[data-theme="dark"] .submission-history summary{background:#0b0b0b;color:#cfd5dd;border-color:#292929}
 html[data-theme="dark"] .matrix-grid,html[data-theme="dark"] .matrix-cell,html[data-theme="dark"] .number-strip span,html[data-theme="dark"] .calc-flow span{background:#0b0b0b;color:#e8edf3;border-color:#303030}html[data-theme="dark"] .matrix-cell.focus-cell{background:#06242b;border-color:#16879d;box-shadow:inset 0 0 0 1px #16879d}html[data-theme="dark"] .matrix-cell.diff-cell,html[data-theme="dark"] .pair-card.diff{background:#1a090d;border-color:#6b2733}html[data-theme="dark"] .pair-card.same,html[data-theme="dark"] .candidate-pos.ok,html[data-theme="dark"] .window-card.ok-card{background:#07170d;border-color:#1f5b36}
 html[data-theme="dark"] .sample-copy-btn{background:#0b0b0b;color:#c6cbd2;border-color:#303030}html[data-theme="dark"] .sample-copy-btn:hover{background:#101010;color:#e7ebf0}html[data-theme="dark"] .sample-copy-btn.success{background:#07170d;color:#86efac;border-color:#1f5b36}html[data-theme="dark"] .sample-origin-badge{background:#0d0d0d;color:#cbd2dc;border-color:#303030}html[data-theme="dark"] .sample-origin-badge.official{background:#06181d;color:#67e8f9;border-color:#155e75}html[data-theme="dark"] .sample-origin-badge.special{background:#1a1304;color:#fbbf24;border-color:#6b5213}
-html[data-theme="dark"] .brand-title,html[data-theme="dark"] .problem h1,html[data-theme="dark"] .section-title,html[data-theme="dark"] .results-head h2,html[data-theme="dark"] .editor-head strong,html[data-theme="dark"] .dialog-head strong,html[data-theme="dark"] .sample-explain-intro strong,html[data-theme="dark"] .learn-visual-title{color:var(--ink)}html[data-theme="dark"] .brand-subtitle,html[data-theme="dark"] .progress-wrap,html[data-theme="dark"] .runtime,html[data-theme="dark"] .source-link,html[data-theme="dark"] .kicker,html[data-theme="dark"] .meta,html[data-theme="dark"] .sample-box h4,html[data-theme="dark"] .sample-explain-intro small,html[data-theme="dark"] .editor-foot,html[data-theme="dark"] .hidden-test-label,html[data-theme="dark"] .history-item,html[data-theme="dark"] .hidden-tests-empty,html[data-theme="dark"] .history-empty{color:var(--muted)}html[data-theme="dark"] .runtime{background:#0b0b0b;border-color:#303030}html[data-theme="dark"] .problem p{color:#d8dde5}html[data-theme="dark"] .formal-input-item{background:#0b0b0b;color:#d8dde5;border-color:#292929}html[data-theme="dark"] .formal-input-item::before{background:#3a3a3a}html[data-theme="dark"] .problem code,html[data-theme="dark"] .dialog-body code{background:#101010;color:#dff9ff;border-color:#2c2c2c}html[data-theme="dark"] .level-strip,html[data-theme="dark"] .editor-head,html[data-theme="dark"] .editor-foot{background:#080808;border-color:#242424}html[data-theme="dark"] .status-pill{background:#0d0d0d;color:#cbd2dc;border-color:#303030}
+html[data-theme="dark"] .brand-title,html[data-theme="dark"] .problem h1,html[data-theme="dark"] .section-title,html[data-theme="dark"] .results-head h2,html[data-theme="dark"] .editor-head strong,html[data-theme="dark"] .dialog-head strong,html[data-theme="dark"] .sample-explain-intro strong,html[data-theme="dark"] .learn-visual-title{color:var(--ink)}html[data-theme="dark"] .brand-subtitle,html[data-theme="dark"] .progress-wrap,html[data-theme="dark"] .runtime,html[data-theme="dark"] .source-link,html[data-theme="dark"] .kicker,html[data-theme="dark"] .meta,html[data-theme="dark"] .sample-box h4,html[data-theme="dark"] .sample-explain-intro small,html[data-theme="dark"] .editor-foot,html[data-theme="dark"] .hidden-test-label,html[data-theme="dark"] .history-item,html[data-theme="dark"] .hidden-tests-empty,html[data-theme="dark"] .history-empty{color:var(--muted)}html[data-theme="dark"] .runtime{background:#0b0b0b;border-color:#303030}html[data-theme="dark"] .storage-warning{background:#1a1304;color:#f7d477;border-color:#6b5213}html[data-theme="dark"] .problem p{color:#d8dde5}html[data-theme="dark"] .problem code,html[data-theme="dark"] .dialog-body code{background:#101010;color:#dff9ff;border-color:#2c2c2c}html[data-theme="dark"] .level-strip,html[data-theme="dark"] .editor-head,html[data-theme="dark"] .editor-foot{background:#080808;border-color:#242424}html[data-theme="dark"] .status-pill{background:#0d0d0d;color:#cbd2dc;border-color:#303030}
 @media(max-width:720px){.terminal-workspace{grid-template-columns:1fr}.terminal-panel{border-right:0;border-bottom:1px solid #2b3649}.theme-control{max-width:100%}}
 @media(max-width:390px){.topbar{align-items:flex-start}.theme-control{margin-left:0}.theme-control label{display:none}.terminal-head{gap:6px}}
 @media(max-width:520px){.answer-variants.multi{grid-template-columns:repeat(var(--answer-count),minmax(300px,82vw));}}
@@ -469,6 +468,7 @@ html[data-theme="dark"] .tutorial-details,html[data-theme="dark"] .tutorial-cont
     <div class="theme-control"><label for="themeSelect">主題</label><select id="themeSelect" aria-label="選擇介面主題"><option value="light">淺色</option><option value="dark">深色</option></select></div>
     <button class="btn" id="exportRecordsBtn" type="button" title="匯出本題草稿、AC 進度與提交紀錄">匯出作答紀錄</button>
     <button class="btn" id="importRecordsBtn" type="button" title="從 JSON 匯入本題作答紀錄">匯入作答紀錄</button>
+    <span class="storage-warning" id="storageWarning" hidden>進度只保存在本次開啟；請匯出作答紀錄備份。</span>
     <input id="importRecordsInput" type="file" accept="application/json,.json" hidden aria-label="選擇作答紀錄 JSON 檔案">
     <button class="btn danger" id="clearAllBtn" type="button" title="清除所有題目草稿、AC 進度與提交紀錄">清除所有紀錄</button>
     <a class="source-link" href="https://zerojudge.tw/ShowProblem?problemid=o077" target="_blank" rel="noopener">原題</a>
@@ -528,7 +528,7 @@ html[data-theme="dark"] .tutorial-details,html[data-theme="dark"] .tutorial-cont
     </div>
     <div class="editor-foot">
       <span>Tab：移到下一個 4 欄定位點｜Shift+Tab：反縮排｜行首 Backspace：一次刪除 4 空白｜Ctrl+/：切換單行／多行註解｜Ctrl+Space / Alt+/：補全｜F9：執行｜Ctrl+Enter：提交</span>
-      <span>F9：互動式 TERMINAL，input() 需要手動輸入｜Ctrl+D / EOF：結束 stdin｜執行中按「停止」可終止｜提交固定使用正式測資｜ZeroJudge Tolerant：忽略空白行與每行前後空白｜提交每筆上限 2.5 秒</span>
+      <span>F9：互動式 TERMINAL，input() 需要手動輸入｜Ctrl+D / EOF：結束 stdin｜執行中按「停止」可終止｜提交固定使用正式測資｜輸出比對方式依本題設定｜提交每筆上限 2.5 秒</span>
     </div>
   </section>
 </main>
@@ -538,16 +538,16 @@ html[data-theme="dark"] .tutorial-details,html[data-theme="dark"] .tutorial-cont
   <div class="dialog-body"><div id="answerVariants" class="answer-variants single"></div></div>
 </dialog>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.18/codemirror.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.18/mode/python/python.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.18/addon/edit/closebrackets.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.18/addon/edit/matchbrackets.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.18/addon/hint/show-hint.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.21/codemirror.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.21/mode/python/python.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.21/addon/edit/closebrackets.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.21/addon/edit/matchbrackets.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.21/addon/hint/show-hint.min.js"></script>
 <script>
-const OJ_META={"source":{"url":"https://zerojudge.tw/ShowProblem?problemid=o077","platform":"ZeroJudge","problemId":"o077"},"storage":{"schema":22,"namespace":"o077_step_oj","legacyAcceptedKey":"o077_step_oj_accepted","legacyHistoryKey":"o077_step_oj_history","legacyDraftPrefix":"o077_step_oj_v001_code_"}};
+const OJ_META={"source":{"url":"https://zerojudge.tw/ShowProblem?problemid=o077","platform":"ZeroJudge","problemId":"o077"},"storage":{"schema":22,"namespace":"o077_step_oj","legacyAcceptedKey":"o077_step_oj_accepted","legacyHistoryKey":"o077_step_oj_history","legacyDraftPrefix":"o077_step_oj_v001_code_"},"judge":{"compareMode":"tolerant"}};
 const OFFICIAL_SOURCE=OJ_META.source;
 let sourceStageActive=true;
-const TASKS = [{"id":1,"title":"一維畫布的一次塗色","difficulty":"入門","statement":"有長度 W 的一維畫布，初值全為 0。一次畫筆停在位置 c、時間 t、顏色 x；所有滿足 |j-c|≤t 的位置都加上 x。請輸出畫布。","input":"第一行有一個正整數 W，表示一維畫布共有 W 個位置，位置編號為 0 到 W-1，初始值皆為 0。第二行有三個整數 c、t、x，其中 c 是畫筆中心位置，t≥0 是影響距離，x 是範圍內每個位置要增加的顏色值。","output":"輸出 W 個整數。","sampleIn":"7\n3 2 5","sampleOut":"0 5 5 5 5 5 0","sampleExplain":"    <div class=\"demo-story\"><div class=\"demo-viewport\"><section class=\"demo-step\"><p>位置 0、6 距離中心 3 都是 3，超過 t=2，所以保持 0。</p><pre>W=7, c=3, t=2\n可塗位置：1 2 3 4 5\n結果：0 5 5 5 5 5 0</pre></section><section class=\"demo-step\"><p>依照核心規則完成處理。</p></section><section class=\"demo-step\"><p>核對輸出格式。</p></section></div></div>","starter":"","answer":"w = int(input())\nc, t, x = map(int, input().split())\na = [0] * w\n\n# 一維畫布只要比較欄座標的距離是否不超過 t。\nfor j in range(w):\n    if abs(j - c) <= t:\n        a[j] += x\n\nprint(*a)","tests":[{"input":"7\n3 2 5\n","output":"0 5 5 5 5 5 0\n","public":true,"sampleRole":"primary","sampleOrigin":"task","qaPurpose":"本階主要公開範例"},{"input":"6\n5 3 2\n","output":"0 0 2 2 2 2\n","public":true,"sampleRole":"secondary","sampleOrigin":"task","qaPurpose":"本階第二公開案例"},{"input":"5\n0 0 9\n","output":"9 0 0 0 0\n","qaPurpose":"第二公開案例走不同邊界或分支","public":true,"sampleRole":"special","sampleOrigin":"special"},{"input":"4\n1 10 1\n","output":"1 1 1 1\n"}],"generatedTests":[{"input":"8\n4 1 7\n","output":"0 0 0 7 7 7 0 0\n","generated":true},{"input":"3\n1 2 4\n","output":"4 4 4\n","generated":true}],"tutorial":"    <div class=\"tutorial-body\">\n      <section class=\"tutorial-card tutorial-goal\"><h3>1. 先知道這題在練什麼</h3>\n        <p>先把 H=1 時的距離概念簡化成一維絕對值。</p><p><strong>先備：</strong>會使用基本輸入、list、for、while 與 if；本階未用到的語法不必先學。</p>\n      </section>\n      <section class=\"tutorial-card tutorial-core\"><h3>2. 核心觀念與圖解</h3>\n        <p>一維時列座標都一樣，所以曼哈頓距離只剩 |j-c|；在半徑 t 內就加 x。</p>\n        <div class=\"tutorial-visual\"><div class=\"tutorial-visual-title\">本階實際資料怎麼變</div><pre>W=7, c=3, t=2\n可塗位置：1 2 3 4 5\n結果：0 5 5 5 5 5 0</pre></div>\n      </section>\n      <section class=\"tutorial-card tutorial-worked\"><h3>3. 跟著做一個小例子</h3><p>位置 0、6 距離中心 3 都是 3，超過 t=2，所以保持 0。</p></section>\n      <section class=\"tutorial-card tutorial-plan\"><h3>4. 先把程式拆成幾塊</h3><ol><li>建立 W 個 0。</li><li>逐一檢查 j。</li><li>若 abs(j-c)<=t 就加 x。</li><li>輸出整列。</li></ol></section>\n      <section class=\"tutorial-card tutorial-code\"><h3>5. Python 一段一段怎麼寫</h3>\n        <div class=\"tutorial-code-step\"><strong>步驟 A</strong><p>距離條件直接對應題目。</p><pre class=\"tutorial-code-snippet\">if abs(j - c) <= t:\n    a[j] += x</pre></div>\n        <div class=\"tutorial-code-step\"><strong>步驟 B</strong><p>只需要掃一遍所有欄位置。</p><pre class=\"tutorial-code-snippet\">for j in range(w):\n    ...</pre></div>\n        <p class=\"tutorial-code-note\">這些片段只示範本階核心寫法；請依照前面的資料流自行把輸入、處理與輸出接成完整程式。</p>\n      </section>\n      <section class=\"tutorial-card tutorial-check\"><h3>6. 常見錯誤與自我檢查</h3><ul><li>邊界不需要特判，因為 j 本來就在 0..W-1。</li><li>距離要用 <=，剛好等於 t 也要塗。</li></ul></section>\n    </div>"},{"id":2,"title":"一維畫布的多次累加","difficulty":"基礎","statement":"有長度 W 的一維畫布，初值全為 0。接著有 N 次操作，每次給 c、t、x，範圍內位置都在目前值上再加 x。請輸出最後畫布。","input":"第一行有兩個正整數 W、N，W 是一維畫布位置數量（編號 0 到 W-1），N 是操作次數；畫布初始全為 0。接下來 N 行各有 c、t、x，表示一次操作的中心位置 c、非負影響距離 t，以及範圍內每個位置要增加的值 x。","output":"輸出 W 個整數。","sampleIn":"8 3\n2 1 4\n5 2 3\n3 0 5","sampleOut":"0 4 4 12 3 3 3 3","sampleExplain":"    <div class=\"demo-story\"><div class=\"demo-viewport\"><section class=\"demo-step\"><p>觀察位置 3 同時被三次操作命中，所以最後累積 12。</p><pre>第1筆塗 1..3 加4\n第2筆塗 3..7 加3\n第3筆只塗 3 加5\n位置3 = 4+3+5 = 12</pre></section><section class=\"demo-step\"><p>依照核心規則完成處理。</p></section><section class=\"demo-step\"><p>核對輸出格式。</p></section></div></div>","starter":"","answer":"w, n = map(int, input().split())\na = [0] * w\n\n# 每次畫筆都直接加在同一個 a 上，重疊位置自然會累加。\nfor _ in range(n):\n    c, t, x = map(int, input().split())\n    for j in range(w):\n        if abs(j - c) <= t:\n            a[j] += x\n\nprint(*a)","tests":[{"input":"8 3\n2 1 4\n5 2 3\n3 0 5\n","output":"0 4 4 12 3 3 3 3\n","public":true,"sampleRole":"primary","sampleOrigin":"task","qaPurpose":"本階主要公開範例"},{"input":"6 3\n2 10 1\n2 0 4\n3 1 2\n","output":"1 1 7 3 3 1\n","public":true,"sampleRole":"secondary","sampleOrigin":"task","qaPurpose":"本階第二公開案例"},{"input":"5 2\n0 0 2\n4 0 7\n","output":"2 0 0 0 7\n","qaPurpose":"第二公開案例走不同邊界或分支","public":true,"sampleRole":"special","sampleOrigin":"special"},{"input":"1 4\n0 0 1\n0 0 2\n0 0 3\n0 0 4\n","output":"10\n"}],"generatedTests":[{"input":"10 2\n4 3 2\n7 1 5\n","output":"0 2 2 2 2 2 7 7 5 0\n","generated":true},{"input":"4 3\n1 1 3\n2 1 4\n0 2 1\n","output":"4 8 8 4\n","generated":true}],"tutorial":"    <div class=\"tutorial-body\">\n      <section class=\"tutorial-card tutorial-goal\"><h3>1. 先知道這題在練什麼</h3>\n        <p>加入第二個核心：重疊區域不是覆蓋，而是累加。</p><p><strong>先備：</strong>會使用基本輸入、list、for、while 與 if；本階未用到的語法不必先學。</p>\n      </section>\n      <section class=\"tutorial-card tutorial-core\"><h3>2. 核心觀念與圖解</h3>\n        <p>畫布 a 只初始化一次。每次操作都在同一個 a 上做 +=x，因此被多支畫筆涵蓋的位置會自然得到總和。</p>\n        <div class=\"tutorial-visual\"><div class=\"tutorial-visual-title\">本階實際資料怎麼變</div><pre>第1筆塗 1..3 加4\n第2筆塗 3..7 加3\n第3筆只塗 3 加5\n位置3 = 4+3+5 = 12</pre></div>\n      </section>\n      <section class=\"tutorial-card tutorial-worked\"><h3>3. 跟著做一個小例子</h3><p>觀察位置 3 同時被三次操作命中，所以最後累積 12。</p></section>\n      <section class=\"tutorial-card tutorial-plan\"><h3>4. 先把程式拆成幾塊</h3><ol><li>初始化一次 a。</li><li>外層跑 N 次操作。</li><li>每筆操作內掃所有 j。</li><li>符合距離就 +=x。</li></ol></section>\n      <section class=\"tutorial-card tutorial-code\"><h3>5. Python 一段一段怎麼寫</h3>\n        <div class=\"tutorial-code-step\"><strong>步驟 A</strong><p>a 放在外層之前，不能每次重新歸零。</p><pre class=\"tutorial-code-snippet\">a = [0] * w\nfor _ in range(n):</pre></div>\n        <div class=\"tutorial-code-step\"><strong>步驟 B</strong><p>使用 += 才會保留之前的顏色值。</p><pre class=\"tutorial-code-snippet\">if abs(j - c) <= t:\n    a[j] += x</pre></div>\n        <p class=\"tutorial-code-note\">這些片段只示範本階核心寫法；請依照前面的資料流自行把輸入、處理與輸出接成完整程式。</p>\n      </section>\n      <section class=\"tutorial-card tutorial-check\"><h3>6. 常見錯誤與自我檢查</h3><ul><li>不要在每次操作內重新建立 a。</li><li>題目是累加，不是 a[j]=x。</li></ul></section>\n    </div>"},{"id":3,"title":"二維畫布的一次曼哈頓菱形","difficulty":"進階","statement":"有 H×W 畫布，初值全為 0。一次操作位於 (r,c)，將所有滿足 |i-r|+|j-c|≤t 的格子加上 x。請輸出整張畫布。","input":"第一行有兩個正整數 H、W，分別表示二維畫布列數與欄數；列、欄座標都從 0 開始，初始值皆為 0。第二行有 r、c、t、x，其中 (r,c) 是操作中心，t≥0 是曼哈頓距離半徑，x 是所有受影響格子要增加的值。","output":"輸出 H 行，每行 W 個整數。","sampleIn":"5 5\n2 2 2 1","sampleOut":"0 0 1 0 0\n0 1 1 1 0\n1 1 1 1 1\n0 1 1 1 0\n0 0 1 0 0","sampleExplain":"    <div class=\"demo-story\"><div class=\"demo-viewport\"><section class=\"demo-step\"><p>例如 (0,2) 的距離是 2，可以塗；(0,0) 距離 4，不能塗。</p><pre>中心 (2,2), t=2\n距離0：中心\n距離1：上下左右\n距離2：再外一圈\n形成菱形</pre></section><section class=\"demo-step\"><p>依照核心規則完成處理。</p></section><section class=\"demo-step\"><p>核對輸出格式。</p></section></div></div>","starter":"","answer":"h, w = map(int, input().split())\nr, c, t, x = map(int, input().split())\na = [[0] * w for _ in range(h)]\n\n# 二維曼哈頓距離是列差絕對值加上欄差絕對值。\nfor i in range(h):\n    for j in range(w):\n        d = abs(i - r) + abs(j - c)\n        if d <= t:\n            a[i][j] += x\n\nfor row in a:\n    print(*row)","tests":[{"input":"5 5\n2 2 2 1\n","output":"0 0 1 0 0\n0 1 1 1 0\n1 1 1 1 1\n0 1 1 1 0\n0 0 1 0 0\n","public":true,"sampleRole":"primary","sampleOrigin":"task","qaPurpose":"本階主要公開範例"},{"input":"3 4\n0 3 2 2\n","output":"0 2 2 2\n0 0 2 2\n0 0 0 2\n","public":true,"sampleRole":"secondary","sampleOrigin":"task","qaPurpose":"本階第二公開案例"},{"input":"2 3\n0 0 0 7\n","output":"7 0 0\n0 0 0\n","qaPurpose":"第二公開案例走不同邊界或分支","public":true,"sampleRole":"special","sampleOrigin":"special"},{"input":"1 5\n0 2 1 9\n","output":"0 9 9 9 0\n"}],"generatedTests":[{"input":"4 4\n1 1 1 3\n","output":"0 3 0 0\n3 3 3 0\n0 3 0 0\n0 0 0 0\n","generated":true},{"input":"3 6\n2 0 3 2\n","output":"2 2 0 0 0 0\n2 2 2 0 0 0\n2 2 2 2 0 0\n","generated":true}],"tutorial":"    <div class=\"tutorial-body\">\n      <section class=\"tutorial-card tutorial-goal\"><h3>1. 先知道這題在練什麼</h3>\n        <p>從一維升到二維，真正使用曼哈頓距離形成菱形。</p><p><strong>先備：</strong>會使用基本輸入、list、for、while 與 if；本階未用到的語法不必先學。</p>\n      </section>\n      <section class=\"tutorial-card tutorial-core\"><h3>2. 核心觀念與圖解</h3>\n        <p>對每個格子 (i,j) 計算 abs(i-r)+abs(j-c)。這個值不超過 t 就在該格加 x。</p>\n        <div class=\"tutorial-visual\"><div class=\"tutorial-visual-title\">本階實際資料怎麼變</div><pre>中心 (2,2), t=2\n距離0：中心\n距離1：上下左右\n距離2：再外一圈\n形成菱形</pre></div>\n      </section>\n      <section class=\"tutorial-card tutorial-worked\"><h3>3. 跟著做一個小例子</h3><p>例如 (0,2) 的距離是 2，可以塗；(0,0) 距離 4，不能塗。</p></section>\n      <section class=\"tutorial-card tutorial-plan\"><h3>4. 先把程式拆成幾塊</h3><ol><li>建立 H×W 的 0。</li><li>雙層迴圈枚舉 (i,j)。</li><li>計算曼哈頓距離。</li><li>符合條件就加 x，最後逐列輸出。</li></ol></section>\n      <section class=\"tutorial-card tutorial-code\"><h3>5. Python 一段一段怎麼寫</h3>\n        <div class=\"tutorial-code-step\"><strong>步驟 A</strong><p>列差和欄差都要取絕對值再相加。</p><pre class=\"tutorial-code-snippet\">d = abs(i - r) + abs(j - c)</pre></div>\n        <div class=\"tutorial-code-step\"><strong>步驟 B</strong><p>菱形邊界 d==t 也屬於塗色範圍。</p><pre class=\"tutorial-code-snippet\">if d <= t:\n    a[i][j] += x</pre></div>\n        <p class=\"tutorial-code-note\">這些片段只示範本階核心寫法；請依照前面的資料流自行把輸入、處理與輸出接成完整程式。</p>\n      </section>\n      <section class=\"tutorial-card tutorial-check\"><h3>6. 常見錯誤與自我檢查</h3><ul><li>不要用歐幾里得距離平方。</li><li>row/column 都要納入距離。</li></ul></section>\n    </div>"},{"id":4,"title":"多次操作下追蹤單一格","difficulty":"整合","statement":"有 H×W 畫布與 N 次畫筆操作，但本階只詢問一個格子 (qr,qc) 的最後值。每次操作 (r,c,t,x) 若查詢格與中心曼哈頓距離≤t，就把 x 累加到答案。","input":"第一行有五個整數 H、W、N、qr、qc，其中 H、W 是畫布列數與欄數，N 是操作次數，(qr,qc) 是要查詢的 0 起算合法格子；畫布初始全為 0。接下來 N 行各有 r、c、t、x，(r,c) 是操作中心，t≥0 是曼哈頓距離半徑，x 是受影響格子要增加的值。","output":"輸出查詢格最後的數值。","sampleIn":"6 7 3 1 3\n3 2 2 1\n1 6 1 2\n1 3 2 5","sampleOut":"5","sampleExplain":"    <div class=\"demo-story\"><div class=\"demo-viewport\"><section class=\"demo-step\"><p>這個查詢格只被第三次操作覆蓋，因此最後值為 5。</p><pre>查詢 (1,3)\n操作1 距離3 >2：不加\n操作2 距離3 >1：不加\n操作3 距離0 <=2：+5\n答案5</pre></section><section class=\"demo-step\"><p>依照核心規則完成處理。</p></section><section class=\"demo-step\"><p>核對輸出格式。</p></section></div></div>","starter":"","answer":"h, w, n, qr, qc = map(int, input().split())\nvalue = 0\n\n# 只追蹤查詢格，不需要建立整張畫布；每次判斷它是否落在菱形範圍內。\nfor _ in range(n):\n    r, c, t, x = map(int, input().split())\n    d = abs(qr - r) + abs(qc - c)\n    if d <= t:\n        value += x\n\nprint(value)","tests":[{"input":"6 7 3 1 3\n3 2 2 1\n1 6 1 2\n1 3 2 5\n","output":"5\n","public":true,"sampleRole":"primary","sampleOrigin":"task","qaPurpose":"本階主要公開範例"},{"input":"1 5 3 0 2\n0 0 4 1\n0 4 2 2\n0 2 0 9\n","output":"12\n","public":true,"sampleRole":"secondary","sampleOrigin":"task","qaPurpose":"本階第二公開案例"},{"input":"3 3 2 0 0\n2 2 1 5\n1 1 1 7\n","output":"0\n","qaPurpose":"第二公開案例走不同邊界或分支","public":true,"sampleRole":"special","sampleOrigin":"special"},{"input":"4 4 1 3 3\n0 0 2 8\n","output":"0\n"}],"generatedTests":[{"input":"5 5 4 2 2\n2 2 0 3\n0 2 2 4\n4 2 2 5\n2 4 2 6\n","output":"18\n","generated":true},{"input":"2 6 2 1 5\n0 0 10 1\n1 5 0 7\n","output":"8\n","generated":true}],"tutorial":"    <div class=\"tutorial-body\">\n      <section class=\"tutorial-card tutorial-goal\"><h3>1. 先知道這題在練什麼</h3>\n        <p>先把「N 次 2D 操作的累加」學會，但只維護一個查詢值，讓條件判斷更容易追。</p><p><strong>先備：</strong>會使用基本輸入、list、for、while 與 if；本階未用到的語法不必先學。</p>\n      </section>\n      <section class=\"tutorial-card tutorial-core\"><h3>2. 核心觀念與圖解</h3>\n        <p>每筆操作只需問：查詢格是否在該筆畫筆的曼哈頓菱形內。若在就 value += x。</p>\n        <div class=\"tutorial-visual\"><div class=\"tutorial-visual-title\">本階實際資料怎麼變</div><pre>查詢 (1,3)\n操作1 距離3 >2：不加\n操作2 距離3 >1：不加\n操作3 距離0 <=2：+5\n答案5</pre></div>\n      </section>\n      <section class=\"tutorial-card tutorial-worked\"><h3>3. 跟著做一個小例子</h3><p>這個查詢格只被第三次操作覆蓋，因此最後值為 5。</p></section>\n      <section class=\"tutorial-card tutorial-plan\"><h3>4. 先把程式拆成幾塊</h3><ol><li>讀查詢格。</li><li>逐筆讀 N 次操作。</li><li>計算查詢格到中心距離。</li><li>命中就累加 value。</li></ol></section>\n      <section class=\"tutorial-card tutorial-code\"><h3>5. Python 一段一段怎麼寫</h3>\n        <div class=\"tutorial-code-step\"><strong>步驟 A</strong><p>距離公式和二維畫布完全相同。</p><pre class=\"tutorial-code-snippet\">d = abs(qr - r) + abs(qc - c)</pre></div>\n        <div class=\"tutorial-code-step\"><strong>步驟 B</strong><p>只追蹤一格，因此不需要建立 H×W 陣列。</p><pre class=\"tutorial-code-snippet\">if d <= t:\n    value += x</pre></div>\n        <p class=\"tutorial-code-note\">這些片段只示範本階核心寫法；請依照前面的資料流自行把輸入、處理與輸出接成完整程式。</p>\n      </section>\n      <section class=\"tutorial-card tutorial-check\"><h3>6. 常見錯誤與自我檢查</h3><ul><li>不要把 x 覆蓋掉先前累加值。</li><li>qr/qc 是固定查詢座標，不會隨操作改變。</li></ul></section>\n    </div>"},{"id":5,"title":"原題：電子畫布","difficulty":"原題","statement":"有 H×W 電子畫布，初始每格為 0。共有 N 次操作；每次在 (r,c) 停留 t 秒並以顏色值 x 塗色，所有曼哈頓距離≤t 的格子都加上 x。多次塗到同一格時數值累加。請輸出 N 次操作後的完整畫布。","input":"第一行有三個正整數 H、W、N（1≤H,W≤20、1≤N≤100），分別表示畫布列數、欄數與操作次數；列、欄座標皆從 0 開始，畫布初始值全為 0。接下來 N 行各有 r、c、t、x，其中 (r,c) 是操作中心，t 是影響的曼哈頓距離上限，x 是所有受影響格子要增加的顏色值。","output":"輸出 H 行，每行 W 個整數。","sampleIn":"1 20 3\n0 13 5 7\n0 6 4 4\n0 13 12 6","sampleOut":"0 6 10 10 10 10 10 10 17 17 17 13 13 13 13 13 13 13 13 6","sampleExplain":"    <div class=\"demo-story\"><div class=\"demo-viewport\"><section class=\"demo-step\"><p>例如位置 8 同時被三次操作涵蓋，所以最後是 7+4+6=17。</p><pre>官方 #1 是一列 20 格\n三個菱形在 H=1 時退化為區間\n重疊區域把 7、4、6 依命中情況相加</pre></section><section class=\"demo-step\"><p>依照核心規則完成處理。</p></section><section class=\"demo-step\"><p>核對輸出格式。</p></section></div></div>","starter":"","answer":"h, w, n = map(int, input().split())\na = [[0] * w for _ in range(h)]\n\n# 所有操作都累加到同一張畫布，不能在下一次操作前把 a 清空。\nfor _ in range(n):\n    r, c, t, x = map(int, input().split())\n    for i in range(h):\n        for j in range(w):\n            d = abs(i - r) + abs(j - c)\n            if d <= t:\n                a[i][j] += x\n\n# 最後依列輸出整張畫布。\nfor row in a:\n    print(*row)","tests":[{"input":"1 20 3\n0 13 5 7\n0 6 4 4\n0 13 12 6\n","output":"0 6 10 10 10 10 10 10 17 17 17 13 13 13 13 13 13 13 13 6\n","public":true,"sampleRole":"primary","sampleOrigin":"official","qaPurpose":"官方公開範例 #1"},{"input":"6 7 3\n3 2 2 1\n1 6 1 2\n1 3 2 5\n","output":"0 0 5 5 5 0 2\n0 5 6 5 5 7 2\n0 1 6 6 5 0 2\n1 1 1 6 1 0 0\n0 1 1 1 0 0 0\n0 0 1 0 0 0 0\n","qaPurpose":"第二公開案例走不同邊界或分支","public":true,"sampleRole":"secondary","sampleOrigin":"official"},{"input":"2 2 1\n0 0 0 9\n","output":"9 0\n0 0\n","public":true,"sampleRole":"special","sampleOrigin":"special","qaPurpose":"第三公開範例：邊界／特殊值／不同狀態路徑"},{"input":"3 4 3\n1 1 1 2\n0 3 2 5\n2 0 3 1\n","output":"1 8 5 5\n3 3 8 5\n1 3 1 6\n"}],"generatedTests":[{"input":"4 5 4\n0 0 2 1\n3 4 3 2\n1 2 0 7\n2 1 1 4\n","output":"1 1 1 0 2\n1 5 7 2 2\n5 4 6 2 2\n0 6 2 2 2\n","generated":true},{"input":"1 6 2\n0 0 10 3\n0 5 0 8\n","output":"3 3 3 3 3 11\n","generated":true}],"tutorial":"    <div class=\"tutorial-body\">\n      <section class=\"tutorial-card tutorial-goal\"><h3>1. 先知道這題在練什麼</h3>\n        <p>完整整合二維曼哈頓距離與 N 次累加，最後維護整張畫布。</p><p><strong>先備：</strong>會使用基本輸入、list、for、while 與 if；本階未用到的語法不必先學。</p>\n      </section>\n      <section class=\"tutorial-card tutorial-core\"><h3>2. 核心觀念與圖解</h3>\n        <p>外層依序處理 N 次操作；每筆操作用雙層迴圈掃 H×W，距離≤t 的格子就 +=x。H、W≤20、N≤100，這個 O(NHW) 直接模擬足夠。</p>\n        <div class=\"tutorial-visual\"><div class=\"tutorial-visual-title\">本階實際資料怎麼變</div><pre>官方 #1 是一列 20 格\n三個菱形在 H=1 時退化為區間\n重疊區域把 7、4、6 依命中情況相加</pre></div>\n      </section>\n      <section class=\"tutorial-card tutorial-worked\"><h3>3. 跟著做一個小例子</h3><p>例如位置 8 同時被三次操作涵蓋，所以最後是 7+4+6=17。</p></section>\n      <section class=\"tutorial-card tutorial-plan\"><h3>4. 先把程式拆成幾塊</h3><ol><li>建立 H×W 畫布。</li><li>依序讀 N 次操作。</li><li>每次掃所有格計算曼哈頓距離。</li><li>命中就 +=x，最後逐列輸出。</li></ol></section>\n      <section class=\"tutorial-card tutorial-code\"><h3>5. Python 一段一段怎麼寫</h3>\n        <div class=\"tutorial-code-step\"><strong>步驟 A</strong><p>二維 list 每一列要是獨立物件。</p><pre class=\"tutorial-code-snippet\">a = [[0] * w for _ in range(h)]</pre></div>\n        <div class=\"tutorial-code-step\"><strong>步驟 B</strong><p>距離判斷與累加是原題核心。</p><pre class=\"tutorial-code-snippet\">d = abs(i - r) + abs(j - c)\nif d <= t:\n    a[i][j] += x</pre></div>\n        <p class=\"tutorial-code-note\">這些片段只示範本階核心寫法；請依照前面的資料流自行把輸入、處理與輸出接成完整程式。</p>\n      </section>\n      <section class=\"tutorial-card tutorial-check\"><h3>6. 常見錯誤與自我檢查</h3><ul><li>不要寫成 [[0]*w]*h 後再原地修改列元素。</li><li>多次操作必須共享同一張 a。</li></ul></section>\n    </div>"}];
+const TASKS = [{"id":1,"title":"一維畫布的一次塗色","difficulty":"入門","statement":"有長度 W 的一維畫布，初值全為 0。一次畫筆停在位置 c、時間 t、顏色 x；所有滿足 |j-c|≤t 的位置都加上 x。請輸出畫布。","input":"第一行有一個正整數 W，表示一維畫布共有 W 個位置，位置編號為 0 到 W-1，初始值皆為 0。第二行有三個整數 c、t、x，其中 c 是畫筆中心位置，t≥0 是影響距離，x 是範圍內每個位置要增加的顏色值。","output":"依位置 0 到 W-1 的順序輸出 W 個整數；第 j 個整數表示一次塗色完成後位置 j 的數值。","sampleIn":"7\n3 2 5","sampleOut":"0 5 5 5 5 5 0","sampleExplain":"    <div class=\"demo-story\"><div class=\"demo-viewport\"><section class=\"demo-step\"><p>位置 0、6 距離中心 3 都是 3，超過 t=2，所以保持 0。</p><pre>W=7, c=3, t=2\n可塗位置：1 2 3 4 5\n結果：0 5 5 5 5 5 0</pre></section><section class=\"demo-step\"><p>依照核心規則完成處理。</p></section><section class=\"demo-step\"><p>核對輸出格式。</p></section></div></div>","starter":"","answer":"w = int(input())\nc, t, x = map(int, input().split())\na = [0] * w\n\n# 一維畫布只要比較欄座標的距離是否不超過 t。\nfor j in range(w):\n    if abs(j - c) <= t:\n        a[j] += x\n\nprint(*a)","tests":[{"input":"7\n3 2 5\n","output":"0 5 5 5 5 5 0\n","public":true,"sampleRole":"primary","sampleOrigin":"task","qaPurpose":"本階主要公開範例"},{"input":"6\n5 3 2\n","output":"0 0 2 2 2 2\n","public":true,"sampleRole":"secondary","sampleOrigin":"task","qaPurpose":"本階第二公開案例"},{"input":"5\n0 0 9\n","output":"9 0 0 0 0\n","qaPurpose":"第二公開案例走不同邊界或分支","public":true,"sampleRole":"special","sampleOrigin":"special"},{"input":"4\n1 10 1\n","output":"1 1 1 1\n"}],"generatedTests":[{"input":"8\n4 1 7\n","output":"0 0 0 7 7 7 0 0\n","generated":true},{"input":"3\n1 2 4\n","output":"4 4 4\n","generated":true}],"tutorial":"    <div class=\"tutorial-body\">\n      <section class=\"tutorial-card tutorial-goal\"><h3>1. 先知道這題在練什麼</h3>\n        <p>先把 H=1 時的距離概念簡化成一維絕對值。</p><p><strong>先備：</strong>會使用基本輸入、list、for、while 與 if；本階未用到的語法不必先學。</p>\n      </section>\n      <section class=\"tutorial-card tutorial-core\"><h3>2. 核心觀念與圖解</h3>\n        <p>一維時列座標都一樣，所以曼哈頓距離只剩 |j-c|；在半徑 t 內就加 x。</p>\n        <div class=\"tutorial-visual\"><div class=\"tutorial-visual-title\">本階實際資料怎麼變</div><pre>W=7, c=3, t=2\n可塗位置：1 2 3 4 5\n結果：0 5 5 5 5 5 0</pre></div>\n      </section>\n      <section class=\"tutorial-card tutorial-worked\"><h3>3. 跟著做一個小例子</h3><p>位置 0、6 距離中心 3 都是 3，超過 t=2，所以保持 0。</p></section>\n      <section class=\"tutorial-card tutorial-plan\"><h3>4. 先把程式拆成幾塊</h3><ol><li>建立 W 個 0。</li><li>逐一檢查 j。</li><li>若 abs(j-c)<=t 就加 x。</li><li>輸出整列。</li></ol></section>\n      <section class=\"tutorial-card tutorial-code\"><h3>5. Python 一段一段怎麼寫</h3>\n        <div class=\"tutorial-code-step\"><strong>步驟 A</strong><p>距離條件直接對應題目。</p><pre class=\"tutorial-code-snippet\">if abs(j - c) <= t:\n    a[j] += x</pre></div>\n        <div class=\"tutorial-code-step\"><strong>步驟 B</strong><p>只需要掃一遍所有欄位置。</p><pre class=\"tutorial-code-snippet\">for j in range(w):\n    ...</pre></div>\n        <p class=\"tutorial-code-note\">這些片段只示範本階核心寫法；請依照前面的資料流自行把輸入、處理與輸出接成完整程式。</p>\n      </section>\n      <section class=\"tutorial-card tutorial-check\"><h3>6. 常見錯誤與自我檢查</h3><ul><li>邊界不需要特判，因為 j 本來就在 0..W-1。</li><li>距離要用 <=，剛好等於 t 也要塗。</li></ul></section>\n    </div>","stageKey":"o077.a92365a0e45a","inputItems":[{"key":"in1","text":"第一行有一個正整數 W，表示一維畫布共有 W 個位置，位置編號為 0 到 W-1，初始值皆為 0。","meaningAndUseReviewed":true},{"key":"in2","text":"第二行有三個整數 c、t、x，其中 c 是畫筆中心位置，t≥0 是影響距離，x 是範圍內每個位置要增加的顏色值。","meaningAndUseReviewed":true}],"outputItems":[{"key":"out1","text":"依位置 0 到 W-1 的順序輸出 W 個整數；第 j 個整數表示一次塗色完成後位置 j 的數值。","meaningReviewed":true}]},{"id":2,"title":"一維畫布的多次累加","difficulty":"基礎","statement":"有長度 W 的一維畫布，初值全為 0。接著有 N 次操作，每次給 c、t、x，範圍內位置都在目前值上再加 x。請輸出最後畫布。","input":"第一行有兩個正整數 W、N，W 是一維畫布位置數量（編號 0 到 W-1），N 是操作次數；畫布初始全為 0。接下來 N 行各有 c、t、x，表示一次操作的中心位置 c、非負影響距離 t，以及範圍內每個位置要增加的值 x。","output":"依位置 0 到 W-1 的順序輸出 W 個整數；第 j 個整數表示全部 N 次操作完成後位置 j 的最終數值。","sampleIn":"8 3\n2 1 4\n5 2 3\n3 0 5","sampleOut":"0 4 4 12 3 3 3 3","sampleExplain":"    <div class=\"demo-story\"><div class=\"demo-viewport\"><section class=\"demo-step\"><p>觀察位置 3 同時被三次操作命中，所以最後累積 12。</p><pre>第1筆塗 1..3 加4\n第2筆塗 3..7 加3\n第3筆只塗 3 加5\n位置3 = 4+3+5 = 12</pre></section><section class=\"demo-step\"><p>依照核心規則完成處理。</p></section><section class=\"demo-step\"><p>核對輸出格式。</p></section></div></div>","starter":"","answer":"w, n = map(int, input().split())\na = [0] * w\n\n# 每次畫筆都直接加在同一個 a 上，重疊位置自然會累加。\nfor _ in range(n):\n    c, t, x = map(int, input().split())\n    for j in range(w):\n        if abs(j - c) <= t:\n            a[j] += x\n\nprint(*a)","tests":[{"input":"8 3\n2 1 4\n5 2 3\n3 0 5\n","output":"0 4 4 12 3 3 3 3\n","public":true,"sampleRole":"primary","sampleOrigin":"task","qaPurpose":"本階主要公開範例"},{"input":"6 3\n2 10 1\n2 0 4\n3 1 2\n","output":"1 1 7 3 3 1\n","public":true,"sampleRole":"secondary","sampleOrigin":"task","qaPurpose":"本階第二公開案例"},{"input":"5 2\n0 0 2\n4 0 7\n","output":"2 0 0 0 7\n","qaPurpose":"第二公開案例走不同邊界或分支","public":true,"sampleRole":"special","sampleOrigin":"special"},{"input":"1 4\n0 0 1\n0 0 2\n0 0 3\n0 0 4\n","output":"10\n"}],"generatedTests":[{"input":"10 2\n4 3 2\n7 1 5\n","output":"0 2 2 2 2 2 7 7 5 0\n","generated":true},{"input":"4 3\n1 1 3\n2 1 4\n0 2 1\n","output":"4 8 8 4\n","generated":true}],"tutorial":"    <div class=\"tutorial-body\">\n      <section class=\"tutorial-card tutorial-goal\"><h3>1. 先知道這題在練什麼</h3>\n        <p>加入第二個核心：重疊區域不是覆蓋，而是累加。</p><p><strong>先備：</strong>會使用基本輸入、list、for、while 與 if；本階未用到的語法不必先學。</p>\n      </section>\n      <section class=\"tutorial-card tutorial-core\"><h3>2. 核心觀念與圖解</h3>\n        <p>畫布 a 只初始化一次。每次操作都在同一個 a 上做 +=x，因此被多支畫筆涵蓋的位置會自然得到總和。</p>\n        <div class=\"tutorial-visual\"><div class=\"tutorial-visual-title\">本階實際資料怎麼變</div><pre>第1筆塗 1..3 加4\n第2筆塗 3..7 加3\n第3筆只塗 3 加5\n位置3 = 4+3+5 = 12</pre></div>\n      </section>\n      <section class=\"tutorial-card tutorial-worked\"><h3>3. 跟著做一個小例子</h3><p>觀察位置 3 同時被三次操作命中，所以最後累積 12。</p></section>\n      <section class=\"tutorial-card tutorial-plan\"><h3>4. 先把程式拆成幾塊</h3><ol><li>初始化一次 a。</li><li>外層跑 N 次操作。</li><li>每筆操作內掃所有 j。</li><li>符合距離就 +=x。</li></ol></section>\n      <section class=\"tutorial-card tutorial-code\"><h3>5. Python 一段一段怎麼寫</h3>\n        <div class=\"tutorial-code-step\"><strong>步驟 A</strong><p>a 放在外層之前，不能每次重新歸零。</p><pre class=\"tutorial-code-snippet\">a = [0] * w\nfor _ in range(n):</pre></div>\n        <div class=\"tutorial-code-step\"><strong>步驟 B</strong><p>使用 += 才會保留之前的顏色值。</p><pre class=\"tutorial-code-snippet\">if abs(j - c) <= t:\n    a[j] += x</pre></div>\n        <p class=\"tutorial-code-note\">這些片段只示範本階核心寫法；請依照前面的資料流自行把輸入、處理與輸出接成完整程式。</p>\n      </section>\n      <section class=\"tutorial-card tutorial-check\"><h3>6. 常見錯誤與自我檢查</h3><ul><li>不要在每次操作內重新建立 a。</li><li>題目是累加，不是 a[j]=x。</li></ul></section>\n    </div>","stageKey":"o077.e4ceb417b442","inputItems":[{"key":"in1","text":"第一行有兩個正整數 W、N，W 是一維畫布位置數量（編號 0 到 W-1），N 是操作次數；畫布初始全為 0。","meaningAndUseReviewed":true},{"key":"in2","text":"接下來 N 行各有 c、t、x，表示一次操作的中心位置 c、非負影響距離 t，以及範圍內每個位置要增加的值 x。","meaningAndUseReviewed":true}],"outputItems":[{"key":"out1","text":"依位置 0 到 W-1 的順序輸出 W 個整數；第 j 個整數表示全部 N 次操作完成後位置 j 的最終數值。","meaningReviewed":true}]},{"id":3,"title":"二維畫布的一次曼哈頓菱形","difficulty":"進階","statement":"有 H×W 畫布，初值全為 0。一次操作位於 (r,c)，將所有滿足 |i-r|+|j-c|≤t 的格子加上 x。請輸出整張畫布。","input":"第一行有兩個正整數 H、W，分別表示二維畫布列數與欄數；列、欄座標都從 0 開始，初始值皆為 0。第二行有 r、c、t、x，其中 (r,c) 是操作中心，t≥0 是曼哈頓距離半徑，x 是所有受影響格子要增加的值。","output":"輸出 H 行、每行 W 個整數；第 i 行第 j 個值表示一次操作完成後畫布座標 (i,j) 的數值。","sampleIn":"5 5\n2 2 2 1","sampleOut":"0 0 1 0 0\n0 1 1 1 0\n1 1 1 1 1\n0 1 1 1 0\n0 0 1 0 0","sampleExplain":"    <div class=\"demo-story\"><div class=\"demo-viewport\"><section class=\"demo-step\"><p>例如 (0,2) 的距離是 2，可以塗；(0,0) 距離 4，不能塗。</p><pre>中心 (2,2), t=2\n距離0：中心\n距離1：上下左右\n距離2：再外一圈\n形成菱形</pre></section><section class=\"demo-step\"><p>依照核心規則完成處理。</p></section><section class=\"demo-step\"><p>核對輸出格式。</p></section></div></div>","starter":"","answer":"h, w = map(int, input().split())\nr, c, t, x = map(int, input().split())\na = [[0] * w for _ in range(h)]\n\n# 二維曼哈頓距離是列差絕對值加上欄差絕對值。\nfor i in range(h):\n    for j in range(w):\n        d = abs(i - r) + abs(j - c)\n        if d <= t:\n            a[i][j] += x\n\nfor row in a:\n    print(*row)","tests":[{"input":"5 5\n2 2 2 1\n","output":"0 0 1 0 0\n0 1 1 1 0\n1 1 1 1 1\n0 1 1 1 0\n0 0 1 0 0\n","public":true,"sampleRole":"primary","sampleOrigin":"task","qaPurpose":"本階主要公開範例"},{"input":"3 4\n0 3 2 2\n","output":"0 2 2 2\n0 0 2 2\n0 0 0 2\n","public":true,"sampleRole":"secondary","sampleOrigin":"task","qaPurpose":"本階第二公開案例"},{"input":"2 3\n0 0 0 7\n","output":"7 0 0\n0 0 0\n","qaPurpose":"第二公開案例走不同邊界或分支","public":true,"sampleRole":"special","sampleOrigin":"special"},{"input":"1 5\n0 2 1 9\n","output":"0 9 9 9 0\n"}],"generatedTests":[{"input":"4 4\n1 1 1 3\n","output":"0 3 0 0\n3 3 3 0\n0 3 0 0\n0 0 0 0\n","generated":true},{"input":"3 6\n2 0 3 2\n","output":"2 2 0 0 0 0\n2 2 2 0 0 0\n2 2 2 2 0 0\n","generated":true}],"tutorial":"    <div class=\"tutorial-body\">\n      <section class=\"tutorial-card tutorial-goal\"><h3>1. 先知道這題在練什麼</h3>\n        <p>從一維升到二維，真正使用曼哈頓距離形成菱形。</p><p><strong>先備：</strong>會使用基本輸入、list、for、while 與 if；本階未用到的語法不必先學。</p>\n      </section>\n      <section class=\"tutorial-card tutorial-core\"><h3>2. 核心觀念與圖解</h3>\n        <p>對每個格子 (i,j) 計算 abs(i-r)+abs(j-c)。這個值不超過 t 就在該格加 x。</p>\n        <div class=\"tutorial-visual\"><div class=\"tutorial-visual-title\">本階實際資料怎麼變</div><pre>中心 (2,2), t=2\n距離0：中心\n距離1：上下左右\n距離2：再外一圈\n形成菱形</pre></div>\n      </section>\n      <section class=\"tutorial-card tutorial-worked\"><h3>3. 跟著做一個小例子</h3><p>例如 (0,2) 的距離是 2，可以塗；(0,0) 距離 4，不能塗。</p></section>\n      <section class=\"tutorial-card tutorial-plan\"><h3>4. 先把程式拆成幾塊</h3><ol><li>建立 H×W 的 0。</li><li>雙層迴圈枚舉 (i,j)。</li><li>計算曼哈頓距離。</li><li>符合條件就加 x，最後逐列輸出。</li></ol></section>\n      <section class=\"tutorial-card tutorial-code\"><h3>5. Python 一段一段怎麼寫</h3>\n        <div class=\"tutorial-code-step\"><strong>步驟 A</strong><p>列差和欄差都要取絕對值再相加。</p><pre class=\"tutorial-code-snippet\">d = abs(i - r) + abs(j - c)</pre></div>\n        <div class=\"tutorial-code-step\"><strong>步驟 B</strong><p>菱形邊界 d==t 也屬於塗色範圍。</p><pre class=\"tutorial-code-snippet\">if d <= t:\n    a[i][j] += x</pre></div>\n        <p class=\"tutorial-code-note\">這些片段只示範本階核心寫法；請依照前面的資料流自行把輸入、處理與輸出接成完整程式。</p>\n      </section>\n      <section class=\"tutorial-card tutorial-check\"><h3>6. 常見錯誤與自我檢查</h3><ul><li>不要用歐幾里得距離平方。</li><li>row/column 都要納入距離。</li></ul></section>\n    </div>","stageKey":"o077.396a79385ea7","inputItems":[{"key":"in1","text":"第一行有兩個正整數 H、W，分別表示二維畫布列數與欄數；列、欄座標都從 0 開始，初始值皆為 0。","meaningAndUseReviewed":true},{"key":"in2","text":"第二行有 r、c、t、x，其中 (r,c) 是操作中心，t≥0 是曼哈頓距離半徑，x 是所有受影響格子要增加的值。","meaningAndUseReviewed":true}],"outputItems":[{"key":"out1","text":"輸出 H 行、每行 W 個整數；第 i 行第 j 個值表示一次操作完成後畫布座標 (i,j) 的數值。","meaningReviewed":true}]},{"id":4,"title":"多次操作下追蹤單一格","difficulty":"整合","statement":"有 H×W 畫布與 N 次畫筆操作，但本階只詢問一個格子 (qr,qc) 的最後值。每次操作 (r,c,t,x) 若查詢格與中心曼哈頓距離≤t，就把 x 累加到答案。","input":"第一行有五個整數 H、W、N、qr、qc，其中 H、W 是畫布列數與欄數，N 是操作次數，(qr,qc) 是要查詢的 0 起算合法格子；畫布初始全為 0。接下來 N 行各有 r、c、t、x，(r,c) 是操作中心，t≥0 是曼哈頓距離半徑，x 是受影響格子要增加的值。","output":"輸出一個整數，表示全部 N 次操作完成後查詢格 (qr,qc) 的最終數值。","sampleIn":"6 7 3 1 3\n3 2 2 1\n1 6 1 2\n1 3 2 5","sampleOut":"5","sampleExplain":"    <div class=\"demo-story\"><div class=\"demo-viewport\"><section class=\"demo-step\"><p>這個查詢格只被第三次操作覆蓋，因此最後值為 5。</p><pre>查詢 (1,3)\n操作1 距離3 >2：不加\n操作2 距離3 >1：不加\n操作3 距離0 <=2：+5\n答案5</pre></section><section class=\"demo-step\"><p>依照核心規則完成處理。</p></section><section class=\"demo-step\"><p>核對輸出格式。</p></section></div></div>","starter":"","answer":"h, w, n, qr, qc = map(int, input().split())\nvalue = 0\n\n# 只追蹤查詢格，不需要建立整張畫布；每次判斷它是否落在菱形範圍內。\nfor _ in range(n):\n    r, c, t, x = map(int, input().split())\n    d = abs(qr - r) + abs(qc - c)\n    if d <= t:\n        value += x\n\nprint(value)","tests":[{"input":"6 7 3 1 3\n3 2 2 1\n1 6 1 2\n1 3 2 5\n","output":"5\n","public":true,"sampleRole":"primary","sampleOrigin":"task","qaPurpose":"本階主要公開範例"},{"input":"1 5 3 0 2\n0 0 4 1\n0 4 2 2\n0 2 0 9\n","output":"12\n","public":true,"sampleRole":"secondary","sampleOrigin":"task","qaPurpose":"本階第二公開案例"},{"input":"3 3 2 0 0\n2 2 1 5\n1 1 1 7\n","output":"0\n","qaPurpose":"第二公開案例走不同邊界或分支","public":true,"sampleRole":"special","sampleOrigin":"special"},{"input":"4 4 1 3 3\n0 0 2 8\n","output":"0\n"}],"generatedTests":[{"input":"5 5 4 2 2\n2 2 0 3\n0 2 2 4\n4 2 2 5\n2 4 2 6\n","output":"18\n","generated":true},{"input":"2 6 2 1 5\n0 0 10 1\n1 5 0 7\n","output":"8\n","generated":true}],"tutorial":"    <div class=\"tutorial-body\">\n      <section class=\"tutorial-card tutorial-goal\"><h3>1. 先知道這題在練什麼</h3>\n        <p>先把「N 次 2D 操作的累加」學會，但只維護一個查詢值，讓條件判斷更容易追。</p><p><strong>先備：</strong>會使用基本輸入、list、for、while 與 if；本階未用到的語法不必先學。</p>\n      </section>\n      <section class=\"tutorial-card tutorial-core\"><h3>2. 核心觀念與圖解</h3>\n        <p>每筆操作只需問：查詢格是否在該筆畫筆的曼哈頓菱形內。若在就 value += x。</p>\n        <div class=\"tutorial-visual\"><div class=\"tutorial-visual-title\">本階實際資料怎麼變</div><pre>查詢 (1,3)\n操作1 距離3 >2：不加\n操作2 距離3 >1：不加\n操作3 距離0 <=2：+5\n答案5</pre></div>\n      </section>\n      <section class=\"tutorial-card tutorial-worked\"><h3>3. 跟著做一個小例子</h3><p>這個查詢格只被第三次操作覆蓋，因此最後值為 5。</p></section>\n      <section class=\"tutorial-card tutorial-plan\"><h3>4. 先把程式拆成幾塊</h3><ol><li>讀查詢格。</li><li>逐筆讀 N 次操作。</li><li>計算查詢格到中心距離。</li><li>命中就累加 value。</li></ol></section>\n      <section class=\"tutorial-card tutorial-code\"><h3>5. Python 一段一段怎麼寫</h3>\n        <div class=\"tutorial-code-step\"><strong>步驟 A</strong><p>距離公式和二維畫布完全相同。</p><pre class=\"tutorial-code-snippet\">d = abs(qr - r) + abs(qc - c)</pre></div>\n        <div class=\"tutorial-code-step\"><strong>步驟 B</strong><p>只追蹤一格，因此不需要建立 H×W 陣列。</p><pre class=\"tutorial-code-snippet\">if d <= t:\n    value += x</pre></div>\n        <p class=\"tutorial-code-note\">這些片段只示範本階核心寫法；請依照前面的資料流自行把輸入、處理與輸出接成完整程式。</p>\n      </section>\n      <section class=\"tutorial-card tutorial-check\"><h3>6. 常見錯誤與自我檢查</h3><ul><li>不要把 x 覆蓋掉先前累加值。</li><li>qr/qc 是固定查詢座標，不會隨操作改變。</li></ul></section>\n    </div>","stageKey":"o077.0f4c6866996a","inputItems":[{"key":"in1","text":"第一行有五個整數 H、W、N、qr、qc，其中 H、W 是畫布列數與欄數，N 是操作次數，(qr,qc) 是要查詢的 0 起算合法格子；畫布初始全為 0。","meaningAndUseReviewed":true},{"key":"in2","text":"接下來 N 行各有 r、c、t、x，(r,c) 是操作中心，t≥0 是曼哈頓距離半徑，x 是受影響格子要增加的值。","meaningAndUseReviewed":true}],"outputItems":[{"key":"out1","text":"輸出一個整數，表示全部 N 次操作完成後查詢格 (qr,qc) 的最終數值。","meaningReviewed":true}]},{"id":5,"title":"原題：電子畫布","difficulty":"原題","statement":"有 H×W 電子畫布，初始每格為 0。共有 N 次操作；每次在 (r,c) 停留 t 秒並以顏色值 x 塗色，所有曼哈頓距離≤t 的格子都加上 x。多次塗到同一格時數值累加。請輸出 N 次操作後的完整畫布。","input":"第一行有三個正整數 H、W、N（1≤H,W≤20、1≤N≤100），分別表示畫布列數、欄數與操作次數；列、欄座標皆從 0 開始，畫布初始值全為 0。接下來 N 行各有 r、c、t、x，其中 (r,c) 是操作中心，t 是影響的曼哈頓距離上限，x 是所有受影響格子要增加的顏色值。","output":"輸出 H 行、每行 W 個整數；第 i 行第 j 個值表示全部 N 次操作完成後畫布座標 (i,j) 的最終數值。","sampleIn":"1 20 3\n0 13 5 7\n0 6 4 4\n0 13 12 6","sampleOut":"0 6 10 10 10 10 10 10 17 17 17 13 13 13 13 13 13 13 13 6","sampleExplain":"    <div class=\"demo-story\"><div class=\"demo-viewport\"><section class=\"demo-step\"><p>例如位置 8 同時被三次操作涵蓋，所以最後是 7+4+6=17。</p><pre>官方 #1 是一列 20 格\n三個菱形在 H=1 時退化為區間\n重疊區域把 7、4、6 依命中情況相加</pre></section><section class=\"demo-step\"><p>依照核心規則完成處理。</p></section><section class=\"demo-step\"><p>核對輸出格式。</p></section></div></div>","starter":"","answer":"h, w, n = map(int, input().split())\na = [[0] * w for _ in range(h)]\n\n# 所有操作都累加到同一張畫布，不能在下一次操作前把 a 清空。\nfor _ in range(n):\n    r, c, t, x = map(int, input().split())\n    for i in range(h):\n        for j in range(w):\n            d = abs(i - r) + abs(j - c)\n            if d <= t:\n                a[i][j] += x\n\n# 最後依列輸出整張畫布。\nfor row in a:\n    print(*row)","tests":[{"input":"1 20 3\n0 13 5 7\n0 6 4 4\n0 13 12 6\n","output":"0 6 10 10 10 10 10 10 17 17 17 13 13 13 13 13 13 13 13 6\n","public":true,"sampleRole":"primary","sampleOrigin":"official","qaPurpose":"官方公開範例 #1"},{"input":"6 7 3\n3 2 2 1\n1 6 1 2\n1 3 2 5\n","output":"0 0 5 5 5 0 2\n0 5 6 5 5 7 2\n0 1 6 6 5 0 2\n1 1 1 6 1 0 0\n0 1 1 1 0 0 0\n0 0 1 0 0 0 0\n","qaPurpose":"第二公開案例走不同邊界或分支","public":true,"sampleRole":"secondary","sampleOrigin":"official"},{"input":"2 2 1\n0 0 0 9\n","output":"9 0\n0 0\n","public":true,"sampleRole":"special","sampleOrigin":"special","qaPurpose":"第三公開範例：邊界／特殊值／不同狀態路徑"},{"input":"3 4 3\n1 1 1 2\n0 3 2 5\n2 0 3 1\n","output":"1 8 5 5\n3 3 8 5\n1 3 1 6\n"}],"generatedTests":[{"input":"4 5 4\n0 0 2 1\n3 4 3 2\n1 2 0 7\n2 1 1 4\n","output":"1 1 1 0 2\n1 5 7 2 2\n5 4 6 2 2\n0 6 2 2 2\n","generated":true},{"input":"1 6 2\n0 0 10 3\n0 5 0 8\n","output":"3 3 3 3 3 11\n","generated":true}],"tutorial":"    <div class=\"tutorial-body\">\n      <section class=\"tutorial-card tutorial-goal\"><h3>1. 先知道這題在練什麼</h3>\n        <p>完整整合二維曼哈頓距離與 N 次累加，最後維護整張畫布。</p><p><strong>先備：</strong>會使用基本輸入、list、for、while 與 if；本階未用到的語法不必先學。</p>\n      </section>\n      <section class=\"tutorial-card tutorial-core\"><h3>2. 核心觀念與圖解</h3>\n        <p>外層依序處理 N 次操作；每筆操作用雙層迴圈掃 H×W，距離≤t 的格子就 +=x。H、W≤20、N≤100，這個 O(NHW) 直接模擬足夠。</p>\n        <div class=\"tutorial-visual\"><div class=\"tutorial-visual-title\">本階實際資料怎麼變</div><pre>官方 #1 是一列 20 格\n三個菱形在 H=1 時退化為區間\n重疊區域把 7、4、6 依命中情況相加</pre></div>\n      </section>\n      <section class=\"tutorial-card tutorial-worked\"><h3>3. 跟著做一個小例子</h3><p>例如位置 8 同時被三次操作涵蓋，所以最後是 7+4+6=17。</p></section>\n      <section class=\"tutorial-card tutorial-plan\"><h3>4. 先把程式拆成幾塊</h3><ol><li>建立 H×W 畫布。</li><li>依序讀 N 次操作。</li><li>每次掃所有格計算曼哈頓距離。</li><li>命中就 +=x，最後逐列輸出。</li></ol></section>\n      <section class=\"tutorial-card tutorial-code\"><h3>5. Python 一段一段怎麼寫</h3>\n        <div class=\"tutorial-code-step\"><strong>步驟 A</strong><p>二維 list 每一列要是獨立物件。</p><pre class=\"tutorial-code-snippet\">a = [[0] * w for _ in range(h)]</pre></div>\n        <div class=\"tutorial-code-step\"><strong>步驟 B</strong><p>距離判斷與累加是原題核心。</p><pre class=\"tutorial-code-snippet\">d = abs(i - r) + abs(j - c)\nif d <= t:\n    a[i][j] += x</pre></div>\n        <p class=\"tutorial-code-note\">這些片段只示範本階核心寫法；請依照前面的資料流自行把輸入、處理與輸出接成完整程式。</p>\n      </section>\n      <section class=\"tutorial-card tutorial-check\"><h3>6. 常見錯誤與自我檢查</h3><ul><li>不要寫成 [[0]*w]*h 後再原地修改列元素。</li><li>多次操作必須共享同一張 a。</li></ul></section>\n    </div>","stageKey":"o077.765b0a7cb006","inputItems":[{"key":"in1","text":"第一行有三個正整數 H、W、N（1≤H,W≤20、1≤N≤100），分別表示畫布列數、欄數與操作次數；列、欄座標皆從 0 開始，畫布初始值全為 0。","meaningAndUseReviewed":true},{"key":"in2","text":"接下來 N 行各有 r、c、t、x，其中 (r,c) 是操作中心，t 是影響的曼哈頓距離上限，x 是所有受影響格子要增加的顏色值。","meaningAndUseReviewed":true}],"outputItems":[{"key":"out1","text":"輸出 H 行、每行 W 個整數；第 i 行第 j 個值表示全部 N 次操作完成後畫布座標 (i,j) 的最終數值。","meaningReviewed":true}]}];
 
 // Shared test accessors belong to the canonical template. Optional generator_js may
 // provide generateOneHiddenTest(), but formal-stage rendering/Judge must never depend
@@ -596,6 +596,7 @@ const STORAGE_PREFIX = `${OJ_META.storage.namespace}:v${STORAGE_SCHEMA}`;
 const ACCEPTED_KEY = `${STORAGE_PREFIX}:accepted`;
 const HISTORY_KEY = `${STORAGE_PREFIX}:history`;
 const MIGRATION_KEY = `${STORAGE_PREFIX}:migrated`;
+const STAGE_KEY_MIGRATION_KEY = `${STORAGE_PREFIX}:stage-key-migrated:v1`;
 const LEGACY_ACCEPTED_KEY = OJ_META.storage.legacyAcceptedKey;
 const LEGACY_HISTORY_KEY = OJ_META.storage.legacyHistoryKey;
 const PYODIDE_VERSION = '0.27.7';
@@ -606,6 +607,45 @@ const PORTABLE_RECORD_FORMAT = 'peicd_oj_progress';
 const PORTABLE_RECORD_SCHEMA = 1;
 const PORTABLE_RECORD_MAX_BYTES = 2 * 1024 * 1024;
 const PORTABLE_RECORD_MAX_CODE_CHARS = 300000;
+
+const STORAGE=(()=>{
+  const memory=new Map();
+  let backend=null;
+  let persistent=false;
+  try{
+    backend=window.localStorage;
+    const probe=`__peicd_storage_probe__${Math.random().toString(36).slice(2)}`;
+    backend.setItem(probe,'1');
+    persistent=backend.getItem(probe)==='1';
+    backend.removeItem(probe);
+  }catch(err){backend=null;persistent=false;}
+  return {
+    get persistent(){return persistent;},
+    getItem(key){
+      const k=String(key);
+      if(backend){try{return backend.getItem(k)}catch(err){backend=null;persistent=false;}}
+      return memory.has(k)?memory.get(k):null;
+    },
+    setItem(key,value){
+      const k=String(key),v=String(value);
+      if(backend){try{backend.setItem(k,v);return}catch(err){backend=null;persistent=false;}}
+      memory.set(k,v);
+    },
+    removeItem(key){
+      const k=String(key);
+      if(backend){try{backend.removeItem(k)}catch(err){backend=null;persistent=false;}}
+      memory.delete(k);
+    },
+    keys(){
+      const out=[];
+      if(backend){
+        try{for(let i=0;i<backend.length;i++){const key=backend.key(i);if(key!==null)out.push(key)}return out}
+        catch(err){backend=null;persistent=false;}
+      }
+      return Array.from(memory.keys());
+    }
+  };
+})();
 
 const $ = (s) => document.querySelector(s);
 const levelStrip = $('#levelStrip');
@@ -618,18 +658,32 @@ const progressBar = $('#progressBar');
 const progressText = $('#progressText');
 const historyList = $('#historyList');
 const hiddenTestsList = $('#hiddenTestsList');
+const storageWarning = $('#storageWarning');
 
 function esc(s){
   return String(s).replace(/[&<>"']/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
 }
 
+function normalizeLineEndings(s){return String(s).replace(/\r\n?/g,'\n');}
 function normalizeOutput(s){
-  return String(s)
-    .replace(/\r\n?/g,'\n')
+  return normalizeLineEndings(s)
     .split('\n')
     .map(line=>line.trim())
     .filter(line=>line!=='')
     .join('\n');
+}
+function compareMode(){return OJ_META.judge?.compareMode||'tolerant';}
+function outputsEqual(actual,expected){
+  const mode=compareMode();
+  if(mode==='tolerant') return normalizeOutput(actual)===normalizeOutput(expected);
+  if(mode==='exact') return normalizeLineEndings(actual)===normalizeLineEndings(expected);
+  return false;
+}
+function compareModeDescription(){
+  const mode=compareMode();
+  if(mode==='exact') return '嚴格比對';
+  if(mode==='special') return 'Special Judge';
+  return '寬鬆比對';
 }
 
 function safeJsonParse(raw,fallback){
@@ -674,28 +728,76 @@ function bindPublicSampleCopyButtons(publicSamples){
   });
 }
 
+function stageKeyForTask(task){return String(task?.stageKey||task?.id||'');}
+function taskFromId(id){return TASKS.find(t=>String(t.id)===String(id))||null;}
+function legacyCurrentDraftKey(id){return `${STORAGE_PREFIX}:code:${id}`;}
+function draftKey(id){const task=taskFromId(id);return `${STORAGE_PREFIX}:code:${task?stageKeyForTask(task):String(id)}`;}
+function loadDraft(task){
+  const next=STORAGE.getItem(draftKey(task.id));
+  if(next!==null)return next;
+  const legacy=STORAGE.getItem(legacyCurrentDraftKey(task.id));
+  if(legacy!==null){STORAGE.setItem(draftKey(task.id),legacy);return legacy;}
+  return null;
+}
+function acceptedForTask(map,task){return Boolean(map[stageKeyForTask(task)]||map[String(task.id)]);}
+
 function migrateStorage(){
-  if(localStorage.getItem(MIGRATION_KEY)==='1') return;
   try{
-    if(LEGACY_ACCEPTED_KEY && localStorage.getItem(ACCEPTED_KEY)===null){const legacy=localStorage.getItem(LEGACY_ACCEPTED_KEY);if(legacy!==null)localStorage.setItem(ACCEPTED_KEY,legacy);}
-    if(LEGACY_HISTORY_KEY && localStorage.getItem(HISTORY_KEY)===null){const legacy=localStorage.getItem(LEGACY_HISTORY_KEY);if(legacy!==null)localStorage.setItem(HISTORY_KEY,legacy);}
-    if(OJ_META.storage.legacyDraftPrefix){for(const task of TASKS){const nextKey=draftKey(task.id),legacyKey=`${OJ_META.storage.legacyDraftPrefix}${task.id}`;if(localStorage.getItem(nextKey)===null){const legacy=localStorage.getItem(legacyKey);if(legacy!==null)localStorage.setItem(nextKey,legacy);}}}
-    localStorage.setItem(MIGRATION_KEY,'1');
-  }catch(err){console.warn('Local storage migration skipped:',err);}
+    // Legacy namespace/schema migration from older OJ generations.
+    if(STORAGE.getItem(MIGRATION_KEY)!=='1'){
+      if(LEGACY_ACCEPTED_KEY && STORAGE.getItem(ACCEPTED_KEY)===null){const legacy=STORAGE.getItem(LEGACY_ACCEPTED_KEY);if(legacy!==null)STORAGE.setItem(ACCEPTED_KEY,legacy);}
+      if(LEGACY_HISTORY_KEY && STORAGE.getItem(HISTORY_KEY)===null){const legacy=STORAGE.getItem(LEGACY_HISTORY_KEY);if(legacy!==null)STORAGE.setItem(HISTORY_KEY,legacy);}
+      for(const task of TASKS){
+        const nextKey=draftKey(task.id);
+        if(STORAGE.getItem(nextKey)!==null)continue;
+        let legacy=null;
+        if(OJ_META.storage.legacyDraftPrefix)legacy=STORAGE.getItem(`${OJ_META.storage.legacyDraftPrefix}${task.id}`);
+        if(legacy!==null)STORAGE.setItem(nextKey,legacy);
+      }
+      STORAGE.setItem(MIGRATION_KEY,'1');
+    }
+
+    // v0.1.52 stable-stage identity migration is intentionally a separate marker.
+    // Existing users may already have MIGRATION_KEY=1 from older releases, so reusing
+    // that marker would skip id -> stageKey promotion and weaken future reorder safety.
+    if(STORAGE.getItem(STAGE_KEY_MIGRATION_KEY)!=='1'){
+      for(const task of TASKS){
+        const nextKey=draftKey(task.id);
+        if(STORAGE.getItem(nextKey)===null){
+          const oldIdValue=STORAGE.getItem(legacyCurrentDraftKey(task.id));
+          if(oldIdValue!==null)STORAGE.setItem(nextKey,oldIdValue);
+        }
+      }
+      const accepted=safeJsonParse(STORAGE.getItem(ACCEPTED_KEY)||'{}',{});
+      let acceptedChanged=false;
+      for(const task of TASKS){
+        if(accepted[String(task.id)] && !accepted[stageKeyForTask(task)]){
+          accepted[stageKeyForTask(task)]=true;acceptedChanged=true;
+        }
+      }
+      if(acceptedChanged)STORAGE.setItem(ACCEPTED_KEY,JSON.stringify(accepted));
+
+      const history=safeJsonParse(STORAGE.getItem(HISTORY_KEY)||'[]',[]);
+      let historyChanged=false;
+      if(Array.isArray(history)){
+        for(const item of history){
+          if(!item || item.stageKey)continue;
+          const task=taskFromId(item.taskId);
+          if(task){item.stageKey=stageKeyForTask(task);historyChanged=true;}
+        }
+        if(historyChanged)STORAGE.setItem(HISTORY_KEY,JSON.stringify(history));
+      }
+      STORAGE.setItem(STAGE_KEY_MIGRATION_KEY,'1');
+    }
+  }catch(err){console.warn('Storage migration skipped:',err);}
 }
 
-function getAccepted(){
-  return safeJsonParse(localStorage.getItem(ACCEPTED_KEY)||'{}',{});
-}
+function getAccepted(){return safeJsonParse(STORAGE.getItem(ACCEPTED_KEY)||'{}',{});}
 function setAccepted(id){
-  const a=getAccepted();
-  a[id]=true;
-  localStorage.setItem(ACCEPTED_KEY,JSON.stringify(a));
+  const task=taskFromId(id);if(!task)return;
+  const a=getAccepted();a[stageKeyForTask(task)]=true;STORAGE.setItem(ACCEPTED_KEY,JSON.stringify(a));
 }
-
-function isTaskAccepted(task=TASKS[currentTaskIndex]){
-  return Boolean(task && getAccepted()[task.id]);
-}
+function isTaskAccepted(task=TASKS[currentTaskIndex]){return Boolean(task && acceptedForTask(getAccepted(),task));}
 
 function updateAnswerButtonState(){
   const btn=$('#answerBtn');
@@ -708,14 +810,10 @@ function updateAnswerButtonState(){
 }
 function getReferenceVariants(task){
   if(Array.isArray(task?.referenceAnswers) && task.referenceAnswers.length){
-    return task.referenceAnswers.map((item,index)=>({
-      title:String(item?.title||`方法 ${index+1}`),
-      code:String(item?.code||'')
-    }));
+    return task.referenceAnswers.map((item,index)=>({title:String(item?.title||`方法 ${index+1}`),code:String(item?.code||'')}));
   }
   return [{title:'參考答案',code:String(task?.answer||'')}];
 }
-
 function renderReferenceAnswers(task){
   const variants=getReferenceVariants(task);
   const dialog=$('#answerDialog');
@@ -733,57 +831,30 @@ function renderReferenceAnswers(task){
   }
 }
 
-function draftKey(id){return `${STORAGE_PREFIX}:code:${id}`}
-function historyKey(){return HISTORY_KEY}
-function getHistory(){return safeJsonParse(localStorage.getItem(historyKey())||'[]',[])}
+function historyKey(){return HISTORY_KEY;}
+function getHistory(){return safeJsonParse(STORAGE.getItem(historyKey())||'[]',[]);}
 function addHistory(taskId, verdict, passed, total){
-  const list=getHistory();
-  list.unshift({time:new Date().toLocaleString('zh-TW',{hour12:false}),taskId,verdict,passed,total});
-  localStorage.setItem(historyKey(),JSON.stringify(list.slice(0,30)));
-  renderHistory();
+  const task=taskFromId(taskId);const list=getHistory();
+  list.unshift({time:new Date().toLocaleString('zh-TW',{hour12:false}),taskId,stageKey:task?stageKeyForTask(task):'',verdict,passed,total});
+  STORAGE.setItem(historyKey(),JSON.stringify(list.slice(0,30)));renderHistory();
 }
-
-function clearAllLocalRecords(){
-  const keys=[];
-  for(let i=0;i<localStorage.length;i++){
-    const key=localStorage.key(i);
-    if(key && key.startsWith(OJ_META.storage.namespace)) keys.push(key);
-  }
-  keys.forEach(key=>localStorage.removeItem(key));
-}
-
+function clearAllLocalRecords(){for(const key of STORAGE.keys()){if(key.startsWith(OJ_META.storage.namespace))STORAGE.removeItem(key);}}
 function portableRecordKeys(){
-  return [ACCEPTED_KEY,HISTORY_KEY,MIGRATION_KEY,...TASKS.map(t=>draftKey(t.id))];
+  return [ACCEPTED_KEY,HISTORY_KEY,MIGRATION_KEY,STAGE_KEY_MIGRATION_KEY,...TASKS.map(t=>draftKey(t.id)),...TASKS.map(t=>legacyCurrentDraftKey(t.id))];
 }
-function snapshotPortableStorage(){
-  return portableRecordKeys().map(key=>[key,localStorage.getItem(key)]);
-}
+function snapshotPortableStorage(){return portableRecordKeys().map(key=>[key,STORAGE.getItem(key)]);}
 function restorePortableStorage(snapshot){
-  for(const [key] of snapshot) localStorage.removeItem(key);
-  for(const [key,value] of snapshot) if(value!==null) localStorage.setItem(key,value);
+  for(const [key] of snapshot)STORAGE.removeItem(key);
+  for(const [key,value] of snapshot)if(value!==null)STORAGE.setItem(key,value);
 }
 function buildPortableRecord(){
-  saveDraft();
-  const accepted=getAccepted();
+  saveDraft();const accepted=getAccepted();const current=TASKS[currentTaskIndex];
   return {
-    format:PORTABLE_RECORD_FORMAT,
-    schemaVersion:PORTABLE_RECORD_SCHEMA,
-    exportedAt:new Date().toISOString(),
-    oj:{
-      problemId:String(OJ_META.source.problemId),
-      sourceUrl:String(OJ_META.source.url),
-      storageNamespace:String(OJ_META.storage.namespace),
-      storageSchema:STORAGE_SCHEMA,
-      language:'python3'
-    },
-    view:{sourceStageActive:Boolean(sourceStageActive),currentTaskId:TASKS[currentTaskIndex]?.id??null},
-    stages:TASKS.map(t=>({
-      id:t.id,
-      title:t.title,
-      code:localStorage.getItem(draftKey(t.id)) ?? t.starter ?? '',
-      accepted:Boolean(accepted[t.id])
-    })),
-    history:getHistory().map(h=>({time:String(h.time??''),taskId:h.taskId,verdict:String(h.verdict??''),passed:Number(h.passed??0),total:Number(h.total??0)}))
+    format:PORTABLE_RECORD_FORMAT,schemaVersion:PORTABLE_RECORD_SCHEMA,exportedAt:new Date().toISOString(),
+    oj:{problemId:String(OJ_META.source.problemId),sourceUrl:String(OJ_META.source.url),storageNamespace:String(OJ_META.storage.namespace),storageSchema:STORAGE_SCHEMA,language:'python3'},
+    view:{sourceStageActive:Boolean(sourceStageActive),currentTaskId:current?.id??null,currentStageKey:current?stageKeyForTask(current):null},
+    stages:TASKS.map(t=>({id:t.id,stageKey:stageKeyForTask(t),title:t.title,code:loadDraft(t)??t.starter??'',accepted:acceptedForTask(accepted,t)})),
+    history:getHistory().map(h=>({time:String(h.time??''),taskId:h.taskId,stageKey:String(h.stageKey??''),verdict:String(h.verdict??''),passed:Number(h.passed??0),total:Number(h.total??0)}))
   };
 }
 function portableFilename(){
@@ -830,65 +901,53 @@ function validatePortableRecord(data){
   if(!oj || typeof oj!=='object') throw new Error('作答紀錄缺少題目資訊。');
   if(String(oj.problemId)!==String(OJ_META.source.problemId) || String(oj.storageNamespace)!==String(OJ_META.storage.namespace) || Number(oj.storageSchema)!==Number(STORAGE_SCHEMA) || oj.language!=='python3') throw new Error('這份作答紀錄不是目前這一題的相容資料。');
   if(!Array.isArray(data.stages) || data.stages.length!==TASKS.length) throw new Error('作答紀錄的階段數量與目前題目不一致。');
-  const known=new Map(TASKS.map(t=>[String(t.id),t]));
-  const seen=new Set();
-  const stages=[];
-  let totalCodeChars=0;
+  const byId=new Map(TASKS.map(t=>[String(t.id),t]));
+  const byStage=new Map(TASKS.map(t=>[stageKeyForTask(t),t]));
+  const seen=new Set(),stages=[];let totalCodeChars=0;
   for(const raw of data.stages){
     if(!raw || typeof raw!=='object') throw new Error('階段資料格式錯誤。');
-    const id=String(raw.id);
-    if(!known.has(id)) throw new Error(`作答紀錄包含目前題目不存在的第 ${id} 階。`);
-    if(seen.has(id)) throw new Error(`作答紀錄重複包含第 ${id} 階。`);
-    if(typeof raw.code!=='string' || raw.code.length>PORTABLE_RECORD_MAX_CODE_CHARS) throw new Error(`第 ${id} 階程式碼格式或大小不合法。`);
-    if(typeof raw.accepted!=='boolean') throw new Error(`第 ${id} 階 AC 狀態格式不合法。`);
-    totalCodeChars+=raw.code.length;if(totalCodeChars>PORTABLE_RECORD_MAX_BYTES) throw new Error('作答紀錄中的程式碼總量過大。');
-    seen.add(id);stages.push({id:known.get(id).id,code:raw.code,accepted:raw.accepted});
+    const key=String(raw.stageKey||'');const id=String(raw.id);
+    const task=(key&&byStage.get(key))||byId.get(id);
+    if(!task) throw new Error(`作答紀錄包含目前題目不存在的階段 ${key||id}。`);
+    const stable=stageKeyForTask(task);if(seen.has(stable))throw new Error('作答紀錄重複包含同一階段。');
+    if(typeof raw.code!=='string'||raw.code.length>PORTABLE_RECORD_MAX_CODE_CHARS)throw new Error(`第 ${task.id} 階程式碼格式或大小不合法。`);
+    if(typeof raw.accepted!=='boolean')throw new Error(`第 ${task.id} 階 AC 狀態格式不合法。`);
+    totalCodeChars+=raw.code.length;if(totalCodeChars>PORTABLE_RECORD_MAX_BYTES)throw new Error('作答紀錄中的程式碼總量過大。');
+    seen.add(stable);stages.push({id:task.id,stageKey:stable,code:raw.code,accepted:raw.accepted});
   }
-  if(seen.size!==known.size) throw new Error('作答紀錄缺少目前題目的階段資料。');
-  if(!Array.isArray(data.history) || data.history.length>30) throw new Error('提交紀錄格式或筆數不合法。');
+  if(seen.size!==TASKS.length)throw new Error('作答紀錄缺少目前題目的階段資料。');
+  if(!Array.isArray(data.history)||data.history.length>30)throw new Error('提交紀錄格式或筆數不合法。');
   const allowedVerdicts=new Set(['AC','WA','RE','TLE','JE','CE']);
   const history=data.history.map((raw,index)=>{
-    if(!raw || typeof raw!=='object') throw new Error(`第 ${index+1} 筆提交紀錄格式錯誤。`);
-    const id=String(raw.taskId);
-    const verdict=String(raw.verdict||'');
-    const passed=Number(raw.passed),total=Number(raw.total);
-    if(!known.has(id) || !allowedVerdicts.has(verdict) || !Number.isInteger(passed) || !Number.isInteger(total) || passed<0 || total<0 || passed>total) throw new Error(`第 ${index+1} 筆提交紀錄內容不合法。`);
-    const time=String(raw.time??'');if(time.length>120) throw new Error(`第 ${index+1} 筆提交時間格式不合法。`);
-    return {time,taskId:known.get(id).id,verdict,passed,total};
+    if(!raw||typeof raw!=='object')throw new Error(`第 ${index+1} 筆提交紀錄格式錯誤。`);
+    const task=(raw.stageKey&&byStage.get(String(raw.stageKey)))||byId.get(String(raw.taskId));
+    const verdict=String(raw.verdict||''),passed=Number(raw.passed),total=Number(raw.total);
+    if(!task||!allowedVerdicts.has(verdict)||!Number.isInteger(passed)||!Number.isInteger(total)||passed<0||total<0||passed>total)throw new Error(`第 ${index+1} 筆提交紀錄內容不合法。`);
+    const time=String(raw.time??'');if(time.length>120)throw new Error(`第 ${index+1} 筆提交時間格式不合法。`);
+    return {time,taskId:task.id,stageKey:stageKeyForTask(task),verdict,passed,total};
   });
   const view=data.view;
-  if(!view || typeof view!=='object' || typeof view.sourceStageActive!=='boolean') throw new Error('作答紀錄缺少目前階段資訊。');
-  const viewId=view.currentTaskId===null?null:String(view.currentTaskId);
-  if(viewId!==null && !known.has(viewId)) throw new Error('作答紀錄的目前階段不存在。');
-  return {stages,history,view:{sourceStageActive:view.sourceStageActive,currentTaskId:viewId===null?TASKS[0].id:known.get(viewId).id}};
+  if(!view||typeof view!=='object'||typeof view.sourceStageActive!=='boolean')throw new Error('作答紀錄缺少目前階段資訊。');
+  const task=(view.currentStageKey&&byStage.get(String(view.currentStageKey)))||byId.get(String(view.currentTaskId));
+  return {stages,history,view:{sourceStageActive:view.sourceStageActive,currentTaskId:(task||TASKS[0]).id,currentStageKey:stageKeyForTask(task||TASKS[0])}};
 }
 function applyPortableRecord(record){
   const snapshot=snapshotPortableStorage();
   try{
-    for(const key of portableRecordKeys()) localStorage.removeItem(key);
+    for(const key of portableRecordKeys())STORAGE.removeItem(key);
     const accepted={};
     for(const stage of record.stages){
-      localStorage.setItem(draftKey(stage.id),stage.code);
-      if(stage.accepted) accepted[stage.id]=true;
+      const task=TASKS.find(t=>stageKeyForTask(t)===stage.stageKey)||taskFromId(stage.id);if(!task)continue;
+      STORAGE.setItem(draftKey(task.id),stage.code);if(stage.accepted)accepted[stageKeyForTask(task)]=true;
     }
-    localStorage.setItem(ACCEPTED_KEY,JSON.stringify(accepted));
-    localStorage.setItem(HISTORY_KEY,JSON.stringify(record.history));
-    localStorage.setItem(MIGRATION_KEY,'1');
-  }catch(err){
-    try{restorePortableStorage(snapshot);}catch(rollbackErr){console.error('Import rollback failed:',rollbackErr);}
-    throw err;
-  }
-
-  const idx=Math.max(0,TASKS.findIndex(t=>String(t.id)===String(record.view.currentTaskId)));
-  currentTaskIndex=idx;sourceStageActive=record.view.sourceStageActive;
-  document.body.classList.toggle('source-view',sourceStageActive);
+    STORAGE.setItem(ACCEPTED_KEY,JSON.stringify(accepted));STORAGE.setItem(HISTORY_KEY,JSON.stringify(record.history));STORAGE.setItem(MIGRATION_KEY,'1');
+  }catch(err){try{restorePortableStorage(snapshot)}catch(rollbackErr){console.error('Import rollback failed:',rollbackErr)}throw err;}
+  const idx=Math.max(0,TASKS.findIndex(t=>stageKeyForTask(t)===record.view.currentStageKey||String(t.id)===String(record.view.currentTaskId)));
+  currentTaskIndex=idx;sourceStageActive=record.view.sourceStageActive;document.body.classList.toggle('source-view',sourceStageActive);
   renderLevelStrip();renderProblem();renderTests();renderHiddenTests();renderHistory();renderProgress();updateAnswerButtonState();
-  const t=TASKS[currentTaskIndex];
-  setCode(localStorage.getItem(draftKey(t.id)) ?? t.starter);
-  overallVerdict.className='status-pill';overallVerdict.textContent='尚未提交';
-  resultSummary.textContent='作答紀錄已匯入。草稿、AC 進度與本機提交紀錄已更新。';
-  resetTerminal('作答紀錄已匯入。按 F9 啟動新的互動式 Python 程式。');
-  if(editor){editor.clearHistory();if(!sourceStageActive)refreshEditorLayout({focus:true});}
+  const t=TASKS[currentTaskIndex];setCode(loadDraft(t)??t.starter);
+  overallVerdict.className='status-pill';overallVerdict.textContent='尚未提交';resultSummary.textContent='作答紀錄已匯入。草稿、AC 進度與本機提交紀錄已更新。';
+  resetTerminal('作答紀錄已匯入。按 F9 啟動新的互動式 Python 程式。');if(editor){editor.clearHistory();if(!sourceStageActive)refreshEditorLayout({focus:true});}
 }
 async function importPortableRecords(file){
   if(busy || !file)return;
@@ -904,7 +963,7 @@ async function importPortableRecords(file){
 
 function renderProgress(){
   const accepted=getAccepted();
-  const count=TASKS.filter(t=>accepted[t.id]).length;
+  const count=TASKS.filter(t=>acceptedForTask(accepted,t)).length;
   progressText.textContent=`${count} / ${TASKS.length} AC`;
   progressBar.style.width=`${count/TASKS.length*100}%`;
 }
@@ -924,8 +983,8 @@ function renderLevelStrip(){
     const b=document.createElement('button');
     b.type='button';
     b.disabled=busy;
-    b.className='level-btn'+(!sourceStageActive&&idx===currentTaskIndex?' active':'')+(accepted[task.id]?' accepted':'');
-    b.textContent=accepted[task.id]?`${task.id} ✓`:`${task.id}`;
+    b.className='level-btn'+(!sourceStageActive&&idx===currentTaskIndex?' active':'')+(acceptedForTask(accepted,task)?' accepted':'');
+    b.textContent=acceptedForTask(accepted,task)?`${task.id} ✓`:`${task.id}`;
     b.title=`第 ${task.id} 階：${task.title}`;
     b.addEventListener('click',()=>switchTask(idx));
     levelStrip.appendChild(b);
@@ -962,13 +1021,8 @@ function switchToSourceStage({openSource=false}={}){
   if(openSource) window.open(OFFICIAL_SOURCE.url,'_blank','noopener,noreferrer');
 }
 
-function formalInputParts(text){
-  const parts=String(text??'').trim().match(/[^。]+(?:。|$)/g)||[];
-  return parts.map(part=>part.trim()).filter(Boolean);
-}
-function renderFormalInput(text){
-  const parts=formalInputParts(text);
-  return `<div class="formal-input-list" data-formal-input-list="true">${parts.map(part=>`<p class="formal-input-item">${esc(part)}</p>`).join('')}</div>`;
+function renderFormalInput(task){
+  return `<p class="formal-input-prose" data-formal-input="true">${task?.input??''}</p>`;
 }
 
 function renderProblem(){
@@ -997,7 +1051,7 @@ function renderProblem(){
     <div class="section-title">題目</div>
     <p>${t.statement}</p>
     <div class="section-title">輸入</div>
-    ${renderFormalInput(t.input)}
+    ${renderFormalInput(t)}
     <div class="section-title">輸出</div>
     <p>${t.output}</p>
     <div class="pre-code-notice" data-pre-code-notice="true">
@@ -1098,7 +1152,7 @@ function renderHistory(){
 
 function getCode(){ return editor ? editor.getValue() : $('#codeEditor').value; }
 function setCode(code){ if(editor) editor.setValue(code); else $('#codeEditor').value=code; }
-function saveDraft(){ const t=TASKS[currentTaskIndex]; localStorage.setItem(draftKey(t.id),getCode()); }
+function saveDraft(){ const t=TASKS[currentTaskIndex]; STORAGE.setItem(draftKey(t.id),getCode()); }
 
 function ensureCodeMirrorCursorVisible(cm=editor,marginLines=2){
   if(!cm) return;
@@ -1144,7 +1198,7 @@ function switchTask(idx){
   overallVerdict.className='status-pill'; overallVerdict.textContent='尚未提交';
   resultSummary.textContent='F9／「執行」會啟動新的互動式 TERMINAL；遇到 input() 時手動輸入。「提交」會評測本階全部正式測資，逐筆結果請看右側 TEST RESULTS。';
   const t=TASKS[idx];
-  setCode(localStorage.getItem(draftKey(t.id)) ?? t.starter);
+  setCode(loadDraft(t) ?? t.starter);
   resetTerminal();
   if(editor){
     editor.clearHistory();
@@ -1696,6 +1750,7 @@ async function judge(){
   const code=getCode();
   saveDraft();
   const tests=getTaskTestsForTask(t);
+  if(compareMode()==='special'){overallVerdict.className='status-pill warn';overallVerdict.textContent='SPJ';resultSummary.textContent='此題使用 Special Judge，本機不模擬正式判定；可用執行功能檢查程式輸出，正式結果請以原題平台為準。';return;}
   const op=beginOperation();
   overallVerdict.className='status-pill warn'; overallVerdict.textContent='評測中';
   resultSummary.textContent=`正在執行全部 ${tests.length} 筆測資…`;
@@ -1706,7 +1761,7 @@ async function judge(){
     for(let i=0;i<tests.length;i++){
       const r=await runPython(code,tests[i].input);
       if(!isOperationCurrent(op)) return;
-      const pass=!r.environmentError && r.ok && normalizeOutput(r.output)===normalizeOutput(tests[i].output);
+      const pass=!r.environmentError && r.ok && compareMode()!=='special' && outputsEqual(r.output,tests[i].output);
       const rr={...r,pass,error:r.ok?'':r.error};
       results.push(rr);
       if(pass)passed++;
@@ -1727,7 +1782,7 @@ async function judge(){
       const firstBad=results.find(x=>!x.pass);
       const verdict=firstBad?.environmentError?'JE':(firstBad?.timeout?'TLE':(firstBad?.error?'RE':'WA'));
       overallVerdict.className='status-pill bad';overallVerdict.textContent=verdict;
-      resultSummary.textContent=`通過 ${passed} / ${total}。${verdict==='WA'?'輸出採 Tolerant 風格比對；請先檢查內容與行結構。':(verdict==='JE'?'評測環境暫時無法使用，請重新提交。':'先修正第一個失敗原因，再重新提交。')}`;
+      resultSummary.textContent=`通過 ${passed} / ${total}。${verdict==='WA'?`目前採${compareModeDescription()}；請檢查輸出內容與格式。`:(verdict==='JE'?'評測環境暫時無法使用，請重新提交。':'先修正第一個失敗原因，再重新提交。')}`;
       addHistory(t.id,verdict,passed,total);
     }
   }catch(err){
@@ -1799,10 +1854,11 @@ $('#terminalInput').addEventListener('keydown',e=>{
 });
 $('#terminalInput').addEventListener('input',e=>{const ta=e.currentTarget;ta.style.height='1.65em';ta.style.height=Math.min(ta.scrollHeight,84)+'px';});
 const THEME_STORAGE_KEY='step_oj_framework:theme:v1';
-function applyTheme(theme,{persist=true}={}){const next=theme==='dark'?'dark':'light';document.documentElement.dataset.theme=next;$('#themeSelect').value=next;if(persist){try{localStorage.setItem(THEME_STORAGE_KEY,next)}catch{}}}
+function applyTheme(theme,{persist=true}={}){const next=theme==='dark'?'dark':'light';document.documentElement.dataset.theme=next;$('#themeSelect').value=next;if(persist){try{STORAGE.setItem(THEME_STORAGE_KEY,next)}catch{}}}
 function initializeTheme(){const current=document.documentElement.dataset.theme==='dark'?'dark':'light';$('#themeSelect').value=current;$('#themeSelect').addEventListener('change',e=>applyTheme(e.target.value));}
 $('#submitBtn').addEventListener('click',judge);
 
+if(storageWarning)storageWarning.hidden=STORAGE.persistent;
 migrateStorage();
 initializeTheme();
 setupEditor();
@@ -1813,7 +1869,7 @@ renderHiddenTests();
 renderHistory();
 renderProgress();
 updateAnswerButtonState();
-setCode(localStorage.getItem(draftKey(TASKS[0].id)) ?? TASKS[0].starter);
+setCode(loadDraft(TASKS[0]) ?? TASKS[0].starter);
 </script>
 </body>
 </html>
