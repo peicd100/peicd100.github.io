@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- Generated from shared canonical Python OJ template. template_sha256=c9e31ee044a98bfe91c5e993b67a0c7bfac1dab9828d9b9340f21eaede5676f7 -->
+<!-- Generated from shared canonical Python OJ template. template_sha256=00a426a43459b70b17c73519809800caec10a03026ea698d82019d984c096b37 -->
 <html lang="zh-Hant-TW" data-theme="dark">
 <head>
 <meta charset="utf-8">
@@ -11,8 +11,8 @@
 <title>q182 字串操作｜APCS 階梯式 Online Judge</title>
 <link rel="preconnect" href="https://cdnjs.cloudflare.com">
 <link rel="preconnect" href="https://cdn.jsdelivr.net">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.18/codemirror.min.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.18/addon/hint/show-hint.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.21/codemirror.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.21/addon/hint/show-hint.min.css">
 <style>
 
 *{box-sizing:border-box;}
@@ -217,9 +217,7 @@ header{position:sticky;top:0;z-index:40;background:rgba(255,255,255,.97);backdro
 .section-title{position:relative;margin:27px 0 10px;padding:0 0 8px 13px;border-bottom:1px solid #e7ebef;color:#273345;font-size:.92rem;font-weight:800;}
 .section-title::before{content:"";position:absolute;left:0;top:.25em;width:3px;height:1.05em;border-radius:2px;background:var(--accent);}
 .problem p{margin:.45rem 0;color:#374151;font-size:.95rem;}
-.formal-input-list{display:grid;gap:8px;margin:.35rem 0 .15rem;}
-.formal-input-item{position:relative;margin:0!important;padding:9px 11px 9px 14px;border:1px solid var(--line);border-radius:6px;background:var(--soft2);color:#374151;font-size:.95rem;line-height:1.68;}
-.formal-input-item::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;border-radius:6px 0 0 6px;background:var(--line-strong);}
+.formal-input-prose{margin:.45rem 0!important;color:#374151;font-size:.95rem;line-height:1.68;}
 .problem code,.dialog-body code{font-family:"Cascadia Mono","Consolas",monospace;background:#f1f4f7;color:#25364a;border:1px solid #e5e9ee;border-radius:4px;padding:.06em .28em;}
 pre{white-space:pre-wrap;word-break:break-word;margin:9px 0;padding:13px 15px;background:#f8fafb;color:#273345;border:1px solid #e1e6eb;border-radius:6px;font-family:"Cascadia Mono","SFMono-Regular",Consolas,monospace;font-size:.88rem;line-height:1.62;}
 .sample-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
@@ -423,6 +421,7 @@ dialog::backdrop{background:rgba(15,23,42,.4);}
 
 /* Shared UI / visual primitives: Theme + Interactive Terminal + Detailed Tutorial */
 .theme-control{display:inline-flex;align-items:center;gap:6px}.theme-control label{font-size:.75rem;color:var(--muted);font-weight:800}.theme-control select{min-height:34px;border:1px solid var(--line-strong);border-radius:6px;background:var(--paper);color:var(--ink);padding:4px 28px 4px 9px}
+.storage-warning{display:inline-flex;align-items:center;min-height:32px;padding:4px 9px;border:1px solid #d4a24d;border-radius:6px;background:#fff8e8;color:#7a4b0d;font-size:.75rem;font-weight:800}.storage-warning[hidden]{display:none}
 .learning-guide{display:grid;gap:10px}.learn-card{padding:12px 14px;border:1px solid var(--line);border-radius:7px;background:var(--paper)}.learn-card>strong{display:block;margin-bottom:6px}.learn-recap{background:var(--soft);border-left:3px solid #9ba6b4}.learn-new{background:var(--accent-soft);border-left:3px solid #6f98bb}.learn-plan{background:#f7fbf8;border-left:3px solid #79ab8f}.learn-pitfall{background:#fffaf2;border-left:3px solid #d1a04e}.learn-card ol,.learn-card ul{margin:.45rem 0 .2rem;padding-left:1.4rem}.learn-card li{margin:.28rem 0}.learn-visual{margin:10px 0;padding:12px;border:1px solid var(--line);border-radius:7px;background:var(--paper)}.learn-visual-title{margin-bottom:8px;color:#344256;font-size:.82rem;font-weight:850}.learn-step-flow{display:flex;gap:8px;align-items:center;justify-content:center;flex-wrap:wrap}.learn-step-node{padding:8px 10px;border:1px solid var(--line);border-radius:6px;background:var(--soft);text-align:center}.learn-step-node small{display:block;color:var(--muted)}
 html[data-theme="light"]{color-scheme:light}html[data-theme="dark"]{color-scheme:dark;--bg:#000000;--paper:#080808;--ink:#f4f7fb;--muted:#a2aab8;--line:#242424;--line-strong:#3a3a3a;--soft:#0d0d0d;--soft2:#0b0b0b;--accent:#22d3ee;--accent-strong:#06b6d4;--accent-soft:#06181d;--ok:#4ade80;--ok-soft:#07170d;--bad:#fb7185;--bad-soft:#1a090d;--warn:#fbbf24;--warn-soft:#1a1304;--terminal:#000000;--terminal-soft:#080808;--shadow:none;background:#000}
 html[data-theme="dark"] body{background:#000;color:var(--ink)}html[data-theme="dark"] header{background:rgba(0,0,0,.97);border-color:#222}html[data-theme="dark"] .panel,html[data-theme="dark"] .problem,html[data-theme="dark"] .results-wrap,html[data-theme="dark"] .editor-shell,html[data-theme="dark"] .dialog-body{background:#080808;color:var(--ink);border-color:#242424}
@@ -433,7 +432,7 @@ html[data-theme="dark"] .terminal-workspace,html[data-theme="dark"] .terminal-pa
 html[data-theme="dark"] .sample-explanation-body,html[data-theme="dark"] .sample-explanation-body p,html[data-theme="dark"] .sample-explanation-body small,html[data-theme="dark"] .reason-node small,html[data-theme="dark"] .visual-caption{color:#c6cbd2}html[data-theme="dark"] .sample-explanation-body pre,html[data-theme="dark"] .hidden-test-item pre,html[data-theme="dark"] pre{background:#020202;color:#e5e7eb;border-color:#242424}html[data-theme="dark"] .result-summary,html[data-theme="dark"] .hidden-tests summary,html[data-theme="dark"] .submission-history summary{background:#0b0b0b;color:#cfd5dd;border-color:#292929}
 html[data-theme="dark"] .matrix-grid,html[data-theme="dark"] .matrix-cell,html[data-theme="dark"] .number-strip span,html[data-theme="dark"] .calc-flow span{background:#0b0b0b;color:#e8edf3;border-color:#303030}html[data-theme="dark"] .matrix-cell.focus-cell{background:#06242b;border-color:#16879d;box-shadow:inset 0 0 0 1px #16879d}html[data-theme="dark"] .matrix-cell.diff-cell,html[data-theme="dark"] .pair-card.diff{background:#1a090d;border-color:#6b2733}html[data-theme="dark"] .pair-card.same,html[data-theme="dark"] .candidate-pos.ok,html[data-theme="dark"] .window-card.ok-card{background:#07170d;border-color:#1f5b36}
 html[data-theme="dark"] .sample-copy-btn{background:#0b0b0b;color:#c6cbd2;border-color:#303030}html[data-theme="dark"] .sample-copy-btn:hover{background:#101010;color:#e7ebf0}html[data-theme="dark"] .sample-copy-btn.success{background:#07170d;color:#86efac;border-color:#1f5b36}html[data-theme="dark"] .sample-origin-badge{background:#0d0d0d;color:#cbd2dc;border-color:#303030}html[data-theme="dark"] .sample-origin-badge.official{background:#06181d;color:#67e8f9;border-color:#155e75}html[data-theme="dark"] .sample-origin-badge.special{background:#1a1304;color:#fbbf24;border-color:#6b5213}
-html[data-theme="dark"] .brand-title,html[data-theme="dark"] .problem h1,html[data-theme="dark"] .section-title,html[data-theme="dark"] .results-head h2,html[data-theme="dark"] .editor-head strong,html[data-theme="dark"] .dialog-head strong,html[data-theme="dark"] .sample-explain-intro strong,html[data-theme="dark"] .learn-visual-title{color:var(--ink)}html[data-theme="dark"] .brand-subtitle,html[data-theme="dark"] .progress-wrap,html[data-theme="dark"] .runtime,html[data-theme="dark"] .source-link,html[data-theme="dark"] .kicker,html[data-theme="dark"] .meta,html[data-theme="dark"] .sample-box h4,html[data-theme="dark"] .sample-explain-intro small,html[data-theme="dark"] .editor-foot,html[data-theme="dark"] .hidden-test-label,html[data-theme="dark"] .history-item,html[data-theme="dark"] .hidden-tests-empty,html[data-theme="dark"] .history-empty{color:var(--muted)}html[data-theme="dark"] .runtime{background:#0b0b0b;border-color:#303030}html[data-theme="dark"] .problem p{color:#d8dde5}html[data-theme="dark"] .formal-input-item{background:#0b0b0b;color:#d8dde5;border-color:#292929}html[data-theme="dark"] .formal-input-item::before{background:#3a3a3a}html[data-theme="dark"] .problem code,html[data-theme="dark"] .dialog-body code{background:#101010;color:#dff9ff;border-color:#2c2c2c}html[data-theme="dark"] .level-strip,html[data-theme="dark"] .editor-head,html[data-theme="dark"] .editor-foot{background:#080808;border-color:#242424}html[data-theme="dark"] .status-pill{background:#0d0d0d;color:#cbd2dc;border-color:#303030}
+html[data-theme="dark"] .brand-title,html[data-theme="dark"] .problem h1,html[data-theme="dark"] .section-title,html[data-theme="dark"] .results-head h2,html[data-theme="dark"] .editor-head strong,html[data-theme="dark"] .dialog-head strong,html[data-theme="dark"] .sample-explain-intro strong,html[data-theme="dark"] .learn-visual-title{color:var(--ink)}html[data-theme="dark"] .brand-subtitle,html[data-theme="dark"] .progress-wrap,html[data-theme="dark"] .runtime,html[data-theme="dark"] .source-link,html[data-theme="dark"] .kicker,html[data-theme="dark"] .meta,html[data-theme="dark"] .sample-box h4,html[data-theme="dark"] .sample-explain-intro small,html[data-theme="dark"] .editor-foot,html[data-theme="dark"] .hidden-test-label,html[data-theme="dark"] .history-item,html[data-theme="dark"] .hidden-tests-empty,html[data-theme="dark"] .history-empty{color:var(--muted)}html[data-theme="dark"] .runtime{background:#0b0b0b;border-color:#303030}html[data-theme="dark"] .storage-warning{background:#1a1304;color:#f7d477;border-color:#6b5213}html[data-theme="dark"] .problem p{color:#d8dde5}html[data-theme="dark"] .problem code,html[data-theme="dark"] .dialog-body code{background:#101010;color:#dff9ff;border-color:#2c2c2c}html[data-theme="dark"] .level-strip,html[data-theme="dark"] .editor-head,html[data-theme="dark"] .editor-foot{background:#080808;border-color:#242424}html[data-theme="dark"] .status-pill{background:#0d0d0d;color:#cbd2dc;border-color:#303030}
 @media(max-width:720px){.terminal-workspace{grid-template-columns:1fr}.terminal-panel{border-right:0;border-bottom:1px solid #2b3649}.theme-control{max-width:100%}}
 @media(max-width:390px){.topbar{align-items:flex-start}.theme-control{margin-left:0}.theme-control label{display:none}.terminal-head{gap:6px}}
 @media(max-width:520px){.answer-variants.multi{grid-template-columns:repeat(var(--answer-count),minmax(300px,82vw));}}
@@ -469,6 +468,7 @@ html[data-theme="dark"] .tutorial-details,html[data-theme="dark"] .tutorial-cont
     <div class="theme-control"><label for="themeSelect">主題</label><select id="themeSelect" aria-label="選擇介面主題"><option value="light">淺色</option><option value="dark">深色</option></select></div>
     <button class="btn" id="exportRecordsBtn" type="button" title="匯出本題草稿、AC 進度與提交紀錄">匯出作答紀錄</button>
     <button class="btn" id="importRecordsBtn" type="button" title="從 JSON 匯入本題作答紀錄">匯入作答紀錄</button>
+    <span class="storage-warning" id="storageWarning" hidden>進度只保存在本次開啟；請匯出作答紀錄備份。</span>
     <input id="importRecordsInput" type="file" accept="application/json,.json" hidden aria-label="選擇作答紀錄 JSON 檔案">
     <button class="btn danger" id="clearAllBtn" type="button" title="清除所有題目草稿、AC 進度與提交紀錄">清除所有紀錄</button>
     <a class="source-link" href="https://zerojudge.tw/ShowProblem?problemid=q182" target="_blank" rel="noopener">原題</a>
@@ -528,7 +528,7 @@ html[data-theme="dark"] .tutorial-details,html[data-theme="dark"] .tutorial-cont
     </div>
     <div class="editor-foot">
       <span>Tab：移到下一個 4 欄定位點｜Shift+Tab：反縮排｜行首 Backspace：一次刪除 4 空白｜Ctrl+/：切換單行／多行註解｜Ctrl+Space / Alt+/：補全｜F9：執行｜Ctrl+Enter：提交</span>
-      <span>F9：互動式 TERMINAL，input() 需要手動輸入｜Ctrl+D / EOF：結束 stdin｜執行中按「停止」可終止｜提交固定使用正式測資｜ZeroJudge Tolerant：忽略空白行與每行前後空白｜提交每筆上限 2.5 秒</span>
+      <span>F9：互動式 TERMINAL，input() 需要手動輸入｜Ctrl+D / EOF：結束 stdin｜執行中按「停止」可終止｜提交固定使用正式測資｜輸出比對方式依本題設定｜提交每筆上限 2.5 秒</span>
     </div>
   </section>
 </main>
@@ -538,16 +538,16 @@ html[data-theme="dark"] .tutorial-details,html[data-theme="dark"] .tutorial-cont
   <div class="dialog-body"><div id="answerVariants" class="answer-variants single"></div></div>
 </dialog>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.18/codemirror.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.18/mode/python/python.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.18/addon/edit/closebrackets.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.18/addon/edit/matchbrackets.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.18/addon/hint/show-hint.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.21/codemirror.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.21/mode/python/python.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.21/addon/edit/closebrackets.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.21/addon/edit/matchbrackets.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.21/addon/hint/show-hint.min.js"></script>
 <script>
-const OJ_META={"source":{"url":"https://zerojudge.tw/ShowProblem?problemid=q182","platform":"ZeroJudge","problemId":"q182"},"storage":{"schema":22,"namespace":"q182_step_oj","legacyAcceptedKey":"q182_step_oj_accepted","legacyHistoryKey":"q182_step_oj_history","legacyDraftPrefix":"q182_step_oj_v001_code_"}};
+const OJ_META={"source":{"url":"https://zerojudge.tw/ShowProblem?problemid=q182","platform":"ZeroJudge","problemId":"q182"},"storage":{"schema":22,"namespace":"q182_step_oj","legacyAcceptedKey":"q182_step_oj_accepted","legacyHistoryKey":"q182_step_oj_history","legacyDraftPrefix":"q182_step_oj_v001_code_"},"judge":{"compareMode":"tolerant"}};
 const OFFICIAL_SOURCE=OJ_META.source;
 let sourceStageActive=true;
-const TASKS = [{"id":1,"title":"操作 0：相鄰兩兩交換","difficulty":"入門","statement":"給定偶數長度小寫字串 S。將相鄰字元兩兩分組 (0,1)、(2,3)…，每組交換順序。","input":"輸入一行偶數長度的小寫英文字串 S；字元位置從 0 開始，操作會交換位置 (0,1)、(2,3)、… 的每一組相鄰字元。","output":"輸出操作後字串。","sampleIn":"apcsntnu","sampleOut":"pasctnun","sampleExplain":"    <div class=\"demo-story\"><div class=\"demo-viewport\"><section class=\"demo-step\"><p>第一組 ap 變 pa，其他三組也做同樣交換。</p><pre>(ap)(cs)(nt)(nu)\n→ (pa)(sc)(tn)(un)\n→ pasctnun</pre></section><section class=\"demo-step\"><p>依照核心規則完成處理。</p></section><section class=\"demo-step\"><p>核對輸出格式。</p></section></div></div>","starter":"","answer":"s = input().strip()\nans = ''\n\n# 每兩個字元分成一組，直接把第 2 個放前、第 1 個放後。\nfor i in range(0, len(s), 2):\n    ans += s[i + 1]\n    ans += s[i]\n\nprint(ans)","tests":[{"input":"apcsntnu\n","output":"pasctnun\n","public":true,"sampleRole":"primary","sampleOrigin":"task","qaPurpose":"本階主要公開範例"},{"input":"abcdef\n","output":"badcfe\n","public":true,"sampleRole":"secondary","sampleOrigin":"task","qaPurpose":"本階第二公開案例"},{"input":"aa\n","output":"aa\n","qaPurpose":"第二公開案例走不同邊界或分支","public":true,"sampleRole":"special","sampleOrigin":"special"},{"input":"zxyw\n","output":"xzwy\n"}],"generatedTests":[{"input":"facebook\n","output":"afecobko\n","generated":true},{"input":"aabbccdd\n","output":"aabbccdd\n","generated":true}],"tutorial":"    <div class=\"tutorial-body\">\n      <section class=\"tutorial-card tutorial-goal\"><h3>1. 先知道這題在練什麼</h3>\n        <p>先獨立學會操作代碼 0 的 pair traversal。</p><p><strong>先備：</strong>會使用基本輸入、list、for、while 與 if；本階未用到的語法不必先學。</p>\n      </section>\n      <section class=\"tutorial-card tutorial-core\"><h3>2. 核心觀念與圖解</h3>\n        <p>索引 0、2、4… 是每一組的第一個位置；輸出時先接 s[i+1] 再接 s[i]。</p>\n        <div class=\"tutorial-visual\"><div class=\"tutorial-visual-title\">本階實際資料怎麼變</div><pre>(ap)(cs)(nt)(nu)\n→ (pa)(sc)(tn)(un)\n→ pasctnun</pre></div>\n      </section>\n      <section class=\"tutorial-card tutorial-worked\"><h3>3. 跟著做一個小例子</h3><p>第一組 ap 變 pa，其他三組也做同樣交換。</p></section>\n      <section class=\"tutorial-card tutorial-plan\"><h3>4. 先把程式拆成幾塊</h3><ol><li>i 從 0 每次加 2。</li><li>每組取 s[i]、s[i+1]。</li><li>反向接回 ans。</li><li>輸出 ans。</li></ol></section>\n      <section class=\"tutorial-card tutorial-code\"><h3>5. Python 一段一段怎麼寫</h3>\n        <div class=\"tutorial-code-step\"><strong>步驟 A</strong><p>step=2 保證每次正好處理一組。</p><pre class=\"tutorial-code-snippet\">for i in range(0, len(s), 2):</pre></div>\n        <div class=\"tutorial-code-step\"><strong>步驟 B</strong><p>同組第二個字元先放。</p><pre class=\"tutorial-code-snippet\">ans += s[i + 1]\nans += s[i]</pre></div>\n        <p class=\"tutorial-code-note\">這些片段只示範本階核心寫法；請依照前面的資料流自行把輸入、處理與輸出接成完整程式。</p>\n      </section>\n      <section class=\"tutorial-card tutorial-check\"><h3>6. 常見錯誤與自我檢查</h3><ul><li>字串長度保證偶數，所以 i+1 存在。</li><li>不要把不同組的字元混在一起。</li></ul></section>\n    </div>"},{"id":2,"title":"操作 1：相鄰兩兩排序","difficulty":"基礎","statement":"給定偶數長度小寫字串 S。把相鄰字元兩兩分組，每組依字典序由小到大放回。請輸出完成這一次操作後的整個字串。","input":"輸入一行偶數長度的小寫英文字串 S；字元位置從 0 開始，操作會把 (0,1)、(2,3)、… 每組兩個字元依字典序由小到大放回。","output":"輸出操作後字串。","sampleIn":"family","sampleOut":"afimly","sampleExplain":"    <div class=\"demo-story\"><div class=\"demo-viewport\"><section class=\"demo-step\"><p>fa 中 a 比 f 小，所以變 af；mi 變 im；ly 本來就有序。</p><pre>(fa)(mi)(ly)\n→ (af)(im)(ly)\n→ afimly</pre></section><section class=\"demo-step\"><p>依照核心規則完成處理。</p></section><section class=\"demo-step\"><p>核對輸出格式。</p></section></div></div>","starter":"","answer":"s = input().strip()\nans = ''\n\n# 每組只有兩個字元，直接比較大小後依字典序接回答案。\nfor i in range(0, len(s), 2):\n    a = s[i]\n    b = s[i + 1]\n    if a <= b:\n        ans += a + b\n    else:\n        ans += b + a\n\nprint(ans)","tests":[{"input":"family\n","output":"afimly\n","public":true,"sampleRole":"primary","sampleOrigin":"task","qaPurpose":"本階主要公開範例"},{"input":"abcdef\n","output":"abcdef\n","public":true,"sampleRole":"secondary","sampleOrigin":"task","qaPurpose":"本階第二公開案例"},{"input":"ba\n","output":"ab\n","qaPurpose":"第二公開案例走不同邊界或分支","public":true,"sampleRole":"special","sampleOrigin":"special"},{"input":"zzay\n","output":"zzay\n"}],"generatedTests":[{"input":"facebook\n","output":"afceboko\n","generated":true},{"input":"dcbaefgh\n","output":"cdabefgh\n","generated":true}],"tutorial":"    <div class=\"tutorial-body\">\n      <section class=\"tutorial-card tutorial-goal\"><h3>1. 先知道這題在練什麼</h3>\n        <p>獨立學會操作 1：每組只比較兩個字元。</p><p><strong>先備：</strong>會使用基本輸入、list、for、while 與 if；本階未用到的語法不必先學。</p>\n      </section>\n      <section class=\"tutorial-card tutorial-core\"><h3>2. 核心觀念與圖解</h3>\n        <p>因為一組只有 a、b 兩個字元，不需要對整個字串排序；只判斷 a<=b，否則交換它們的輸出順序。</p>\n        <div class=\"tutorial-visual\"><div class=\"tutorial-visual-title\">本階實際資料怎麼變</div><pre>(fa)(mi)(ly)\n→ (af)(im)(ly)\n→ afimly</pre></div>\n      </section>\n      <section class=\"tutorial-card tutorial-worked\"><h3>3. 跟著做一個小例子</h3><p>fa 中 a 比 f 小，所以變 af；mi 變 im；ly 本來就有序。</p></section>\n      <section class=\"tutorial-card tutorial-plan\"><h3>4. 先把程式拆成幾塊</h3><ol><li>每兩個字元一組。</li><li>取出 a、b。</li><li>比較 a<=b。</li><li>依小到大接回 ans。</li></ol></section>\n      <section class=\"tutorial-card tutorial-code\"><h3>5. Python 一段一段怎麼寫</h3>\n        <div class=\"tutorial-code-step\"><strong>步驟 A</strong><p>先把同一組的兩個字元取出來。</p><pre class=\"tutorial-code-snippet\">a = s[i]\nb = s[i + 1]</pre></div>\n        <div class=\"tutorial-code-step\"><strong>步驟 B</strong><p>每組都局部排序，不影響別組。</p><pre class=\"tutorial-code-snippet\">if a <= b:\n    ans += a + b\nelse:\n    ans += b + a</pre></div>\n        <p class=\"tutorial-code-note\">這些片段只示範本階核心寫法；請依照前面的資料流自行把輸入、處理與輸出接成完整程式。</p>\n      </section>\n      <section class=\"tutorial-card tutorial-check\"><h3>6. 常見錯誤與自我檢查</h3><ul><li>不要用 sorted(s) 把整個字串排序。</li><li>相同字元順序不影響結果。</li></ul></section>\n    </div>"},{"id":3,"title":"操作 2：完美重排","difficulty":"進階","statement":"給定偶數長度字串 S，長度為 n。把字串分成前半 S[0:n/2] 與後半 S[n/2:n]，再依「前半第 0 個、後半第 0 個、前半第 1 個、後半第 1 個……」的順序交錯合併。請輸出重排後的完整字串。","input":"輸入一行偶數長度字串 S，令 n 為其長度；前半與後半各有 n/2 個字元。","output":"輸出完美重排後字串。","sampleIn":"apcsntnu","sampleOut":"anptcnsu","sampleExplain":"    <div class=\"demo-story\"><div class=\"demo-viewport\"><section class=\"demo-step\"><p>i=0 取 a、n；i=1 取 p、t，直到兩半都用完。</p><pre>前半 apcs\n後半 ntnu\n交錯：a n p t c n s u\n→ anptcnsu</pre></section><section class=\"demo-step\"><p>依照核心規則完成處理。</p></section><section class=\"demo-step\"><p>核對輸出格式。</p></section></div></div>","starter":"","answer":"s = input().strip()\nh = len(s) // 2\nans = ''\n\n# 前半第 i 個字元與後半第 i 個字元交錯放入新字串。\nfor i in range(h):\n    ans += s[i]\n    ans += s[h + i]\n\nprint(ans)","tests":[{"input":"apcsntnu\n","output":"anptcnsu\n","public":true,"sampleRole":"primary","sampleOrigin":"task","qaPurpose":"本階主要公開範例"},{"input":"abcdefgh\n","output":"aebfcgdh\n","public":true,"sampleRole":"secondary","sampleOrigin":"task","qaPurpose":"本階第二公開案例"},{"input":"ab\n","output":"ab\n","qaPurpose":"第二公開案例走不同邊界或分支","public":true,"sampleRole":"special","sampleOrigin":"special"},{"input":"facebook\n","output":"fbaocoek\n"}],"generatedTests":[{"input":"aabbccdd\n","output":"acacbdbd\n","generated":true},{"input":"qwertyui\n","output":"qtwyeuri\n","generated":true}],"tutorial":"    <div class=\"tutorial-body\">\n      <section class=\"tutorial-card tutorial-goal\"><h3>1. 先知道這題在練什麼</h3>\n        <p>獨立學會操作 2 的半切與交錯 index。</p><p><strong>先備：</strong>會使用基本輸入、list、for、while 與 if；本階未用到的語法不必先學。</p>\n      </section>\n      <section class=\"tutorial-card tutorial-core\"><h3>2. 核心觀念與圖解</h3>\n        <p>h=n//2。對 i=0..h-1，依序接 s[i] 與 s[h+i]。</p>\n        <div class=\"tutorial-visual\"><div class=\"tutorial-visual-title\">本階實際資料怎麼變</div><pre>前半 apcs\n後半 ntnu\n交錯：a n p t c n s u\n→ anptcnsu</pre></div>\n      </section>\n      <section class=\"tutorial-card tutorial-worked\"><h3>3. 跟著做一個小例子</h3><p>i=0 取 a、n；i=1 取 p、t，直到兩半都用完。</p></section>\n      <section class=\"tutorial-card tutorial-plan\"><h3>4. 先把程式拆成幾塊</h3><ol><li>算 h=len(s)//2。</li><li>i 跑 0..h-1。</li><li>接前半 s[i]。</li><li>接後半 s[h+i]。</li></ol></section>\n      <section class=\"tutorial-card tutorial-code\"><h3>5. Python 一段一段怎麼寫</h3>\n        <div class=\"tutorial-code-step\"><strong>步驟 A</strong><p>偶數長度可平均切成兩半。</p><pre class=\"tutorial-code-snippet\">h = len(s) // 2</pre></div>\n        <div class=\"tutorial-code-step\"><strong>步驟 B</strong><p>同一個 i 對應前後兩半的同一相對位置。</p><pre class=\"tutorial-code-snippet\">for i in range(h):\n    ans += s[i]\n    ans += s[h + i]</pre></div>\n        <p class=\"tutorial-code-note\">這些片段只示範本階核心寫法；請依照前面的資料流自行把輸入、處理與輸出接成完整程式。</p>\n      </section>\n      <section class=\"tutorial-card tutorial-check\"><h3>6. 常見錯誤與自我檢查</h3><ul><li>不要使用 s[2*i] 之類原字串偶數索引，那不是題目定義。</li><li>兩半各有 h 個字元。</li></ul></section>\n    </div>"},{"id":4,"title":"連續執行操作 0 與 1","difficulty":"整合","statement":"給定偶數長度字串 S 與 k 個操作，本階保證每個操作代碼只會是 0 或 1。0 代表兩兩交換，1 代表兩兩排序。請依輸入順序執行，輸出最後字串。","input":"第一行是一個偶數長度字串 S。第二行有非負整數 k，表示操作次數。接下來 k 行各有一個操作代碼：0 表示把相鄰字元兩兩交換，1 表示把每一組相鄰兩字元依字典序排序；操作依輸入順序執行。","output":"輸出最後字串。","sampleIn":"facebook\n3\n0\n1\n0","sampleOut":"faecobok","sampleExplain":"    <div class=\"demo-story\"><div class=\"demo-viewport\"><section class=\"demo-step\"><p>重點不是背中間字串，而是每一輪都只處理目前 s 的相鄰 pair。</p><pre>facebook\n0 → afecobko\n1 → afceboko\n0 → faecobok</pre></section><section class=\"demo-step\"><p>依照核心規則完成處理。</p></section><section class=\"demo-step\"><p>核對輸出格式。</p></section></div></div>","starter":"","answer":"s = input().strip()\nk = int(input())\n\n# 每次操作都要用最新的 s 產生下一個字串。\nfor _ in range(k):\n    op = int(input())\n    ans = ''\n    if op == 0:\n        for i in range(0, len(s), 2):\n            ans += s[i + 1] + s[i]\n    else:\n        for i in range(0, len(s), 2):\n            a = s[i]\n            b = s[i + 1]\n            if a <= b:\n                ans += a + b\n            else:\n                ans += b + a\n    s = ans\n\n# 所有操作依序完成後才輸出最後結果。\nprint(s)","tests":[{"input":"facebook\n3\n0\n1\n0\n","output":"faecobok\n","public":true,"sampleRole":"primary","sampleOrigin":"task","qaPurpose":"本階主要公開範例"},{"input":"dcba\n4\n1\n0\n1\n0\n","output":"dcba\n","public":true,"sampleRole":"secondary","sampleOrigin":"task","qaPurpose":"本階第二公開案例"},{"input":"ab\n1\n1\n","output":"ab\n","qaPurpose":"第二公開案例走不同邊界或分支","public":true,"sampleRole":"special","sampleOrigin":"special"},{"input":"aabbcc\n2\n0\n0\n","output":"aabbcc\n"}],"generatedTests":[{"input":"family\n5\n0\n1\n1\n0\n1\n","output":"afimly\n","generated":true},{"input":"zzxy\n3\n1\n1\n0\n","output":"zzyx\n","generated":true}],"tutorial":"    <div class=\"tutorial-body\">\n      <section class=\"tutorial-card tutorial-goal\"><h3>1. 先知道這題在練什麼</h3>\n        <p>學會用 operation code 選不同分支，並把每次結果更新成下一次輸入。</p><p><strong>先備：</strong>會使用基本輸入、list、for、while 與 if；本階未用到的語法不必先學。</p>\n      </section>\n      <section class=\"tutorial-card tutorial-core\"><h3>2. 核心觀念與圖解</h3>\n        <p>每次先建立空 ans，依 op 走交換或排序分支；完成後 s=ans。兩個分支都保持字串長度。</p>\n        <div class=\"tutorial-visual\"><div class=\"tutorial-visual-title\">本階實際資料怎麼變</div><pre>facebook\n0 → afecobko\n1 → afceboko\n0 → faecobok</pre></div>\n      </section>\n      <section class=\"tutorial-card tutorial-worked\"><h3>3. 跟著做一個小例子</h3><p>重點不是背中間字串，而是每一輪都只處理目前 s 的相鄰 pair。</p></section>\n      <section class=\"tutorial-card tutorial-plan\"><h3>4. 先把程式拆成幾塊</h3><ol><li>讀 k。</li><li>重複讀 op。</li><li>op==0 做交換，否則做 pair 排序。</li><li>每輪結束 s=ans。</li></ol></section>\n      <section class=\"tutorial-card tutorial-code\"><h3>5. Python 一段一段怎麼寫</h3>\n        <div class=\"tutorial-code-step\"><strong>步驟 A</strong><p>代碼決定本輪使用哪一種局部規則。</p><pre class=\"tutorial-code-snippet\">if op == 0:\n    ...\nelse:\n    ...</pre></div>\n        <div class=\"tutorial-code-step\"><strong>步驟 B</strong><p>這行放在兩個分支都完成之後，讓下一輪使用最新結果。</p><pre class=\"tutorial-code-snippet\">s = ans</pre></div>\n        <p class=\"tutorial-code-note\">這些片段只示範本階核心寫法；請依照前面的資料流自行把輸入、處理與輸出接成完整程式。</p>\n      </section>\n      <section class=\"tutorial-card tutorial-check\"><h3>6. 常見錯誤與自我檢查</h3><ul><li>不要每輪都從最初字串開始。</li><li>本階沒有操作 2，不需要先加入完美重排。</li></ul></section>\n    </div>"},{"id":5,"title":"原題：字串操作","difficulty":"原題","statement":"給定偶數長度字串 S 與 k 個操作。代碼 0：相鄰兩兩交換；代碼 1：相鄰兩兩依字典序排序；代碼 2：把字串分成等長前後兩半後交錯合併。請依序執行所有操作並輸出最後字串。","input":"第一行是一個偶數長度字串 S（2≤字串長度≤100）。第二行有非負整數 k，表示操作次數。接下來 k 行各有一個代碼：0=相鄰兩兩交換，1=相鄰兩兩依字典序排序，2=把等長前後兩半交錯合併；操作依輸入順序執行。","output":"輸出全部操作完成後的字串。","sampleIn":"apcsntnu\n1\n2","sampleOut":"anptcnsu","sampleExplain":"    <div class=\"demo-story\"><div class=\"demo-viewport\"><section class=\"demo-step\"><p>只有一次操作 2，所以輸出完美重排結果 anptcnsu。</p><pre>官方 #1：apcsntnu\n操作2：apcs | ntnu\n交錯得到 anptcnsu</pre></section><section class=\"demo-step\"><p>依照核心規則完成處理。</p></section><section class=\"demo-step\"><p>核對輸出格式。</p></section></div></div>","starter":"","answer":"s = input().strip()\nk = int(input())\n\n# 依序讀操作代碼，每次都從目前的 s 建立下一個字串。\nfor _ in range(k):\n    op = int(input())\n    ans = ''\n    if op == 0:\n        for i in range(0, len(s), 2):\n            ans += s[i + 1] + s[i]\n    elif op == 1:\n        for i in range(0, len(s), 2):\n            a = s[i]\n            b = s[i + 1]\n            if a <= b:\n                ans += a + b\n            else:\n                ans += b + a\n    else:\n        h = len(s) // 2\n        for i in range(h):\n            ans += s[i] + s[h + i]\n    s = ans\n\n# 三種操作都會保持字串長度不變，所以最後直接輸出 s。\nprint(s)","tests":[{"input":"apcsntnu\n1\n2\n","output":"anptcnsu\n","public":true,"sampleRole":"primary","sampleOrigin":"official","qaPurpose":"官方公開範例 #1"},{"input":"facebook\n4\n2\n0\n2\n1\n","output":"bocfkoae\n","qaPurpose":"第二公開案例走不同邊界或分支","public":true,"sampleRole":"secondary","sampleOrigin":"official"},{"input":"ab\n5\n0\n1\n2\n0\n2\n","output":"ba\n","public":true,"sampleRole":"special","sampleOrigin":"special","qaPurpose":"第三公開範例：邊界／特殊值／不同狀態路徑"},{"input":"dcbaef\n3\n1\n2\n0\n","output":"bcedfa\n"}],"generatedTests":[{"input":"abcdefgh\n6\n2\n2\n0\n1\n2\n0\n","output":"badcfehg\n","generated":true},{"input":"zzxxyyww\n5\n1\n0\n2\n1\n2\n","output":"ywzxywzx\n","generated":true}],"tutorial":"    <div class=\"tutorial-body\">\n      <section class=\"tutorial-card tutorial-goal\"><h3>1. 先知道這題在練什麼</h3>\n        <p>完整整合三種字串操作與多輪 state update。</p><p><strong>先備：</strong>會使用基本輸入、list、for、while 與 if；本階未用到的語法不必先學。</p>\n      </section>\n      <section class=\"tutorial-card tutorial-core\"><h3>2. 核心觀念與圖解</h3>\n        <p>每輪讀 op 後從空 ans 產生新字串：0/1 都以 pair 為單位，2 先算 h 再交錯前後兩半；最後統一 s=ans。</p>\n        <div class=\"tutorial-visual\"><div class=\"tutorial-visual-title\">本階實際資料怎麼變</div><pre>官方 #1：apcsntnu\n操作2：apcs | ntnu\n交錯得到 anptcnsu</pre></div>\n      </section>\n      <section class=\"tutorial-card tutorial-worked\"><h3>3. 跟著做一個小例子</h3><p>只有一次操作 2，所以輸出完美重排結果 anptcnsu。</p></section>\n      <section class=\"tutorial-card tutorial-plan\"><h3>4. 先把程式拆成幾塊</h3><ol><li>讀 S、k。</li><li>每輪依 op 進 0/1/2 分支。</li><li>每個分支完整建立 ans。</li><li>統一更新 s，最後輸出。</li></ol></section>\n      <section class=\"tutorial-card tutorial-code\"><h3>5. Python 一段一段怎麼寫</h3>\n        <div class=\"tutorial-code-step\"><strong>步驟 A</strong><p>三個代碼正好對應三個互斥分支。</p><pre class=\"tutorial-code-snippet\">if op == 0:\n    ...\nelif op == 1:\n    ...\nelse:\n    ...</pre></div>\n        <div class=\"tutorial-code-step\"><strong>步驟 B</strong><p>操作 2 的交錯規則要用目前 s 的長度與內容。</p><pre class=\"tutorial-code-snippet\">h = len(s) // 2\nfor i in range(h):\n    ans += s[i] + s[h + i]</pre></div>\n        <p class=\"tutorial-code-note\">這些片段只示範本階核心寫法；請依照前面的資料流自行把輸入、處理與輸出接成完整程式。</p>\n      </section>\n      <section class=\"tutorial-card tutorial-check\"><h3>6. 常見錯誤與自我檢查</h3><ul><li>op 1 只排序每一對，不是整串排序。</li><li>每輪一定要更新 s=ans。</li></ul></section>\n    </div>"}];
+const TASKS = [{"id":1,"title":"操作 0：相鄰兩兩交換","difficulty":"入門","statement":"給定偶數長度小寫字串 S。將相鄰字元兩兩分組 (0,1)、(2,3)…，每組交換順序。","input":"輸入一行偶數長度的小寫英文字串 S；字元位置從 0 開始，操作會交換位置 (0,1)、(2,3)、… 的每一組相鄰字元。","output":"輸出操作後字串。","sampleIn":"apcsntnu","sampleOut":"pasctnun","sampleExplain":"    <div class=\"demo-story\"><div class=\"demo-viewport\"><section class=\"demo-step\"><p>第一組 ap 變 pa，其他三組也做同樣交換。</p><pre>(ap)(cs)(nt)(nu)\n→ (pa)(sc)(tn)(un)\n→ pasctnun</pre></section><section class=\"demo-step\"><p>依照核心規則完成處理。</p></section><section class=\"demo-step\"><p>核對輸出格式。</p></section></div></div>","starter":"","answer":"s = input().strip()\nans = ''\n\n# 每兩個字元分成一組，直接把第 2 個放前、第 1 個放後。\nfor i in range(0, len(s), 2):\n    ans += s[i + 1]\n    ans += s[i]\n\nprint(ans)","tests":[{"input":"apcsntnu\n","output":"pasctnun\n","public":true,"sampleRole":"primary","sampleOrigin":"task","qaPurpose":"本階主要公開範例"},{"input":"abcdef\n","output":"badcfe\n","public":true,"sampleRole":"secondary","sampleOrigin":"task","qaPurpose":"本階第二公開案例"},{"input":"aa\n","output":"aa\n","qaPurpose":"第二公開案例走不同邊界或分支","public":true,"sampleRole":"special","sampleOrigin":"special"},{"input":"zxyw\n","output":"xzwy\n"}],"generatedTests":[{"input":"facebook\n","output":"afecobko\n","generated":true},{"input":"aabbccdd\n","output":"aabbccdd\n","generated":true}],"tutorial":"    <div class=\"tutorial-body\">\n      <section class=\"tutorial-card tutorial-goal\"><h3>1. 先知道這題在練什麼</h3>\n        <p>先獨立學會操作代碼 0 的 pair traversal。</p><p><strong>先備：</strong>會使用基本輸入、list、for、while 與 if；本階未用到的語法不必先學。</p>\n      </section>\n      <section class=\"tutorial-card tutorial-core\"><h3>2. 核心觀念與圖解</h3>\n        <p>索引 0、2、4… 是每一組的第一個位置；輸出時先接 s[i+1] 再接 s[i]。</p>\n        <div class=\"tutorial-visual\"><div class=\"tutorial-visual-title\">本階實際資料怎麼變</div><pre>(ap)(cs)(nt)(nu)\n→ (pa)(sc)(tn)(un)\n→ pasctnun</pre></div>\n      </section>\n      <section class=\"tutorial-card tutorial-worked\"><h3>3. 跟著做一個小例子</h3><p>第一組 ap 變 pa，其他三組也做同樣交換。</p></section>\n      <section class=\"tutorial-card tutorial-plan\"><h3>4. 先把程式拆成幾塊</h3><ol><li>i 從 0 每次加 2。</li><li>每組取 s[i]、s[i+1]。</li><li>反向接回 ans。</li><li>輸出 ans。</li></ol></section>\n      <section class=\"tutorial-card tutorial-code\"><h3>5. Python 一段一段怎麼寫</h3>\n        <div class=\"tutorial-code-step\"><strong>步驟 A</strong><p>step=2 保證每次正好處理一組。</p><pre class=\"tutorial-code-snippet\">for i in range(0, len(s), 2):</pre></div>\n        <div class=\"tutorial-code-step\"><strong>步驟 B</strong><p>同組第二個字元先放。</p><pre class=\"tutorial-code-snippet\">ans += s[i + 1]\nans += s[i]</pre></div>\n        <p class=\"tutorial-code-note\">這些片段只示範本階核心寫法；請依照前面的資料流自行把輸入、處理與輸出接成完整程式。</p>\n      </section>\n      <section class=\"tutorial-card tutorial-check\"><h3>6. 常見錯誤與自我檢查</h3><ul><li>字串長度保證偶數，所以 i+1 存在。</li><li>不要把不同組的字元混在一起。</li></ul></section>\n    </div>","stageKey":"q182.e71d747529ed","inputItems":[{"key":"in1","text":"輸入一行偶數長度的小寫英文字串 S；字元位置從 0 開始，操作會交換位置 (0,1)、(2,3)、… 的每一組相鄰字元。","meaningAndUseReviewed":true}],"outputItems":[{"key":"out1","text":"輸出操作後字串。","meaningReviewed":true}]},{"id":2,"title":"操作 1：相鄰兩兩排序","difficulty":"基礎","statement":"給定偶數長度小寫字串 S。把相鄰字元兩兩分組，每組依字典序由小到大放回。請輸出完成這一次操作後的整個字串。","input":"輸入一行偶數長度的小寫英文字串 S；字元位置從 0 開始，操作會把 (0,1)、(2,3)、… 每組兩個字元依字典序由小到大放回。","output":"輸出操作後字串。","sampleIn":"family","sampleOut":"afimly","sampleExplain":"    <div class=\"demo-story\"><div class=\"demo-viewport\"><section class=\"demo-step\"><p>fa 中 a 比 f 小，所以變 af；mi 變 im；ly 本來就有序。</p><pre>(fa)(mi)(ly)\n→ (af)(im)(ly)\n→ afimly</pre></section><section class=\"demo-step\"><p>依照核心規則完成處理。</p></section><section class=\"demo-step\"><p>核對輸出格式。</p></section></div></div>","starter":"","answer":"s = input().strip()\nans = ''\n\n# 每組只有兩個字元，直接比較大小後依字典序接回答案。\nfor i in range(0, len(s), 2):\n    a = s[i]\n    b = s[i + 1]\n    if a <= b:\n        ans += a + b\n    else:\n        ans += b + a\n\nprint(ans)","tests":[{"input":"family\n","output":"afimly\n","public":true,"sampleRole":"primary","sampleOrigin":"task","qaPurpose":"本階主要公開範例"},{"input":"abcdef\n","output":"abcdef\n","public":true,"sampleRole":"secondary","sampleOrigin":"task","qaPurpose":"本階第二公開案例"},{"input":"ba\n","output":"ab\n","qaPurpose":"第二公開案例走不同邊界或分支","public":true,"sampleRole":"special","sampleOrigin":"special"},{"input":"zzay\n","output":"zzay\n"}],"generatedTests":[{"input":"facebook\n","output":"afceboko\n","generated":true},{"input":"dcbaefgh\n","output":"cdabefgh\n","generated":true}],"tutorial":"    <div class=\"tutorial-body\">\n      <section class=\"tutorial-card tutorial-goal\"><h3>1. 先知道這題在練什麼</h3>\n        <p>獨立學會操作 1：每組只比較兩個字元。</p><p><strong>先備：</strong>會使用基本輸入、list、for、while 與 if；本階未用到的語法不必先學。</p>\n      </section>\n      <section class=\"tutorial-card tutorial-core\"><h3>2. 核心觀念與圖解</h3>\n        <p>因為一組只有 a、b 兩個字元，不需要對整個字串排序；只判斷 a<=b，否則交換它們的輸出順序。</p>\n        <div class=\"tutorial-visual\"><div class=\"tutorial-visual-title\">本階實際資料怎麼變</div><pre>(fa)(mi)(ly)\n→ (af)(im)(ly)\n→ afimly</pre></div>\n      </section>\n      <section class=\"tutorial-card tutorial-worked\"><h3>3. 跟著做一個小例子</h3><p>fa 中 a 比 f 小，所以變 af；mi 變 im；ly 本來就有序。</p></section>\n      <section class=\"tutorial-card tutorial-plan\"><h3>4. 先把程式拆成幾塊</h3><ol><li>每兩個字元一組。</li><li>取出 a、b。</li><li>比較 a<=b。</li><li>依小到大接回 ans。</li></ol></section>\n      <section class=\"tutorial-card tutorial-code\"><h3>5. Python 一段一段怎麼寫</h3>\n        <div class=\"tutorial-code-step\"><strong>步驟 A</strong><p>先把同一組的兩個字元取出來。</p><pre class=\"tutorial-code-snippet\">a = s[i]\nb = s[i + 1]</pre></div>\n        <div class=\"tutorial-code-step\"><strong>步驟 B</strong><p>每組都局部排序，不影響別組。</p><pre class=\"tutorial-code-snippet\">if a <= b:\n    ans += a + b\nelse:\n    ans += b + a</pre></div>\n        <p class=\"tutorial-code-note\">這些片段只示範本階核心寫法；請依照前面的資料流自行把輸入、處理與輸出接成完整程式。</p>\n      </section>\n      <section class=\"tutorial-card tutorial-check\"><h3>6. 常見錯誤與自我檢查</h3><ul><li>不要用 sorted(s) 把整個字串排序。</li><li>相同字元順序不影響結果。</li></ul></section>\n    </div>","stageKey":"q182.bac8f541e17e","inputItems":[{"key":"in1","text":"輸入一行偶數長度的小寫英文字串 S；字元位置從 0 開始，操作會把 (0,1)、(2,3)、… 每組兩個字元依字典序由小到大放回。","meaningAndUseReviewed":true}],"outputItems":[{"key":"out1","text":"輸出操作後字串。","meaningReviewed":true}]},{"id":3,"title":"操作 2：完美重排","difficulty":"進階","statement":"給定偶數長度字串 S，長度為 n。把字串分成前半 S[0:n/2] 與後半 S[n/2:n]，再依「前半第 0 個、後半第 0 個、前半第 1 個、後半第 1 個……」的順序交錯合併。請輸出重排後的完整字串。","input":"輸入一行偶數長度字串 S，令 n 為其長度；前半與後半各有 n/2 個字元。","output":"輸出完美重排後字串。","sampleIn":"apcsntnu","sampleOut":"anptcnsu","sampleExplain":"    <div class=\"demo-story\"><div class=\"demo-viewport\"><section class=\"demo-step\"><p>i=0 取 a、n；i=1 取 p、t，直到兩半都用完。</p><pre>前半 apcs\n後半 ntnu\n交錯：a n p t c n s u\n→ anptcnsu</pre></section><section class=\"demo-step\"><p>依照核心規則完成處理。</p></section><section class=\"demo-step\"><p>核對輸出格式。</p></section></div></div>","starter":"","answer":"s = input().strip()\nh = len(s) // 2\nans = ''\n\n# 前半第 i 個字元與後半第 i 個字元交錯放入新字串。\nfor i in range(h):\n    ans += s[i]\n    ans += s[h + i]\n\nprint(ans)","tests":[{"input":"apcsntnu\n","output":"anptcnsu\n","public":true,"sampleRole":"primary","sampleOrigin":"task","qaPurpose":"本階主要公開範例"},{"input":"abcdefgh\n","output":"aebfcgdh\n","public":true,"sampleRole":"secondary","sampleOrigin":"task","qaPurpose":"本階第二公開案例"},{"input":"ab\n","output":"ab\n","qaPurpose":"第二公開案例走不同邊界或分支","public":true,"sampleRole":"special","sampleOrigin":"special"},{"input":"facebook\n","output":"fbaocoek\n"}],"generatedTests":[{"input":"aabbccdd\n","output":"acacbdbd\n","generated":true},{"input":"qwertyui\n","output":"qtwyeuri\n","generated":true}],"tutorial":"    <div class=\"tutorial-body\">\n      <section class=\"tutorial-card tutorial-goal\"><h3>1. 先知道這題在練什麼</h3>\n        <p>獨立學會操作 2 的半切與交錯 index。</p><p><strong>先備：</strong>會使用基本輸入、list、for、while 與 if；本階未用到的語法不必先學。</p>\n      </section>\n      <section class=\"tutorial-card tutorial-core\"><h3>2. 核心觀念與圖解</h3>\n        <p>h=n//2。對 i=0..h-1，依序接 s[i] 與 s[h+i]。</p>\n        <div class=\"tutorial-visual\"><div class=\"tutorial-visual-title\">本階實際資料怎麼變</div><pre>前半 apcs\n後半 ntnu\n交錯：a n p t c n s u\n→ anptcnsu</pre></div>\n      </section>\n      <section class=\"tutorial-card tutorial-worked\"><h3>3. 跟著做一個小例子</h3><p>i=0 取 a、n；i=1 取 p、t，直到兩半都用完。</p></section>\n      <section class=\"tutorial-card tutorial-plan\"><h3>4. 先把程式拆成幾塊</h3><ol><li>算 h=len(s)//2。</li><li>i 跑 0..h-1。</li><li>接前半 s[i]。</li><li>接後半 s[h+i]。</li></ol></section>\n      <section class=\"tutorial-card tutorial-code\"><h3>5. Python 一段一段怎麼寫</h3>\n        <div class=\"tutorial-code-step\"><strong>步驟 A</strong><p>偶數長度可平均切成兩半。</p><pre class=\"tutorial-code-snippet\">h = len(s) // 2</pre></div>\n        <div class=\"tutorial-code-step\"><strong>步驟 B</strong><p>同一個 i 對應前後兩半的同一相對位置。</p><pre class=\"tutorial-code-snippet\">for i in range(h):\n    ans += s[i]\n    ans += s[h + i]</pre></div>\n        <p class=\"tutorial-code-note\">這些片段只示範本階核心寫法；請依照前面的資料流自行把輸入、處理與輸出接成完整程式。</p>\n      </section>\n      <section class=\"tutorial-card tutorial-check\"><h3>6. 常見錯誤與自我檢查</h3><ul><li>不要使用 s[2*i] 之類原字串偶數索引，那不是題目定義。</li><li>兩半各有 h 個字元。</li></ul></section>\n    </div>","stageKey":"q182.de15ff72a0cc","inputItems":[{"key":"in1","text":"輸入一行偶數長度字串 S，令 n 為其長度；前半與後半各有 n/2 個字元。","meaningAndUseReviewed":true}],"outputItems":[{"key":"out1","text":"輸出完美重排後字串。","meaningReviewed":true}]},{"id":4,"title":"連續執行操作 0 與 1","difficulty":"整合","statement":"給定偶數長度字串 S 與 k 個操作，本階保證每個操作代碼只會是 0 或 1。0 代表兩兩交換，1 代表兩兩排序。請依輸入順序執行，輸出最後字串。","input":"第一行是一個偶數長度字串 S。第二行有非負整數 k，表示操作次數。接下來 k 行各有一個操作代碼：0 表示把相鄰字元兩兩交換，1 表示把每一組相鄰兩字元依字典序排序；操作依輸入順序執行。","output":"輸出最後字串。","sampleIn":"facebook\n3\n0\n1\n0","sampleOut":"faecobok","sampleExplain":"    <div class=\"demo-story\"><div class=\"demo-viewport\"><section class=\"demo-step\"><p>重點不是背中間字串，而是每一輪都只處理目前 s 的相鄰 pair。</p><pre>facebook\n0 → afecobko\n1 → afceboko\n0 → faecobok</pre></section><section class=\"demo-step\"><p>依照核心規則完成處理。</p></section><section class=\"demo-step\"><p>核對輸出格式。</p></section></div></div>","starter":"","answer":"s = input().strip()\nk = int(input())\n\n# 每次操作都要用最新的 s 產生下一個字串。\nfor _ in range(k):\n    op = int(input())\n    ans = ''\n    if op == 0:\n        for i in range(0, len(s), 2):\n            ans += s[i + 1] + s[i]\n    else:\n        for i in range(0, len(s), 2):\n            a = s[i]\n            b = s[i + 1]\n            if a <= b:\n                ans += a + b\n            else:\n                ans += b + a\n    s = ans\n\n# 所有操作依序完成後才輸出最後結果。\nprint(s)","tests":[{"input":"facebook\n3\n0\n1\n0\n","output":"faecobok\n","public":true,"sampleRole":"primary","sampleOrigin":"task","qaPurpose":"本階主要公開範例"},{"input":"dcba\n4\n1\n0\n1\n0\n","output":"dcba\n","public":true,"sampleRole":"secondary","sampleOrigin":"task","qaPurpose":"本階第二公開案例"},{"input":"ab\n1\n1\n","output":"ab\n","qaPurpose":"第二公開案例走不同邊界或分支","public":true,"sampleRole":"special","sampleOrigin":"special"},{"input":"aabbcc\n2\n0\n0\n","output":"aabbcc\n"}],"generatedTests":[{"input":"family\n5\n0\n1\n1\n0\n1\n","output":"afimly\n","generated":true},{"input":"zzxy\n3\n1\n1\n0\n","output":"zzyx\n","generated":true}],"tutorial":"    <div class=\"tutorial-body\">\n      <section class=\"tutorial-card tutorial-goal\"><h3>1. 先知道這題在練什麼</h3>\n        <p>學會用 operation code 選不同分支，並把每次結果更新成下一次輸入。</p><p><strong>先備：</strong>會使用基本輸入、list、for、while 與 if；本階未用到的語法不必先學。</p>\n      </section>\n      <section class=\"tutorial-card tutorial-core\"><h3>2. 核心觀念與圖解</h3>\n        <p>每次先建立空 ans，依 op 走交換或排序分支；完成後 s=ans。兩個分支都保持字串長度。</p>\n        <div class=\"tutorial-visual\"><div class=\"tutorial-visual-title\">本階實際資料怎麼變</div><pre>facebook\n0 → afecobko\n1 → afceboko\n0 → faecobok</pre></div>\n      </section>\n      <section class=\"tutorial-card tutorial-worked\"><h3>3. 跟著做一個小例子</h3><p>重點不是背中間字串，而是每一輪都只處理目前 s 的相鄰 pair。</p></section>\n      <section class=\"tutorial-card tutorial-plan\"><h3>4. 先把程式拆成幾塊</h3><ol><li>讀 k。</li><li>重複讀 op。</li><li>op==0 做交換，否則做 pair 排序。</li><li>每輪結束 s=ans。</li></ol></section>\n      <section class=\"tutorial-card tutorial-code\"><h3>5. Python 一段一段怎麼寫</h3>\n        <div class=\"tutorial-code-step\"><strong>步驟 A</strong><p>代碼決定本輪使用哪一種局部規則。</p><pre class=\"tutorial-code-snippet\">if op == 0:\n    ...\nelse:\n    ...</pre></div>\n        <div class=\"tutorial-code-step\"><strong>步驟 B</strong><p>這行放在兩個分支都完成之後，讓下一輪使用最新結果。</p><pre class=\"tutorial-code-snippet\">s = ans</pre></div>\n        <p class=\"tutorial-code-note\">這些片段只示範本階核心寫法；請依照前面的資料流自行把輸入、處理與輸出接成完整程式。</p>\n      </section>\n      <section class=\"tutorial-card tutorial-check\"><h3>6. 常見錯誤與自我檢查</h3><ul><li>不要每輪都從最初字串開始。</li><li>本階沒有操作 2，不需要先加入完美重排。</li></ul></section>\n    </div>","stageKey":"q182.a15224959707","inputItems":[{"key":"in1","text":"第一行是一個偶數長度字串 S。","meaningAndUseReviewed":true},{"key":"in2","text":"第二行有非負整數 k，表示操作次數。","meaningAndUseReviewed":true},{"key":"in3","text":"接下來 k 行各有一個操作代碼：0 表示把相鄰字元兩兩交換，1 表示把每一組相鄰兩字元依字典序排序；操作依輸入順序執行。","meaningAndUseReviewed":true}],"outputItems":[{"key":"out1","text":"輸出最後字串。","meaningReviewed":true}]},{"id":5,"title":"原題：字串操作","difficulty":"原題","statement":"給定偶數長度字串 S 與 k 個操作。代碼 0：相鄰兩兩交換；代碼 1：相鄰兩兩依字典序排序；代碼 2：把字串分成等長前後兩半後交錯合併。請依序執行所有操作並輸出最後字串。","input":"第一行是一個偶數長度字串 S（2≤字串長度≤100）。第二行有非負整數 k，表示操作次數。接下來 k 行各有一個代碼：0=相鄰兩兩交換，1=相鄰兩兩依字典序排序，2=把等長前後兩半交錯合併；操作依輸入順序執行。","output":"輸出全部操作完成後的字串。","sampleIn":"apcsntnu\n1\n2","sampleOut":"anptcnsu","sampleExplain":"    <div class=\"demo-story\"><div class=\"demo-viewport\"><section class=\"demo-step\"><p>只有一次操作 2，所以輸出完美重排結果 anptcnsu。</p><pre>官方 #1：apcsntnu\n操作2：apcs | ntnu\n交錯得到 anptcnsu</pre></section><section class=\"demo-step\"><p>依照核心規則完成處理。</p></section><section class=\"demo-step\"><p>核對輸出格式。</p></section></div></div>","starter":"","answer":"s = input().strip()\nk = int(input())\n\n# 依序讀操作代碼，每次都從目前的 s 建立下一個字串。\nfor _ in range(k):\n    op = int(input())\n    ans = ''\n    if op == 0:\n        for i in range(0, len(s), 2):\n            ans += s[i + 1] + s[i]\n    elif op == 1:\n        for i in range(0, len(s), 2):\n            a = s[i]\n            b = s[i + 1]\n            if a <= b:\n                ans += a + b\n            else:\n                ans += b + a\n    else:\n        h = len(s) // 2\n        for i in range(h):\n            ans += s[i] + s[h + i]\n    s = ans\n\n# 三種操作都會保持字串長度不變，所以最後直接輸出 s。\nprint(s)","tests":[{"input":"apcsntnu\n1\n2\n","output":"anptcnsu\n","public":true,"sampleRole":"primary","sampleOrigin":"official","qaPurpose":"官方公開範例 #1"},{"input":"facebook\n4\n2\n0\n2\n1\n","output":"bocfkoae\n","qaPurpose":"第二公開案例走不同邊界或分支","public":true,"sampleRole":"secondary","sampleOrigin":"official"},{"input":"ab\n5\n0\n1\n2\n0\n2\n","output":"ba\n","public":true,"sampleRole":"special","sampleOrigin":"special","qaPurpose":"第三公開範例：邊界／特殊值／不同狀態路徑"},{"input":"dcbaef\n3\n1\n2\n0\n","output":"bcedfa\n"}],"generatedTests":[{"input":"abcdefgh\n6\n2\n2\n0\n1\n2\n0\n","output":"badcfehg\n","generated":true},{"input":"zzxxyyww\n5\n1\n0\n2\n1\n2\n","output":"ywzxywzx\n","generated":true}],"tutorial":"    <div class=\"tutorial-body\">\n      <section class=\"tutorial-card tutorial-goal\"><h3>1. 先知道這題在練什麼</h3>\n        <p>完整整合三種字串操作與多輪 state update。</p><p><strong>先備：</strong>會使用基本輸入、list、for、while 與 if；本階未用到的語法不必先學。</p>\n      </section>\n      <section class=\"tutorial-card tutorial-core\"><h3>2. 核心觀念與圖解</h3>\n        <p>每輪讀 op 後從空 ans 產生新字串：0/1 都以 pair 為單位，2 先算 h 再交錯前後兩半；最後統一 s=ans。</p>\n        <div class=\"tutorial-visual\"><div class=\"tutorial-visual-title\">本階實際資料怎麼變</div><pre>官方 #1：apcsntnu\n操作2：apcs | ntnu\n交錯得到 anptcnsu</pre></div>\n      </section>\n      <section class=\"tutorial-card tutorial-worked\"><h3>3. 跟著做一個小例子</h3><p>只有一次操作 2，所以輸出完美重排結果 anptcnsu。</p></section>\n      <section class=\"tutorial-card tutorial-plan\"><h3>4. 先把程式拆成幾塊</h3><ol><li>讀 S、k。</li><li>每輪依 op 進 0/1/2 分支。</li><li>每個分支完整建立 ans。</li><li>統一更新 s，最後輸出。</li></ol></section>\n      <section class=\"tutorial-card tutorial-code\"><h3>5. Python 一段一段怎麼寫</h3>\n        <div class=\"tutorial-code-step\"><strong>步驟 A</strong><p>三個代碼正好對應三個互斥分支。</p><pre class=\"tutorial-code-snippet\">if op == 0:\n    ...\nelif op == 1:\n    ...\nelse:\n    ...</pre></div>\n        <div class=\"tutorial-code-step\"><strong>步驟 B</strong><p>操作 2 的交錯規則要用目前 s 的長度與內容。</p><pre class=\"tutorial-code-snippet\">h = len(s) // 2\nfor i in range(h):\n    ans += s[i] + s[h + i]</pre></div>\n        <p class=\"tutorial-code-note\">這些片段只示範本階核心寫法；請依照前面的資料流自行把輸入、處理與輸出接成完整程式。</p>\n      </section>\n      <section class=\"tutorial-card tutorial-check\"><h3>6. 常見錯誤與自我檢查</h3><ul><li>op 1 只排序每一對，不是整串排序。</li><li>每輪一定要更新 s=ans。</li></ul></section>\n    </div>","stageKey":"q182.4970551e2ce5","inputItems":[{"key":"in1","text":"第一行是一個偶數長度字串 S（2≤字串長度≤100）。","meaningAndUseReviewed":true},{"key":"in2","text":"第二行有非負整數 k，表示操作次數。","meaningAndUseReviewed":true},{"key":"in3","text":"接下來 k 行各有一個代碼：0=相鄰兩兩交換，1=相鄰兩兩依字典序排序，2=把等長前後兩半交錯合併；操作依輸入順序執行。","meaningAndUseReviewed":true}],"outputItems":[{"key":"out1","text":"輸出全部操作完成後的字串。","meaningReviewed":true}]}];
 
 // Shared test accessors belong to the canonical template. Optional generator_js may
 // provide generateOneHiddenTest(), but formal-stage rendering/Judge must never depend
@@ -596,6 +596,7 @@ const STORAGE_PREFIX = `${OJ_META.storage.namespace}:v${STORAGE_SCHEMA}`;
 const ACCEPTED_KEY = `${STORAGE_PREFIX}:accepted`;
 const HISTORY_KEY = `${STORAGE_PREFIX}:history`;
 const MIGRATION_KEY = `${STORAGE_PREFIX}:migrated`;
+const STAGE_KEY_MIGRATION_KEY = `${STORAGE_PREFIX}:stage-key-migrated:v1`;
 const LEGACY_ACCEPTED_KEY = OJ_META.storage.legacyAcceptedKey;
 const LEGACY_HISTORY_KEY = OJ_META.storage.legacyHistoryKey;
 const PYODIDE_VERSION = '0.27.7';
@@ -606,6 +607,45 @@ const PORTABLE_RECORD_FORMAT = 'peicd_oj_progress';
 const PORTABLE_RECORD_SCHEMA = 1;
 const PORTABLE_RECORD_MAX_BYTES = 2 * 1024 * 1024;
 const PORTABLE_RECORD_MAX_CODE_CHARS = 300000;
+
+const STORAGE=(()=>{
+  const memory=new Map();
+  let backend=null;
+  let persistent=false;
+  try{
+    backend=window.localStorage;
+    const probe=`__peicd_storage_probe__${Math.random().toString(36).slice(2)}`;
+    backend.setItem(probe,'1');
+    persistent=backend.getItem(probe)==='1';
+    backend.removeItem(probe);
+  }catch(err){backend=null;persistent=false;}
+  return {
+    get persistent(){return persistent;},
+    getItem(key){
+      const k=String(key);
+      if(backend){try{return backend.getItem(k)}catch(err){backend=null;persistent=false;}}
+      return memory.has(k)?memory.get(k):null;
+    },
+    setItem(key,value){
+      const k=String(key),v=String(value);
+      if(backend){try{backend.setItem(k,v);return}catch(err){backend=null;persistent=false;}}
+      memory.set(k,v);
+    },
+    removeItem(key){
+      const k=String(key);
+      if(backend){try{backend.removeItem(k)}catch(err){backend=null;persistent=false;}}
+      memory.delete(k);
+    },
+    keys(){
+      const out=[];
+      if(backend){
+        try{for(let i=0;i<backend.length;i++){const key=backend.key(i);if(key!==null)out.push(key)}return out}
+        catch(err){backend=null;persistent=false;}
+      }
+      return Array.from(memory.keys());
+    }
+  };
+})();
 
 const $ = (s) => document.querySelector(s);
 const levelStrip = $('#levelStrip');
@@ -618,18 +658,32 @@ const progressBar = $('#progressBar');
 const progressText = $('#progressText');
 const historyList = $('#historyList');
 const hiddenTestsList = $('#hiddenTestsList');
+const storageWarning = $('#storageWarning');
 
 function esc(s){
   return String(s).replace(/[&<>"']/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
 }
 
+function normalizeLineEndings(s){return String(s).replace(/\r\n?/g,'\n');}
 function normalizeOutput(s){
-  return String(s)
-    .replace(/\r\n?/g,'\n')
+  return normalizeLineEndings(s)
     .split('\n')
     .map(line=>line.trim())
     .filter(line=>line!=='')
     .join('\n');
+}
+function compareMode(){return OJ_META.judge?.compareMode||'tolerant';}
+function outputsEqual(actual,expected){
+  const mode=compareMode();
+  if(mode==='tolerant') return normalizeOutput(actual)===normalizeOutput(expected);
+  if(mode==='exact') return normalizeLineEndings(actual)===normalizeLineEndings(expected);
+  return false;
+}
+function compareModeDescription(){
+  const mode=compareMode();
+  if(mode==='exact') return '嚴格比對';
+  if(mode==='special') return 'Special Judge';
+  return '寬鬆比對';
 }
 
 function safeJsonParse(raw,fallback){
@@ -674,28 +728,76 @@ function bindPublicSampleCopyButtons(publicSamples){
   });
 }
 
+function stageKeyForTask(task){return String(task?.stageKey||task?.id||'');}
+function taskFromId(id){return TASKS.find(t=>String(t.id)===String(id))||null;}
+function legacyCurrentDraftKey(id){return `${STORAGE_PREFIX}:code:${id}`;}
+function draftKey(id){const task=taskFromId(id);return `${STORAGE_PREFIX}:code:${task?stageKeyForTask(task):String(id)}`;}
+function loadDraft(task){
+  const next=STORAGE.getItem(draftKey(task.id));
+  if(next!==null)return next;
+  const legacy=STORAGE.getItem(legacyCurrentDraftKey(task.id));
+  if(legacy!==null){STORAGE.setItem(draftKey(task.id),legacy);return legacy;}
+  return null;
+}
+function acceptedForTask(map,task){return Boolean(map[stageKeyForTask(task)]||map[String(task.id)]);}
+
 function migrateStorage(){
-  if(localStorage.getItem(MIGRATION_KEY)==='1') return;
   try{
-    if(LEGACY_ACCEPTED_KEY && localStorage.getItem(ACCEPTED_KEY)===null){const legacy=localStorage.getItem(LEGACY_ACCEPTED_KEY);if(legacy!==null)localStorage.setItem(ACCEPTED_KEY,legacy);}
-    if(LEGACY_HISTORY_KEY && localStorage.getItem(HISTORY_KEY)===null){const legacy=localStorage.getItem(LEGACY_HISTORY_KEY);if(legacy!==null)localStorage.setItem(HISTORY_KEY,legacy);}
-    if(OJ_META.storage.legacyDraftPrefix){for(const task of TASKS){const nextKey=draftKey(task.id),legacyKey=`${OJ_META.storage.legacyDraftPrefix}${task.id}`;if(localStorage.getItem(nextKey)===null){const legacy=localStorage.getItem(legacyKey);if(legacy!==null)localStorage.setItem(nextKey,legacy);}}}
-    localStorage.setItem(MIGRATION_KEY,'1');
-  }catch(err){console.warn('Local storage migration skipped:',err);}
+    // Legacy namespace/schema migration from older OJ generations.
+    if(STORAGE.getItem(MIGRATION_KEY)!=='1'){
+      if(LEGACY_ACCEPTED_KEY && STORAGE.getItem(ACCEPTED_KEY)===null){const legacy=STORAGE.getItem(LEGACY_ACCEPTED_KEY);if(legacy!==null)STORAGE.setItem(ACCEPTED_KEY,legacy);}
+      if(LEGACY_HISTORY_KEY && STORAGE.getItem(HISTORY_KEY)===null){const legacy=STORAGE.getItem(LEGACY_HISTORY_KEY);if(legacy!==null)STORAGE.setItem(HISTORY_KEY,legacy);}
+      for(const task of TASKS){
+        const nextKey=draftKey(task.id);
+        if(STORAGE.getItem(nextKey)!==null)continue;
+        let legacy=null;
+        if(OJ_META.storage.legacyDraftPrefix)legacy=STORAGE.getItem(`${OJ_META.storage.legacyDraftPrefix}${task.id}`);
+        if(legacy!==null)STORAGE.setItem(nextKey,legacy);
+      }
+      STORAGE.setItem(MIGRATION_KEY,'1');
+    }
+
+    // v0.1.52 stable-stage identity migration is intentionally a separate marker.
+    // Existing users may already have MIGRATION_KEY=1 from older releases, so reusing
+    // that marker would skip id -> stageKey promotion and weaken future reorder safety.
+    if(STORAGE.getItem(STAGE_KEY_MIGRATION_KEY)!=='1'){
+      for(const task of TASKS){
+        const nextKey=draftKey(task.id);
+        if(STORAGE.getItem(nextKey)===null){
+          const oldIdValue=STORAGE.getItem(legacyCurrentDraftKey(task.id));
+          if(oldIdValue!==null)STORAGE.setItem(nextKey,oldIdValue);
+        }
+      }
+      const accepted=safeJsonParse(STORAGE.getItem(ACCEPTED_KEY)||'{}',{});
+      let acceptedChanged=false;
+      for(const task of TASKS){
+        if(accepted[String(task.id)] && !accepted[stageKeyForTask(task)]){
+          accepted[stageKeyForTask(task)]=true;acceptedChanged=true;
+        }
+      }
+      if(acceptedChanged)STORAGE.setItem(ACCEPTED_KEY,JSON.stringify(accepted));
+
+      const history=safeJsonParse(STORAGE.getItem(HISTORY_KEY)||'[]',[]);
+      let historyChanged=false;
+      if(Array.isArray(history)){
+        for(const item of history){
+          if(!item || item.stageKey)continue;
+          const task=taskFromId(item.taskId);
+          if(task){item.stageKey=stageKeyForTask(task);historyChanged=true;}
+        }
+        if(historyChanged)STORAGE.setItem(HISTORY_KEY,JSON.stringify(history));
+      }
+      STORAGE.setItem(STAGE_KEY_MIGRATION_KEY,'1');
+    }
+  }catch(err){console.warn('Storage migration skipped:',err);}
 }
 
-function getAccepted(){
-  return safeJsonParse(localStorage.getItem(ACCEPTED_KEY)||'{}',{});
-}
+function getAccepted(){return safeJsonParse(STORAGE.getItem(ACCEPTED_KEY)||'{}',{});}
 function setAccepted(id){
-  const a=getAccepted();
-  a[id]=true;
-  localStorage.setItem(ACCEPTED_KEY,JSON.stringify(a));
+  const task=taskFromId(id);if(!task)return;
+  const a=getAccepted();a[stageKeyForTask(task)]=true;STORAGE.setItem(ACCEPTED_KEY,JSON.stringify(a));
 }
-
-function isTaskAccepted(task=TASKS[currentTaskIndex]){
-  return Boolean(task && getAccepted()[task.id]);
-}
+function isTaskAccepted(task=TASKS[currentTaskIndex]){return Boolean(task && acceptedForTask(getAccepted(),task));}
 
 function updateAnswerButtonState(){
   const btn=$('#answerBtn');
@@ -708,14 +810,10 @@ function updateAnswerButtonState(){
 }
 function getReferenceVariants(task){
   if(Array.isArray(task?.referenceAnswers) && task.referenceAnswers.length){
-    return task.referenceAnswers.map((item,index)=>({
-      title:String(item?.title||`方法 ${index+1}`),
-      code:String(item?.code||'')
-    }));
+    return task.referenceAnswers.map((item,index)=>({title:String(item?.title||`方法 ${index+1}`),code:String(item?.code||'')}));
   }
   return [{title:'參考答案',code:String(task?.answer||'')}];
 }
-
 function renderReferenceAnswers(task){
   const variants=getReferenceVariants(task);
   const dialog=$('#answerDialog');
@@ -733,57 +831,30 @@ function renderReferenceAnswers(task){
   }
 }
 
-function draftKey(id){return `${STORAGE_PREFIX}:code:${id}`}
-function historyKey(){return HISTORY_KEY}
-function getHistory(){return safeJsonParse(localStorage.getItem(historyKey())||'[]',[])}
+function historyKey(){return HISTORY_KEY;}
+function getHistory(){return safeJsonParse(STORAGE.getItem(historyKey())||'[]',[]);}
 function addHistory(taskId, verdict, passed, total){
-  const list=getHistory();
-  list.unshift({time:new Date().toLocaleString('zh-TW',{hour12:false}),taskId,verdict,passed,total});
-  localStorage.setItem(historyKey(),JSON.stringify(list.slice(0,30)));
-  renderHistory();
+  const task=taskFromId(taskId);const list=getHistory();
+  list.unshift({time:new Date().toLocaleString('zh-TW',{hour12:false}),taskId,stageKey:task?stageKeyForTask(task):'',verdict,passed,total});
+  STORAGE.setItem(historyKey(),JSON.stringify(list.slice(0,30)));renderHistory();
 }
-
-function clearAllLocalRecords(){
-  const keys=[];
-  for(let i=0;i<localStorage.length;i++){
-    const key=localStorage.key(i);
-    if(key && key.startsWith(OJ_META.storage.namespace)) keys.push(key);
-  }
-  keys.forEach(key=>localStorage.removeItem(key));
-}
-
+function clearAllLocalRecords(){for(const key of STORAGE.keys()){if(key.startsWith(OJ_META.storage.namespace))STORAGE.removeItem(key);}}
 function portableRecordKeys(){
-  return [ACCEPTED_KEY,HISTORY_KEY,MIGRATION_KEY,...TASKS.map(t=>draftKey(t.id))];
+  return [ACCEPTED_KEY,HISTORY_KEY,MIGRATION_KEY,STAGE_KEY_MIGRATION_KEY,...TASKS.map(t=>draftKey(t.id)),...TASKS.map(t=>legacyCurrentDraftKey(t.id))];
 }
-function snapshotPortableStorage(){
-  return portableRecordKeys().map(key=>[key,localStorage.getItem(key)]);
-}
+function snapshotPortableStorage(){return portableRecordKeys().map(key=>[key,STORAGE.getItem(key)]);}
 function restorePortableStorage(snapshot){
-  for(const [key] of snapshot) localStorage.removeItem(key);
-  for(const [key,value] of snapshot) if(value!==null) localStorage.setItem(key,value);
+  for(const [key] of snapshot)STORAGE.removeItem(key);
+  for(const [key,value] of snapshot)if(value!==null)STORAGE.setItem(key,value);
 }
 function buildPortableRecord(){
-  saveDraft();
-  const accepted=getAccepted();
+  saveDraft();const accepted=getAccepted();const current=TASKS[currentTaskIndex];
   return {
-    format:PORTABLE_RECORD_FORMAT,
-    schemaVersion:PORTABLE_RECORD_SCHEMA,
-    exportedAt:new Date().toISOString(),
-    oj:{
-      problemId:String(OJ_META.source.problemId),
-      sourceUrl:String(OJ_META.source.url),
-      storageNamespace:String(OJ_META.storage.namespace),
-      storageSchema:STORAGE_SCHEMA,
-      language:'python3'
-    },
-    view:{sourceStageActive:Boolean(sourceStageActive),currentTaskId:TASKS[currentTaskIndex]?.id??null},
-    stages:TASKS.map(t=>({
-      id:t.id,
-      title:t.title,
-      code:localStorage.getItem(draftKey(t.id)) ?? t.starter ?? '',
-      accepted:Boolean(accepted[t.id])
-    })),
-    history:getHistory().map(h=>({time:String(h.time??''),taskId:h.taskId,verdict:String(h.verdict??''),passed:Number(h.passed??0),total:Number(h.total??0)}))
+    format:PORTABLE_RECORD_FORMAT,schemaVersion:PORTABLE_RECORD_SCHEMA,exportedAt:new Date().toISOString(),
+    oj:{problemId:String(OJ_META.source.problemId),sourceUrl:String(OJ_META.source.url),storageNamespace:String(OJ_META.storage.namespace),storageSchema:STORAGE_SCHEMA,language:'python3'},
+    view:{sourceStageActive:Boolean(sourceStageActive),currentTaskId:current?.id??null,currentStageKey:current?stageKeyForTask(current):null},
+    stages:TASKS.map(t=>({id:t.id,stageKey:stageKeyForTask(t),title:t.title,code:loadDraft(t)??t.starter??'',accepted:acceptedForTask(accepted,t)})),
+    history:getHistory().map(h=>({time:String(h.time??''),taskId:h.taskId,stageKey:String(h.stageKey??''),verdict:String(h.verdict??''),passed:Number(h.passed??0),total:Number(h.total??0)}))
   };
 }
 function portableFilename(){
@@ -830,65 +901,53 @@ function validatePortableRecord(data){
   if(!oj || typeof oj!=='object') throw new Error('作答紀錄缺少題目資訊。');
   if(String(oj.problemId)!==String(OJ_META.source.problemId) || String(oj.storageNamespace)!==String(OJ_META.storage.namespace) || Number(oj.storageSchema)!==Number(STORAGE_SCHEMA) || oj.language!=='python3') throw new Error('這份作答紀錄不是目前這一題的相容資料。');
   if(!Array.isArray(data.stages) || data.stages.length!==TASKS.length) throw new Error('作答紀錄的階段數量與目前題目不一致。');
-  const known=new Map(TASKS.map(t=>[String(t.id),t]));
-  const seen=new Set();
-  const stages=[];
-  let totalCodeChars=0;
+  const byId=new Map(TASKS.map(t=>[String(t.id),t]));
+  const byStage=new Map(TASKS.map(t=>[stageKeyForTask(t),t]));
+  const seen=new Set(),stages=[];let totalCodeChars=0;
   for(const raw of data.stages){
     if(!raw || typeof raw!=='object') throw new Error('階段資料格式錯誤。');
-    const id=String(raw.id);
-    if(!known.has(id)) throw new Error(`作答紀錄包含目前題目不存在的第 ${id} 階。`);
-    if(seen.has(id)) throw new Error(`作答紀錄重複包含第 ${id} 階。`);
-    if(typeof raw.code!=='string' || raw.code.length>PORTABLE_RECORD_MAX_CODE_CHARS) throw new Error(`第 ${id} 階程式碼格式或大小不合法。`);
-    if(typeof raw.accepted!=='boolean') throw new Error(`第 ${id} 階 AC 狀態格式不合法。`);
-    totalCodeChars+=raw.code.length;if(totalCodeChars>PORTABLE_RECORD_MAX_BYTES) throw new Error('作答紀錄中的程式碼總量過大。');
-    seen.add(id);stages.push({id:known.get(id).id,code:raw.code,accepted:raw.accepted});
+    const key=String(raw.stageKey||'');const id=String(raw.id);
+    const task=(key&&byStage.get(key))||byId.get(id);
+    if(!task) throw new Error(`作答紀錄包含目前題目不存在的階段 ${key||id}。`);
+    const stable=stageKeyForTask(task);if(seen.has(stable))throw new Error('作答紀錄重複包含同一階段。');
+    if(typeof raw.code!=='string'||raw.code.length>PORTABLE_RECORD_MAX_CODE_CHARS)throw new Error(`第 ${task.id} 階程式碼格式或大小不合法。`);
+    if(typeof raw.accepted!=='boolean')throw new Error(`第 ${task.id} 階 AC 狀態格式不合法。`);
+    totalCodeChars+=raw.code.length;if(totalCodeChars>PORTABLE_RECORD_MAX_BYTES)throw new Error('作答紀錄中的程式碼總量過大。');
+    seen.add(stable);stages.push({id:task.id,stageKey:stable,code:raw.code,accepted:raw.accepted});
   }
-  if(seen.size!==known.size) throw new Error('作答紀錄缺少目前題目的階段資料。');
-  if(!Array.isArray(data.history) || data.history.length>30) throw new Error('提交紀錄格式或筆數不合法。');
+  if(seen.size!==TASKS.length)throw new Error('作答紀錄缺少目前題目的階段資料。');
+  if(!Array.isArray(data.history)||data.history.length>30)throw new Error('提交紀錄格式或筆數不合法。');
   const allowedVerdicts=new Set(['AC','WA','RE','TLE','JE','CE']);
   const history=data.history.map((raw,index)=>{
-    if(!raw || typeof raw!=='object') throw new Error(`第 ${index+1} 筆提交紀錄格式錯誤。`);
-    const id=String(raw.taskId);
-    const verdict=String(raw.verdict||'');
-    const passed=Number(raw.passed),total=Number(raw.total);
-    if(!known.has(id) || !allowedVerdicts.has(verdict) || !Number.isInteger(passed) || !Number.isInteger(total) || passed<0 || total<0 || passed>total) throw new Error(`第 ${index+1} 筆提交紀錄內容不合法。`);
-    const time=String(raw.time??'');if(time.length>120) throw new Error(`第 ${index+1} 筆提交時間格式不合法。`);
-    return {time,taskId:known.get(id).id,verdict,passed,total};
+    if(!raw||typeof raw!=='object')throw new Error(`第 ${index+1} 筆提交紀錄格式錯誤。`);
+    const task=(raw.stageKey&&byStage.get(String(raw.stageKey)))||byId.get(String(raw.taskId));
+    const verdict=String(raw.verdict||''),passed=Number(raw.passed),total=Number(raw.total);
+    if(!task||!allowedVerdicts.has(verdict)||!Number.isInteger(passed)||!Number.isInteger(total)||passed<0||total<0||passed>total)throw new Error(`第 ${index+1} 筆提交紀錄內容不合法。`);
+    const time=String(raw.time??'');if(time.length>120)throw new Error(`第 ${index+1} 筆提交時間格式不合法。`);
+    return {time,taskId:task.id,stageKey:stageKeyForTask(task),verdict,passed,total};
   });
   const view=data.view;
-  if(!view || typeof view!=='object' || typeof view.sourceStageActive!=='boolean') throw new Error('作答紀錄缺少目前階段資訊。');
-  const viewId=view.currentTaskId===null?null:String(view.currentTaskId);
-  if(viewId!==null && !known.has(viewId)) throw new Error('作答紀錄的目前階段不存在。');
-  return {stages,history,view:{sourceStageActive:view.sourceStageActive,currentTaskId:viewId===null?TASKS[0].id:known.get(viewId).id}};
+  if(!view||typeof view!=='object'||typeof view.sourceStageActive!=='boolean')throw new Error('作答紀錄缺少目前階段資訊。');
+  const task=(view.currentStageKey&&byStage.get(String(view.currentStageKey)))||byId.get(String(view.currentTaskId));
+  return {stages,history,view:{sourceStageActive:view.sourceStageActive,currentTaskId:(task||TASKS[0]).id,currentStageKey:stageKeyForTask(task||TASKS[0])}};
 }
 function applyPortableRecord(record){
   const snapshot=snapshotPortableStorage();
   try{
-    for(const key of portableRecordKeys()) localStorage.removeItem(key);
+    for(const key of portableRecordKeys())STORAGE.removeItem(key);
     const accepted={};
     for(const stage of record.stages){
-      localStorage.setItem(draftKey(stage.id),stage.code);
-      if(stage.accepted) accepted[stage.id]=true;
+      const task=TASKS.find(t=>stageKeyForTask(t)===stage.stageKey)||taskFromId(stage.id);if(!task)continue;
+      STORAGE.setItem(draftKey(task.id),stage.code);if(stage.accepted)accepted[stageKeyForTask(task)]=true;
     }
-    localStorage.setItem(ACCEPTED_KEY,JSON.stringify(accepted));
-    localStorage.setItem(HISTORY_KEY,JSON.stringify(record.history));
-    localStorage.setItem(MIGRATION_KEY,'1');
-  }catch(err){
-    try{restorePortableStorage(snapshot);}catch(rollbackErr){console.error('Import rollback failed:',rollbackErr);}
-    throw err;
-  }
-
-  const idx=Math.max(0,TASKS.findIndex(t=>String(t.id)===String(record.view.currentTaskId)));
-  currentTaskIndex=idx;sourceStageActive=record.view.sourceStageActive;
-  document.body.classList.toggle('source-view',sourceStageActive);
+    STORAGE.setItem(ACCEPTED_KEY,JSON.stringify(accepted));STORAGE.setItem(HISTORY_KEY,JSON.stringify(record.history));STORAGE.setItem(MIGRATION_KEY,'1');
+  }catch(err){try{restorePortableStorage(snapshot)}catch(rollbackErr){console.error('Import rollback failed:',rollbackErr)}throw err;}
+  const idx=Math.max(0,TASKS.findIndex(t=>stageKeyForTask(t)===record.view.currentStageKey||String(t.id)===String(record.view.currentTaskId)));
+  currentTaskIndex=idx;sourceStageActive=record.view.sourceStageActive;document.body.classList.toggle('source-view',sourceStageActive);
   renderLevelStrip();renderProblem();renderTests();renderHiddenTests();renderHistory();renderProgress();updateAnswerButtonState();
-  const t=TASKS[currentTaskIndex];
-  setCode(localStorage.getItem(draftKey(t.id)) ?? t.starter);
-  overallVerdict.className='status-pill';overallVerdict.textContent='尚未提交';
-  resultSummary.textContent='作答紀錄已匯入。草稿、AC 進度與本機提交紀錄已更新。';
-  resetTerminal('作答紀錄已匯入。按 F9 啟動新的互動式 Python 程式。');
-  if(editor){editor.clearHistory();if(!sourceStageActive)refreshEditorLayout({focus:true});}
+  const t=TASKS[currentTaskIndex];setCode(loadDraft(t)??t.starter);
+  overallVerdict.className='status-pill';overallVerdict.textContent='尚未提交';resultSummary.textContent='作答紀錄已匯入。草稿、AC 進度與本機提交紀錄已更新。';
+  resetTerminal('作答紀錄已匯入。按 F9 啟動新的互動式 Python 程式。');if(editor){editor.clearHistory();if(!sourceStageActive)refreshEditorLayout({focus:true});}
 }
 async function importPortableRecords(file){
   if(busy || !file)return;
@@ -904,7 +963,7 @@ async function importPortableRecords(file){
 
 function renderProgress(){
   const accepted=getAccepted();
-  const count=TASKS.filter(t=>accepted[t.id]).length;
+  const count=TASKS.filter(t=>acceptedForTask(accepted,t)).length;
   progressText.textContent=`${count} / ${TASKS.length} AC`;
   progressBar.style.width=`${count/TASKS.length*100}%`;
 }
@@ -924,8 +983,8 @@ function renderLevelStrip(){
     const b=document.createElement('button');
     b.type='button';
     b.disabled=busy;
-    b.className='level-btn'+(!sourceStageActive&&idx===currentTaskIndex?' active':'')+(accepted[task.id]?' accepted':'');
-    b.textContent=accepted[task.id]?`${task.id} ✓`:`${task.id}`;
+    b.className='level-btn'+(!sourceStageActive&&idx===currentTaskIndex?' active':'')+(acceptedForTask(accepted,task)?' accepted':'');
+    b.textContent=acceptedForTask(accepted,task)?`${task.id} ✓`:`${task.id}`;
     b.title=`第 ${task.id} 階：${task.title}`;
     b.addEventListener('click',()=>switchTask(idx));
     levelStrip.appendChild(b);
@@ -962,13 +1021,8 @@ function switchToSourceStage({openSource=false}={}){
   if(openSource) window.open(OFFICIAL_SOURCE.url,'_blank','noopener,noreferrer');
 }
 
-function formalInputParts(text){
-  const parts=String(text??'').trim().match(/[^。]+(?:。|$)/g)||[];
-  return parts.map(part=>part.trim()).filter(Boolean);
-}
-function renderFormalInput(text){
-  const parts=formalInputParts(text);
-  return `<div class="formal-input-list" data-formal-input-list="true">${parts.map(part=>`<p class="formal-input-item">${esc(part)}</p>`).join('')}</div>`;
+function renderFormalInput(task){
+  return `<p class="formal-input-prose" data-formal-input="true">${task?.input??''}</p>`;
 }
 
 function renderProblem(){
@@ -997,7 +1051,7 @@ function renderProblem(){
     <div class="section-title">題目</div>
     <p>${t.statement}</p>
     <div class="section-title">輸入</div>
-    ${renderFormalInput(t.input)}
+    ${renderFormalInput(t)}
     <div class="section-title">輸出</div>
     <p>${t.output}</p>
     <div class="pre-code-notice" data-pre-code-notice="true">
@@ -1098,7 +1152,7 @@ function renderHistory(){
 
 function getCode(){ return editor ? editor.getValue() : $('#codeEditor').value; }
 function setCode(code){ if(editor) editor.setValue(code); else $('#codeEditor').value=code; }
-function saveDraft(){ const t=TASKS[currentTaskIndex]; localStorage.setItem(draftKey(t.id),getCode()); }
+function saveDraft(){ const t=TASKS[currentTaskIndex]; STORAGE.setItem(draftKey(t.id),getCode()); }
 
 function ensureCodeMirrorCursorVisible(cm=editor,marginLines=2){
   if(!cm) return;
@@ -1144,7 +1198,7 @@ function switchTask(idx){
   overallVerdict.className='status-pill'; overallVerdict.textContent='尚未提交';
   resultSummary.textContent='F9／「執行」會啟動新的互動式 TERMINAL；遇到 input() 時手動輸入。「提交」會評測本階全部正式測資，逐筆結果請看右側 TEST RESULTS。';
   const t=TASKS[idx];
-  setCode(localStorage.getItem(draftKey(t.id)) ?? t.starter);
+  setCode(loadDraft(t) ?? t.starter);
   resetTerminal();
   if(editor){
     editor.clearHistory();
@@ -1696,6 +1750,7 @@ async function judge(){
   const code=getCode();
   saveDraft();
   const tests=getTaskTestsForTask(t);
+  if(compareMode()==='special'){overallVerdict.className='status-pill warn';overallVerdict.textContent='SPJ';resultSummary.textContent='此題使用 Special Judge，本機不模擬正式判定；可用執行功能檢查程式輸出，正式結果請以原題平台為準。';return;}
   const op=beginOperation();
   overallVerdict.className='status-pill warn'; overallVerdict.textContent='評測中';
   resultSummary.textContent=`正在執行全部 ${tests.length} 筆測資…`;
@@ -1706,7 +1761,7 @@ async function judge(){
     for(let i=0;i<tests.length;i++){
       const r=await runPython(code,tests[i].input);
       if(!isOperationCurrent(op)) return;
-      const pass=!r.environmentError && r.ok && normalizeOutput(r.output)===normalizeOutput(tests[i].output);
+      const pass=!r.environmentError && r.ok && compareMode()!=='special' && outputsEqual(r.output,tests[i].output);
       const rr={...r,pass,error:r.ok?'':r.error};
       results.push(rr);
       if(pass)passed++;
@@ -1727,7 +1782,7 @@ async function judge(){
       const firstBad=results.find(x=>!x.pass);
       const verdict=firstBad?.environmentError?'JE':(firstBad?.timeout?'TLE':(firstBad?.error?'RE':'WA'));
       overallVerdict.className='status-pill bad';overallVerdict.textContent=verdict;
-      resultSummary.textContent=`通過 ${passed} / ${total}。${verdict==='WA'?'輸出採 Tolerant 風格比對；請先檢查內容與行結構。':(verdict==='JE'?'評測環境暫時無法使用，請重新提交。':'先修正第一個失敗原因，再重新提交。')}`;
+      resultSummary.textContent=`通過 ${passed} / ${total}。${verdict==='WA'?`目前採${compareModeDescription()}；請檢查輸出內容與格式。`:(verdict==='JE'?'評測環境暫時無法使用，請重新提交。':'先修正第一個失敗原因，再重新提交。')}`;
       addHistory(t.id,verdict,passed,total);
     }
   }catch(err){
@@ -1799,10 +1854,11 @@ $('#terminalInput').addEventListener('keydown',e=>{
 });
 $('#terminalInput').addEventListener('input',e=>{const ta=e.currentTarget;ta.style.height='1.65em';ta.style.height=Math.min(ta.scrollHeight,84)+'px';});
 const THEME_STORAGE_KEY='step_oj_framework:theme:v1';
-function applyTheme(theme,{persist=true}={}){const next=theme==='dark'?'dark':'light';document.documentElement.dataset.theme=next;$('#themeSelect').value=next;if(persist){try{localStorage.setItem(THEME_STORAGE_KEY,next)}catch{}}}
+function applyTheme(theme,{persist=true}={}){const next=theme==='dark'?'dark':'light';document.documentElement.dataset.theme=next;$('#themeSelect').value=next;if(persist){try{STORAGE.setItem(THEME_STORAGE_KEY,next)}catch{}}}
 function initializeTheme(){const current=document.documentElement.dataset.theme==='dark'?'dark':'light';$('#themeSelect').value=current;$('#themeSelect').addEventListener('change',e=>applyTheme(e.target.value));}
 $('#submitBtn').addEventListener('click',judge);
 
+if(storageWarning)storageWarning.hidden=STORAGE.persistent;
 migrateStorage();
 initializeTheme();
 setupEditor();
@@ -1813,7 +1869,7 @@ renderHiddenTests();
 renderHistory();
 renderProgress();
 updateAnswerButtonState();
-setCode(localStorage.getItem(draftKey(TASKS[0].id)) ?? TASKS[0].starter);
+setCode(loadDraft(TASKS[0]) ?? TASKS[0].starter);
 </script>
 </body>
 </html>

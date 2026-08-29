@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- Generated from shared canonical Python OJ template. template_sha256=c9e31ee044a98bfe91c5e993b67a0c7bfac1dab9828d9b9340f21eaede5676f7 -->
+<!-- Generated from shared canonical Python OJ template. template_sha256=00a426a43459b70b17c73519809800caec10a03026ea698d82019d984c096b37 -->
 <html lang="zh-Hant-TW" data-theme="dark">
 <head>
 <meta charset="utf-8">
@@ -11,8 +11,8 @@
 <title>r489 航空拍照圖｜APCS 階梯式 Online Judge</title>
 <link rel="preconnect" href="https://cdnjs.cloudflare.com">
 <link rel="preconnect" href="https://cdn.jsdelivr.net">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.18/codemirror.min.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.18/addon/hint/show-hint.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.21/codemirror.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.21/addon/hint/show-hint.min.css">
 <style>
 
 *{box-sizing:border-box;}
@@ -217,9 +217,7 @@ header{position:sticky;top:0;z-index:40;background:rgba(255,255,255,.97);backdro
 .section-title{position:relative;margin:27px 0 10px;padding:0 0 8px 13px;border-bottom:1px solid #e7ebef;color:#273345;font-size:.92rem;font-weight:800;}
 .section-title::before{content:"";position:absolute;left:0;top:.25em;width:3px;height:1.05em;border-radius:2px;background:var(--accent);}
 .problem p{margin:.45rem 0;color:#374151;font-size:.95rem;}
-.formal-input-list{display:grid;gap:8px;margin:.35rem 0 .15rem;}
-.formal-input-item{position:relative;margin:0!important;padding:9px 11px 9px 14px;border:1px solid var(--line);border-radius:6px;background:var(--soft2);color:#374151;font-size:.95rem;line-height:1.68;}
-.formal-input-item::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;border-radius:6px 0 0 6px;background:var(--line-strong);}
+.formal-input-prose{margin:.45rem 0!important;color:#374151;font-size:.95rem;line-height:1.68;}
 .problem code,.dialog-body code{font-family:"Cascadia Mono","Consolas",monospace;background:#f1f4f7;color:#25364a;border:1px solid #e5e9ee;border-radius:4px;padding:.06em .28em;}
 pre{white-space:pre-wrap;word-break:break-word;margin:9px 0;padding:13px 15px;background:#f8fafb;color:#273345;border:1px solid #e1e6eb;border-radius:6px;font-family:"Cascadia Mono","SFMono-Regular",Consolas,monospace;font-size:.88rem;line-height:1.62;}
 .sample-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
@@ -423,6 +421,7 @@ dialog::backdrop{background:rgba(15,23,42,.4);}
 
 /* Shared UI / visual primitives: Theme + Interactive Terminal + Detailed Tutorial */
 .theme-control{display:inline-flex;align-items:center;gap:6px}.theme-control label{font-size:.75rem;color:var(--muted);font-weight:800}.theme-control select{min-height:34px;border:1px solid var(--line-strong);border-radius:6px;background:var(--paper);color:var(--ink);padding:4px 28px 4px 9px}
+.storage-warning{display:inline-flex;align-items:center;min-height:32px;padding:4px 9px;border:1px solid #d4a24d;border-radius:6px;background:#fff8e8;color:#7a4b0d;font-size:.75rem;font-weight:800}.storage-warning[hidden]{display:none}
 .learning-guide{display:grid;gap:10px}.learn-card{padding:12px 14px;border:1px solid var(--line);border-radius:7px;background:var(--paper)}.learn-card>strong{display:block;margin-bottom:6px}.learn-recap{background:var(--soft);border-left:3px solid #9ba6b4}.learn-new{background:var(--accent-soft);border-left:3px solid #6f98bb}.learn-plan{background:#f7fbf8;border-left:3px solid #79ab8f}.learn-pitfall{background:#fffaf2;border-left:3px solid #d1a04e}.learn-card ol,.learn-card ul{margin:.45rem 0 .2rem;padding-left:1.4rem}.learn-card li{margin:.28rem 0}.learn-visual{margin:10px 0;padding:12px;border:1px solid var(--line);border-radius:7px;background:var(--paper)}.learn-visual-title{margin-bottom:8px;color:#344256;font-size:.82rem;font-weight:850}.learn-step-flow{display:flex;gap:8px;align-items:center;justify-content:center;flex-wrap:wrap}.learn-step-node{padding:8px 10px;border:1px solid var(--line);border-radius:6px;background:var(--soft);text-align:center}.learn-step-node small{display:block;color:var(--muted)}
 html[data-theme="light"]{color-scheme:light}html[data-theme="dark"]{color-scheme:dark;--bg:#000000;--paper:#080808;--ink:#f4f7fb;--muted:#a2aab8;--line:#242424;--line-strong:#3a3a3a;--soft:#0d0d0d;--soft2:#0b0b0b;--accent:#22d3ee;--accent-strong:#06b6d4;--accent-soft:#06181d;--ok:#4ade80;--ok-soft:#07170d;--bad:#fb7185;--bad-soft:#1a090d;--warn:#fbbf24;--warn-soft:#1a1304;--terminal:#000000;--terminal-soft:#080808;--shadow:none;background:#000}
 html[data-theme="dark"] body{background:#000;color:var(--ink)}html[data-theme="dark"] header{background:rgba(0,0,0,.97);border-color:#222}html[data-theme="dark"] .panel,html[data-theme="dark"] .problem,html[data-theme="dark"] .results-wrap,html[data-theme="dark"] .editor-shell,html[data-theme="dark"] .dialog-body{background:#080808;color:var(--ink);border-color:#242424}
@@ -433,7 +432,7 @@ html[data-theme="dark"] .terminal-workspace,html[data-theme="dark"] .terminal-pa
 html[data-theme="dark"] .sample-explanation-body,html[data-theme="dark"] .sample-explanation-body p,html[data-theme="dark"] .sample-explanation-body small,html[data-theme="dark"] .reason-node small,html[data-theme="dark"] .visual-caption{color:#c6cbd2}html[data-theme="dark"] .sample-explanation-body pre,html[data-theme="dark"] .hidden-test-item pre,html[data-theme="dark"] pre{background:#020202;color:#e5e7eb;border-color:#242424}html[data-theme="dark"] .result-summary,html[data-theme="dark"] .hidden-tests summary,html[data-theme="dark"] .submission-history summary{background:#0b0b0b;color:#cfd5dd;border-color:#292929}
 html[data-theme="dark"] .matrix-grid,html[data-theme="dark"] .matrix-cell,html[data-theme="dark"] .number-strip span,html[data-theme="dark"] .calc-flow span{background:#0b0b0b;color:#e8edf3;border-color:#303030}html[data-theme="dark"] .matrix-cell.focus-cell{background:#06242b;border-color:#16879d;box-shadow:inset 0 0 0 1px #16879d}html[data-theme="dark"] .matrix-cell.diff-cell,html[data-theme="dark"] .pair-card.diff{background:#1a090d;border-color:#6b2733}html[data-theme="dark"] .pair-card.same,html[data-theme="dark"] .candidate-pos.ok,html[data-theme="dark"] .window-card.ok-card{background:#07170d;border-color:#1f5b36}
 html[data-theme="dark"] .sample-copy-btn{background:#0b0b0b;color:#c6cbd2;border-color:#303030}html[data-theme="dark"] .sample-copy-btn:hover{background:#101010;color:#e7ebf0}html[data-theme="dark"] .sample-copy-btn.success{background:#07170d;color:#86efac;border-color:#1f5b36}html[data-theme="dark"] .sample-origin-badge{background:#0d0d0d;color:#cbd2dc;border-color:#303030}html[data-theme="dark"] .sample-origin-badge.official{background:#06181d;color:#67e8f9;border-color:#155e75}html[data-theme="dark"] .sample-origin-badge.special{background:#1a1304;color:#fbbf24;border-color:#6b5213}
-html[data-theme="dark"] .brand-title,html[data-theme="dark"] .problem h1,html[data-theme="dark"] .section-title,html[data-theme="dark"] .results-head h2,html[data-theme="dark"] .editor-head strong,html[data-theme="dark"] .dialog-head strong,html[data-theme="dark"] .sample-explain-intro strong,html[data-theme="dark"] .learn-visual-title{color:var(--ink)}html[data-theme="dark"] .brand-subtitle,html[data-theme="dark"] .progress-wrap,html[data-theme="dark"] .runtime,html[data-theme="dark"] .source-link,html[data-theme="dark"] .kicker,html[data-theme="dark"] .meta,html[data-theme="dark"] .sample-box h4,html[data-theme="dark"] .sample-explain-intro small,html[data-theme="dark"] .editor-foot,html[data-theme="dark"] .hidden-test-label,html[data-theme="dark"] .history-item,html[data-theme="dark"] .hidden-tests-empty,html[data-theme="dark"] .history-empty{color:var(--muted)}html[data-theme="dark"] .runtime{background:#0b0b0b;border-color:#303030}html[data-theme="dark"] .problem p{color:#d8dde5}html[data-theme="dark"] .formal-input-item{background:#0b0b0b;color:#d8dde5;border-color:#292929}html[data-theme="dark"] .formal-input-item::before{background:#3a3a3a}html[data-theme="dark"] .problem code,html[data-theme="dark"] .dialog-body code{background:#101010;color:#dff9ff;border-color:#2c2c2c}html[data-theme="dark"] .level-strip,html[data-theme="dark"] .editor-head,html[data-theme="dark"] .editor-foot{background:#080808;border-color:#242424}html[data-theme="dark"] .status-pill{background:#0d0d0d;color:#cbd2dc;border-color:#303030}
+html[data-theme="dark"] .brand-title,html[data-theme="dark"] .problem h1,html[data-theme="dark"] .section-title,html[data-theme="dark"] .results-head h2,html[data-theme="dark"] .editor-head strong,html[data-theme="dark"] .dialog-head strong,html[data-theme="dark"] .sample-explain-intro strong,html[data-theme="dark"] .learn-visual-title{color:var(--ink)}html[data-theme="dark"] .brand-subtitle,html[data-theme="dark"] .progress-wrap,html[data-theme="dark"] .runtime,html[data-theme="dark"] .source-link,html[data-theme="dark"] .kicker,html[data-theme="dark"] .meta,html[data-theme="dark"] .sample-box h4,html[data-theme="dark"] .sample-explain-intro small,html[data-theme="dark"] .editor-foot,html[data-theme="dark"] .hidden-test-label,html[data-theme="dark"] .history-item,html[data-theme="dark"] .hidden-tests-empty,html[data-theme="dark"] .history-empty{color:var(--muted)}html[data-theme="dark"] .runtime{background:#0b0b0b;border-color:#303030}html[data-theme="dark"] .storage-warning{background:#1a1304;color:#f7d477;border-color:#6b5213}html[data-theme="dark"] .problem p{color:#d8dde5}html[data-theme="dark"] .problem code,html[data-theme="dark"] .dialog-body code{background:#101010;color:#dff9ff;border-color:#2c2c2c}html[data-theme="dark"] .level-strip,html[data-theme="dark"] .editor-head,html[data-theme="dark"] .editor-foot{background:#080808;border-color:#242424}html[data-theme="dark"] .status-pill{background:#0d0d0d;color:#cbd2dc;border-color:#303030}
 @media(max-width:720px){.terminal-workspace{grid-template-columns:1fr}.terminal-panel{border-right:0;border-bottom:1px solid #2b3649}.theme-control{max-width:100%}}
 @media(max-width:390px){.topbar{align-items:flex-start}.theme-control{margin-left:0}.theme-control label{display:none}.terminal-head{gap:6px}}
 @media(max-width:520px){.answer-variants.multi{grid-template-columns:repeat(var(--answer-count),minmax(300px,82vw));}}
@@ -469,6 +468,7 @@ html[data-theme="dark"] .tutorial-details,html[data-theme="dark"] .tutorial-cont
     <div class="theme-control"><label for="themeSelect">主題</label><select id="themeSelect" aria-label="選擇介面主題"><option value="light">淺色</option><option value="dark">深色</option></select></div>
     <button class="btn" id="exportRecordsBtn" type="button" title="匯出本題草稿、AC 進度與提交紀錄">匯出作答紀錄</button>
     <button class="btn" id="importRecordsBtn" type="button" title="從 JSON 匯入本題作答紀錄">匯入作答紀錄</button>
+    <span class="storage-warning" id="storageWarning" hidden>進度只保存在本次開啟；請匯出作答紀錄備份。</span>
     <input id="importRecordsInput" type="file" accept="application/json,.json" hidden aria-label="選擇作答紀錄 JSON 檔案">
     <button class="btn danger" id="clearAllBtn" type="button" title="清除所有題目草稿、AC 進度與提交紀錄">清除所有紀錄</button>
     <a class="source-link" href="https://zerojudge.tw/ShowProblem?problemid=r489" target="_blank" rel="noopener">原題</a>
@@ -528,7 +528,7 @@ html[data-theme="dark"] .tutorial-details,html[data-theme="dark"] .tutorial-cont
     </div>
     <div class="editor-foot">
       <span>Tab：移到下一個 4 欄定位點｜Shift+Tab：反縮排｜行首 Backspace：一次刪除 4 空白｜Ctrl+/：切換單行／多行註解｜Ctrl+Space / Alt+/：補全｜F9：執行｜Ctrl+Enter：提交</span>
-      <span>F9：互動式 TERMINAL，input() 需要手動輸入｜Ctrl+D / EOF：結束 stdin｜執行中按「停止」可終止｜提交固定使用正式測資｜ZeroJudge Tolerant：忽略空白行與每行前後空白｜提交每筆上限 2.5 秒</span>
+      <span>F9：互動式 TERMINAL，input() 需要手動輸入｜Ctrl+D / EOF：結束 stdin｜執行中按「停止」可終止｜提交固定使用正式測資｜輸出比對方式依本題設定｜提交每筆上限 2.5 秒</span>
     </div>
   </section>
 </main>
@@ -538,16 +538,16 @@ html[data-theme="dark"] .tutorial-details,html[data-theme="dark"] .tutorial-cont
   <div class="dialog-body"><div id="answerVariants" class="answer-variants single"></div></div>
 </dialog>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.18/codemirror.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.18/mode/python/python.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.18/addon/edit/closebrackets.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.18/addon/edit/matchbrackets.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.18/addon/hint/show-hint.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.21/codemirror.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.21/mode/python/python.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.21/addon/edit/closebrackets.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.21/addon/edit/matchbrackets.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.21/addon/hint/show-hint.min.js"></script>
 <script>
-const OJ_META={"source":{"url":"https://zerojudge.tw/ShowProblem?problemid=r489","platform":"ZeroJudge","problemId":"r489"},"storage":{"schema":22,"namespace":"r489_step_oj","legacyAcceptedKey":"r489_step_oj_accepted","legacyHistoryKey":"r489_step_oj_history","legacyDraftPrefix":"r489_step_oj_v001_code_"}};
+const OJ_META={"source":{"url":"https://zerojudge.tw/ShowProblem?problemid=r489","platform":"ZeroJudge","problemId":"r489"},"storage":{"schema":22,"namespace":"r489_step_oj","legacyAcceptedKey":"r489_step_oj_accepted","legacyHistoryKey":"r489_step_oj_history","legacyDraftPrefix":"r489_step_oj_v001_code_"},"judge":{"compareMode":"tolerant"}};
 const OFFICIAL_SOURCE=OJ_META.source;
 let sourceStageActive=true;
-const TASKS = [{"id":1,"title":"計算兩張圖相同像素數","difficulty":"入門","statement":"給定兩張同尺寸 R×C 灰階圖 A、B，不做旋轉。請計算相同座標像素值相等的格子數 S。","input":"第一行有兩個正整數 R、C，表示兩張灰階圖共同有 R 列、C 欄。接下來 R 行為影像 A，每行 C 個灰階值。再接下來 R 行為影像 B，每行 C 個灰階值。","output":"輸出 S。","sampleIn":"2 3\n1 2 3\n4 5 6\n1 9 3\n0 5 8","sampleOut":"3","sampleExplain":"    <div class=\"demo-story\"><div class=\"demo-viewport\">\n      <section class=\"demo-step\"><p>逐座標比較 6 個像素。</p><pre>A[r][c] == B[r][c] → S+1\n否則 → 不加\n掃完 R×C</pre></section>\n      <section class=\"demo-step\"><p>共有 3 個位置值完全相同。</p></section><section class=\"demo-step\"><p>輸出 3。</p></section>\n    </div></div>","starter":"","answer":"# 依照本階題意分段處理資料，最後再整理並輸出指定結果。\nR, C = map(int, input().split())\nA = []\nB = []\nfor _ in range(R):\n    A.append(list(map(int, input().split())))\nfor _ in range(R):\n    B.append(list(map(int, input().split())))\nsame = 0\n\n# 尺寸已相同，逐一比較完全相同位置的灰階像素。\nfor r in range(R):\n    for c in range(C):\n        if A[r][c] == B[r][c]:\n            same += 1\nprint(same)","tests":[{"input":"2 3\n1 2 3\n4 5 6\n1 9 3\n0 5 8\n","output":"3\n","public":true,"sampleRole":"primary","sampleOrigin":"task","qaPurpose":"本階主要公開範例"},{"input":"2 2\n1 1\n1 1\n1 1\n1 1\n","output":"4\n","public":true,"sampleRole":"secondary","sampleOrigin":"task","qaPurpose":"本階第二公開案例"},{"input":"1 1\n7\n8\n","output":"0\n","qaPurpose":"完全不同時 S=0","public":true,"sampleRole":"special","sampleOrigin":"special"},{"input":"1 4\n0 1 2 3\n3 2 1 0\n","output":"0\n"}],"generatedTests":[{"input":"3 2\n1 2\n3 4\n5 6\n1 2\n0 4\n5 9\n","output":"4\n","generated":true},{"input":"2 4\n8 7 6 5\n4 3 2 1\n8 0 6 0\n4 0 2 0\n","output":"4\n","generated":true}],"tutorial":"    <div class=\"tutorial-body\">\n      <section class=\"tutorial-card tutorial-goal\"><h3>1. 先知道這題在練什麼</h3>\n        <p>先把 similarity 的核心量 S 算對。</p><p><strong>先備：</strong>會使用基本輸入、list、for 與 if。</p>\n      </section>\n      <section class=\"tutorial-card tutorial-core\"><h3>2. 核心觀念與圖解</h3>\n        <p>相似度不是數值差距，而是「完全相等」像素的比例。因此每個座標只問 <code>A[r][c] == B[r][c]</code>。</p>\n        <div class=\"tutorial-visual\"><div class=\"tutorial-visual-title\">本階實際資料怎麼變</div><pre>A[r][c] == B[r][c] → S+1\n否則 → 不加\n掃完 R×C</pre></div>\n      </section>\n      <section class=\"tutorial-card tutorial-worked\"><h3>3. 跟著做一個小例子</h3><p>2×3 範例中相等位置是 (0,0)、(0,2)、(1,1)，所以 S=3。</p></section>\n      <section class=\"tutorial-card tutorial-plan\"><h3>4. 先把程式拆成幾塊</h3><ol><li>讀 A、B。</li><li>same=0。</li><li>雙迴圈比較同座標。</li><li>相等就 +1。</li></ol></section>\n      <section class=\"tutorial-card tutorial-code\"><h3>5. Python 一段一段怎麼寫</h3><div class=\"tutorial-code-step\"><strong>步驟 A：同座標比較</strong><p>只看完全相等。</p><pre class=\"tutorial-code-snippet\">if A[r][c] == B[r][c]:\n    same += 1</pre></div><div class=\"tutorial-code-step\"><strong>步驟 B：掃全部像素</strong><p>總共 R×C 次比較。</p><pre class=\"tutorial-code-snippet\">for r in range(R):\n    for c in range(C):\n        ...</pre></div>\n        <p class=\"tutorial-code-note\">這些片段只示範本階核心寫法；請依照前面的資料流自行把輸入、處理與輸出接成完整程式。</p>\n      </section>\n      <section class=\"tutorial-card tutorial-check\"><h3>6. 常見錯誤與自我檢查</h3><ul><li>不要計算灰階差值大小。</li><li>兩張圖的相同座標才互相比較。</li></ul></section>\n    </div>"},{"id":2,"title":"把相同像素數換成整數百分比","difficulty":"入門","statement":"已知兩張同尺寸 R×C 圖有若干個相同像素。相似度的百分比為「相同像素數 ÷ 全部像素數 × 100」後，無條件捨去小數部分所得的整數。請以例如 50% 的格式輸出。","input":"第一行有兩個正整數 R、C，表示兩張同尺寸圖片各有 R 列、C 欄，因此總像素數為 R×C。第二行有一個整數 S，表示兩張圖在相同座標上灰階值相同的像素數，且 0≤S≤R×C。","output":"輸出整數百分比並接 %。","sampleIn":"6 5\n15","sampleOut":"50%","sampleExplain":"    <div class=\"demo-story\"><div class=\"demo-viewport\">\n      <section class=\"demo-step\"><p>15 個相同像素、總共 30 格。</p><pre>same=8, total=9\n8×100=800\n800//9=88\n輸出 88%</pre></section>\n      <section class=\"demo-step\"><p>15×100//30=50。</p></section><section class=\"demo-step\"><p>輸出 50%。</p></section>\n    </div></div>","starter":"","answer":"R, C = map(int, input().split())\nsame = int(input())\n\n# 題目要無條件捨去百分比，整數乘 100 再 // 總像素即可。\npercent = same * 100 // (R * C)\nprint(str(percent) + '%')","tests":[{"input":"6 5\n15\n","output":"50%\n","public":true,"sampleRole":"primary","sampleOrigin":"task","qaPurpose":"本階主要公開範例"},{"input":"1 4\n0\n","output":"0%\n","public":true,"sampleRole":"secondary","sampleOrigin":"task","qaPurpose":"本階第二公開案例"},{"input":"3 3\n8\n","output":"88%\n","qaPurpose":"88.888... 必須無條件捨去成 88%","public":true,"sampleRole":"special","sampleOrigin":"special"},{"input":"2 2\n4\n","output":"100%\n"}],"generatedTests":[{"input":"7 3\n10\n","output":"47%\n","generated":true},{"input":"200 200\n39999\n","output":"99%\n","generated":true}],"tutorial":"    <div class=\"tutorial-body\">\n      <section class=\"tutorial-card tutorial-goal\"><h3>1. 先知道這題在練什麼</h3>\n        <p>不用浮點數，直接精確完成向下取整的百分比。</p><p><strong>先備：</strong>會使用基本輸入、list、for 與 if。</p>\n      </section>\n      <section class=\"tutorial-card tutorial-core\"><h3>2. 核心觀念與圖解</h3>\n        <p><code>same*100//total</code> 等價於題目的無條件捨去，而且沒有浮點誤差。</p>\n        <div class=\"tutorial-visual\"><div class=\"tutorial-visual-title\">本階實際資料怎麼變</div><pre>same=8, total=9\n8×100=800\n800//9=88\n輸出 88%</pre></div>\n      </section>\n      <section class=\"tutorial-card tutorial-worked\"><h3>3. 跟著做一個小例子</h3><p>8/9 約 88.888%，題目要求無條件捨去小數部分，所以答案 88%。</p></section>\n      <section class=\"tutorial-card tutorial-plan\"><h3>4. 先把程式拆成幾塊</h3><ol><li>total=R*C。</li><li>same*100//total。</li><li>轉字串接 %。</li></ol></section>\n      <section class=\"tutorial-card tutorial-code\"><h3>5. Python 一段一段怎麼寫</h3><div class=\"tutorial-code-step\"><strong>步驟 A：用整數除法無條件捨去</strong><p>全程用 int。</p><pre class=\"tutorial-code-snippet\">percent = same * 100 // (R * C)</pre></div><div class=\"tutorial-code-step\"><strong>步驟 B：輸出百分號</strong><p>百分號是輸出格式的一部分。</p><pre class=\"tutorial-code-snippet\">print(str(percent) + &#x27;%&#x27;)</pre></div>\n        <p class=\"tutorial-code-note\">這些片段只示範本階核心寫法；請依照前面的資料流自行把輸入、處理與輸出接成完整程式。</p>\n      </section>\n      <section class=\"tutorial-card tutorial-check\"><h3>6. 常見錯誤與自我檢查</h3><ul><li>不能四捨五入。</li><li>不要忘記輸出 % 符號。</li></ul></section>\n    </div>"},{"id":3,"title":"比較 0° 與 180° 兩種方向","difficulty":"基礎","statement":"給定兩張同尺寸 R×C 灰階圖 A、B。固定 A 不動，比較兩種情況：B 不旋轉，以及 B 旋轉 180 度；每種情況都計算相同座標上灰階值相同的像素數。請輸出兩種情況中的較大值。","input":"第一行有兩個正整數 R、C，表示 A、B 皆有 R 列、C 欄。接下來 R 行為 A，每行 C 個灰階值。再接下來 R 行為 B，每行 C 個灰階值。","output":"輸出最佳相同像素數。","sampleIn":"2 3\n1 2 3\n4 5 6\n6 5 4\n3 2 1","sampleOut":"6","sampleExplain":"    <div class=\"demo-story\"><div class=\"demo-viewport\">\n      <section class=\"demo-step\"><p>B 是 A 的 180° 版本。</p><pre>B 原座標 (r,c)\n180° 後對應\nB[R-1-r][C-1-c]</pre></section>\n      <section class=\"demo-step\"><p>0° 比對很差。</p></section><section class=\"demo-step\"><p>180° 對應全部吻合，因此最佳為總像素數。</p></section>\n    </div></div>","starter":"","answer":"# 依照本階題意分段處理資料，最後再整理並輸出指定結果。\nR, C = map(int, input().split())\nA = []\nB = []\nfor _ in range(R):\n    A.append(list(map(int, input().split())))\nfor _ in range(R):\n    B.append(list(map(int, input().split())))\nsame0 = 0\nsame180 = 0\n\n# 180 度旋轉後，B 的 (r,c) 對應原本 B[R-1-r][C-1-c]。\nfor r in range(R):\n    for c in range(C):\n        if A[r][c] == B[r][c]:\n            same0 += 1\n        if A[r][c] == B[R - 1 - r][C - 1 - c]:\n            same180 += 1\nprint(max(same0, same180))","tests":[{"input":"2 3\n1 2 3\n4 5 6\n6 5 4\n3 2 1\n","output":"6\n","public":true,"sampleRole":"primary","sampleOrigin":"task","qaPurpose":"本階主要公開範例"},{"input":"2 2\n1 2\n3 4\n4 3\n2 1\n","output":"4\n","public":true,"sampleRole":"secondary","sampleOrigin":"task","qaPurpose":"本階第二公開案例"},{"input":"1 4\n1 2 3 4\n1 9 9 4\n","output":"2\n","qaPurpose":"0° 可能比 180° 好","public":true,"sampleRole":"special","sampleOrigin":"special"},{"input":"3 1\n7\n8\n9\n9\n0\n7\n","output":"2\n"}],"generatedTests":[{"input":"2 4\n1 2 3 4\n5 6 7 8\n8 7 6 5\n4 3 2 1\n","output":"8\n","generated":true},{"input":"1 1\n5\n5\n","output":"1\n","generated":true}],"tutorial":"    <div class=\"tutorial-body\">\n      <section class=\"tutorial-card tutorial-goal\"><h3>1. 先知道這題在練什麼</h3>\n        <p>先掌握不需要實際建立旋轉矩陣的 index mapping。</p><p><strong>先備：</strong>會使用基本輸入、list、for 與 if。</p>\n      </section>\n      <section class=\"tutorial-card tutorial-core\"><h3>2. 核心觀念與圖解</h3>\n        <p>180° 不會改尺寸；A[r][c] 應和 B 的上下、左右都反向位置比較。直接用索引可以少一份矩陣。</p>\n        <div class=\"tutorial-visual\"><div class=\"tutorial-visual-title\">本階實際資料怎麼變</div><pre>B 原座標 (r,c)\n180° 後對應\nB[R-1-r][C-1-c]</pre></div>\n      </section>\n      <section class=\"tutorial-card tutorial-worked\"><h3>3. 跟著做一個小例子</h3><p>若 B 恰好是 A 旋轉 180°，same180 就會等於 R×C。</p></section>\n      <section class=\"tutorial-card tutorial-plan\"><h3>4. 先把程式拆成幾塊</h3><ol><li>same0/same180 歸零。</li><li>同一個雙迴圈做兩種映射。</li><li>各自累計。</li><li>輸出 max。</li></ol></section>\n      <section class=\"tutorial-card tutorial-code\"><h3>5. Python 一段一段怎麼寫</h3><div class=\"tutorial-code-step\"><strong>步驟 A：0 度</strong><p>直接同位置。</p><pre class=\"tutorial-code-snippet\">if A[r][c] == B[r][c]:\n    same0 += 1</pre></div><div class=\"tutorial-code-step\"><strong>步驟 B：180 度</strong><p>列欄都從另一端數。</p><pre class=\"tutorial-code-snippet\">if A[r][c] == B[R - 1 - r][C - 1 - c]:\n    same180 += 1</pre></div>\n        <p class=\"tutorial-code-note\">這些片段只示範本階核心寫法；請依照前面的資料流自行把輸入、處理與輸出接成完整程式。</p>\n      </section>\n      <section class=\"tutorial-card tutorial-check\"><h3>6. 常見錯誤與自我檢查</h3><ul><li>180° 要同時反轉 row 與 column。</li><li>這一階輸出的是像素數，不是百分比。</li></ul></section>\n    </div>"},{"id":4,"title":"正方形照片比較四種旋轉","difficulty":"中等","statement":"給定兩張 N×N 正方形灰階圖 A、B。固定 A 不動，分別把 B 視為旋轉 0°、90°、180°、270° 後與 A 比較；每一種方向都計算相同座標上灰階值相同的像素數。請輸出四種方向中的最大相同像素數。","input":"第一行有正整數 N，表示兩張圖片都是 N 列、N 欄。接下來 N 行為 A，每行 N 個灰階值。再接下來 N 行為 B，每行 N 個灰階值。","output":"輸出四種旋轉中的最大 S。","sampleIn":"2\n1 2\n3 4\n3 1\n4 2","sampleOut":"4","sampleExplain":"    <div class=\"demo-story\"><div class=\"demo-viewport\">\n      <section class=\"demo-step\"><p>2×2 的 B 是 A 旋轉版本。</p><pre>0°:   B[r][c]\n90°:  B[N-1-c][r]\n180°: B[N-1-r][N-1-c]\n270°: B[c][N-1-r]</pre></section>\n      <section class=\"demo-step\"><p>四個 count 同時累計。</p></section><section class=\"demo-step\"><p>最佳方向可以得到全部 4 格相同。</p></section>\n    </div></div>","starter":"","answer":"# 依照本階題意分段處理資料，最後再整理並輸出指定結果。\nN = int(input())\nA = []\nB = []\nfor _ in range(N):\n    A.append(list(map(int, input().split())))\nfor _ in range(N):\n    B.append(list(map(int, input().split())))\ncount = [0, 0, 0, 0]\n\n# 正方形四種相對旋轉都維持 N×N，可以直接用四個索引 mapping 比較。\nfor r in range(N):\n    for c in range(N):\n        if A[r][c] == B[r][c]:\n            count[0] += 1\n        if A[r][c] == B[N - 1 - c][r]:\n            count[1] += 1\n        if A[r][c] == B[N - 1 - r][N - 1 - c]:\n            count[2] += 1\n        if A[r][c] == B[c][N - 1 - r]:\n            count[3] += 1\nprint(max(count))","tests":[{"input":"2\n1 2\n3 4\n3 1\n4 2\n","output":"4\n","public":true,"sampleRole":"primary","sampleOrigin":"task","qaPurpose":"本階主要公開範例"},{"input":"3\n1 2 3\n4 5 6\n7 8 9\n7 4 1\n8 5 2\n9 6 3\n","output":"9\n","public":true,"sampleRole":"secondary","sampleOrigin":"task","qaPurpose":"本階第二公開案例"},{"input":"1\n7\n8\n","output":"0\n","qaPurpose":"1×1 四種旋轉都相同但像素值不符","public":true,"sampleRole":"special","sampleOrigin":"special"},{"input":"2\n1 1\n2 2\n2 2\n1 1\n","output":"4\n"}],"generatedTests":[{"input":"3\n1 0 0\n0 2 0\n0 0 3\n0 0 1\n0 2 0\n3 0 0\n","output":"9\n","generated":true},{"input":"2\n5 6\n7 8\n8 7\n6 5\n","output":"4\n","generated":true}],"tutorial":"    <div class=\"tutorial-body\">\n      <section class=\"tutorial-card tutorial-goal\"><h3>1. 先知道這題在練什麼</h3>\n        <p>補齊 90°/270° 的索引映射，先避開非正方形尺寸問題。</p><p><strong>先備：</strong>會使用基本輸入、list、for 與 if。</p>\n      </section>\n      <section class=\"tutorial-card tutorial-core\"><h3>2. 核心觀念與圖解</h3>\n        <p>正方形旋轉 90° 後尺寸不變，因此四種都能直接與 A 比。同一 (r,c) 在 B 原圖的來源位置可用固定公式取得。</p>\n        <div class=\"tutorial-visual\"><div class=\"tutorial-visual-title\">本階實際資料怎麼變</div><pre>0°:   B[r][c]\n90°:  B[N-1-c][r]\n180°: B[N-1-r][N-1-c]\n270°: B[c][N-1-r]</pre></div>\n      </section>\n      <section class=\"tutorial-card tutorial-worked\"><h3>3. 跟著做一個小例子</h3><p>若 B 是 A 順時針旋轉 90°，其中一個 mapping 會得到 N×N 全部匹配。</p></section>\n      <section class=\"tutorial-card tutorial-plan\"><h3>4. 先把程式拆成幾塊</h3><ol><li>count 建四格。</li><li>雙迴圈走 A 座標。</li><li>同時套四個 B mapping。</li><li>輸出 max(count)。</li></ol></section>\n      <section class=\"tutorial-card tutorial-code\"><h3>5. Python 一段一段怎麼寫</h3><div class=\"tutorial-code-step\"><strong>步驟 A：90 度 mapping</strong><p>一個方向會交換 row/column 並反轉其中一軸。</p><pre class=\"tutorial-code-snippet\">B[N - 1 - c][r]</pre></div><div class=\"tutorial-code-step\"><strong>步驟 B：270 度 mapping</strong><p>另一方向是互補的映射。</p><pre class=\"tutorial-code-snippet\">B[c][N - 1 - r]</pre></div>\n        <p class=\"tutorial-code-note\">這些片段只示範本階核心寫法；請依照前面的資料流自行把輸入、處理與輸出接成完整程式。</p>\n      </section>\n      <section class=\"tutorial-card tutorial-check\"><h3>6. 常見錯誤與自我檢查</h3><ul><li>兩個 90° 方向容易寫反，但四種都比較時只要兩個 mapping 都存在即可。</li><li>只在正方形時 90°/270° 仍能保持與 A 相同尺寸。</li></ul></section>\n    </div>"},{"id":5,"title":"原題：航空拍照圖","difficulty":"完整","statement":"給定兩張原始尺寸皆 R×C 的灰階航空照片 A、B。比對時可旋轉照片 0°、90°、180°、270°；只有旋轉後尺寸相同的兩張圖才能比較，尺寸不符該組相似度為 0。相同尺寸時，相似度是對應像素相同個數 S 佔總像素百分比並向下取整。輸出可達到的最高相似度，例如 50%。固定 A 不動只考慮 B 的相對旋轉即可。","input":"第一行有兩個正整數 R、C（1≤R,C≤200），表示兩張原始灰階照片 A、B 各有 R 列、C 欄。接下來 R 行為 A，每行 C 個 0 到 255 的灰階值。再接下來 R 行為 B，每行 C 個 0 到 255 的灰階值。","output":"輸出最高整數相似度百分比並接 %。","sampleIn":"6 5\n0 1 1 1 1\n0 2 2 2 2\n0 3 3 3 3\n0 4 4 4 4\n0 5 5 5 5\n0 6 6 6 6\n6 6 6 6 6\n5 5 5 5 5\n4 4 4 4 4\n7 7 7 7 0\n8 8 8 8 0\n9 9 9 9 0","sampleOut":"50%","sampleExplain":"    <div class=\"demo-story\"><div class=\"demo-viewport\">\n      <section class=\"demo-step\"><p>官方照片大小 6×5。</p><pre>R≠C：比較 0°,180°\nR=C：比較 0°,90°,180°,270°\nbest S\n→ best*100//(R*C)\n→ 加 %</pre></section>\n      <section class=\"demo-step\"><p>90°/270° 相對旋轉會變 5×6，尺寸不符。</p></section><section class=\"demo-step\"><p>最佳合法方向有 15 個相同像素，15×100//30=50%。</p></section>\n    </div></div>","starter":"","answer":"R, C = map(int, input().split())\nA = []\nB = []\nfor _ in range(R):\n    A.append(list(map(int, input().split())))\nfor _ in range(R):\n    B.append(list(map(int, input().split())))\ncount0 = 0\ncount180 = 0\n\n# 固定 A；0°/180° 對任何 R×C 都能比較，90°/270° 只有正方形時尺寸仍相同。\nfor r in range(R):\n    for c in range(C):\n        if A[r][c] == B[r][c]:\n            count0 += 1\n        if A[r][c] == B[R - 1 - r][C - 1 - c]:\n            count180 += 1\nbest = max(count0, count180)\n\nif R == C:\n    count90 = 0\n    count270 = 0\n    for r in range(R):\n        for c in range(C):\n            if A[r][c] == B[R - 1 - c][r]:\n                count90 += 1\n            if A[r][c] == B[c][R - 1 - r]:\n                count270 += 1\n    best = max(best, count90, count270)\n\n# 相似度以最佳相同像素數換算百分比並無條件捨去。\npercent = best * 100 // (R * C)\nprint(str(percent) + '%')","tests":[{"input":"6 5\n0 1 1 1 1\n0 2 2 2 2\n0 3 3 3 3\n0 4 4 4 4\n0 5 5 5 5\n0 6 6 6 6\n6 6 6 6 6\n5 5 5 5 5\n4 4 4 4 4\n7 7 7 7 0\n8 8 8 8 0\n9 9 9 9 0\n","output":"50%\n","public":true,"sampleRole":"primary","sampleOrigin":"official","qaPurpose":"官方公開範例 #1"},{"input":"2 3\n1 2 3\n4 5 6\n6 5 4\n3 2 1\n","output":"100%\n","public":true,"sampleRole":"secondary","sampleOrigin":"supplemental","qaPurpose":"官方僅一筆範例；此為補充公開案例"},{"input":"2 2\n1 2\n3 4\n3 1\n4 2\n","output":"100%\n","qaPurpose":"正方形時 90 度旋轉可以取得 100%","public":true,"sampleRole":"special","sampleOrigin":"special"},{"input":"1 4\n1 2 3 4\n4 3 2 1\n","output":"100%\n"}],"generatedTests":[{"input":"3 3\n1 2 3\n4 5 6\n7 8 9\n7 4 1\n8 5 2\n9 6 3\n","output":"100%\n","generated":true},{"input":"2 4\n1 1 2 2\n3 3 4 4\n1 0 2 0\n3 0 4 0\n","output":"50%\n","generated":true}],"tutorial":"    <div class=\"tutorial-body\">\n      <section class=\"tutorial-card tutorial-goal\"><h3>1. 先知道這題在練什麼</h3>\n        <p>完整處理相對旋轉、非正方形尺寸限制與向下取整的百分比。</p><p><strong>先備：</strong>會使用基本輸入、list、for 與 if。</p>\n      </section>\n      <section class=\"tutorial-card tutorial-core\"><h3>2. 核心觀念與圖解</h3>\n        <p>兩張圖若同時旋轉相同角度，對應匹配數不變，所以可固定 A，只看 B 相對 A 的四種方向。非正方形時 B 旋轉 90°/270° 會成 C×R，無法直接和 R×C 的 A 比，因此這兩種相對方向視為 0。</p>\n        <div class=\"tutorial-visual\"><div class=\"tutorial-visual-title\">本階實際資料怎麼變</div><pre>R≠C：比較 0°,180°\nR=C：比較 0°,90°,180°,270°\nbest S\n→ best*100//(R*C)\n→ 加 %</pre></div>\n      </section>\n      <section class=\"tutorial-card tutorial-worked\"><h3>3. 跟著做一個小例子</h3><p>官方 6×5 不是正方形，所以只需考慮尺寸仍為 6×5 的相對 0° 與 180°；最佳有 15/30 相同，輸出 50%。</p></section>\n      <section class=\"tutorial-card tutorial-plan\"><h3>4. 先把程式拆成幾塊</h3><ol><li>先算 0° 與 180° count。</li><li>若 R==C，再算 90°/270°。</li><li>取最佳 best。</li><li>用整數除法轉百分比並輸出 %。</li></ol></section>\n      <section class=\"tutorial-card tutorial-code\"><h3>5. Python 一段一段怎麼寫</h3><div class=\"tutorial-code-step\"><strong>步驟 A：非正方形限制</strong><p>只有正方形的 90°/270° 還能保持 R×C。</p><pre class=\"tutorial-code-snippet\">if R == C:\n    # 再計算 90 / 270</pre></div><div class=\"tutorial-code-step\"><strong>步驟 B：百分比</strong><p>避免浮點與四捨五入。</p><pre class=\"tutorial-code-snippet\">percent = best * 100 // (R * C)\nprint(str(percent) + &#x27;%&#x27;)</pre></div>\n        <p class=\"tutorial-code-note\">這些片段只示範本階核心寫法；請依照前面的資料流自行把輸入、處理與輸出接成完整程式。</p>\n      </section>\n      <section class=\"tutorial-card tutorial-check\"><h3>6. 常見錯誤與自我檢查</h3><ul><li>題目是向下取整，不是四捨五入。</li><li>非正方形不能把 90° 旋轉後不同尺寸的矩陣硬比。</li><li>固定 A 比 B 的相對旋轉已足以涵蓋所有可能相似度。</li></ul></section>\n    </div>"}];
+const TASKS = [{"id":1,"title":"計算兩張圖相同像素數","difficulty":"入門","statement":"給定兩張同尺寸 R×C 灰階圖 A、B，不做旋轉。請計算相同座標像素值相等的格子數 S。","input":"第一行有兩個正整數 R、C，表示兩張灰階圖共同有 R 列、C 欄。接下來 R 行為影像 A，每行 C 個灰階值。再接下來 R 行為影像 B，每行 C 個灰階值。","output":"輸出一個整數 S，表示 A、B 在相同座標上灰階值相等的像素數量。","sampleIn":"2 3\n1 2 3\n4 5 6\n1 9 3\n0 5 8","sampleOut":"3","sampleExplain":"    <div class=\"demo-story\"><div class=\"demo-viewport\">\n      <section class=\"demo-step\"><p>逐座標比較 6 個像素。</p><pre>A[r][c] == B[r][c] → S+1\n否則 → 不加\n掃完 R×C</pre></section>\n      <section class=\"demo-step\"><p>共有 3 個位置值完全相同。</p></section><section class=\"demo-step\"><p>輸出 3。</p></section>\n    </div></div>","starter":"","answer":"# 依照本階題意分段處理資料，最後再整理並輸出指定結果。\nR, C = map(int, input().split())\nA = []\nB = []\nfor _ in range(R):\n    A.append(list(map(int, input().split())))\nfor _ in range(R):\n    B.append(list(map(int, input().split())))\nsame = 0\n\n# 尺寸已相同，逐一比較完全相同位置的灰階像素。\nfor r in range(R):\n    for c in range(C):\n        if A[r][c] == B[r][c]:\n            same += 1\nprint(same)","tests":[{"input":"2 3\n1 2 3\n4 5 6\n1 9 3\n0 5 8\n","output":"3\n","public":true,"sampleRole":"primary","sampleOrigin":"task","qaPurpose":"本階主要公開範例"},{"input":"2 2\n1 1\n1 1\n1 1\n1 1\n","output":"4\n","public":true,"sampleRole":"secondary","sampleOrigin":"task","qaPurpose":"本階第二公開案例"},{"input":"1 1\n7\n8\n","output":"0\n","qaPurpose":"完全不同時 S=0","public":true,"sampleRole":"special","sampleOrigin":"special"},{"input":"1 4\n0 1 2 3\n3 2 1 0\n","output":"0\n"}],"generatedTests":[{"input":"3 2\n1 2\n3 4\n5 6\n1 2\n0 4\n5 9\n","output":"4\n","generated":true},{"input":"2 4\n8 7 6 5\n4 3 2 1\n8 0 6 0\n4 0 2 0\n","output":"4\n","generated":true}],"tutorial":"    <div class=\"tutorial-body\">\n      <section class=\"tutorial-card tutorial-goal\"><h3>1. 先知道這題在練什麼</h3>\n        <p>先把 similarity 的核心量 S 算對。</p><p><strong>先備：</strong>會使用基本輸入、list、for 與 if。</p>\n      </section>\n      <section class=\"tutorial-card tutorial-core\"><h3>2. 核心觀念與圖解</h3>\n        <p>相似度不是數值差距，而是「完全相等」像素的比例。因此每個座標只問 <code>A[r][c] == B[r][c]</code>。</p>\n        <div class=\"tutorial-visual\"><div class=\"tutorial-visual-title\">本階實際資料怎麼變</div><pre>A[r][c] == B[r][c] → S+1\n否則 → 不加\n掃完 R×C</pre></div>\n      </section>\n      <section class=\"tutorial-card tutorial-worked\"><h3>3. 跟著做一個小例子</h3><p>2×3 範例中相等位置是 (0,0)、(0,2)、(1,1)，所以 S=3。</p></section>\n      <section class=\"tutorial-card tutorial-plan\"><h3>4. 先把程式拆成幾塊</h3><ol><li>讀 A、B。</li><li>same=0。</li><li>雙迴圈比較同座標。</li><li>相等就 +1。</li></ol></section>\n      <section class=\"tutorial-card tutorial-code\"><h3>5. Python 一段一段怎麼寫</h3><div class=\"tutorial-code-step\"><strong>步驟 A：同座標比較</strong><p>只看完全相等。</p><pre class=\"tutorial-code-snippet\">if A[r][c] == B[r][c]:\n    same += 1</pre></div><div class=\"tutorial-code-step\"><strong>步驟 B：掃全部像素</strong><p>總共 R×C 次比較。</p><pre class=\"tutorial-code-snippet\">for r in range(R):\n    for c in range(C):\n        ...</pre></div>\n        <p class=\"tutorial-code-note\">這些片段只示範本階核心寫法；請依照前面的資料流自行把輸入、處理與輸出接成完整程式。</p>\n      </section>\n      <section class=\"tutorial-card tutorial-check\"><h3>6. 常見錯誤與自我檢查</h3><ul><li>不要計算灰階差值大小。</li><li>兩張圖的相同座標才互相比較。</li></ul></section>\n    </div>","stageKey":"r489.7df98454e051","inputItems":[{"key":"in1","text":"第一行有兩個正整數 R、C，表示兩張灰階圖共同有 R 列、C 欄。","meaningAndUseReviewed":true},{"key":"in2","text":"接下來 R 行為影像 A，每行 C 個灰階值。","meaningAndUseReviewed":true},{"key":"in3","text":"再接下來 R 行為影像 B，每行 C 個灰階值。","meaningAndUseReviewed":true}],"outputItems":[{"key":"out1","text":"輸出一個整數 S，表示 A、B 在相同座標上灰階值相等的像素數量。","meaningReviewed":true}]},{"id":2,"title":"把相同像素數換成整數百分比","difficulty":"入門","statement":"已知兩張同尺寸 R×C 圖有若干個相同像素。相似度的百分比為「相同像素數 ÷ 全部像素數 × 100」後，無條件捨去小數部分所得的整數。請以例如 50% 的格式輸出。","input":"第一行有兩個正整數 R、C，表示兩張同尺寸圖片各有 R 列、C 欄，因此總像素數為 R×C。第二行有一個整數 S，表示兩張圖在相同座標上灰階值相同的像素數，且 0≤S≤R×C。","output":"輸出相似度的整數百分比，並在整數後接上 %，例如 50%。","sampleIn":"6 5\n15","sampleOut":"50%","sampleExplain":"    <div class=\"demo-story\"><div class=\"demo-viewport\">\n      <section class=\"demo-step\"><p>15 個相同像素、總共 30 格。</p><pre>same=8, total=9\n8×100=800\n800//9=88\n輸出 88%</pre></section>\n      <section class=\"demo-step\"><p>15×100//30=50。</p></section><section class=\"demo-step\"><p>輸出 50%。</p></section>\n    </div></div>","starter":"","answer":"R, C = map(int, input().split())\nsame = int(input())\n\n# 題目要無條件捨去百分比，整數乘 100 再 // 總像素即可。\npercent = same * 100 // (R * C)\nprint(str(percent) + '%')","tests":[{"input":"6 5\n15\n","output":"50%\n","public":true,"sampleRole":"primary","sampleOrigin":"task","qaPurpose":"本階主要公開範例"},{"input":"1 4\n0\n","output":"0%\n","public":true,"sampleRole":"secondary","sampleOrigin":"task","qaPurpose":"本階第二公開案例"},{"input":"3 3\n8\n","output":"88%\n","qaPurpose":"88.888... 必須無條件捨去成 88%","public":true,"sampleRole":"special","sampleOrigin":"special"},{"input":"2 2\n4\n","output":"100%\n"}],"generatedTests":[{"input":"7 3\n10\n","output":"47%\n","generated":true},{"input":"200 200\n39999\n","output":"99%\n","generated":true}],"tutorial":"    <div class=\"tutorial-body\">\n      <section class=\"tutorial-card tutorial-goal\"><h3>1. 先知道這題在練什麼</h3>\n        <p>不用浮點數，直接精確完成向下取整的百分比。</p><p><strong>先備：</strong>會使用基本輸入、list、for 與 if。</p>\n      </section>\n      <section class=\"tutorial-card tutorial-core\"><h3>2. 核心觀念與圖解</h3>\n        <p><code>same*100//total</code> 等價於題目的無條件捨去，而且沒有浮點誤差。</p>\n        <div class=\"tutorial-visual\"><div class=\"tutorial-visual-title\">本階實際資料怎麼變</div><pre>same=8, total=9\n8×100=800\n800//9=88\n輸出 88%</pre></div>\n      </section>\n      <section class=\"tutorial-card tutorial-worked\"><h3>3. 跟著做一個小例子</h3><p>8/9 約 88.888%，題目要求無條件捨去小數部分，所以答案 88%。</p></section>\n      <section class=\"tutorial-card tutorial-plan\"><h3>4. 先把程式拆成幾塊</h3><ol><li>total=R*C。</li><li>same*100//total。</li><li>轉字串接 %。</li></ol></section>\n      <section class=\"tutorial-card tutorial-code\"><h3>5. Python 一段一段怎麼寫</h3><div class=\"tutorial-code-step\"><strong>步驟 A：用整數除法無條件捨去</strong><p>全程用 int。</p><pre class=\"tutorial-code-snippet\">percent = same * 100 // (R * C)</pre></div><div class=\"tutorial-code-step\"><strong>步驟 B：輸出百分號</strong><p>百分號是輸出格式的一部分。</p><pre class=\"tutorial-code-snippet\">print(str(percent) + &#x27;%&#x27;)</pre></div>\n        <p class=\"tutorial-code-note\">這些片段只示範本階核心寫法；請依照前面的資料流自行把輸入、處理與輸出接成完整程式。</p>\n      </section>\n      <section class=\"tutorial-card tutorial-check\"><h3>6. 常見錯誤與自我檢查</h3><ul><li>不能四捨五入。</li><li>不要忘記輸出 % 符號。</li></ul></section>\n    </div>","stageKey":"r489.85d69c7ac8cb","inputItems":[{"key":"in1","text":"第一行有兩個正整數 R、C，表示兩張同尺寸圖片各有 R 列、C 欄，因此總像素數為 R×C。","meaningAndUseReviewed":true},{"key":"in2","text":"第二行有一個整數 S，表示兩張圖在相同座標上灰階值相同的像素數，且 0≤S≤R×C。","meaningAndUseReviewed":true}],"outputItems":[{"key":"out1","text":"輸出相似度的整數百分比，並在整數後接上 %，例如 50%。","meaningReviewed":true}]},{"id":3,"title":"比較 0° 與 180° 兩種方向","difficulty":"基礎","statement":"給定兩張同尺寸 R×C 灰階圖 A、B。固定 A 不動，比較兩種情況：B 不旋轉，以及 B 旋轉 180 度；每種情況都計算相同座標上灰階值相同的像素數。請輸出兩種情況中的較大值。","input":"第一行有兩個正整數 R、C，表示 A、B 皆有 R 列、C 欄。接下來 R 行為 A，每行 C 個灰階值。再接下來 R 行為 B，每行 C 個灰階值。","output":"輸出一個整數，表示 B 不旋轉與旋轉 180° 兩種情況中較大的相同像素數。","sampleIn":"2 3\n1 2 3\n4 5 6\n6 5 4\n3 2 1","sampleOut":"6","sampleExplain":"    <div class=\"demo-story\"><div class=\"demo-viewport\">\n      <section class=\"demo-step\"><p>B 是 A 的 180° 版本。</p><pre>B 原座標 (r,c)\n180° 後對應\nB[R-1-r][C-1-c]</pre></section>\n      <section class=\"demo-step\"><p>0° 比對很差。</p></section><section class=\"demo-step\"><p>180° 對應全部吻合，因此最佳為總像素數。</p></section>\n    </div></div>","starter":"","answer":"# 依照本階題意分段處理資料，最後再整理並輸出指定結果。\nR, C = map(int, input().split())\nA = []\nB = []\nfor _ in range(R):\n    A.append(list(map(int, input().split())))\nfor _ in range(R):\n    B.append(list(map(int, input().split())))\nsame0 = 0\nsame180 = 0\n\n# 180 度旋轉後，B 的 (r,c) 對應原本 B[R-1-r][C-1-c]。\nfor r in range(R):\n    for c in range(C):\n        if A[r][c] == B[r][c]:\n            same0 += 1\n        if A[r][c] == B[R - 1 - r][C - 1 - c]:\n            same180 += 1\nprint(max(same0, same180))","tests":[{"input":"2 3\n1 2 3\n4 5 6\n6 5 4\n3 2 1\n","output":"6\n","public":true,"sampleRole":"primary","sampleOrigin":"task","qaPurpose":"本階主要公開範例"},{"input":"2 2\n1 2\n3 4\n4 3\n2 1\n","output":"4\n","public":true,"sampleRole":"secondary","sampleOrigin":"task","qaPurpose":"本階第二公開案例"},{"input":"1 4\n1 2 3 4\n1 9 9 4\n","output":"2\n","qaPurpose":"0° 可能比 180° 好","public":true,"sampleRole":"special","sampleOrigin":"special"},{"input":"3 1\n7\n8\n9\n9\n0\n7\n","output":"2\n"}],"generatedTests":[{"input":"2 4\n1 2 3 4\n5 6 7 8\n8 7 6 5\n4 3 2 1\n","output":"8\n","generated":true},{"input":"1 1\n5\n5\n","output":"1\n","generated":true}],"tutorial":"    <div class=\"tutorial-body\">\n      <section class=\"tutorial-card tutorial-goal\"><h3>1. 先知道這題在練什麼</h3>\n        <p>先掌握不需要實際建立旋轉矩陣的 index mapping。</p><p><strong>先備：</strong>會使用基本輸入、list、for 與 if。</p>\n      </section>\n      <section class=\"tutorial-card tutorial-core\"><h3>2. 核心觀念與圖解</h3>\n        <p>180° 不會改尺寸；A[r][c] 應和 B 的上下、左右都反向位置比較。直接用索引可以少一份矩陣。</p>\n        <div class=\"tutorial-visual\"><div class=\"tutorial-visual-title\">本階實際資料怎麼變</div><pre>B 原座標 (r,c)\n180° 後對應\nB[R-1-r][C-1-c]</pre></div>\n      </section>\n      <section class=\"tutorial-card tutorial-worked\"><h3>3. 跟著做一個小例子</h3><p>若 B 恰好是 A 旋轉 180°，same180 就會等於 R×C。</p></section>\n      <section class=\"tutorial-card tutorial-plan\"><h3>4. 先把程式拆成幾塊</h3><ol><li>same0/same180 歸零。</li><li>同一個雙迴圈做兩種映射。</li><li>各自累計。</li><li>輸出 max。</li></ol></section>\n      <section class=\"tutorial-card tutorial-code\"><h3>5. Python 一段一段怎麼寫</h3><div class=\"tutorial-code-step\"><strong>步驟 A：0 度</strong><p>直接同位置。</p><pre class=\"tutorial-code-snippet\">if A[r][c] == B[r][c]:\n    same0 += 1</pre></div><div class=\"tutorial-code-step\"><strong>步驟 B：180 度</strong><p>列欄都從另一端數。</p><pre class=\"tutorial-code-snippet\">if A[r][c] == B[R - 1 - r][C - 1 - c]:\n    same180 += 1</pre></div>\n        <p class=\"tutorial-code-note\">這些片段只示範本階核心寫法；請依照前面的資料流自行把輸入、處理與輸出接成完整程式。</p>\n      </section>\n      <section class=\"tutorial-card tutorial-check\"><h3>6. 常見錯誤與自我檢查</h3><ul><li>180° 要同時反轉 row 與 column。</li><li>這一階輸出的是像素數，不是百分比。</li></ul></section>\n    </div>","stageKey":"r489.8e50d405f8a4","inputItems":[{"key":"in1","text":"第一行有兩個正整數 R、C，表示 A、B 皆有 R 列、C 欄。","meaningAndUseReviewed":true},{"key":"in2","text":"接下來 R 行為 A，每行 C 個灰階值。","meaningAndUseReviewed":true},{"key":"in3","text":"再接下來 R 行為 B，每行 C 個灰階值。","meaningAndUseReviewed":true}],"outputItems":[{"key":"out1","text":"輸出一個整數，表示 B 不旋轉與旋轉 180° 兩種情況中較大的相同像素數。","meaningReviewed":true}]},{"id":4,"title":"正方形照片比較四種旋轉","difficulty":"中等","statement":"給定兩張 N×N 正方形灰階圖 A、B。固定 A 不動，分別把 B 視為旋轉 0°、90°、180°、270° 後與 A 比較；每一種方向都計算相同座標上灰階值相同的像素數。請輸出四種方向中的最大相同像素數。","input":"第一行有正整數 N，表示兩張圖片都是 N 列、N 欄。接下來 N 行為 A，每行 N 個灰階值。再接下來 N 行為 B，每行 N 個灰階值。","output":"輸出一個整數，表示 B 旋轉 0°、90°、180°、270° 四種情況中的最大相同像素數。","sampleIn":"2\n1 2\n3 4\n3 1\n4 2","sampleOut":"4","sampleExplain":"    <div class=\"demo-story\"><div class=\"demo-viewport\">\n      <section class=\"demo-step\"><p>2×2 的 B 是 A 旋轉版本。</p><pre>0°:   B[r][c]\n90°:  B[N-1-c][r]\n180°: B[N-1-r][N-1-c]\n270°: B[c][N-1-r]</pre></section>\n      <section class=\"demo-step\"><p>四個 count 同時累計。</p></section><section class=\"demo-step\"><p>最佳方向可以得到全部 4 格相同。</p></section>\n    </div></div>","starter":"","answer":"# 依照本階題意分段處理資料，最後再整理並輸出指定結果。\nN = int(input())\nA = []\nB = []\nfor _ in range(N):\n    A.append(list(map(int, input().split())))\nfor _ in range(N):\n    B.append(list(map(int, input().split())))\ncount = [0, 0, 0, 0]\n\n# 正方形四種相對旋轉都維持 N×N，可以直接用四個索引 mapping 比較。\nfor r in range(N):\n    for c in range(N):\n        if A[r][c] == B[r][c]:\n            count[0] += 1\n        if A[r][c] == B[N - 1 - c][r]:\n            count[1] += 1\n        if A[r][c] == B[N - 1 - r][N - 1 - c]:\n            count[2] += 1\n        if A[r][c] == B[c][N - 1 - r]:\n            count[3] += 1\nprint(max(count))","tests":[{"input":"2\n1 2\n3 4\n3 1\n4 2\n","output":"4\n","public":true,"sampleRole":"primary","sampleOrigin":"task","qaPurpose":"本階主要公開範例"},{"input":"3\n1 2 3\n4 5 6\n7 8 9\n7 4 1\n8 5 2\n9 6 3\n","output":"9\n","public":true,"sampleRole":"secondary","sampleOrigin":"task","qaPurpose":"本階第二公開案例"},{"input":"1\n7\n8\n","output":"0\n","qaPurpose":"1×1 四種旋轉都相同但像素值不符","public":true,"sampleRole":"special","sampleOrigin":"special"},{"input":"2\n1 1\n2 2\n2 2\n1 1\n","output":"4\n"}],"generatedTests":[{"input":"3\n1 0 0\n0 2 0\n0 0 3\n0 0 1\n0 2 0\n3 0 0\n","output":"9\n","generated":true},{"input":"2\n5 6\n7 8\n8 7\n6 5\n","output":"4\n","generated":true}],"tutorial":"    <div class=\"tutorial-body\">\n      <section class=\"tutorial-card tutorial-goal\"><h3>1. 先知道這題在練什麼</h3>\n        <p>補齊 90°/270° 的索引映射，先避開非正方形尺寸問題。</p><p><strong>先備：</strong>會使用基本輸入、list、for 與 if。</p>\n      </section>\n      <section class=\"tutorial-card tutorial-core\"><h3>2. 核心觀念與圖解</h3>\n        <p>正方形旋轉 90° 後尺寸不變，因此四種都能直接與 A 比。同一 (r,c) 在 B 原圖的來源位置可用固定公式取得。</p>\n        <div class=\"tutorial-visual\"><div class=\"tutorial-visual-title\">本階實際資料怎麼變</div><pre>0°:   B[r][c]\n90°:  B[N-1-c][r]\n180°: B[N-1-r][N-1-c]\n270°: B[c][N-1-r]</pre></div>\n      </section>\n      <section class=\"tutorial-card tutorial-worked\"><h3>3. 跟著做一個小例子</h3><p>若 B 是 A 順時針旋轉 90°，其中一個 mapping 會得到 N×N 全部匹配。</p></section>\n      <section class=\"tutorial-card tutorial-plan\"><h3>4. 先把程式拆成幾塊</h3><ol><li>count 建四格。</li><li>雙迴圈走 A 座標。</li><li>同時套四個 B mapping。</li><li>輸出 max(count)。</li></ol></section>\n      <section class=\"tutorial-card tutorial-code\"><h3>5. Python 一段一段怎麼寫</h3><div class=\"tutorial-code-step\"><strong>步驟 A：90 度 mapping</strong><p>一個方向會交換 row/column 並反轉其中一軸。</p><pre class=\"tutorial-code-snippet\">B[N - 1 - c][r]</pre></div><div class=\"tutorial-code-step\"><strong>步驟 B：270 度 mapping</strong><p>另一方向是互補的映射。</p><pre class=\"tutorial-code-snippet\">B[c][N - 1 - r]</pre></div>\n        <p class=\"tutorial-code-note\">這些片段只示範本階核心寫法；請依照前面的資料流自行把輸入、處理與輸出接成完整程式。</p>\n      </section>\n      <section class=\"tutorial-card tutorial-check\"><h3>6. 常見錯誤與自我檢查</h3><ul><li>兩個 90° 方向容易寫反，但四種都比較時只要兩個 mapping 都存在即可。</li><li>只在正方形時 90°/270° 仍能保持與 A 相同尺寸。</li></ul></section>\n    </div>","stageKey":"r489.bcade228376b","inputItems":[{"key":"in1","text":"第一行有正整數 N，表示兩張圖片都是 N 列、N 欄。","meaningAndUseReviewed":true},{"key":"in2","text":"接下來 N 行為 A，每行 N 個灰階值。","meaningAndUseReviewed":true},{"key":"in3","text":"再接下來 N 行為 B，每行 N 個灰階值。","meaningAndUseReviewed":true}],"outputItems":[{"key":"out1","text":"輸出一個整數，表示 B 旋轉 0°、90°、180°、270° 四種情況中的最大相同像素數。","meaningReviewed":true}]},{"id":5,"title":"原題：航空拍照圖","difficulty":"完整","statement":"給定兩張原始尺寸皆 R×C 的灰階航空照片 A、B。比對時可旋轉照片 0°、90°、180°、270°；只有旋轉後尺寸相同的兩張圖才能比較，尺寸不符該組相似度為 0。相同尺寸時，相似度是對應像素相同個數 S 佔總像素百分比並向下取整。輸出可達到的最高相似度，例如 50%。固定 A 不動只考慮 B 的相對旋轉即可。","input":"第一行有兩個正整數 R、C（1≤R,C≤200），表示兩張原始灰階照片 A、B 各有 R 列、C 欄。接下來 R 行為 A，每行 C 個 0 到 255 的灰階值。再接下來 R 行為 B，每行 C 個 0 到 255 的灰階值。","output":"輸出可達到的最高整數相似度百分比，並在整數後接上 %，例如 50%。","sampleIn":"6 5\n0 1 1 1 1\n0 2 2 2 2\n0 3 3 3 3\n0 4 4 4 4\n0 5 5 5 5\n0 6 6 6 6\n6 6 6 6 6\n5 5 5 5 5\n4 4 4 4 4\n7 7 7 7 0\n8 8 8 8 0\n9 9 9 9 0","sampleOut":"50%","sampleExplain":"    <div class=\"demo-story\"><div class=\"demo-viewport\">\n      <section class=\"demo-step\"><p>官方照片大小 6×5。</p><pre>R≠C：比較 0°,180°\nR=C：比較 0°,90°,180°,270°\nbest S\n→ best*100//(R*C)\n→ 加 %</pre></section>\n      <section class=\"demo-step\"><p>90°/270° 相對旋轉會變 5×6，尺寸不符。</p></section><section class=\"demo-step\"><p>最佳合法方向有 15 個相同像素，15×100//30=50%。</p></section>\n    </div></div>","starter":"","answer":"R, C = map(int, input().split())\nA = []\nB = []\nfor _ in range(R):\n    A.append(list(map(int, input().split())))\nfor _ in range(R):\n    B.append(list(map(int, input().split())))\ncount0 = 0\ncount180 = 0\n\n# 固定 A；0°/180° 對任何 R×C 都能比較，90°/270° 只有正方形時尺寸仍相同。\nfor r in range(R):\n    for c in range(C):\n        if A[r][c] == B[r][c]:\n            count0 += 1\n        if A[r][c] == B[R - 1 - r][C - 1 - c]:\n            count180 += 1\nbest = max(count0, count180)\n\nif R == C:\n    count90 = 0\n    count270 = 0\n    for r in range(R):\n        for c in range(C):\n            if A[r][c] == B[R - 1 - c][r]:\n                count90 += 1\n            if A[r][c] == B[c][R - 1 - r]:\n                count270 += 1\n    best = max(best, count90, count270)\n\n# 相似度以最佳相同像素數換算百分比並無條件捨去。\npercent = best * 100 // (R * C)\nprint(str(percent) + '%')","tests":[{"input":"6 5\n0 1 1 1 1\n0 2 2 2 2\n0 3 3 3 3\n0 4 4 4 4\n0 5 5 5 5\n0 6 6 6 6\n6 6 6 6 6\n5 5 5 5 5\n4 4 4 4 4\n7 7 7 7 0\n8 8 8 8 0\n9 9 9 9 0\n","output":"50%\n","public":true,"sampleRole":"primary","sampleOrigin":"official","qaPurpose":"官方公開範例 #1"},{"input":"2 3\n1 2 3\n4 5 6\n6 5 4\n3 2 1\n","output":"100%\n","public":true,"sampleRole":"secondary","sampleOrigin":"supplemental","qaPurpose":"官方僅一筆範例；此為補充公開案例"},{"input":"2 2\n1 2\n3 4\n3 1\n4 2\n","output":"100%\n","qaPurpose":"正方形時 90 度旋轉可以取得 100%","public":true,"sampleRole":"special","sampleOrigin":"special"},{"input":"1 4\n1 2 3 4\n4 3 2 1\n","output":"100%\n"}],"generatedTests":[{"input":"3 3\n1 2 3\n4 5 6\n7 8 9\n7 4 1\n8 5 2\n9 6 3\n","output":"100%\n","generated":true},{"input":"2 4\n1 1 2 2\n3 3 4 4\n1 0 2 0\n3 0 4 0\n","output":"50%\n","generated":true}],"tutorial":"    <div class=\"tutorial-body\">\n      <section class=\"tutorial-card tutorial-goal\"><h3>1. 先知道這題在練什麼</h3>\n        <p>完整處理相對旋轉、非正方形尺寸限制與向下取整的百分比。</p><p><strong>先備：</strong>會使用基本輸入、list、for 與 if。</p>\n      </section>\n      <section class=\"tutorial-card tutorial-core\"><h3>2. 核心觀念與圖解</h3>\n        <p>兩張圖若同時旋轉相同角度，對應匹配數不變，所以可固定 A，只看 B 相對 A 的四種方向。非正方形時 B 旋轉 90°/270° 會成 C×R，無法直接和 R×C 的 A 比，因此這兩種相對方向視為 0。</p>\n        <div class=\"tutorial-visual\"><div class=\"tutorial-visual-title\">本階實際資料怎麼變</div><pre>R≠C：比較 0°,180°\nR=C：比較 0°,90°,180°,270°\nbest S\n→ best*100//(R*C)\n→ 加 %</pre></div>\n      </section>\n      <section class=\"tutorial-card tutorial-worked\"><h3>3. 跟著做一個小例子</h3><p>官方 6×5 不是正方形，所以只需考慮尺寸仍為 6×5 的相對 0° 與 180°；最佳有 15/30 相同，輸出 50%。</p></section>\n      <section class=\"tutorial-card tutorial-plan\"><h3>4. 先把程式拆成幾塊</h3><ol><li>先算 0° 與 180° count。</li><li>若 R==C，再算 90°/270°。</li><li>取最佳 best。</li><li>用整數除法轉百分比並輸出 %。</li></ol></section>\n      <section class=\"tutorial-card tutorial-code\"><h3>5. Python 一段一段怎麼寫</h3><div class=\"tutorial-code-step\"><strong>步驟 A：非正方形限制</strong><p>只有正方形的 90°/270° 還能保持 R×C。</p><pre class=\"tutorial-code-snippet\">if R == C:\n    # 再計算 90 / 270</pre></div><div class=\"tutorial-code-step\"><strong>步驟 B：百分比</strong><p>避免浮點與四捨五入。</p><pre class=\"tutorial-code-snippet\">percent = best * 100 // (R * C)\nprint(str(percent) + &#x27;%&#x27;)</pre></div>\n        <p class=\"tutorial-code-note\">這些片段只示範本階核心寫法；請依照前面的資料流自行把輸入、處理與輸出接成完整程式。</p>\n      </section>\n      <section class=\"tutorial-card tutorial-check\"><h3>6. 常見錯誤與自我檢查</h3><ul><li>題目是向下取整，不是四捨五入。</li><li>非正方形不能把 90° 旋轉後不同尺寸的矩陣硬比。</li><li>固定 A 比 B 的相對旋轉已足以涵蓋所有可能相似度。</li></ul></section>\n    </div>","stageKey":"r489.6229efb38cc0","inputItems":[{"key":"in1","text":"第一行有兩個正整數 R、C（1≤R,C≤200），表示兩張原始灰階照片 A、B 各有 R 列、C 欄。","meaningAndUseReviewed":true},{"key":"in2","text":"接下來 R 行為 A，每行 C 個 0 到 255 的灰階值。","meaningAndUseReviewed":true},{"key":"in3","text":"再接下來 R 行為 B，每行 C 個 0 到 255 的灰階值。","meaningAndUseReviewed":true}],"outputItems":[{"key":"out1","text":"輸出可達到的最高整數相似度百分比，並在整數後接上 %，例如 50%。","meaningReviewed":true}]}];
 
 // Shared test accessors belong to the canonical template. Optional generator_js may
 // provide generateOneHiddenTest(), but formal-stage rendering/Judge must never depend
@@ -596,6 +596,7 @@ const STORAGE_PREFIX = `${OJ_META.storage.namespace}:v${STORAGE_SCHEMA}`;
 const ACCEPTED_KEY = `${STORAGE_PREFIX}:accepted`;
 const HISTORY_KEY = `${STORAGE_PREFIX}:history`;
 const MIGRATION_KEY = `${STORAGE_PREFIX}:migrated`;
+const STAGE_KEY_MIGRATION_KEY = `${STORAGE_PREFIX}:stage-key-migrated:v1`;
 const LEGACY_ACCEPTED_KEY = OJ_META.storage.legacyAcceptedKey;
 const LEGACY_HISTORY_KEY = OJ_META.storage.legacyHistoryKey;
 const PYODIDE_VERSION = '0.27.7';
@@ -606,6 +607,45 @@ const PORTABLE_RECORD_FORMAT = 'peicd_oj_progress';
 const PORTABLE_RECORD_SCHEMA = 1;
 const PORTABLE_RECORD_MAX_BYTES = 2 * 1024 * 1024;
 const PORTABLE_RECORD_MAX_CODE_CHARS = 300000;
+
+const STORAGE=(()=>{
+  const memory=new Map();
+  let backend=null;
+  let persistent=false;
+  try{
+    backend=window.localStorage;
+    const probe=`__peicd_storage_probe__${Math.random().toString(36).slice(2)}`;
+    backend.setItem(probe,'1');
+    persistent=backend.getItem(probe)==='1';
+    backend.removeItem(probe);
+  }catch(err){backend=null;persistent=false;}
+  return {
+    get persistent(){return persistent;},
+    getItem(key){
+      const k=String(key);
+      if(backend){try{return backend.getItem(k)}catch(err){backend=null;persistent=false;}}
+      return memory.has(k)?memory.get(k):null;
+    },
+    setItem(key,value){
+      const k=String(key),v=String(value);
+      if(backend){try{backend.setItem(k,v);return}catch(err){backend=null;persistent=false;}}
+      memory.set(k,v);
+    },
+    removeItem(key){
+      const k=String(key);
+      if(backend){try{backend.removeItem(k)}catch(err){backend=null;persistent=false;}}
+      memory.delete(k);
+    },
+    keys(){
+      const out=[];
+      if(backend){
+        try{for(let i=0;i<backend.length;i++){const key=backend.key(i);if(key!==null)out.push(key)}return out}
+        catch(err){backend=null;persistent=false;}
+      }
+      return Array.from(memory.keys());
+    }
+  };
+})();
 
 const $ = (s) => document.querySelector(s);
 const levelStrip = $('#levelStrip');
@@ -618,18 +658,32 @@ const progressBar = $('#progressBar');
 const progressText = $('#progressText');
 const historyList = $('#historyList');
 const hiddenTestsList = $('#hiddenTestsList');
+const storageWarning = $('#storageWarning');
 
 function esc(s){
   return String(s).replace(/[&<>"']/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
 }
 
+function normalizeLineEndings(s){return String(s).replace(/\r\n?/g,'\n');}
 function normalizeOutput(s){
-  return String(s)
-    .replace(/\r\n?/g,'\n')
+  return normalizeLineEndings(s)
     .split('\n')
     .map(line=>line.trim())
     .filter(line=>line!=='')
     .join('\n');
+}
+function compareMode(){return OJ_META.judge?.compareMode||'tolerant';}
+function outputsEqual(actual,expected){
+  const mode=compareMode();
+  if(mode==='tolerant') return normalizeOutput(actual)===normalizeOutput(expected);
+  if(mode==='exact') return normalizeLineEndings(actual)===normalizeLineEndings(expected);
+  return false;
+}
+function compareModeDescription(){
+  const mode=compareMode();
+  if(mode==='exact') return '嚴格比對';
+  if(mode==='special') return 'Special Judge';
+  return '寬鬆比對';
 }
 
 function safeJsonParse(raw,fallback){
@@ -674,28 +728,76 @@ function bindPublicSampleCopyButtons(publicSamples){
   });
 }
 
+function stageKeyForTask(task){return String(task?.stageKey||task?.id||'');}
+function taskFromId(id){return TASKS.find(t=>String(t.id)===String(id))||null;}
+function legacyCurrentDraftKey(id){return `${STORAGE_PREFIX}:code:${id}`;}
+function draftKey(id){const task=taskFromId(id);return `${STORAGE_PREFIX}:code:${task?stageKeyForTask(task):String(id)}`;}
+function loadDraft(task){
+  const next=STORAGE.getItem(draftKey(task.id));
+  if(next!==null)return next;
+  const legacy=STORAGE.getItem(legacyCurrentDraftKey(task.id));
+  if(legacy!==null){STORAGE.setItem(draftKey(task.id),legacy);return legacy;}
+  return null;
+}
+function acceptedForTask(map,task){return Boolean(map[stageKeyForTask(task)]||map[String(task.id)]);}
+
 function migrateStorage(){
-  if(localStorage.getItem(MIGRATION_KEY)==='1') return;
   try{
-    if(LEGACY_ACCEPTED_KEY && localStorage.getItem(ACCEPTED_KEY)===null){const legacy=localStorage.getItem(LEGACY_ACCEPTED_KEY);if(legacy!==null)localStorage.setItem(ACCEPTED_KEY,legacy);}
-    if(LEGACY_HISTORY_KEY && localStorage.getItem(HISTORY_KEY)===null){const legacy=localStorage.getItem(LEGACY_HISTORY_KEY);if(legacy!==null)localStorage.setItem(HISTORY_KEY,legacy);}
-    if(OJ_META.storage.legacyDraftPrefix){for(const task of TASKS){const nextKey=draftKey(task.id),legacyKey=`${OJ_META.storage.legacyDraftPrefix}${task.id}`;if(localStorage.getItem(nextKey)===null){const legacy=localStorage.getItem(legacyKey);if(legacy!==null)localStorage.setItem(nextKey,legacy);}}}
-    localStorage.setItem(MIGRATION_KEY,'1');
-  }catch(err){console.warn('Local storage migration skipped:',err);}
+    // Legacy namespace/schema migration from older OJ generations.
+    if(STORAGE.getItem(MIGRATION_KEY)!=='1'){
+      if(LEGACY_ACCEPTED_KEY && STORAGE.getItem(ACCEPTED_KEY)===null){const legacy=STORAGE.getItem(LEGACY_ACCEPTED_KEY);if(legacy!==null)STORAGE.setItem(ACCEPTED_KEY,legacy);}
+      if(LEGACY_HISTORY_KEY && STORAGE.getItem(HISTORY_KEY)===null){const legacy=STORAGE.getItem(LEGACY_HISTORY_KEY);if(legacy!==null)STORAGE.setItem(HISTORY_KEY,legacy);}
+      for(const task of TASKS){
+        const nextKey=draftKey(task.id);
+        if(STORAGE.getItem(nextKey)!==null)continue;
+        let legacy=null;
+        if(OJ_META.storage.legacyDraftPrefix)legacy=STORAGE.getItem(`${OJ_META.storage.legacyDraftPrefix}${task.id}`);
+        if(legacy!==null)STORAGE.setItem(nextKey,legacy);
+      }
+      STORAGE.setItem(MIGRATION_KEY,'1');
+    }
+
+    // v0.1.52 stable-stage identity migration is intentionally a separate marker.
+    // Existing users may already have MIGRATION_KEY=1 from older releases, so reusing
+    // that marker would skip id -> stageKey promotion and weaken future reorder safety.
+    if(STORAGE.getItem(STAGE_KEY_MIGRATION_KEY)!=='1'){
+      for(const task of TASKS){
+        const nextKey=draftKey(task.id);
+        if(STORAGE.getItem(nextKey)===null){
+          const oldIdValue=STORAGE.getItem(legacyCurrentDraftKey(task.id));
+          if(oldIdValue!==null)STORAGE.setItem(nextKey,oldIdValue);
+        }
+      }
+      const accepted=safeJsonParse(STORAGE.getItem(ACCEPTED_KEY)||'{}',{});
+      let acceptedChanged=false;
+      for(const task of TASKS){
+        if(accepted[String(task.id)] && !accepted[stageKeyForTask(task)]){
+          accepted[stageKeyForTask(task)]=true;acceptedChanged=true;
+        }
+      }
+      if(acceptedChanged)STORAGE.setItem(ACCEPTED_KEY,JSON.stringify(accepted));
+
+      const history=safeJsonParse(STORAGE.getItem(HISTORY_KEY)||'[]',[]);
+      let historyChanged=false;
+      if(Array.isArray(history)){
+        for(const item of history){
+          if(!item || item.stageKey)continue;
+          const task=taskFromId(item.taskId);
+          if(task){item.stageKey=stageKeyForTask(task);historyChanged=true;}
+        }
+        if(historyChanged)STORAGE.setItem(HISTORY_KEY,JSON.stringify(history));
+      }
+      STORAGE.setItem(STAGE_KEY_MIGRATION_KEY,'1');
+    }
+  }catch(err){console.warn('Storage migration skipped:',err);}
 }
 
-function getAccepted(){
-  return safeJsonParse(localStorage.getItem(ACCEPTED_KEY)||'{}',{});
-}
+function getAccepted(){return safeJsonParse(STORAGE.getItem(ACCEPTED_KEY)||'{}',{});}
 function setAccepted(id){
-  const a=getAccepted();
-  a[id]=true;
-  localStorage.setItem(ACCEPTED_KEY,JSON.stringify(a));
+  const task=taskFromId(id);if(!task)return;
+  const a=getAccepted();a[stageKeyForTask(task)]=true;STORAGE.setItem(ACCEPTED_KEY,JSON.stringify(a));
 }
-
-function isTaskAccepted(task=TASKS[currentTaskIndex]){
-  return Boolean(task && getAccepted()[task.id]);
-}
+function isTaskAccepted(task=TASKS[currentTaskIndex]){return Boolean(task && acceptedForTask(getAccepted(),task));}
 
 function updateAnswerButtonState(){
   const btn=$('#answerBtn');
@@ -708,14 +810,10 @@ function updateAnswerButtonState(){
 }
 function getReferenceVariants(task){
   if(Array.isArray(task?.referenceAnswers) && task.referenceAnswers.length){
-    return task.referenceAnswers.map((item,index)=>({
-      title:String(item?.title||`方法 ${index+1}`),
-      code:String(item?.code||'')
-    }));
+    return task.referenceAnswers.map((item,index)=>({title:String(item?.title||`方法 ${index+1}`),code:String(item?.code||'')}));
   }
   return [{title:'參考答案',code:String(task?.answer||'')}];
 }
-
 function renderReferenceAnswers(task){
   const variants=getReferenceVariants(task);
   const dialog=$('#answerDialog');
@@ -733,57 +831,30 @@ function renderReferenceAnswers(task){
   }
 }
 
-function draftKey(id){return `${STORAGE_PREFIX}:code:${id}`}
-function historyKey(){return HISTORY_KEY}
-function getHistory(){return safeJsonParse(localStorage.getItem(historyKey())||'[]',[])}
+function historyKey(){return HISTORY_KEY;}
+function getHistory(){return safeJsonParse(STORAGE.getItem(historyKey())||'[]',[]);}
 function addHistory(taskId, verdict, passed, total){
-  const list=getHistory();
-  list.unshift({time:new Date().toLocaleString('zh-TW',{hour12:false}),taskId,verdict,passed,total});
-  localStorage.setItem(historyKey(),JSON.stringify(list.slice(0,30)));
-  renderHistory();
+  const task=taskFromId(taskId);const list=getHistory();
+  list.unshift({time:new Date().toLocaleString('zh-TW',{hour12:false}),taskId,stageKey:task?stageKeyForTask(task):'',verdict,passed,total});
+  STORAGE.setItem(historyKey(),JSON.stringify(list.slice(0,30)));renderHistory();
 }
-
-function clearAllLocalRecords(){
-  const keys=[];
-  for(let i=0;i<localStorage.length;i++){
-    const key=localStorage.key(i);
-    if(key && key.startsWith(OJ_META.storage.namespace)) keys.push(key);
-  }
-  keys.forEach(key=>localStorage.removeItem(key));
-}
-
+function clearAllLocalRecords(){for(const key of STORAGE.keys()){if(key.startsWith(OJ_META.storage.namespace))STORAGE.removeItem(key);}}
 function portableRecordKeys(){
-  return [ACCEPTED_KEY,HISTORY_KEY,MIGRATION_KEY,...TASKS.map(t=>draftKey(t.id))];
+  return [ACCEPTED_KEY,HISTORY_KEY,MIGRATION_KEY,STAGE_KEY_MIGRATION_KEY,...TASKS.map(t=>draftKey(t.id)),...TASKS.map(t=>legacyCurrentDraftKey(t.id))];
 }
-function snapshotPortableStorage(){
-  return portableRecordKeys().map(key=>[key,localStorage.getItem(key)]);
-}
+function snapshotPortableStorage(){return portableRecordKeys().map(key=>[key,STORAGE.getItem(key)]);}
 function restorePortableStorage(snapshot){
-  for(const [key] of snapshot) localStorage.removeItem(key);
-  for(const [key,value] of snapshot) if(value!==null) localStorage.setItem(key,value);
+  for(const [key] of snapshot)STORAGE.removeItem(key);
+  for(const [key,value] of snapshot)if(value!==null)STORAGE.setItem(key,value);
 }
 function buildPortableRecord(){
-  saveDraft();
-  const accepted=getAccepted();
+  saveDraft();const accepted=getAccepted();const current=TASKS[currentTaskIndex];
   return {
-    format:PORTABLE_RECORD_FORMAT,
-    schemaVersion:PORTABLE_RECORD_SCHEMA,
-    exportedAt:new Date().toISOString(),
-    oj:{
-      problemId:String(OJ_META.source.problemId),
-      sourceUrl:String(OJ_META.source.url),
-      storageNamespace:String(OJ_META.storage.namespace),
-      storageSchema:STORAGE_SCHEMA,
-      language:'python3'
-    },
-    view:{sourceStageActive:Boolean(sourceStageActive),currentTaskId:TASKS[currentTaskIndex]?.id??null},
-    stages:TASKS.map(t=>({
-      id:t.id,
-      title:t.title,
-      code:localStorage.getItem(draftKey(t.id)) ?? t.starter ?? '',
-      accepted:Boolean(accepted[t.id])
-    })),
-    history:getHistory().map(h=>({time:String(h.time??''),taskId:h.taskId,verdict:String(h.verdict??''),passed:Number(h.passed??0),total:Number(h.total??0)}))
+    format:PORTABLE_RECORD_FORMAT,schemaVersion:PORTABLE_RECORD_SCHEMA,exportedAt:new Date().toISOString(),
+    oj:{problemId:String(OJ_META.source.problemId),sourceUrl:String(OJ_META.source.url),storageNamespace:String(OJ_META.storage.namespace),storageSchema:STORAGE_SCHEMA,language:'python3'},
+    view:{sourceStageActive:Boolean(sourceStageActive),currentTaskId:current?.id??null,currentStageKey:current?stageKeyForTask(current):null},
+    stages:TASKS.map(t=>({id:t.id,stageKey:stageKeyForTask(t),title:t.title,code:loadDraft(t)??t.starter??'',accepted:acceptedForTask(accepted,t)})),
+    history:getHistory().map(h=>({time:String(h.time??''),taskId:h.taskId,stageKey:String(h.stageKey??''),verdict:String(h.verdict??''),passed:Number(h.passed??0),total:Number(h.total??0)}))
   };
 }
 function portableFilename(){
@@ -830,65 +901,53 @@ function validatePortableRecord(data){
   if(!oj || typeof oj!=='object') throw new Error('作答紀錄缺少題目資訊。');
   if(String(oj.problemId)!==String(OJ_META.source.problemId) || String(oj.storageNamespace)!==String(OJ_META.storage.namespace) || Number(oj.storageSchema)!==Number(STORAGE_SCHEMA) || oj.language!=='python3') throw new Error('這份作答紀錄不是目前這一題的相容資料。');
   if(!Array.isArray(data.stages) || data.stages.length!==TASKS.length) throw new Error('作答紀錄的階段數量與目前題目不一致。');
-  const known=new Map(TASKS.map(t=>[String(t.id),t]));
-  const seen=new Set();
-  const stages=[];
-  let totalCodeChars=0;
+  const byId=new Map(TASKS.map(t=>[String(t.id),t]));
+  const byStage=new Map(TASKS.map(t=>[stageKeyForTask(t),t]));
+  const seen=new Set(),stages=[];let totalCodeChars=0;
   for(const raw of data.stages){
     if(!raw || typeof raw!=='object') throw new Error('階段資料格式錯誤。');
-    const id=String(raw.id);
-    if(!known.has(id)) throw new Error(`作答紀錄包含目前題目不存在的第 ${id} 階。`);
-    if(seen.has(id)) throw new Error(`作答紀錄重複包含第 ${id} 階。`);
-    if(typeof raw.code!=='string' || raw.code.length>PORTABLE_RECORD_MAX_CODE_CHARS) throw new Error(`第 ${id} 階程式碼格式或大小不合法。`);
-    if(typeof raw.accepted!=='boolean') throw new Error(`第 ${id} 階 AC 狀態格式不合法。`);
-    totalCodeChars+=raw.code.length;if(totalCodeChars>PORTABLE_RECORD_MAX_BYTES) throw new Error('作答紀錄中的程式碼總量過大。');
-    seen.add(id);stages.push({id:known.get(id).id,code:raw.code,accepted:raw.accepted});
+    const key=String(raw.stageKey||'');const id=String(raw.id);
+    const task=(key&&byStage.get(key))||byId.get(id);
+    if(!task) throw new Error(`作答紀錄包含目前題目不存在的階段 ${key||id}。`);
+    const stable=stageKeyForTask(task);if(seen.has(stable))throw new Error('作答紀錄重複包含同一階段。');
+    if(typeof raw.code!=='string'||raw.code.length>PORTABLE_RECORD_MAX_CODE_CHARS)throw new Error(`第 ${task.id} 階程式碼格式或大小不合法。`);
+    if(typeof raw.accepted!=='boolean')throw new Error(`第 ${task.id} 階 AC 狀態格式不合法。`);
+    totalCodeChars+=raw.code.length;if(totalCodeChars>PORTABLE_RECORD_MAX_BYTES)throw new Error('作答紀錄中的程式碼總量過大。');
+    seen.add(stable);stages.push({id:task.id,stageKey:stable,code:raw.code,accepted:raw.accepted});
   }
-  if(seen.size!==known.size) throw new Error('作答紀錄缺少目前題目的階段資料。');
-  if(!Array.isArray(data.history) || data.history.length>30) throw new Error('提交紀錄格式或筆數不合法。');
+  if(seen.size!==TASKS.length)throw new Error('作答紀錄缺少目前題目的階段資料。');
+  if(!Array.isArray(data.history)||data.history.length>30)throw new Error('提交紀錄格式或筆數不合法。');
   const allowedVerdicts=new Set(['AC','WA','RE','TLE','JE','CE']);
   const history=data.history.map((raw,index)=>{
-    if(!raw || typeof raw!=='object') throw new Error(`第 ${index+1} 筆提交紀錄格式錯誤。`);
-    const id=String(raw.taskId);
-    const verdict=String(raw.verdict||'');
-    const passed=Number(raw.passed),total=Number(raw.total);
-    if(!known.has(id) || !allowedVerdicts.has(verdict) || !Number.isInteger(passed) || !Number.isInteger(total) || passed<0 || total<0 || passed>total) throw new Error(`第 ${index+1} 筆提交紀錄內容不合法。`);
-    const time=String(raw.time??'');if(time.length>120) throw new Error(`第 ${index+1} 筆提交時間格式不合法。`);
-    return {time,taskId:known.get(id).id,verdict,passed,total};
+    if(!raw||typeof raw!=='object')throw new Error(`第 ${index+1} 筆提交紀錄格式錯誤。`);
+    const task=(raw.stageKey&&byStage.get(String(raw.stageKey)))||byId.get(String(raw.taskId));
+    const verdict=String(raw.verdict||''),passed=Number(raw.passed),total=Number(raw.total);
+    if(!task||!allowedVerdicts.has(verdict)||!Number.isInteger(passed)||!Number.isInteger(total)||passed<0||total<0||passed>total)throw new Error(`第 ${index+1} 筆提交紀錄內容不合法。`);
+    const time=String(raw.time??'');if(time.length>120)throw new Error(`第 ${index+1} 筆提交時間格式不合法。`);
+    return {time,taskId:task.id,stageKey:stageKeyForTask(task),verdict,passed,total};
   });
   const view=data.view;
-  if(!view || typeof view!=='object' || typeof view.sourceStageActive!=='boolean') throw new Error('作答紀錄缺少目前階段資訊。');
-  const viewId=view.currentTaskId===null?null:String(view.currentTaskId);
-  if(viewId!==null && !known.has(viewId)) throw new Error('作答紀錄的目前階段不存在。');
-  return {stages,history,view:{sourceStageActive:view.sourceStageActive,currentTaskId:viewId===null?TASKS[0].id:known.get(viewId).id}};
+  if(!view||typeof view!=='object'||typeof view.sourceStageActive!=='boolean')throw new Error('作答紀錄缺少目前階段資訊。');
+  const task=(view.currentStageKey&&byStage.get(String(view.currentStageKey)))||byId.get(String(view.currentTaskId));
+  return {stages,history,view:{sourceStageActive:view.sourceStageActive,currentTaskId:(task||TASKS[0]).id,currentStageKey:stageKeyForTask(task||TASKS[0])}};
 }
 function applyPortableRecord(record){
   const snapshot=snapshotPortableStorage();
   try{
-    for(const key of portableRecordKeys()) localStorage.removeItem(key);
+    for(const key of portableRecordKeys())STORAGE.removeItem(key);
     const accepted={};
     for(const stage of record.stages){
-      localStorage.setItem(draftKey(stage.id),stage.code);
-      if(stage.accepted) accepted[stage.id]=true;
+      const task=TASKS.find(t=>stageKeyForTask(t)===stage.stageKey)||taskFromId(stage.id);if(!task)continue;
+      STORAGE.setItem(draftKey(task.id),stage.code);if(stage.accepted)accepted[stageKeyForTask(task)]=true;
     }
-    localStorage.setItem(ACCEPTED_KEY,JSON.stringify(accepted));
-    localStorage.setItem(HISTORY_KEY,JSON.stringify(record.history));
-    localStorage.setItem(MIGRATION_KEY,'1');
-  }catch(err){
-    try{restorePortableStorage(snapshot);}catch(rollbackErr){console.error('Import rollback failed:',rollbackErr);}
-    throw err;
-  }
-
-  const idx=Math.max(0,TASKS.findIndex(t=>String(t.id)===String(record.view.currentTaskId)));
-  currentTaskIndex=idx;sourceStageActive=record.view.sourceStageActive;
-  document.body.classList.toggle('source-view',sourceStageActive);
+    STORAGE.setItem(ACCEPTED_KEY,JSON.stringify(accepted));STORAGE.setItem(HISTORY_KEY,JSON.stringify(record.history));STORAGE.setItem(MIGRATION_KEY,'1');
+  }catch(err){try{restorePortableStorage(snapshot)}catch(rollbackErr){console.error('Import rollback failed:',rollbackErr)}throw err;}
+  const idx=Math.max(0,TASKS.findIndex(t=>stageKeyForTask(t)===record.view.currentStageKey||String(t.id)===String(record.view.currentTaskId)));
+  currentTaskIndex=idx;sourceStageActive=record.view.sourceStageActive;document.body.classList.toggle('source-view',sourceStageActive);
   renderLevelStrip();renderProblem();renderTests();renderHiddenTests();renderHistory();renderProgress();updateAnswerButtonState();
-  const t=TASKS[currentTaskIndex];
-  setCode(localStorage.getItem(draftKey(t.id)) ?? t.starter);
-  overallVerdict.className='status-pill';overallVerdict.textContent='尚未提交';
-  resultSummary.textContent='作答紀錄已匯入。草稿、AC 進度與本機提交紀錄已更新。';
-  resetTerminal('作答紀錄已匯入。按 F9 啟動新的互動式 Python 程式。');
-  if(editor){editor.clearHistory();if(!sourceStageActive)refreshEditorLayout({focus:true});}
+  const t=TASKS[currentTaskIndex];setCode(loadDraft(t)??t.starter);
+  overallVerdict.className='status-pill';overallVerdict.textContent='尚未提交';resultSummary.textContent='作答紀錄已匯入。草稿、AC 進度與本機提交紀錄已更新。';
+  resetTerminal('作答紀錄已匯入。按 F9 啟動新的互動式 Python 程式。');if(editor){editor.clearHistory();if(!sourceStageActive)refreshEditorLayout({focus:true});}
 }
 async function importPortableRecords(file){
   if(busy || !file)return;
@@ -904,7 +963,7 @@ async function importPortableRecords(file){
 
 function renderProgress(){
   const accepted=getAccepted();
-  const count=TASKS.filter(t=>accepted[t.id]).length;
+  const count=TASKS.filter(t=>acceptedForTask(accepted,t)).length;
   progressText.textContent=`${count} / ${TASKS.length} AC`;
   progressBar.style.width=`${count/TASKS.length*100}%`;
 }
@@ -924,8 +983,8 @@ function renderLevelStrip(){
     const b=document.createElement('button');
     b.type='button';
     b.disabled=busy;
-    b.className='level-btn'+(!sourceStageActive&&idx===currentTaskIndex?' active':'')+(accepted[task.id]?' accepted':'');
-    b.textContent=accepted[task.id]?`${task.id} ✓`:`${task.id}`;
+    b.className='level-btn'+(!sourceStageActive&&idx===currentTaskIndex?' active':'')+(acceptedForTask(accepted,task)?' accepted':'');
+    b.textContent=acceptedForTask(accepted,task)?`${task.id} ✓`:`${task.id}`;
     b.title=`第 ${task.id} 階：${task.title}`;
     b.addEventListener('click',()=>switchTask(idx));
     levelStrip.appendChild(b);
@@ -962,13 +1021,8 @@ function switchToSourceStage({openSource=false}={}){
   if(openSource) window.open(OFFICIAL_SOURCE.url,'_blank','noopener,noreferrer');
 }
 
-function formalInputParts(text){
-  const parts=String(text??'').trim().match(/[^。]+(?:。|$)/g)||[];
-  return parts.map(part=>part.trim()).filter(Boolean);
-}
-function renderFormalInput(text){
-  const parts=formalInputParts(text);
-  return `<div class="formal-input-list" data-formal-input-list="true">${parts.map(part=>`<p class="formal-input-item">${esc(part)}</p>`).join('')}</div>`;
+function renderFormalInput(task){
+  return `<p class="formal-input-prose" data-formal-input="true">${task?.input??''}</p>`;
 }
 
 function renderProblem(){
@@ -997,7 +1051,7 @@ function renderProblem(){
     <div class="section-title">題目</div>
     <p>${t.statement}</p>
     <div class="section-title">輸入</div>
-    ${renderFormalInput(t.input)}
+    ${renderFormalInput(t)}
     <div class="section-title">輸出</div>
     <p>${t.output}</p>
     <div class="pre-code-notice" data-pre-code-notice="true">
@@ -1098,7 +1152,7 @@ function renderHistory(){
 
 function getCode(){ return editor ? editor.getValue() : $('#codeEditor').value; }
 function setCode(code){ if(editor) editor.setValue(code); else $('#codeEditor').value=code; }
-function saveDraft(){ const t=TASKS[currentTaskIndex]; localStorage.setItem(draftKey(t.id),getCode()); }
+function saveDraft(){ const t=TASKS[currentTaskIndex]; STORAGE.setItem(draftKey(t.id),getCode()); }
 
 function ensureCodeMirrorCursorVisible(cm=editor,marginLines=2){
   if(!cm) return;
@@ -1144,7 +1198,7 @@ function switchTask(idx){
   overallVerdict.className='status-pill'; overallVerdict.textContent='尚未提交';
   resultSummary.textContent='F9／「執行」會啟動新的互動式 TERMINAL；遇到 input() 時手動輸入。「提交」會評測本階全部正式測資，逐筆結果請看右側 TEST RESULTS。';
   const t=TASKS[idx];
-  setCode(localStorage.getItem(draftKey(t.id)) ?? t.starter);
+  setCode(loadDraft(t) ?? t.starter);
   resetTerminal();
   if(editor){
     editor.clearHistory();
@@ -1696,6 +1750,7 @@ async function judge(){
   const code=getCode();
   saveDraft();
   const tests=getTaskTestsForTask(t);
+  if(compareMode()==='special'){overallVerdict.className='status-pill warn';overallVerdict.textContent='SPJ';resultSummary.textContent='此題使用 Special Judge，本機不模擬正式判定；可用執行功能檢查程式輸出，正式結果請以原題平台為準。';return;}
   const op=beginOperation();
   overallVerdict.className='status-pill warn'; overallVerdict.textContent='評測中';
   resultSummary.textContent=`正在執行全部 ${tests.length} 筆測資…`;
@@ -1706,7 +1761,7 @@ async function judge(){
     for(let i=0;i<tests.length;i++){
       const r=await runPython(code,tests[i].input);
       if(!isOperationCurrent(op)) return;
-      const pass=!r.environmentError && r.ok && normalizeOutput(r.output)===normalizeOutput(tests[i].output);
+      const pass=!r.environmentError && r.ok && compareMode()!=='special' && outputsEqual(r.output,tests[i].output);
       const rr={...r,pass,error:r.ok?'':r.error};
       results.push(rr);
       if(pass)passed++;
@@ -1727,7 +1782,7 @@ async function judge(){
       const firstBad=results.find(x=>!x.pass);
       const verdict=firstBad?.environmentError?'JE':(firstBad?.timeout?'TLE':(firstBad?.error?'RE':'WA'));
       overallVerdict.className='status-pill bad';overallVerdict.textContent=verdict;
-      resultSummary.textContent=`通過 ${passed} / ${total}。${verdict==='WA'?'輸出採 Tolerant 風格比對；請先檢查內容與行結構。':(verdict==='JE'?'評測環境暫時無法使用，請重新提交。':'先修正第一個失敗原因，再重新提交。')}`;
+      resultSummary.textContent=`通過 ${passed} / ${total}。${verdict==='WA'?`目前採${compareModeDescription()}；請檢查輸出內容與格式。`:(verdict==='JE'?'評測環境暫時無法使用，請重新提交。':'先修正第一個失敗原因，再重新提交。')}`;
       addHistory(t.id,verdict,passed,total);
     }
   }catch(err){
@@ -1799,10 +1854,11 @@ $('#terminalInput').addEventListener('keydown',e=>{
 });
 $('#terminalInput').addEventListener('input',e=>{const ta=e.currentTarget;ta.style.height='1.65em';ta.style.height=Math.min(ta.scrollHeight,84)+'px';});
 const THEME_STORAGE_KEY='step_oj_framework:theme:v1';
-function applyTheme(theme,{persist=true}={}){const next=theme==='dark'?'dark':'light';document.documentElement.dataset.theme=next;$('#themeSelect').value=next;if(persist){try{localStorage.setItem(THEME_STORAGE_KEY,next)}catch{}}}
+function applyTheme(theme,{persist=true}={}){const next=theme==='dark'?'dark':'light';document.documentElement.dataset.theme=next;$('#themeSelect').value=next;if(persist){try{STORAGE.setItem(THEME_STORAGE_KEY,next)}catch{}}}
 function initializeTheme(){const current=document.documentElement.dataset.theme==='dark'?'dark':'light';$('#themeSelect').value=current;$('#themeSelect').addEventListener('change',e=>applyTheme(e.target.value));}
 $('#submitBtn').addEventListener('click',judge);
 
+if(storageWarning)storageWarning.hidden=STORAGE.persistent;
 migrateStorage();
 initializeTheme();
 setupEditor();
@@ -1813,7 +1869,7 @@ renderHiddenTests();
 renderHistory();
 renderProgress();
 updateAnswerButtonState();
-setCode(localStorage.getItem(draftKey(TASKS[0].id)) ?? TASKS[0].starter);
+setCode(loadDraft(TASKS[0]) ?? TASKS[0].starter);
 </script>
 </body>
 </html>

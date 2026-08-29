@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- Generated from shared canonical Python OJ template. template_sha256=c9e31ee044a98bfe91c5e993b67a0c7bfac1dab9828d9b9340f21eaede5676f7 -->
+<!-- Generated from shared canonical Python OJ template. template_sha256=00a426a43459b70b17c73519809800caec10a03026ea698d82019d984c096b37 -->
 <html lang="zh-Hant-TW" data-theme="dark">
 <head>
 <meta charset="utf-8">
@@ -11,8 +11,8 @@
 <title>b965 矩陣轉換｜APCS 階梯式 Online Judge</title>
 <link rel="preconnect" href="https://cdnjs.cloudflare.com">
 <link rel="preconnect" href="https://cdn.jsdelivr.net">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.18/codemirror.min.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.18/addon/hint/show-hint.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.21/codemirror.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.21/addon/hint/show-hint.min.css">
 <style>
 
 *{box-sizing:border-box;}
@@ -217,9 +217,7 @@ header{position:sticky;top:0;z-index:40;background:rgba(255,255,255,.97);backdro
 .section-title{position:relative;margin:27px 0 10px;padding:0 0 8px 13px;border-bottom:1px solid #e7ebef;color:#273345;font-size:.92rem;font-weight:800;}
 .section-title::before{content:"";position:absolute;left:0;top:.25em;width:3px;height:1.05em;border-radius:2px;background:var(--accent);}
 .problem p{margin:.45rem 0;color:#374151;font-size:.95rem;}
-.formal-input-list{display:grid;gap:8px;margin:.35rem 0 .15rem;}
-.formal-input-item{position:relative;margin:0!important;padding:9px 11px 9px 14px;border:1px solid var(--line);border-radius:6px;background:var(--soft2);color:#374151;font-size:.95rem;line-height:1.68;}
-.formal-input-item::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;border-radius:6px 0 0 6px;background:var(--line-strong);}
+.formal-input-prose{margin:.45rem 0!important;color:#374151;font-size:.95rem;line-height:1.68;}
 .problem code,.dialog-body code{font-family:"Cascadia Mono","Consolas",monospace;background:#f1f4f7;color:#25364a;border:1px solid #e5e9ee;border-radius:4px;padding:.06em .28em;}
 pre{white-space:pre-wrap;word-break:break-word;margin:9px 0;padding:13px 15px;background:#f8fafb;color:#273345;border:1px solid #e1e6eb;border-radius:6px;font-family:"Cascadia Mono","SFMono-Regular",Consolas,monospace;font-size:.88rem;line-height:1.62;}
 .sample-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
@@ -423,6 +421,7 @@ dialog::backdrop{background:rgba(15,23,42,.4);}
 
 /* Shared UI / visual primitives: Theme + Interactive Terminal + Detailed Tutorial */
 .theme-control{display:inline-flex;align-items:center;gap:6px}.theme-control label{font-size:.75rem;color:var(--muted);font-weight:800}.theme-control select{min-height:34px;border:1px solid var(--line-strong);border-radius:6px;background:var(--paper);color:var(--ink);padding:4px 28px 4px 9px}
+.storage-warning{display:inline-flex;align-items:center;min-height:32px;padding:4px 9px;border:1px solid #d4a24d;border-radius:6px;background:#fff8e8;color:#7a4b0d;font-size:.75rem;font-weight:800}.storage-warning[hidden]{display:none}
 .learning-guide{display:grid;gap:10px}.learn-card{padding:12px 14px;border:1px solid var(--line);border-radius:7px;background:var(--paper)}.learn-card>strong{display:block;margin-bottom:6px}.learn-recap{background:var(--soft);border-left:3px solid #9ba6b4}.learn-new{background:var(--accent-soft);border-left:3px solid #6f98bb}.learn-plan{background:#f7fbf8;border-left:3px solid #79ab8f}.learn-pitfall{background:#fffaf2;border-left:3px solid #d1a04e}.learn-card ol,.learn-card ul{margin:.45rem 0 .2rem;padding-left:1.4rem}.learn-card li{margin:.28rem 0}.learn-visual{margin:10px 0;padding:12px;border:1px solid var(--line);border-radius:7px;background:var(--paper)}.learn-visual-title{margin-bottom:8px;color:#344256;font-size:.82rem;font-weight:850}.learn-step-flow{display:flex;gap:8px;align-items:center;justify-content:center;flex-wrap:wrap}.learn-step-node{padding:8px 10px;border:1px solid var(--line);border-radius:6px;background:var(--soft);text-align:center}.learn-step-node small{display:block;color:var(--muted)}
 html[data-theme="light"]{color-scheme:light}html[data-theme="dark"]{color-scheme:dark;--bg:#000000;--paper:#080808;--ink:#f4f7fb;--muted:#a2aab8;--line:#242424;--line-strong:#3a3a3a;--soft:#0d0d0d;--soft2:#0b0b0b;--accent:#22d3ee;--accent-strong:#06b6d4;--accent-soft:#06181d;--ok:#4ade80;--ok-soft:#07170d;--bad:#fb7185;--bad-soft:#1a090d;--warn:#fbbf24;--warn-soft:#1a1304;--terminal:#000000;--terminal-soft:#080808;--shadow:none;background:#000}
 html[data-theme="dark"] body{background:#000;color:var(--ink)}html[data-theme="dark"] header{background:rgba(0,0,0,.97);border-color:#222}html[data-theme="dark"] .panel,html[data-theme="dark"] .problem,html[data-theme="dark"] .results-wrap,html[data-theme="dark"] .editor-shell,html[data-theme="dark"] .dialog-body{background:#080808;color:var(--ink);border-color:#242424}
@@ -433,7 +432,7 @@ html[data-theme="dark"] .terminal-workspace,html[data-theme="dark"] .terminal-pa
 html[data-theme="dark"] .sample-explanation-body,html[data-theme="dark"] .sample-explanation-body p,html[data-theme="dark"] .sample-explanation-body small,html[data-theme="dark"] .reason-node small,html[data-theme="dark"] .visual-caption{color:#c6cbd2}html[data-theme="dark"] .sample-explanation-body pre,html[data-theme="dark"] .hidden-test-item pre,html[data-theme="dark"] pre{background:#020202;color:#e5e7eb;border-color:#242424}html[data-theme="dark"] .result-summary,html[data-theme="dark"] .hidden-tests summary,html[data-theme="dark"] .submission-history summary{background:#0b0b0b;color:#cfd5dd;border-color:#292929}
 html[data-theme="dark"] .matrix-grid,html[data-theme="dark"] .matrix-cell,html[data-theme="dark"] .number-strip span,html[data-theme="dark"] .calc-flow span{background:#0b0b0b;color:#e8edf3;border-color:#303030}html[data-theme="dark"] .matrix-cell.focus-cell{background:#06242b;border-color:#16879d;box-shadow:inset 0 0 0 1px #16879d}html[data-theme="dark"] .matrix-cell.diff-cell,html[data-theme="dark"] .pair-card.diff{background:#1a090d;border-color:#6b2733}html[data-theme="dark"] .pair-card.same,html[data-theme="dark"] .candidate-pos.ok,html[data-theme="dark"] .window-card.ok-card{background:#07170d;border-color:#1f5b36}
 html[data-theme="dark"] .sample-copy-btn{background:#0b0b0b;color:#c6cbd2;border-color:#303030}html[data-theme="dark"] .sample-copy-btn:hover{background:#101010;color:#e7ebf0}html[data-theme="dark"] .sample-copy-btn.success{background:#07170d;color:#86efac;border-color:#1f5b36}html[data-theme="dark"] .sample-origin-badge{background:#0d0d0d;color:#cbd2dc;border-color:#303030}html[data-theme="dark"] .sample-origin-badge.official{background:#06181d;color:#67e8f9;border-color:#155e75}html[data-theme="dark"] .sample-origin-badge.special{background:#1a1304;color:#fbbf24;border-color:#6b5213}
-html[data-theme="dark"] .brand-title,html[data-theme="dark"] .problem h1,html[data-theme="dark"] .section-title,html[data-theme="dark"] .results-head h2,html[data-theme="dark"] .editor-head strong,html[data-theme="dark"] .dialog-head strong,html[data-theme="dark"] .sample-explain-intro strong,html[data-theme="dark"] .learn-visual-title{color:var(--ink)}html[data-theme="dark"] .brand-subtitle,html[data-theme="dark"] .progress-wrap,html[data-theme="dark"] .runtime,html[data-theme="dark"] .source-link,html[data-theme="dark"] .kicker,html[data-theme="dark"] .meta,html[data-theme="dark"] .sample-box h4,html[data-theme="dark"] .sample-explain-intro small,html[data-theme="dark"] .editor-foot,html[data-theme="dark"] .hidden-test-label,html[data-theme="dark"] .history-item,html[data-theme="dark"] .hidden-tests-empty,html[data-theme="dark"] .history-empty{color:var(--muted)}html[data-theme="dark"] .runtime{background:#0b0b0b;border-color:#303030}html[data-theme="dark"] .problem p{color:#d8dde5}html[data-theme="dark"] .formal-input-item{background:#0b0b0b;color:#d8dde5;border-color:#292929}html[data-theme="dark"] .formal-input-item::before{background:#3a3a3a}html[data-theme="dark"] .problem code,html[data-theme="dark"] .dialog-body code{background:#101010;color:#dff9ff;border-color:#2c2c2c}html[data-theme="dark"] .level-strip,html[data-theme="dark"] .editor-head,html[data-theme="dark"] .editor-foot{background:#080808;border-color:#242424}html[data-theme="dark"] .status-pill{background:#0d0d0d;color:#cbd2dc;border-color:#303030}
+html[data-theme="dark"] .brand-title,html[data-theme="dark"] .problem h1,html[data-theme="dark"] .section-title,html[data-theme="dark"] .results-head h2,html[data-theme="dark"] .editor-head strong,html[data-theme="dark"] .dialog-head strong,html[data-theme="dark"] .sample-explain-intro strong,html[data-theme="dark"] .learn-visual-title{color:var(--ink)}html[data-theme="dark"] .brand-subtitle,html[data-theme="dark"] .progress-wrap,html[data-theme="dark"] .runtime,html[data-theme="dark"] .source-link,html[data-theme="dark"] .kicker,html[data-theme="dark"] .meta,html[data-theme="dark"] .sample-box h4,html[data-theme="dark"] .sample-explain-intro small,html[data-theme="dark"] .editor-foot,html[data-theme="dark"] .hidden-test-label,html[data-theme="dark"] .history-item,html[data-theme="dark"] .hidden-tests-empty,html[data-theme="dark"] .history-empty{color:var(--muted)}html[data-theme="dark"] .runtime{background:#0b0b0b;border-color:#303030}html[data-theme="dark"] .storage-warning{background:#1a1304;color:#f7d477;border-color:#6b5213}html[data-theme="dark"] .problem p{color:#d8dde5}html[data-theme="dark"] .problem code,html[data-theme="dark"] .dialog-body code{background:#101010;color:#dff9ff;border-color:#2c2c2c}html[data-theme="dark"] .level-strip,html[data-theme="dark"] .editor-head,html[data-theme="dark"] .editor-foot{background:#080808;border-color:#242424}html[data-theme="dark"] .status-pill{background:#0d0d0d;color:#cbd2dc;border-color:#303030}
 @media(max-width:720px){.terminal-workspace{grid-template-columns:1fr}.terminal-panel{border-right:0;border-bottom:1px solid #2b3649}.theme-control{max-width:100%}}
 @media(max-width:390px){.topbar{align-items:flex-start}.theme-control{margin-left:0}.theme-control label{display:none}.terminal-head{gap:6px}}
 @media(max-width:520px){.answer-variants.multi{grid-template-columns:repeat(var(--answer-count),minmax(300px,82vw));}}
@@ -469,6 +468,7 @@ html[data-theme="dark"] .tutorial-details,html[data-theme="dark"] .tutorial-cont
     <div class="theme-control"><label for="themeSelect">主題</label><select id="themeSelect" aria-label="選擇介面主題"><option value="light">淺色</option><option value="dark">深色</option></select></div>
     <button class="btn" id="exportRecordsBtn" type="button" title="匯出本題草稿、AC 進度與提交紀錄">匯出作答紀錄</button>
     <button class="btn" id="importRecordsBtn" type="button" title="從 JSON 匯入本題作答紀錄">匯入作答紀錄</button>
+    <span class="storage-warning" id="storageWarning" hidden>進度只保存在本次開啟；請匯出作答紀錄備份。</span>
     <input id="importRecordsInput" type="file" accept="application/json,.json" hidden aria-label="選擇作答紀錄 JSON 檔案">
     <button class="btn danger" id="clearAllBtn" type="button" title="清除所有題目草稿、AC 進度與提交紀錄">清除所有紀錄</button>
     <a class="source-link" href="https://zerojudge.tw/ShowProblem?problemid=b965" target="_blank" rel="noopener">原題</a>
@@ -528,7 +528,7 @@ html[data-theme="dark"] .tutorial-details,html[data-theme="dark"] .tutorial-cont
     </div>
     <div class="editor-foot">
       <span>Tab：移到下一個 4 欄定位點｜Shift+Tab：反縮排｜行首 Backspace：一次刪除 4 空白｜Ctrl+/：切換單行／多行註解｜Ctrl+Space / Alt+/：補全｜F9：執行｜Ctrl+Enter：提交</span>
-      <span>F9：互動式 TERMINAL，input() 需要手動輸入｜Ctrl+D / EOF：結束 stdin｜執行中按「停止」可終止｜提交固定使用正式測資｜ZeroJudge Tolerant：忽略空白行與每行前後空白｜提交每筆上限 2.5 秒</span>
+      <span>F9：互動式 TERMINAL，input() 需要手動輸入｜Ctrl+D / EOF：結束 stdin｜執行中按「停止」可終止｜提交固定使用正式測資｜輸出比對方式依本題設定｜提交每筆上限 2.5 秒</span>
     </div>
   </section>
 </main>
@@ -538,16 +538,16 @@ html[data-theme="dark"] .tutorial-details,html[data-theme="dark"] .tutorial-cont
   <div class="dialog-body"><div id="answerVariants" class="answer-variants single"></div></div>
 </dialog>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.18/codemirror.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.18/mode/python/python.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.18/addon/edit/closebrackets.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.18/addon/edit/matchbrackets.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.18/addon/hint/show-hint.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.21/codemirror.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.21/mode/python/python.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.21/addon/edit/closebrackets.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.21/addon/edit/matchbrackets.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.21/addon/hint/show-hint.min.js"></script>
 <script>
-const OJ_META={"source":{"url":"https://zerojudge.tw/ShowProblem?problemid=b965","platform":"ZeroJudge","problemId":"b965"},"storage":{"schema":22,"namespace":"b965_step_oj","legacyAcceptedKey":"b965_step_oj_accepted","legacyHistoryKey":"b965_step_oj_history","legacyDraftPrefix":"b965_step_oj_v001_code_"}};
+const OJ_META={"source":{"url":"https://zerojudge.tw/ShowProblem?problemid=b965","platform":"ZeroJudge","problemId":"b965"},"storage":{"schema":22,"namespace":"b965_step_oj","legacyAcceptedKey":"b965_step_oj_accepted","legacyHistoryKey":"b965_step_oj_history","legacyDraftPrefix":"b965_step_oj_v001_code_"},"judge":{"compareMode":"tolerant"}};
 const OFFICIAL_SOURCE=OJ_META.source;
 let sourceStageActive=true;
-const TASKS = [{"id":1,"title":"做一次上下翻轉","difficulty":"入門","statement":"給定 R×C 矩陣，做題目定義的「翻轉」：第一列與最後一列交換、第二列與倒數第二列交換，依此類推。請輸出翻轉後矩陣。","input":"第一行有兩個正整數 R、C，R 表示矩陣的列數、C 表示每列的欄數。接下來 R 行，每行有 C 個整數，依序為原矩陣由上到下的各列。","output":"輸出 R 行，每行 C 個整數，表示完成上下翻轉後的矩陣。","sampleIn":"3 2\n1 2\n3 4\n5 6","sampleOut":"5 6\n3 4\n1 2","sampleExplain":"    <div class=\"demo-story\"><div class=\"demo-viewport\">\n      <section class=\"demo-step\"><p>三列矩陣上下交換。</p><pre>1 2\n3 4\n5 6\n↓ 上下翻轉\n5 6\n3 4\n1 2</pre></section>\n      <section class=\"demo-step\"><p>第 3 列移到最上面。</p></section><section class=\"demo-step\"><p>每列內部 1 2 等順序保持。</p></section>\n    </div></div>","starter":"","answer":"R, C = map(int, input().split())\ng = []\nfor _ in range(R):\n    g.append(list(map(int, input().split())))\n\n# 題目的翻轉是上下顛倒列順序，不是左右鏡射。\ng.reverse()\nfor row in g:\n    print(*row)","tests":[{"input":"3 2\n1 2\n3 4\n5 6\n","output":"5 6\n3 4\n1 2\n","public":true,"sampleRole":"primary","sampleOrigin":"task","qaPurpose":"本階主要公開範例"},{"input":"2 2\n1 1\n2 2\n","output":"2 2\n1 1\n","public":true,"sampleRole":"secondary","sampleOrigin":"task","qaPurpose":"本階第二公開案例"},{"input":"1 3\n7 8 9\n","output":"7 8 9\n","qaPurpose":"只有一列時翻轉不變","public":true,"sampleRole":"special","sampleOrigin":"special"},{"input":"4 1\n1\n2\n3\n4\n","output":"4\n3\n2\n1\n"}],"generatedTests":[{"input":"3 3\n1 2 3\n4 5 6\n7 8 9\n","output":"7 8 9\n4 5 6\n1 2 3\n","generated":true},{"input":"2 4\n1 2 3 4\n5 6 7 8\n","output":"5 6 7 8\n1 2 3 4\n","generated":true}],"tutorial":"    <div class=\"tutorial-body\">\n      <section class=\"tutorial-card tutorial-goal\"><h3>1. 先知道這題在練什麼</h3>\n        <p>先釐清題目「翻轉」的方向。</p><p><strong>先備：</strong>會使用基本輸入、list、for 與 if。</p>\n      </section>\n      <section class=\"tutorial-card tutorial-core\"><h3>2. 核心觀念與圖解</h3>\n        <p>這裡是把 row（列）的順序反過來，因此 Python 可以直接 <code>g.reverse()</code>；每一列內部元素順序不變。</p>\n        <div class=\"tutorial-visual\"><div class=\"tutorial-visual-title\">本階實際資料怎麼變</div><pre>1 2\n3 4\n5 6\n↓ 上下翻轉\n5 6\n3 4\n1 2</pre></div>\n      </section>\n      <section class=\"tutorial-card tutorial-worked\"><h3>3. 跟著做一個小例子</h3><p>中間列若存在會留在中間，只是整個 rows list 被反向。</p></section>\n      <section class=\"tutorial-card tutorial-plan\"><h3>4. 先把程式拆成幾塊</h3><ol><li>讀矩陣。</li><li>反轉列順序。</li><li>逐列輸出。</li></ol></section>\n      <section class=\"tutorial-card tutorial-code\"><h3>5. Python 一段一段怎麼寫</h3><div class=\"tutorial-code-step\"><strong>步驟 A：反轉 row list</strong><p>只改外層 list。</p><pre class=\"tutorial-code-snippet\">g.reverse()</pre></div><div class=\"tutorial-code-step\"><strong>步驟 B：保持每列內容</strong><p>row 本身沒有 reverse。</p><pre class=\"tutorial-code-snippet\">for row in g:\n    print(*row)</pre></div>\n        <p class=\"tutorial-code-note\">這些片段只示範本階核心寫法；請依照前面的資料流自行把輸入、處理與輸出接成完整程式。</p>\n      </section>\n      <section class=\"tutorial-card tutorial-check\"><h3>6. 常見錯誤與自我檢查</h3><ul><li>不要把每一列左右 reverse。</li><li>翻轉前後 R、C 不變。</li></ul></section>\n    </div>"},{"id":2,"title":"做一次順時針旋轉","difficulty":"基礎","statement":"給定 R×C 矩陣，順時針旋轉 90 度。請先輸出新尺寸，再輸出新矩陣。","input":"第一行有兩個正整數 R、C，表示原矩陣有 R 列、C 欄。接下來 R 行，每行有 C 個整數，為原矩陣內容。","output":"第一行輸出旋轉後矩陣的列數與欄數，也就是 C R。接下來輸出 C 行，每行 R 個整數，表示順時針旋轉 90 度後的矩陣。","sampleIn":"2 3\n1 2 3\n4 5 6","sampleOut":"3 2\n4 1\n5 2\n6 3","sampleExplain":"    <div class=\"demo-story\"><div class=\"demo-viewport\">\n      <section class=\"demo-step\"><p>2×3 的矩陣順時針轉 90 度。</p><pre>1 2 3\n4 5 6\n順時針 →\n4 1\n5 2\n6 3</pre></section>\n      <section class=\"demo-step\"><p>舊第一欄由下往上變新第一列。</p></section><section class=\"demo-step\"><p>結果尺寸是 3×2。</p></section>\n    </div></div>","starter":"","answer":"# 依照本階題意分段處理資料，最後再整理並輸出指定結果。\nR, C = map(int, input().split())\ng = []\nfor _ in range(R):\n    g.append(list(map(int, input().split())))\nnew = []\n\n# 順時針 90 度後，新矩陣有 C 列、R 欄。\nfor c in range(C):\n    row = []\n    for r in range(R - 1, -1, -1):\n        row.append(g[r][c])\n    new.append(row)\nprint(C, R)\nfor row in new:\n    print(*row)","tests":[{"input":"2 3\n1 2 3\n4 5 6\n","output":"3 2\n4 1\n5 2\n6 3\n","public":true,"sampleRole":"primary","sampleOrigin":"task","qaPurpose":"本階主要公開範例"},{"input":"3 1\n7\n8\n9\n","output":"1 3\n9 8 7\n","public":true,"sampleRole":"secondary","sampleOrigin":"task","qaPurpose":"本階第二公開案例"},{"input":"1 4\n1 2 3 4\n","output":"4 1\n1\n2\n3\n4\n","qaPurpose":"1×C 轉成 C×1","public":true,"sampleRole":"special","sampleOrigin":"special"},{"input":"2 2\n1 2\n3 4\n","output":"2 2\n3 1\n4 2\n"}],"generatedTests":[{"input":"3 2\n1 2\n3 4\n5 6\n","output":"2 3\n5 3 1\n6 4 2\n","generated":true},{"input":"1 1\n5\n","output":"1 1\n5\n","generated":true}],"tutorial":"    <div class=\"tutorial-body\">\n      <section class=\"tutorial-card tutorial-goal\"><h3>1. 先知道這題在練什麼</h3>\n        <p>理解旋轉後尺寸交換，以及舊欄如何變成新列。</p><p><strong>先備：</strong>會使用基本輸入、list、for 與 if。</p>\n      </section>\n      <section class=\"tutorial-card tutorial-core\"><h3>2. 核心觀念與圖解</h3>\n        <p>順時針後，新第 c 列來自舊第 c 欄，但要由下往上讀。因此外層 c 從 0 到 C-1，內層 r 從 R-1 倒到 0。</p>\n        <div class=\"tutorial-visual\"><div class=\"tutorial-visual-title\">本階實際資料怎麼變</div><pre>1 2 3\n4 5 6\n順時針 →\n4 1\n5 2\n6 3</pre></div>\n      </section>\n      <section class=\"tutorial-card tutorial-worked\"><h3>3. 跟著做一個小例子</h3><p>2×3 旋轉後變 3×2；舊第一欄 1,4 由下往上變成 4,1。</p></section>\n      <section class=\"tutorial-card tutorial-plan\"><h3>4. 先把程式拆成幾塊</h3><ol><li>new=[]。</li><li>對每個舊欄 c 建一列。</li><li>r 由下往上 append。</li><li>輸出 C R 與 new。</li></ol></section>\n      <section class=\"tutorial-card tutorial-code\"><h3>5. Python 一段一段怎麼寫</h3><div class=\"tutorial-code-step\"><strong>步驟 A：尺寸交換</strong><p>新 rows 等於舊 columns。</p><pre class=\"tutorial-code-snippet\">new_R = C\nnew_C = R</pre></div><div class=\"tutorial-code-step\"><strong>步驟 B：由下往上讀舊欄</strong><p>形成順時針的新列。</p><pre class=\"tutorial-code-snippet\">for c in range(C):\n    row = []\n    for r in range(R - 1, -1, -1):\n        row.append(g[r][c])</pre></div>\n        <p class=\"tutorial-code-note\">這些片段只示範本階核心寫法；請依照前面的資料流自行把輸入、處理與輸出接成完整程式。</p>\n      </section>\n      <section class=\"tutorial-card tutorial-check\"><h3>6. 常見錯誤與自我檢查</h3><ul><li>順時針與逆時針的讀取方向相反。</li><li>非正方形旋轉後 R、C 要交換。</li></ul></section>\n    </div>"},{"id":3,"title":"還原一個已做過的操作","difficulty":"基礎","statement":"已知目前矩陣 B 是未知矩陣 A 做一個操作後得到：操作代碼 0 代表 A 曾順時針旋轉 90 度，操作代碼 1 代表 A 曾上下翻轉。請從 B 還原 A。","input":"第一行有三個整數 R、C、op，其中 R、C 是目前矩陣 B 的列數與欄數；op=0 表示 B 是 A 順時針旋轉 90 度後的結果，op=1 表示 B 是 A 上下翻轉後的結果。接下來 R 行，每行 C 個整數，為矩陣 B。","output":"第一行輸出還原後矩陣 A 的列數與欄數；接下來逐列輸出 A。","sampleIn":"3 2 0\n4 1\n5 2\n6 3","sampleOut":"2 3\n1 2 3\n4 5 6","sampleExplain":"    <div class=\"demo-story\"><div class=\"demo-viewport\">\n      <section class=\"demo-step\"><p>目前矩陣是順時針旋轉後的 B。</p><pre>A --clockwise--&gt; B\n因此 B --counterclockwise--&gt; A\nA --flip--&gt; B\n因此 B --flip--&gt; A</pre></section>\n      <section class=\"demo-step\"><p>用逆時針 90 度抵消。</p></section><section class=\"demo-step\"><p>恢復原矩陣尺寸 2×3。</p></section>\n    </div></div>","starter":"","answer":"# 依照本階題意分段處理資料，最後再整理並輸出指定結果。\nR, C, op = map(int, input().split())\ng = []\nfor _ in range(R):\n    g.append(list(map(int, input().split())))\n\n# 已知 B 是 A 做完 op 後的結果；op=1 自反，op=0 要用逆時針還原。\nif op == 1:\n    g.reverse()\nelse:\n    new = []\n    for c in range(C - 1, -1, -1):\n        row = []\n        for r in range(R):\n            row.append(g[r][c])\n        new.append(row)\n    g = new\nprint(len(g), len(g[0]))\nfor row in g:\n    print(*row)","tests":[{"input":"3 2 0\n4 1\n5 2\n6 3\n","output":"2 3\n1 2 3\n4 5 6\n","public":true,"sampleRole":"primary","sampleOrigin":"task","qaPurpose":"本階主要公開範例"},{"input":"2 2 0\n3 1\n4 2\n","output":"2 2\n1 2\n3 4\n","public":true,"sampleRole":"secondary","sampleOrigin":"task","qaPurpose":"本階第二公開案例"},{"input":"3 2 1\n5 6\n3 4\n1 2\n","output":"3 2\n1 2\n3 4\n5 6\n","qaPurpose":"翻轉是自己的逆操作","public":true,"sampleRole":"special","sampleOrigin":"special"},{"input":"1 3 1\n1 2 3\n","output":"1 3\n1 2 3\n"}],"generatedTests":[{"input":"4 1 0\n4\n3\n2\n1\n","output":"1 4\n4 3 2 1\n","generated":true},{"input":"2 3 1\n4 5 6\n1 2 3\n","output":"2 3\n1 2 3\n4 5 6\n","generated":true}],"tutorial":"    <div class=\"tutorial-body\">\n      <section class=\"tutorial-card tutorial-goal\"><h3>1. 先知道這題在練什麼</h3>\n        <p>從「正向操作」切換成題目真正要做的 inverse operation（逆操作）。</p><p><strong>先備：</strong>會使用基本輸入、list、for 與 if。</p>\n      </section>\n      <section class=\"tutorial-card tutorial-core\"><h3>2. 核心觀念與圖解</h3>\n        <p>翻轉做兩次回原狀，所以 inverse 仍是翻轉；順時針旋轉的 inverse 則是逆時針 90 度。</p>\n        <div class=\"tutorial-visual\"><div class=\"tutorial-visual-title\">本階實際資料怎麼變</div><pre>A --clockwise--&gt; B\n因此 B --counterclockwise--&gt; A\nA --flip--&gt; B\n因此 B --flip--&gt; A</pre></div>\n      </section>\n      <section class=\"tutorial-card tutorial-worked\"><h3>3. 跟著做一個小例子</h3><p>B=[[4,1],[5,2],[6,3]] 是 [[1,2,3],[4,5,6]] 順時針旋轉結果；逆時針一次即可還原。</p></section>\n      <section class=\"tutorial-card tutorial-plan\"><h3>4. 先把程式拆成幾塊</h3><ol><li>讀 op。</li><li>op=1 直接 reverse rows。</li><li>op=0 建立逆時針 new。</li><li>輸出新尺寸與矩陣。</li></ol></section>\n      <section class=\"tutorial-card tutorial-code\"><h3>5. Python 一段一段怎麼寫</h3><div class=\"tutorial-code-step\"><strong>步驟 A：逆時針讀法</strong><p>舊欄由最右欄到最左欄，每欄由上往下。</p><pre class=\"tutorial-code-snippet\">for c in range(C - 1, -1, -1):\n    for r in range(R):\n        row.append(g[r][c])</pre></div><div class=\"tutorial-code-step\"><strong>步驟 B：翻轉自反</strong><p>同一個動作就是 inverse。</p><pre class=\"tutorial-code-snippet\">if op == 1:\n    g.reverse()</pre></div>\n        <p class=\"tutorial-code-note\">這些片段只示範本階核心寫法；請依照前面的資料流自行把輸入、處理與輸出接成完整程式。</p>\n      </section>\n      <section class=\"tutorial-card tutorial-check\"><h3>6. 常見錯誤與自我檢查</h3><ul><li>題目給的是 B，要「倒著還原」，不是再做一次順時針。</li><li>op=0 會交換尺寸。</li></ul></section>\n    </div>"},{"id":4,"title":"倒序還原兩個操作","difficulty":"中等","statement":"已知目前矩陣 B 是未知矩陣 A 依輸入順序做恰好兩個操作後得到。操作代碼 0 代表順時針旋轉 90 度，操作代碼 1 代表上下翻轉。請從最後一個操作開始反向還原，求出原矩陣 A。","input":"第一行有兩個正整數 R、C，表示目前矩陣 B 有 R 列、C 欄。接下來 R 行為 B，每行 C 個整數。最後一行恰有兩個操作代碼 op1、op2，兩者皆為 0 或 1，表示 A 當初先做 op1、再做 op2。","output":"第一行輸出原矩陣 A 的列數與欄數；接下來逐列輸出 A。","sampleIn":"3 2\n1 1\n3 1\n1 2\n0 0","sampleOut":"3 2\n2 1\n1 3\n1 1","sampleExplain":"    <div class=\"demo-story\"><div class=\"demo-viewport\">\n      <section class=\"demo-step\"><p>兩個操作要像堆疊一樣倒著解。</p><pre>A --op0--&gt; ? --op1--&gt; B\n還原：\nB --inv(op1)--&gt; ? --inv(op0)--&gt; A</pre></section>\n      <section class=\"demo-step\"><p>先 inverse 最後一個。</p></section><section class=\"demo-step\"><p>再 inverse 第一個，才回到 A。</p></section>\n    </div></div>","starter":"","answer":"# 依照本階題意分段處理資料，最後再整理並輸出指定結果。\nR, C = map(int, input().split())\ng = []\nfor _ in range(R):\n    g.append(list(map(int, input().split())))\nops = list(map(int, input().split()))\n\n# 只有兩個原始操作；還原時必須從最後一個操作先做 inverse。\nfor op in range(1, -1, -1):\n    if ops[op] == 1:\n        g.reverse()\n    else:\n        old_R = len(g)\n        old_C = len(g[0])\n        new = []\n        for c in range(old_C - 1, -1, -1):\n            row = []\n            for r in range(old_R):\n                row.append(g[r][c])\n            new.append(row)\n        g = new\nprint(len(g), len(g[0]))\nfor row in g:\n    print(*row)","tests":[{"input":"3 2\n1 1\n3 1\n1 2\n0 0\n","output":"3 2\n2 1\n1 3\n1 1\n","public":true,"sampleRole":"primary","sampleOrigin":"task","qaPurpose":"本階主要公開範例"},{"input":"2 3\n6 5 4\n3 2 1\n0 1\n","output":"3 2\n1 4\n2 5\n3 6\n","public":true,"sampleRole":"secondary","sampleOrigin":"task","qaPurpose":"本階第二公開案例"},{"input":"2 3\n4 5 6\n1 2 3\n1 1\n","output":"2 3\n4 5 6\n1 2 3\n","qaPurpose":"兩次翻轉互相抵消，但還原仍要倒序做","public":true,"sampleRole":"special","sampleOrigin":"special"},{"input":"3 2\n1 4\n2 5\n3 6\n1 0\n","output":"2 3\n1 2 3\n4 5 6\n"}],"generatedTests":[{"input":"2 2\n4 3\n2 1\n0 0\n","output":"2 2\n1 2\n3 4\n","generated":true},{"input":"1 3\n3 2 1\n1 0\n","output":"3 1\n3\n2\n1\n","generated":true}],"tutorial":"    <div class=\"tutorial-body\">\n      <section class=\"tutorial-card tutorial-goal\"><h3>1. 先知道這題在練什麼</h3>\n        <p>加入第二個核心：inverse 不只要選對，還要依原操作序列的反方向執行。</p><p><strong>先備：</strong>會使用基本輸入、list、for 與 if。</p>\n      </section>\n      <section class=\"tutorial-card tutorial-core\"><h3>2. 核心觀念與圖解</h3>\n        <p>若 A 先做 X 再做 Y 得 B，還原一定是 B 先做 inverse(Y) 再做 inverse(X)。這和解開穿衣順序相同：最後穿上的要先脫。</p>\n        <div class=\"tutorial-visual\"><div class=\"tutorial-visual-title\">本階實際資料怎麼變</div><pre>A --op0--&gt; ? --op1--&gt; B\n還原：\nB --inv(op1)--&gt; ? --inv(op0)--&gt; A</pre></div>\n      </section>\n      <section class=\"tutorial-card tutorial-worked\"><h3>3. 跟著做一個小例子</h3><p>若原操作是 [1,0]，從 B 還原時要先逆旋轉，再做翻轉。</p></section>\n      <section class=\"tutorial-card tutorial-plan\"><h3>4. 先把程式拆成幾塊</h3><ol><li>從 index 1 倒到 0。</li><li>每個 op 套對應 inverse。</li><li>旋轉後尺寸用 len(g) 動態取得。</li><li>輸出。</li></ol></section>\n      <section class=\"tutorial-card tutorial-code\"><h3>5. Python 一段一段怎麼寫</h3><div class=\"tutorial-code-step\"><strong>步驟 A：反向索引</strong><p>兩個操作從最後開始。</p><pre class=\"tutorial-code-snippet\">for p in range(1, -1, -1):\n    op = ops[p]</pre></div><div class=\"tutorial-code-step\"><strong>步驟 B：每次用目前尺寸</strong><p>矩陣可能在前一個 inverse 後換尺寸。</p><pre class=\"tutorial-code-snippet\">old_R = len(g)\nold_C = len(g[0])</pre></div>\n        <p class=\"tutorial-code-note\">這些片段只示範本階核心寫法；請依照前面的資料流自行把輸入、處理與輸出接成完整程式。</p>\n      </section>\n      <section class=\"tutorial-card tutorial-check\"><h3>6. 常見錯誤與自我檢查</h3><ul><li>不能仍按 ops[0]→ops[1] 還原。</li><li>每次旋轉後尺寸都可能交換，不能一直用最初 R、C。</li></ul></section>\n    </div>"},{"id":5,"title":"原題：矩陣轉換","difficulty":"完整","statement":"原矩陣 A 經過 M 個操作後成為已知 B。操作 0 是順時針旋轉 90 度，操作 1 是上下翻轉。給定 B 與 A 當初依序做過的 M 個操作，請還原 A。","input":"第一行有三個正整數 R、C、M，其中 R、C 表示目前矩陣 B 的列數與欄數，M 表示 A 當初做過的操作數量。接下來 R 行，每行 C 個整數，為矩陣 B。最後一行有 M 個操作代碼，依 A 當初執行的先後順序排列；0 表示順時針旋轉 90 度，1 表示上下翻轉。","output":"第一行輸出還原後原矩陣 A 的列數與欄數；接下來逐列輸出 A。每行數字以一個空白分隔，行尾不要多印空白。","sampleIn":"3 2 3\n1 1\n3 1\n1 2\n1 0 0","sampleOut":"3 2\n1 1\n1 3\n2 1","sampleExplain":"    <div class=\"demo-story\"><div class=\"demo-viewport\">\n      <section class=\"demo-step\"><p>官方範例 #1 從最終 B 開始倒著解操作。</p><pre>ops = [op0, op1, ..., opM-1]\n還原順序：\ninv(opM-1), ..., inv(op1), inv(op0)\n每一步都更新目前 g 尺寸</pre></section>\n      <section class=\"demo-step\"><p>最後兩個旋轉先各用逆時針抵消。</p></section><section class=\"demo-step\"><p>再抵消最早的翻轉，得到 A。</p></section>\n    </div></div>","starter":"","answer":"R, C, M = map(int, input().split())\ng = []\nfor _ in range(R):\n    g.append(list(map(int, input().split())))\nops = list(map(int, input().split()))\n\n# 從最後一個操作倒著還原：翻轉自反；順時針旋轉用逆時針抵消。\nfor p in range(M - 1, -1, -1):\n    if ops[p] == 1:\n        g.reverse()\n    else:\n        old_R = len(g)\n        old_C = len(g[0])\n        new = []\n        for c in range(old_C - 1, -1, -1):\n            row = []\n            for r in range(old_R):\n                row.append(g[r][c])\n            new.append(row)\n        g = new\n\n# 嚴格比對：每列直接用 print(*row) 產生單一空白且行尾無額外空白。\nprint(len(g), len(g[0]))\nfor row in g:\n    print(*row)","tests":[{"input":"3 2 3\n1 1\n3 1\n1 2\n1 0 0\n","output":"3 2\n1 1\n1 3\n2 1\n","public":true,"sampleRole":"primary","sampleOrigin":"official","qaPurpose":"官方公開範例 #1"},{"input":"3 2 2\n3 3\n2 1\n1 2\n0 1\n","output":"2 3\n2 1 3\n1 2 3\n","qaPurpose":"旋轉與翻轉混合，尺寸交換","public":true,"sampleRole":"secondary","sampleOrigin":"official"},{"input":"2 2 1\n3 1\n4 2\n0\n","output":"2 2\n1 2\n3 4\n","public":true,"sampleRole":"special","sampleOrigin":"special","qaPurpose":"第三公開範例：邊界／特殊值／不同狀態路徑"},{"input":"3 1 3\n7\n8\n9\n1 1 1\n","output":"3 1\n9\n8\n7\n"}],"generatedTests":[{"input":"2 3 4\n1 2 3\n4 5 6\n0 1 0 1\n","output":"2 3\n1 2 3\n4 5 6\n","generated":true},{"input":"1 4 2\n1 2 3 4\n0 0\n","output":"1 4\n4 3 2 1\n","generated":true}],"tutorial":"    <div class=\"tutorial-body\">\n      <section class=\"tutorial-card tutorial-goal\"><h3>1. 先知道這題在練什麼</h3>\n        <p>完整使用操作堆疊概念，把任意長度 M 的歷史倒序還原。</p><p><strong>先備：</strong>會使用基本輸入、list、for 與 if。</p>\n      </section>\n      <section class=\"tutorial-card tutorial-core\"><h3>2. 核心觀念與圖解</h3>\n        <p>這題不是模擬 A→B，而是已站在 B 往回走。對 ops 從尾到頭：1 做同一個 flip；0 做 counterclockwise（逆時針）90 度。</p>\n        <div class=\"tutorial-visual\"><div class=\"tutorial-visual-title\">本階實際資料怎麼變</div><pre>ops = [op0, op1, ..., opM-1]\n還原順序：\ninv(opM-1), ..., inv(op1), inv(op0)\n每一步都更新目前 g 尺寸</pre></div>\n      </section>\n      <section class=\"tutorial-card tutorial-worked\"><h3>3. 跟著做一個小例子</h3><p>官方範例 #1 的原操作為翻轉、旋轉、旋轉；所以從 B 依序做逆旋轉、逆旋轉、翻轉，得到指定 A。</p></section>\n      <section class=\"tutorial-card tutorial-plan\"><h3>4. 先把程式拆成幾塊</h3><ol><li>讀 B 與 ops。</li><li>p 從 M-1 倒到 0。</li><li>op=1 reverse rows。</li><li>op=0 建逆時針 new。</li><li>輸出最終尺寸與矩陣。</li></ol></section>\n      <section class=\"tutorial-card tutorial-code\"><h3>5. Python 一段一段怎麼寫</h3><div class=\"tutorial-code-step\"><strong>步驟 A：倒序 operations</strong><p>這是整題最核心的方向。</p><pre class=\"tutorial-code-snippet\">for p in range(M - 1, -1, -1):\n    if ops[p] == 1:\n        g.reverse()</pre></div><div class=\"tutorial-code-step\"><strong>步驟 B：逆時針矩陣</strong><p>由最右欄到最左欄，每欄由上而下。</p><pre class=\"tutorial-code-snippet\">for c in range(old_C - 1, -1, -1):\n    row = []\n    for r in range(old_R):\n        row.append(g[r][c])</pre></div>\n        <p class=\"tutorial-code-note\">這些片段只示範本階核心寫法；請依照前面的資料流自行把輸入、處理與輸出接成完整程式。</p>\n      </section>\n      <section class=\"tutorial-card tutorial-check\"><h3>6. 常見錯誤與自我檢查</h3><ul><li>不能直接照原操作順序作用在 B。</li><li>0 的 inverse 是逆時針，不是再順時針一次。</li><li>旋轉會交換列欄數，後續一定使用目前 g 尺寸。</li></ul></section>\n    </div>"}];
+const TASKS = [{"id":1,"title":"做一次上下翻轉","difficulty":"入門","statement":"給定 R×C 矩陣，做題目定義的「翻轉」：第一列與最後一列交換、第二列與倒數第二列交換，依此類推。請輸出翻轉後矩陣。","input":"第一行有兩個正整數 R、C，R 表示矩陣的列數、C 表示每列的欄數。接下來 R 行，每行有 C 個整數，依序為原矩陣由上到下的各列。","output":"輸出 R 行，每行 C 個整數，表示完成上下翻轉後的矩陣。","sampleIn":"3 2\n1 2\n3 4\n5 6","sampleOut":"5 6\n3 4\n1 2","sampleExplain":"    <div class=\"demo-story\"><div class=\"demo-viewport\">\n      <section class=\"demo-step\"><p>三列矩陣上下交換。</p><pre>1 2\n3 4\n5 6\n↓ 上下翻轉\n5 6\n3 4\n1 2</pre></section>\n      <section class=\"demo-step\"><p>第 3 列移到最上面。</p></section><section class=\"demo-step\"><p>每列內部 1 2 等順序保持。</p></section>\n    </div></div>","starter":"","answer":"R, C = map(int, input().split())\ng = []\nfor _ in range(R):\n    g.append(list(map(int, input().split())))\n\n# 題目的翻轉是上下顛倒列順序，不是左右鏡射。\ng.reverse()\nfor row in g:\n    print(*row)","tests":[{"input":"3 2\n1 2\n3 4\n5 6\n","output":"5 6\n3 4\n1 2\n","public":true,"sampleRole":"primary","sampleOrigin":"task","qaPurpose":"本階主要公開範例"},{"input":"2 2\n1 1\n2 2\n","output":"2 2\n1 1\n","public":true,"sampleRole":"secondary","sampleOrigin":"task","qaPurpose":"本階第二公開案例"},{"input":"1 3\n7 8 9\n","output":"7 8 9\n","qaPurpose":"只有一列時翻轉不變","public":true,"sampleRole":"special","sampleOrigin":"special"},{"input":"4 1\n1\n2\n3\n4\n","output":"4\n3\n2\n1\n"}],"generatedTests":[{"input":"3 3\n1 2 3\n4 5 6\n7 8 9\n","output":"7 8 9\n4 5 6\n1 2 3\n","generated":true},{"input":"2 4\n1 2 3 4\n5 6 7 8\n","output":"5 6 7 8\n1 2 3 4\n","generated":true}],"tutorial":"    <div class=\"tutorial-body\">\n      <section class=\"tutorial-card tutorial-goal\"><h3>1. 先知道這題在練什麼</h3>\n        <p>先釐清題目「翻轉」的方向。</p><p><strong>先備：</strong>會使用基本輸入、list、for 與 if。</p>\n      </section>\n      <section class=\"tutorial-card tutorial-core\"><h3>2. 核心觀念與圖解</h3>\n        <p>這裡是把 row（列）的順序反過來，因此 Python 可以直接 <code>g.reverse()</code>；每一列內部元素順序不變。</p>\n        <div class=\"tutorial-visual\"><div class=\"tutorial-visual-title\">本階實際資料怎麼變</div><pre>1 2\n3 4\n5 6\n↓ 上下翻轉\n5 6\n3 4\n1 2</pre></div>\n      </section>\n      <section class=\"tutorial-card tutorial-worked\"><h3>3. 跟著做一個小例子</h3><p>中間列若存在會留在中間，只是整個 rows list 被反向。</p></section>\n      <section class=\"tutorial-card tutorial-plan\"><h3>4. 先把程式拆成幾塊</h3><ol><li>讀矩陣。</li><li>反轉列順序。</li><li>逐列輸出。</li></ol></section>\n      <section class=\"tutorial-card tutorial-code\"><h3>5. Python 一段一段怎麼寫</h3><div class=\"tutorial-code-step\"><strong>步驟 A：反轉 row list</strong><p>只改外層 list。</p><pre class=\"tutorial-code-snippet\">g.reverse()</pre></div><div class=\"tutorial-code-step\"><strong>步驟 B：保持每列內容</strong><p>row 本身沒有 reverse。</p><pre class=\"tutorial-code-snippet\">for row in g:\n    print(*row)</pre></div>\n        <p class=\"tutorial-code-note\">這些片段只示範本階核心寫法；請依照前面的資料流自行把輸入、處理與輸出接成完整程式。</p>\n      </section>\n      <section class=\"tutorial-card tutorial-check\"><h3>6. 常見錯誤與自我檢查</h3><ul><li>不要把每一列左右 reverse。</li><li>翻轉前後 R、C 不變。</li></ul></section>\n    </div>","stageKey":"b965.86c32a998cec","inputItems":[{"key":"in1","text":"第一行有兩個正整數 R、C，R 表示矩陣的列數、C 表示每列的欄數。","meaningAndUseReviewed":true},{"key":"in2","text":"接下來 R 行，每行有 C 個整數，依序為原矩陣由上到下的各列。","meaningAndUseReviewed":true}],"outputItems":[{"key":"out1","text":"輸出 R 行，每行 C 個整數，表示完成上下翻轉後的矩陣。","meaningReviewed":true}]},{"id":2,"title":"做一次順時針旋轉","difficulty":"基礎","statement":"給定 R×C 矩陣，順時針旋轉 90 度。請先輸出新尺寸，再輸出新矩陣。","input":"第一行有兩個正整數 R、C，表示原矩陣有 R 列、C 欄。接下來 R 行，每行有 C 個整數，為原矩陣內容。","output":"第一行輸出旋轉後矩陣的列數與欄數，也就是 C R。接下來輸出 C 行，每行 R 個整數，表示順時針旋轉 90 度後的矩陣。","sampleIn":"2 3\n1 2 3\n4 5 6","sampleOut":"3 2\n4 1\n5 2\n6 3","sampleExplain":"    <div class=\"demo-story\"><div class=\"demo-viewport\">\n      <section class=\"demo-step\"><p>2×3 的矩陣順時針轉 90 度。</p><pre>1 2 3\n4 5 6\n順時針 →\n4 1\n5 2\n6 3</pre></section>\n      <section class=\"demo-step\"><p>舊第一欄由下往上變新第一列。</p></section><section class=\"demo-step\"><p>結果尺寸是 3×2。</p></section>\n    </div></div>","starter":"","answer":"# 依照本階題意分段處理資料，最後再整理並輸出指定結果。\nR, C = map(int, input().split())\ng = []\nfor _ in range(R):\n    g.append(list(map(int, input().split())))\nnew = []\n\n# 順時針 90 度後，新矩陣有 C 列、R 欄。\nfor c in range(C):\n    row = []\n    for r in range(R - 1, -1, -1):\n        row.append(g[r][c])\n    new.append(row)\nprint(C, R)\nfor row in new:\n    print(*row)","tests":[{"input":"2 3\n1 2 3\n4 5 6\n","output":"3 2\n4 1\n5 2\n6 3\n","public":true,"sampleRole":"primary","sampleOrigin":"task","qaPurpose":"本階主要公開範例"},{"input":"3 1\n7\n8\n9\n","output":"1 3\n9 8 7\n","public":true,"sampleRole":"secondary","sampleOrigin":"task","qaPurpose":"本階第二公開案例"},{"input":"1 4\n1 2 3 4\n","output":"4 1\n1\n2\n3\n4\n","qaPurpose":"1×C 轉成 C×1","public":true,"sampleRole":"special","sampleOrigin":"special"},{"input":"2 2\n1 2\n3 4\n","output":"2 2\n3 1\n4 2\n"}],"generatedTests":[{"input":"3 2\n1 2\n3 4\n5 6\n","output":"2 3\n5 3 1\n6 4 2\n","generated":true},{"input":"1 1\n5\n","output":"1 1\n5\n","generated":true}],"tutorial":"    <div class=\"tutorial-body\">\n      <section class=\"tutorial-card tutorial-goal\"><h3>1. 先知道這題在練什麼</h3>\n        <p>理解旋轉後尺寸交換，以及舊欄如何變成新列。</p><p><strong>先備：</strong>會使用基本輸入、list、for 與 if。</p>\n      </section>\n      <section class=\"tutorial-card tutorial-core\"><h3>2. 核心觀念與圖解</h3>\n        <p>順時針後，新第 c 列來自舊第 c 欄，但要由下往上讀。因此外層 c 從 0 到 C-1，內層 r 從 R-1 倒到 0。</p>\n        <div class=\"tutorial-visual\"><div class=\"tutorial-visual-title\">本階實際資料怎麼變</div><pre>1 2 3\n4 5 6\n順時針 →\n4 1\n5 2\n6 3</pre></div>\n      </section>\n      <section class=\"tutorial-card tutorial-worked\"><h3>3. 跟著做一個小例子</h3><p>2×3 旋轉後變 3×2；舊第一欄 1,4 由下往上變成 4,1。</p></section>\n      <section class=\"tutorial-card tutorial-plan\"><h3>4. 先把程式拆成幾塊</h3><ol><li>new=[]。</li><li>對每個舊欄 c 建一列。</li><li>r 由下往上 append。</li><li>輸出 C R 與 new。</li></ol></section>\n      <section class=\"tutorial-card tutorial-code\"><h3>5. Python 一段一段怎麼寫</h3><div class=\"tutorial-code-step\"><strong>步驟 A：尺寸交換</strong><p>新 rows 等於舊 columns。</p><pre class=\"tutorial-code-snippet\">new_R = C\nnew_C = R</pre></div><div class=\"tutorial-code-step\"><strong>步驟 B：由下往上讀舊欄</strong><p>形成順時針的新列。</p><pre class=\"tutorial-code-snippet\">for c in range(C):\n    row = []\n    for r in range(R - 1, -1, -1):\n        row.append(g[r][c])</pre></div>\n        <p class=\"tutorial-code-note\">這些片段只示範本階核心寫法；請依照前面的資料流自行把輸入、處理與輸出接成完整程式。</p>\n      </section>\n      <section class=\"tutorial-card tutorial-check\"><h3>6. 常見錯誤與自我檢查</h3><ul><li>順時針與逆時針的讀取方向相反。</li><li>非正方形旋轉後 R、C 要交換。</li></ul></section>\n    </div>","stageKey":"b965.f934c0b5ffd1","inputItems":[{"key":"in1","text":"第一行有兩個正整數 R、C，表示原矩陣有 R 列、C 欄。","meaningAndUseReviewed":true},{"key":"in2","text":"接下來 R 行，每行有 C 個整數，為原矩陣內容。","meaningAndUseReviewed":true}],"outputItems":[{"key":"out1","text":"第一行輸出旋轉後矩陣的列數與欄數，也就是 C R。","meaningReviewed":true},{"key":"out2","text":"接下來輸出 C 行，每行 R 個整數，表示順時針旋轉 90 度後的矩陣。","meaningReviewed":true}]},{"id":3,"title":"還原一個已做過的操作","difficulty":"基礎","statement":"已知目前矩陣 B 是未知矩陣 A 做一個操作後得到：操作代碼 0 代表 A 曾順時針旋轉 90 度，操作代碼 1 代表 A 曾上下翻轉。請從 B 還原 A。","input":"第一行有三個整數 R、C、op，其中 R、C 是目前矩陣 B 的列數與欄數；op=0 表示 B 是 A 順時針旋轉 90 度後的結果，op=1 表示 B 是 A 上下翻轉後的結果。接下來 R 行，每行 C 個整數，為矩陣 B。","output":"第一行輸出還原後矩陣 A 的列數與欄數；接下來逐列輸出 A。","sampleIn":"3 2 0\n4 1\n5 2\n6 3","sampleOut":"2 3\n1 2 3\n4 5 6","sampleExplain":"    <div class=\"demo-story\"><div class=\"demo-viewport\">\n      <section class=\"demo-step\"><p>目前矩陣是順時針旋轉後的 B。</p><pre>A --clockwise--&gt; B\n因此 B --counterclockwise--&gt; A\nA --flip--&gt; B\n因此 B --flip--&gt; A</pre></section>\n      <section class=\"demo-step\"><p>用逆時針 90 度抵消。</p></section><section class=\"demo-step\"><p>恢復原矩陣尺寸 2×3。</p></section>\n    </div></div>","starter":"","answer":"# 依照本階題意分段處理資料，最後再整理並輸出指定結果。\nR, C, op = map(int, input().split())\ng = []\nfor _ in range(R):\n    g.append(list(map(int, input().split())))\n\n# 已知 B 是 A 做完 op 後的結果；op=1 自反，op=0 要用逆時針還原。\nif op == 1:\n    g.reverse()\nelse:\n    new = []\n    for c in range(C - 1, -1, -1):\n        row = []\n        for r in range(R):\n            row.append(g[r][c])\n        new.append(row)\n    g = new\nprint(len(g), len(g[0]))\nfor row in g:\n    print(*row)","tests":[{"input":"3 2 0\n4 1\n5 2\n6 3\n","output":"2 3\n1 2 3\n4 5 6\n","public":true,"sampleRole":"primary","sampleOrigin":"task","qaPurpose":"本階主要公開範例"},{"input":"2 2 0\n3 1\n4 2\n","output":"2 2\n1 2\n3 4\n","public":true,"sampleRole":"secondary","sampleOrigin":"task","qaPurpose":"本階第二公開案例"},{"input":"3 2 1\n5 6\n3 4\n1 2\n","output":"3 2\n1 2\n3 4\n5 6\n","qaPurpose":"翻轉是自己的逆操作","public":true,"sampleRole":"special","sampleOrigin":"special"},{"input":"1 3 1\n1 2 3\n","output":"1 3\n1 2 3\n"}],"generatedTests":[{"input":"4 1 0\n4\n3\n2\n1\n","output":"1 4\n4 3 2 1\n","generated":true},{"input":"2 3 1\n4 5 6\n1 2 3\n","output":"2 3\n1 2 3\n4 5 6\n","generated":true}],"tutorial":"    <div class=\"tutorial-body\">\n      <section class=\"tutorial-card tutorial-goal\"><h3>1. 先知道這題在練什麼</h3>\n        <p>從「正向操作」切換成題目真正要做的 inverse operation（逆操作）。</p><p><strong>先備：</strong>會使用基本輸入、list、for 與 if。</p>\n      </section>\n      <section class=\"tutorial-card tutorial-core\"><h3>2. 核心觀念與圖解</h3>\n        <p>翻轉做兩次回原狀，所以 inverse 仍是翻轉；順時針旋轉的 inverse 則是逆時針 90 度。</p>\n        <div class=\"tutorial-visual\"><div class=\"tutorial-visual-title\">本階實際資料怎麼變</div><pre>A --clockwise--&gt; B\n因此 B --counterclockwise--&gt; A\nA --flip--&gt; B\n因此 B --flip--&gt; A</pre></div>\n      </section>\n      <section class=\"tutorial-card tutorial-worked\"><h3>3. 跟著做一個小例子</h3><p>B=[[4,1],[5,2],[6,3]] 是 [[1,2,3],[4,5,6]] 順時針旋轉結果；逆時針一次即可還原。</p></section>\n      <section class=\"tutorial-card tutorial-plan\"><h3>4. 先把程式拆成幾塊</h3><ol><li>讀 op。</li><li>op=1 直接 reverse rows。</li><li>op=0 建立逆時針 new。</li><li>輸出新尺寸與矩陣。</li></ol></section>\n      <section class=\"tutorial-card tutorial-code\"><h3>5. Python 一段一段怎麼寫</h3><div class=\"tutorial-code-step\"><strong>步驟 A：逆時針讀法</strong><p>舊欄由最右欄到最左欄，每欄由上往下。</p><pre class=\"tutorial-code-snippet\">for c in range(C - 1, -1, -1):\n    for r in range(R):\n        row.append(g[r][c])</pre></div><div class=\"tutorial-code-step\"><strong>步驟 B：翻轉自反</strong><p>同一個動作就是 inverse。</p><pre class=\"tutorial-code-snippet\">if op == 1:\n    g.reverse()</pre></div>\n        <p class=\"tutorial-code-note\">這些片段只示範本階核心寫法；請依照前面的資料流自行把輸入、處理與輸出接成完整程式。</p>\n      </section>\n      <section class=\"tutorial-card tutorial-check\"><h3>6. 常見錯誤與自我檢查</h3><ul><li>題目給的是 B，要「倒著還原」，不是再做一次順時針。</li><li>op=0 會交換尺寸。</li></ul></section>\n    </div>","stageKey":"b965.45640f097a7e","inputItems":[{"key":"in1","text":"第一行有三個整數 R、C、op，其中 R、C 是目前矩陣 B 的列數與欄數；op=0 表示 B 是 A 順時針旋轉 90 度後的結果，op=1 表示 B 是 A 上下翻轉後的結果。","meaningAndUseReviewed":true},{"key":"in2","text":"接下來 R 行，每行 C 個整數，為矩陣 B。","meaningAndUseReviewed":true}],"outputItems":[{"key":"out1","text":"第一行輸出還原後矩陣 A 的列數與欄數；接下來逐列輸出 A。","meaningReviewed":true}]},{"id":4,"title":"倒序還原兩個操作","difficulty":"中等","statement":"已知目前矩陣 B 是未知矩陣 A 依輸入順序做恰好兩個操作後得到。操作代碼 0 代表順時針旋轉 90 度，操作代碼 1 代表上下翻轉。請從最後一個操作開始反向還原，求出原矩陣 A。","input":"第一行有兩個正整數 R、C，表示目前矩陣 B 有 R 列、C 欄。接下來 R 行為 B，每行 C 個整數。最後一行恰有兩個操作代碼 op1、op2，兩者皆為 0 或 1，表示 A 當初先做 op1、再做 op2。","output":"第一行輸出原矩陣 A 的列數與欄數；接下來逐列輸出 A。","sampleIn":"3 2\n1 1\n3 1\n1 2\n0 0","sampleOut":"3 2\n2 1\n1 3\n1 1","sampleExplain":"    <div class=\"demo-story\"><div class=\"demo-viewport\">\n      <section class=\"demo-step\"><p>兩個操作要像堆疊一樣倒著解。</p><pre>A --op0--&gt; ? --op1--&gt; B\n還原：\nB --inv(op1)--&gt; ? --inv(op0)--&gt; A</pre></section>\n      <section class=\"demo-step\"><p>先 inverse 最後一個。</p></section><section class=\"demo-step\"><p>再 inverse 第一個，才回到 A。</p></section>\n    </div></div>","starter":"","answer":"# 依照本階題意分段處理資料，最後再整理並輸出指定結果。\nR, C = map(int, input().split())\ng = []\nfor _ in range(R):\n    g.append(list(map(int, input().split())))\nops = list(map(int, input().split()))\n\n# 只有兩個原始操作；還原時必須從最後一個操作先做 inverse。\nfor op in range(1, -1, -1):\n    if ops[op] == 1:\n        g.reverse()\n    else:\n        old_R = len(g)\n        old_C = len(g[0])\n        new = []\n        for c in range(old_C - 1, -1, -1):\n            row = []\n            for r in range(old_R):\n                row.append(g[r][c])\n            new.append(row)\n        g = new\nprint(len(g), len(g[0]))\nfor row in g:\n    print(*row)","tests":[{"input":"3 2\n1 1\n3 1\n1 2\n0 0\n","output":"3 2\n2 1\n1 3\n1 1\n","public":true,"sampleRole":"primary","sampleOrigin":"task","qaPurpose":"本階主要公開範例"},{"input":"2 3\n6 5 4\n3 2 1\n0 1\n","output":"3 2\n1 4\n2 5\n3 6\n","public":true,"sampleRole":"secondary","sampleOrigin":"task","qaPurpose":"本階第二公開案例"},{"input":"2 3\n4 5 6\n1 2 3\n1 1\n","output":"2 3\n4 5 6\n1 2 3\n","qaPurpose":"兩次翻轉互相抵消，但還原仍要倒序做","public":true,"sampleRole":"special","sampleOrigin":"special"},{"input":"3 2\n1 4\n2 5\n3 6\n1 0\n","output":"2 3\n1 2 3\n4 5 6\n"}],"generatedTests":[{"input":"2 2\n4 3\n2 1\n0 0\n","output":"2 2\n1 2\n3 4\n","generated":true},{"input":"1 3\n3 2 1\n1 0\n","output":"3 1\n3\n2\n1\n","generated":true}],"tutorial":"    <div class=\"tutorial-body\">\n      <section class=\"tutorial-card tutorial-goal\"><h3>1. 先知道這題在練什麼</h3>\n        <p>加入第二個核心：inverse 不只要選對，還要依原操作序列的反方向執行。</p><p><strong>先備：</strong>會使用基本輸入、list、for 與 if。</p>\n      </section>\n      <section class=\"tutorial-card tutorial-core\"><h3>2. 核心觀念與圖解</h3>\n        <p>若 A 先做 X 再做 Y 得 B，還原一定是 B 先做 inverse(Y) 再做 inverse(X)。這和解開穿衣順序相同：最後穿上的要先脫。</p>\n        <div class=\"tutorial-visual\"><div class=\"tutorial-visual-title\">本階實際資料怎麼變</div><pre>A --op0--&gt; ? --op1--&gt; B\n還原：\nB --inv(op1)--&gt; ? --inv(op0)--&gt; A</pre></div>\n      </section>\n      <section class=\"tutorial-card tutorial-worked\"><h3>3. 跟著做一個小例子</h3><p>若原操作是 [1,0]，從 B 還原時要先逆旋轉，再做翻轉。</p></section>\n      <section class=\"tutorial-card tutorial-plan\"><h3>4. 先把程式拆成幾塊</h3><ol><li>從 index 1 倒到 0。</li><li>每個 op 套對應 inverse。</li><li>旋轉後尺寸用 len(g) 動態取得。</li><li>輸出。</li></ol></section>\n      <section class=\"tutorial-card tutorial-code\"><h3>5. Python 一段一段怎麼寫</h3><div class=\"tutorial-code-step\"><strong>步驟 A：反向索引</strong><p>兩個操作從最後開始。</p><pre class=\"tutorial-code-snippet\">for p in range(1, -1, -1):\n    op = ops[p]</pre></div><div class=\"tutorial-code-step\"><strong>步驟 B：每次用目前尺寸</strong><p>矩陣可能在前一個 inverse 後換尺寸。</p><pre class=\"tutorial-code-snippet\">old_R = len(g)\nold_C = len(g[0])</pre></div>\n        <p class=\"tutorial-code-note\">這些片段只示範本階核心寫法；請依照前面的資料流自行把輸入、處理與輸出接成完整程式。</p>\n      </section>\n      <section class=\"tutorial-card tutorial-check\"><h3>6. 常見錯誤與自我檢查</h3><ul><li>不能仍按 ops[0]→ops[1] 還原。</li><li>每次旋轉後尺寸都可能交換，不能一直用最初 R、C。</li></ul></section>\n    </div>","stageKey":"b965.975ed60c45cd","inputItems":[{"key":"in1","text":"第一行有兩個正整數 R、C，表示目前矩陣 B 有 R 列、C 欄。","meaningAndUseReviewed":true},{"key":"in2","text":"接下來 R 行為 B，每行 C 個整數。","meaningAndUseReviewed":true},{"key":"in3","text":"最後一行恰有兩個操作代碼 op1、op2，兩者皆為 0 或 1，表示 A 當初先做 op1、再做 op2。","meaningAndUseReviewed":true}],"outputItems":[{"key":"out1","text":"第一行輸出原矩陣 A 的列數與欄數；接下來逐列輸出 A。","meaningReviewed":true}]},{"id":5,"title":"原題：矩陣轉換","difficulty":"完整","statement":"原矩陣 A 經過 M 個操作後成為已知 B。操作 0 是順時針旋轉 90 度，操作 1 是上下翻轉。給定 B 與 A 當初依序做過的 M 個操作，請還原 A。","input":"第一行有三個正整數 R、C、M，其中 R、C 表示目前矩陣 B 的列數與欄數，M 表示 A 當初做過的操作數量。接下來 R 行，每行 C 個整數，為矩陣 B。最後一行有 M 個操作代碼，依 A 當初執行的先後順序排列；0 表示順時針旋轉 90 度，1 表示上下翻轉。","output":"第一行輸出還原後原矩陣 A 的列數與欄數；接下來逐列輸出 A。每行數字以一個空白分隔，行尾不要多印空白。","sampleIn":"3 2 3\n1 1\n3 1\n1 2\n1 0 0","sampleOut":"3 2\n1 1\n1 3\n2 1","sampleExplain":"    <div class=\"demo-story\"><div class=\"demo-viewport\">\n      <section class=\"demo-step\"><p>官方範例 #1 從最終 B 開始倒著解操作。</p><pre>ops = [op0, op1, ..., opM-1]\n還原順序：\ninv(opM-1), ..., inv(op1), inv(op0)\n每一步都更新目前 g 尺寸</pre></section>\n      <section class=\"demo-step\"><p>最後兩個旋轉先各用逆時針抵消。</p></section><section class=\"demo-step\"><p>再抵消最早的翻轉，得到 A。</p></section>\n    </div></div>","starter":"","answer":"R, C, M = map(int, input().split())\ng = []\nfor _ in range(R):\n    g.append(list(map(int, input().split())))\nops = list(map(int, input().split()))\n\n# 從最後一個操作倒著還原：翻轉自反；順時針旋轉用逆時針抵消。\nfor p in range(M - 1, -1, -1):\n    if ops[p] == 1:\n        g.reverse()\n    else:\n        old_R = len(g)\n        old_C = len(g[0])\n        new = []\n        for c in range(old_C - 1, -1, -1):\n            row = []\n            for r in range(old_R):\n                row.append(g[r][c])\n            new.append(row)\n        g = new\n\n# 嚴格比對：每列直接用 print(*row) 產生單一空白且行尾無額外空白。\nprint(len(g), len(g[0]))\nfor row in g:\n    print(*row)","tests":[{"input":"3 2 3\n1 1\n3 1\n1 2\n1 0 0\n","output":"3 2\n1 1\n1 3\n2 1\n","public":true,"sampleRole":"primary","sampleOrigin":"official","qaPurpose":"官方公開範例 #1"},{"input":"3 2 2\n3 3\n2 1\n1 2\n0 1\n","output":"2 3\n2 1 3\n1 2 3\n","qaPurpose":"旋轉與翻轉混合，尺寸交換","public":true,"sampleRole":"secondary","sampleOrigin":"official"},{"input":"2 2 1\n3 1\n4 2\n0\n","output":"2 2\n1 2\n3 4\n","public":true,"sampleRole":"special","sampleOrigin":"special","qaPurpose":"第三公開範例：邊界／特殊值／不同狀態路徑"},{"input":"3 1 3\n7\n8\n9\n1 1 1\n","output":"3 1\n9\n8\n7\n"}],"generatedTests":[{"input":"2 3 4\n1 2 3\n4 5 6\n0 1 0 1\n","output":"2 3\n1 2 3\n4 5 6\n","generated":true},{"input":"1 4 2\n1 2 3 4\n0 0\n","output":"1 4\n4 3 2 1\n","generated":true}],"tutorial":"    <div class=\"tutorial-body\">\n      <section class=\"tutorial-card tutorial-goal\"><h3>1. 先知道這題在練什麼</h3>\n        <p>完整使用操作堆疊概念，把任意長度 M 的歷史倒序還原。</p><p><strong>先備：</strong>會使用基本輸入、list、for 與 if。</p>\n      </section>\n      <section class=\"tutorial-card tutorial-core\"><h3>2. 核心觀念與圖解</h3>\n        <p>這題不是模擬 A→B，而是已站在 B 往回走。對 ops 從尾到頭：1 做同一個 flip；0 做 counterclockwise（逆時針）90 度。</p>\n        <div class=\"tutorial-visual\"><div class=\"tutorial-visual-title\">本階實際資料怎麼變</div><pre>ops = [op0, op1, ..., opM-1]\n還原順序：\ninv(opM-1), ..., inv(op1), inv(op0)\n每一步都更新目前 g 尺寸</pre></div>\n      </section>\n      <section class=\"tutorial-card tutorial-worked\"><h3>3. 跟著做一個小例子</h3><p>官方範例 #1 的原操作為翻轉、旋轉、旋轉；所以從 B 依序做逆旋轉、逆旋轉、翻轉，得到指定 A。</p></section>\n      <section class=\"tutorial-card tutorial-plan\"><h3>4. 先把程式拆成幾塊</h3><ol><li>讀 B 與 ops。</li><li>p 從 M-1 倒到 0。</li><li>op=1 reverse rows。</li><li>op=0 建逆時針 new。</li><li>輸出最終尺寸與矩陣。</li></ol></section>\n      <section class=\"tutorial-card tutorial-code\"><h3>5. Python 一段一段怎麼寫</h3><div class=\"tutorial-code-step\"><strong>步驟 A：倒序 operations</strong><p>這是整題最核心的方向。</p><pre class=\"tutorial-code-snippet\">for p in range(M - 1, -1, -1):\n    if ops[p] == 1:\n        g.reverse()</pre></div><div class=\"tutorial-code-step\"><strong>步驟 B：逆時針矩陣</strong><p>由最右欄到最左欄，每欄由上而下。</p><pre class=\"tutorial-code-snippet\">for c in range(old_C - 1, -1, -1):\n    row = []\n    for r in range(old_R):\n        row.append(g[r][c])</pre></div>\n        <p class=\"tutorial-code-note\">這些片段只示範本階核心寫法；請依照前面的資料流自行把輸入、處理與輸出接成完整程式。</p>\n      </section>\n      <section class=\"tutorial-card tutorial-check\"><h3>6. 常見錯誤與自我檢查</h3><ul><li>不能直接照原操作順序作用在 B。</li><li>0 的 inverse 是逆時針，不是再順時針一次。</li><li>旋轉會交換列欄數，後續一定使用目前 g 尺寸。</li></ul></section>\n    </div>","stageKey":"b965.33835cf9047f","inputItems":[{"key":"in1","text":"第一行有三個正整數 R、C、M，其中 R、C 表示目前矩陣 B 的列數與欄數，M 表示 A 當初做過的操作數量。","meaningAndUseReviewed":true},{"key":"in2","text":"接下來 R 行，每行 C 個整數，為矩陣 B。","meaningAndUseReviewed":true},{"key":"in3","text":"最後一行有 M 個操作代碼，依 A 當初執行的先後順序排列；0 表示順時針旋轉 90 度，1 表示上下翻轉。","meaningAndUseReviewed":true}],"outputItems":[{"key":"out1","text":"第一行輸出還原後原矩陣 A 的列數與欄數；接下來逐列輸出 A。","meaningReviewed":true},{"key":"out2","text":"每行數字以一個空白分隔，行尾不要多印空白。","meaningReviewed":true}]}];
 
 // Shared test accessors belong to the canonical template. Optional generator_js may
 // provide generateOneHiddenTest(), but formal-stage rendering/Judge must never depend
@@ -596,6 +596,7 @@ const STORAGE_PREFIX = `${OJ_META.storage.namespace}:v${STORAGE_SCHEMA}`;
 const ACCEPTED_KEY = `${STORAGE_PREFIX}:accepted`;
 const HISTORY_KEY = `${STORAGE_PREFIX}:history`;
 const MIGRATION_KEY = `${STORAGE_PREFIX}:migrated`;
+const STAGE_KEY_MIGRATION_KEY = `${STORAGE_PREFIX}:stage-key-migrated:v1`;
 const LEGACY_ACCEPTED_KEY = OJ_META.storage.legacyAcceptedKey;
 const LEGACY_HISTORY_KEY = OJ_META.storage.legacyHistoryKey;
 const PYODIDE_VERSION = '0.27.7';
@@ -606,6 +607,45 @@ const PORTABLE_RECORD_FORMAT = 'peicd_oj_progress';
 const PORTABLE_RECORD_SCHEMA = 1;
 const PORTABLE_RECORD_MAX_BYTES = 2 * 1024 * 1024;
 const PORTABLE_RECORD_MAX_CODE_CHARS = 300000;
+
+const STORAGE=(()=>{
+  const memory=new Map();
+  let backend=null;
+  let persistent=false;
+  try{
+    backend=window.localStorage;
+    const probe=`__peicd_storage_probe__${Math.random().toString(36).slice(2)}`;
+    backend.setItem(probe,'1');
+    persistent=backend.getItem(probe)==='1';
+    backend.removeItem(probe);
+  }catch(err){backend=null;persistent=false;}
+  return {
+    get persistent(){return persistent;},
+    getItem(key){
+      const k=String(key);
+      if(backend){try{return backend.getItem(k)}catch(err){backend=null;persistent=false;}}
+      return memory.has(k)?memory.get(k):null;
+    },
+    setItem(key,value){
+      const k=String(key),v=String(value);
+      if(backend){try{backend.setItem(k,v);return}catch(err){backend=null;persistent=false;}}
+      memory.set(k,v);
+    },
+    removeItem(key){
+      const k=String(key);
+      if(backend){try{backend.removeItem(k)}catch(err){backend=null;persistent=false;}}
+      memory.delete(k);
+    },
+    keys(){
+      const out=[];
+      if(backend){
+        try{for(let i=0;i<backend.length;i++){const key=backend.key(i);if(key!==null)out.push(key)}return out}
+        catch(err){backend=null;persistent=false;}
+      }
+      return Array.from(memory.keys());
+    }
+  };
+})();
 
 const $ = (s) => document.querySelector(s);
 const levelStrip = $('#levelStrip');
@@ -618,18 +658,32 @@ const progressBar = $('#progressBar');
 const progressText = $('#progressText');
 const historyList = $('#historyList');
 const hiddenTestsList = $('#hiddenTestsList');
+const storageWarning = $('#storageWarning');
 
 function esc(s){
   return String(s).replace(/[&<>"']/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
 }
 
+function normalizeLineEndings(s){return String(s).replace(/\r\n?/g,'\n');}
 function normalizeOutput(s){
-  return String(s)
-    .replace(/\r\n?/g,'\n')
+  return normalizeLineEndings(s)
     .split('\n')
     .map(line=>line.trim())
     .filter(line=>line!=='')
     .join('\n');
+}
+function compareMode(){return OJ_META.judge?.compareMode||'tolerant';}
+function outputsEqual(actual,expected){
+  const mode=compareMode();
+  if(mode==='tolerant') return normalizeOutput(actual)===normalizeOutput(expected);
+  if(mode==='exact') return normalizeLineEndings(actual)===normalizeLineEndings(expected);
+  return false;
+}
+function compareModeDescription(){
+  const mode=compareMode();
+  if(mode==='exact') return '嚴格比對';
+  if(mode==='special') return 'Special Judge';
+  return '寬鬆比對';
 }
 
 function safeJsonParse(raw,fallback){
@@ -674,28 +728,76 @@ function bindPublicSampleCopyButtons(publicSamples){
   });
 }
 
+function stageKeyForTask(task){return String(task?.stageKey||task?.id||'');}
+function taskFromId(id){return TASKS.find(t=>String(t.id)===String(id))||null;}
+function legacyCurrentDraftKey(id){return `${STORAGE_PREFIX}:code:${id}`;}
+function draftKey(id){const task=taskFromId(id);return `${STORAGE_PREFIX}:code:${task?stageKeyForTask(task):String(id)}`;}
+function loadDraft(task){
+  const next=STORAGE.getItem(draftKey(task.id));
+  if(next!==null)return next;
+  const legacy=STORAGE.getItem(legacyCurrentDraftKey(task.id));
+  if(legacy!==null){STORAGE.setItem(draftKey(task.id),legacy);return legacy;}
+  return null;
+}
+function acceptedForTask(map,task){return Boolean(map[stageKeyForTask(task)]||map[String(task.id)]);}
+
 function migrateStorage(){
-  if(localStorage.getItem(MIGRATION_KEY)==='1') return;
   try{
-    if(LEGACY_ACCEPTED_KEY && localStorage.getItem(ACCEPTED_KEY)===null){const legacy=localStorage.getItem(LEGACY_ACCEPTED_KEY);if(legacy!==null)localStorage.setItem(ACCEPTED_KEY,legacy);}
-    if(LEGACY_HISTORY_KEY && localStorage.getItem(HISTORY_KEY)===null){const legacy=localStorage.getItem(LEGACY_HISTORY_KEY);if(legacy!==null)localStorage.setItem(HISTORY_KEY,legacy);}
-    if(OJ_META.storage.legacyDraftPrefix){for(const task of TASKS){const nextKey=draftKey(task.id),legacyKey=`${OJ_META.storage.legacyDraftPrefix}${task.id}`;if(localStorage.getItem(nextKey)===null){const legacy=localStorage.getItem(legacyKey);if(legacy!==null)localStorage.setItem(nextKey,legacy);}}}
-    localStorage.setItem(MIGRATION_KEY,'1');
-  }catch(err){console.warn('Local storage migration skipped:',err);}
+    // Legacy namespace/schema migration from older OJ generations.
+    if(STORAGE.getItem(MIGRATION_KEY)!=='1'){
+      if(LEGACY_ACCEPTED_KEY && STORAGE.getItem(ACCEPTED_KEY)===null){const legacy=STORAGE.getItem(LEGACY_ACCEPTED_KEY);if(legacy!==null)STORAGE.setItem(ACCEPTED_KEY,legacy);}
+      if(LEGACY_HISTORY_KEY && STORAGE.getItem(HISTORY_KEY)===null){const legacy=STORAGE.getItem(LEGACY_HISTORY_KEY);if(legacy!==null)STORAGE.setItem(HISTORY_KEY,legacy);}
+      for(const task of TASKS){
+        const nextKey=draftKey(task.id);
+        if(STORAGE.getItem(nextKey)!==null)continue;
+        let legacy=null;
+        if(OJ_META.storage.legacyDraftPrefix)legacy=STORAGE.getItem(`${OJ_META.storage.legacyDraftPrefix}${task.id}`);
+        if(legacy!==null)STORAGE.setItem(nextKey,legacy);
+      }
+      STORAGE.setItem(MIGRATION_KEY,'1');
+    }
+
+    // v0.1.52 stable-stage identity migration is intentionally a separate marker.
+    // Existing users may already have MIGRATION_KEY=1 from older releases, so reusing
+    // that marker would skip id -> stageKey promotion and weaken future reorder safety.
+    if(STORAGE.getItem(STAGE_KEY_MIGRATION_KEY)!=='1'){
+      for(const task of TASKS){
+        const nextKey=draftKey(task.id);
+        if(STORAGE.getItem(nextKey)===null){
+          const oldIdValue=STORAGE.getItem(legacyCurrentDraftKey(task.id));
+          if(oldIdValue!==null)STORAGE.setItem(nextKey,oldIdValue);
+        }
+      }
+      const accepted=safeJsonParse(STORAGE.getItem(ACCEPTED_KEY)||'{}',{});
+      let acceptedChanged=false;
+      for(const task of TASKS){
+        if(accepted[String(task.id)] && !accepted[stageKeyForTask(task)]){
+          accepted[stageKeyForTask(task)]=true;acceptedChanged=true;
+        }
+      }
+      if(acceptedChanged)STORAGE.setItem(ACCEPTED_KEY,JSON.stringify(accepted));
+
+      const history=safeJsonParse(STORAGE.getItem(HISTORY_KEY)||'[]',[]);
+      let historyChanged=false;
+      if(Array.isArray(history)){
+        for(const item of history){
+          if(!item || item.stageKey)continue;
+          const task=taskFromId(item.taskId);
+          if(task){item.stageKey=stageKeyForTask(task);historyChanged=true;}
+        }
+        if(historyChanged)STORAGE.setItem(HISTORY_KEY,JSON.stringify(history));
+      }
+      STORAGE.setItem(STAGE_KEY_MIGRATION_KEY,'1');
+    }
+  }catch(err){console.warn('Storage migration skipped:',err);}
 }
 
-function getAccepted(){
-  return safeJsonParse(localStorage.getItem(ACCEPTED_KEY)||'{}',{});
-}
+function getAccepted(){return safeJsonParse(STORAGE.getItem(ACCEPTED_KEY)||'{}',{});}
 function setAccepted(id){
-  const a=getAccepted();
-  a[id]=true;
-  localStorage.setItem(ACCEPTED_KEY,JSON.stringify(a));
+  const task=taskFromId(id);if(!task)return;
+  const a=getAccepted();a[stageKeyForTask(task)]=true;STORAGE.setItem(ACCEPTED_KEY,JSON.stringify(a));
 }
-
-function isTaskAccepted(task=TASKS[currentTaskIndex]){
-  return Boolean(task && getAccepted()[task.id]);
-}
+function isTaskAccepted(task=TASKS[currentTaskIndex]){return Boolean(task && acceptedForTask(getAccepted(),task));}
 
 function updateAnswerButtonState(){
   const btn=$('#answerBtn');
@@ -708,14 +810,10 @@ function updateAnswerButtonState(){
 }
 function getReferenceVariants(task){
   if(Array.isArray(task?.referenceAnswers) && task.referenceAnswers.length){
-    return task.referenceAnswers.map((item,index)=>({
-      title:String(item?.title||`方法 ${index+1}`),
-      code:String(item?.code||'')
-    }));
+    return task.referenceAnswers.map((item,index)=>({title:String(item?.title||`方法 ${index+1}`),code:String(item?.code||'')}));
   }
   return [{title:'參考答案',code:String(task?.answer||'')}];
 }
-
 function renderReferenceAnswers(task){
   const variants=getReferenceVariants(task);
   const dialog=$('#answerDialog');
@@ -733,57 +831,30 @@ function renderReferenceAnswers(task){
   }
 }
 
-function draftKey(id){return `${STORAGE_PREFIX}:code:${id}`}
-function historyKey(){return HISTORY_KEY}
-function getHistory(){return safeJsonParse(localStorage.getItem(historyKey())||'[]',[])}
+function historyKey(){return HISTORY_KEY;}
+function getHistory(){return safeJsonParse(STORAGE.getItem(historyKey())||'[]',[]);}
 function addHistory(taskId, verdict, passed, total){
-  const list=getHistory();
-  list.unshift({time:new Date().toLocaleString('zh-TW',{hour12:false}),taskId,verdict,passed,total});
-  localStorage.setItem(historyKey(),JSON.stringify(list.slice(0,30)));
-  renderHistory();
+  const task=taskFromId(taskId);const list=getHistory();
+  list.unshift({time:new Date().toLocaleString('zh-TW',{hour12:false}),taskId,stageKey:task?stageKeyForTask(task):'',verdict,passed,total});
+  STORAGE.setItem(historyKey(),JSON.stringify(list.slice(0,30)));renderHistory();
 }
-
-function clearAllLocalRecords(){
-  const keys=[];
-  for(let i=0;i<localStorage.length;i++){
-    const key=localStorage.key(i);
-    if(key && key.startsWith(OJ_META.storage.namespace)) keys.push(key);
-  }
-  keys.forEach(key=>localStorage.removeItem(key));
-}
-
+function clearAllLocalRecords(){for(const key of STORAGE.keys()){if(key.startsWith(OJ_META.storage.namespace))STORAGE.removeItem(key);}}
 function portableRecordKeys(){
-  return [ACCEPTED_KEY,HISTORY_KEY,MIGRATION_KEY,...TASKS.map(t=>draftKey(t.id))];
+  return [ACCEPTED_KEY,HISTORY_KEY,MIGRATION_KEY,STAGE_KEY_MIGRATION_KEY,...TASKS.map(t=>draftKey(t.id)),...TASKS.map(t=>legacyCurrentDraftKey(t.id))];
 }
-function snapshotPortableStorage(){
-  return portableRecordKeys().map(key=>[key,localStorage.getItem(key)]);
-}
+function snapshotPortableStorage(){return portableRecordKeys().map(key=>[key,STORAGE.getItem(key)]);}
 function restorePortableStorage(snapshot){
-  for(const [key] of snapshot) localStorage.removeItem(key);
-  for(const [key,value] of snapshot) if(value!==null) localStorage.setItem(key,value);
+  for(const [key] of snapshot)STORAGE.removeItem(key);
+  for(const [key,value] of snapshot)if(value!==null)STORAGE.setItem(key,value);
 }
 function buildPortableRecord(){
-  saveDraft();
-  const accepted=getAccepted();
+  saveDraft();const accepted=getAccepted();const current=TASKS[currentTaskIndex];
   return {
-    format:PORTABLE_RECORD_FORMAT,
-    schemaVersion:PORTABLE_RECORD_SCHEMA,
-    exportedAt:new Date().toISOString(),
-    oj:{
-      problemId:String(OJ_META.source.problemId),
-      sourceUrl:String(OJ_META.source.url),
-      storageNamespace:String(OJ_META.storage.namespace),
-      storageSchema:STORAGE_SCHEMA,
-      language:'python3'
-    },
-    view:{sourceStageActive:Boolean(sourceStageActive),currentTaskId:TASKS[currentTaskIndex]?.id??null},
-    stages:TASKS.map(t=>({
-      id:t.id,
-      title:t.title,
-      code:localStorage.getItem(draftKey(t.id)) ?? t.starter ?? '',
-      accepted:Boolean(accepted[t.id])
-    })),
-    history:getHistory().map(h=>({time:String(h.time??''),taskId:h.taskId,verdict:String(h.verdict??''),passed:Number(h.passed??0),total:Number(h.total??0)}))
+    format:PORTABLE_RECORD_FORMAT,schemaVersion:PORTABLE_RECORD_SCHEMA,exportedAt:new Date().toISOString(),
+    oj:{problemId:String(OJ_META.source.problemId),sourceUrl:String(OJ_META.source.url),storageNamespace:String(OJ_META.storage.namespace),storageSchema:STORAGE_SCHEMA,language:'python3'},
+    view:{sourceStageActive:Boolean(sourceStageActive),currentTaskId:current?.id??null,currentStageKey:current?stageKeyForTask(current):null},
+    stages:TASKS.map(t=>({id:t.id,stageKey:stageKeyForTask(t),title:t.title,code:loadDraft(t)??t.starter??'',accepted:acceptedForTask(accepted,t)})),
+    history:getHistory().map(h=>({time:String(h.time??''),taskId:h.taskId,stageKey:String(h.stageKey??''),verdict:String(h.verdict??''),passed:Number(h.passed??0),total:Number(h.total??0)}))
   };
 }
 function portableFilename(){
@@ -830,65 +901,53 @@ function validatePortableRecord(data){
   if(!oj || typeof oj!=='object') throw new Error('作答紀錄缺少題目資訊。');
   if(String(oj.problemId)!==String(OJ_META.source.problemId) || String(oj.storageNamespace)!==String(OJ_META.storage.namespace) || Number(oj.storageSchema)!==Number(STORAGE_SCHEMA) || oj.language!=='python3') throw new Error('這份作答紀錄不是目前這一題的相容資料。');
   if(!Array.isArray(data.stages) || data.stages.length!==TASKS.length) throw new Error('作答紀錄的階段數量與目前題目不一致。');
-  const known=new Map(TASKS.map(t=>[String(t.id),t]));
-  const seen=new Set();
-  const stages=[];
-  let totalCodeChars=0;
+  const byId=new Map(TASKS.map(t=>[String(t.id),t]));
+  const byStage=new Map(TASKS.map(t=>[stageKeyForTask(t),t]));
+  const seen=new Set(),stages=[];let totalCodeChars=0;
   for(const raw of data.stages){
     if(!raw || typeof raw!=='object') throw new Error('階段資料格式錯誤。');
-    const id=String(raw.id);
-    if(!known.has(id)) throw new Error(`作答紀錄包含目前題目不存在的第 ${id} 階。`);
-    if(seen.has(id)) throw new Error(`作答紀錄重複包含第 ${id} 階。`);
-    if(typeof raw.code!=='string' || raw.code.length>PORTABLE_RECORD_MAX_CODE_CHARS) throw new Error(`第 ${id} 階程式碼格式或大小不合法。`);
-    if(typeof raw.accepted!=='boolean') throw new Error(`第 ${id} 階 AC 狀態格式不合法。`);
-    totalCodeChars+=raw.code.length;if(totalCodeChars>PORTABLE_RECORD_MAX_BYTES) throw new Error('作答紀錄中的程式碼總量過大。');
-    seen.add(id);stages.push({id:known.get(id).id,code:raw.code,accepted:raw.accepted});
+    const key=String(raw.stageKey||'');const id=String(raw.id);
+    const task=(key&&byStage.get(key))||byId.get(id);
+    if(!task) throw new Error(`作答紀錄包含目前題目不存在的階段 ${key||id}。`);
+    const stable=stageKeyForTask(task);if(seen.has(stable))throw new Error('作答紀錄重複包含同一階段。');
+    if(typeof raw.code!=='string'||raw.code.length>PORTABLE_RECORD_MAX_CODE_CHARS)throw new Error(`第 ${task.id} 階程式碼格式或大小不合法。`);
+    if(typeof raw.accepted!=='boolean')throw new Error(`第 ${task.id} 階 AC 狀態格式不合法。`);
+    totalCodeChars+=raw.code.length;if(totalCodeChars>PORTABLE_RECORD_MAX_BYTES)throw new Error('作答紀錄中的程式碼總量過大。');
+    seen.add(stable);stages.push({id:task.id,stageKey:stable,code:raw.code,accepted:raw.accepted});
   }
-  if(seen.size!==known.size) throw new Error('作答紀錄缺少目前題目的階段資料。');
-  if(!Array.isArray(data.history) || data.history.length>30) throw new Error('提交紀錄格式或筆數不合法。');
+  if(seen.size!==TASKS.length)throw new Error('作答紀錄缺少目前題目的階段資料。');
+  if(!Array.isArray(data.history)||data.history.length>30)throw new Error('提交紀錄格式或筆數不合法。');
   const allowedVerdicts=new Set(['AC','WA','RE','TLE','JE','CE']);
   const history=data.history.map((raw,index)=>{
-    if(!raw || typeof raw!=='object') throw new Error(`第 ${index+1} 筆提交紀錄格式錯誤。`);
-    const id=String(raw.taskId);
-    const verdict=String(raw.verdict||'');
-    const passed=Number(raw.passed),total=Number(raw.total);
-    if(!known.has(id) || !allowedVerdicts.has(verdict) || !Number.isInteger(passed) || !Number.isInteger(total) || passed<0 || total<0 || passed>total) throw new Error(`第 ${index+1} 筆提交紀錄內容不合法。`);
-    const time=String(raw.time??'');if(time.length>120) throw new Error(`第 ${index+1} 筆提交時間格式不合法。`);
-    return {time,taskId:known.get(id).id,verdict,passed,total};
+    if(!raw||typeof raw!=='object')throw new Error(`第 ${index+1} 筆提交紀錄格式錯誤。`);
+    const task=(raw.stageKey&&byStage.get(String(raw.stageKey)))||byId.get(String(raw.taskId));
+    const verdict=String(raw.verdict||''),passed=Number(raw.passed),total=Number(raw.total);
+    if(!task||!allowedVerdicts.has(verdict)||!Number.isInteger(passed)||!Number.isInteger(total)||passed<0||total<0||passed>total)throw new Error(`第 ${index+1} 筆提交紀錄內容不合法。`);
+    const time=String(raw.time??'');if(time.length>120)throw new Error(`第 ${index+1} 筆提交時間格式不合法。`);
+    return {time,taskId:task.id,stageKey:stageKeyForTask(task),verdict,passed,total};
   });
   const view=data.view;
-  if(!view || typeof view!=='object' || typeof view.sourceStageActive!=='boolean') throw new Error('作答紀錄缺少目前階段資訊。');
-  const viewId=view.currentTaskId===null?null:String(view.currentTaskId);
-  if(viewId!==null && !known.has(viewId)) throw new Error('作答紀錄的目前階段不存在。');
-  return {stages,history,view:{sourceStageActive:view.sourceStageActive,currentTaskId:viewId===null?TASKS[0].id:known.get(viewId).id}};
+  if(!view||typeof view!=='object'||typeof view.sourceStageActive!=='boolean')throw new Error('作答紀錄缺少目前階段資訊。');
+  const task=(view.currentStageKey&&byStage.get(String(view.currentStageKey)))||byId.get(String(view.currentTaskId));
+  return {stages,history,view:{sourceStageActive:view.sourceStageActive,currentTaskId:(task||TASKS[0]).id,currentStageKey:stageKeyForTask(task||TASKS[0])}};
 }
 function applyPortableRecord(record){
   const snapshot=snapshotPortableStorage();
   try{
-    for(const key of portableRecordKeys()) localStorage.removeItem(key);
+    for(const key of portableRecordKeys())STORAGE.removeItem(key);
     const accepted={};
     for(const stage of record.stages){
-      localStorage.setItem(draftKey(stage.id),stage.code);
-      if(stage.accepted) accepted[stage.id]=true;
+      const task=TASKS.find(t=>stageKeyForTask(t)===stage.stageKey)||taskFromId(stage.id);if(!task)continue;
+      STORAGE.setItem(draftKey(task.id),stage.code);if(stage.accepted)accepted[stageKeyForTask(task)]=true;
     }
-    localStorage.setItem(ACCEPTED_KEY,JSON.stringify(accepted));
-    localStorage.setItem(HISTORY_KEY,JSON.stringify(record.history));
-    localStorage.setItem(MIGRATION_KEY,'1');
-  }catch(err){
-    try{restorePortableStorage(snapshot);}catch(rollbackErr){console.error('Import rollback failed:',rollbackErr);}
-    throw err;
-  }
-
-  const idx=Math.max(0,TASKS.findIndex(t=>String(t.id)===String(record.view.currentTaskId)));
-  currentTaskIndex=idx;sourceStageActive=record.view.sourceStageActive;
-  document.body.classList.toggle('source-view',sourceStageActive);
+    STORAGE.setItem(ACCEPTED_KEY,JSON.stringify(accepted));STORAGE.setItem(HISTORY_KEY,JSON.stringify(record.history));STORAGE.setItem(MIGRATION_KEY,'1');
+  }catch(err){try{restorePortableStorage(snapshot)}catch(rollbackErr){console.error('Import rollback failed:',rollbackErr)}throw err;}
+  const idx=Math.max(0,TASKS.findIndex(t=>stageKeyForTask(t)===record.view.currentStageKey||String(t.id)===String(record.view.currentTaskId)));
+  currentTaskIndex=idx;sourceStageActive=record.view.sourceStageActive;document.body.classList.toggle('source-view',sourceStageActive);
   renderLevelStrip();renderProblem();renderTests();renderHiddenTests();renderHistory();renderProgress();updateAnswerButtonState();
-  const t=TASKS[currentTaskIndex];
-  setCode(localStorage.getItem(draftKey(t.id)) ?? t.starter);
-  overallVerdict.className='status-pill';overallVerdict.textContent='尚未提交';
-  resultSummary.textContent='作答紀錄已匯入。草稿、AC 進度與本機提交紀錄已更新。';
-  resetTerminal('作答紀錄已匯入。按 F9 啟動新的互動式 Python 程式。');
-  if(editor){editor.clearHistory();if(!sourceStageActive)refreshEditorLayout({focus:true});}
+  const t=TASKS[currentTaskIndex];setCode(loadDraft(t)??t.starter);
+  overallVerdict.className='status-pill';overallVerdict.textContent='尚未提交';resultSummary.textContent='作答紀錄已匯入。草稿、AC 進度與本機提交紀錄已更新。';
+  resetTerminal('作答紀錄已匯入。按 F9 啟動新的互動式 Python 程式。');if(editor){editor.clearHistory();if(!sourceStageActive)refreshEditorLayout({focus:true});}
 }
 async function importPortableRecords(file){
   if(busy || !file)return;
@@ -904,7 +963,7 @@ async function importPortableRecords(file){
 
 function renderProgress(){
   const accepted=getAccepted();
-  const count=TASKS.filter(t=>accepted[t.id]).length;
+  const count=TASKS.filter(t=>acceptedForTask(accepted,t)).length;
   progressText.textContent=`${count} / ${TASKS.length} AC`;
   progressBar.style.width=`${count/TASKS.length*100}%`;
 }
@@ -924,8 +983,8 @@ function renderLevelStrip(){
     const b=document.createElement('button');
     b.type='button';
     b.disabled=busy;
-    b.className='level-btn'+(!sourceStageActive&&idx===currentTaskIndex?' active':'')+(accepted[task.id]?' accepted':'');
-    b.textContent=accepted[task.id]?`${task.id} ✓`:`${task.id}`;
+    b.className='level-btn'+(!sourceStageActive&&idx===currentTaskIndex?' active':'')+(acceptedForTask(accepted,task)?' accepted':'');
+    b.textContent=acceptedForTask(accepted,task)?`${task.id} ✓`:`${task.id}`;
     b.title=`第 ${task.id} 階：${task.title}`;
     b.addEventListener('click',()=>switchTask(idx));
     levelStrip.appendChild(b);
@@ -962,13 +1021,8 @@ function switchToSourceStage({openSource=false}={}){
   if(openSource) window.open(OFFICIAL_SOURCE.url,'_blank','noopener,noreferrer');
 }
 
-function formalInputParts(text){
-  const parts=String(text??'').trim().match(/[^。]+(?:。|$)/g)||[];
-  return parts.map(part=>part.trim()).filter(Boolean);
-}
-function renderFormalInput(text){
-  const parts=formalInputParts(text);
-  return `<div class="formal-input-list" data-formal-input-list="true">${parts.map(part=>`<p class="formal-input-item">${esc(part)}</p>`).join('')}</div>`;
+function renderFormalInput(task){
+  return `<p class="formal-input-prose" data-formal-input="true">${task?.input??''}</p>`;
 }
 
 function renderProblem(){
@@ -997,7 +1051,7 @@ function renderProblem(){
     <div class="section-title">題目</div>
     <p>${t.statement}</p>
     <div class="section-title">輸入</div>
-    ${renderFormalInput(t.input)}
+    ${renderFormalInput(t)}
     <div class="section-title">輸出</div>
     <p>${t.output}</p>
     <div class="pre-code-notice" data-pre-code-notice="true">
@@ -1098,7 +1152,7 @@ function renderHistory(){
 
 function getCode(){ return editor ? editor.getValue() : $('#codeEditor').value; }
 function setCode(code){ if(editor) editor.setValue(code); else $('#codeEditor').value=code; }
-function saveDraft(){ const t=TASKS[currentTaskIndex]; localStorage.setItem(draftKey(t.id),getCode()); }
+function saveDraft(){ const t=TASKS[currentTaskIndex]; STORAGE.setItem(draftKey(t.id),getCode()); }
 
 function ensureCodeMirrorCursorVisible(cm=editor,marginLines=2){
   if(!cm) return;
@@ -1144,7 +1198,7 @@ function switchTask(idx){
   overallVerdict.className='status-pill'; overallVerdict.textContent='尚未提交';
   resultSummary.textContent='F9／「執行」會啟動新的互動式 TERMINAL；遇到 input() 時手動輸入。「提交」會評測本階全部正式測資，逐筆結果請看右側 TEST RESULTS。';
   const t=TASKS[idx];
-  setCode(localStorage.getItem(draftKey(t.id)) ?? t.starter);
+  setCode(loadDraft(t) ?? t.starter);
   resetTerminal();
   if(editor){
     editor.clearHistory();
@@ -1696,6 +1750,7 @@ async function judge(){
   const code=getCode();
   saveDraft();
   const tests=getTaskTestsForTask(t);
+  if(compareMode()==='special'){overallVerdict.className='status-pill warn';overallVerdict.textContent='SPJ';resultSummary.textContent='此題使用 Special Judge，本機不模擬正式判定；可用執行功能檢查程式輸出，正式結果請以原題平台為準。';return;}
   const op=beginOperation();
   overallVerdict.className='status-pill warn'; overallVerdict.textContent='評測中';
   resultSummary.textContent=`正在執行全部 ${tests.length} 筆測資…`;
@@ -1706,7 +1761,7 @@ async function judge(){
     for(let i=0;i<tests.length;i++){
       const r=await runPython(code,tests[i].input);
       if(!isOperationCurrent(op)) return;
-      const pass=!r.environmentError && r.ok && normalizeOutput(r.output)===normalizeOutput(tests[i].output);
+      const pass=!r.environmentError && r.ok && compareMode()!=='special' && outputsEqual(r.output,tests[i].output);
       const rr={...r,pass,error:r.ok?'':r.error};
       results.push(rr);
       if(pass)passed++;
@@ -1727,7 +1782,7 @@ async function judge(){
       const firstBad=results.find(x=>!x.pass);
       const verdict=firstBad?.environmentError?'JE':(firstBad?.timeout?'TLE':(firstBad?.error?'RE':'WA'));
       overallVerdict.className='status-pill bad';overallVerdict.textContent=verdict;
-      resultSummary.textContent=`通過 ${passed} / ${total}。${verdict==='WA'?'輸出採 Tolerant 風格比對；請先檢查內容與行結構。':(verdict==='JE'?'評測環境暫時無法使用，請重新提交。':'先修正第一個失敗原因，再重新提交。')}`;
+      resultSummary.textContent=`通過 ${passed} / ${total}。${verdict==='WA'?`目前採${compareModeDescription()}；請檢查輸出內容與格式。`:(verdict==='JE'?'評測環境暫時無法使用，請重新提交。':'先修正第一個失敗原因，再重新提交。')}`;
       addHistory(t.id,verdict,passed,total);
     }
   }catch(err){
@@ -1799,10 +1854,11 @@ $('#terminalInput').addEventListener('keydown',e=>{
 });
 $('#terminalInput').addEventListener('input',e=>{const ta=e.currentTarget;ta.style.height='1.65em';ta.style.height=Math.min(ta.scrollHeight,84)+'px';});
 const THEME_STORAGE_KEY='step_oj_framework:theme:v1';
-function applyTheme(theme,{persist=true}={}){const next=theme==='dark'?'dark':'light';document.documentElement.dataset.theme=next;$('#themeSelect').value=next;if(persist){try{localStorage.setItem(THEME_STORAGE_KEY,next)}catch{}}}
+function applyTheme(theme,{persist=true}={}){const next=theme==='dark'?'dark':'light';document.documentElement.dataset.theme=next;$('#themeSelect').value=next;if(persist){try{STORAGE.setItem(THEME_STORAGE_KEY,next)}catch{}}}
 function initializeTheme(){const current=document.documentElement.dataset.theme==='dark'?'dark':'light';$('#themeSelect').value=current;$('#themeSelect').addEventListener('change',e=>applyTheme(e.target.value));}
 $('#submitBtn').addEventListener('click',judge);
 
+if(storageWarning)storageWarning.hidden=STORAGE.persistent;
 migrateStorage();
 initializeTheme();
 setupEditor();
@@ -1813,7 +1869,7 @@ renderHiddenTests();
 renderHistory();
 renderProgress();
 updateAnswerButtonState();
-setCode(localStorage.getItem(draftKey(TASKS[0].id)) ?? TASKS[0].starter);
+setCode(loadDraft(TASKS[0]) ?? TASKS[0].starter);
 </script>
 </body>
 </html>
