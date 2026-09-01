@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- Generated from shared canonical Python OJ template. template_sha256=f5fd4e4d7594ce173923e2625cecdd6d7948adf924fe0e20f453434ca4b41f8e -->
+<!-- Generated from shared canonical Python OJ template. template_sha256=baa5ec5e66134e3b30519e42210f6740c9346855bc80fbf1e5ee02f31066dbcc -->
 <html lang="zh-Hant-TW" data-theme="dark">
 <head>
 <meta charset="utf-8">
@@ -520,8 +520,8 @@ html[data-theme="dark"] .tutorial-details,html[data-theme="dark"] .tutorial-cont
         <span class="status-pill" id="overallVerdict">尚未提交</span>
       </div>
       <div class="result-summary" id="resultSummary">F9／「執行」會啟動互動式 Python TERMINAL，遇到 <code>input()</code> 時由你手動輸入；「提交」會自動評測本階全部正式測資。</div>
-      <details class="hidden-tests" id="hiddenTestsDetails">
-        <summary id="hiddenTestsSummary">隱藏測資（AC 後解鎖）</summary>
+      <details class="hidden-tests" id="hiddenTestsDetails" open>
+        <summary id="hiddenTestsSummary">全部正式測資</summary>
         <div class="hidden-tests-list" id="hiddenTestsList"></div>
       </details>
       <details class="submission-history">
@@ -1335,27 +1335,22 @@ function renderTests(state='idle',results=[]){
 
 function renderHiddenTests(){
   const t=TASKS[currentTaskIndex];
-  const hidden=getTaskTestsForTask(t).map((test,idx)=>({test,idx})).filter(item=>!item.test.public);
-  const accepted=Boolean(getAccepted()[t.id]);
+  const tests=getTaskTestsForTask(t);
   const details=$('#hiddenTestsDetails');
   const summary=$('#hiddenTestsSummary');
   hiddenTestsList.innerHTML='';
-  if(!hidden.length){
-    summary.textContent='隱藏測資';
-    hiddenTestsList.innerHTML='<div class="hidden-tests-empty">這一階沒有隱藏測資。</div>';
+  if(details) details.open=true;
+  if(!tests.length){
+    summary.textContent='全部正式測資';
+    hiddenTestsList.innerHTML='<div class="hidden-tests-empty">這一階沒有正式測資。</div>';
     return;
   }
-  if(!accepted){
-    if(details) details.open=false;
-    summary.textContent=`隱藏測資 ${hidden.length} 筆（AC 後解鎖）`;
-    hiddenTestsList.innerHTML=`<div class="hidden-tests-empty">隱藏測資的輸入與答案會在本階 AC 後解鎖；提交時仍可在 TEST RESULTS 查看每筆評測結果。</div>`;
-    return;
-  }
-  summary.textContent=`解題後測資回顧（${hidden.length} 筆）`;
-  hidden.forEach(({test,idx})=>{
+  summary.textContent=`全部正式測資（${tests.length} 筆）`;
+  tests.forEach((test,idx)=>{
     const item=document.createElement('div');
+    const kind=test.public?'公開測資':(test.generated?'生成測資':'正式測資');
     item.className='hidden-test-item';
-    item.innerHTML=`<strong>#${idx+1} ${test.generated?'生成隱藏測資':'隱藏測資'}</strong><div class="hidden-test-io"><div class="hidden-test-block"><span class="hidden-test-label">輸入</span><pre>${esc(test.input)}</pre></div><div class="hidden-test-block"><span class="hidden-test-label">輸出</span><pre>${esc(test.output)}</pre></div></div>`;
+    item.innerHTML=`<strong>#${idx+1} ${kind}</strong><div class="hidden-test-io"><div class="hidden-test-block"><span class="hidden-test-label">輸入</span><pre>${esc(test.input)}</pre></div><div class="hidden-test-block"><span class="hidden-test-label">預期輸出</span><pre>${esc(test.output)}</pre></div></div>`;
     hiddenTestsList.appendChild(item);
   });
 }
