@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- Generated from shared canonical Python OJ template. template_sha256=ba71a0615bb222cd4f1ec3e6793be91441b74c82660593c83a9cc3a0da0487ab -->
+<!-- Generated from shared canonical Python OJ template. template_sha256=f5fd4e4d7594ce173923e2625cecdd6d7948adf924fe0e20f453434ca4b41f8e -->
 <html lang="zh-Hant-TW" data-theme="dark">
 <head>
 <meta charset="utf-8">
@@ -388,13 +388,17 @@ li.CodeMirror-hint-active{background:#e8f0f6;color:#22364b;}
 
 /* Goal-first stage orientation */
 
-/* Comprehension-first pre-code notice */
-.pre-code-notice{display:flex;align-items:flex-start;gap:12px;margin:20px 0 5px;padding:14px 16px;border:1px solid #d97706;border-left:5px solid #d97706;border-radius:7px;background:#fff7ed;color:#7c2d12;}
-.pre-code-notice::before{content:"!";display:grid;place-items:center;flex:0 0 30px;width:30px;height:30px;border-radius:999px;background:#b45309;color:#fff;font:900 1rem/1 system-ui,sans-serif;}
-.pre-code-notice strong{display:block;padding-top:1px;font-size:.95rem;line-height:1.68;font-weight:900;}
-html[data-theme="dark"] .pre-code-notice{background:#1a1304;color:#fef3c7;border-color:#fbbf24;}
-html[data-theme="dark"] .pre-code-notice::before{background:#fbbf24;color:#1a1304;}
-@media(max-width:520px){.pre-code-notice{gap:10px;margin:17px 0 4px;padding:12px 13px}.pre-code-notice::before{flex-basis:27px;width:27px;height:27px}.pre-code-notice strong{font-size:.9rem}}
+/* Comprehension-first editor readiness dialog. Wide layouts anchor it over the editor/right side. */
+#editorReadinessDialog{position:fixed;inset:auto;right:clamp(20px,4vw,68px);top:50%;transform:translateY(-50%);margin:0;width:min(500px,calc(50vw - 42px));max-width:500px;border:1px solid var(--line-strong);border-radius:9px;background:var(--paper);color:var(--ink);box-shadow:0 24px 70px rgba(15,23,42,.28);}
+#editorReadinessDialog::backdrop{background:rgba(15,23,42,.38);}
+.editor-readiness-body{display:grid;gap:16px;padding:20px 20px 18px;background:var(--paper);}
+.editor-readiness-message{margin:0!important;padding:13px 14px;border:1px solid #d97706;border-left:5px solid #d97706;border-radius:7px;background:#fff7ed;color:#7c2d12!important;font-size:.96rem!important;font-weight:900;line-height:1.72;}
+.editor-readiness-actions{display:grid;grid-template-columns:1fr;gap:9px;}
+.editor-readiness-actions .btn{width:100%;min-height:42px;white-space:normal;text-align:center;}
+html[data-theme="dark"] #editorReadinessDialog,html[data-theme="dark"] .editor-readiness-body{background:#080808;color:var(--ink);border-color:#2b2b2b;}
+html[data-theme="dark"] .editor-readiness-message{background:#1a1304;color:#fef3c7!important;border-color:#fbbf24;}
+@media(max-width:1120px){#editorReadinessDialog{right:50%;top:50%;transform:translate(50%,-50%);width:min(520px,92vw);}}
+@media(max-width:520px){#editorReadinessDialog{width:calc(100vw - 24px)}.editor-readiness-body{padding:16px 14px 14px}.editor-readiness-message{padding:12px;font-size:.9rem!important}}
 
 /* Dialog */
 dialog{padding:0;width:min(840px,92vw);border:1px solid #d7dee5;border-radius:8px;box-shadow:0 24px 70px rgba(15,23,42,.22);}
@@ -569,6 +573,17 @@ html[data-theme="dark"] .tutorial-details,html[data-theme="dark"] .tutorial-cont
   <div class="dialog-body"><div id="answerVariants" class="answer-variants single"></div></div>
 </dialog>
 
+<dialog id="editorReadinessDialog" aria-labelledby="editorReadinessTitle" aria-describedby="editorReadinessMessage">
+  <div class="dialog-head"><strong id="editorReadinessTitle">開始寫程式前</strong></div>
+  <div class="editor-readiness-body">
+    <p class="editor-readiness-message" id="editorReadinessMessage">在你用紙筆自己計算、畫出「範例輸入」如何變成「範例輸出」之前，請勿開始寫任何程式碼。</p>
+    <div class="editor-readiness-actions">
+      <button class="btn primary" id="editorReadinessReadyBtn" type="button">我已經懂輸入如何變成輸出了</button>
+      <button class="btn" id="editorReadinessNotReadyBtn" type="button" autofocus>我還沒準備好</button>
+    </div>
+  </div>
+</dialog>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.21/codemirror.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.21/mode/python/python.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.21/addon/edit/closebrackets.min.js"></script>
@@ -619,6 +634,7 @@ let pyWorkerSupportsJspi = false;
 let interactiveSession = null;
 let terminalQueuedLines = [];
 let terminalEof = false;
+let editorReadinessBypass = false;
 
 const STORAGE_SCHEMA = OJ_META.storage.schema;
 const STORAGE_PREFIX = `${OJ_META.storage.namespace}:v${STORAGE_SCHEMA}`;
@@ -774,6 +790,40 @@ function bindPublicSampleCopyButtons(publicSamples){
 }
 
 function stageKeyForTask(task){return String(task?.stageKey||task?.id||'');}
+function editorReadinessKey(task=TASKS[currentTaskIndex]){return `${STORAGE_PREFIX}:paper-ready:${stageKeyForTask(task)}`;}
+function isEditorReadinessAcknowledged(task=TASKS[currentTaskIndex]){
+  return Boolean(task && STORAGE.getItem(editorReadinessKey(task))==='1');
+}
+function editorReadinessApplies(){return !sourceStageActive && Boolean(TASKS[currentTaskIndex]);}
+function focusLearnerEditor(){
+  if(sourceStageActive)return;
+  window.setTimeout(()=>{if(editor)editor.focus();else $('#codeEditor')?.focus();},0);
+}
+function openEditorReadinessGate(){
+  if(editorReadinessBypass || !editorReadinessApplies() || isEditorReadinessAcknowledged())return false;
+  const dialog=$('#editorReadinessDialog');
+  if(!dialog || typeof dialog.showModal!=='function'){console.error('Editor readiness dialog is unavailable.');return false;}
+  if(!dialog.open)dialog.showModal();
+  return true;
+}
+function editorReadinessConfirmed(){
+  const task=TASKS[currentTaskIndex];
+  if(task)STORAGE.setItem(editorReadinessKey(task),'1');
+  const dialog=$('#editorReadinessDialog');if(dialog?.open)dialog.close();
+  focusLearnerEditor();
+}
+function editorReadinessDeferred(){
+  const dialog=$('#editorReadinessDialog');if(dialog?.open)dialog.close();
+  focusLearnerEditor();
+}
+function codeMirrorChangeInsertsContent(change){
+  if(!change || change.origin==='setValue')return false;
+  const inserted=Array.isArray(change.text)?change.text.join('\n'):'';
+  return inserted.length>0;
+}
+function textareaBeforeInputInsertsContent(event){
+  return Boolean(event && typeof event.inputType==='string' && event.inputType.startsWith('insert'));
+}
 function taskFromId(id){return TASKS.find(t=>String(t.id)===String(id))||null;}
 function legacyCurrentDraftKey(id){return `${STORAGE_PREFIX}:code:${id}`;}
 function draftKey(id){const task=taskFromId(id);return `${STORAGE_PREFIX}:code:${task?stageKeyForTask(task):String(id)}`;}
@@ -1081,22 +1131,32 @@ function renderPublicSample(task,sample,index,explainedIndex){
   const sampleOriginClass=(item)=>item?.sampleOrigin==='official'?' official':(item?.sampleOrigin==='special'?' special':'');
   const explained=index===explainedIndex;
   const special=sample?.sampleRole==='special';
-  const observedNote=special
-    ? '這筆刻意保留給邊界、特殊值或容易出錯的分支；先自己觀察它和有講解的範例差在哪裡。'
-    : `這筆不提供逐步講解。先自己比較它和公開範例 #${explainedIndex+1} 的資料形狀、分支與輸出差異。`;
-  const explanation=explained ? `
-    <div class="section-title">範例測資講解（公開範例 #${idx}）</div>
-    <div class="sample-explanation">
-      <div class="sample-explain-intro"><strong>範例 #${idx} 說明</strong><small>這一筆是本階重新審查後最適合逐步講解的公開範例。</small></div>
-      <p class="sample-selection-note"><strong>為什麼選這筆：</strong>${esc(task?.sampleExplanationSelection?.reason||'此範例最適合呈現本階核心資料流。')}</p>
-      <div class="sample-explanation-body">${task.sampleExplain}</div>
-    </div>` : `<p class="sample-observe-note">${observedNote}</p>`;
+  const observedNote=explained
+    ? '這筆是本階選定的逐步講解範例。先把三筆公開範例都自己算過，再到所有範例下方查看完整講解。'
+    : (special
+      ? '這筆刻意保留給邊界、特殊值或容易出錯的分支；先自己觀察它和有講解的範例差在哪裡。'
+      : `這筆不提供逐步講解。先自己比較它和公開範例 #${explainedIndex+1} 的資料形狀、分支與輸出差異。`);
   return `
     <div class="section-title sample-section-title"><span>公開範例 #${idx}</span><span class="sample-origin-badge${sampleOriginClass(sample)}">${sampleOriginLabel(sample)}</span>${explained?'<span class="sample-explained-badge">講解</span>':''}</div>
-    <div class="extra-sample-card">
+    <div class="extra-sample-card" data-public-sample-index="${idx}">
       <div class="sample-grid"><div class="sample-box"><div class="sample-box-head"><h4>輸入</h4><button class="sample-copy-btn" type="button" data-copy-public-input="${index}" title="複製公開範例 #${idx} 輸入">複製</button></div><pre>${esc(String(sample.input??'').trimEnd())}</pre></div><div class="sample-box"><h4>輸出</h4><pre>${esc(String(sample.output??'').trimEnd())}</pre></div></div>
-      ${explanation}
+      <p class="sample-observe-note">${observedNote}</p>
     </div>`;
+}
+
+function renderSelectedSampleExplanation(task,publicSamples,explainedIndex){
+  const sample=publicSamples[explainedIndex];
+  if(!sample) return '';
+  const idx=explainedIndex+1;
+  return `
+    <section class="sample-explanation-section" data-sample-explanation-after-public-list="true" data-explained-public-index="${idx}">
+      <div class="section-title">範例測資講解（公開範例 #${idx}）</div>
+      <div class="sample-explanation">
+        <div class="sample-explain-intro"><strong>範例 #${idx} 說明</strong><small>先看完上方三筆公開範例；這一筆是本階重新審查後最適合逐步講解的案例。</small></div>
+        <p class="sample-selection-note"><strong>為什麼選這筆：</strong>${esc(task?.sampleExplanationSelection?.reason||'此範例最適合呈現本階核心資料流。')}</p>
+        <div class="sample-explanation-body">${task.sampleExplain}</div>
+      </div>
+    </section>`;
 }
 
 function renderProblem(){
@@ -1106,6 +1166,7 @@ function renderProblem(){
   const publicSamples=getPublicTestsForTask(t);
   const explainedIndex=sampleExplanationIndex(t,publicSamples);
   const samplesHtml=publicSamples.map((sample,index)=>renderPublicSample(t,sample,index,explainedIndex)).join('');
+  const sampleExplanationHtml=renderSelectedSampleExplanation(t,publicSamples,explainedIndex);
   problemPane.innerHTML=`
     <div class="kicker">第 ${t.id} 階 / ${TASKS.length}</div>
     <h1>${esc(t.title)}</h1>
@@ -1116,10 +1177,8 @@ function renderProblem(){
     ${renderFormalInput(t)}
     <div class="section-title">輸出</div>
     <p>${renderFormalProse(t.output)}</p>
-    <div class="pre-code-notice" data-pre-code-notice="true">
-      <strong>在你用紙筆自己計算、畫出「範例輸入」如何變成「範例輸出」之前，請勿開始寫任何程式碼。</strong>
-    </div>
     ${samplesHtml}
+    ${sampleExplanationHtml}
     <details class="tutorial-details">
       <summary><span>詳細教學</span><span class="tutorial-summary-note">觀念 → 圖解 → 程式逐段寫 → 自我檢查</span></summary>
       <div class="tutorial-content">${t.tutorial}</div>
@@ -1425,18 +1484,27 @@ function setupEditor(){
   if(window.CodeMirror){
     CodeMirror.registerHelper('hint','python-custom',function(cm){const cur=cm.getCursor(),token=cm.getTokenAt(cur);let start=token.start,end=cur.ch,word=token.string.slice(0,end-start);if(!/^[A-Za-z_][A-Za-z0-9_]*$/.test(word)){start=end;word=''}const list=COMPLETIONS.filter(x=>x.startsWith(word)&&x!==word);return {list:list.length?list:COMPLETIONS,from:CodeMirror.Pos(cur.line,start),to:CodeMirror.Pos(cur.line,end)}});
     editor=CodeMirror.fromTextArea(textarea,{mode:'python',lineNumbers:true,indentUnit:4,tabSize:4,indentWithTabs:false,lineWrapping:false,autoCloseBrackets:true,matchBrackets:true,extraKeys:{
-      'Ctrl-Space':cm=>cm.showHint({hint:CodeMirror.hint['python-custom'],completeSingle:false}),'Alt-/':cm=>cm.showHint({hint:CodeMirror.hint['python-custom'],completeSingle:false}),'Ctrl-/':cm=>toggleCodeMirrorComments(cm),'Backspace':cm=>deleteCodeMirrorIndentBackspace(cm),'Enter':cm=>enterCodeMirror(cm),'Ctrl-Enter':()=>judge(),'F9':()=>runCurrentCode(),'Tab':cm=>indentCodeMirrorTab(cm),'Shift-Tab':cm=>unindentCodeMirror(cm)
+      'Ctrl-Space':cm=>cm.showHint({hint:CodeMirror.hint['python-custom'],completeSingle:false}),'Alt-/':cm=>cm.showHint({hint:CodeMirror.hint['python-custom'],completeSingle:false}),'Ctrl-/':cm=>{if(!openEditorReadinessGate())toggleCodeMirrorComments(cm)},'Backspace':cm=>deleteCodeMirrorIndentBackspace(cm),'Enter':cm=>{if(!openEditorReadinessGate())enterCodeMirror(cm)},'Ctrl-Enter':()=>judge(),'F9':()=>runCurrentCode(),'Tab':cm=>{if(!openEditorReadinessGate())indentCodeMirrorTab(cm)},'Shift-Tab':cm=>unindentCodeMirror(cm)
     }});
+    editor.on('beforeChange',(cm,change)=>{
+      if(!editorReadinessBypass && codeMirrorChangeInsertsContent(change) && openEditorReadinessGate())change.cancel();
+    });
     editor.on('change',saveDraft);
   }else{
     textarea.className='fallback-editor';
+    textarea.addEventListener('beforeinput',e=>{
+      if(!editorReadinessBypass && textareaBeforeInputInsertsContent(e) && openEditorReadinessGate() && e.cancelable)e.preventDefault();
+    });
+    textarea.addEventListener('paste',e=>{
+      if(!editorReadinessBypass && openEditorReadinessGate())e.preventDefault();
+    });
     textarea.addEventListener('keydown',e=>{
       if(e.key==='Backspace'&&!e.ctrlKey&&!e.altKey&&!e.metaKey&&deleteTextareaIndentBackspace(textarea)){e.preventDefault();}
-      else if(e.ctrlKey&&e.key==='/'){e.preventDefault();toggleTextareaComments(textarea);}
+      else if(e.ctrlKey&&e.key==='/'){e.preventDefault();if(!openEditorReadinessGate())toggleTextareaComments(textarea);}
       else if(e.ctrlKey&&e.key==='Enter'){e.preventDefault();judge();}
       else if(e.key==='F9'){e.preventDefault();runCurrentCode();}
-      else if(e.key==='Tab'){e.preventDefault();e.shiftKey?unindentTextarea(textarea):tabTextarea(textarea);}
-      else if(e.key==='Enter'){e.preventDefault();enterTextarea(textarea);}
+      else if(e.key==='Tab'){e.preventDefault();if(!openEditorReadinessGate())e.shiftKey?unindentTextarea(textarea):tabTextarea(textarea);}
+      else if(e.key==='Enter'){e.preventDefault();if(!openEditorReadinessGate())enterTextarea(textarea);}
     });
     textarea.addEventListener('input',saveDraft);
   }
@@ -1859,6 +1927,9 @@ $('#answerBtn').addEventListener('click',()=>{
   $('#answerDialog').showModal();
 });
 $('#closeAnswer').addEventListener('click',()=>$('#answerDialog').close());
+$('#editorReadinessReadyBtn').addEventListener('click',editorReadinessConfirmed);
+$('#editorReadinessNotReadyBtn').addEventListener('click',editorReadinessDeferred);
+$('#editorReadinessDialog').addEventListener('cancel',e=>{e.preventDefault();editorReadinessDeferred();});
 $('#answerDialog').addEventListener('click',(e)=>{if(e.target===$('#answerDialog'))$('#answerDialog').close()});
 $('#resetBtn').addEventListener('click',()=>{
   const t=TASKS[currentTaskIndex];
