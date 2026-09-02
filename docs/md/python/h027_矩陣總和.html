@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- Generated from shared canonical Python OJ template. template_sha256=30a19ec380bcd5c8e2c111c2532e1eeaf065dbf62a742db2279abdc0b629c18f -->
+<!-- Generated from shared canonical Python OJ template. template_sha256=400fb2b5e0380c230c6ac670dcb6b056aee8fbf7ea6d85380ca2c26609af6d6f -->
 <html lang="zh-Hant-TW" data-theme="dark">
 <head>
 <meta charset="utf-8">
@@ -315,7 +315,9 @@ pre{white-space:pre-wrap;word-break:break-word;margin:9px 0;padding:13px 15px;ba
 .hidden-test-io{display:grid;grid-template-columns:minmax(0,1fr) minmax(150px,.45fr);gap:10px;}
 .hidden-test-label{display:block;margin:0 0 4px;font-weight:800;margin-bottom:5px;color:var(--muted);font-size:.72rem;letter-spacing:.03em;}
 .hidden-test-item pre{margin:0;overflow:auto;background:#f8fafb;max-height:220px;}
-.history-item{display:flex;justify-content:space-between;gap:10px;border-bottom:1px solid #eee;padding:8px 10px;border:1px solid #e7ebef;border-radius:4px;background:#fff;font-size:.8rem;color:#657184;}
+.history-item{display:grid;grid-template-columns:minmax(0,1fr) auto auto;gap:9px;align-items:center;padding:8px 10px;border:1px solid #e7ebef;border-radius:4px;background:#fff;font-size:.8rem;color:#657184;}
+.history-item-meta{min-width:0;overflow-wrap:anywhere;}.history-item strong{white-space:nowrap}.history-view-btn,.code-copy-btn{min-height:30px;padding:4px 9px;border:1px solid var(--line-strong);border-radius:5px;background:var(--paper);color:var(--accent-strong);font:750 .74rem/1.2 inherit;cursor:pointer}.history-view-btn:hover,.code-copy-btn:hover{background:var(--accent-soft)}.history-view-btn:disabled{cursor:not-allowed;color:var(--muted);background:var(--soft);opacity:.72}.history-view-btn.success,.code-copy-btn.success{color:var(--ok);border-color:#b5dec8;background:var(--ok-soft)}
+.history-code-pre{margin:0;min-height:220px;max-height:min(68vh,720px);overflow:auto;white-space:pre;tab-size:4}.history-code-note{margin:0 0 10px;color:var(--muted);font-size:.82rem}@media(max-width:560px){.history-item{grid-template-columns:minmax(0,1fr) auto}.history-item strong{grid-column:1/2}.history-view-btn{grid-column:2/3;grid-row:1/3}}
 
 /* Editor */
 .editor-head{display:flex;align-items:center;gap:8px;flex-wrap:wrap;min-height:50px;padding:8px 11px 8px 14px;background:#f8fafb;border-bottom:1px solid var(--line);}
@@ -416,8 +418,10 @@ dialog::backdrop{background:rgba(15,23,42,.4);}
 .answer-variants.multi{display:grid;grid-template-columns:repeat(var(--answer-count),minmax(360px,1fr));gap:14px;overflow-x:auto;overscroll-behavior-inline:contain;padding-bottom:4px;}
 .answer-variant{min-width:0;border:1px solid var(--line);border-radius:7px;background:var(--paper);overflow:hidden;}
 .answer-variants.single .answer-variant{border:0;border-radius:0;background:transparent;}
-.answer-variant-title{margin:0;padding:10px 12px;border-bottom:1px solid var(--line);background:var(--soft);color:var(--ink);font-size:.84rem;}
+.answer-variant-head{display:flex;align-items:center;gap:8px;padding:7px 9px 7px 12px;border-bottom:1px solid var(--line);background:var(--soft);}
+.answer-variant-title{margin:0;margin-right:auto;color:var(--ink);font-size:.84rem;}
 .answer-variants.single .answer-variant-title{display:none;}
+.answer-variants.single .answer-variant-head{justify-content:flex-end;}
 .answer-variant pre{margin:0;border:0;border-radius:0;min-height:100%;overflow:auto;white-space:pre;word-break:normal;}
 .close-btn{padding:5px 9px;min-height:32px;border:1px solid #cfd6de;border-radius:5px;background:#fff;color:#4b586a;font-size:.79rem;}
 
@@ -465,13 +469,13 @@ dialog::backdrop{background:rgba(15,23,42,.4);}
 .learning-guide{display:grid;gap:10px}.learn-card{padding:12px 14px;border:1px solid var(--line);border-radius:7px;background:var(--paper)}.learn-card>strong{display:block;margin-bottom:6px}.learn-recap{background:var(--soft);border-left:3px solid #9ba6b4}.learn-new{background:var(--accent-soft);border-left:3px solid #6f98bb}.learn-plan{background:#f7fbf8;border-left:3px solid #79ab8f}.learn-pitfall{background:#fffaf2;border-left:3px solid #d1a04e}.learn-card ol,.learn-card ul{margin:.45rem 0 .2rem;padding-left:1.4rem}.learn-card li{margin:.28rem 0}.learn-visual{margin:10px 0;padding:12px;border:1px solid var(--line);border-radius:7px;background:var(--paper)}.learn-visual-title{margin-bottom:8px;color:#344256;font-size:.82rem;font-weight:850}.learn-step-flow{display:flex;gap:8px;align-items:center;justify-content:center;flex-wrap:wrap}.learn-step-node{padding:8px 10px;border:1px solid var(--line);border-radius:6px;background:var(--soft);text-align:center}.learn-step-node small{display:block;color:var(--muted)}
 html[data-theme="light"]{color-scheme:light}html[data-theme="dark"]{color-scheme:dark;--bg:#000000;--paper:#080808;--ink:#f4f7fb;--muted:#a2aab8;--line:#242424;--line-strong:#3a3a3a;--soft:#0d0d0d;--soft2:#0b0b0b;--accent:#22d3ee;--accent-strong:#06b6d4;--accent-soft:#06181d;--ok:#4ade80;--ok-soft:#07170d;--bad:#fb7185;--bad-soft:#1a090d;--warn:#fbbf24;--warn-soft:#1a1304;--terminal:#000000;--terminal-soft:#080808;--shadow:none;background:#000}
 html[data-theme="dark"] body{background:#000;color:var(--ink)}html[data-theme="dark"] header{background:rgba(0,0,0,.97);border-color:#222}html[data-theme="dark"] .panel,html[data-theme="dark"] .problem,html[data-theme="dark"] .results-wrap,html[data-theme="dark"] .editor-shell,html[data-theme="dark"] .dialog-body{background:#080808;color:var(--ink);border-color:#242424}
-html[data-theme="dark"] .editor-head,html[data-theme="dark"] .editor-foot,html[data-theme="dark"] .dialog-head,html[data-theme="dark"] .answer-variant,html[data-theme="dark"] .answer-variant-title,html[data-theme="dark"] .sample-explanation,html[data-theme="dark"] .demo-step,html[data-theme="dark"] .learn-card,html[data-theme="dark"] .learn-visual,html[data-theme="dark"] .learn-step-node,html[data-theme="dark"] .sample-box,html[data-theme="dark"] .extra-sample-card,html[data-theme="dark"] .hidden-test-item,html[data-theme="dark"] .history-item,html[data-theme="dark"] .reason-node,html[data-theme="dark"] .pair-card,html[data-theme="dark"] .placement-card,html[data-theme="dark"] .window-card,html[data-theme="dark"] .candidate-card,html[data-theme="dark"] .candidate-map .candidate-pos,html[data-theme="dark"] .shape-grid,html[data-theme="dark"] .coord-chip,html[data-theme="dark"] .final-output-visual>div:not(.big-arrow){background:#090909!important;color:#e7ebf0;border-color:#292929}
+html[data-theme="dark"] .editor-head,html[data-theme="dark"] .editor-foot,html[data-theme="dark"] .dialog-head,html[data-theme="dark"] .answer-variant,html[data-theme="dark"] .answer-variant-head,html[data-theme="dark"] .answer-variant-title,html[data-theme="dark"] .sample-explanation,html[data-theme="dark"] .demo-step,html[data-theme="dark"] .learn-card,html[data-theme="dark"] .learn-visual,html[data-theme="dark"] .learn-step-node,html[data-theme="dark"] .sample-box,html[data-theme="dark"] .extra-sample-card,html[data-theme="dark"] .hidden-test-item,html[data-theme="dark"] .history-item,html[data-theme="dark"] .reason-node,html[data-theme="dark"] .pair-card,html[data-theme="dark"] .placement-card,html[data-theme="dark"] .window-card,html[data-theme="dark"] .candidate-card,html[data-theme="dark"] .candidate-map .candidate-pos,html[data-theme="dark"] .shape-grid,html[data-theme="dark"] .coord-chip,html[data-theme="dark"] .final-output-visual>div:not(.big-arrow){background:#090909!important;color:#e7ebf0;border-color:#292929}
 html[data-theme="dark"] .learn-new{background:#06181d!important;border-left-color:#155e75}html[data-theme="dark"] .learn-plan{background:#07170d!important;border-left-color:#1f5b36}html[data-theme="dark"] .learn-pitfall{background:#1a1304!important;border-left-color:#6b5213}html[data-theme="dark"] .btn,html[data-theme="dark"] .theme-control select,html[data-theme="dark"] .level-btn{background:#0b0b0b;color:#dbe1e8;border-color:#303030}html[data-theme="dark"] .btn.primary,html[data-theme="dark"] .level-btn.active{background:var(--accent);color:#001014;border-color:var(--accent)}html[data-theme="dark"] .btn.danger{color:#fda4af}
 html[data-theme="dark"] .CodeMirror,html[data-theme="dark"] .fallback-editor{background:#020202;color:#e5e7eb}html[data-theme="dark"] .CodeMirror-gutters{background:#080808;border-color:#242424}html[data-theme="dark"] .CodeMirror-selected{background:#12343b!important}html[data-theme="dark"] .cm-s-default .cm-keyword{color:#67e8f9}html[data-theme="dark"] .cm-s-default .cm-builtin{color:#c4b5fd}html[data-theme="dark"] .cm-s-default .cm-number{color:#fbbf24}html[data-theme="dark"] .cm-s-default .cm-string{color:#86efac}html[data-theme="dark"] .cm-s-default .cm-comment{color:#8b949e}
 html[data-theme="dark"] .terminal-workspace,html[data-theme="dark"] .terminal-panel,html[data-theme="dark"] .terminal-console,html[data-theme="dark"] .submit-tests-panel{background:#000}html[data-theme="dark"] .terminal-head,html[data-theme="dark"] .submit-tests-head{background:#080808;border-color:#242424}html[data-theme="dark"] .submit-test-row{background:#0a0a0a;border-color:#2a2a2a}
 html[data-theme="dark"] .sample-explanation-body,html[data-theme="dark"] .sample-explanation-body p,html[data-theme="dark"] .sample-explanation-body small,html[data-theme="dark"] .reason-node small,html[data-theme="dark"] .visual-caption{color:#c6cbd2}html[data-theme="dark"] .sample-explanation-body pre,html[data-theme="dark"] .hidden-test-item pre,html[data-theme="dark"] pre{background:#020202;color:#e5e7eb;border-color:#242424}html[data-theme="dark"] .result-summary,html[data-theme="dark"] .hidden-tests summary,html[data-theme="dark"] .submission-history summary{background:#0b0b0b;color:#cfd5dd;border-color:#292929}
 html[data-theme="dark"] .matrix-grid,html[data-theme="dark"] .matrix-cell,html[data-theme="dark"] .number-strip span,html[data-theme="dark"] .calc-flow span{background:#0b0b0b;color:#e8edf3;border-color:#303030}html[data-theme="dark"] .matrix-cell.focus-cell{background:#06242b;border-color:#16879d;box-shadow:inset 0 0 0 1px #16879d}html[data-theme="dark"] .matrix-cell.diff-cell,html[data-theme="dark"] .pair-card.diff{background:#1a090d;border-color:#6b2733}html[data-theme="dark"] .pair-card.same,html[data-theme="dark"] .candidate-pos.ok,html[data-theme="dark"] .window-card.ok-card{background:#07170d;border-color:#1f5b36}
-html[data-theme="dark"] .sample-copy-btn{background:#0b0b0b;color:#c6cbd2;border-color:#303030}html[data-theme="dark"] .sample-copy-btn:hover{background:#101010;color:#e7ebf0}html[data-theme="dark"] .sample-copy-btn.success{background:#07170d;color:#86efac;border-color:#1f5b36}html[data-theme="dark"] .sample-origin-badge{background:#0d0d0d;color:#cbd2dc;border-color:#303030}html[data-theme="dark"] .sample-origin-badge.official{background:#06181d;color:#67e8f9;border-color:#155e75}html[data-theme="dark"] .sample-origin-badge.special{background:#1a1304;color:#fbbf24;border-color:#6b5213}html[data-theme="dark"] .sample-explained-badge{background:#06181d;color:#67e8f9;border-color:#16879d}
+html[data-theme="dark"] .sample-copy-btn,html[data-theme="dark"] .history-view-btn,html[data-theme="dark"] .code-copy-btn{background:#0b0b0b;color:#c6cbd2;border-color:#303030}html[data-theme="dark"] .sample-copy-btn:hover,html[data-theme="dark"] .history-view-btn:hover,html[data-theme="dark"] .code-copy-btn:hover{background:#101010;color:#e7ebf0}html[data-theme="dark"] .sample-copy-btn.success,html[data-theme="dark"] .history-view-btn.success,html[data-theme="dark"] .code-copy-btn.success{background:#07170d;color:#86efac;border-color:#1f5b36}html[data-theme="dark"] .sample-origin-badge{background:#0d0d0d;color:#cbd2dc;border-color:#303030}html[data-theme="dark"] .sample-origin-badge.official{background:#06181d;color:#67e8f9;border-color:#155e75}html[data-theme="dark"] .sample-origin-badge.special{background:#1a1304;color:#fbbf24;border-color:#6b5213}html[data-theme="dark"] .sample-explained-badge{background:#06181d;color:#67e8f9;border-color:#16879d}
 html[data-theme="dark"] .brand-title,html[data-theme="dark"] .problem h1,html[data-theme="dark"] .section-title,html[data-theme="dark"] .results-head h2,html[data-theme="dark"] .editor-head strong,html[data-theme="dark"] .dialog-head strong,html[data-theme="dark"] .sample-explain-intro strong,html[data-theme="dark"] .learn-visual-title{color:var(--ink)}html[data-theme="dark"] .brand-subtitle,html[data-theme="dark"] .progress-wrap,html[data-theme="dark"] .runtime,html[data-theme="dark"] .source-link,html[data-theme="dark"] .kicker,html[data-theme="dark"] .meta,html[data-theme="dark"] .sample-box h4,html[data-theme="dark"] .sample-explain-intro small,html[data-theme="dark"] .editor-foot,html[data-theme="dark"] .hidden-test-label,html[data-theme="dark"] .history-item,html[data-theme="dark"] .hidden-tests-empty,html[data-theme="dark"] .history-empty{color:var(--muted)}html[data-theme="dark"] .runtime{background:#0b0b0b;border-color:#303030}html[data-theme="dark"] .storage-warning{background:#1a1304;color:#f7d477;border-color:#6b5213}html[data-theme="dark"] .problem p{color:#d8dde5}html[data-theme="dark"] .problem code,html[data-theme="dark"] .dialog-body code{background:#101010;color:#dff9ff;border-color:#2c2c2c}html[data-theme="dark"] .level-strip,html[data-theme="dark"] .editor-head,html[data-theme="dark"] .editor-foot{background:#080808;border-color:#242424}html[data-theme="dark"] .status-pill{background:#0d0d0d;color:#cbd2dc;border-color:#303030}
 @media(max-width:720px){.terminal-workspace{grid-template-columns:1fr}.terminal-panel{border-right:0;border-bottom:1px solid #2b3649}.theme-control{max-width:100%}}
 @media(max-width:390px){.topbar{align-items:flex-start}.theme-control{margin-left:0}.theme-control label{display:none}.terminal-head{gap:6px}}
@@ -576,6 +580,11 @@ html[data-theme="dark"] .tutorial-details,html[data-theme="dark"] .tutorial-cont
 <dialog id="answerDialog">
   <div class="dialog-head"><strong id="answerTitle">參考答案</strong><button class="close-btn" id="closeAnswer">關閉</button></div>
   <div class="dialog-body"><div id="answerVariants" class="answer-variants single"></div></div>
+</dialog>
+
+<dialog id="historyCodeDialog" aria-labelledby="historyCodeTitle">
+  <div class="dialog-head"><strong id="historyCodeTitle">提交時的程式碼</strong><button class="code-copy-btn" id="copyHistoryCodeBtn" type="button">複製</button><button class="close-btn" id="closeHistoryCode" type="button">關閉</button></div>
+  <div class="dialog-body"><p class="history-code-note" id="historyCodeMeta"></p><pre class="history-code-pre" id="historyCodePre"></pre></div>
 </dialog>
 
 <dialog id="editorReadinessDialog" aria-labelledby="editorReadinessTitle" aria-describedby="editorReadinessMessage">
@@ -888,18 +897,23 @@ async function copyTextToClipboard(text){
   }
   return legacyCopyText(value);
 }
+async function copyCodeWithFeedback(button,text){
+  if(!button)return false;
+  const original=button.textContent;
+  button.disabled=true;
+  const ok=await copyTextToClipboard(text);
+  button.textContent=ok?'已複製':'複製失敗';
+  button.classList.toggle('success',ok);
+  window.setTimeout(()=>{if(button.isConnected){button.textContent=original;button.classList.remove('success');button.disabled=false;}},1200);
+  return ok;
+}
 function bindPublicSampleCopyButtons(publicSamples){
   problemPane.querySelectorAll('[data-copy-public-input]').forEach(btn=>{
     btn.addEventListener('click',async()=>{
       const idx=Number(btn.dataset.copyPublicInput);
       const sample=publicSamples[idx];
       if(!sample)return;
-      const original=btn.textContent;
-      btn.disabled=true;
-      const ok=await copyTextToClipboard(sample.input);
-      btn.textContent=ok?'已複製':'複製失敗';
-      btn.classList.toggle('success',ok);
-      window.setTimeout(()=>{if(btn.isConnected){btn.textContent=original;btn.classList.remove('success');btn.disabled=false;}},1200);
+      await copyCodeWithFeedback(btn,sample.input);
     });
   });
 }
@@ -1033,19 +1047,22 @@ function renderReferenceAnswers(task){
   host.className=`answer-variants ${multi?'multi':'single'}`;
   host.style.setProperty('--answer-count',String(variants.length));
   host.replaceChildren();
-  for(const variant of variants){
+  for(const [index,variant] of variants.entries()){
     const section=document.createElement('section');section.className='answer-variant';
+    const head=document.createElement('div');head.className='answer-variant-head';
     const title=document.createElement('h3');title.className='answer-variant-title';title.textContent=variant.title;
+    const copy=document.createElement('button');copy.type='button';copy.className='code-copy-btn';copy.dataset.copyReference=String(index);copy.textContent='複製';copy.title=`複製${variant.title}`;
+    copy.addEventListener('click',()=>copyCodeWithFeedback(copy,variant.code));
     const pre=document.createElement('pre');pre.textContent=variant.code;
-    section.append(title,pre);host.append(section);
+    head.append(title,copy);section.append(head,pre);host.append(section);
   }
 }
 
 function historyKey(){return HISTORY_KEY;}
 function getHistory(){return safeJsonParse(STORAGE.getItem(historyKey())||'[]',[]);}
-function addHistory(taskId, verdict, passed, total){
+function addHistory(taskId, verdict, passed, total, code){
   const task=taskFromId(taskId);const list=getHistory();
-  list.unshift({time:new Date().toLocaleString('zh-TW',{hour12:false}),taskId,stageKey:task?stageKeyForTask(task):'',verdict,passed,total});
+  list.unshift({time:new Date().toLocaleString('zh-TW',{hour12:false}),taskId,stageKey:task?stageKeyForTask(task):'',verdict,passed,total,code:String(code??'')});
   STORAGE.setItem(historyKey(),JSON.stringify(list.slice(0,30)));renderHistory();
 }
 function clearAllLocalRecords(){for(const key of STORAGE.keys()){if(key.startsWith(OJ_META.storage.namespace))STORAGE.removeItem(key);}}
@@ -1064,7 +1081,7 @@ function buildPortableRecord(){
     oj:{problemId:String(OJ_META.source.problemId),sourceUrl:String(OJ_META.source.url),storageNamespace:String(OJ_META.storage.namespace),storageSchema:STORAGE_SCHEMA,language:'python3'},
     view:{sourceStageActive:Boolean(sourceStageActive),currentTaskId:current?.id??null,currentStageKey:current?stageKeyForTask(current):null},
     stages:TASKS.map(t=>({id:t.id,stageKey:stageKeyForTask(t),title:t.title,code:loadDraft(t)??t.starter??'',accepted:acceptedForTask(accepted,t)})),
-    history:getHistory().map(h=>({time:String(h.time??''),taskId:h.taskId,stageKey:String(h.stageKey??''),verdict:String(h.verdict??''),passed:Number(h.passed??0),total:Number(h.total??0)}))
+    history:getHistory().map(h=>({time:String(h.time??''),taskId:h.taskId,stageKey:String(h.stageKey??''),verdict:String(h.verdict??''),passed:Number(h.passed??0),total:Number(h.total??0),...(typeof h.code==='string'?{code:h.code}:{})}))
   };
 }
 function portableFilename(){
@@ -1134,7 +1151,9 @@ function validatePortableRecord(data){
     const verdict=String(raw.verdict||''),passed=Number(raw.passed),total=Number(raw.total);
     if(!task||!allowedVerdicts.has(verdict)||!Number.isInteger(passed)||!Number.isInteger(total)||passed<0||total<0||passed>total)throw new Error(`第 ${index+1} 筆提交紀錄內容不合法。`);
     const time=String(raw.time??'');if(time.length>120)throw new Error(`第 ${index+1} 筆提交時間格式不合法。`);
-    return {time,taskId:task.id,stageKey:stageKeyForTask(task),verdict,passed,total};
+    let code;
+    if(raw.code!==undefined){if(typeof raw.code!=='string'||raw.code.length>PORTABLE_RECORD_MAX_CODE_CHARS)throw new Error(`第 ${index+1} 筆提交程式碼格式或大小不合法。`);code=raw.code;}
+    return {time,taskId:task.id,stageKey:stageKeyForTask(task),verdict,passed,total,...(code!==undefined?{code}:{})};
   });
   const view=data.view;
   if(!view||typeof view!=='object'||typeof view.sourceStageActive!=='boolean')throw new Error('作答紀錄缺少目前階段資訊。');
@@ -1364,14 +1383,26 @@ function renderHiddenTests({resetDisclosure=false}={}){
   });
 }
 
+let activeHistoryCode='';
+function openHistoryCode(h){
+  if(!h || typeof h.code!=='string')return;
+  activeHistoryCode=h.code;
+  const task=(h.stageKey&&TASKS.find(t=>stageKeyForTask(t)===String(h.stageKey)))||taskFromId(h.taskId);
+  $('#historyCodeTitle').textContent=`第 ${task?.id??h.taskId} 階提交時的程式碼`;
+  $('#historyCodeMeta').textContent=`${String(h.time??'')}｜${String(h.verdict??'')} ${Number(h.passed??0)}/${Number(h.total??0)}`;
+  $('#historyCodePre').textContent=activeHistoryCode;
+  $('#historyCodeDialog').showModal();
+}
 function renderHistory(){
   const items=getHistory();
   historyList.innerHTML=items.length?'':'<div class="history-empty">尚無提交紀錄</div>';
   items.forEach(h=>{
-    const div=document.createElement('div');
-    div.className='history-item';
-    div.innerHTML=`<span>${esc(h.time)}｜第 ${h.taskId} 階</span><strong>${esc(h.verdict)} ${h.passed}/${h.total}</strong>`;
-    historyList.appendChild(div);
+    const div=document.createElement('div');div.className='history-item';
+    const meta=document.createElement('span');meta.className='history-item-meta';meta.textContent=`${String(h.time??'')}｜第 ${h.taskId} 階`;
+    const verdict=document.createElement('strong');verdict.textContent=`${String(h.verdict??'')} ${Number(h.passed??0)}/${Number(h.total??0)}`;
+    const view=document.createElement('button');view.type='button';view.className='history-view-btn';view.textContent=typeof h.code==='string'?'檢視程式碼':'舊紀錄無程式碼';view.disabled=typeof h.code!=='string';
+    if(typeof h.code==='string'){view.title='檢視這次提交時的程式碼';view.addEventListener('click',()=>openHistoryCode(h));}else{view.title='此筆紀錄建立於程式碼快照功能加入之前';}
+    div.append(meta,verdict,view);historyList.appendChild(div);
   });
 }
 
@@ -2010,20 +2041,21 @@ async function judge(){
       setAccepted(t.id);
       overallVerdict.className='status-pill ok';overallVerdict.textContent='Accepted';
       resultSummary.textContent=`全部 ${total} 筆測資通過。這一階完成。`;
-      addHistory(t.id,'AC',passed,total);
+      addHistory(t.id,'AC',passed,total,code);
       renderProgress();renderLevelStrip();renderHiddenTests();
     }else{
       const firstBad=results.find(x=>!x.pass);
       const verdict=firstBad?.environmentError?'JE':(firstBad?.timeout?'TLE':(firstBad?.error?'RE':'WA'));
       overallVerdict.className='status-pill bad';overallVerdict.textContent=verdict;
       resultSummary.textContent=`通過 ${passed} / ${total}。${verdict==='WA'?`目前採${compareModeDescription()}；請檢查輸出內容與格式。`:(verdict==='JE'?'評測環境暫時無法使用，請重新提交。':'先修正第一個失敗原因，再重新提交。')}`;
-      addHistory(t.id,verdict,passed,total);
+      addHistory(t.id,verdict,passed,total,code);
     }
   }catch(err){
     if(isOperationCurrent(op)){
       overallVerdict.className='status-pill bad';overallVerdict.textContent='JE';
       console.error(err);
       resultSummary.textContent='評測環境暫時無法使用，請重新提交。';
+      addHistory(t.id,'JE',passed,tests.length,code);
     }
   }finally{
     endOperation(op);
@@ -2041,6 +2073,10 @@ $('#answerBtn').addEventListener('click',()=>{
   $('#answerDialog').showModal();
 });
 $('#closeAnswer').addEventListener('click',()=>$('#answerDialog').close());
+$('#copyHistoryCodeBtn').addEventListener('click',()=>copyCodeWithFeedback($('#copyHistoryCodeBtn'),activeHistoryCode));
+$('#closeHistoryCode').addEventListener('click',()=>$('#historyCodeDialog').close());
+$('#historyCodeDialog').addEventListener('click',e=>{if(e.target===$('#historyCodeDialog'))$('#historyCodeDialog').close();});
+$('#historyCodeDialog').addEventListener('close',()=>{activeHistoryCode='';$('#historyCodePre').textContent='';$('#historyCodeMeta').textContent='';});
 $('#editorReadinessReadyBtn').addEventListener('click',editorReadinessConfirmed);
 $('#editorReadinessNotReadyBtn').addEventListener('click',editorReadinessDeferred);
 $('#editorReadinessDialog').addEventListener('cancel',e=>{e.preventDefault();editorReadinessDeferred();});
