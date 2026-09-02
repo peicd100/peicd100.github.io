@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- Generated from shared canonical Python OJ template. template_sha256=baa5ec5e66134e3b30519e42210f6740c9346855bc80fbf1e5ee02f31066dbcc -->
+<!-- Generated from shared canonical Python OJ template. template_sha256=30a19ec380bcd5c8e2c111c2532e1eeaf065dbf62a742db2279abdc0b629c18f -->
 <html lang="zh-Hant-TW" data-theme="dark">
 <head>
 <meta charset="utf-8">
@@ -241,6 +241,11 @@ header{position:sticky;top:0;z-index:40;background:rgba(255,255,255,.97);backdro
 .meta span+span::before{content:"·";margin:0 8px;color:#b1b8c1;}
 .section-title{position:relative;margin:27px 0 10px;padding:0 0 8px 13px;border-bottom:1px solid #e7ebef;color:#273345;font-size:.92rem;font-weight:800;}
 .section-title::before{content:"";position:absolute;left:0;top:.25em;width:3px;height:1.05em;border-radius:2px;background:var(--accent);}
+
+.paper-reminder{margin:18px 0 25px;padding:16px 18px;border:2px solid #d97706;border-left-width:6px;border-radius:8px;background:#fff7ed;color:#7c2d12;box-shadow:0 5px 16px rgba(124,45,18,.08);}
+.paper-reminder-title{display:block;margin:0 0 6px;color:inherit;font-size:.82rem;font-weight:950;letter-spacing:.04em;}
+.paper-reminder-text{margin:0!important;color:inherit!important;font-size:1rem!important;font-weight:900;line-height:1.75;}
+html[data-theme="dark"] .paper-reminder{background:#1a1304;color:#fef3c7;border-color:#fbbf24;box-shadow:none;}
 .problem p{margin:.45rem 0;color:#374151;font-size:.95rem;}
 .formal-input-prose{margin:.45rem 0!important;color:#374151;font-size:.95rem;line-height:1.68;}
 .problem code,.dialog-body code{font-family:"Cascadia Mono","Consolas",monospace;background:#f1f4f7;color:#25364a;border:1px solid #e5e9ee;border-radius:4px;padding:.06em .28em;}
@@ -520,7 +525,7 @@ html[data-theme="dark"] .tutorial-details,html[data-theme="dark"] .tutorial-cont
         <span class="status-pill" id="overallVerdict">尚未提交</span>
       </div>
       <div class="result-summary" id="resultSummary">F9／「執行」會啟動互動式 Python TERMINAL，遇到 <code>input()</code> 時由你手動輸入；「提交」會自動評測本階全部正式測資。</div>
-      <details class="hidden-tests" id="hiddenTestsDetails" open>
+      <details class="hidden-tests" id="hiddenTestsDetails">
         <summary id="hiddenTestsSummary">全部正式測資</summary>
         <div class="hidden-tests-list" id="hiddenTestsList"></div>
       </details>
@@ -1039,7 +1044,7 @@ function applyPortableRecord(record){
   }catch(err){try{restorePortableStorage(snapshot)}catch(rollbackErr){console.error('Import rollback failed:',rollbackErr)}throw err;}
   const idx=Math.max(0,TASKS.findIndex(t=>stageKeyForTask(t)===record.view.currentStageKey||String(t.id)===String(record.view.currentTaskId)));
   currentTaskIndex=idx;sourceStageActive=record.view.sourceStageActive;document.body.classList.toggle('source-view',sourceStageActive);
-  renderLevelStrip();renderProblem();renderTests();renderHiddenTests();renderHistory();renderProgress();updateAnswerButtonState();
+  renderLevelStrip();renderProblem();renderTests();renderHiddenTests({resetDisclosure:true});renderHistory();renderProgress();updateAnswerButtonState();
   const t=TASKS[currentTaskIndex];setCode(loadDraft(t)??t.starter);
   overallVerdict.className='status-pill';overallVerdict.textContent='尚未提交';resultSummary.textContent='作答紀錄已匯入。草稿、AC 進度與本機提交紀錄已更新。';
   resetTerminal('作答紀錄已匯入。按 F9 啟動新的互動式 Python 程式。');if(editor){editor.clearHistory();if(!sourceStageActive)refreshEditorLayout({focus:true});}
@@ -1177,6 +1182,10 @@ function renderProblem(){
     ${renderFormalInput(t)}
     <div class="section-title">輸出</div>
     <p>${renderFormalProse(t.output)}</p>
+    <aside class="paper-reminder" data-paper-reminder="true" role="note" aria-label="紙筆提醒">
+      <strong class="paper-reminder-title">紙筆提醒</strong>
+      <p class="paper-reminder-text">在你用紙筆自己計算、畫出「範例輸入」如何變成「範例輸出」之前，請勿開始寫任何程式碼。</p>
+    </aside>
     ${samplesHtml}
     ${sampleExplanationHtml}
     <details class="tutorial-details">
@@ -1223,13 +1232,13 @@ function renderTests(state='idle',results=[]){
   renderCompactTests(state,results);
 }
 
-function renderHiddenTests(){
+function renderHiddenTests({resetDisclosure=false}={}){
   const t=TASKS[currentTaskIndex];
   const tests=getTaskTestsForTask(t);
   const details=$('#hiddenTestsDetails');
   const summary=$('#hiddenTestsSummary');
   hiddenTestsList.innerHTML='';
-  if(details) details.open=true;
+  if(details && resetDisclosure) details.open=false;
   if(!tests.length){
     summary.textContent='全部正式測資';
     hiddenTestsList.innerHTML='<div class="hidden-tests-empty">這一階沒有正式測資。</div>';
@@ -1300,7 +1309,7 @@ function switchTask(idx){
   renderLevelStrip();
   renderProblem();
   renderTests();
-  renderHiddenTests();
+  renderHiddenTests({resetDisclosure:true});
   overallVerdict.className='status-pill'; overallVerdict.textContent='尚未提交';
   resultSummary.textContent='F9／「執行」會啟動新的互動式 TERMINAL；遇到 input() 時手動輸入。「提交」會評測本階全部正式測資，逐筆結果請看右側 TEST RESULTS。';
   const t=TASKS[idx];
@@ -1949,7 +1958,7 @@ $('#clearAllBtn').addEventListener('click',()=>{
   renderLevelStrip();
   renderProblem();
   renderTests();
-  renderHiddenTests();
+  renderHiddenTests({resetDisclosure:true});
   renderHistory();
   renderProgress();
   updateAnswerButtonState();
@@ -1983,7 +1992,7 @@ setupEditor();
 renderLevelStrip();
 renderProblem();
 renderTests();
-renderHiddenTests();
+renderHiddenTests({resetDisclosure:true});
 renderHistory();
 renderProgress();
 updateAnswerButtonState();
