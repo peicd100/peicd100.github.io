@@ -182,6 +182,8 @@ nav:  # 自定義網站的導航結構
         - 'r488_彗星撞擊': 'md/python/r488_彗星撞擊.html'
         - 'r489_航空拍照圖': 'md/python/r489_航空拍照圖.html'
         - 'r490_商品包裝地': 'md/python/r490_商品包裝地.html'
+        - 'APCS_模擬考_01.html': 'md/python/APCS_模擬考_01.html'
+        - 'APCS_模擬考_02.html': 'md/python/APCS_模擬考_02.html'
          
       
     #   - '變數': 'md/python/變數.md'
