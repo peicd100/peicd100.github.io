@@ -75,6 +75,29 @@ button:not(:disabled):active{transform:translateY(1px)}
 @media(max-width:420px){.brand p{display:none}.topbar-inner{flex-direction:column}.top-actions{width:100%;justify-content:flex-start}.problem-tabs{padding-bottom:12px}.result-grid{grid-template-columns:1fr 1fr}.matrix-visual th,.matrix-visual td,.coord-visual th,.coord-visual td{padding:6px;min-width:36px}.map-visual td{min-width:40px;height:40px}.code-viewer{font-size:.76rem;padding:13px}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition-duration:.01ms!important;animation-duration:.01ms!important;animation-iteration-count:1!important}}
 
+
+/* Verdict feedback: neutral surfaces, colored foreground/borders only. */
+:root{--judge-environment:#7953b4}
+html[data-theme="dark"]{--judge-environment:#c4b5fd}
+.problem-tab{position:relative}
+.problem-tab-verdict{display:inline-flex;align-items:center;justify-content:center;flex:0 0 auto;margin-left:8px;padding:2px 5px;border:1px solid currentColor;border-radius:5px;font-family:"Cascadia Mono",Consolas,monospace;font-size:.62rem;font-weight:850;line-height:1.2;letter-spacing:.02em;color:var(--good);vertical-align:middle}
+.problem-tab-verdict[hidden]{display:none!important}
+.problem-tab.is-ac,.problem-tab.is-ac:not(.active):hover{color:var(--good);border-color:color-mix(in srgb,var(--good) 58%,var(--line));background:var(--panel2)}
+.problem-tab.is-ac.active{color:var(--good);border-color:var(--good);background:var(--panel3)}
+.problem-tab.is-ac .problem-tab-index,.problem-tab.is-ac:not(.active):hover .problem-tab-index{color:var(--good);border-color:color-mix(in srgb,var(--good) 65%,var(--line))}
+.exam-shell .problem-tab.is-ac{grid-template-columns:30px minmax(0,1fr) auto}
+.exam-shell .problem-tab-verdict{margin-left:0}
+.progress>span{transition:width .18s ease,background-color .18s ease}
+.progress[data-verdict="IDLE"]>span{background:var(--muted)}
+.progress[data-verdict="RUNNING"]>span{background:var(--accent)}
+.progress[data-verdict="AC"]>span{background:var(--good)}
+.progress[data-verdict="WA"]>span,.progress[data-verdict="CE"]>span,.progress[data-verdict="RE"]>span{background:var(--bad)}
+.progress[data-verdict="TLE"]>span{background:var(--warn)}
+.progress[data-verdict="JE"]>span{background:var(--judge-environment)}
+.status-line.warn{color:var(--warn);border-color:color-mix(in srgb,var(--warn) 42%,var(--line));background:var(--warn-soft)}
+.status-line.environment{color:var(--judge-environment);border-color:color-mix(in srgb,var(--judge-environment) 42%,var(--line));background:var(--panel2)}
+@media(max-width:700px){.exam-shell .problem-tab{flex-direction:column;gap:3px}.exam-shell .problem-tab-verdict{font-size:.53rem;padding:1px 3px}}
+
 </style>
 </head>
 <body>
@@ -110,7 +133,7 @@ button:not(:disabled):active{transform:translateY(1px)}
           <div class="metric"><small>最近一次</small><strong id="latestScore">尚未提交</strong></div>
         </div>
         <div class="status-line" id="statusLine">尚未提交檔案。</div>
-        <div class="progress" aria-hidden="true"><span id="progressBar"></span></div>
+        <div class="progress" role="progressbar" aria-label="本次提交處理狀態" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" aria-describedby="statusLine" data-verdict="IDLE"><span id="progressBar"></span></div>
         <div class="storage-warning" id="storageWarning">此瀏覽器目前無法永久保存成績紀錄；重新整理前請自行保留程式檔。</div>
         <div class="viewer-card">
           <div class="viewer-head"><strong id="viewerName">尚未上傳檔案</strong><button class="copy-btn" id="copyCodeBtn" type="button" disabled>複製程式碼</button></div>
@@ -153,6 +176,7 @@ const MODE_GRADING='grading';
 const MODE_KEY_PROXY='批改模式';
 let activeIndex=0;
 let judging=false;
+let activeJudgeView=null;
 let pyWorker=null;
 let workerReadyPromise=null;
 let workerSeq=0;
@@ -205,7 +229,9 @@ function normalizeLatest(latest,p,maxScore){
  if(latest==null)return null;
  if(!isPlainObject(latest))throw new Error(`${p.id} 最近一次紀錄格式不正確`);
  const code=safeText(latest.code,'程式碼',MAX_FILE_BYTES*2);if(new Blob([code]).size>MAX_FILE_BYTES)throw new Error(`${p.id} 程式碼超過大小限制`);
- return {time:safeText(latest.time,'時間',80),filename:safeText(latest.filename,'檔名',255),score:scoreValue(latest.score,maxScore,true),code,summary:safeText(latest.summary,'結果摘要',4000),errorKind:typeof latest.errorKind==='string'?latest.errorKind:''};
+ const result={time:safeText(latest.time,'時間',80),filename:safeText(latest.filename,'檔名',255),score:scoreValue(latest.score,maxScore,true),code,summary:safeText(latest.summary,'結果摘要',4000),errorKind:typeof latest.errorKind==='string'?latest.errorKind:''};
+ if(latest.verdict!=null){const value=safeText(latest.verdict,'Verdict',120);if(!verdictCode(value))throw new Error('Verdict 不合法');result.verdict=value;}
+ return result;
 }
 function normalizeHistory(hist,p,maxScore){
  if(hist==null)return [];
@@ -271,6 +297,60 @@ function clearRecords(){
 function setTheme(theme){document.documentElement.dataset.theme=theme;document.documentElement.style.colorScheme=theme;$('#themeBtn').textContent=theme==='dark'?'淺色模式':'深色模式';try{localStorage.setItem(storageKey()+':theme',theme);}catch(e){}}
 function initTheme(){let t='dark';try{t=localStorage.getItem(storageKey()+':theme')||'dark';}catch(e){}setTheme(t);}
 function overallBest(){const mode=currentMode(),ms=STATE.modes[mode];return EXAM.problems.reduce((sum,p)=>sum+Math.min(Number(ms.best[p.id]||0),modeMaxScore(p,mode)),0);}
+
+// Derive feedback from the displayed problem/mode; never store color as learner data.
+function verdictCode(value){const match=/^(AC|WA|CE|RE|TLE|JE)(?:\b|\s|\/)/.exec(String(value||''));return match?match[1]:'';}
+function latestVerdict(p,mode=currentMode()){
+ const ms=STATE.modes[mode],latest=ms.latest[p.id];
+ if(!latest)return 'IDLE';
+ if(latest.score==null||latest.errorKind==='environment')return 'JE';
+ if(Number(latest.score)===modeMaxScore(p,mode))return 'AC';
+ let code=verdictCode(latest.verdict);
+ if(code&&code!=='AC')return code;
+ const history=(ms.history[p.id]||[]).find(h=>h.time===latest.time&&h.filename===latest.filename&&h.score===latest.score);
+ code=verdictCode(history&&history.verdict);
+ if(code&&code!=='AC')return code;
+ // Legacy schema 1/2 has no latest.verdict; retain its result without changing scores.
+ const summary=String(latest.summary||'');
+ for(const token of ['CE','TLE','RE'])if(new RegExp('\\b'+token+'\\b').test(summary))return token;
+ return latest.errorKind?'RE':'WA';
+}
+function syncTabVerdicts(){
+ const mode=currentMode(),ms=STATE.modes[mode];
+ document.querySelectorAll('#problemTabs .problem-tab').forEach((button,i)=>{
+   const p=EXAM.problems[i];if(!p)return;
+   const accepted=Number(ms.best[p.id]||0)===modeMaxScore(p,mode);
+   button.classList.toggle('is-ac',accepted);button.dataset.verdict=accepted?'AC':'NONE';
+   let badge=button.querySelector('.problem-tab-verdict');
+   if(!badge){badge=document.createElement('span');badge.className='problem-tab-verdict';badge.textContent='AC';badge.setAttribute('aria-hidden','true');button.appendChild(badge);}
+   badge.hidden=!accepted;
+   const label=`第 ${i+1} 題｜${p.title}`+(accepted?(mode===MODE_GENERAL?'｜公開範例 AC':'｜AC，已通過全部評測'):'');
+   button.title=label;button.setAttribute('aria-label',label);
+   if(i===activeIndex)button.setAttribute('aria-current','page');else button.removeAttribute('aria-current');
+ });
+}
+function paintJudgeFeedback(verdict,percent,text){
+ const line=$('#statusLine'),bar=$('#progressBar'),track=bar.parentElement;
+ const value=Math.max(0,Math.min(100,Number(percent)||0));
+ const style=verdict==='AC'?'good':['WA','CE','RE'].includes(verdict)?'bad':verdict==='TLE'?'warn':verdict==='JE'?'environment':'';
+ line.className='status-line'+(style?' '+style:'');line.dataset.verdict=verdict;line.textContent=text;
+ track.dataset.verdict=verdict;bar.dataset.verdict=verdict;bar.style.width=value+'%';
+ track.setAttribute('aria-valuenow',String(value));
+ const stateText=verdict==='RUNNING'?text:verdict==='IDLE'?'尚未提交':verdict==='JE'?'評測中止（JE），本次未評分':verdict==='TLE'?'評測已終止（TLE），未繼續後續測試':verdict==='CE'?'編譯失敗（CE），未執行測試':`評測已結束（${verdict}）`;
+ track.setAttribute('aria-valuetext',stateText);track.title=stateText;
+ $('#statusLine').setAttribute('aria-busy',verdict==='RUNNING'?'true':'false');
+}
+function renderJudgeFeedback(){
+ const p=EXAM.problems[activeIndex],mode=currentMode(),latest=STATE.modes[mode].latest[p.id];
+ if(activeJudgeView&&activeJudgeView.problemId===p.id&&activeJudgeView.mode===mode){
+   const run=activeJudgeView;paintJudgeFeedback('RUNNING',run.completed/run.total*100,run.text);return;
+ }
+ const verdict=latestVerdict(p,mode);
+ const text=latest?latest.summary:STATE.lastSource[p.id]?'目前沒有提交結果；可按「提交」評測已上傳的檔案。':'尚未提交檔案。';
+ // A terminal strip denotes the submission lifecycle has ended, not the pass rate.
+ paintJudgeFeedback(verdict,latest?100:0,text);
+}
+
 function renderTabs(){const box=$('#problemTabs');box.innerHTML='';EXAM.problems.forEach((p,i)=>{const b=document.createElement('button');b.type='button';b.className='problem-tab'+(i===activeIndex?' active':'');b.textContent=`第 ${i+1} 題｜${p.title}`;b.addEventListener('click',()=>{closeReferenceAnswer();activeIndex=i;renderAll();});box.appendChild(b);});}
 function renderTextList(title,items,ordered=false){const tag=ordered?'ol':'ul';return `<section class="section"><h2>${escapeHtml(title)}</h2><${tag}>${items.map(x=>`<li>${escapeHtml(x)}</li>`).join('')}</${tag}></section>`;}
 function renderSamples(p){const ex=p.sampleExplanation;return `<section class="section"><h2>範例測資</h2><div class="sample-list">${p.samples.map((s,i)=>`<section class="sample-card"><div class="sample-head"><h3>範例 #${i+1}</h3><button type="button" class="copy-btn sample-copy" data-sample="${i}">複製範例輸入</button></div><div class="sample-io"><div class="io-box"><div class="io-label">輸入</div><pre class="codeblock">${escapeHtml(s.input)}</pre></div><div class="io-box"><div class="io-label">輸出</div><pre class="codeblock">${escapeHtml(s.output)}</pre></div></div></section>`).join('')}</div><section class="sample-explanation-block" id="sampleExplanationBlock"><h3>範例 #${ex.selectedPublicIndex} 完整講解</h3>${ex.html}</section></section>`;}
@@ -299,7 +379,7 @@ function renderSubmit(){
  $('#historyList').innerHTML=hist.length?hist.map(h=>`<div class="history-row"><div><strong>${escapeHtml(h.filename)}</strong><br><small>${escapeHtml(fmtTime(h.time))}｜${escapeHtml(h.verdict)}</small></div><strong>${h.score==null?'JE':`${h.score}/${maxScore}`}</strong></div>`).join(''):'<div class="history-row"><small>尚無提交紀錄</small><span></span></div>';
  const referenceBtn=$('#referenceAnswerBtn');referenceBtn.hidden=mode!==MODE_GRADING;referenceBtn.disabled=judging;
  if(mode!==MODE_GRADING)closeReferenceAnswer();
- $('#uploadBtn').disabled=judging;$('#resubmitBtn').disabled=judging||!source;$('#modeKeyInput').disabled=judging;$('#progressBar').style.width='0%';
+ $('#uploadBtn').disabled=judging;$('#resubmitBtn').disabled=judging||!source;$('#modeKeyInput').disabled=judging;syncTabVerdicts();renderJudgeFeedback();
 }
 function renderAll(){renderTabs();renderProblem();renderSubmit();}
 function updateRuntime(){}
@@ -356,20 +436,25 @@ function ensureWorker(){if(pyWorker&&workerReadyPromise)return workerReadyPromis
 async function workerCall(type,data,timeoutMs){await ensureWorker();const w=pyWorker;if(!w){const err=new Error('Python runtime unavailable');err.code='JE';throw err;}const id=++workerSeq;return new Promise((resolve,reject)=>{let settled=false;const timer=setTimeout(()=>{if(settled)return;settled=true;w.removeEventListener('message',onMsg);terminateWorker();const err=new Error('Time Limit Exceeded');err.code='TLE';reject(err);},timeoutMs);function onMsg(e){const m=e.data||{};if(m.type==='reply'&&m.id===id&&!settled){settled=true;clearTimeout(timer);w.removeEventListener('message',onMsg);resolve(m.data);}}w.addEventListener('message',onMsg);w.postMessage({type,id,...data});});}
 function sameOutput(a,b){const toks=s=>String(s).trim().split(/\s+/).filter(Boolean);const x=toks(a),y=toks(b);if(x.length!==y.length)return false;for(let i=0;i<x.length;i++)if(x[i]!==y[i])return false;return true;}
 async function judgeSubmission(p,filename,code){
+ if(judging)return;
  const mode=currentMode(),tests=modeTests(p,mode),maxScore=modeMaxScore(p,mode),ms=STATE.modes[mode];
- judging=true;renderSubmit();$('#statusLine').className='status-line';$('#statusLine').textContent='正在準備 Python 評測環境…';updateRuntime('Python：載入中');
+ const problemNumber=EXAM.problems.findIndex(x=>x.id===p.id)+1;
+ activeJudgeView={problemId:p.id,mode,completed:0,total:tests.length,text:'正在準備 Python 評測環境…'};
+ judging=true;renderSubmit();updateRuntime('Python：載入中');
  let passed=0,wa=0,ce=0,re=0,tle=0,firstError='',je=false;
  try{
    const prep=await workerCall('prepare',{code},RUNTIME_INIT_TIMEOUT_MS);updateRuntime('Python：已就緒');
    if(prep.environmentError){const err=new Error(prep.error||'Judge environment error');err.code='JE';throw err;}
    if(!prep.ok){firstError=(prep.error||'編譯失敗').trim().split('\n').slice(-3).join(' | ');throw Object.assign(new Error(firstError),{code:'CE'});}
    for(let i=0;i<tests.length;i++){
-     const t=tests[i];$('#statusLine').textContent=`評測中 ${i+1}/${tests.length}…目前通過 ${passed} 筆`;$('#progressBar').style.width=`${Math.round(i/tests.length*100)}%`;
+     const t=tests[i];activeJudgeView.text=`評測中 ${i+1}/${tests.length}…目前通過 ${passed} 筆`;renderJudgeFeedback();
      let r;
      try{r=await workerCall('run',{input:t.input},PER_TEST_TIMEOUT_MS);}catch(e){if(e.code==='TLE'){tle++;firstError=firstError||`第 ${i+1} 筆執行逾時`;break;}throw e;}
      if(r.environmentError){const err=new Error(r.error||'Judge environment error');err.code='JE';throw err;}
-     if(!r.ok){re++;if(!firstError)firstError=(r.error||r.stderr||'Runtime Error').trim().split('\n').slice(-2).join(' | ');continue;}
+     activeJudgeView.completed=i+1;
+     if(!r.ok){re++;if(!firstError)firstError=(r.error||r.stderr||'Runtime Error').trim().split('\n').slice(-2).join(' | ');renderJudgeFeedback();continue;}
      if(sameOutput(r.output,t.output))passed++;else wa++;
+     renderJudgeFeedback();
    }
  }catch(e){
    if(e.code==='CE'){ce=1;}
@@ -381,14 +466,14 @@ async function judgeSubmission(p,filename,code){
  if(je){
    const summary=`本次提交未評分（JE）：${firstError||'評測環境錯誤'}。請稍後重新提交；本題最佳分數不會被改動。`;
    const rec={time:now,filename,score:null,verdict:'JE'};
-   ms.latest[p.id]={time:now,filename,score:null,code,summary,errorKind:'environment'};
+   ms.latest[p.id]={time:now,filename,score:null,code,summary,errorKind:'environment',verdict:'JE'};
    ms.history[p.id]=[rec,...(ms.history[p.id]||[])];
-   saveState();judging=false;renderAll();$('#statusLine').className='status-line bad';toast(`第 ${activeIndex+1} 題評測環境錯誤（JE）`);return;
+   saveState();activeJudgeView=null;judging=false;renderAll();toast(`第 ${problemNumber} 題評測環境錯誤（JE）`);return;
  }
- const score=passed;let verdict=score===maxScore?'AC':ce?'CE':tle?'TLE / 部分通過':re?'RE / 部分通過':'部分通過';let summary=`本次 ${score}/${maxScore} 分；通過 ${passed}/${tests.length} 筆。`;
+ const score=passed;let verdict=score===maxScore?'AC':ce?'CE':tle?'TLE / 部分通過':re?'RE / 部分通過':'WA / 部分通過';let summary=`本次 ${score}/${maxScore} 分；通過 ${passed}/${tests.length} 筆。`;
  if(ce)summary+=' CE。';if(wa)summary+=` WA ${wa} 筆。`;if(re)summary+=` RE ${re} 筆。`;if(tle)summary+=` TLE ${tle} 筆。`;if(firstError&&(ce||re))summary+=` ${firstError}`;
- const rec={time:now,filename,score,verdict};ms.best[p.id]=Math.max(Number(ms.best[p.id]||0),score);ms.latest[p.id]={time:now,filename,score,code,summary,errorKind:(ce||re||tle)?'error':''};ms.history[p.id]=[rec,...(ms.history[p.id]||[])];saveState();judging=false;renderAll();$('#progressBar').style.width='100%';
- if(score===maxScore){$('#statusLine').className='status-line good';}else if(ce||re||tle){$('#statusLine').className='status-line bad';}else{$('#statusLine').className='status-line';}toast(`第 ${activeIndex+1} 題本次 ${score}/${maxScore} 分`);
+ const rec={time:now,filename,score,verdict};ms.best[p.id]=Math.max(Number(ms.best[p.id]||0),score);ms.latest[p.id]={time:now,filename,score,code,summary,errorKind:(ce||re||tle)?'error':'',verdict};ms.history[p.id]=[rec,...(ms.history[p.id]||[])];saveState();activeJudgeView=null;judging=false;renderAll();
+ toast(`第 ${problemNumber} 題本次 ${score}/${maxScore} 分`);
 }
 async function handleFile(file){const p=EXAM.problems[activeIndex];if(judging)return;if(!file)return;if(!file.name.toLowerCase().endsWith('.py')){toast('只接受 .py 檔案');return;}if(file.size>MAX_FILE_BYTES){toast('檔案過大，請控制在 128 KB 內');return;}let code='';try{code=await file.text();}catch(e){toast('無法讀取檔案');return;}if(!code.trim()){toast('檔案內容是空的');return;}STATE.lastSource[p.id]={time:new Date().toISOString(),filename:file.name,code};saveState();renderSubmit();await judgeSubmission(p,file.name,code);}
 async function resubmitCurrentSource(){const p=EXAM.problems[activeIndex],source=STATE.lastSource[p.id];if(judging)return;if(!source){toast('請先上傳 .py 檔案');return;}await judgeSubmission(p,source.filename,source.code);}
