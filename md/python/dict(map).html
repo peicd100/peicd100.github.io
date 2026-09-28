@@ -6739,6 +6739,56 @@ is now available!
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#0-總整理" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0. 總整理
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="0. 總整理">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#創建" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        創建
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#加入" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        加入
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#取值" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        取值
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#1-dict-是什麼" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -8414,6 +8464,56 @@ is now available!
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#0-總整理" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0. 總整理
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="0. 總整理">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#創建" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        創建
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#加入" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        加入
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#取值" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        取值
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#1-dict-是什麼" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -8685,6 +8785,30 @@ is now available!
 
 
 <h1 id="python-dict-超級簡單筆記">Python dict 超級簡單筆記<a class="headerlink" href="#python-dict-超級簡單筆記" title="Permanent link"></a></h1>
+<h2 id="0-總整理">0. 總整理<a class="headerlink" href="#0-總整理" title="Permanent link"></a></h2>
+<h3 id="創建">創建<a class="headerlink" href="#創建" title="Permanent link"></a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">d</span> <span class="o">=</span> <span class="p">{</span> 
+    <span class="s1">'m'</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="s1">'n'</span><span class="p">:</span><span class="mi">4</span> 
+<span class="p">}</span>
+
+<span class="ow">or</span>
+
+<span class="n">d</span> <span class="o">=</span> <span class="p">{}</span>
+</code></pre></div>
+<h3 id="加入">加入<a class="headerlink" href="#加入" title="Permanent link"></a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">d</span><span class="p">[</span><span class="s1">'z'</span><span class="p">]</span> <span class="o">=</span> <span class="mi">9</span>                  <span class="c1"># 直接建立/修改</span>
+<span class="n">d</span><span class="p">[</span><span class="s1">'k'</span><span class="p">]</span> <span class="o">=</span> <span class="n">d</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'k'</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>   <span class="c1"># 不確定裡面有沒有</span>
+<span class="n">d</span><span class="p">[</span><span class="s1">'a'</span><span class="p">]</span> <span class="o">=</span> <span class="n">d</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'a'</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
+</code></pre></div>
+<h3 id="取值">取值<a class="headerlink" href="#取值" title="Permanent link"></a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># 結果不是 list，要自己轉換</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">d</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>         <span class="c1"># dict_keys(['m', 'n', 'z', 'k', 'a'])</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">d</span><span class="o">.</span><span class="n">items</span><span class="p">()))</span>  <span class="c1"># [('m', 1), ('n', 4), ('z', 9), ('k', 1), ('a', 1)]</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">d</span><span class="o">.</span><span class="n">keys</span><span class="p">()))</span>   <span class="c1"># ['m', 'n', 'z', 'k', 'a']</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">d</span><span class="o">.</span><span class="n">values</span><span class="p">()))</span> <span class="c1"># [1, 4, 9, 1, 1]</span>
+</code></pre></div>
 <hr/>
 <h2 id="1-dict-是什麼">1. dict 是什麼？<a class="headerlink" href="#1-dict-是什麼" title="Permanent link"></a></h2>
 <p><code>dict</code> 是 Python 的「字典」。</p>
