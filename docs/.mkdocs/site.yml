@@ -187,6 +187,7 @@ nav:  # 自定義網站的導航結構
         - 'APCS_技巧總複習.html': 'md/python/APCS_技巧總複習.html'
         - '二維陣列旋轉與翻轉_4題題單.htm': 'md/python/二維陣列旋轉與翻轉_4題題單.html'
         - 'Python_APCS_程式識讀_30題模擬考.html': 'md/python/Python_APCS_程式識讀_30題模擬考.html'
+        - 'APCS_中級模擬考.html': 'md/python/APCS_中級模擬考.html'
         
          
       
