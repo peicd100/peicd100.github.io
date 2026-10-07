@@ -7,10 +7,13 @@ plugins: []
 
 # preview-target:start
 nav:
-  - 'md/演算法筆記/CPE.md'
+  - 'md/115-1/離散/L03.md'
 
 exclude_docs: |
+  /md/**
+  !/md/115-1/離散/**
+  /md/115-1/離散/**/*.md
   *.md
-  !/md/演算法筆記/CPE.md
+  !/md/115-1/離散/L03.md
   !/index.md
 # preview-target:end

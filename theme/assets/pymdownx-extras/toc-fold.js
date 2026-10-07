@@ -823,6 +823,7 @@
     listen(window, "resize", onResize, { passive: true });
     listen(window, "scroll", onWindowScroll, { passive: true });
     listen(window, "hashchange", onHashChange);
+    listen(window, "peicd:math-anchor", onHashChange);
     listen(document, "keydown", onKeyDown);
     state.cleanups.push(() => clearTimeout(state.resizeTimer));
 
