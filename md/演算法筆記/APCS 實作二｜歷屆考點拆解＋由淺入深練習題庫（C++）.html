@@ -23,7 +23,7 @@
         <link rel="alternate" type="application/rss+xml" title="RSS feed" href="../../feed_rss_created.xml">
         <link rel="alternate" type="application/rss+xml" title="RSS feed of updated content" href="../../feed_rss_updated.xml">
       
-      <link rel="icon" href="../../logo/logo.png">
+      <link rel="icon" href="../../assets/generated/optimized-images/1d/1d06f31d8654fd34e8d2ed99785ce40a2a0202b2a552dc672141c0e99843e965.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
     
     
@@ -48,1913 +48,13 @@
 <script src="../../assets/pymdownx-extras/material-extra-theme-2ek1P7jT.js" type="text/javascript"></script>
 <script src="../../assets/pymdownx-extras/material-extra-3rdparty-BUCF4rjN.js" type="text/javascript"></script>
 
-<!-- google 朗讀和翻譯 -->
-<!--
-把整段放進你的 tts.md（snippets）即可
-
-本版新增：
-- Auto scroll 開關（是否自動捲動到正在讀的句子），在語音選單中設定並記住
-- 自動翻到下一頁後續讀（優先用 rel="next" / footer next link；找不到才嘗試模擬按 n；並加入「未換頁就清旗標」保護）
-其餘維持：Auto 連播、Rate/Gap、EN 全英語（en-*）、dracula 不動
--->
-
-<style>
-/* =========================
-   句子 TTS：文字 + 按鈕（避免 st/nd 跑位）
-   ========================= */
-:root{
-  --tts-accent: #72e3fd;
-  --tts-accent-strong: #7ad3ff;
-  --tts-surface: #050607;
-  --tts-surface-strong: #090b0e;
-  --tts-surface-control: #0d1116;
-  --tts-surface-control-hover: #101820;
-  --tts-border: rgba(114, 227, 253, 0.34);
-  --tts-border-soft: rgba(151, 188, 202, 0.18);
-  --tts-muted: rgba(224, 234, 241, 0.64);
-  --tts-text: rgba(239, 246, 249, 0.9);
-  --tts-shadow: 0 1.1rem 2.6rem rgba(0, 0, 0, 0.56);
-}
-[data-md-color-scheme="default"],
-[data-md-color-scheme="light"]{
-  --tts-surface: #ffffff;
-  --tts-surface-strong: #ffffff;
-  --tts-surface-control: #ffffff;
-  --tts-surface-control-hover: rgba(19, 73, 97, 0.06);
-  --tts-border: rgba(0, 0, 0, 0.16);
-  --tts-border-soft: rgba(0, 0, 0, 0.08);
-  --tts-muted: rgba(0, 0, 0, 0.6);
-  --tts-text: rgba(0, 0, 0, 0.87);
-  --tts-shadow: 0 16px 32px rgba(0, 0, 0, 0.12);
-}
-
-.tts-wrap{
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-}
-.tts{ display: inline; }
-
-/* =========================
-   通用播放按鈕（圖形）
-   ========================= */
-.tts-btn{
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid var(--tts-border-soft);
-  font: inherit;
-
-  width: 44px;
-  height: 44px;
-  padding: 0;
-
-  cursor: pointer;
-  line-height: 1;
-
-  display: inline-grid;
-  place-items: center;
-  position: relative;
-
-  color: var(--md-primary-fg-color);
-  border-radius: 999px;
-  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.02);
-  transition: background 160ms ease, border-color 160ms ease, color 160ms ease, transform 160ms ease, box-shadow 160ms ease;
-  touch-action: manipulation;
-}
-.tts-btn:hover{
-  color: var(--md-primary-fg-color);
-  background: rgba(122, 211, 255, 0.12);
-  border-color: var(--tts-border);
-  transform: translateY(-1px);
-  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.2);
-}
-.tts-btn[aria-pressed="true"]{
-  color: var(--md-primary-fg-color);
-  background: rgba(122, 211, 255, 0.16);
-  border-color: rgba(122, 211, 255, 0.5);
-  opacity: 0.95;
-}
-.tts-btn:focus-visible{
-  outline: 2px solid var(--tts-accent-strong);
-  outline-offset: 3px;
-  border-radius: 10px;
-}
-
-/* 播放：三角形 */
-.tts-btn[data-state="play"]::before{
-  content: "";
-  display: block;
-  width: 0;
-  height: 0;
-  border-style: solid;
-  border-width: 9px 0 9px 14px;
-  border-color: transparent transparent transparent currentColor;
-  transform: translateX(1px);
-}
-/* 停止：方塊 */
-.tts-btn[data-state="stop"]::before{
-  content: "";
-  display: block;
-  width: 16px;
-  height: 16px;
-  background: currentColor;
-  border-radius: 3px;
-}
-
-/* 手機按鈕加大 */
-@media (max-width: 600px){
-  .tts-btn{ width: 52px; height: 52px; }
-  .tts-btn[data-state="play"]::before{ border-width: 10px 0 10px 16px; }
-  .tts-btn[data-state="stop"]::before{ width: 18px; height: 18px; }
-}
-
-/* =========================
-   Header：塞進 .md-header__ellipsis 並靠右
-   ========================= */
-.md-header__ellipsis.tts-ellipsis-flex{
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  min-width: 0;
-}
-
-/* 我們插入的 header 控制容器（你指定） */
-#tts-header-control{
-  margin-left: auto;
-  margin-right: -19px;
-  /* transform: translateY(-1px); */
-
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  font-size: 1rem;
-  line-height: 1.2;
-}
-
-/* =========================
-   Header 喇叭按鈕：無邊框、hover 不變色
-   ========================= */
-#tts-header-voice-toggle{
-  width: 32px;
-  height: 32px;
-  border-radius: 999px;
-
-  border: 0 !important;
-  background: transparent;
-  color: inherit;
-
-  cursor: pointer;
-  display: inline-grid;
-  place-items: center;
-  flex: 0 0 auto;
-}
-#tts-header-voice-toggle:hover{
-  color: inherit !important;
-  background: transparent !important;
-  border-color: transparent !important;
-}
-#tts-header-voice-toggle:focus-visible{
-  outline: 2px solid var(--md-accent-fg-color, currentColor);
-  outline-offset: 2px;
-}
-#tts-header-voice-toggle svg{
-  width: 22px;
-  height: 22px;
-  display:block;
-  fill: currentColor !important;
-}
-
-/* 亮色模式：圈圈底色較深主題色、圖示白色 */
-[data-md-color-scheme="default"] #tts-header-voice-toggle,
-[data-md-color-scheme="light"]   #tts-header-voice-toggle{
-  background: transparent !important;
-  color: inherit !important;
-  border-color: transparent !important;
-}
-
-/* 黑暗模式（dracula）時，喇叭顏色 = 內文文字色 */
-[data-md-color-scheme="dracula"] #tts-header-voice-toggle{
-  background: transparent !important;
-  color: var(--md-default-fg-color, currentColor) !important;
-}
-
-/* =========================
-   Voice Panel（Portal 到 body）+ 自製 dropdown
-   ========================= */
-#tts-voice-panel-portal{
-  position: fixed;
-  z-index: 9998;
-  display: none;
-
-  min-width: min(500px, 92vw);
-  padding: 14px 16px 16px;
-  border-radius: 10px;
-
-  background: var(--tts-surface);
-  border: 1px solid rgba(114, 227, 253, 0.22);
-  box-shadow: var(--tts-shadow);
-  color: var(--tts-text);
-
-  font-size: 0.92rem;
-  font-weight: normal;
-
-  max-width: calc(100vw - 16px);
-  box-sizing: border-box;
-
-  max-height: min(60vh, calc(100vh - 120px));
-  overflow: auto;
-  overscroll-behavior: contain;
-}
-#tts-voice-panel-portal.open{
-  display: block;
-  animation: ttsPopIn .12s ease-out;
-}
-@keyframes ttsPopIn{
-  from{ transform: scale(.98); opacity: .0; }
-  to  { transform: scale(1); opacity: 1; }
-}
-
-.tts-vp-row{
-  display: grid;
-  grid-template-columns: 46px minmax(0, 1fr);
-  align-items: center;
-  gap: 12px;
-  margin: 0;
-  padding: 7px 0;
-}
-.tts-vp-row + .tts-vp-row{
-  border-top: 0;
-  margin-top: 0;
-  padding-top: 7px;
-}
-.tts-vp-row:first-child{
-  grid-template-columns: 32px minmax(0, 1fr);
-  border-bottom: 1px solid var(--tts-border-soft);
-  margin-bottom: 5px;
-  padding-bottom: 12px;
-}
-.tts-vp-row:has(#tts-autoscroll-toggle),
-.tts-vp-row:has(.tts-dd[data-kind="en"]){
-  border-top: 1px solid var(--tts-border-soft);
-  margin-top: 8px;
-  padding-top: 13px;
-}
-.tts-vp-row .lbl{
-  color: var(--tts-muted);
-  user-select: none;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  font-size: 0.58rem;
-  font-weight: 700;
-}
-
-/* =========================
-   Auto（自動朗讀）按鈕：放在語言選擇左側
-   ========================= */
-#tts-autoread-toggle{
-  width: 27px;
-  height: 27px;
-  border-radius: 7px;
-  border: 1px solid var(--tts-border-soft);
-  background: var(--tts-surface-control);
-  color: inherit;
-  cursor: pointer;
-  display: inline-grid;
-  place-items: center;
-  font: inherit;
-  line-height: 1;
-  user-select: none;
-}
-#tts-autoread-toggle:focus-visible{
-  outline: 2px solid var(--md-accent-fg-color, currentColor);
-  outline-offset: 2px;
-}
-#tts-autoread-toggle .dot{
-  width: 8px;
-  height: 8px;
-  border-radius: 999px;
-  background: currentColor;
-  opacity: .56;
-  transition: background 160ms ease, box-shadow 160ms ease, opacity 160ms ease;
-}
-#tts-autoread-toggle[data-mode="armed"]{
-  border-color: var(--md-accent-fg-color, rgba(255,255,255,.45));
-}
-#tts-autoread-toggle[data-mode="armed"] .dot{
-  background: var(--tts-accent);
-  box-shadow: 0 0 0.65rem rgba(114, 227, 253, 0.32);
-  opacity: 1;
-}
-#tts-autoread-toggle[data-mode="running"]{
-  border-color: var(--md-accent-fg-color, rgba(255,255,255,.55));
-  background: rgba(114, 227, 253, 0.12);
-}
-#tts-autoread-toggle[data-mode="running"] .dot{
-  background: var(--tts-accent);
-  box-shadow: 0 0 0.75rem rgba(114, 227, 253, 0.42);
-  opacity: 1;
-}
-#tts-autoread-hint{
-  font-size: 0.76rem;
-  font-weight: 700;
-  opacity: .85;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  user-select: none;
-}
-
-/* =========================
-   設定列（Rate / Gap / Auto scroll）
-   ========================= */
-.tts-kv{
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  width: 100%;
-}
-.tts-kv input[type="range"]{
-  width: 100%;
-  min-width: 0;
-  appearance: none;
-  background: transparent;
-  accent-color: var(--tts-accent);
-  cursor: pointer;
-}
-.tts-kv input[type="range"]::-webkit-slider-runnable-track{
-  height: 4px;
-  border-radius: 999px;
-  background: rgba(224, 234, 241, 0.28);
-  border: 1px solid rgba(224, 234, 241, 0.18);
-}
-.tts-kv input[type="range"]::-webkit-slider-thumb{
-  appearance: none;
-  width: 14px;
-  height: 14px;
-  margin-top: -6px;
-  border-radius: 999px;
-  background: var(--tts-accent);
-  border: 2px solid var(--tts-surface);
-  box-shadow: 0 0 0 1px rgba(114, 227, 253, 0.55), 0 0 0.7rem rgba(114, 227, 253, 0.22);
-}
-.tts-kv input[type="range"]::-moz-range-track{
-  height: 4px;
-  border-radius: 999px;
-  background: rgba(224, 234, 241, 0.28);
-  border: 1px solid rgba(224, 234, 241, 0.18);
-}
-.tts-kv input[type="range"]::-moz-range-thumb{
-  width: 12px;
-  height: 12px;
-  border-radius: 999px;
-  background: var(--tts-accent);
-  border: 2px solid var(--tts-surface);
-  box-shadow: 0 0 0 1px rgba(114, 227, 253, 0.55);
-}
-.tts-kv .val{
-  min-width: 64px;
-  text-align: right;
-  color: rgba(239, 246, 249, 0.86);
-  font-size: 0.82rem;
-  font-weight: 700;
-  font-variant-numeric: tabular-nums;
-  user-select: none;
-}
-
-/* Auto scroll toggle */
-.tts-toggle-btn{
-  width: 100%;
-  display: inline-flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 10px;
-
-  font: inherit;
-  font-size: 0.9rem;
-  min-height: 2.28rem;
-  padding: 0.48rem 0.62rem;
-  border-radius: 8px;
-
-  border: 1px solid var(--tts-border-soft);
-  background: var(--tts-surface-control);
-  color: inherit;
-  cursor: pointer;
-
-  text-align: left;
-}
-.tts-toggle-btn:hover{
-  border-color: var(--tts-border);
-  background: var(--tts-surface-control-hover);
-}
-.tts-toggle-btn:focus-visible{
-  outline: 2px solid var(--md-accent-fg-color, currentColor);
-  outline-offset: 2px;
-}
-.tts-toggle-btn .state{
-  opacity: .9;
-  user-select: none;
-  padding: 0.08rem 0.42rem;
-  border-radius: 999px;
-  border: 1px solid var(--tts-border-soft);
-  color: var(--tts-muted);
-  font-size: 0.72rem;
-  line-height: 1.2;
-}
-.tts-toggle-btn[data-on="true"] .state{
-  border-color: var(--tts-border);
-  color: #dff8ff;
-  background: rgba(114, 227, 253, 0.1);
-}
-
-/* =========================
-   Dropdown
-   ========================= */
-.tts-dd-btn{
-  width: 100%;
-  display: inline-flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 10px;
-
-  font: inherit;
-  font-size: 0.9rem;
-  min-height: 2.28rem;
-  padding: 0.48rem 0.62rem;
-  border-radius: 8px;
-  border: 1px solid var(--tts-border-soft);
-  background: var(--tts-surface-control);
-  color: inherit;
-  cursor: pointer;
-
-  text-align: left;
-}
-.tts-dd-btn:hover{
-  border-color: var(--tts-border);
-  background: var(--tts-surface-control-hover);
-}
-.tts-dd-btn:focus-visible{
-  outline: 2px solid var(--md-accent-fg-color, currentColor);
-  outline-offset: 2px;
-}
-.tts-dd-btn .chev{
-  width: 10px;
-  height: 10px;
-  border-right: 2px solid currentColor;
-  border-bottom: 2px solid currentColor;
-  transform: rotate(45deg);
-  opacity: .85;
-  flex: 0 0 auto;
-}
-
-.tts-dd-list{
-  margin-top: 6px;
-  border-radius: 8px;
-  border: 1px solid var(--tts-border-soft);
-  background: var(--tts-surface-strong);
-  overflow: auto;
-
-  max-height: min(42vh, 320px);
-  display: none;
-}
-.tts-dd.open .tts-dd-list{ display: block; }
-
-.tts-dd-item{
-  padding: 0.48rem 0.6rem;
-  cursor: pointer;
-  user-select: none;
-  line-height: 1.25;
-  border-bottom: 1px solid var(--tts-border-soft);
-  color: rgba(239, 246, 249, 0.78);
-  font-size: 0.86rem;
-}
-.tts-dd-item:last-child{ border-bottom: 0; }
-.tts-dd-item:hover{
-  color: #e2fbff;
-  background: rgba(114, 227, 253, 0.08);
-}
-.tts-dd-item.active{
-  color: #e2fbff;
-  background: rgba(114, 227, 253, 0.12);
-  outline: 1px solid rgba(114, 227, 253, 0.28);
-}
-
-/* dracula：維持黑底工具面板 */
-[data-md-color-scheme="dracula"] #tts-voice-panel-portal{
-  background: var(--tts-surface);
-  border-color: rgba(114, 227, 253, 0.22);
-}
-[data-md-color-scheme="dracula"] .tts-dd-list{
-  background: var(--tts-surface-strong);
-  border-color: var(--tts-border-soft);
-}
-
-/* =========================
-   亮色模式：語音清單白底；只有 active 變暗
-   ========================= */
-[data-md-color-scheme="default"] #tts-voice-panel-portal,
-[data-md-color-scheme="light"]   #tts-voice-panel-portal{
-  background: #fff;
-  border-color: rgba(0,0,0,.12);
-  box-shadow: 0 10px 30px rgba(0,0,0,.18);
-  color: rgba(0,0,0,.87);
-}
-[data-md-color-scheme="default"] #tts-voice-panel-portal .tts-vp-row .lbl,
-[data-md-color-scheme="light"]   #tts-voice-panel-portal .tts-vp-row .lbl{
-  color: rgba(0,0,0,.72);
-}
-[data-md-color-scheme="default"] #tts-autoread-toggle,
-[data-md-color-scheme="light"]   #tts-autoread-toggle{
-  border-color: rgba(0,0,0,.18);
-}
-[data-md-color-scheme="default"] #tts-autoread-hint,
-[data-md-color-scheme="light"]   #tts-autoread-hint{
-  color: rgba(0,0,0,.72);
-}
-[data-md-color-scheme="default"] .tts-toggle-btn,
-[data-md-color-scheme="light"]   .tts-toggle-btn{
-  background: #fff;
-  color: rgba(0,0,0,.87);
-  border-color: rgba(0,0,0,.18);
-}
-[data-md-color-scheme="default"] .tts-toggle-btn .state,
-[data-md-color-scheme="light"]   .tts-toggle-btn .state{
-  border-color: rgba(0,0,0,.18);
-}
-[data-md-color-scheme="default"] #tts-voice-panel-portal .tts-dd-btn,
-[data-md-color-scheme="light"]   #tts-voice-panel-portal .tts-dd-btn{
-  background: #fff;
-  color: rgba(0,0,0,.87);
-  border-color: rgba(0,0,0,.18);
-}
-[data-md-color-scheme="default"] #tts-voice-panel-portal .tts-dd-list,
-[data-md-color-scheme="light"]   #tts-voice-panel-portal .tts-dd-list{
-  background: #fff;
-  border-color: rgba(0,0,0,.12);
-}
-[data-md-color-scheme="default"] #tts-voice-panel-portal .tts-dd-item,
-[data-md-color-scheme="light"]   #tts-voice-panel-portal .tts-dd-item{
-  background: #fff;
-  color: rgba(0,0,0,.87);
-  border-bottom: 1px solid rgba(0,0,0,.08);
-}
-[data-md-color-scheme="default"] #tts-voice-panel-portal .tts-dd-item:hover,
-[data-md-color-scheme="light"]   #tts-voice-panel-portal .tts-dd-item:hover{
-  background: rgba(0,0,0,.06);
-}
-[data-md-color-scheme="default"] #tts-voice-panel-portal .tts-dd-item.active,
-[data-md-color-scheme="light"]   #tts-voice-panel-portal .tts-dd-item.active{
-  background: rgba(0,0,0,.16);
-  outline: 1px solid rgba(0,0,0,.16);
-}
-
-/* =========================
-   反白浮動工具（播放 + 翻譯）
-   ========================= */
-#tts-selection-pop{
-  position: fixed;
-  z-index: 9999;
-  display: none;
-
-  padding: 10px 12px;
-  border-radius: 14px;
-
-  background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.01)), var(--tts-surface);
-  border: 1px solid var(--tts-border-soft);
-  box-shadow: var(--tts-shadow);
-  backdrop-filter: blur(12px);
-
-  align-items: center;
-  gap: 12px;
-  max-width: min(720px, 92vw);
-}
-#tts-selection-zh{
-  font-size: 13px;
-  line-height: 1.35;
-  color: var(--md-default-fg-color, #ddd);
-  word-break: break-word;
-  max-width: min(640px, 78vw);
-}
-#tts-selection-zh .muted{ opacity: .75; }
-</style>
-
-<script>
-(function () {
-  if (window.__TTS_TOOLKIT__ && typeof window.__TTS_TOOLKIT__.scheduleEnhance === "function") {
-    window.__TTS_TOOLKIT__.scheduleEnhance();
-    return;
-  }
-
-  /* =========================
-     你可以改的地方
-     ========================= */
-  const DEFAULT_LANG_EN = "en-US";
-  const DEFAULT_NAME_EN_INCLUDES = "Google US English";
-
-  const DEFAULT_LANG_ZH = "zh-TW";
-  const DEFAULT_NAME_ZH_INCLUDES = "Google";
-
-  const SELECTION_MAX_CHARS = 500;
-  const TRANSLATE_TO = "zh-TW";
-  const TRANSLATE_FROM = "en"; // 也可改 "auto"
-
-  const MAX_VOICES_RENDER = 2000;
-
-  const RATE_MIN = 0.1;
-  const RATE_MAX = 1.5;
-  const RATE_STEP = 0.05;
-
-  const GAP_MIN = 0;
-  const GAP_MAX = 2000;
-  const GAP_STEP = 50;
-
-  const DEFAULT_RATE = 1.0;
-  const DEFAULT_GAP_MS = 400;
-
-  // Auto scroll 預設開
-  const DEFAULT_AUTO_SCROLL = true;
-
-  // 同網域多站台時，避免和其他 GitHub Pages 專案共用同一組 localStorage key
-  const LS_NAMESPACE = "university-notes:";
-
-  // 自動翻到下一頁後續讀（用 localStorage 做跨頁續讀）
-  const LS_AUTO_RESUME = "ttsAutoResumeNextPageTs";
-  const AUTO_RESUME_TTL_MS = 5 * 60 * 1000; // 續讀旗標最長保留 5 分鐘，避免意外卡住
-  /* ========================= */
-
-  let currentBtn = null;
-  let activeUtterances = [];
-  let onSpeakDone = null;
-  const translateCache = new Map();
-
-  const LS_VOICE_EN = "ttsVoiceKeyEN";
-  const LS_VOICE_ZH = "ttsVoiceKeyZH";
-  let voiceKeyEN = safeGetLS(LS_VOICE_EN);
-  let voiceKeyZH = safeGetLS(LS_VOICE_ZH);
-
-  const LS_RATE = "ttsRate";
-  const LS_GAP  = "ttsAutoGapMs";
-
-  const LS_AUTO_SCROLL = "ttsAutoScroll";
-
-  let ttsRate = safeGetNumberLS(LS_RATE, DEFAULT_RATE);
-  let autoGapMs = safeGetNumberLS(LS_GAP, DEFAULT_GAP_MS);
-
-  let autoScrollEnabled = safeGetBoolLS(LS_AUTO_SCROLL, DEFAULT_AUTO_SCROLL);
-
-  let globalEventsBound = false;
-  let observer = null;
-  let observerTarget = null;
-  let scheduled = false;
-
-  /* =========================
-     Auto（自動朗讀）+ 跨頁
-     ========================= */
-  function getNextPageUrl(){
-    // MkDocs/Material 常見：head 裡有 <link rel="next" href="...">
-    const link = document.querySelector('link[rel="next"]');
-    if (link && link.href) return link.href;
-
-    // 有些主題會用 a[rel="next"]
-    const aRel = document.querySelector('a[rel="next"]');
-    if (aRel && aRel.href) return aRel.href;
-
-    // Material footer next
-    const footerNext = document.querySelector('.md-footer__link--next a');
-    if (footerNext && footerNext.href) return footerNext.href;
-
-    // pagination
-    const pagNext = document.querySelector('a.md-pagination__link--next');
-    if (pagNext && pagNext.href) return pagNext.href;
-
-    return null;
-  }
-
-  function markResumeOnNextPage(){
-    safeSetLS(LS_AUTO_RESUME, String(Date.now()));
-  }
-
-  function clearResumeFlag(){
-    safeRemoveLS(LS_AUTO_RESUME);
-  }
-
-  function gotoNextPageForAuto(){
-    const url = getNextPageUrl();
-    if (url){
-      markResumeOnNextPage();
-      window.location.assign(url);
-      return true;
-    }
-
-    // 找不到 next 連結時，最後才嘗試模擬按 n（你提到使用者按 n）
-    try{
-      markResumeOnNextPage();
-      const before = location.href;
-
-      const ev = new KeyboardEvent("keydown", { key: "n", code: "KeyN", bubbles: true });
-      document.dispatchEvent(ev);
-
-      // 若 800ms 內沒有換頁，視為失敗：清旗標並停止 auto
-      setTimeout(() => {
-        if (location.href === before) {
-          clearResumeFlag();
-          stopAuto();
-        }
-      }, 800);
-
-      return true;
-    } catch (_){
-      clearResumeFlag();
-      return false;
-    }
-  }
-
-  function resumeAutoIfRequested(){
-    const ts = safeGetNumberLS(LS_AUTO_RESUME, 0);
-    if (!ts) return;
-
-    // 避免舊旗標造成誤續讀
-    if (Date.now() - ts > AUTO_RESUME_TTL_MS){
-      clearResumeFlag();
-      return;
-    }
-
-    const root = getContentRoot();
-    const firstBtn = root && root.querySelector(".tts-wrap > button.tts-btn");
-
-    // 內容/按鈕還沒 attach 好：先別清旗標，等下一次 enhance 再試
-    if (!firstBtn) return;
-
-    // 成功抓到第一句：清旗標並開始連播
-    clearResumeFlag();
-    startAutoFrom(firstBtn);
-  }
-
-  let autoSelectMode = false;
-  let autoRunning = false;
-  let autoQueue = [];
-  let autoIndex = 0;
-
-  function clamp(n, a, b){
-    n = Number(n);
-    if (!isFinite(n)) return a;
-    return Math.min(b, Math.max(a, n));
-  }
-
-  function updateAutoUI(){
-    const btn = document.getElementById("tts-autoread-toggle");
-    const hint = document.getElementById("tts-autoread-hint");
-    if (!btn) return;
-
-    let mode = "off";
-    if (autoRunning) mode = "running";
-    else if (autoSelectMode) mode = "armed";
-
-    btn.setAttribute("data-mode", mode);
-
-    if (hint) {
-      if (autoRunning) hint.textContent = "Auto reading… (press Auto to stop)";
-      else if (autoSelectMode) hint.textContent = "Pick a sentence button to start";
-      else hint.textContent = "Auto (continuous)";
-    }
-  }
-
-  function stopAuto(){
-    autoSelectMode = false;
-    autoRunning = false;
-    autoQueue = [];
-    autoIndex = 0;
-    updateAutoUI();
-  }
-
-  function toggleAuto(){
-    if (autoRunning){
-      stop({ cancelAuto: true });
-      return;
-    }
-    autoSelectMode = !autoSelectMode;
-    updateAutoUI();
-  }
-
-  function getSentenceTextFromBtn(btn){
-    const wrap = btn && btn.closest(".tts-wrap");
-    if (!wrap) return "";
-    const textSpan = wrap.querySelector(".tts");
-    const t = (textSpan && (textSpan.getAttribute("data-tts") || textSpan.textContent || "")) || "";
-    return t.trim();
-  }
-
-  function buildAutoQueueFrom(startBtn){
-    const root = getContentRoot();
-    const btns = Array.from(root.querySelectorAll(".tts-wrap > button.tts-btn"));
-    const idx = btns.indexOf(startBtn);
-    if (idx < 0) return [];
-    const out = [];
-    for (let i = idx; i < btns.length; i++){
-      const b = btns[i];
-      const text = getSentenceTextFromBtn(b);
-      if (text) out.push({ btn: b, text });
-    }
-    return out;
-  }
-
-  function scrollToSentence(btn){
-    const wrap = btn && btn.closest(".tts-wrap");
-    if (!wrap) return;
-    try {
-      wrap.scrollIntoView({ behavior: "smooth", block: "center", inline: "nearest" });
-    } catch (_) {
-      try { wrap.scrollIntoView(true); } catch (_) {}
-    }
-  }
-
-  function startAutoFrom(startBtn){
-    autoQueue = buildAutoQueueFrom(startBtn);
-    autoIndex = 0;
-
-    if (!autoQueue.length){
-      stopAuto();
-      return;
-    }
-
-    autoRunning = true;
-    autoSelectMode = false;
-    updateAutoUI();
-
-    playAutoCurrent();
-  }
-
-  function playAutoCurrent(){
-    if (!autoRunning) return;
-    const item = autoQueue[autoIndex];
-    if (!item){
-      stopAuto();
-      return;
-    }
-
-    // 依設定決定是否自動捲動
-    if (autoScrollEnabled) scrollToSentence(item.btn);
-
-    speakAuto(item.text, item.btn, { auto: true });
-  }
-
-  function advanceAuto(){
-    if (!autoRunning) return;
-    autoIndex += 1;
-
-    // 本頁播完：嘗試前往下一頁並續讀
-    if (autoIndex >= autoQueue.length){
-      // 先結束本頁 auto 狀態（避免重入）
-      autoRunning = false;
-      autoSelectMode = false;
-      updateAutoUI();
-
-      // 若有下一頁就導頁；沒有就結束
-      const ok = gotoNextPageForAuto();
-      if (!ok){
-        clearResumeFlag();
-        stopAuto();
-      }
-      return;
-    }
-
-    playAutoCurrent();
-  }
-
-  /* =========================
-     localStorage helpers
-     ========================= */
-  function getScopedLSKey(key){
-    return LS_NAMESPACE + key;
-  }
-
-  function safeGetRawLS(key){
-    try {
-      const scopedKey = getScopedLSKey(key);
-      const scopedVal = localStorage.getItem(scopedKey);
-      if (scopedVal !== null && scopedVal !== undefined) return scopedVal;
-
-      const legacyVal = localStorage.getItem(key);
-      if (legacyVal !== null && legacyVal !== undefined) {
-        localStorage.setItem(scopedKey, legacyVal);
-        localStorage.removeItem(key);
-        return legacyVal;
-      }
-    } catch (_) {}
-    return null;
-  }
-
-  function safeRemoveLS(key){
-    try {
-      localStorage.removeItem(getScopedLSKey(key));
-      localStorage.removeItem(key);
-    } catch (_) {}
-  }
-
-  function safeGetLS(key){
-    return safeGetRawLS(key);
-  }
-  function safeSetLS(key, val){
-    try { localStorage.setItem(getScopedLSKey(key), val); } catch (_) {}
-  }
-  function safeGetNumberLS(key, def){
-    const v = safeGetRawLS(key);
-    if (v === null || v === undefined) return def;
-    const n = Number(v);
-    return isFinite(n) ? n : def;
-  }
-  function safeGetBoolLS(key, def){
-    const v = safeGetRawLS(key);
-    if (v === null || v === undefined) return def;
-    // "0"/"false" => false，其餘視為 true
-    const s = String(v).toLowerCase().trim();
-    if (s === "0" || s === "false" || s === "off") return false;
-    if (s === "1" || s === "true"  || s === "on")  return true;
-    return def;
-  }
-
-  function supported() {
-    return ("speechSynthesis" in window) && ("SpeechSynthesisUtterance" in window);
-  }
-
-  function warmVoices() {
-    try { speechSynthesis.getVoices(); } catch (_) {}
-  }
-  function getVoices() {
-    return speechSynthesis.getVoices() || [];
-  }
-
-  function voiceKey(v){
-    if (v && v.voiceURI) return "uri:" + v.voiceURI;
-    return "nl:" + (v.lang || "") + "||" + (v.name || "");
-  }
-  function findVoiceByKey(key){
-    if (!key) return null;
-    const voices = getVoices();
-    for (const v of voices) if (voiceKey(v) === key) return v;
-    return null;
-  }
-
-  function isZhLang(lang){
-    const l = (lang || "").toLowerCase();
-    return l.startsWith("zh");
-  }
-  function isEnLang(lang){
-    const l = (lang || "").toLowerCase();
-    return l.startsWith("en"); // 所有英語 en-*
-  }
-
-  function pickDefaultVoiceKey(voices, langNeedle, nameIncludes){
-    if (!voices.length) return null;
-
-    const needle = (nameIncludes || "").toLowerCase();
-    const langN = (langNeedle || "").toLowerCase();
-
-    let v = voices.find(x => (x.lang||"").toLowerCase() === langN && (x.name||"").toLowerCase().includes(needle));
-    if (v) return voiceKey(v);
-
-    v = voices.find(x => (x.name||"").toLowerCase().includes(needle));
-    if (v) return voiceKey(v);
-
-    v = voices.find(x => (x.lang||"").toLowerCase() === langN);
-    if (v) return voiceKey(v);
-
-    const prefix = langN.split("-")[0];
-    v = voices.find(x => (x.lang||"").toLowerCase().startsWith(prefix));
-    if (v) return voiceKey(v);
-
-    return voiceKey(voices[0]);
-  }
-
-  function ensureVoiceKeys(){
-    const voices = getVoices();
-    if (!voices.length) return;
-
-    if (!voiceKeyEN || !findVoiceByKey(voiceKeyEN)) {
-      voiceKeyEN =
-        pickDefaultVoiceKey(voices.filter(v => isEnLang(v.lang)), DEFAULT_LANG_EN, DEFAULT_NAME_EN_INCLUDES)
-        || pickDefaultVoiceKey(voices, DEFAULT_LANG_EN, DEFAULT_NAME_EN_INCLUDES);
-      if (voiceKeyEN) safeSetLS(LS_VOICE_EN, voiceKeyEN);
-    }
-
-    if (!voiceKeyZH || !findVoiceByKey(voiceKeyZH)) {
-      voiceKeyZH =
-        pickDefaultVoiceKey(voices.filter(v => isZhLang(v.lang)), DEFAULT_LANG_ZH, DEFAULT_NAME_ZH_INCLUDES)
-        || pickDefaultVoiceKey(voices, DEFAULT_LANG_ZH, DEFAULT_NAME_ZH_INCLUDES);
-      if (voiceKeyZH) safeSetLS(LS_VOICE_ZH, voiceKeyZH);
-    }
-  }
-
-  function getVoiceForLangTag(tag){
-    ensureVoiceKeys();
-    if (tag === "zh") return findVoiceByKey(voiceKeyZH) || null;
-    return findVoiceByKey(voiceKeyEN) || null;
-  }
-
-  // ✅ 修正：stop() 乾淨且可解析
-  function stop(opts) {
-    const o = opts || {};
-    const cancelAuto = (o.cancelAuto !== false);
-
-    try { speechSynthesis.cancel(); } catch (_) {}
-    activeUtterances = [];
-    onSpeakDone = null;
-
-    if (currentBtn) {
-      currentBtn.setAttribute("data-state", "play");
-      currentBtn.setAttribute("aria-pressed", "false");
-      currentBtn = null;
-    }
-
-    if (cancelAuto) {
-      clearResumeFlag();   // 使用者手動停止，就不要跨頁續讀
-      stopAuto();
-    }
-  }
-
-  function splitByLang(text){
-    const s = (text || "");
-    const out = [];
-    let buf = "";
-    let cur = null;
-
-    function flush(){
-      const t = buf.trim();
-      if (t) out.push({ lang: cur || "en", text: t });
-      buf = "";
-    }
-    function charType(ch){
-      if (/[\u4e00-\u9fff\u3400-\u4dbf]/.test(ch)) return "zh";
-      if (/[A-Za-z]/.test(ch)) return "en";
-      return "other";
-    }
-
-    for (let i=0;i<s.length;i++){
-      const ch = s[i];
-      const t = charType(ch);
-      const lang = (t === "other") ? (cur || "en") : t;
-
-      if (cur === null) cur = lang;
-      if (lang !== cur){
-        flush();
-        cur = lang;
-      }
-      buf += ch;
-    }
-    flush();
-    return out.length ? out : [{ lang: "en", text: s.trim() }];
-  }
-
-  function speakAuto(text, btn, opts){
-    if (!supported()) return;
-
-    const t = (text || "").trim();
-    if (!t) return;
-
-    const o = opts || {};
-    const isAuto = !!o.auto;
-
-    const pressed = btn.getAttribute("aria-pressed") === "true";
-    if (currentBtn === btn && pressed) {
-      stop({ cancelAuto: true });
-      return;
-    }
-
-    stop({ cancelAuto: !isAuto });
-
-    btn.setAttribute("data-state", "stop");
-    btn.setAttribute("aria-pressed", "true");
-    currentBtn = btn;
-
-    onSpeakDone = isAuto ? function(){
-      if (autoRunning) setTimeout(advanceAuto, clamp(autoGapMs, GAP_MIN, GAP_MAX));
-    } : null;
-
-    const segs = splitByLang(t);
-    activeUtterances = segs.map(seg => {
-      const u = new SpeechSynthesisUtterance(seg.text);
-
-      u.rate = clamp(ttsRate, RATE_MIN, RATE_MAX);
-      u.pitch = 1.0;
-
-      const v = getVoiceForLangTag(seg.lang);
-      if (v) {
-        u.voice = v;
-        u.lang = v.lang || (seg.lang === "zh" ? DEFAULT_LANG_ZH : DEFAULT_LANG_EN);
-      } else {
-        u.lang = (seg.lang === "zh" ? DEFAULT_LANG_ZH : DEFAULT_LANG_EN);
-      }
-      return u;
-    });
-
-    playNext();
-  }
-
-  function playNext(){
-    if (!activeUtterances.length){
-      const cb = onSpeakDone;
-      onSpeakDone = null;
-
-      // 收尾：只重置按鈕，不清 auto（讓 auto 邏輯決定下一步）
-      stop({ cancelAuto: false });
-
-      if (typeof cb === "function") cb();
-      return;
-    }
-
-    const u = activeUtterances.shift();
-    u.onend = () => playNext();
-    u.onerror = () => stop({ cancelAuto: true });
-
-    warmVoices();
-    try { speechSynthesis.speak(u); } catch (_) { stop({ cancelAuto: true }); }
-  }
-
-  function attachSentenceButtons(root){
-    const scope = root || document;
-    scope.querySelectorAll(".tts").forEach(textSpan => {
-      let wrap = textSpan.closest(".tts-wrap");
-      if (!wrap) {
-        wrap = document.createElement("span");
-        wrap.className = "tts-wrap";
-        textSpan.parentNode.insertBefore(wrap, textSpan);
-        wrap.appendChild(textSpan);
-      }
-      if (wrap.querySelector(":scope > button.tts-btn")) return;
-
-      const pure = (textSpan.getAttribute("data-tts") || textSpan.textContent || "").trim();
-      textSpan.setAttribute("data-tts", pure);
-
-      const btn = document.createElement("button");
-      btn.className = "tts-btn";
-      btn.type = "button";
-      btn.setAttribute("data-state", "play");
-      btn.setAttribute("aria-pressed", "false");
-      btn.setAttribute("aria-label", "Play/Stop");
-
-      btn.addEventListener("pointerdown", warmVoices, { passive: true });
-      btn.addEventListener("click", (e) => {
-        e.preventDefault();
-        e.stopPropagation();
-
-        if (autoSelectMode) {
-          startAutoFrom(btn);
-          return;
-        }
-        if (autoRunning) {
-          startAutoFrom(btn);
-          return;
-        }
-
-        speakAuto(textSpan.getAttribute("data-tts"), btn, { auto: false });
-      });
-
-      wrap.appendChild(btn);
-    });
-  }
-
-  function getHeaderEllipsis(){
-    return document.querySelector(".md-header__ellipsis");
-  }
-
-  function ensureHeaderControl(){
-    const ellipsis = getHeaderEllipsis();
-    if (!ellipsis) return false;
-
-    ellipsis.classList.add("tts-ellipsis-flex");
-    if (document.getElementById("tts-header-control")) return true;
-
-    const wrap = document.createElement("span");
-    wrap.id = "tts-header-control";
-
-    const toggle = document.createElement("button");
-    toggle.id = "tts-header-voice-toggle";
-    toggle.type = "button";
-    toggle.setAttribute("aria-label", "Choose voices");
-    toggle.innerHTML = `
-      <svg viewBox="0 0 24 24" aria-hidden="true">
-        <path d="M3 10v4c0 1.1.9 2 2 2h3l4 3V5L8 8H5c-1.1 0-2 .9-2 2zm13.5 2c0-1.77-1.02-3.29-2.5-4.03v8.06c1.48-.74 2.5-2.26 2.5-4.03z"/>
-      </svg>
-    `;
-
-    toggle.addEventListener("pointerdown", warmVoices, { passive: true });
-    toggle.addEventListener("click", (e) => {
-      e.preventDefault();
-      e.stopPropagation();
-      openOrToggleVoicePanel(toggle);
-    });
-
-    wrap.appendChild(toggle);
-    ellipsis.appendChild(wrap);
-
-    return true;
-  }
-
-  function makeAutoRow(){
-    const row = document.createElement("div");
-    row.className = "tts-vp-row";
-    row.innerHTML = `
-      <button id="tts-autoread-toggle" type="button" aria-label="Auto reading">
-        <span class="dot"></span>
-      </button>
-      <div id="tts-autoread-hint">Auto (continuous)</div>
-    `;
-    return row;
-  }
-
-  function makeRateRow(){
-    const row = document.createElement("div");
-    row.className = "tts-vp-row";
-    row.innerHTML = `
-      <div class="lbl">Rate</div>
-      <div class="tts-kv">
-        <input id="tts-rate" type="range" min="${RATE_MIN}" max="${RATE_MAX}" step="${RATE_STEP}" />
-        <span id="tts-rate-val" class="val"></span>
-      </div>
-    `;
-    return row;
-  }
-
-  function makeGapRow(){
-    const row = document.createElement("div");
-    row.className = "tts-vp-row";
-    row.innerHTML = `
-      <div class="lbl">Gap</div>
-      <div class="tts-kv">
-        <input id="tts-gap" type="range" min="${GAP_MIN}" max="${GAP_MAX}" step="${GAP_STEP}" />
-        <span id="tts-gap-val" class="val"></span>
-      </div>
-    `;
-    return row;
-  }
-
-  function makeScrollRow(){
-    const row = document.createElement("div");
-    row.className = "tts-vp-row";
-    row.innerHTML = `
-      <div class="lbl">Scroll</div>
-      <button id="tts-autoscroll-toggle" class="tts-toggle-btn" type="button" aria-label="Toggle auto scroll">
-        <span class="txt">Auto scroll</span>
-        <span id="tts-autoscroll-val" class="state"></span>
-      </button>
-    `;
-    return row;
-  }
-
-  function updateSettingsUI(){
-    ttsRate = clamp(ttsRate, RATE_MIN, RATE_MAX);
-    autoGapMs = Math.round(clamp(autoGapMs, GAP_MIN, GAP_MAX));
-
-    const rateEl = document.getElementById("tts-rate");
-    const rateVal = document.getElementById("tts-rate-val");
-    if (rateEl) rateEl.value = String(ttsRate);
-    if (rateVal) rateVal.textContent = ttsRate.toFixed(2).replace(/\.00$/,"") + "x";
-
-    const gapEl = document.getElementById("tts-gap");
-    const gapVal = document.getElementById("tts-gap-val");
-    if (gapEl) gapEl.value = String(autoGapMs);
-    if (gapVal) gapVal.textContent = autoGapMs + "ms";
-
-    const scBtn = document.getElementById("tts-autoscroll-toggle");
-    const scVal = document.getElementById("tts-autoscroll-val");
-    if (scBtn) scBtn.setAttribute("data-on", autoScrollEnabled ? "true" : "false");
-    if (scVal) scVal.textContent = autoScrollEnabled ? "ON" : "OFF";
-  }
-
-  function bindSettingsControlsOnce(){
-    const rateEl = document.getElementById("tts-rate");
-    const gapEl  = document.getElementById("tts-gap");
-    const scBtn  = document.getElementById("tts-autoscroll-toggle");
-
-    if (rateEl && !rateEl.__tts_bound__){
-      rateEl.__tts_bound__ = true;
-      rateEl.addEventListener("input", () => {
-        ttsRate = clamp(Number(rateEl.value), RATE_MIN, RATE_MAX);
-        safeSetLS(LS_RATE, String(ttsRate));
-        updateSettingsUI();
-      });
-      rateEl.addEventListener("change", () => {
-        ttsRate = clamp(Number(rateEl.value), RATE_MIN, RATE_MAX);
-        safeSetLS(LS_RATE, String(ttsRate));
-        updateSettingsUI();
-      });
-    }
-
-    if (gapEl && !gapEl.__tts_bound__){
-      gapEl.__tts_bound__ = true;
-      gapEl.addEventListener("input", () => {
-        autoGapMs = Math.round(clamp(Number(gapEl.value), GAP_MIN, GAP_MAX));
-        safeSetLS(LS_GAP, String(autoGapMs));
-        updateSettingsUI();
-      });
-      gapEl.addEventListener("change", () => {
-        autoGapMs = Math.round(clamp(Number(gapEl.value), GAP_MIN, GAP_MAX));
-        safeSetLS(LS_GAP, String(autoGapMs));
-        updateSettingsUI();
-      });
-    }
-
-    if (scBtn && !scBtn.__tts_bound__){
-      scBtn.__tts_bound__ = true;
-      scBtn.addEventListener("click", (e) => {
-        e.preventDefault();
-        e.stopPropagation();
-        autoScrollEnabled = !autoScrollEnabled;
-        safeSetLS(LS_AUTO_SCROLL, autoScrollEnabled ? "1" : "0");
-        updateSettingsUI();
-      });
-    }
-  }
-
-  function ensureVoicePanelPortal(){
-    let panel = document.getElementById("tts-voice-panel-portal");
-    if (panel) {
-      if (!panel.querySelector("#tts-autoread-toggle")) {
-        panel.insertBefore(makeAutoRow(), panel.firstChild);
-      }
-
-      // 補 Rate/Gap/Scroll rows（固定在 Auto row 後面）
-      if (!panel.querySelector("#tts-rate") || !panel.querySelector("#tts-gap") || !panel.querySelector("#tts-autoscroll-toggle")) {
-        const autoBtn = panel.querySelector("#tts-autoread-toggle");
-        const autoRow = autoBtn ? autoBtn.closest(".tts-vp-row") : null;
-
-        const rateRow = panel.querySelector("#tts-rate") ? null : makeRateRow();
-        const gapRow  = panel.querySelector("#tts-gap") ? null : makeGapRow();
-        const scrRow  = panel.querySelector("#tts-autoscroll-toggle") ? null : makeScrollRow();
-
-        let anchor = autoRow;
-        if (anchor && rateRow) { anchor.insertAdjacentElement("afterend", rateRow); anchor = rateRow; }
-        if (anchor && gapRow)  { anchor.insertAdjacentElement("afterend", gapRow);  anchor = gapRow; }
-        if (anchor && scrRow)  { anchor.insertAdjacentElement("afterend", scrRow);  anchor = scrRow; }
-
-        if (!autoRow) {
-          if (scrRow) panel.insertBefore(scrRow, panel.firstChild);
-          if (gapRow) panel.insertBefore(gapRow, panel.firstChild);
-          if (rateRow) panel.insertBefore(rateRow, panel.firstChild);
-        }
-      }
-
-      const autoBtn = panel.querySelector("#tts-autoread-toggle");
-      if (autoBtn && !autoBtn.__tts_bound__) {
-        autoBtn.__tts_bound__ = true;
-        autoBtn.addEventListener("click", (e) => {
-          e.preventDefault();
-          e.stopPropagation();
-          toggleAuto();
-        });
-      }
-
-      bindSettingsControlsOnce();
-      updateSettingsUI();
-      updateAutoUI();
-      return panel;
-    }
-
-    panel = document.createElement("div");
-    panel.id = "tts-voice-panel-portal";
-
-    panel.appendChild(makeAutoRow());
-    panel.appendChild(makeRateRow());
-    panel.appendChild(makeGapRow());
-    panel.appendChild(makeScrollRow());
-
-    panel.appendChild(makeDropdownRow("EN", "en"));
-    panel.appendChild(makeDropdownRow("ZH", "zh"));
-
-    document.body.appendChild(panel);
-
-    const autoBtn = panel.querySelector("#tts-autoread-toggle");
-    if (autoBtn) {
-      autoBtn.__tts_bound__ = true;
-      autoBtn.addEventListener("click", (e) => {
-        e.preventDefault();
-        e.stopPropagation();
-        toggleAuto();
-      });
-    }
-
-    bindSettingsControlsOnce();
-    updateSettingsUI();
-    updateAutoUI();
-
-    return panel;
-  }
-
-  function makeDropdownRow(label, kind){
-    const row = document.createElement("div");
-    row.className = "tts-vp-row";
-
-    const lbl = document.createElement("div");
-    lbl.className = "lbl";
-    lbl.textContent = label;
-
-    const dd = document.createElement("div");
-    dd.className = "tts-dd";
-    dd.setAttribute("data-kind", kind);
-
-    const btn = document.createElement("button");
-    btn.type = "button";
-    btn.className = "tts-dd-btn";
-    btn.innerHTML = `<span class="txt">Loading…</span><span class="chev"></span>`;
-    btn.addEventListener("pointerdown", warmVoices, { passive: true });
-    btn.addEventListener("click", (e) => {
-      e.preventDefault();
-      e.stopPropagation();
-      toggleDropdown(kind);
-    });
-
-    const list = document.createElement("div");
-    list.className = "tts-dd-list";
-
-    dd.appendChild(btn);
-    dd.appendChild(list);
-
-    row.appendChild(lbl);
-    row.appendChild(dd);
-    return row;
-  }
-
-  function closeAllDropdowns(){
-    document.querySelectorAll("#tts-voice-panel-portal .tts-dd.open").forEach(x => x.classList.remove("open"));
-  }
-
-  function toggleDropdown(kind){
-    const panel = document.getElementById("tts-voice-panel-portal");
-    if (!panel) return;
-    const dd = panel.querySelector(`.tts-dd[data-kind="${kind}"]`);
-    if (!dd) return;
-
-    const isOpen = dd.classList.contains("open");
-    closeAllDropdowns();
-    if (!isOpen) dd.classList.add("open");
-  }
-
-  function voiceLabel(v){
-    return `${v.lang} — ${v.name}`;
-  }
-
-  function syncVoiceDropdowns(){
-    const panel = document.getElementById("tts-voice-panel-portal");
-    if (!panel) return;
-
-    const voices = getVoices();
-    ensureVoiceKeys();
-
-    const ddEN = panel.querySelector('.tts-dd[data-kind="en"]');
-    const ddZH = panel.querySelector('.tts-dd[data-kind="zh"]');
-
-    if (ddEN) fillDropdown(ddEN, voices, "en", voiceKeyEN);
-    if (ddZH) fillDropdown(ddZH, voices, "zh", voiceKeyZH);
-  }
-
-  function fillDropdown(dd, voices, kind, selectedKey){
-    const btnTxt = dd.querySelector(".tts-dd-btn .txt");
-    const list = dd.querySelector(".tts-dd-list");
-    list.innerHTML = "";
-
-    let listVoices;
-    if (kind === "en") {
-      const allEn = voices.filter(v => isEnLang(v.lang));
-      listVoices = allEn.length ? allEn : voices;
-    } else {
-      const zh = voices.filter(v => isZhLang(v.lang));
-      listVoices = zh.length ? zh : voices;
-    }
-
-    // 讓 en-US / en-CA 靠前，但仍保留全部 en-*
-    if (kind === "en" && listVoices.length) {
-      const score = (v) => {
-        const l = (v.lang || "").toLowerCase();
-        if (l === "en-us") return 0;
-        if (l === "en-ca") return 1;
-        if (l.startsWith("en-")) return 2;
-        return 3;
-      };
-      listVoices = listVoices.slice().sort((a,b) => {
-        const sa = score(a), sb = score(b);
-        if (sa !== sb) return sa - sb;
-        return String(a.name||"").localeCompare(String(b.name||""));
-      });
-    }
-
-    const trimmed = listVoices.slice(0, MAX_VOICES_RENDER);
-
-    const exists = trimmed.some(v => voiceKey(v) === selectedKey) || listVoices.some(v => voiceKey(v) === selectedKey);
-    if (!exists) {
-      const fallbackKey =
-        (kind === "zh")
-          ? pickDefaultVoiceKey(listVoices, "zh-TW", DEFAULT_NAME_ZH_INCLUDES)
-          : pickDefaultVoiceKey(listVoices, "en-US", DEFAULT_NAME_EN_INCLUDES);
-
-      if (kind === "zh") { voiceKeyZH = fallbackKey; safeSetLS(LS_VOICE_ZH, voiceKeyZH); selectedKey = voiceKeyZH; }
-      else { voiceKeyEN = fallbackKey; safeSetLS(LS_VOICE_EN, voiceKeyEN); selectedKey = voiceKeyEN; }
-    }
-
-    const selectedVoice = findVoiceByKey(selectedKey) || listVoices[0] || null;
-    if (btnTxt) btnTxt.textContent = selectedVoice ? voiceLabel(selectedVoice) : "No voices";
-
-    if (!trimmed.length) {
-      const it = document.createElement("div");
-      it.className = "tts-dd-item";
-      it.textContent = "No voices";
-      list.appendChild(it);
-      return;
-    }
-
-    trimmed.forEach(v => {
-      const k = voiceKey(v);
-      const it = document.createElement("div");
-      it.className = "tts-dd-item" + (k === selectedKey ? " active" : "");
-      it.textContent = voiceLabel(v);
-
-      it.addEventListener("click", (e) => {
-        e.preventDefault();
-        e.stopPropagation();
-
-        if (kind === "zh") { voiceKeyZH = k; safeSetLS(LS_VOICE_ZH, voiceKeyZH); }
-        else { voiceKeyEN = k; safeSetLS(LS_VOICE_EN, voiceKeyEN); }
-
-        syncVoiceDropdowns();
-        closeAllDropdowns();
-      });
-
-      list.appendChild(it);
-    });
-  }
-
-  function hideVoicePanel(){
-    const panel = document.getElementById("tts-voice-panel-portal");
-    if (!panel) return;
-    panel.classList.remove("open");
-    panel.style.display = "none";
-    closeAllDropdowns();
-  }
-
-  function openOrToggleVoicePanel(anchorBtn){
-    const panel = ensureVoicePanelPortal();
-
-    if (panel.classList.contains("open")) {
-      hideVoicePanel();
-      return;
-    }
-
-    warmVoices();
-    ensureVoiceKeys();
-    syncVoiceDropdowns();
-    updateSettingsUI();
-    updateAutoUI();
-
-    panel.style.display = "block";
-    panel.classList.add("open");
-    closeAllDropdowns();
-
-    requestAnimationFrame(() => positionVoicePanel(anchorBtn, panel));
-  }
-
-  function positionVoicePanel(anchorBtn, panel){
-    if (!anchorBtn || !panel) return;
-
-    const margin = 8;
-    const gap = 8;
-    const r = anchorBtn.getBoundingClientRect();
-
-    const w = panel.offsetWidth || 360;
-    const h = panel.offsetHeight || 160;
-
-    let left = r.right - w;
-    let top  = r.bottom + gap;
-
-    if (left < margin) left = margin;
-    if (left + w > window.innerWidth - margin) left = window.innerWidth - margin - w;
-
-    if (top + h > window.innerHeight - margin) {
-      top = r.top - gap - h;
-    }
-    if (top < margin) top = margin;
-
-    panel.style.left = left + "px";
-    panel.style.top  = top + "px";
-  }
-
-  function ensureSelectionPop() {
-    let pop = document.getElementById("tts-selection-pop");
-    if (pop) return pop;
-
-    pop = document.createElement("div");
-    pop.id = "tts-selection-pop";
-
-    const btn = document.createElement("button");
-    btn.className = "tts-btn";
-    btn.type = "button";
-    btn.setAttribute("data-state", "play");
-    btn.setAttribute("aria-pressed", "false");
-    btn.setAttribute("aria-label", "Speak selection");
-
-    const zh = document.createElement("div");
-    zh.id = "tts-selection-zh";
-    zh.innerHTML = '<span class="muted">翻譯載入中…</span>';
-
-    btn.addEventListener("pointerdown", warmVoices, { passive: true });
-    btn.addEventListener("click", (e) => {
-      e.preventDefault();
-      e.stopPropagation();
-      const text = getSelectionText();
-      if (!text) return;
-
-      stop({ cancelAuto: true });
-      speakAuto(text, btn, { auto: false });
-    });
-
-    pop.appendChild(btn);
-    pop.appendChild(zh);
-    document.body.appendChild(pop);
-    return pop;
-  }
-
-  function getSelectionPopEl() { return document.getElementById("tts-selection-pop"); }
-
-  function nodeInsidePop(node, pop) {
-    if (!node || !pop) return false;
-    const el = (node.nodeType === Node.TEXT_NODE) ? node.parentNode : node;
-    return !!(el && pop.contains(el));
-  }
-
-  function selectionTouchesPop() {
-    const pop = getSelectionPopEl();
-    const sel = window.getSelection ? window.getSelection() : null;
-    if (!pop || !sel || sel.rangeCount === 0) return false;
-    return nodeInsidePop(sel.anchorNode, pop) || nodeInsidePop(sel.focusNode, pop);
-  }
-
-  function hideSelectionPop() {
-    const pop = getSelectionPopEl();
-    if (pop) pop.style.display = "none";
-  }
-
-  function getSelectionText() {
-    const sel = window.getSelection ? window.getSelection() : null;
-    if (!sel || sel.rangeCount === 0) return "";
-    const text = (sel.toString() || "").trim();
-    if (!text || text.length > SELECTION_MAX_CHARS) return "";
-    return text;
-  }
-
-  function getSelectionRect() {
-    const sel = window.getSelection ? window.getSelection() : null;
-    if (!sel || sel.rangeCount === 0) return null;
-    const range = sel.getRangeAt(0);
-    const rect = range.getBoundingClientRect();
-    if (!rect || (rect.width === 0 && rect.height === 0)) return null;
-    return rect;
-  }
-
-  async function translateToZh(text) {
-    const key = `${TRANSLATE_FROM}|${TRANSLATE_TO}|${text}`;
-    if (translateCache.has(key)) return translateCache.get(key);
-
-    const url =
-      "https://translate.googleapis.com/translate_a/single" +
-      `?client=gtx&sl=${encodeURIComponent(TRANSLATE_FROM)}` +
-      `&tl=${encodeURIComponent(TRANSLATE_TO)}` +
-      `&dt=t&q=${encodeURIComponent(text)}`;
-
-    try {
-      const res = await fetch(url, { method: "GET" });
-      if (!res.ok) throw new Error("http " + res.status);
-      const data = await res.json();
-      const translated = Array.isArray(data?.[0]) ? data[0].map(x => x?.[0] || "").join("") : "";
-      translateCache.set(key, translated);
-      return translated;
-    } catch (_) {
-      translateCache.set(key, "");
-      return "";
-    }
-  }
-
-  async function showSelectionPop() {
-    if (!supported()) return;
-    if (selectionTouchesPop()) return;
-
-    const text = getSelectionText();
-    if (!text) return;
-
-    const rect = getSelectionRect();
-    if (!rect) return;
-
-    const pop = ensureSelectionPop();
-    const zh = document.getElementById("tts-selection-zh");
-
-    pop.style.display = "flex";
-
-    const offset = 8;
-    const popW = pop.offsetWidth || 240;
-    const popH = pop.offsetHeight || 56;
-
-    let left = rect.left + rect.width / 2 - popW / 2;
-    let top  = rect.top - popH - offset;
-
-    left = Math.max(8, Math.min(left, window.innerWidth - popW - 8));
-    if (top < 8) top = rect.bottom + offset;
-
-    pop.style.left = `${left}px`;
-    pop.style.top  = `${top}px`;
-
-    if (zh) {
-      zh.innerHTML = '<span class="muted">翻譯載入中…</span>';
-      const translated = await translateToZh(text);
-      zh.textContent = translated ? translated : "（翻譯失敗或被阻擋）";
-    }
-  }
-
-  function bindGlobalEventsOnce(){
-    if (globalEventsBound) return;
-    globalEventsBound = true;
-
-    document.addEventListener("mouseup", (e) => {
-      const pop = getSelectionPopEl();
-      if (pop && e.target && pop.contains(e.target)) return;
-      setTimeout(showSelectionPop, 0);
-    });
-
-    document.addEventListener("keyup", () => {
-      const pop = getSelectionPopEl();
-      if (pop && document.activeElement && pop.contains(document.activeElement)) return;
-      setTimeout(showSelectionPop, 0);
-    });
-
-    document.addEventListener("mousedown", (e) => {
-      const t = e.target;
-
-      const panel = document.getElementById("tts-voice-panel-portal");
-      const toggle = document.getElementById("tts-header-voice-toggle");
-      if (panel && panel.classList.contains("open")) {
-        const insidePanel = panel.contains(t);
-        const insideToggle = toggle && toggle.contains(t);
-        if (!insidePanel && !insideToggle) hideVoicePanel();
-        if (insidePanel && !t.closest(".tts-dd")) closeAllDropdowns();
-      }
-
-      const pop = getSelectionPopEl();
-      if (pop && t && !pop.contains(t)) hideSelectionPop();
-    }, { passive: true });
-
-    window.addEventListener("resize", () => {
-      hideSelectionPop();
-      const panel = document.getElementById("tts-voice-panel-portal");
-      const toggle = document.getElementById("tts-header-voice-toggle");
-      if (panel && panel.classList.contains("open") && toggle) {
-        positionVoicePanel(toggle, panel);
-      }
-    });
-
-    window.addEventListener("scroll", hideSelectionPop, true);
-
-    if ("speechSynthesis" in window) {
-      speechSynthesis.onvoiceschanged = () => {
-        ensureVoiceKeys();
-        syncVoiceDropdowns();
-      };
-    }
-
-    if (window.document$ && typeof window.document$.subscribe === "function") {
-      window.document$.subscribe(() => scheduleEnhance(true));
-    }
-    document.addEventListener("navigation:complete", () => scheduleEnhance(true));
-  }
-
-  function getContentRoot(){
-    return document.querySelector(".md-content .md-content__inner")
-        || document.querySelector(".md-content")
-        || document.querySelector("main")
-        || document.body;
-  }
-
-  function enhanceOnce(){
-    if (!supported()) return;
-
-    const root = getContentRoot();
-    attachSentenceButtons(root);
-
-    ensureHeaderControl();
-    ensureVoicePanelPortal();
-    syncVoiceDropdowns();
-    updateSettingsUI();
-    updateAutoUI();
-
-    ensureSelectionPop();
-    resumeAutoIfRequested();
-  }
-
-  function enhanceWithRetry(tries){
-    enhanceOnce();
-
-    const ellipsis = getHeaderEllipsis();
-    const hasHeaderBtn = !!document.getElementById("tts-header-control");
-    const ready = !!ellipsis && hasHeaderBtn;
-
-    if (!ready && tries < 14) {
-      setTimeout(() => enhanceWithRetry(tries + 1), 120);
-    }
-  }
-
-  function scheduleEnhance(force){
-    if (scheduled && !force) return;
-    scheduled = true;
-
-    requestAnimationFrame(() => {
-      scheduled = false;
-      warmVoices();
-      ensureVoiceKeys();
-
-      // normalize persisted values
-      ttsRate = clamp(ttsRate, RATE_MIN, RATE_MAX);
-      autoGapMs = Math.round(clamp(autoGapMs, GAP_MIN, GAP_MAX));
-      safeSetLS(LS_RATE, String(ttsRate));
-      safeSetLS(LS_GAP, String(autoGapMs));
-      safeSetLS(LS_AUTO_SCROLL, autoScrollEnabled ? "1" : "0");
-
-      enhanceWithRetry(0);
-      startObserver();
-    });
-  }
-
-  function startObserver(){
-    const target = getContentRoot();
-    if (!target) return;
-
-    if (observer && observerTarget === target) return;
-
-    if (observer) {
-      try { observer.disconnect(); } catch (_) {}
-      observer = null;
-      observerTarget = null;
-    }
-
-    observerTarget = target;
-    observer = new MutationObserver(() => scheduleEnhance(false));
-    observer.observe(target, { childList: true, subtree: true });
-  }
-
-  function init(){
-    if (!supported()) return;
-    bindGlobalEventsOnce();
-    warmVoices();
-    ensureVoiceKeys();
-    scheduleEnhance(true);
-    startObserver();
-  }
-
-  window.__TTS_TOOLKIT__ = {
-    scheduleEnhance: () => scheduleEnhance(true)
-  };
-
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", init);
-  } else {
-    init();
-  }
-})();
-</script>  
-
-
-
-<!-- <script>
-    var ALGOLIA_CONFIG = {
-      logo: '\/images\/algolia_logo.svg',
-      algolia: {
-        applicationID: "WS267X19C5",
-        apiKey: "1d3e38f83811634b945a922d39d9b719",
-        indexName: "algolia",
-        hits: {
-          "per_page": parseInt("10")
-        },
-        labels: {
-          "input_placeholder": "搜索.....",
-          "hits_empty": "未發現與 「${query}」相關内容",
-          "hits_stats": "找到${hits}條结果（用时 ${time} ms）"
-        }
-      }
-    };
-  </script>
-  
-
-   -->
-<!-- 
-
- -->
-
 
 
     
       
-        
-        
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
-        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
-      
     
     
-      <link rel="stylesheet" href="../../assets/pymdownx-extras/extra-8611f6c398.css">
-    
-      <link rel="stylesheet" href="../../assets/pymdownx-extras/自定義.css?v=20260614-2">
+      <link rel="stylesheet" href="../../assets/pymdownx-extras/peicd-site.3e739e32312ae717d52f.css">
     
     <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
@@ -1986,71 +86,6 @@
     </div>
     <div data-md-component="announce">
       
-        <aside class="md-banner">
-          <div class="md-banner__inner md-grid md-typeset">
-            
-              <button class="md-banner__button md-icon" aria-label="Don't show this again">
-                
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
-              </button>
-            
-            <!-- <a href="https://github.com/pei-yan-2147">Sponsorship</a>
-
-is now available!
-<span class="twemoji heart-throb">
-  
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M7.655 14.916zh-.002l-.006-.003-.018-.01a22 22 0 0 1-3.744-2.584C2.045 10.731 0 8.35 0 5.5 0 2.836 2.086 1 4.25 1 5.797 1 7.153 1.802 8 3.02 8.847 1.802 10.203 1 11.75 1 13.914 1 16 2.836 16 5.5c0 2.85-2.044 5.231-3.886 6.818a22 22 0 0 1-3.433 2.414 7 7 0 0 1-.31.17l-.018.01-.008.004a.75.75 0 0 1-.69 0"/></svg>
-</span> -->
-
-<!-- ---------------------------------------------------------------------------------- -->
-<!-- 
-近期更新<a href="機器學習%28Machine%20Learning%29.html">人工智慧</a> -->
-
-
-<!DOCTYPE html>
-<html lang="zh-Hant">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap" rel="stylesheet">
-    <style>
-        body {
-            font-family: 'Cascadia Mono', monospace;
-        }
-
-        .key {
-            display: inline-block;
-            background: #444;
-            color: #fff;
-            border: 1px solid #666;
-            border-radius: 4px;
-            padding: 2px 6px;
-            margin: 0 2px;
-            font-size: 0.9em;
-            box-shadow: inset 0 -2px 0 rgba(0, 0, 0, 0.2);
-        }
-    </style>
-</head>
-
-<body>
-    快捷鍵⮕
-    <span class="key">F</span>,
-    <span class="key">S</span>,
-    <span class="key">/</span>：開啟搜尋對話框；
-    <span class="key">P</span>,
-    <span class="key">,</span>：轉到上一頁；
-    <span class="key">N</span>,
-    <span class="key">.</span>：轉到下一頁
-</body>
-
-</html>
-          </div>
-          
-            <script>var el=document.querySelector("[data-md-component=announce]");if(el){var content=el.querySelector(".md-typeset");__md_hash(content.innerHTML)===__md_get("__announce")&&(el.hidden=!0)}</script>
-          
-        </aside>
-      
     </div>
     
     
@@ -2069,7 +104,8 @@ is now available!
       aria-label="PEICD100"
     >
       
-  <img src="../../logo/logo.png" alt="logo">
+  <img src="../../assets/generated/optimized-images/09/097aa83783056f750f99fd5abb8726e54e4da8fa21974cbc67461d20e8f052c8.webp" alt="logo"
+       width="96" height="96" decoding="async">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -2319,7 +355,8 @@ is now available!
   <label class="md-nav__title" for="__drawer">
     <a href="../.." title="PEICD100" class="md-nav__button md-logo" aria-label="PEICD100" data-md-component="logo">
       
-  <img src="../../logo/logo.png" alt="logo">
+  <img src="../../assets/generated/optimized-images/09/097aa83783056f750f99fd5abb8726e54e4da8fa21974cbc67461d20e8f052c8.webp" alt="logo"
+       width="96" height="96" decoding="async">
 
     </a>
     PEICD100
@@ -13901,7 +11938,6 @@ is now available!
               
               <article class="md-content__inner md-typeset">
                 
-  
                   
 
 
@@ -13909,7 +11945,9 @@ is now available!
   <h1>APCS 實作二｜歷屆考點拆解＋由淺入深練習題庫（C++）</h1>
 
 <!-- GPT1 https://chatgpt.com/g/g-p-69524891367c8191a9be2a02cea47baf-peicd-apcs/c/69524be2-cd24-8320-b860-82393607b1ef -->
+
 <!--GPT2 https://chatgpt.com/g/g-p-69524891367c8191a9be2a02cea47baf-peicd-apcs/c/69538a24-4128-8321-a5d1-7b2d3871db80 -->
+
 <h2 id="t01每組取最大輸出每組最大值">T01｜每組取最大：輸出每組最大值<a class="headerlink" href="#t01每組取最大輸出每組最大值" title="Permanent link"></a></h2>
 <h3 id="題目">題目<a class="headerlink" href="#題目" title="Permanent link"></a></h3>
 <p>你會拿到 N 組數字，每組有 M 個整數。請你對每一組找出該組的最大值並輸出。</p>
@@ -13984,7 +12022,7 @@ is now available!
 <span class="w">            </span><span class="kt">long</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">x</span><span class="p">;</span><span class="w"> </span><span class="n">cin</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">x</span><span class="p">;</span>
 <span class="w">            </span><span class="n">mx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">max</span><span class="p">(</span><span class="n">mx</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="p">);</span>
 <span class="w">        </span><span class="p">}</span>
-<span class="w">        </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">mx</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+<span class="w">        </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">mx</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
@@ -13993,7 +12031,7 @@ is now available!
 <ul>
 <li>每一組開始前要把最大值重新初始化。</li>
 </ul>
-<hr/>
+<hr />
 <h2 id="t02總和--整除篩選輸出">T02｜總和 + 整除篩選輸出<a class="headerlink" href="#t02總和--整除篩選輸出" title="Permanent link"></a></h2>
 <h3 id="題目_1">題目<a class="headerlink" href="#題目_1" title="Permanent link"></a></h3>
 <p>你會拿到 N 個正整數 a1..aN。令 S 為總和。</p>
@@ -14063,18 +12101,18 @@ is now available!
 <span class="w">        </span><span class="n">S</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
 <span class="w">    </span><span class="p">}</span>
 
-<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">S</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">S</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
 
 <span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">any</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
 <span class="w">    </span><span class="k">for</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">N</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
 <span class="w">        </span><span class="k">if</span><span class="p">(</span><span class="n">S</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">){</span>
-<span class="w">            </span><span class="k">if</span><span class="p">(</span><span class="n">any</span><span class="p">)</span><span class="w"> </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="sc">' '</span><span class="p">;</span>
+<span class="w">            </span><span class="k">if</span><span class="p">(</span><span class="n">any</span><span class="p">)</span><span class="w"> </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="sc">&#39; &#39;</span><span class="p">;</span>
 <span class="w">            </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
 <span class="w">            </span><span class="n">any</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
 <span class="w">        </span><span class="p">}</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="w">    </span><span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">any</span><span class="p">)</span><span class="w"> </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="mi">-1</span><span class="p">;</span>
-<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div>
@@ -14083,10 +12121,10 @@ is now available!
 <li>第二行要求「依輸入順序」輸出。</li>
 <li>用 <code>any</code> 控制空格最不容易出錯。</li>
 </ul>
-<hr/>
+<hr />
 <h2 id="t03字串成對交換">T03｜字串成對交換<a class="headerlink" href="#t03字串成對交換" title="Permanent link"></a></h2>
 <h3 id="題目_2">題目<a class="headerlink" href="#題目_2" title="Permanent link"></a></h3>
-<p>給你一個長度為偶數的字串 S。把每兩個字元視為一組：(S[0],S[1])、(S[2],S[3])…</p>
+<p>給你一個長度為偶數的字串 S。把每兩個字元視為一組：(S[0],S[1])、(S[2],S[3])&hellip;</p>
 <p>請把每一組內的兩個字元交換位置，輸出新字串。</p>
 <p><strong>輸入格式</strong></p>
 <ul>
@@ -14139,7 +12177,7 @@ is now available!
 <span class="w">        </span><span class="n">swap</span><span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="w"> </span><span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]);</span>
 <span class="w">    </span><span class="p">}</span>
 
-<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">s</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">s</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div>
@@ -14147,7 +12185,7 @@ is now available!
 <ul>
 <li>用 <code>i += 2</code> 走訪，每次只處理一組。</li>
 </ul>
-<hr/>
+<hr />
 <h2 id="t04字串成對排序每兩字元內部排序">T04｜字串成對排序（每兩字元內部排序）<a class="headerlink" href="#t04字串成對排序每兩字元內部排序" title="Permanent link"></a></h2>
 <h3 id="題目_3">題目<a class="headerlink" href="#題目_3" title="Permanent link"></a></h3>
 <p>給你一個長度為偶數的字串 S。把每兩個字元視為一組。</p>
@@ -14203,7 +12241,7 @@ is now available!
 <span class="w">        </span><span class="k">if</span><span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">])</span><span class="w"> </span><span class="n">swap</span><span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="w"> </span><span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]);</span>
 <span class="w">    </span><span class="p">}</span>
 
-<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">s</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">s</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div>
@@ -14211,12 +12249,12 @@ is now available!
 <ul>
 <li>只做「每組兩個字元」的小排序，不是整串排序。</li>
 </ul>
-<hr/>
+<hr />
 <h2 id="t05完美洗牌交錯合併兩半">T05｜完美洗牌（交錯合併兩半）<a class="headerlink" href="#t05完美洗牌交錯合併兩半" title="Permanent link"></a></h2>
 <h3 id="題目_4">題目<a class="headerlink" href="#題目_4" title="Permanent link"></a></h3>
 <p>給你一個長度為偶數的字串 S。</p>
-<p>把 S 平分成左半 L 與右半 R（長度都為 n/2），輸出交錯合併結果：<br/>
-L[0]R[0]L[1]R[1]…L[n/2-1]R[n/2-1]</p>
+<p>把 S 平分成左半 L 與右半 R（長度都為 n/2），輸出交錯合併結果：<br />
+L[0]R[0]L[1]R[1]&hellip;L[n/2-1]R[n/2-1]</p>
 <p><strong>輸入格式</strong></p>
 <ul>
 <li>一行：字串 S（長度為偶數，且不含空白）</li>
@@ -14275,7 +12313,7 @@ L[0]R[0]L[1]R[1]…L[n/2-1]R[n/2-1]</p>
 <span class="w">        </span><span class="n">out</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">R</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
 <span class="w">    </span><span class="p">}</span>
 
-<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">out</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">out</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div>
@@ -14283,7 +12321,7 @@ L[0]R[0]L[1]R[1]…L[n/2-1]R[n/2-1]</p>
 <ul>
 <li>平分後再交錯輸出即可。</li>
 </ul>
-<hr/>
+<hr />
 <!-- ## T06｜矩陣上下翻轉（Flip Up-Down）
 
 ### 題目
@@ -14390,6 +12428,7 @@ L[0]R[0]L[1]R[1]…L[n/2-1]R[n/2-1]</p>
 
 ---
  -->
+
 <!-- ## T07｜矩陣順時針旋轉 90 度
 
 ### 題目
@@ -14506,6 +12545,7 @@ L[0]R[0]L[1]R[1]…L[n/2-1]R[n/2-1]</p>
 ---
 
  -->
+
 <h2 id="t08矩陣反推逆序還原操作序列旋轉翻轉">T08｜矩陣反推：逆序還原操作序列（旋轉/翻轉）<a class="headerlink" href="#t08矩陣反推逆序還原操作序列旋轉翻轉" title="Permanent link"></a></h2>
 <h3 id="題目_5">題目<a class="headerlink" href="#題目_5" title="Permanent link"></a></h3>
 <p>你會拿到「操作後」的矩陣 B 與一串操作序列。你必須還原「操作前」的原矩陣 A。</p>
@@ -14551,8 +12591,8 @@ L[0]R[0]L[1]R[1]…L[n/2-1]R[n/2-1]</p>
 </li>
 <li>0（順時針 90 度旋轉）的逆是逆時針 90 度旋轉</li>
 <li>
-<p>原序列為：1 0 1 1<br/>
-  倒序後是：1 1 0 1<br/>
+<p>原序列為：1 0 1 1<br />
+  倒序後是：1 1 0 1<br />
   因此對 B 依序執行：<strong>上下翻轉 → 逆時針 90 度 → 上下翻轉</strong></p>
 </li>
 <li>
@@ -14668,13 +12708,13 @@ L[0]R[0]L[1]R[1]…L[n/2-1]R[n/2-1]</p>
 <span class="w">        </span><span class="k">else</span><span class="w"> </span><span class="n">mat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rotCCW</span><span class="p">(</span><span class="n">mat</span><span class="p">);</span>
 <span class="w">    </span><span class="p">}</span>
 
-<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">mat</span><span class="p">.</span><span class="n">size</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="sc">' '</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">mat</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">size</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">mat</span><span class="p">.</span><span class="n">size</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="sc">&#39; &#39;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">mat</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">size</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
 <span class="w">    </span><span class="k">for</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">mat</span><span class="p">.</span><span class="n">size</span><span class="p">();</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
 <span class="w">        </span><span class="k">for</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">j</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">j</span><span class="o">&lt;</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">mat</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">size</span><span class="p">();</span><span class="n">j</span><span class="o">++</span><span class="p">){</span>
-<span class="w">            </span><span class="k">if</span><span class="p">(</span><span class="n">j</span><span class="p">)</span><span class="w"> </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="sc">' '</span><span class="p">;</span>
+<span class="w">            </span><span class="k">if</span><span class="p">(</span><span class="n">j</span><span class="p">)</span><span class="w"> </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="sc">&#39; &#39;</span><span class="p">;</span>
 <span class="w">            </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">mat</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">];</span>
 <span class="w">        </span><span class="p">}</span>
-<span class="w">        </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+<span class="w">        </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
@@ -14752,12 +12792,12 @@ R 1000000001
 <span class="w">    </span><span class="n">k</span><span class="w"> </span><span class="o">%=</span><span class="w"> </span><span class="n">n</span><span class="p">;</span>
 
 <span class="w">    </span><span class="c1">// 統一成右轉 k</span>
-<span class="w">    </span><span class="k">if</span><span class="p">(</span><span class="n">dir</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="sc">'L'</span><span class="p">){</span>
+<span class="w">    </span><span class="k">if</span><span class="p">(</span><span class="n">dir</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="sc">&#39;L&#39;</span><span class="p">){</span>
 <span class="w">        </span><span class="n">k</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">k</span><span class="p">)</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="n">n</span><span class="p">;</span>
 <span class="w">    </span><span class="p">}</span>
 
 <span class="w">    </span><span class="n">string</span><span class="w"> </span><span class="n">out</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">s</span><span class="p">.</span><span class="n">substr</span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">k</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">s</span><span class="p">.</span><span class="n">substr</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">k</span><span class="p">);</span>
-<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">out</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">out</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div>
@@ -14766,7 +12806,7 @@ R 1000000001
 <li>先做 <code>k %= n</code>。</li>
 <li>左轉 k 等價於右轉 (n-k)。</li>
 </ul>
-<hr/>
+<hr />
 <h2 id="t10兩張圖的相似度不旋轉">T10｜兩張圖的相似度（不旋轉）<a class="headerlink" href="#t10兩張圖的相似度不旋轉" title="Permanent link"></a></h2>
 <h3 id="題目_7">題目<a class="headerlink" href="#題目_7" title="Permanent link"></a></h3>
 <p>給你兩張同大小的圖片 A 與 B，皆為 R×C ( 0 &lt; R,C &lt; 100 ) 的整數矩陣。</p>
@@ -14862,7 +12902,7 @@ R 1000000001
 <span class="w">    </span><span class="kt">long</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">total</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1L</span><span class="n">L</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">R</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">C</span><span class="p">;</span>
 <span class="w">    </span><span class="kt">long</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">same</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">100</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">total</span><span class="p">;</span>
 
-<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">"%</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;%</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div>
@@ -14870,7 +12910,7 @@ R 1000000001
 <ul>
 <li>無條件捨去用整數除法最穩。</li>
 </ul>
-<hr/>
+<hr />
 <h2 id="t11條碼檢驗碼--統計最多產地">T11｜條碼檢驗碼 + 統計最多產地<a class="headerlink" href="#t11條碼檢驗碼--統計最多產地" title="Permanent link"></a></h2>
 <h3 id="題目_8">題目<a class="headerlink" href="#題目_8" title="Permanent link"></a></h3>
 <p>你會拿到 N 個 13 碼條碼字串（每碼皆為 '0'~'9'），格式為：</p>
@@ -14885,9 +12925,9 @@ R 1000000001
 <li><code>Sodd</code>：位置 1,3,5,7,9,11 的數字總和</li>
 <li><code>Seven</code>：位置 2,4,6,8,10,12 的數字總和</li>
 </ul>
-<p>條碼合法當且僅當：<br/>
+<p>條碼合法當且僅當：<br />
 <code>(Sodd + 3*Seven + C) % 10 == 0</code></p>
-<p>請在所有「合法條碼」中，找出出現次數最多的產地代碼，輸出：<br/>
+<p>請在所有「合法條碼」中，找出出現次數最多的產地代碼，輸出：<br />
 <code>產地代碼 次數</code></p>
 <p>題目保證：至少有 1 筆合法條碼，且最多次的產地代碼唯一。</p>
 <p><strong>輸入格式</strong></p>
@@ -14912,11 +12952,11 @@ R 1000000001
 <div class="highlight"><pre><span></span><code>471 2
 </code></pre></div>
 <p><strong>範例計算過程</strong></p>
-<p>4710018000112：sodd:14,seven:9,c:2  -&gt; 不合法<br/>
-4711234560012：sodd:17,seven:17,c:2 -&gt; 合法<br/>
-3001111111108：sodd:7,seven:4,c:8   -&gt; 不合法<br/>
-3001111111118：sodd:7,seven:5,c:8   -&gt; 合法<br/>
-0309876543216：sodd:20,seven:28,c:6 -&gt; 合法<br/>
+<p>4710018000112：sodd:14,seven:9,c:2  -&gt; 不合法<br />
+4711234560012：sodd:17,seven:17,c:2 -&gt; 合法<br />
+3001111111108：sodd:7,seven:4,c:8   -&gt; 不合法<br />
+3001111111118：sodd:7,seven:5,c:8   -&gt; 合法<br />
+0309876543216：sodd:20,seven:28,c:6 -&gt; 合法<br />
 4710018000102：sodd:14,seven:8,c:2  -&gt; 合法</p>
 <h3 id="測資_8">測資<a class="headerlink" href="#測資_8" title="Permanent link"></a></h3>
 <h4 id="測資-1_8">測資 1<a class="headerlink" href="#測資-1_8" title="Permanent link"></a></h4>
@@ -14960,12 +13000,12 @@ R 1000000001
 <span class="k">static</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="nf">valid13</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">string</span><span class="o">&amp;</span><span class="w"> </span><span class="n">s</span><span class="p">){</span>
 <span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">Sodd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">Seven</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 <span class="w">    </span><span class="k">for</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">pos</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">pos</span><span class="o">&lt;</span><span class="mi">12</span><span class="p">;</span><span class="w"> </span><span class="n">pos</span><span class="o">++</span><span class="p">){</span>
-<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">d</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">s</span><span class="p">[</span><span class="n">pos</span><span class="p">]</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="sc">'0'</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">d</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">s</span><span class="p">[</span><span class="n">pos</span><span class="p">]</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="sc">&#39;0&#39;</span><span class="p">;</span>
 <span class="w">        </span><span class="c1">// pos=0 對應位置 1</span>
 <span class="w">        </span><span class="k">if</span><span class="p">(</span><span class="n">pos</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="n">Sodd</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">d</span><span class="p">;</span>
 <span class="w">        </span><span class="k">else</span><span class="w"> </span><span class="n">Seven</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">d</span><span class="p">;</span>
 <span class="w">    </span><span class="p">}</span>
-<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">C</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">s</span><span class="p">[</span><span class="mi">12</span><span class="p">]</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="sc">'0'</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">C</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">s</span><span class="p">[</span><span class="mi">12</span><span class="p">]</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="sc">&#39;0&#39;</span><span class="p">;</span>
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="p">(</span><span class="n">Sodd</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">3</span><span class="o">*</span><span class="n">Seven</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">C</span><span class="p">)</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mi">10</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
 
@@ -14992,7 +13032,7 @@ R 1000000001
 <span class="w">        </span><span class="p">}</span>
 <span class="w">    </span><span class="p">}</span>
 
-<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">best</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="sc">' '</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">bestCnt</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">best</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="sc">&#39; &#39;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">bestCnt</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div>
@@ -15000,22 +13040,22 @@ R 1000000001
 <ul>
 <li>位置是 1~12，但程式用 0-index（0~11），奇偶位要對好。</li>
 </ul>
-<hr/>
+<hr />
 <h2 id="t12排列中的循環數量cycle-count-in-a-permutation">T12｜排列中的循環數量（Cycle Count in a Permutation）<a class="headerlink" href="#t12排列中的循環數量cycle-count-in-a-permutation" title="Permanent link"></a></h2>
 <h3 id="題目_9">題目<a class="headerlink" href="#題目_9" title="Permanent link"></a></h3>
 <p>給定一個長度為 N 的排列 p，表示 p 由 0..N-1 組成且每個數字恰好出現一次。</p>
-<p>我們把這個排列視為一張「每個點都指向另一個點」的有向圖：對每個 i（0 ≤ i ≤ N-1），都有一條箭頭 i → p[i]。<br/>
+<p>我們把這個排列視為一張「每個點都指向另一個點」的有向圖：對每個 i（0 ≤ i ≤ N-1），都有一條箭頭 i → p[i]。<br />
 因為 p 是排列，所以每個點的出度為 1、入度也為 1，因此整張圖一定會分解成若干個互不重疊的循環（cycle）。</p>
 <p>請你計算並輸出這張圖中一共有幾個 cycle。</p>
-<p><strong>什麼是 cycle？</strong><br/>
-一組不同的數字 a1, a2, …, ak 若滿足 a1→a2、a2→a3、…、ak→a1，就形成一個 cycle（長度為 k）。<br/>
+<p><strong>什麼是 cycle？</strong><br />
+一組不同的數字 a1, a2, &hellip;, ak 若滿足 a1→a2、a2→a3、…、ak→a1，就形成一個 cycle（長度為 k）。<br />
 每個數字只會屬於唯一的一個 cycle。</p>
-<p><strong>輸入格式</strong><br/>
-- 第一行：整數 N<br/>
-- 第二行：N 個整數 p[0], p[1], …, p[N-1]（為 0..N-1 的排列）</p>
-<p><strong>輸出格式</strong><br/>
+<p><strong>輸入格式</strong><br />
+- 第一行：整數 N<br />
+- 第二行：N 個整數 p[0], p[1], &hellip;, p[N-1]（為 0..N-1 的排列）</p>
+<p><strong>輸出格式</strong><br />
 - 輸出一行：cycle 的數量</p>
-<p><strong>範例輸入</strong><br/>
+<p><strong>範例輸入</strong><br />
 <div class="highlight"><pre><span></span><code>9
 1 2 0 4 3 6 7 5 8
 ````
@@ -15030,7 +13070,7 @@ R 1000000001
 <li>0 → 1 → 2 → 0 是一個 cycle（長度 3）</li>
 <li>3 → 4 → 3 是一個 cycle（長度 2）</li>
 <li>5 → 6 → 7 → 5 是一個 cycle（長度 3）</li>
-<li>8 → 8 是一個 cycle（長度 1）<br/>
+<li>8 → 8 是一個 cycle（長度 1）<br />
   共 4 個 cycle</li>
 </ul>
 <h3 id="測資_9">測資<a class="headerlink" href="#測資_9" title="Permanent link"></a></h3>
@@ -15080,7 +13120,7 @@ R 1000000001
 <span class="w">        </span><span class="p">}</span>
 <span class="w">    </span><span class="p">}</span>
 
-<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">cycles</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">cycles</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div>
@@ -15088,7 +13128,7 @@ R 1000000001
 <ul>
 <li>每個點都屬於且只屬於一個循環；用 visited 走訪即可。</li>
 </ul>
-<hr/>
+<hr />
 <h2 id="t1301-規則加密deque-兩端取出">T13｜01 規則加密（deque 兩端取出）<a class="headerlink" href="#t1301-規則加密deque-兩端取出" title="Permanent link"></a></h2>
 <h3 id="題目_10">題目<a class="headerlink" href="#題目_10" title="Permanent link"></a></h3>
 <p>給你長度 n 的字串 S，以及長度 n 的 01 字串 e。</p>
@@ -15116,7 +13156,7 @@ BCAADXYZ
 <p><strong>範例輸出</strong></p>
 <div class="highlight"><pre><span></span><code>ZBYXCADA
 </code></pre></div>
-<p><strong>範例計算過程</strong><br/>
+<p><strong>範例計算過程</strong><br />
 初始 deque=[B C A A D X Y Z]，T=""</p>
 <ul>
 <li>e[1]=1：取後端 Z → T=Z，deque=[B C A A D X Y]</li>
@@ -15174,7 +13214,7 @@ WXYZ
 <span class="w">    </span><span class="n">string</span><span class="w"> </span><span class="n">T</span><span class="p">;</span>
 <span class="w">    </span><span class="n">T</span><span class="p">.</span><span class="n">reserve</span><span class="p">(</span><span class="n">n</span><span class="p">);</span>
 <span class="w">    </span><span class="k">for</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">n</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
-<span class="w">        </span><span class="k">if</span><span class="p">(</span><span class="n">e</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="sc">'0'</span><span class="p">){</span>
+<span class="w">        </span><span class="k">if</span><span class="p">(</span><span class="n">e</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="sc">&#39;0&#39;</span><span class="p">){</span>
 <span class="w">            </span><span class="n">T</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">dq</span><span class="p">.</span><span class="n">front</span><span class="p">());</span>
 <span class="w">            </span><span class="n">dq</span><span class="p">.</span><span class="n">pop_front</span><span class="p">();</span>
 <span class="w">        </span><span class="p">}</span><span class="k">else</span><span class="p">{</span>
@@ -15183,7 +13223,7 @@ WXYZ
 <span class="w">        </span><span class="p">}</span>
 <span class="w">    </span><span class="p">}</span>
 
-<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">T</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">T</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div>
@@ -15191,7 +13231,7 @@ WXYZ
 <ul>
 <li>最常錯：把 0/1 對應的「前端/後端」寫反。</li>
 </ul>
-<hr/>
+<hr />
 <h2 id="t1401-規則解密反推倒序-push-回-deque">T14｜01 規則解密（反推：倒序 push 回 deque）<a class="headerlink" href="#t1401-規則解密反推倒序-push-回-deque" title="Permanent link"></a></h2>
 <h3 id="題目_11">題目<a class="headerlink" href="#題目_11" title="Permanent link"></a></h3>
 <p>加密規則如下：</p>
@@ -15223,7 +13263,7 @@ ZBYXCADA
 <p><strong>範例輸出</strong></p>
 <div class="highlight"><pre><span></span><code>BCAADXYZ
 </code></pre></div>
-<p><strong>範例計算過程</strong><br/>
+<p><strong>範例計算過程</strong><br />
 從最後往前放回去（deque 初始為空）：</p>
 <ul>
 <li>i=8，e=0：push_front('A') → [A]</li>
@@ -15233,7 +13273,7 @@ ZBYXCADA
 <li>i=4，e=1：push_back('X')  → [C A A D X]</li>
 <li>i=3，e=1：push_back('Y')  → [C A A D X Y]</li>
 <li>i=2，e=0：push_front('B') → [B C A A D X Y]</li>
-<li>i=1，e=1：push_back('Z')  → [B C A A D X Y Z]<br/>
+<li>i=1，e=1：push_back('Z')  → [B C A A D X Y Z]<br />
   得到 S="BCAADXYZ"。</li>
 </ul>
 <h3 id="測資_11">測資<a class="headerlink" href="#測資_11" title="Permanent link"></a></h3>
@@ -15277,12 +13317,12 @@ FABCDE
 
 <span class="w">    </span><span class="n">deque</span><span class="o">&lt;</span><span class="kt">char</span><span class="o">&gt;</span><span class="w"> </span><span class="n">dq</span><span class="p">;</span>
 <span class="w">    </span><span class="k">for</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="o">=</span><span class="n">n</span><span class="mi">-1</span><span class="p">;</span><span class="n">i</span><span class="o">&gt;=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">--</span><span class="p">){</span>
-<span class="w">        </span><span class="k">if</span><span class="p">(</span><span class="n">e</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="sc">'0'</span><span class="p">)</span><span class="w"> </span><span class="n">dq</span><span class="p">.</span><span class="n">push_front</span><span class="p">(</span><span class="n">T</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+<span class="w">        </span><span class="k">if</span><span class="p">(</span><span class="n">e</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="sc">&#39;0&#39;</span><span class="p">)</span><span class="w"> </span><span class="n">dq</span><span class="p">.</span><span class="n">push_front</span><span class="p">(</span><span class="n">T</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
 <span class="w">        </span><span class="k">else</span><span class="w"> </span><span class="n">dq</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">T</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
 <span class="w">    </span><span class="p">}</span>
 
 <span class="w">    </span><span class="k">for</span><span class="p">(</span><span class="kt">char</span><span class="w"> </span><span class="n">ch</span><span class="o">:</span><span class="w"> </span><span class="n">dq</span><span class="p">)</span><span class="w"> </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">ch</span><span class="p">;</span>
-<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div>
@@ -15290,7 +13330,7 @@ FABCDE
 <ul>
 <li>反推關鍵：必須倒序處理，否則 deque 的前後端對應會錯。</li>
 </ul>
-<hr/>
+<hr />
 <h2 id="t15電子畫布曼哈頓菱形加值多次操作">T15｜電子畫布：曼哈頓菱形加值（多次操作）<a class="headerlink" href="#t15電子畫布曼哈頓菱形加值多次操作" title="Permanent link"></a></h2>
 <h3 id="題目_12">題目<a class="headerlink" href="#題目_12" title="Permanent link"></a></h3>
 <p>有一個 H×W ( 0 &lt; H,W &lt; 100 ) 的畫布，初始每格都是 0。</p>
@@ -15328,19 +13368,19 @@ FABCDE
 0 0 0 0 0
 0 0 0 0 0
 0 0 0 0 0
-</code></pre></div><br/>
+</code></pre></div><br />
 * 操作 1：(r,c,t,x) = (1,2,1,5)，距離 (1,2) 曼哈頓距離 ≤ 1 的格子全部 +5</p>
 <p><div class="highlight"><pre><span></span><code>0 0 5 0 0
 0 5 5 5 0
 0 0 5 0 0
 0 0 0 0 0
-</code></pre></div><br/>
+</code></pre></div><br />
 * 操作 2：(r,c,t,x) = (0,0,2,3)，距離 (0,0) 曼哈頓距離 ≤ 2 的格子全部 +3</p>
 <p><div class="highlight"><pre><span></span><code>3 3 8 0 0
 3 8 5 5 0
 3 0 5 0 0
 0 0 0 0 0
-</code></pre></div><br/>
+</code></pre></div><br />
 * 操作 3：(r,c,t,x) = (2,4,1,-2)，距離 (2,4) 曼哈頓距離 ≤ 1 的格子全部 -2（得到最終結果）</p>
 <div class="highlight"><pre><span></span><code>3 3 8 0 0
 3 8 5 5 -2
@@ -15400,10 +13440,10 @@ FABCDE
 
 <span class="w">    </span><span class="k">for</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">H</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
 <span class="w">        </span><span class="k">for</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">j</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">j</span><span class="o">&lt;</span><span class="n">W</span><span class="p">;</span><span class="n">j</span><span class="o">++</span><span class="p">){</span>
-<span class="w">            </span><span class="k">if</span><span class="p">(</span><span class="n">j</span><span class="p">)</span><span class="w"> </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="sc">' '</span><span class="p">;</span>
+<span class="w">            </span><span class="k">if</span><span class="p">(</span><span class="n">j</span><span class="p">)</span><span class="w"> </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="sc">&#39; &#39;</span><span class="p">;</span>
 <span class="w">            </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">g</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">];</span>
 <span class="w">        </span><span class="p">}</span>
-<span class="w">        </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+<span class="w">        </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
@@ -15412,12 +13452,12 @@ FABCDE
 <ul>
 <li>依題意最直觀的暴力：每次操作掃整張表判曼哈頓距離。</li>
 </ul>
-<hr/>
+<hr />
 <h2 id="t16機器人的路徑從全域最小出發走向未訪最小鄰居">T16｜機器人的路徑：從全域最小出發，走向未訪最小鄰居<a class="headerlink" href="#t16機器人的路徑從全域最小出發走向未訪最小鄰居" title="Permanent link"></a></h2>
 <h3 id="題目_13">題目<a class="headerlink" href="#題目_13" title="Permanent link"></a></h3>
 <p>給你 n×m 的矩陣，所有數字互不相同。</p>
-<p>機器人起點為整張矩陣的最小值所在位置。<br/>
-之後每一步：在四方向相鄰格（上、下、左、右）中，選擇「值最小且尚未走過」的格子前進。<br/>
+<p>機器人起點為整張矩陣的最小值所在位置。<br />
+之後每一步：在四方向相鄰格（上、下、左、右）中，選擇「值最小且尚未走過」的格子前進。<br />
 若沒有符合條件的相鄰格，則停止。</p>
 <p>請輸出走過格子的數值總和（包含起點）。</p>
 <p><strong>輸入格式</strong></p>
@@ -15515,7 +13555,7 @@ FABCDE
 <span class="w">        </span><span class="n">r</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">bestR</span><span class="p">;</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">bestC</span><span class="p">;</span>
 <span class="w">    </span><span class="p">}</span>
 
-<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">sum</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">sum</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div>
@@ -15523,7 +13563,7 @@ FABCDE
 <ul>
 <li>每一步只掃 4 個鄰居，並用 visited 避免走回頭。</li>
 </ul>
-<hr/>
+<hr />
 <h2 id="t17人口遷移同時更新模擬-m-天後-minmax">T17｜人口遷移：同時更新模擬 m 天後 min/max<a class="headerlink" href="#t17人口遷移同時更新模擬-m-天後-minmax" title="Permanent link"></a></h2>
 <h3 id="題目_14">題目<a class="headerlink" href="#題目_14" title="Permanent link"></a></h3>
 <p>給你 R×C 網格：</p>
@@ -15531,7 +13571,7 @@ FABCDE
 <li>-1 表示不是城市</li>
 <li>其他非負整數表示城市人口</li>
 </ul>
-<p>每天，每個城市會向每個相鄰城市（上下左右）遷移 <code>population / k</code> 人（整數除法）。<br/>
+<p>每天，每個城市會向每個相鄰城市（上下左右）遷移 <code>population / k</code> 人（整數除法）。<br />
 遷移是<strong>同時發生</strong>：不能邊算邊改。</p>
 <p>模擬 m 天後輸出：最少城市人口與最多城市人口（只看城市格，不看 -1）。</p>
 <p><strong>輸入格式</strong></p>
@@ -15555,16 +13595,16 @@ FABCDE
 6
 </code></pre></div>
 <p><strong>範例計算過程</strong></p>
-<p>題目參數：k=3、m=2。<br/>
-規則：每天對每個城市格 (不是 -1) 計算它要「分別」給每個相鄰城市（上/下/左/右、且相鄰格也必須是城市）的人數 = <code>population / k</code>（整數除法）。<br/>
+<p>題目參數：k=3、m=2。<br />
+規則：每天對每個城市格 (不是 -1) 計算它要「分別」給每個相鄰城市（上/下/左/右、且相鄰格也必須是城市）的人數 = <code>population / k</code>（整數除法）。<br />
 同一天內所有遷移必須「同時」發生：先把所有城市的「流出/流入」用 delta 累積完，再一次更新人口。</p>
-<hr/>
-<p>初始（第 0 天）<br/>
+<hr />
+<p>初始（第 0 天）<br />
 <div class="highlight"><pre><span></span><code>10 0 -1 6
 5 -1 8 1
 2 7 3 -1
 </code></pre></div></p>
-<hr/>
+<hr />
 <p>第 1 天：先計算每個城市的「每個鄰居要給多少」</p>
 <p>以下用「每格給出的單位 g = population/3」表示該格對每一個相鄰城市都會給 g 人。</p>
 <ul>
@@ -15623,27 +13663,27 @@ FABCDE
 <p>給(1,2) 1，給(2,1) 1，共流出 2</p>
 </li>
 </ul>
-<hr/>
+<hr />
 <p>第 1 天：彙總每格「流入」並一次更新</p>
 <p>計算每格流入（只列城市格）：</p>
 <ul>
-<li>(0,0) 流入：從(1,0)得1、從(0,1)得0 → +1<br/>
+<li>(0,0) 流入：從(1,0)得1、從(0,1)得0 → +1<br />
   新人口 = 10 - 6 + 1 = 5</li>
-<li>(0,1) 流入：從(0,0)得3 → +3<br/>
+<li>(0,1) 流入：從(0,0)得3 → +3<br />
   新人口 = 0 - 0 + 3 = 3</li>
-<li>(0,3) 流入：從(1,3)得0 → +0<br/>
+<li>(0,3) 流入：從(1,3)得0 → +0<br />
   新人口 = 6 - 2 + 0 = 4</li>
-<li>(1,0) 流入：從(0,0)得3、從(2,0)得0 → +3<br/>
+<li>(1,0) 流入：從(0,0)得3、從(2,0)得0 → +3<br />
   新人口 = 5 - 2 + 3 = 6</li>
-<li>(1,2) 流入：從(2,2)得1、從(1,3)得0 → +1<br/>
+<li>(1,2) 流入：從(2,2)得1、從(1,3)得0 → +1<br />
   新人口 = 8 - 4 + 1 = 5</li>
-<li>(1,3) 流入：從(0,3)得2、從(1,2)得2 → +4<br/>
+<li>(1,3) 流入：從(0,3)得2、從(1,2)得2 → +4<br />
   新人口 = 1 - 0 + 4 = 5</li>
-<li>(2,0) 流入：從(1,0)得1、從(2,1)得2 → +3<br/>
+<li>(2,0) 流入：從(1,0)得1、從(2,1)得2 → +3<br />
   新人口 = 2 - 0 + 3 = 5</li>
-<li>(2,1) 流入：從(2,2)得1、從(2,0)得0 → +1<br/>
+<li>(2,1) 流入：從(2,2)得1、從(2,0)得0 → +1<br />
   新人口 = 7 - 4 + 1 = 4</li>
-<li>(2,2) 流入：從(1,2)得2、從(2,1)得2 → +4<br/>
+<li>(2,2) 流入：從(1,2)得2、從(2,1)得2 → +4<br />
   新人口 = 3 - 2 + 4 = 5</li>
 </ul>
 <p>第 1 天結束後（與你提供的中間狀態一致）</p>
@@ -15651,7 +13691,7 @@ FABCDE
 6 -1 5 5
 5 4 5 -1
 </code></pre></div>
-<hr/>
+<hr />
 <p>第 2 天：同樣先算「每個鄰居要給多少」</p>
 <ul>
 <li>
@@ -15709,26 +13749,26 @@ FABCDE
 <p>給(1,2)1、給(2,1)1，流出2</p>
 </li>
 </ul>
-<hr/>
+<hr />
 <p>第 2 天：彙總流入並一次更新</p>
 <ul>
-<li>(0,0) 流入：從(0,1)得1、從(1,0)得2 → +3<br/>
+<li>(0,0) 流入：從(0,1)得1、從(1,0)得2 → +3<br />
   新人口 = 5 - 2 + 3 = 6</li>
-<li>(0,1) 流入：從(0,0)得1 → +1<br/>
+<li>(0,1) 流入：從(0,0)得1 → +1<br />
   新人口 = 3 - 1 + 1 = 3</li>
-<li>(0,3) 流入：從(1,3)得1 → +1<br/>
+<li>(0,3) 流入：從(1,3)得1 → +1<br />
   新人口 = 4 - 1 + 1 = 4</li>
-<li>(1,0) 流入：從(0,0)得1、從(2,0)得1 → +2<br/>
+<li>(1,0) 流入：從(0,0)得1、從(2,0)得1 → +2<br />
   新人口 = 6 - 4 + 2 = 4</li>
-<li>(1,2) 流入：從(1,3)得1、從(2,2)得1 → +2<br/>
+<li>(1,2) 流入：從(1,3)得1、從(2,2)得1 → +2<br />
   新人口 = 5 - 2 + 2 = 5</li>
-<li>(1,3) 流入：從(0,3)得1、從(1,2)得1 → +2<br/>
+<li>(1,3) 流入：從(0,3)得1、從(1,2)得1 → +2<br />
   新人口 = 5 - 2 + 2 = 5</li>
-<li>(2,0) 流入：從(1,0)得2、從(2,1)得1 → +3<br/>
+<li>(2,0) 流入：從(1,0)得2、從(2,1)得1 → +3<br />
   新人口 = 5 - 2 + 3 = 6</li>
-<li>(2,1) 流入：從(2,0)得1、從(2,2)得1 → +2<br/>
+<li>(2,1) 流入：從(2,0)得1、從(2,2)得1 → +2<br />
   新人口 = 4 - 2 + 2 = 4</li>
-<li>(2,2) 流入：從(1,2)得1、從(2,1)得1 → +2<br/>
+<li>(2,2) 流入：從(1,2)得1、從(2,1)得1 → +2<br />
   新人口 = 5 - 2 + 2 = 5</li>
 </ul>
 <p>第 2 天結束後（與你提供的最終狀態一致）</p>
@@ -15736,7 +13776,7 @@ FABCDE
 4 -1 5 5
 6 4 5 -1
 </code></pre></div>
-<hr/>
+<hr />
 <p>最後只看城市格（排除 -1）：</p>
 <ul>
 <li>最小人口 = 3</li>
@@ -15822,7 +13862,7 @@ FABCDE
 <span class="w">        </span><span class="p">}</span>
 <span class="w">    </span><span class="p">}</span>
 
-<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">mn</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">mx</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">mn</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">mx</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div>
@@ -15830,13 +13870,13 @@ FABCDE
 <ul>
 <li>這題重點只有一個：<strong>同時更新</strong>（delta/next），不要邊算邊改原矩陣。</li>
 </ul>
-<hr/>
+<hr />
 <h2 id="t18特殊位置菱形加總取-mod-判定">T18｜特殊位置：菱形加總取 mod 判定<a class="headerlink" href="#t18特殊位置菱形加總取-mod-判定" title="Permanent link"></a></h2>
 <h3 id="題目_15">題目<a class="headerlink" href="#題目_15" title="Permanent link"></a></h3>
 <p>給定 n×m 的矩陣 a（每格為 0~9）。</p>
-<p>對每個位置 (i,j)：令 x=a[i][j]。<br/>
-計算：<br/>
-<code>sum = 所有滿足 |r-i|+|c-j|&lt;=x 的 a[r][c] 總和</code>。<br/>
+<p>對每個位置 (i,j)：令 x=a[i][j]。<br />
+計算：<br />
+<code>sum = 所有滿足 |r-i|+|c-j|&lt;=x 的 a[r][c] 總和</code>。<br />
 若 <code>sum % 10 == x</code>，則 (i,j) 為特殊位置。</p>
 <p>請輸出：</p>
 <ol>
@@ -15927,8 +13967,8 @@ FABCDE
 <span class="w">        </span><span class="p">}</span>
 <span class="w">    </span><span class="p">}</span>
 
-<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">ans</span><span class="p">.</span><span class="n">size</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
-<span class="w">    </span><span class="k">for</span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="o">&amp;</span><span class="n">p</span><span class="o">:</span><span class="w"> </span><span class="n">ans</span><span class="p">)</span><span class="w"> </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">p</span><span class="p">.</span><span class="n">first</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="sc">' '</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">p</span><span class="p">.</span><span class="n">second</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">ans</span><span class="p">.</span><span class="n">size</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="k">for</span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="o">&amp;</span><span class="n">p</span><span class="o">:</span><span class="w"> </span><span class="n">ans</span><span class="p">)</span><span class="w"> </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">p</span><span class="p">.</span><span class="n">first</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="sc">&#39; &#39;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">p</span><span class="p">.</span><span class="n">second</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div>
@@ -15936,7 +13976,7 @@ FABCDE
 <ul>
 <li>依題意直接暴力：每個點再掃一次全表判距離。</li>
 </ul>
-<hr/>
+<hr />
 <h2 id="t19蒐集寶石決定下一個方向只做轉向規則">T19｜蒐集寶石：決定下一個方向（只做轉向規則）<a class="headerlink" href="#t19蒐集寶石決定下一個方向只做轉向規則" title="Permanent link"></a></h2>
 <h3 id="題目_16">題目<a class="headerlink" href="#題目_16" title="Permanent link"></a></h3>
 <p>你要做的是「轉向規則」本身，不做整張地圖移動。</p>
@@ -16015,7 +14055,7 @@ FABCDE
 
 <span class="w">    </span><span class="k">while</span><span class="p">(</span><span class="o">!</span><span class="n">can</span><span class="p">[</span><span class="n">dir</span><span class="p">])</span><span class="w"> </span><span class="n">dir</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">dir</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mi">4</span><span class="p">;</span>
 
-<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">dir</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">dir</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div>
@@ -16023,7 +14063,7 @@ FABCDE
 <ul>
 <li>先做「倍數右轉」，再做「找可走方向」，順序不能顛倒。</li>
 </ul>
-<hr/>
+<hr />
 <h2 id="t20蒐集寶石完整模擬撿到-0-或無路可走就停">T20｜蒐集寶石：完整模擬（撿到 0 或無路可走就停）<a class="headerlink" href="#t20蒐集寶石完整模擬撿到-0-或無路可走就停" title="Permanent link"></a></h2>
 <h3 id="題目_17">題目<a class="headerlink" href="#題目_17" title="Permanent link"></a></h3>
 <p>給你 M×N 地圖，每格：</p>
@@ -16144,7 +14184,7 @@ FABCDE
 <span class="w">        </span><span class="n">c</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">dc</span><span class="p">[</span><span class="n">dir</span><span class="p">];</span>
 <span class="w">    </span><span class="p">}</span>
 
-<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">picked</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">picked</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div>
@@ -16152,7 +14192,7 @@ FABCDE
 <ul>
 <li>最容易錯的是步驟順序：先撿、再倍數右轉、再避牆、最後才前進。</li>
 </ul>
-<hr/>
+<hr />
 <h2 id="t21子矩陣枚舉mismatch-上限--最小-sum-差">T21｜子矩陣枚舉：mismatch 上限 + 最小 sum 差<a class="headerlink" href="#t21子矩陣枚舉mismatch-上限--最小-sum-差" title="Permanent link"></a></h2>
 <h3 id="題目_18">題目<a class="headerlink" href="#題目_18" title="Permanent link"></a></h3>
 <p>你會拿到：</p>
@@ -16283,9 +14323,9 @@ FABCDE
 <span class="w">        </span><span class="p">}</span>
 <span class="w">    </span><span class="p">}</span>
 
-<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">cnt</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
-<span class="w">    </span><span class="k">if</span><span class="p">(</span><span class="n">cnt</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="mi">-1</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
-<span class="w">    </span><span class="k">else</span><span class="w"> </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">best</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">cnt</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="k">if</span><span class="p">(</span><span class="n">cnt</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="mi">-1</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="k">else</span><span class="w"> </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">best</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
 
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
@@ -16294,7 +14334,7 @@ FABCDE
 <ul>
 <li>左上角枚舉要用 <code>i+s&lt;=n</code>、<code>j+t&lt;=m</code> 避免越界。</li>
 </ul>
-<hr/>
+<hr />
 <h2 id="t22兩顆骰子滾動與交換">T22｜兩顆骰子：滾動與交換<a class="headerlink" href="#t22兩顆骰子滾動與交換" title="Permanent link"></a></h2>
 <h3 id="題目_19">題目<a class="headerlink" href="#題目_19" title="Permanent link"></a></h3>
 <p>有兩顆骰子 1 與 2。每顆骰子有 6 面：Top/Bottom/North/South/West/East。</p>
@@ -16415,7 +14455,7 @@ E 2
 <span class="w">    </span><span class="k">for</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">qi</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">qi</span><span class="o">&lt;</span><span class="n">Q</span><span class="p">;</span><span class="w"> </span><span class="n">qi</span><span class="o">++</span><span class="p">){</span>
 <span class="w">        </span><span class="n">string</span><span class="w"> </span><span class="n">op</span><span class="p">;</span>
 <span class="w">        </span><span class="n">cin</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">op</span><span class="p">;</span>
-<span class="w">        </span><span class="k">if</span><span class="p">(</span><span class="n">op</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">"X"</span><span class="p">){</span>
+<span class="w">        </span><span class="k">if</span><span class="p">(</span><span class="n">op</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&quot;X&quot;</span><span class="p">){</span>
 <span class="w">            </span><span class="n">swap</span><span class="p">(</span><span class="n">d1</span><span class="p">,</span><span class="w"> </span><span class="n">d2</span><span class="p">);</span>
 <span class="w">            </span><span class="k">continue</span><span class="p">;</span>
 <span class="w">        </span><span class="p">}</span>
@@ -16424,13 +14464,13 @@ E 2
 <span class="w">        </span><span class="n">cin</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">idx</span><span class="p">;</span>
 <span class="w">        </span><span class="n">Dice</span><span class="w"> </span><span class="o">&amp;</span><span class="n">d</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">idx</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="n">d1</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">d2</span><span class="p">);</span>
 
-<span class="w">        </span><span class="k">if</span><span class="p">(</span><span class="n">op</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">"N"</span><span class="p">)</span><span class="w"> </span><span class="n">d</span><span class="p">.</span><span class="n">rollN</span><span class="p">();</span>
-<span class="w">        </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="p">(</span><span class="n">op</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">"S"</span><span class="p">)</span><span class="w"> </span><span class="n">d</span><span class="p">.</span><span class="n">rollS</span><span class="p">();</span>
-<span class="w">        </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="p">(</span><span class="n">op</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">"E"</span><span class="p">)</span><span class="w"> </span><span class="n">d</span><span class="p">.</span><span class="n">rollE</span><span class="p">();</span>
-<span class="w">        </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="p">(</span><span class="n">op</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">"W"</span><span class="p">)</span><span class="w"> </span><span class="n">d</span><span class="p">.</span><span class="n">rollW</span><span class="p">();</span>
+<span class="w">        </span><span class="k">if</span><span class="p">(</span><span class="n">op</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&quot;N&quot;</span><span class="p">)</span><span class="w"> </span><span class="n">d</span><span class="p">.</span><span class="n">rollN</span><span class="p">();</span>
+<span class="w">        </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="p">(</span><span class="n">op</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&quot;S&quot;</span><span class="p">)</span><span class="w"> </span><span class="n">d</span><span class="p">.</span><span class="n">rollS</span><span class="p">();</span>
+<span class="w">        </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="p">(</span><span class="n">op</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&quot;E&quot;</span><span class="p">)</span><span class="w"> </span><span class="n">d</span><span class="p">.</span><span class="n">rollE</span><span class="p">();</span>
+<span class="w">        </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="p">(</span><span class="n">op</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&quot;W&quot;</span><span class="p">)</span><span class="w"> </span><span class="n">d</span><span class="p">.</span><span class="n">rollW</span><span class="p">();</span>
 <span class="w">    </span><span class="p">}</span>
 
-<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">d1</span><span class="p">.</span><span class="n">top</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="sc">' '</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">d2</span><span class="p">.</span><span class="n">top</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">d1</span><span class="p">.</span><span class="n">top</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="sc">&#39; &#39;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">d2</span><span class="p">.</span><span class="n">top</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div>
@@ -16438,7 +14478,7 @@ E 2
 <ul>
 <li>最常錯：方向滾動時，面交換的方向寫反。</li>
 </ul>
-<hr/>
+<hr />
 <h2 id="t23六方向移動輸出走過字串與字元種類數">T23｜六方向移動：輸出走過字串與字元種類數<a class="headerlink" href="#t23六方向移動輸出走過字串與字元種類數" title="Permanent link"></a></h2>
 <h3 id="題目_20">題目<a class="headerlink" href="#題目_20" title="Permanent link"></a></h3>
 <p>給定 m×n 的字母格子（m 行，每行 n 個字元）。起點固定 (m-1,0)。</p>
@@ -16484,7 +14524,7 @@ DEF
 <li>方向 1：右 → (1,1)='E'，輸出 E</li>
 <li>方向 1：右 → (1,2)='F'，輸出 F</li>
 <li>方向 4：左 → (1,1)='E'，輸出 E</li>
-<li>方向 4：左 → (1,0)='D'，輸出 D<br/>
+<li>方向 4：左 → (1,0)='D'，輸出 D<br />
   （此例的走過字串為 "EFED"；種類為 {E,F,D} 共 3）</li>
 </ul>
 <p>（註：若你希望範例更直觀，可把測資 1 當作實際練習輸入。）</p>
@@ -16557,8 +14597,8 @@ c
 <span class="w">        </span><span class="n">kinds</span><span class="p">.</span><span class="n">insert</span><span class="p">(</span><span class="n">ch</span><span class="p">);</span>
 <span class="w">    </span><span class="p">}</span>
 
-<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">path</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
-<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">kinds</span><span class="p">.</span><span class="n">size</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">path</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">kinds</span><span class="p">.</span><span class="n">size</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div>
@@ -16566,7 +14606,7 @@ c
 <ul>
 <li>寫死方向表 + 邊界判斷，是這類題最穩作法。</li>
 </ul>
-<hr/>
+<hr />
 <h2 id="t24彗星撞擊方形裁切--條件式更新--統計">T24｜彗星撞擊：方形裁切 + 條件式更新 + 統計<a class="headerlink" href="#t24彗星撞擊方形裁切--條件式更新--統計" title="Permanent link"></a></h2>
 <h3 id="題目_21">題目<a class="headerlink" href="#題目_21" title="Permanent link"></a></h3>
 <p>有 R×C 的高度地圖，初始高度全為 D。</p>
@@ -16705,7 +14745,7 @@ c
 <span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">awakeCells</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 <span class="w">    </span><span class="k">for</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">R</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="k">for</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">j</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">j</span><span class="o">&lt;</span><span class="n">C</span><span class="p">;</span><span class="n">j</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="k">if</span><span class="p">(</span><span class="n">awake</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="n">awakeCells</span><span class="o">++</span><span class="p">;</span>
 
-<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">mx</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="sc">' '</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">mn</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="sc">' '</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">awakeCells</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">mx</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="sc">&#39; &#39;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">mn</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="sc">&#39; &#39;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">awakeCells</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div>
@@ -16713,11 +14753,11 @@ c
 <ul>
 <li>每次撞擊：先裁切方形到地圖內，先判斷是否有清醒恐龍，再決定要「讓恐龍暈眩」或「高度下降」。</li>
 </ul>
-<hr/>
+<hr />
 <h2 id="t25交錯字串小規模暴力切段交錯選做">T25｜交錯字串：小規模暴力切段交錯（選做）<a class="headerlink" href="#t25交錯字串小規模暴力切段交錯選做" title="Permanent link"></a></h2>
 <h3 id="題目_22">題目<a class="headerlink" href="#題目_22" title="Permanent link"></a></h3>
 <p>給你字串 A、B、S（長度都不超過 10）。</p>
-<p>你要判斷是否能把 S 切成多段，並且段落來源必須交錯：A 段、B 段、A 段、B 段…（也可從 B 開始）。</p>
+<p>你要判斷是否能把 S 切成多段，並且段落來源必須交錯：A 段、B 段、A 段、B 段&hellip;（也可從 B 開始）。</p>
 <p>更精確：</p>
 <ul>
 <li>你有指標 pa、pb 表示 A/B 已用到的位置，ps 表示 S 已拼到的位置</li>
@@ -16753,7 +14793,7 @@ ABxyCD
 <ul>
 <li>從 A 取 "AB" → S 前進 2</li>
 <li>從 B 取 "xy" → S 前進 2</li>
-<li>從 A 取 "CD" → S 到結尾<br/>
+<li>從 A 取 "CD" → S 到結尾<br />
   因此輸出 Yes。</li>
 </ul>
 <h3 id="測資_22">測資<a class="headerlink" href="#測資_22" title="Permanent link"></a></h3>
@@ -16818,7 +14858,7 @@ aa
 <span class="w">    </span><span class="n">string</span><span class="w"> </span><span class="n">A</span><span class="p">,</span><span class="w"> </span><span class="n">B</span><span class="p">,</span><span class="w"> </span><span class="n">S</span><span class="p">;</span>
 <span class="w">    </span><span class="n">cin</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">A</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">B</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">S</span><span class="p">;</span>
 
-<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="p">(</span><span class="n">dfs</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="w"> </span><span class="n">B</span><span class="p">,</span><span class="w"> </span><span class="n">S</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="s">"Yes"</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="s">"No"</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="p">(</span><span class="n">dfs</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="w"> </span><span class="n">B</span><span class="p">,</span><span class="w"> </span><span class="n">S</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="s">&quot;Yes&quot;</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="s">&quot;No&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div>
@@ -16842,8 +14882,6 @@ aa
 
 
                 
-  
-
               </article>
             </div>
           
@@ -16961,7 +14999,7 @@ aa
   
       <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
       
-        <script src="../../assets/pymdownx-extras/conditional-loader.js?v=20260614-3"></script>
+        <script src="../../assets/pymdownx-extras/conditional-loader.js?v=20261007-1"></script>
       
     
 
