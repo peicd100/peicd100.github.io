@@ -6,8 +6,31 @@ from typing import Any
 
 _FENCE_RE = re.compile(r"^(?P<fence>`{3,}|~{3,})(?P<rest>.*)$")
 _CONTAINER_RE = re.compile(r"^(?P<prefix>(?:[ ]{0,3}>[ \t]?)*[ \t]*)(?P<body>.*)$")
-_DISPLAY_DELIMITERS = {"[": "]", r"\[": r"\]", "$$": "$$"}
-_LIST_MARKER_RE = re.compile(r"^(?:[-+*]|\d+[.)])[ \t]+\S")
+_DISPLAY_DELIMITERS = {"[": "]", r"\[": r"\]", r"\\[": r"\\]", "$$": "$$"}
+_LIST_MARKER_RE = re.compile(r"^(?:[-+*]|\d+[.)])[ \t]+(?:\S|$)")
+_MATH_TOKEN_RE = re.compile(r"(?<!\\)(?P<slashes>\\{1,2})(?P<delimiter>[\(\)\[\]])")
+_CODE_SPAN_RE = re.compile(r"(?<![\\`])(?P<ticks>`+)(?!`)(?P<code>.*?)(?<!`)(?P=ticks)(?!`)", re.S)
+# GPT sometimes Markdown-escapes an operator's braced lower limit. Do not
+# unescape general TeX: x\_i, \text{file\_name} and row breaks are intentional.
+_OPERATOR_SUBSCRIPT_RE = re.compile(r"(?<!\\)(\\(?:prod|sum|coprod))\\_(?=\{)")
+# Escaped '<' is a copied Markdown artifact, unlike valid TeX '\>' spacing.
+_ESCAPED_LESS_THAN_RE = re.compile(r"(?<!\\)\\<")
+# In math, a literal hash requires \#: GPT may Markdown-escape it again.
+# Repair exactly two slashes regardless of the following label. Three slashes
+# mean a real TeX row break followed by \# and must remain untouched.
+_PASTED_COUNT_HASH_RE = re.compile(r"(?<!\\)\\\\#")
+_UNDERBRACE_RE = re.compile(r"(?<!\\)\\underbrace\{")
+_TEX_GROUP_TOKEN_RE = re.compile(r"\\.|[{}]")
+# Repair paired Markdown-escaped set braces only, not arbitrary doubled
+# backslashes: TeX row breaks (including a row followed by a group) must survive.
+_PASTED_SET_BRACE_RE = re.compile(r"(?<!\\)\\\\(?P<brace>[{}])")
+_ALIGNED_ENVIRONMENT_RE = re.compile(r"(?<!\\)\\begin\{aligned\}.*?(?<!\\)\\end\{aligned\}")
+_TEX_ROW_GAP = r"\[[ \t]*[+-]?(?:\d+(?:\.\d*)?|\.\d+)[ \t]*(?:pt|pc|in|bp|cm|mm|dd|cc|sp|em|ex|mu|px)[ \t]*\]"
+_PASTED_ALIGNED_GAP_RE = re.compile(r"(?<!\\)\\\\\\\\(?=" + _TEX_ROW_GAP + r")")
+_PASTED_IFF_ROW_RE = re.compile(
+    r"(?<!\\)(?P<row>\\\\(?:" + _TEX_ROW_GAP
+    + r")?(?:\\[ \t]|[ \t])*)(?P<relation>\\iff[ \t]*)\\\\;(?=[ \t]*&)"
+)
 
 
 def on_page_markdown(markdown: str, /, *, page: Any, config: Any, files: Any) -> str:
@@ -21,6 +44,7 @@ def on_page_markdown(markdown: str, /, *, page: Any, config: Any, files: Any) ->
     remains supported for legacy notes.
     """
     lines = _normalize_list_continuations(markdown.splitlines(keepends=True))
+    code_spans = _inline_code_spans(lines)
     converted_lines: list[str] = []
     index = 0
     open_fence: tuple[str, int] | None = None
@@ -50,7 +74,7 @@ def on_page_markdown(markdown: str, /, *, page: Any, config: Any, files: Any) ->
 
         stripped = body.strip()
         # Four-space indentation after the quote marker is literal code.
-        is_code = _container_key(prefix)[1] >= 4
+        is_code = _container_key(prefix)[1] >= 4 or any(a <= len(prefix) < b for a, b in code_spans[index])
         closing_token = _DISPLAY_DELIMITERS.get(stripped)
         closing_index = None
         if closing_token is not None and not is_code:
@@ -65,7 +89,7 @@ def on_page_markdown(markdown: str, /, *, page: Any, config: Any, files: Any) ->
         if converted_lines and not _is_blank(converted_lines[-1]):
             converted_lines.append(blank_line)
 
-        if stripped == "[":
+        if stripped in ("[", r"\\["):
             converted_lines.append(f"{prefix}\\[{newline}")
             converted_lines.extend(lines[index + 1 : closing_index])
             close_content, close_newline = _split_line_ending(lines[closing_index])
@@ -97,10 +121,12 @@ def _normalize_list_continuations(lines: list[str]) -> list[str]:
     fenced contents are never parsed as list markers or math delimiters.
     """
     result: list[str] = []
+    code_spans = _inline_code_spans(lines)
     stack: list[tuple[int, int]] = []  # source item indent, render item indent
     depth = 0
     fence: tuple[str, int] | None = None
     fence_depth = 0
+    last_eol = "\n"
     index = 0
 
     def mapped(prefix: str) -> str:
@@ -117,6 +143,8 @@ def _normalize_list_continuations(lines: list[str]) -> list[str]:
 
     while index < len(lines):
         content, newline = _split_line_ending(lines[index])
+        if newline:
+            last_eol = newline
         prefix, body = _split_container(content)
         quote_depth, indent = _container_key(prefix)
         if fence is not None and body.strip() and quote_depth < fence_depth:
@@ -164,7 +192,8 @@ def _normalize_list_continuations(lines: list[str]) -> list[str]:
         if opening_fence:
             fence, fence_depth = opening_fence, quote_depth
         closing = _DISPLAY_DELIMITERS.get(body.strip())
-        eligible = stack and indent - stack[-1][0] in (3, 4) and not opening_fence
+        eligible = (((stack and indent - stack[-1][0] in (3, 4)) or (not stack and indent < 4))
+                    and not opening_fence and not any(a <= len(prefix) < b for a, b in code_spans[index]))
         end = _find_closing_delimiter(lines, index + 1, prefix, closing) if closing and eligible else None
         if end is not None:
             blank = render_prefix.rstrip(" \t") + (newline or "\n")
@@ -173,16 +202,187 @@ def _normalize_list_continuations(lines: list[str]) -> list[str]:
             for position in range(index, end + 1):
                 inner_content, inner_newline = _split_line_ending(lines[position])
                 inner_prefix, inner_body = _split_container(inner_content)
-                if body.strip() == "[" and position in (index, end):
+                if body.strip() in ("[", r"\\[") and position in (index, end):
                     inner_body = r"\[" if position == index else r"\]"
                 result.append(mapped(inner_prefix) + inner_body + inner_newline)
             if end + 1 < len(lines) and not _is_blank(lines[end + 1]):
                 result.append(blank)
             index = end + 1
             continue
-        result.append(render_prefix + body + newline)
+        relative = indent - stack[-1][0] if stack else indent
+        is_code = relative >= (7 if stack else 4)
+        if not opening_fence and not is_code:
+            protected = [(max(0, a - len(prefix)), b - len(prefix)) for a, b in code_spans[index]]
+            continuation = _with_indent(render_prefix, stack[-1][1] + 4) if marker and stack else render_prefix
+            result.extend(_normalize_math_line(body, render_prefix, newline, protected, continuation, last_eol))
+        else:
+            result.append(render_prefix + body + newline)
         index += 1
     return result
+
+
+def _inline_code_spans(lines: list[str]) -> list[list[tuple[int, int]]]:
+    """Locate inline literals, including multiline spans, without crossing blocks."""
+    spans: list[list[tuple[int, int]]] = [[] for _ in lines]
+    region: list[int] = []
+    fence: tuple[str, int] | None = None
+    fence_depth = 0
+
+    def flush() -> None:
+        text = "".join(lines[i] for i in region)
+        matches = list(_CODE_SPAN_RE.finditer(text))
+        offset = 0
+        for i in region:
+            end = offset + len(lines[i])
+            spans[i] = [(max(offset, m.start()) - offset, min(end, m.end()) - offset)
+                        for m in matches if m.start() < end and m.end() > offset]
+            offset = end
+        region.clear()
+
+    for i, line in enumerate(lines):
+        content, _ = _split_line_ending(line)
+        prefix, body = _split_container(content)
+        depth = prefix.count(">")
+        if fence and body.strip() and depth < fence_depth:
+            fence = None
+        if fence:
+            if depth == fence_depth and _is_closing_fence(body, *fence):
+                fence = None
+            continue
+        opening = _parse_opening_fence(body)
+        if opening:
+            flush()
+            fence, fence_depth = opening, depth
+        elif not body.strip():
+            flush()
+        else:
+            region.append(i)
+    flush()
+    return spans
+
+
+def _normalize_underbrace_subscripts(tex: str) -> str:
+    """Repair escaped annotation subscripts only after a balanced underbrace.
+
+    Skip escaped braces/commands while counting groups; nested text and nested
+    underbraces must not make us mistake an inner closing brace for the end.
+    """
+    remove = set()
+    for opening in _UNDERBRACE_RE.finditer(tex):
+        depth = 1
+        for token in _TEX_GROUP_TOKEN_RE.finditer(tex, opening.end()):
+            if token.group() == "{":
+                depth += 1
+            elif token.group() == "}":
+                depth -= 1
+            if depth == 0:
+                suffix = re.match(r"\s*\\_(?=\{)", tex[token.end():])
+                if suffix:
+                    remove.add(token.end() + suffix.end() - 2)
+                break
+    return "".join(char for index, char in enumerate(tex) if index not in remove)
+
+
+def _normalize_pasted_set_braces(tex: str) -> str:
+    """Repair only fully balanced escaped braces, including nested sets.
+
+    A flat pair regex consumes the outer opening and the first inner closing,
+    leaving malformed braces behind. Validate the entire token stream first;
+    unmatched braces may instead be a real row break followed by a TeX group.
+    """
+    depth = 0
+    for match in _PASTED_SET_BRACE_RE.finditer(tex):
+        depth += 1 if match["brace"] == "{" else -1
+        if depth < 0:
+            return tex
+    if depth:
+        return tex
+    return _PASTED_SET_BRACE_RE.sub(lambda match: "\\" + match["brace"], tex)
+
+
+def _normalize_pasted_aligned_spacing(tex: str, *, pasted_delimiters: bool = False) -> str:
+    """Keep a pasted equivalence and its statement on the same aligned row.
+
+    Only repair the exact row-start ``\\iff`` + doubled ``\\;`` + alignment
+    pattern inside a complete aligned environment, allowing an explicit row
+    gap. With double-escaped outer delimiters, also repair exactly four
+    backslashes before a numeric TeX row gap. Preserve other row breaks and
+    the author's gap values, control spaces and continuation rows.
+    """
+    def normalize_block(block: re.Match[str]) -> str:
+        body = block[0]
+        if pasted_delimiters:
+            body = _PASTED_ALIGNED_GAP_RE.sub(lambda _: r"\\", body)
+        return _PASTED_IFF_ROW_RE.sub(
+            lambda match: match["row"] + match["relation"] + r"\;", body
+        )
+
+    return _ALIGNED_ENVIRONMENT_RE.sub(normalize_block, tex)
+
+
+def _normalize_math_line(
+    body: str, prefix: str, newline: str, protected: list[tuple[int, int]], continuation: str, fallback_eol: str
+) -> list[str]:
+    """Canonicalize paired delimiters and narrowly repair pasted TeX artifacts.
+
+    Display math embedded in prose is emitted as its own paragraph, including
+    repeated expressions in quotes/list items. Literal code stays byte-for-byte.
+    """
+    parts: list[tuple[str, str]] = []
+    offset = 0
+    cursor = 0
+    while match := _MATH_TOKEN_RE.search(body, cursor):
+        cursor = match.end()
+        opening = match['delimiter']
+        if opening not in ("(", "[") or any(a <= match.start() < b for a, b in protected):
+            continue
+        closing = ")" if opening == "(" else "]"
+        end = next((m for m in _MATH_TOKEN_RE.finditer(body, cursor)
+                    if m['delimiter'] == closing and m['slashes'] == match['slashes']), None)
+        if end is None or any(a < end.end() and b > match.start() for a, b in protected):
+            continue
+        tex = body[match.end():end.start()]
+        if not tex.strip():
+            continue
+        tex = _normalize_pasted_set_braces(tex)
+        tex = _normalize_underbrace_subscripts(tex)
+        tex = _normalize_pasted_aligned_spacing(tex, pasted_delimiters=len(match["slashes"]) == 2)
+        tex = _OPERATOR_SUBSCRIPT_RE.sub(r"\1_", tex)
+        tex = _ESCAPED_LESS_THAN_RE.sub("<", tex)
+        tex = _PASTED_COUNT_HASH_RE.sub(lambda _: r"\#", tex)
+        parts.append(("text", body[offset:match.start()]))
+        if opening == "(":
+            parts.append(("text", "\\(" + tex + "\\)"))
+        else:
+            parts.append(("display", tex))
+        offset = cursor = end.end()
+    parts.append(("text", body[offset:]))
+    if not any(kind == "display" for kind, _ in parts):
+        return [prefix + "".join(text for _, text in parts) + newline]
+
+    eol = newline or fallback_eol
+    output: list[str] = []
+    text = ""
+    active_prefix = prefix
+    for kind, value in parts:
+        if kind == "text":
+            text += value
+            continue
+        if text.strip():
+            output.append(active_prefix + text + eol)
+        text = ""
+        active_prefix = continuation
+        blank = active_prefix.rstrip(" \t") + eol
+        output.extend([blank, active_prefix + "\\[" + eol,
+                       active_prefix + value.lstrip(" \t") + eol, active_prefix + "\\]" + eol, blank])
+    if text.strip():
+        output.append(active_prefix + text + newline)
+    elif not newline:
+        # Generated internal boundaries may add lines, never a final newline.
+        while output and _is_blank(output[-1]):
+            output.pop()
+        output[-1] = output[-1].removesuffix(eol)
+    return output
 
 
 def _split_line_ending(line: str) -> tuple[str, str]:
@@ -234,12 +434,17 @@ def _find_closing_delimiter(
 ) -> int | None:
     saw_non_empty_content = False
     key = _container_key(prefix)
+    aligned_depth = 0
 
     for index in range(start_index, len(lines)):
         content, _ = _split_line_ending(lines[index])
         inner_prefix, body = _split_container(content)
+        inner_key = _container_key(inner_prefix)
         # Never pair a delimiter across another quote/list/code container.
-        if body.strip() and _container_key(inner_prefix) != key:
+        # Whitespace before a row inside aligned is TeX formatting, not a new
+        # Markdown container. Keep quote boundaries and outer indentation strict.
+        aligned_continuation = aligned_depth > 0 and inner_key[0] == key[0] and inner_key[1] >= key[1]
+        if body.strip() and inner_key != key and not aligned_continuation:
             return None
         stripped = body.strip()
         if stripped == closing_token:
@@ -250,5 +455,7 @@ def _find_closing_delimiter(
             return None
         if stripped:
             saw_non_empty_content = True
+            for token in re.finditer(r"(?<!\\)\\(?P<kind>begin|end)\{aligned\}", body):
+                aligned_depth += 1 if token['kind'] == 'begin' else -1
 
     return None
