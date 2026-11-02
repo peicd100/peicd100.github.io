@@ -3,6 +3,9 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+# 本機大型封存檔（不得提交至 GitHub）
+/選取項目_29個_20261011_201716.tar.gz
+
 # 建置與封裝輸出
 build/
 dist/
