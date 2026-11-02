@@ -124,3 +124,6 @@ docs/作答.md
 
 # 筆記素材
 docs/筆記素材
+# Local PEICD memory and generated handoff packages
+/.peicd100/codex/
+/.peicd100/codex_compressed/
